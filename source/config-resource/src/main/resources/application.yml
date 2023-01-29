@@ -1,0 +1,78 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  application:
+    name: evol
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    mapper:
+      accept-case-insensitive-enums: true
+    time-zone: GMT+8
+    default-property-inclusion: ALWAYS
+  profiles:
+    active: evol,evol-app
+  messages:
+    always-use-message-format: true
+    basename:
+      messages,
+      org.evolboot.core.messages,
+      org.evolboot.identity.messages,
+      org.evolboot.captcha.messages,
+      org.evolboot.storage.messages,
+      org.evolboot.schedule.messages,
+      org.evolboot.system.messages,
+      org.evolboot.security.accesstoken.messages,
+      org.evolboot.security.api.messages,
+      org.evolboot.sms.messages
+  cache:
+    type: redis
+  #    type: simple
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.evolboot.core.data.jpa.naming.SpringImplicitNamingStrategyImpl
+    database-platform: org.evolboot.core.data.jpa.dialect.CustomMysql5Dialect
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    suffix: .html
+    template-loader-path: classpath:/templates/
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/*.xml
+
+springdoc:
+  group-configs:
+    - group: admin
+      packages-to-scan: org.evolboot
+      paths-to-match: /v1/admin/**
+    - group: api
+      packages-to-scan: org.evolboot
+      paths-to-match: /v1/api/**
+
+
+  packages-to-scan: org.evolboot
+  use-fqn: true
+  model-and-view-allowed: true
+  api-docs:
+    enabled: true
+    path: /evol/v1/api-docs
+  swagger-ui:
+    path: /evol/apidoc
+    tags-sorter: alpha
+    display-request-duration: true
+  title: ${spring.application.name}
+  version: v1

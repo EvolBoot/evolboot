@@ -1,0 +1,6 @@
+host=smtp.exmail.qq.com
+port=465
+from=客服<log@xxxx.org>
+user=log@xxxx.org
+pass=aaaaa
+sslEnable=true

@@ -1,0 +1,18 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 300
+      min-spare: 10
+    # 超出这个拒绝
+    accept-count: 100
+    connection-timeout: 30000
+    max-connections: 8192
+  port: 8083
+
+evol:
+  snowflake-host: 3
+
+logging:
+  # 日志名称
+  filename: app

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.evolboot</groupId>
+        <artifactId>parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <packaging>pom</packaging>
+    <artifactId>source</artifactId>
+    <name>source</name>
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+    </properties>
+    <modules>
+        <module>core</module>
+        <module>component</module>
+        <module>entry</module>
+        <module>config-resource</module>
+        <module>shared</module>
+        <module>security</module>
+        <module>schedule</module>
+        <module>identity</module>
+        <module>system</module>
+        <module>content</module>
+        <module>bff</module>
+    </modules>
+</project>

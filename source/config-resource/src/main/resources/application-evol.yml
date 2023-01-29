@@ -1,0 +1,114 @@
+evol:
+  rsa:
+    rsa-private: MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAPBLiPre/nAyNJ2vM5RaTmPYV+2D6EPuKDjBHSdPTHGb8CkKl6airT7lyzlarylwrLIDwVoPpWllSxQlaFvBNzE3MxbiukH4/teb8fGvwIXeBt03tiKD9b1DNmzIQUcZSqsj/hb0qPvPPC6HZirTUdw7ymyF668oOmVTKdDhAfbdAgMBAAECgYEA3Ehyj4DDgbkUsQU+5J4QxMk8efl1gGigKL8n6bRxYKjSdd1G/rSc208viSmP8A5h0mNM6jHzsnXwaMyOKacr3sR7qPXY0D+qWBtZsiyhKw5RH589WPvgLYULZVoBUx3vGJJcpCUKa+F1WPT8ierdIkP4JLf6C3OUWv9AiMXWwiUCQQD5EVHw0yBTUstJaklIoZsaN2TG3CALr/mmuSWP1cxHjvrPgdD4W009CCnR5HsOAWqualrZvcFu2xKXe+mOIYm3AkEA9vu1KgFAVU9uR/adDeJff6vOQcejp/YpYIyor6MWBduVvB0JX5aA8tAq07YK6KWNqGFOWpBrzUW2NqJTgqdUCwJAR72KaaCWdgmqDlp0A1yxLUr5VyI+hL9KXJCF1jlR3ua7LZwJ0g+SXtsEGLYED9Ouo9B0nLVAiyrE3ydM7aiRXwJBAJPcf0oFc8FfC1PT5ZSBWNDzR0kEPwr4CS9/JiH4Td/15P+4lnr+fHZhf7I9guxi6JrMnn8DhTZgLMUqizpl+J8CQQCBBCg67lEl/7p0R5t61O6LpACOhSrXMcylT7uyNYbVUtWOG1O1oV5iVMPCyxK03h6R5s460WijMIdaH7DA3o+n
+    rsa-public: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDwS4j63v5wMjSdrzOUWk5j2Fftg+hD7ig4wR0nT0xxm/ApCpemoq0+5cs5Wq8pcKyyA8FaD6VpZUsUJWhbwTcxNzMW4rpB+P7Xm/Hxr8CF3gbdN7Yig/W9QzZsyEFHGUqrI/4W9Kj7zzwuh2Yq01HcO8psheuvKDplUynQ4QH23QIDAQAB
+  default:
+    language: 'en-US'
+    time-zone: GMT+8
+    time-zone-cst: Asia/Shanghai
+    test-mode: true
+    test-key: RTig0qAdJA
+  # 雪花ID
+  snowflake-host: 1
+
+  # 是否启用定时任务
+  schedule:
+    enable: false
+
+  # 默认头像
+  identity:
+    user:
+      avatar: http://localhost:8090/default/avatar.png
+
+  #验证码
+  captcha:
+    image:
+      repository-type: redis
+      timeout: 120000
+    mobile:
+      repository-type: redis
+      # 超时时间
+      timeout: 300000
+      # 验证次数
+      limit-verify-count: 5
+    email:
+      repository-type: redis
+      timeout: 300000
+      limit-verify-count: 5
+  # 存储
+  storage:
+    type: minio
+    local:
+      base-url: http://localhost:8081
+      directory: /data/upload
+      prefix: /files
+    static-server:
+      base-url: http://localhost:8090
+      directory: /data/upload
+    aliyun:
+      base-url: http://xxx.oss-cn-xxxxxaliyuncs.com
+      access-key-id: xxxxxxxxxxxx
+      access-key-secret: xxxxxxx
+      bucket-name: 123123
+      endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    qiniu:
+      base-url: http://cdn.xxxx.fr.emallos.com
+      access-key: xxx
+      secret-key: xxxxx
+      region: beimei
+      bucket: emallos-na
+    qcloud:
+      base-url: https://test-xxx.cos.ap-nanjing.myqcloud.com
+      secret-id: xxx
+      secret-key: xxxxxxxxxxx
+      region: ap-nanjing
+      bucket-name: test
+    minio:
+      base-url: http://192.168.0.251:19000/test
+      bucket: test
+      endpoint: http://192.168.0.251:19000
+      access-key: sa1
+      secret-access-key: 1234567890@a
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/evol?allowPublicKeyRetrieval=true&useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=${evol.default.time-zone-cst}&rewriteBatchedStatements=true
+    username: root
+    password: root
+    hikari:
+      validation-timeout: 1500
+      connection-timeout: 2000
+      max-lifetime: 1200000
+      minimum-idle: 5
+      maximum-pool-size: 10
+      auto-commit: true
+      connection-test-query: SELECT 1
+  flyway:
+    enabled: true
+    ignore-missing-migrations: true
+    out-of-order: true
+    validate-on-migrate: true
+    encoding: UTF-8
+    locations: classpath:/db/migration
+    placeholders:
+      storage-base-url: http://localhost:8090
+      default-avatar: ${evol.identity.user.avatar}
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 3000
+    database: 0
+  jpa:
+    show-sql: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  # 日志名称
+  filename: app
+  config: classpath:logback-evol.xml

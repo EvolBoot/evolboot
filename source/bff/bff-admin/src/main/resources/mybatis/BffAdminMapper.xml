@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.evolboot.bffadmin.domain.repository.BffAdminMapper">
+
+    <select id="findUser"
+            resultType="org.evolboot.bffadmin.domain.response.BffUser">
+        select *
+        from evol_identity_user
+    </select>
+
+    <select id="findStaffUser"
+            resultType="org.evolboot.bffadmin.domain.response.BffStaffUser">
+
+        select *
+        from (
+                 select *
+                 from evol_identity_user
+                 where identity_symbol_ <![CDATA[ & ]]> 4 > 0
+                   and del_status_ = 'ACTIVE'
+             ) as t1
+                 left join (
+            select iur.user_id_,
+                   group_concat(ir.role_name_) as role_name_,
+                   group_concat(ir.id_)        as role_id_
+            from evol_identity_user_role iur,
+                 evol_identity_role ir
+            where iur.role_id_ = ir.id_
+            group by iur.user_id_
+        ) as t2 on t1.id_ = t2.user_id_
+    </select>
+
+</mapper>
