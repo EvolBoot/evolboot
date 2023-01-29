@@ -361,6 +361,6 @@
         </plugins>
     </build>
     <modules>
-        <module>source</module>
+        <module>module</module>
     </modules>
 </project>
