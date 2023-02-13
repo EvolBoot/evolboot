@@ -8,7 +8,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.GoogleAuthenticator;
 import org.evolboot.shared.event.user.UserDeleteEvent;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.acl.port.SecurityAccessTokenPort;
+import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.relation.RelationAppService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
@@ -58,9 +58,9 @@ public class DefaultUserAppService implements UserAppService {
 
     private final UserStatusChangeService userStatusChangeService;
 
-    private final SecurityAccessTokenPort securityAccessTokenPort;
+    private final SecurityAccessTokenClient securityAccessTokenClient;
 
-    public DefaultUserAppService(UserRegisterService userRegisterService, UserPasswordUpdateService userPasswordUpdateService, UserRepository repository, UserUpdateService userUpdateService, UserPasswordSetService userPasswordSetService, UserCreateFactory userCreateFactory, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationAppService relationAppService, UserRelationRefactorService userRelationRefactorService, UserChangeInviterUserIdService userChangeInviterUserIdService, UserResetPasswordService userResetPasswordService, UserSecurityPasswordUpdateService userSecurityPasswordUpdateService, UserSecurityPasswordResetService userSecurityPasswordResetService, UserStatusChangeService userStatusChangeService, SecurityAccessTokenPort securityAccessTokenPort) {
+    public DefaultUserAppService(UserRegisterService userRegisterService, UserPasswordUpdateService userPasswordUpdateService, UserRepository repository, UserUpdateService userUpdateService, UserPasswordSetService userPasswordSetService, UserCreateFactory userCreateFactory, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationAppService relationAppService, UserRelationRefactorService userRelationRefactorService, UserChangeInviterUserIdService userChangeInviterUserIdService, UserResetPasswordService userResetPasswordService, UserSecurityPasswordUpdateService userSecurityPasswordUpdateService, UserSecurityPasswordResetService userSecurityPasswordResetService, UserStatusChangeService userStatusChangeService, SecurityAccessTokenClient securityAccessTokenClient) {
         this.userRegisterService = userRegisterService;
         this.repository = repository;
         this.userPasswordUpdateService = userPasswordUpdateService;
@@ -76,7 +76,7 @@ public class DefaultUserAppService implements UserAppService {
         this.userSecurityPasswordUpdateService = userSecurityPasswordUpdateService;
         this.userSecurityPasswordResetService = userSecurityPasswordResetService;
         this.userStatusChangeService = userStatusChangeService;
-        this.securityAccessTokenPort = securityAccessTokenPort;
+        this.securityAccessTokenClient = securityAccessTokenClient;
     }
 
 
@@ -118,7 +118,7 @@ public class DefaultUserAppService implements UserAppService {
         user.delete();
         repository.save(user);
         eventPublisher.publishEvent(new UserDeleteEvent(user.id()));
-        securityAccessTokenPort.kickOut(userId);
+        securityAccessTokenClient.kickOut(userId);
 
     }
 

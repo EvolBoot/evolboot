@@ -99,11 +99,6 @@
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>locale</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.evolboot</groupId>
                 <artifactId>shared</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -119,7 +114,7 @@
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>configuration</artifactId>
+                <artifactId>config</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

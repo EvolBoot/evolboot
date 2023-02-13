@@ -5,8 +5,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.IpUtil;
-import org.evolboot.identity.acl.port.IdentityCaptchaPort;
-import org.evolboot.identity.acl.port.IdentityConfigurationPort;
+import org.evolboot.identity.acl.client.IdentityCaptchaClient;
+import org.evolboot.identity.acl.client.IdentityConfigClient;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
@@ -35,13 +35,13 @@ import java.io.IOException;
 public class AppUserResourceV1 {
 
     private final UserAppService service;
-    private final IdentityConfigurationPort identityConfigurationPort;
-    private final IdentityCaptchaPort identityCaptchaPort;
+    private final IdentityConfigClient identityConfigClient;
+    private final IdentityCaptchaClient identityCaptchaClient;
 
-    public AppUserResourceV1(UserAppService service, IdentityConfigurationPort identityConfigurationPort, IdentityCaptchaPort identityCaptchaPort) {
+    public AppUserResourceV1(UserAppService service, IdentityConfigClient identityConfigClient, IdentityCaptchaClient identityCaptchaClient) {
         this.service = service;
-        this.identityConfigurationPort = identityConfigurationPort;
-        this.identityCaptchaPort = identityCaptchaPort;
+        this.identityConfigClient = identityConfigClient;
+        this.identityCaptchaClient = identityCaptchaClient;
     }
 
     @Operation(summary = "当前登录用户修改资料")
@@ -126,7 +126,7 @@ public class AppUserResourceV1 {
         // 您未设置手机号
         Assert.notBlank(user.getMobile(), "您的手机号未设置");
         String token =
-                identityCaptchaPort.sendMobileCaptcha(
+                identityCaptchaClient.sendMobileCaptcha(
                         user.getMobilePrefix(),
                         user.getMobile(),
                         org.evolboot.shared.sms.MessageTag.CHECK,
@@ -146,7 +146,7 @@ public class AppUserResourceV1 {
         // 您未设置邮箱
         Assert.notBlank(user.getEmail(), "邮箱未设置");
         String token =
-                identityCaptchaPort.sendEmailCaptcha(
+                identityCaptchaClient.sendEmailCaptcha(
                         user.getEmail(),
                         MessageTag.CHECK,
                         IpUtil.getClientIP(servletRequest),

@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>configuration</artifactId>
+            <artifactId>config</artifactId>
         </dependency>
     </dependencies>
 </project>

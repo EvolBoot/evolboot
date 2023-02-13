@@ -14,9 +14,8 @@
         <module>captcha</module>
         <module>sms</module>
         <module>storage</module>
-        <module>configuration</module>
+        <module>config</module>
         <module>mq</module>
-        <module>locale</module>
         <module>sentinel</module>
     </modules>
 </project>

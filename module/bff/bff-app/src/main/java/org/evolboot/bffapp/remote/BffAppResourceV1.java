@@ -4,7 +4,7 @@ import org.evolboot.bffapp.domain.BffAppQuery;
 import org.evolboot.bffapp.domain.BffAppService;
 import org.evolboot.bffapp.domain.BffUser;
 import org.evolboot.bffapp.remote.response.AppConfigResponse;
-import org.evolboot.configuration.domain.ConfigurationAppService;
+import org.evolboot.configuration.domain.ConfigAppService;
 import org.evolboot.configuration.domain.about.AboutConfig;
 import org.evolboot.configuration.domain.system.SystemConfig;
 import org.evolboot.core.annotation.ApiClient;
@@ -35,12 +35,12 @@ import java.util.Map;
 @ApiClient
 public class BffAppResourceV1 {
 
-    private final ConfigurationAppService configurationAppService;
+    private final ConfigAppService configAppService;
 
     private final BffAppService service;
 
-    public BffAppResourceV1(ConfigurationAppService configurationAppService, BffAppService service) {
-        this.configurationAppService = configurationAppService;
+    public BffAppResourceV1(ConfigAppService configAppService, BffAppService service) {
+        this.configAppService = configAppService;
         this.service = service;
     }
 
@@ -62,8 +62,8 @@ public class BffAppResourceV1 {
     @GetMapping("/configurations/app-config")
     public ResponseModel<AppConfigResponse> configurations(
     ) {
-        AboutConfig aboutConfig = configurationAppService.getByKey(AboutConfig.KEY, AboutConfig.class);
-        SystemConfig systemConfig = configurationAppService.getByKey(SystemConfig.KEY, SystemConfig.class);
+        AboutConfig aboutConfig = configAppService.getByKey(AboutConfig.KEY, AboutConfig.class);
+        SystemConfig systemConfig = configAppService.getByKey(SystemConfig.KEY, SystemConfig.class);
         return ResponseModel.ok(AppConfigResponse.of(aboutConfig, systemConfig));
     }
 

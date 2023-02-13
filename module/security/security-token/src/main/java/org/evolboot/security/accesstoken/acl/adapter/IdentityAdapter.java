@@ -13,7 +13,7 @@ import org.evolboot.identity.domain.user.UserRegisterService;
 import org.evolboot.identity.domain.user.shared.UserStatus;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
-import org.evolboot.security.accesstoken.acl.port.IdentityClient;
+import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.shared.lang.UserIdentity;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

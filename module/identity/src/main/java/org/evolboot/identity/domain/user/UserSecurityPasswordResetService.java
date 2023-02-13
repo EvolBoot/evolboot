@@ -2,7 +2,7 @@ package org.evolboot.identity.domain.user;
 
 
 import org.evolboot.core.service.crypto.rsa.RsaService;
-import org.evolboot.identity.acl.port.IdentityCaptchaPort;
+import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,12 +22,12 @@ import org.springframework.stereotype.Service;
 public class UserSecurityPasswordResetService extends UserSupportService {
 
     private final RsaService rsaService;
-    private final IdentityCaptchaPort identityCaptchaPort;
+    private final IdentityCaptchaClient identityCaptchaClient;
 
-    public UserSecurityPasswordResetService(UserRepository repository, RsaService rsaService, IdentityCaptchaPort identityCaptchaPort) {
+    public UserSecurityPasswordResetService(UserRepository repository, RsaService rsaService, IdentityCaptchaClient identityCaptchaClient) {
         super(repository);
         this.rsaService = rsaService;
-        this.identityCaptchaPort = identityCaptchaPort;
+        this.identityCaptchaClient = identityCaptchaClient;
     }
 
     /**
@@ -39,9 +39,9 @@ public class UserSecurityPasswordResetService extends UserSupportService {
     public User execute(Request request) {
         User user = findById(request.getUserId());
         if (ValidationType.EMAIL_CAPTCHA.equals(request.getValidationType())) {
-            identityCaptchaPort.verifyEmailCaptchaIsTrue(user.getEmail(), request.getCaptchaCode(), request.getCaptchaToken(), request.getInternalCode());
+            identityCaptchaClient.verifyEmailCaptchaIsTrue(user.getEmail(), request.getCaptchaCode(), request.getCaptchaToken(), request.getInternalCode());
         } else {
-            identityCaptchaPort.verifyMobileCaptchaIsTrue(
+            identityCaptchaClient.verifyMobileCaptchaIsTrue(
                     user.getMobilePrefix(),
                     user.getMobile(),
                     request.getCaptchaCode(),

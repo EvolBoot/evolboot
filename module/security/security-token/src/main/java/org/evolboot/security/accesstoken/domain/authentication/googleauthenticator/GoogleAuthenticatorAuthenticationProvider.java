@@ -1,9 +1,8 @@
 package org.evolboot.security.accesstoken.domain.authentication.googleauthenticator;
 
 import org.evolboot.core.util.Assert;
-import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.GoogleAuthenticator;
-import org.evolboot.security.accesstoken.acl.port.IdentityClient;
+import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationProvider;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;

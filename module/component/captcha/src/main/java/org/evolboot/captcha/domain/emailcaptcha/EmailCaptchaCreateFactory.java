@@ -2,7 +2,7 @@ package org.evolboot.captcha.domain.emailcaptcha;
 
 import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.domain.emailcaptcha.repository.EmailCaptchaRepository;
-import org.evolboot.captcha.domain.emailcaptcha.sender.EmailCodePort;
+import org.evolboot.captcha.acl.client.EmailCodeClient;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.core.exception.DomainRepetitionException;
 import org.evolboot.core.util.Assert;
@@ -30,9 +30,9 @@ public class EmailCaptchaCreateFactory {
 
     private final EmailCaptchaRepository repository;
 
-    private final EmailCodePort sender;
+    private final EmailCodeClient sender;
 
-    public EmailCaptchaCreateFactory(ImageCaptchaAppService imageCaptchaAppService, EmailCaptchaRepository repository, EmailCodePort sender) {
+    public EmailCaptchaCreateFactory(ImageCaptchaAppService imageCaptchaAppService, EmailCaptchaRepository repository, EmailCodeClient sender) {
         this.imageCaptchaAppService = imageCaptchaAppService;
         this.repository = repository;
         this.sender = sender;

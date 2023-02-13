@@ -1,6 +1,6 @@
 package org.evolboot.identity.acl.adapter;
 
-import org.evolboot.identity.acl.port.SecurityAccessTokenPort;
+import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
 import org.evolboot.security.api.SecurityAccessTokenAppService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class SecurityAccessTokenAdapter implements SecurityAccessTokenPort {
+public class SecurityAccessTokenAdapter implements SecurityAccessTokenClient {
 
     private final SecurityAccessTokenAppService securityAccessTokenAppService;
 

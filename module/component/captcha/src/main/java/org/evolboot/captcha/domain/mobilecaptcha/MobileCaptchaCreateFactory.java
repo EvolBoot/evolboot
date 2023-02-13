@@ -1,7 +1,7 @@
 package org.evolboot.captcha.domain.mobilecaptcha;
 
 import org.evolboot.captcha.CaptchaI18nMessage;
-import org.evolboot.captcha.acl.port.CaptchaSmsPort;
+import org.evolboot.captcha.acl.client.CaptchaSmsClient;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
@@ -30,14 +30,14 @@ public class MobileCaptchaCreateFactory {
 
     private final MobileCaptchaRepository repository;
 
-    private final CaptchaSmsPort captchaSmsPort;
+    private final CaptchaSmsClient captchaSmsClient;
 
     private final ImageCaptchaAppService imageCaptchaAppService;
 
 
-    public MobileCaptchaCreateFactory(MobileCaptchaRepository repository, CaptchaSmsPort captchaSmsPort, ImageCaptchaAppService imageCaptchaAppService) {
+    public MobileCaptchaCreateFactory(MobileCaptchaRepository repository, CaptchaSmsClient captchaSmsClient, ImageCaptchaAppService imageCaptchaAppService) {
         this.repository = repository;
-        this.captchaSmsPort = captchaSmsPort;
+        this.captchaSmsClient = captchaSmsClient;
         this.imageCaptchaAppService = imageCaptchaAppService;
     }
 

@@ -6,7 +6,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.sms.MessageTag;
 import org.evolboot.shared.sms.SmsSendChannel;
-import org.evolboot.sms.acl.port.SmsConfigurationPort;
+import org.evolboot.sms.acl.client.SmsConfigClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,19 +19,19 @@ import java.util.Map;
 @Slf4j
 public class DefaultSmsAppService implements SmsAppService {
 
-    private final SmsConfigurationPort smsConfigurationPort;
+    private final SmsConfigClient smsConfigClient;
 
     private final Map<SmsSendChannel, SmsSender> smsSenders;
 
-    public DefaultSmsAppService(SmsConfigurationPort smsConfigurationPort, Map<SmsSendChannel, SmsSender> smsSenders) {
-        this.smsConfigurationPort = smsConfigurationPort;
+    public DefaultSmsAppService(SmsConfigClient smsConfigClient, Map<SmsSendChannel, SmsSender> smsSenders) {
+        this.smsConfigClient = smsConfigClient;
         this.smsSenders = smsSenders;
     }
 
 
     @Override
     public SmsSender.Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String... params) {
-        SmsConfig smsConfig = smsConfigurationPort.getSmsConfig();
+        SmsConfig smsConfig = smsConfigClient.getSmsConfig();
         Assert.isTrue(!ExtendObjects.isEmpty(smsConfig.getLocales()), "Please configure SMS.");
         String content = getSmsContent(smsConfig, messageTag, params);
         SmsSender smsSender = smsSenders.get(smsConfig.getChannel());

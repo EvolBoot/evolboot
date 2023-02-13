@@ -2,7 +2,7 @@ package org.evolboot.security.accesstoken.domain;
 
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.identity.domain.user.UserRegisterService;
-import org.evolboot.security.accesstoken.acl.port.AccessTokenConfigurationPort;
+import org.evolboot.security.accesstoken.acl.client.AccessTokenConfigClient;
 import org.evolboot.security.accesstoken.domain.authentication.AccessTokenAuthenticationManager;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
@@ -24,14 +24,14 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
 
     private final AccessTokenAuthenticationManager accessTokenAuthenticationManager;
     private final EventPublisher eventPublisher;
-    private final AccessTokenConfigurationPort accessTokenConfigurationPort;
+    private final AccessTokenConfigClient accessTokenConfigClient;
     private final RegisterUserAndGetAccessToken registerUserAndGetAccessToken;
     private final SecurityAccessTokenAppService securityAccessTokenAppService;
 
-    public DefaultAccessTokenAppService(AccessTokenAuthenticationManager accessTokenAuthenticationManager, EventPublisher eventPublisher, AccessTokenConfigurationPort accessTokenConfigurationPort, RegisterUserAndGetAccessToken registerUserAndGetAccessToken, SecurityAccessTokenAppService securityAccessTokenAppService) {
+    public DefaultAccessTokenAppService(AccessTokenAuthenticationManager accessTokenAuthenticationManager, EventPublisher eventPublisher, AccessTokenConfigClient accessTokenConfigClient, RegisterUserAndGetAccessToken registerUserAndGetAccessToken, SecurityAccessTokenAppService securityAccessTokenAppService) {
         this.accessTokenAuthenticationManager = accessTokenAuthenticationManager;
         this.eventPublisher = eventPublisher;
-        this.accessTokenConfigurationPort = accessTokenConfigurationPort;
+        this.accessTokenConfigClient = accessTokenConfigClient;
         this.registerUserAndGetAccessToken = registerUserAndGetAccessToken;
         this.securityAccessTokenAppService = securityAccessTokenAppService;
     }
@@ -77,7 +77,7 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
 
 
     private void kickOutUser(AccessToken accessToken) {
-        if (!accessTokenConfigurationPort.enableSingleLogin()) {
+        if (!accessTokenConfigClient.enableSingleLogin()) {
             return;
         }
         if (accessToken.getAuthorities().contains(UserIdentity.ROLE_STAFF.name()) || accessToken.getAuthorities().contains(UserIdentity.ROLE_ADMIN.name())) {

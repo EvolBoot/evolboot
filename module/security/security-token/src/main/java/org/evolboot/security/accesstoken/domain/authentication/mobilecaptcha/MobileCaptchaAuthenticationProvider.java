@@ -1,8 +1,8 @@
 package org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha;
 
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
-import org.evolboot.security.accesstoken.acl.port.CaptchaClient;
-import org.evolboot.security.accesstoken.acl.port.IdentityClient;
+import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
+import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationProvider;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;

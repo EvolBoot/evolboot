@@ -1,7 +1,7 @@
 package org.evolboot.security.accesstoken.domain;
 
 import org.evolboot.identity.domain.user.UserRegisterService;
-import org.evolboot.security.accesstoken.acl.port.IdentityClient;
+import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.springframework.stereotype.Service;
 
 /**

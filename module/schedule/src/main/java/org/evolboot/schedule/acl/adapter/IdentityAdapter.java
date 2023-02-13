@@ -1,7 +1,7 @@
 package org.evolboot.schedule.acl.adapter;
 
 import org.evolboot.identity.domain.userid.UserIdAppService;
-import org.evolboot.schedule.acl.port.IdentityPort;
+import org.evolboot.schedule.acl.client.IdentityClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class IdentityAdapter implements IdentityPort {
+public class IdentityAdapter implements IdentityClient {
 
     private final UserIdAppService userIdAppService;
 

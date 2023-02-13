@@ -1,6 +1,6 @@
 package org.evolboot.captcha.acl.adapter;
 
-import org.evolboot.captcha.acl.port.CaptchaSmsPort;
+import org.evolboot.captcha.acl.client.CaptchaSmsClient;
 import org.evolboot.shared.sms.MessageTag;
 import org.evolboot.sms.domain.SmsAppService;
 import org.evolboot.sms.domain.SmsSender;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service
-public class CaptchaSmsAdapter implements CaptchaSmsPort {
+public class CaptchaSmsAdapter implements CaptchaSmsClient {
 
     private final SmsAppService smsAppService;
 

@@ -6,7 +6,7 @@ import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaCreateFactory;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaCreateFactory;
-import org.evolboot.identity.acl.port.IdentityCaptchaPort;
+import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.shared.email.MessageTag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class IdentityCaptchaAdapter implements IdentityCaptchaPort {
+public class IdentityCaptchaAdapter implements IdentityCaptchaClient {
 
     private final MobileCaptchaAppService mobileCaptchaAppService;
     private final EmailCaptchaAppService emailCaptchaAppService;

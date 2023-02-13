@@ -1,7 +1,7 @@
 package org.evolboot.security.accesstoken.domain.authentication.usernamepassword;
 
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
-import org.evolboot.security.accesstoken.acl.port.IdentityClient;
+import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationProvider;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;

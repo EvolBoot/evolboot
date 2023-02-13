@@ -1,6 +1,6 @@
 package org.evolboot.identity.domain.user;
 
-import org.evolboot.identity.acl.port.SecurityAccessTokenPort;
+import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.shared.UserStatus;
 import lombok.AllArgsConstructor;
@@ -17,18 +17,18 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserStatusChangeService extends UserSupportService {
 
-    private final SecurityAccessTokenPort securityAccessTokenPort;
+    private final SecurityAccessTokenClient securityAccessTokenClient;
 
-    public UserStatusChangeService(UserRepository repository, SecurityAccessTokenPort securityAccessTokenPort) {
+    public UserStatusChangeService(UserRepository repository, SecurityAccessTokenClient securityAccessTokenClient) {
         super(repository);
-        this.securityAccessTokenPort = securityAccessTokenPort;
+        this.securityAccessTokenClient = securityAccessTokenClient;
     }
 
     public void execute(Request request) {
         User user = findById(request.getUserId());
         user.setStatus(request.getStatus());
         if (UserStatus.LOCK.equals(request.getStatus())) {
-            securityAccessTokenPort.kickOut(request.getUserId());
+            securityAccessTokenClient.kickOut(request.getUserId());
         }
         repository.save(user);
     }

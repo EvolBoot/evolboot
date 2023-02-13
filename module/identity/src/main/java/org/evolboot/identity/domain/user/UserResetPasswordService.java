@@ -4,7 +4,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.acl.port.IdentityCaptchaPort;
+import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
@@ -22,26 +22,26 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserResetPasswordService extends UserSupportService {
 
-    private final IdentityCaptchaPort identityCaptchaPort;
+    private final IdentityCaptchaClient identityCaptchaClient;
     private final UserEncryptPasswordService userEncryptPasswordService;
 
-    public UserResetPasswordService(UserRepository repository, IdentityCaptchaPort identityCaptchaPort, UserEncryptPasswordService userEncryptPasswordService) {
+    public UserResetPasswordService(UserRepository repository, IdentityCaptchaClient identityCaptchaClient, UserEncryptPasswordService userEncryptPasswordService) {
         super(repository);
-        this.identityCaptchaPort = identityCaptchaPort;
+        this.identityCaptchaClient = identityCaptchaClient;
         this.userEncryptPasswordService = userEncryptPasswordService;
     }
 
     public User execute(Request request) {
         User user = null;
         if (ExtendObjects.isNotBlank(request.getEmail())) {
-            identityCaptchaPort.verifyEmailCaptchaIsTrue(request.getEmail(),
+            identityCaptchaClient.verifyEmailCaptchaIsTrue(request.getEmail(),
                     request.getCaptchaCode(),
                     request.getCaptchaToken(),
                     null);
             user = repository.findByEmail(request.getEmail()).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
         }
         if (ExtendObjects.isNotBlank(request.getMobile())) {
-            identityCaptchaPort.verifyMobileCaptchaIsTrue(
+            identityCaptchaClient.verifyMobileCaptchaIsTrue(
                     request.getMobilePrefix(),
                     request.getMobile(),
                     request.getCaptchaCode(),

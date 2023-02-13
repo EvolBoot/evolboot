@@ -1,6 +1,6 @@
 package org.evolboot.schedule.service;
 
-import org.evolboot.schedule.acl.port.IdentityPort;
+import org.evolboot.schedule.acl.client.IdentityClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty("evol.schedule.enable")
 public class UserIdUpdateService {
 
-    private final IdentityPort identityPort;
+    private final IdentityClient identityClient;
 
 
-    public UserIdUpdateService(IdentityPort identityPort) {
-        this.identityPort = identityPort;
+    public UserIdUpdateService(IdentityClient identityClient) {
+        this.identityClient = identityClient;
     }
 
     /**
@@ -27,7 +27,7 @@ public class UserIdUpdateService {
     @Scheduled(initialDelay = 1000, fixedDelay = 5 * 60 * 1000)
     public void userIdUpdate() throws Exception {
         log.info("用户ID:定时任务更新:userIdUpdate:开始");
-        identityPort.userIdUpdate();
+        identityClient.userIdUpdate();
         log.info("用户ID:定时任务更新:userIdUpdate:结束");
     }
 
@@ -38,7 +38,7 @@ public class UserIdUpdateService {
     @Scheduled(initialDelay = 1000, fixedDelay = 5 * 60 * 1000)
     public void userIdUpdateCache() throws Exception {
         log.info("用户ID:定时任务更新:userIdUpdateCache:开始");
-        identityPort.userIdUpdateCache();
+        identityClient.userIdUpdateCache();
         log.info("用户ID:定时任务更新:userIdUpdateCache:结束");
     }
 

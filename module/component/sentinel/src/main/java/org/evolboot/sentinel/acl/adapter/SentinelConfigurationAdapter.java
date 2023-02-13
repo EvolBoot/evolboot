@@ -1,6 +1,6 @@
 package org.evolboot.sentinel.acl.adapter;
 
-import org.evolboot.configuration.domain.ConfigurationAppService;
+import org.evolboot.configuration.domain.ConfigAppService;
 import org.evolboot.sentinel.SentinelRole;
 import org.evolboot.sentinel.acl.port.SentinelConfigurationPort;
 import lombok.extern.slf4j.Slf4j;
@@ -14,19 +14,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SentinelConfigurationAdapter implements SentinelConfigurationPort {
 
-    private final ConfigurationAppService configurationAppService;
+    private final ConfigAppService configAppService;
 
-    public SentinelConfigurationAdapter(ConfigurationAppService configurationAppService) {
-        this.configurationAppService = configurationAppService;
+    public SentinelConfigurationAdapter(ConfigAppService configAppService) {
+        this.configAppService = configAppService;
     }
 
     @Override
     public SentinelRole getSentinelRole() {
-        return configurationAppService.getByKey(SentinelRole.KEY, SentinelRole.class);
+        return configAppService.getByKey(SentinelRole.KEY, SentinelRole.class);
     }
 
     @Override
     public void save(SentinelRole sentinelRole) {
-        configurationAppService.setPropertyValue(sentinelRole);
+        configAppService.setPropertyValue(sentinelRole);
     }
 }

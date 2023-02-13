@@ -1,6 +1,6 @@
 package org.evolboot.captcha.acl.adapter;
 
-import org.evolboot.captcha.domain.emailcaptcha.sender.EmailCodePort;
+import org.evolboot.captcha.acl.client.EmailCodeClient;
 import org.evolboot.core.util.EmailSenderUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class EmailCodeAdapter implements EmailCodePort {
+public class EmailCodeAdapter implements EmailCodeClient {
 
     private final EmailSenderUtil emailSender = new EmailSenderUtil();
 
@@ -18,7 +18,7 @@ public class EmailCodeAdapter implements EmailCodePort {
     public Response send(String email, String code) {
         String res = emailSender.sendText(email, "你的验证码", "您的验证为:" + code);
         log.info("邮件验证码，回执:{}", res);
-        return EmailCodePort.Response.builder()
+        return EmailCodeClient.Response.builder()
                 .sendStatus(true)
                 .build();
     }
