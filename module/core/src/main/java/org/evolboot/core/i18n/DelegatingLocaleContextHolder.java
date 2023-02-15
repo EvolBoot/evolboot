@@ -16,6 +16,10 @@ public abstract class DelegatingLocaleContextHolder {
         return LocaleContextHolder.getLocale().toLanguageTag();
     }
 
+    public static Locale getLocale() {
+        return LocaleContextHolder.getLocale();
+    }
+
     /**
      * 修改当前语言
      *

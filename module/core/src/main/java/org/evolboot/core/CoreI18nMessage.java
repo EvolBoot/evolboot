@@ -1,6 +1,6 @@
 package org.evolboot.core;
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
@@ -24,44 +24,44 @@ public abstract class CoreI18nMessage {
 
 
     public static String notBlank(String str) {
-        return MessageHolder.message(NOT_BLANK, "", str);
+        return I18NMessageHolder.message(NOT_BLANK, "", str);
     }
 
     public static String notEmpty(String field) {
-        return MessageHolder.message(NOT_EMPTY, "", field);
+        return I18NMessageHolder.message(NOT_EMPTY, "", field);
     }
 
     public static String notNull(String field) {
 
-        return MessageHolder.message(NOT_NULL, "", field);
+        return I18NMessageHolder.message(NOT_NULL, "", field);
     }
 
     public static String parameterTypeError() {
-        return MessageHolder.message(PARAMETER_TYPE_ERROR, "PARAMETER_TYPE_ERROR");
+        return I18NMessageHolder.message(PARAMETER_TYPE_ERROR, "PARAMETER_TYPE_ERROR");
     }
 
     public static String notFoundDomainObject(String obj) {
-        return MessageHolder.message(NOT_FOUND_DOMAIN_OBJECT, "", obj);
+        return I18NMessageHolder.message(NOT_FOUND_DOMAIN_OBJECT, "", obj);
     }
 
     public static String configurationRepeatSettingException() {
-        return MessageHolder.message(CONFIGURATION_REPEAT_SETTING_EXCEPTION, "");
+        return I18NMessageHolder.message(CONFIGURATION_REPEAT_SETTING_EXCEPTION, "");
     }
 
     public static String maxFileSizeError(Object obj) {
-        return MessageHolder.message(MAX_FILE_SIZE_ERROR, "", obj);
+        return I18NMessageHolder.message(MAX_FILE_SIZE_ERROR, "", obj);
     }
 
     public static String objectOptimisticLockingFailureException() {
-        return MessageHolder.message(OBJECT_OPTIMISTIC_LOCKING_FAILURE_EXCEPTION, "");
+        return I18NMessageHolder.message(OBJECT_OPTIMISTIC_LOCKING_FAILURE_EXCEPTION, "");
     }
 
     public static String dataIntegrityViolationException() {
-        return MessageHolder.message(DATA_INTEGRITY_VIOLATION_EXCEPTION, "");
+        return I18NMessageHolder.message(DATA_INTEGRITY_VIOLATION_EXCEPTION, "");
     }
 
     public static String repeatSubmit() {
-        return MessageHolder.message(REPEAT_SUBMIT, "");
+        return I18NMessageHolder.message(REPEAT_SUBMIT, "");
     }
 
 

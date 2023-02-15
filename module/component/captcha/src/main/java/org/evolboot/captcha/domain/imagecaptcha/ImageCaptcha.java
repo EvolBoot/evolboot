@@ -5,6 +5,7 @@ import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.core.domain.AbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.util.Date;
+
+import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.*;
 
 /**
  * @author evol
@@ -55,7 +58,7 @@ public class ImageCaptcha extends AbstractEntity<String> implements AggregateRoo
     }
 
     public boolean verify(String code) {
-        Assert.notBlank(code, CaptchaI18nMessage.ImageCaptcha.codeNotBlank());
+        Assert.notBlank(code, I18NMessageHolder.message(CODE_ERROR));
         if (isTimeout()) {
             return false;
         }

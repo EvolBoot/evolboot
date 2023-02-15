@@ -1,6 +1,6 @@
 package org.evolboot.sms;
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
@@ -14,15 +14,15 @@ public abstract class SmsI18nMessage {
     public static final String SEND_ERROR = NAMESPACE + ".sendError";
 
     public static String mobileNotLank() {
-        return MessageHolder.message(MOBILE_NOT_LANK);
+        return I18NMessageHolder.message(MOBILE_NOT_LANK);
     }
 
     public static String regexMobileError() {
-        return MessageHolder.message(REGEX_MOBILE_ERROR);
+        return I18NMessageHolder.message(REGEX_MOBILE_ERROR);
     }
 
     public static String sendError() {
-        return MessageHolder.message(SEND_ERROR);
+        return I18NMessageHolder.message(SEND_ERROR);
     }
 
 

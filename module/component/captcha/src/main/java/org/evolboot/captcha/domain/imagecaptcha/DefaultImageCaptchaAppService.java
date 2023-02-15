@@ -2,10 +2,13 @@ package org.evolboot.captcha.domain.imagecaptcha;
 
 import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
 
 /**
  * @author evol
@@ -43,7 +46,7 @@ public class DefaultImageCaptchaAppService implements ImageCaptchaAppService {
     @Override
     public void verifyIsTrue(String token, String codeValue) {
         boolean verifyResult = imageCaptchaVerifyService.execute(token, codeValue);
-        Assert.isTrue(verifyResult, CaptchaI18nMessage.ImageCaptcha.codeError());
+        Assert.isTrue(verifyResult, I18NMessageHolder.message(CODE_ERROR));
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class MessageAssert {
 
     private static String message(String codeKey, String defaultMessage) {
-        return MessageHolder.message(codeKey, defaultMessage);
+        return I18NMessageHolder.message(codeKey, defaultMessage);
     }
 
     public static void notBlank(String str, String field) {
@@ -30,8 +30,5 @@ public abstract class MessageAssert {
 
     }
 
-    private static String message(String codeKey, String fieldName, String defaultMessage) {
-        return MessageHolder.message(codeKey, List.of(fieldName), defaultMessage);
-    }
 
 }

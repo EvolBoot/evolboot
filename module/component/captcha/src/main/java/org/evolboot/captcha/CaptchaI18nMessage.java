@@ -1,6 +1,6 @@
 package org.evolboot.captcha;
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
@@ -13,17 +13,7 @@ public abstract class CaptchaI18nMessage {
     public static abstract class ImageCaptcha {
         public static final String NAMESPACE = CaptchaI18nMessage.NAMESPACE + ".imagecaptcha";
 
-
-        public static final String CODE_NOT_BLANK = NAMESPACE + ".codeNotBlank";
-        public static final String CODE_ERROR = NAMESPACE + ".codeError";
-
-        public static String codeNotBlank() {
-            return MessageHolder.message(CODE_ERROR);
-        }
-
-        public static String codeError() {
-            return MessageHolder.message(CODE_ERROR);
-        }
+         public static final String CODE_ERROR = NAMESPACE + ".codeError";
 
     }
 
@@ -39,27 +29,20 @@ public abstract class CaptchaI18nMessage {
         public static final String SEND_FAILURE = NAMESPACE + ".sendFailure";
 
         public static String mobileNotBlank() {
-            return MessageHolder.message(MOBILE_NOT_BLANK);
-        }
-
-        public static String regexError() {
-            return MessageHolder.message(REGEX_ERROR);
+            return I18NMessageHolder.message(MOBILE_NOT_BLANK);
         }
 
         public static String codeError() {
-            return MessageHolder.message(CODE_ERROR);
+            return I18NMessageHolder.message(CODE_ERROR);
         }
 
         public static String intervalTimeNotYet() {
-            return MessageHolder.message(INTERVAL_TIME_NOT_YET, "");
+            return I18NMessageHolder.message(INTERVAL_TIME_NOT_YET, "");
         }
 
-        public static String haveAlreadyUsedError() {
-            return MessageHolder.message(HAVE_ALREADY_USED_ERROR, "");
-        }
 
         public static String sendFailure() {
-            return MessageHolder.message(SEND_FAILURE, "Send failure");
+            return I18NMessageHolder.message(SEND_FAILURE, "Send failure");
         }
     }
 
@@ -75,23 +58,23 @@ public abstract class CaptchaI18nMessage {
 
 
         public static String notBlank() {
-            return MessageHolder.message(NOT_BLANK);
+            return I18NMessageHolder.message(NOT_BLANK);
         }
 
         public static String regexError() {
-            return MessageHolder.message(REGEX_ERROR);
+            return I18NMessageHolder.message(REGEX_ERROR);
         }
 
         public static String codeError() {
-            return MessageHolder.message(CODE_ERROR);
+            return I18NMessageHolder.message(CODE_ERROR);
         }
 
         public static String intervalTimeNotYet() {
-            return MessageHolder.message(INTERVAL_TIME_NOT_YET, "");
+            return I18NMessageHolder.message(INTERVAL_TIME_NOT_YET);
         }
 
         public static String haveAlreadyUsedError() {
-            return MessageHolder.message(HAVE_ALREADY_USED_ERROR, "");
+            return I18NMessageHolder.message(HAVE_ALREADY_USED_ERROR);
         }
 
     }

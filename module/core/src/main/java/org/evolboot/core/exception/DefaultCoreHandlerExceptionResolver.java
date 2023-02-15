@@ -3,11 +3,10 @@ package org.evolboot.core.exception;
 import cn.hutool.crypto.CryptoException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.evolboot.core.CoreI18nMessage;
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.core.exception.ExtendRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
@@ -367,7 +366,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
         }
         */
         FieldError error = fieldErrors.get(0);
-        String msg = MessageHolder.message(error.getDefaultMessage(), error.getDefaultMessage());
+        String msg = I18NMessageHolder.message(error.getDefaultMessage(), error.getDefaultMessage());
         ModelAndView modelAndView = new ModelAndView();
         handlerJsonMessage(response, msg, ex);
         return modelAndView;

@@ -1,5 +1,6 @@
 package org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha;
 
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
 import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
@@ -35,7 +36,7 @@ public class MobileCaptchaAuthenticationProvider implements AuthenticationProvid
             IdentityClient.UserInfo userInfo = identityClient.findByMobile(token.getMobile());
             return new AccessToken(userInfo.getUserId(), userInfo.getAuthorities());
         } catch (Exception e) {
-            throw new AccessTokenException(AccessTokenI18nMessage.authenticationError());
+            throw new AccessTokenException(I18NMessageHolder.message(AccessTokenI18nMessage.AUTHENTICATION_ERROR));
         }
     }
 

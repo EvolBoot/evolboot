@@ -18,7 +18,7 @@ public abstract class Messages {
      * @return the full code key
      * @throws IllegalArgumentException if null
      */
-    protected static String codeKey(String codeKey) throws IllegalArgumentException {
+    public static String codeKey(String codeKey) throws IllegalArgumentException {
         if (codeKey == null || codeKey.isBlank()) {
             throw new IllegalArgumentException("Code must not be empty");
         }

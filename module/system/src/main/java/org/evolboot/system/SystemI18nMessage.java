@@ -1,6 +1,6 @@
 package org.evolboot.system;
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_PREFIX;
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFIX;
@@ -25,7 +25,7 @@ public abstract class SystemI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
 
     }
@@ -40,7 +40,7 @@ public abstract class SystemI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 

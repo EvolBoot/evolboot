@@ -1,7 +1,7 @@
 package org.evolboot.security.api;
 
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
@@ -13,7 +13,7 @@ public abstract class SecurityI18nMessage {
     public static final String ACCESS_TOKEN_EXPIRED = NAMESPACE + ".accessTokenExpiredException";
 
     public static String accessTokenExpired() {
-        return MessageHolder.message(ACCESS_TOKEN_EXPIRED, "");
+        return I18NMessageHolder.message(ACCESS_TOKEN_EXPIRED, "");
     }
 
 

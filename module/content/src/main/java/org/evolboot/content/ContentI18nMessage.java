@@ -1,6 +1,6 @@
 package org.evolboot.content;
 
-import org.evolboot.core.i18n.MessageHolder;
+import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
@@ -17,7 +17,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 
@@ -30,7 +30,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 
@@ -44,7 +44,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 
@@ -72,7 +72,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return MessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND, "not Found");
         }
     }
 
