@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.role;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.core.i18n.MessageAssert;
+import org.evolboot.core.i18n.I18NMessageAssert;
 import com.google.common.collect.Sets;
 import lombok.Builder;
 import lombok.Getter;
@@ -58,7 +58,7 @@ public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role>
     }
 
     private void setRoleName(String roleName) {
-        MessageAssert.notBlank(roleName, "roleName");
+        I18NMessageAssert.fieldNotBlank(roleName, "roleName");
         this.roleName = roleName;
     }
 

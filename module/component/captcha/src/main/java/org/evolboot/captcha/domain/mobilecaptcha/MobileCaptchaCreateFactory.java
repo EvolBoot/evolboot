@@ -5,6 +5,7 @@ import org.evolboot.captcha.acl.client.CaptchaSmsClient;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.CodeGeneraterUtil;
 import org.evolboot.core.util.ExtendObjects;
@@ -18,6 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicReference;
+
+import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
+import static org.evolboot.captcha.CaptchaI18nMessage.MobileCaptcha.*;
 
 
 /**
@@ -42,8 +46,7 @@ public class MobileCaptchaCreateFactory {
     }
 
     public MobileCaptcha create(Request request) {
-
-        Assert.notBlank(request.getMobile(), CaptchaI18nMessage.MobileCaptcha.mobileNotBlank());
+        Assert.notBlank(request.getMobile(),         I18NMessageHolder.message(MOBILE_NOT_BLANK));
         if (request.getVerifyImageCaptcha()) {
             imageCaptchaAppService.verifyIsTrue(request.getImageCaptchaToken(), request.getImageCaptchaCode());
         }
@@ -51,7 +54,7 @@ public class MobileCaptchaCreateFactory {
         AtomicReference<String> code = new AtomicReference<>(CodeGeneraterUtil.get6Number());
         repository.findByMobile(request.getMobile()).ifPresent(mobileCaptcha -> {
             if (!mobileCaptcha.isAllowGetNext()) {
-                throw new DomainException(CaptchaI18nMessage.MobileCaptcha.intervalTimeNotYet());
+                throw new DomainException(I18NMessageHolder.message(INTERVAL_TIME_NOT_YET));
             }
             repository.deleteByToken(mobileCaptcha.getToken());
             code.set(mobileCaptcha.getCode());
@@ -80,7 +83,7 @@ public class MobileCaptchaCreateFactory {
             repository.save(captcha);
             return captcha;
         }
-        throw new DomainException(CaptchaI18nMessage.MobileCaptcha.sendFailure());
+        throw new DomainException(I18NMessageHolder.message(SEND_FAILURE));
     }
 
 

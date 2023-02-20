@@ -4,6 +4,8 @@ package org.evolboot.security.api.exception;
 import org.evolboot.core.Constant;
 import org.evolboot.core.exception.DefaultCoreHandlerExceptionResolver;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.i18n.I18NMessageHolder;
+import org.evolboot.security.api.SecurityI18nMessage;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,6 @@ import static org.evolboot.core.Constant.ErrorStatusCode.NOT_FOUND_CODE;
  * 注解拦截器
  *
  * @author evol
- * 
  */
 @Component
 @Slf4j
@@ -45,7 +46,7 @@ public class SecurityApiExceptionHandler extends DefaultCoreHandlerExceptionReso
 
     protected ModelAndView handle(AccessTokenExpiredException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
         ModelAndView modelAndView = new ModelAndView();
-        handlerJsonMessage(response, ACCESS_DENIED_CODE, "Access is denied", ex);
+        handlerJsonMessage(response, ACCESS_DENIED_CODE, I18NMessageHolder.message(SecurityI18nMessage.accessIsDenied), ex);
         return modelAndView;
     }
 
@@ -57,7 +58,7 @@ public class SecurityApiExceptionHandler extends DefaultCoreHandlerExceptionReso
 
     protected ModelAndView handle(AccessDeniedException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
         ModelAndView modelAndView = new ModelAndView();
-        handlerJsonMessage(response, ACCESS_DENIED_CODE, "Access is denied", ex);
+        handlerJsonMessage(response, ACCESS_DENIED_CODE, I18NMessageHolder.message(SecurityI18nMessage.accessIsDenied), ex);
         return modelAndView;
     }
 

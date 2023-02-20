@@ -14,15 +14,15 @@ public abstract class StorageI18nMessage {
     public static final String CONTENT_TYPE_INTERCEPT_ERROR = NAMESPACE + ".contentTypeInterceptError";
 
     public static final String maxFileSizeError(String maxFileSize) {
-        return I18NMessageHolder.message(MAX_FILE_SIZE_ERROR, "", maxFileSize);
+        return I18NMessageHolder.message(MAX_FILE_SIZE_ERROR,  maxFileSize);
     }
 
     public static final String imageMaxFileSizeError(String maxFileSize) {
-        return I18NMessageHolder.message(IMAGE_MAX_FILE_SIZE_ERROR, "", maxFileSize);
+        return I18NMessageHolder.message(IMAGE_MAX_FILE_SIZE_ERROR,  maxFileSize);
     }
 
     public static final String contentTypeInterceptError(String filename) {
-        return I18NMessageHolder.message(CONTENT_TYPE_INTERCEPT_ERROR, "", filename);
+        return I18NMessageHolder.message(CONTENT_TYPE_INTERCEPT_ERROR, filename);
     }
 
 }

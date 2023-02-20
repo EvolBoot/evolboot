@@ -13,7 +13,7 @@ public abstract class SentinelI18nMessage {
     public static final String FLOW_LIMITING = NAMESPACE + ".flowLimiting";
 
     public static String flowLimiting() {
-        return I18NMessageHolder.message(FLOW_LIMITING, "flow limiting");
+        return I18NMessageHolder.message(FLOW_LIMITING);
     }
 
 

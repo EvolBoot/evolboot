@@ -4,6 +4,7 @@ package org.evolboot.core.i18n.spring;
 import org.evolboot.core.i18n.DefaultMessageSourceAccessor;
 import org.evolboot.core.i18n.I18NMessage;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.evolboot.core.i18n.Messages.codeKey;
@@ -23,6 +24,12 @@ public class SpringMessageHolder implements I18NMessage {
         return messages.getMessage(codeKey(code));
     }
 
+
+    @Override
+    public String message(String code, Object... args) {
+        return messages.getMessage(codeKey(code), args);
+    }
+
     public String message(String code, List<?> args) {
         return messages.getMessage(codeKey(code), args.toArray());
     }
@@ -31,7 +38,5 @@ public class SpringMessageHolder implements I18NMessage {
         return messages.getMessage(codeKey(code), args, defaultMessage);
     }
 
-    public String message(String code, List<?> args, String defaultMessage) {
-        return messages.getMessage(codeKey(code), args.toArray(), defaultMessage);
-    }
+
 }

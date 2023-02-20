@@ -23,45 +23,32 @@ public abstract class CoreI18nMessage {
     public static final String REPEAT_SUBMIT = NAMESPACE + ".repeatSubmit";
 
 
-    public static String notBlank(String str) {
-        return I18NMessageHolder.message(NOT_BLANK, "", str);
-    }
-
-    public static String notEmpty(String field) {
-        return I18NMessageHolder.message(NOT_EMPTY, "", field);
-    }
-
-    public static String notNull(String field) {
-
-        return I18NMessageHolder.message(NOT_NULL, "", field);
-    }
-
     public static String parameterTypeError() {
-        return I18NMessageHolder.message(PARAMETER_TYPE_ERROR, "PARAMETER_TYPE_ERROR");
+        return I18NMessageHolder.message(PARAMETER_TYPE_ERROR);
     }
 
     public static String notFoundDomainObject(String obj) {
-        return I18NMessageHolder.message(NOT_FOUND_DOMAIN_OBJECT, "", obj);
+        return I18NMessageHolder.message(NOT_FOUND_DOMAIN_OBJECT, obj);
     }
 
     public static String configurationRepeatSettingException() {
-        return I18NMessageHolder.message(CONFIGURATION_REPEAT_SETTING_EXCEPTION, "");
+        return I18NMessageHolder.message(CONFIGURATION_REPEAT_SETTING_EXCEPTION);
     }
 
     public static String maxFileSizeError(Object obj) {
-        return I18NMessageHolder.message(MAX_FILE_SIZE_ERROR, "", obj);
+        return I18NMessageHolder.message(MAX_FILE_SIZE_ERROR, obj);
     }
 
     public static String objectOptimisticLockingFailureException() {
-        return I18NMessageHolder.message(OBJECT_OPTIMISTIC_LOCKING_FAILURE_EXCEPTION, "");
+        return I18NMessageHolder.message(OBJECT_OPTIMISTIC_LOCKING_FAILURE_EXCEPTION);
     }
 
     public static String dataIntegrityViolationException() {
-        return I18NMessageHolder.message(DATA_INTEGRITY_VIOLATION_EXCEPTION, "");
+        return I18NMessageHolder.message(DATA_INTEGRITY_VIOLATION_EXCEPTION);
     }
 
     public static String repeatSubmit() {
-        return I18NMessageHolder.message(REPEAT_SUBMIT, "");
+        return I18NMessageHolder.message(REPEAT_SUBMIT);
     }
 
 

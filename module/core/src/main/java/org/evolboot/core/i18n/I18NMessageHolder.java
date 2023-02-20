@@ -19,24 +19,19 @@ public abstract class I18NMessageHolder {
     }
 
     public static String message(String code) {
-        return messages.message(code);
+        String message = messages.message(code);
+        if (ExtendObjects.isEmpty(message)) {
+            return code;
+        }
+        return message;
     }
 
 
     public static String message(String code, Object... args) {
-        return messages.message(code, args);
+        String message = messages.message(code, args);
+        if (ExtendObjects.isEmpty(message)) {
+            return code;
+        }
+        return message;
     }
-
-    public static String message(String code, String defaultMessage, Object... args) {
-        return messages.message(code, defaultMessage);
-    }
-
-  /*  public static String message(String code, List<?> args) {
-        return messages.message(code, args);
-    }
-
-    public static String message(String code, List<?> args, String defaultMessage) {
-        return messages.message(code, args, defaultMessage);
-    }*/
-
 }

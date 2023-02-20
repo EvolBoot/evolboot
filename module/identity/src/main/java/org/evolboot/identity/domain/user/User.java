@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.DelStatus;
-import org.evolboot.core.i18n.MessageAssert;
+import org.evolboot.core.i18n.I18NMessageAssert;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
@@ -329,7 +329,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
 
     private void setUsername(String username) {
         if (ExtendObjects.isNotBlank(username)) {
-            MessageAssert.notEmpty(IdentityI18nMessage.User.usernameNotEmpty(), username);
+            I18NMessageAssert.fieldNotEmpty(IdentityI18nMessage.User.usernameNotEmpty(), username);
             Assert.isTrue(
                     UserValidUtil.checkUsername(username),
                     IdentityI18nMessage.User.usernameValidFail());

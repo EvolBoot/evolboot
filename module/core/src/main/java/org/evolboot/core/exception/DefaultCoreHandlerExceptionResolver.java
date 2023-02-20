@@ -366,7 +366,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
         }
         */
         FieldError error = fieldErrors.get(0);
-        String msg = I18NMessageHolder.message(error.getDefaultMessage(), error.getDefaultMessage());
+        String msg = I18NMessageHolder.message(error.getDefaultMessage());
         ModelAndView modelAndView = new ModelAndView();
         handlerJsonMessage(response, msg, ex);
         return modelAndView;

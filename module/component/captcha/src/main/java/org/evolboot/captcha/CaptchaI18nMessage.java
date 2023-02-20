@@ -12,15 +12,12 @@ public abstract class CaptchaI18nMessage {
 
     public static abstract class ImageCaptcha {
         public static final String NAMESPACE = CaptchaI18nMessage.NAMESPACE + ".imagecaptcha";
-
-         public static final String CODE_ERROR = NAMESPACE + ".codeError";
-
+        public static final String CODE_ERROR = NAMESPACE + ".codeError";
     }
 
     public static abstract class MobileCaptcha {
 
         public static final String NAMESPACE = CaptchaI18nMessage.NAMESPACE + ".mobilecaptcha";
-
         public static final String MOBILE_NOT_BLANK = NAMESPACE + ".notBlank";
         public static final String REGEX_ERROR = NAMESPACE + ".regexError";
         public static final String CODE_ERROR = NAMESPACE + ".codeError";
@@ -28,22 +25,6 @@ public abstract class CaptchaI18nMessage {
         public static final String HAVE_ALREADY_USED_ERROR = NAMESPACE + ".haveAlreadyUsedError";
         public static final String SEND_FAILURE = NAMESPACE + ".sendFailure";
 
-        public static String mobileNotBlank() {
-            return I18NMessageHolder.message(MOBILE_NOT_BLANK);
-        }
-
-        public static String codeError() {
-            return I18NMessageHolder.message(CODE_ERROR);
-        }
-
-        public static String intervalTimeNotYet() {
-            return I18NMessageHolder.message(INTERVAL_TIME_NOT_YET, "");
-        }
-
-
-        public static String sendFailure() {
-            return I18NMessageHolder.message(SEND_FAILURE, "Send failure");
-        }
     }
 
 

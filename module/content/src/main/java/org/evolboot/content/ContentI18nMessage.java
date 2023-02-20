@@ -17,7 +17,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 
@@ -30,7 +30,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 
@@ -44,7 +44,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 
@@ -72,7 +72,7 @@ public abstract class ContentI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 

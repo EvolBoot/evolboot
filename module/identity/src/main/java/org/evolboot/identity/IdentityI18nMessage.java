@@ -18,19 +18,19 @@ public abstract class IdentityI18nMessage {
 
 
         public static String idNotNull() {
-            return I18NMessageHolder.message(ID_NOT_NULL, "id not null");
+            return I18NMessageHolder.message(ID_NOT_NULL);
         }
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "notFound");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
 
         public static String permNotEmpty() {
-            return I18NMessageHolder.message(PERM_NOT_EMPTY, "perm not empty");
+            return I18NMessageHolder.message(PERM_NOT_EMPTY);
         }
 
         public static String titleNotEmpty() {
-            return I18NMessageHolder.message(TITLE_NOT_EMPTY, "title not empty");
+            return I18NMessageHolder.message(TITLE_NOT_EMPTY);
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class IdentityI18nMessage {
         public static final String permissionsNotFound = NAMESPACE + ".permissions.notFound";
 
         public static String roleNameRepetitionException(String roleName) {
-            return I18NMessageHolder.message(ROLE_NAME_REPETITION_EXCEPTION, "", roleName);
+            return I18NMessageHolder.message(ROLE_NAME_REPETITION_EXCEPTION,  roleName);
         }
 
         public static String roleNotFound() {
@@ -50,11 +50,11 @@ public abstract class IdentityI18nMessage {
         }
 
         public static String idNotNull() {
-            return I18NMessageHolder.message(ID_NOT_NULL, "role id not null");
+            return I18NMessageHolder.message(ID_NOT_NULL);
         }
 
         public static String permissionsNotFound(String permissions) {
-            return I18NMessageHolder.message(permissionsNotFound, "", permissions);
+            return I18NMessageHolder.message(permissionsNotFound, permissions);
         }
     }
 
@@ -97,108 +97,108 @@ public abstract class IdentityI18nMessage {
 
 
         public static String imgVerifyCodeNotEmpty() {
-            return I18NMessageHolder.message(IMG_VERIFY_CODE_NOT_EMPTY, "");
+            return I18NMessageHolder.message(IMG_VERIFY_CODE_NOT_EMPTY);
         }
 
 
         public static String usernameNotEmpty() {
-            return I18NMessageHolder.message(USERNAME_NOT_EMPTY, "");
+            return I18NMessageHolder.message(USERNAME_NOT_EMPTY);
         }
 
         public static String mobileNotEmpty() {
-            return I18NMessageHolder.message(MOBILE_NOT_EMPTY, "");
+            return I18NMessageHolder.message(MOBILE_NOT_EMPTY);
         }
 
         public static String emailNotEmpty() {
-            return I18NMessageHolder.message(EMAIL_NOT_EMPTY, "");
+            return I18NMessageHolder.message(EMAIL_NOT_EMPTY);
         }
 
         public static String passwordNotEmpty() {
-            return I18NMessageHolder.message(PASSWORD_NOT_EMPTY, "");
+            return I18NMessageHolder.message(PASSWORD_NOT_EMPTY);
         }
 
         public static String usernameAlreadyExisted() {
-            return I18NMessageHolder.message(USERNAME_ALREADY_EXISTED, "");
+            return I18NMessageHolder.message(USERNAME_ALREADY_EXISTED);
         }
 
         public static String emailAlreadyExisted() {
-            return I18NMessageHolder.message(EMAIL_ALREADY_EXISTED, "");
+            return I18NMessageHolder.message(EMAIL_ALREADY_EXISTED);
         }
 
         public static String mobileAlreadyExisted() {
-            return I18NMessageHolder.message(MOBILE_ALREADY_EXISTED, "");
+            return I18NMessageHolder.message(MOBILE_ALREADY_EXISTED);
         }
 
         public static String usernameValidFail() {
-            return I18NMessageHolder.message(USERNAME_VALID_FAIL, "");
+            return I18NMessageHolder.message(USERNAME_VALID_FAIL);
         }
 
         public static String passwordValidFail() {
-            return I18NMessageHolder.message(PASSWORD_VALID_FAIL, "");
+            return I18NMessageHolder.message(PASSWORD_VALID_FAIL);
         }
 
 
         public static String verifyPasswordError() {
-            return I18NMessageHolder.message(VERIFY_PASSWORD_ERROR, "");
+            return I18NMessageHolder.message(VERIFY_PASSWORD_ERROR);
         }
 
         public static String oldPasswordError() {
-            return I18NMessageHolder.message(OLD_PASSWORD_ERROR, "");
+            return I18NMessageHolder.message(OLD_PASSWORD_ERROR);
         }
 
         public static String confirmPasswordError() {
-            return I18NMessageHolder.message(CONFIRM_PASSWORD_ERROR, "");
+            return I18NMessageHolder.message(CONFIRM_PASSWORD_ERROR);
         }
 
         public static String oldPasswordAndNewPasswordEquals() {
-            return I18NMessageHolder.message(OLD_PASSWORD_AND_NEW_PASSWORD_EQUALS, "");
+            return I18NMessageHolder.message(OLD_PASSWORD_AND_NEW_PASSWORD_EQUALS);
         }
 
         public static String passwordWrong() {
-            return I18NMessageHolder.message(PASSWORD_WRONG, "");
+            return I18NMessageHolder.message(PASSWORD_WRONG);
         }
 
 
         public static String userNotFound() {
-            return I18NMessageHolder.message(USER_NOT_FOUND, "");
+            return I18NMessageHolder.message(USER_NOT_FOUND);
         }
 
 
         public static String userIdNotNull() {
-            return I18NMessageHolder.message(USER_ID_NOT_NULL, "");
+            return I18NMessageHolder.message(USER_ID_NOT_NULL);
         }
 
         public static String rolesNotFound(String roleIds) {
-            return I18NMessageHolder.message(ROLES_NOT_FOUND, "", roleIds);
+            return I18NMessageHolder.message(ROLES_NOT_FOUND, roleIds);
         }
 
 
         public static String oldPasswordNotEmpty() {
-            return I18NMessageHolder.message(OLD_PASSWORD_NOT_EMPTY, "");
+            return I18NMessageHolder.message(OLD_PASSWORD_NOT_EMPTY);
         }
 
         public static String newPasswordNotEmpty() {
-            return I18NMessageHolder.message(NEW_PASSWORD_NOT_EMPTY, "");
+            return I18NMessageHolder.message(NEW_PASSWORD_NOT_EMPTY);
         }
 
         public static String confirmPasswordNotEmpty() {
-            return I18NMessageHolder.message(CONFIRM_PASSWORD_NOT_EMPTY, "");
+            return I18NMessageHolder.message(CONFIRM_PASSWORD_NOT_EMPTY);
         }
 
         public static String verifyImageError() {
-            return I18NMessageHolder.message(VERIFY_IMAGE_ERROR, "");
+            return I18NMessageHolder.message(VERIFY_IMAGE_ERROR);
         }
 
         public static String imgVerifyTokenNotEmpty() {
-            return I18NMessageHolder.message(IMG_VERIFY_TOKEN_NOT_EMPTY, "");
+            return I18NMessageHolder.message(IMG_VERIFY_TOKEN_NOT_EMPTY);
         }
 
         public static String statusNotActive() {
-            return I18NMessageHolder.message(STATUS_NOT_ACTIVE, "");
+            return I18NMessageHolder.message(STATUS_NOT_ACTIVE);
         }
 
         public static String inviterDoesNotExist() {
-            return I18NMessageHolder.message(INVITER_DOES_NOT_EXIST, "Inviter does not exist");
+            return I18NMessageHolder.message(INVITER_DOES_NOT_EXIST);
         }
     }
 
@@ -208,7 +208,7 @@ public abstract class IdentityI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 
@@ -227,15 +227,15 @@ public abstract class IdentityI18nMessage {
         public static final String PLEASE_WAIT = NAMESPACE + ".pleaseWait";
 
         public static String pleaseWait() {
-            return I18NMessageHolder.message(PLEASE_WAIT, "Please Wait");
+            return I18NMessageHolder.message(PLEASE_WAIT);
         }
 
         public static String hasBeenUsed() {
-            return I18NMessageHolder.message(HAS_BEEN_USED, "UserId has been Used");
+            return I18NMessageHolder.message(HAS_BEEN_USED);
         }
 
         public static String notFound() {
-            return I18NMessageHolder.message(NOT_FOUND, "UserId not Found");
+            return I18NMessageHolder.message(NOT_FOUND);
         }
     }
 

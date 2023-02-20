@@ -14,7 +14,7 @@ public abstract class ConfigI18nMessage {
     public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
     public static String notFound() {
-        return I18NMessageHolder.message(NOT_FOUND, "NOT_FOUND");
+        return I18NMessageHolder.message(NOT_FOUND);
     }
 
 

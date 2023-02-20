@@ -17,17 +17,8 @@ public interface I18NMessage {
         return code;
     }
 
-    default String message(String code, Object[] args, String defaultMessage) {
-        return code;
-    }
-
     default String message(String code, List<?> args) {
         return code;
     }
-
-    default String message(String code, List<?> args, String defaultMessage) {
-        return code;
-    }
-
 
 }

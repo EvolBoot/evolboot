@@ -3,6 +3,7 @@ package org.evolboot.core.i18n.mysql;
 import org.evolboot.core.i18n.DelegatingLocaleContextHolder;
 import org.evolboot.core.i18n.I18NMessage;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -16,6 +17,16 @@ public class MysqlMessageHolder implements I18NMessage {
          // 获取当前请求中的本地化语言
         Locale locale = DelegatingLocaleContextHolder.getLocale();
         // 然后去数据库当中匹配 code + locale的多语言消息，再返回
+        return "消息多语言";
+    }
+
+    @Override
+    public String message(String code, Object... args) {
+        return "消息多语言";
+    }
+
+    @Override
+    public String message(String code, List<?> args) {
         return "消息多语言";
     }
 }

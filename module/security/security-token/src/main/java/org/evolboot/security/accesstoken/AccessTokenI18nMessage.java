@@ -16,7 +16,7 @@ public abstract class AccessTokenI18nMessage {
 
 
     public static String authenticationError() {
-        return I18NMessageHolder.message(AUTHENTICATION_ERROR, "");
+        return I18NMessageHolder.message(AUTHENTICATION_ERROR);
     }
 
 }

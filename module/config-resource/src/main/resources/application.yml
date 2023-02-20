@@ -13,7 +13,9 @@ spring:
   profiles:
     active: evol,evol-app
   messages:
-    always-use-message-format: true
+    always-use-message-format: false
+    # 找不到对应的消息时，使用code
+    use-code-as-default-message: true
     basename:
       messages,
       org.evolboot.core.messages,
