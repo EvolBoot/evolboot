@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties("evol.identity.user")
+@ConfigurationProperties("evolpn.identity.user")
 @Slf4j
 @ToString
 public class UserProperties {

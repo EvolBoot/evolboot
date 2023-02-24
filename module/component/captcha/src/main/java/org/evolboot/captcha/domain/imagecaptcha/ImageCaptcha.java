@@ -22,7 +22,7 @@ import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.*;
  * @author evol
  * 
  */
-@Table(name = "evol_image_captcha")
+@Table(name = "evoltb_image_captcha")
 @Entity
 @Slf4j
 @Getter

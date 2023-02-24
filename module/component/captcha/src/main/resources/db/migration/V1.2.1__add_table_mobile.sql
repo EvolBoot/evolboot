@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS evol_mobile_captcha;
-CREATE TABLE evol_mobile_captcha
+DROP TABLE IF EXISTS evoltb_mobile_captcha;
+CREATE TABLE evoltb_mobile_captcha
 (
     token_              varchar(50) NOT NULL COMMENT '主键',
     create_time_        datetime    NOT NULL COMMENT '创建时间',

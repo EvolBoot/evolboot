@@ -13,7 +13,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "evol_config")
+@Table(name = "evoltb_config")
 @Slf4j
 @NoArgsConstructor
 public class Config extends AbstractEntity<String> implements AggregateRoot<Config> {

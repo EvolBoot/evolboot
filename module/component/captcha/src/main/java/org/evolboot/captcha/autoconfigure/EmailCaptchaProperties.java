@@ -17,7 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class EmailCaptchaProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.captcha.email";
+    public final static String CONFIGURATION_PREFIX = "evolpn.captcha.email";
 
     private Long timeout;
 

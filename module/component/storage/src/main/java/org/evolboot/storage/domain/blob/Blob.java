@@ -26,7 +26,7 @@ import java.util.UUID;
  *
  * @author evol
  */
-@Table(name = "evol_storage_blob")
+@Table(name = "evoltb_storage_blob")
 @Entity
 @Slf4j
 @Getter

@@ -18,7 +18,7 @@ import java.util.Set;
  * @author evol
  */
 @Entity
-@Table(name = "evol_identity_role")
+@Table(name = "evoltb_identity_role")
 @Getter
 @Slf4j
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role>
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
-            name = "evol_identity_role_permission",
+            name = "evoltb_identity_role_permission",
             joinColumns = @JoinColumn(name = "role_id_", referencedColumnName = "id_"))
     @Column(name = "permission_id_")
     private Set<Long> permissions = Sets.newHashSet();

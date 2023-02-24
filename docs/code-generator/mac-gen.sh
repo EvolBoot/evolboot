@@ -3,9 +3,9 @@ export projectPackage="org.evolboot"
 export tableprefix="evol"
 export author="evol"
 
-export boundContext="thirdpartypay"
-export boundContextClass="ThirdPartyPay"
-export boundContextUrl="third-party-pay"
+export boundContext="pay"
+export boundContextClass="Pay"
+export boundContextUrl="pay"
 
 export module="receiptorder"
 export classNamePrefix="ReceiptOrder"
@@ -18,5 +18,5 @@ export pkIdClass="String"
 
 
 rm ./module -rf
-cp /opt/code-generator/template module -R
-sh /opt/code-generator/projects/gen.sh
+cp /opt/code-generator/evol module -R
+sh /opt/code-generator/projects/evol-gen.sh

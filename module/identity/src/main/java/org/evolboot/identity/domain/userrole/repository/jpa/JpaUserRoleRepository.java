@@ -43,12 +43,12 @@ public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuery
 
     @Override
     @Modifying(clearAutomatically = true)
-    @Query(value = "delete from evol_identity_user_role where user_id_ =?1", nativeQuery = true)
+    @Query(value = "delete from evoltb_identity_user_role where user_id_ =?1", nativeQuery = true)
     void deleteByUserId(Long userId);
 
     @Override
     @Modifying(clearAutomatically = true)
-    @Query(value = "delete from evol_identity_user_role where role_id_ =?1", nativeQuery = true)
+    @Query(value = "delete from evoltb_identity_user_role where role_id_ =?1", nativeQuery = true)
     void deleteByRoleId(Long roleId);
 
 

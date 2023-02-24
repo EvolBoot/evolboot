@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author evol
  * 
  */
-@Table(name = "evol_system_user_login_log")
+@Table(name = "evoltb_system_user_login_log")
 @Entity
 @Slf4j
 @Getter

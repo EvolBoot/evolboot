@@ -1,6 +1,6 @@
 -- 文件存储
-DROP TABLE IF EXISTS evol_storage_blob;
-CREATE TABLE evol_storage_blob
+DROP TABLE IF EXISTS evoltb_storage_blob;
+CREATE TABLE evoltb_storage_blob
 (
     id_            bigint       NOT NULL COMMENT '主键',
     create_time_   datetime     NOT NULL COMMENT '创建时间',
@@ -19,4 +19,4 @@ CREATE TABLE evol_storage_blob
 
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='evol_user';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='evoltb_user';

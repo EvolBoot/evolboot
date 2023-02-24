@@ -20,7 +20,7 @@ import static org.evolboot.identity.IdentityI18nMessage.Permission.titleNotEmpty
  * @author evol
  */
 @Entity
-@Table(name = "evol_identity_permission")
+@Table(name = "evoltb_identity_permission")
 @Getter
 @Slf4j
 @NoArgsConstructor

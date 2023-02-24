@@ -22,7 +22,7 @@ import java.util.List;
  * @author evol
  * 
  */
-@Table(name = "evol_content_startup_page")
+@Table(name = "evoltb_content_startup_page")
 @Getter
 @Slf4j
 @NoArgsConstructor

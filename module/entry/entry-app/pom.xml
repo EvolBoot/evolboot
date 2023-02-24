@@ -61,6 +61,10 @@
             <groupId>org.evolboot</groupId>
             <artifactId>bff-admin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>pay</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>entry-app</finalName>

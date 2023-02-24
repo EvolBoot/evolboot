@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @ToString
 public class SecurityDefaultConfigProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.default";
+    public final static String CONFIGURATION_PREFIX = "evolpn.default";
 
     private Boolean testMode = false;
 

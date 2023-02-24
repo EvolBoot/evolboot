@@ -20,7 +20,7 @@ import java.util.Date;
  * @author evol
  * 
  */
-@Table(name = "evol_mobile_captcha")
+@Table(name = "evoltb_mobile_captcha")
 @Slf4j
 @Entity
 @Getter

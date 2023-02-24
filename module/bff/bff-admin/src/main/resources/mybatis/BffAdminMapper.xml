@@ -5,7 +5,7 @@
     <select id="findUser"
             resultType="org.evolboot.bffadmin.domain.response.BffUser">
         select *
-        from evol_identity_user
+        from evoltb_identity_user
     </select>
 
     <select id="findStaffUser"
@@ -14,7 +14,7 @@
         select *
         from (
                  select *
-                 from evol_identity_user
+                 from evoltb_identity_user
                  where identity_symbol_ <![CDATA[ & ]]> 4 > 0
                    and del_status_ = 'ACTIVE'
              ) as t1
@@ -22,8 +22,8 @@
             select iur.user_id_,
                    group_concat(ir.role_name_) as role_name_,
                    group_concat(ir.id_)        as role_id_
-            from evol_identity_user_role iur,
-                 evol_identity_role ir
+            from evoltb_identity_user_role iur,
+                 evoltb_identity_role ir
             where iur.role_id_ = ir.id_
             group by iur.user_id_
         ) as t2 on t1.id_ = t2.user_id_

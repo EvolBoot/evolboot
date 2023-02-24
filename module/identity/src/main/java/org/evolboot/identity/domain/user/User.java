@@ -30,7 +30,7 @@ import java.util.Set;
  * @author evol
  */
 @Entity
-@Table(name = "evol_identity_user")
+@Table(name = "evoltb_identity_user")
 @Getter
 @Slf4j
 @NoArgsConstructor

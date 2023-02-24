@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @author evol
  * 
  */
-@Table(name = "evol_identity_user_relation")
+@Table(name = "evoltb_identity_user_relation")
 @Getter
 @Slf4j
 @NoArgsConstructor

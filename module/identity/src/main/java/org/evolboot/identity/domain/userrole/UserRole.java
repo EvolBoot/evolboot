@@ -18,7 +18,7 @@ import java.util.Set;
  * @author evol
  * 
  */
-@Table(name = "evol_identity_user_role")
+@Table(name = "evoltb_identity_user_role")
 @Getter
 @Slf4j
 @NoArgsConstructor

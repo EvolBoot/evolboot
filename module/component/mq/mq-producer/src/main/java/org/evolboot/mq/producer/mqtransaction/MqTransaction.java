@@ -17,7 +17,7 @@ import java.util.Date;
  *
  * @author evol
  */
-@Table(name = "evol_mq_producer_mq_transaction")
+@Table(name = "evoltb_mq_producer_mq_transaction")
 @Getter
 @Slf4j
 @Entity

@@ -17,7 +17,7 @@ logging:
   # 日志名称
   filename: app
 
-evol:
-  third-party-pay:
+evolpn:
+  pay:
     notify-domain: http://locahost:8081
   snowflake-host: 2

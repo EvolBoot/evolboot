@@ -26,5 +26,6 @@
         <module>system</module>
         <module>content</module>
         <module>bff</module>
+        <module>pay</module>
     </modules>
 </project>

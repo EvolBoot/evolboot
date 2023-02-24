@@ -1,6 +1,6 @@
 -- Banner
-DROP TABLE IF EXISTS evol_content_banner;
-CREATE TABLE evol_content_banner
+DROP TABLE IF EXISTS evoltb_content_banner;
+CREATE TABLE evoltb_content_banner
 (
     id_               bigint   NOT NULL COMMENT '主键',
     create_time_      datetime NOT NULL COMMENT '创建时间',

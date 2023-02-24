@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author evol
  */
 @Entity
-@Table(name = "evol_system_operation_log")
+@Table(name = "evoltb_system_operation_log")
 @Getter
 @Slf4j
 @NoArgsConstructor

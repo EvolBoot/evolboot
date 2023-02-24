@@ -5,7 +5,7 @@
     <select id="findUser"
             resultType="org.evolboot.bffapp.domain.BffUser">
         select *
-        from evol_identity_user
+        from evoltb_identity_user
     </select>
 
 

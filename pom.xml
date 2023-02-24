@@ -11,7 +11,7 @@
     <groupId>org.evolboot</groupId>
     <artifactId>parent</artifactId>
     <version>${revision}</version>
-    <description>项目骨架</description>
+    <description>evolpn</description>
     <properties>
         <main.basedir>${basedir}</main.basedir>
         <revision>0.0.1</revision>
@@ -181,7 +181,14 @@
                 <groupId>org.evolboot</groupId>
                 <artifactId>sentinel</artifactId>
                 <version>${revision}</version>
-            </dependency>                        <!-- springdoc ui -->
+            </dependency>
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>pay</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- springdoc ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>

@@ -1,6 +1,6 @@
 -- Mq事务
-DROP TABLE IF EXISTS evol_mq_producer_mq_transaction;
-CREATE TABLE evol_mq_producer_mq_transaction
+DROP TABLE IF EXISTS evoltb_mq_producer_mq_transaction;
+CREATE TABLE evoltb_mq_producer_mq_transaction
 (
     id_          bigint   NOT NULL COMMENT '主键',
     create_time_ datetime NOT NULL COMMENT '创建时间',

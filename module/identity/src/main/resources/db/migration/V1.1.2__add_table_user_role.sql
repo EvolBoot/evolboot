@@ -1,5 +1,5 @@
-drop table if EXISTS evol_identity_user_role;
-create TABLE evol_identity_user_role
+drop table if EXISTS evoltb_identity_user_role;
+create TABLE evoltb_identity_user_role
 (
     id_      bigint not null auto_increment comment '主键',
     user_id_ bigint not null comment '账户ID',

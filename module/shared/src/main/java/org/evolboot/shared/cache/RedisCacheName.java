@@ -10,69 +10,69 @@ public interface RedisCacheName {
     /**
      * 配置中心
      */
-    String CONFIGURATION_CACHE_NAME = "evol_configuration_";
+    String CONFIGURATION_CACHE_NAME = "evoltb_configuration_";
 
 
     /**
      * 用户会话
      */
-    String ACCESS_TOKEN_PREFIX = "evol_session";
+    String ACCESS_TOKEN_PREFIX = "evoltb_session";
 
 
     /**
      * 本地化(城市)
      */
-    String LOCALE_COUNTRY_CACHE_KEY = "evol_locale_country_";
+    String LOCALE_COUNTRY_CACHE_KEY = "evoltb_locale_country_";
 
     /**
      * 本地化（语言)
      */
-    String LOCALE_LANGUAGE_CACHE_KEY = "evol_locale_language_";
+    String LOCALE_LANGUAGE_CACHE_KEY = "evoltb_locale_language_";
 
     /**
      * 邮箱验证码
      */
-    String EMAIL_CAPTCHA_CACHE_KEY = "evol_email";
+    String EMAIL_CAPTCHA_CACHE_KEY = "evoltb_email";
 
     /**
      * 图形验证码
      */
-    String IMAGE_CAPTCHA_CACHE_KEY = "evol_img";
+    String IMAGE_CAPTCHA_CACHE_KEY = "evoltb_img";
 
     /**
      * 手机验证码
      */
-    String MOBILE_CAPTCHA_CACHE_KEY = "evol_mobile";
+    String MOBILE_CAPTCHA_CACHE_KEY = "evoltb_mobile";
 
     /**
      * Banner
      */
-    String BANNER_CACHE_KEY = "evol_banner_";
+    String BANNER_CACHE_KEY = "evoltb_banner_";
 
     /**
      * 新闻
      */
-    String NEWS_CACHE_KEY = "evol_news_";
+    String NEWS_CACHE_KEY = "evoltb_news_";
 
     /**
      * Notice
      */
-    String NOTICE_CACHE_KEY = "evol_notice_";
+    String NOTICE_CACHE_KEY = "evoltb_notice_";
 
     /**
      * 问答
      */
-    String QA_CACHE_KEY = "evol_qa_";
+    String QA_CACHE_KEY = "evoltb_qa_";
 
     /**
      * 启动页
      */
-    String STARTUP_PAGE_CACHE_KEY = "evol_startup_page_";
+    String STARTUP_PAGE_CACHE_KEY = "evoltb_startup_page_";
 
     /**
      * APP更新
      */
-    String APP_UPGRADE_CACHE_KEY = "evol_app_upgrade_";
+    String APP_UPGRADE_CACHE_KEY = "evoltb_app_upgrade_";
 
 
 }

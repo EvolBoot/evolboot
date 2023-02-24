@@ -1,6 +1,6 @@
 -- 配置
-DROP TABLE IF EXISTS evol_config;
-CREATE TABLE evol_config
+DROP TABLE IF EXISTS evoltb_config;
+CREATE TABLE evoltb_config
 (
     key_            varchar(128) NOT NULL COMMENT '主键',
     scope_          varchar(50) COMMENT '范围',

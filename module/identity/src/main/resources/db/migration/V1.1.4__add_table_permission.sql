@@ -1,6 +1,6 @@
 -- 权限
-DROP TABLE IF EXISTS evol_identity_permission;
-CREATE TABLE evol_identity_permission
+DROP TABLE IF EXISTS evoltb_identity_permission;
+CREATE TABLE evoltb_identity_permission
 (
     id_               bigint       NOT NULL COMMENT '主键',
     create_time_      datetime     NOT NULL COMMENT '创建时间',
@@ -16,4 +16,4 @@ CREATE TABLE evol_identity_permission
     remark_           text         null comment '备注',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='evol_identity_permission';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='evoltb_identity_permission';

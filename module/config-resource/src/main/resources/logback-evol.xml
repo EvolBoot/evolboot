@@ -145,7 +145,7 @@
     </logger>
 
     <!--  支付日志  -->
-    <logger name="org.evolboot.thirdpartypay" level="INFO">
+    <logger name="org.evolboot.pay" level="INFO">
         <appender-ref ref="ASYNC_PAYMENT_LOG"/>
     </logger>
 

@@ -22,7 +22,7 @@ import static org.evolboot.core.autoconfigure.DefaultConfigProperties.CONFIGURAT
 @ToString
 public class DefaultConfigProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.default";
+    public final static String CONFIGURATION_PREFIX = "evolpn.default";
 
     private String language = "en-US";
 

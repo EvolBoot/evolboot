@@ -1,6 +1,6 @@
 -- APP更新
-DROP TABLE IF EXISTS evol_system_app_upgrade;
-CREATE TABLE evol_system_app_upgrade
+DROP TABLE IF EXISTS evoltb_system_app_upgrade;
+CREATE TABLE evoltb_system_app_upgrade
 (
     id_               bigint   NOT NULL COMMENT '主键',
     create_time_      datetime NOT NULL COMMENT '创建时间',

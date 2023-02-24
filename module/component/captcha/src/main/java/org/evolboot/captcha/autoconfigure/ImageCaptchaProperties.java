@@ -17,7 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class ImageCaptchaProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.captcha.image";
+    public final static String CONFIGURATION_PREFIX = "evolpn.captcha.image";
 
     private Long timeout;
 }

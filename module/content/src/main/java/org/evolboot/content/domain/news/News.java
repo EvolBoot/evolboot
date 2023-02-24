@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "evol_content_news")
+@Table(name = "evoltb_content_news")
 @Getter
 @Slf4j
 @NoArgsConstructor

@@ -16,7 +16,7 @@ import javax.persistence.*;
  * @author evol
  * 
  */
-@Table(name = "evol_identity_user_id")
+@Table(name = "evoltb_identity_user_id")
 @Getter
 @Slf4j
 @NoArgsConstructor

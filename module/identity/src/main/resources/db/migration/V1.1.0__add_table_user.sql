@@ -1,6 +1,6 @@
 -- 账号
-DROP TABLE IF EXISTS evol_identity_user;
-CREATE TABLE evol_identity_user
+DROP TABLE IF EXISTS evoltb_identity_user;
+CREATE TABLE evoltb_identity_user
 (
     id_                 bigint   NOT NULL COMMENT '主键',
     create_time_        datetime NOT NULL COMMENT '创建时间',
@@ -32,10 +32,10 @@ CREATE TABLE evol_identity_user
 
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='evol_identity_user';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='evoltb_identity_user';
 
-create unique index evol_identity_user_email__unique_index on evol_identity_user (email_);
+create unique index evoltb_identity_user_email__unique_index on evoltb_identity_user (email_);
 
-create unique index evol_identity_user_username__unique_index on evol_identity_user (username_);
+create unique index evoltb_identity_user_username__unique_index on evoltb_identity_user (username_);
 
-create unique index evol_identity_user_mobile__unique_index on evol_identity_user (mobile_);
+create unique index evoltb_identity_user_mobile__unique_index on evoltb_identity_user (mobile_);

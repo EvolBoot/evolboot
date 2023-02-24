@@ -1,6 +1,6 @@
 -- 公告
-DROP TABLE IF EXISTS evol_content_notice;
-CREATE TABLE evol_content_notice
+DROP TABLE IF EXISTS evoltb_content_notice;
+CREATE TABLE evoltb_content_notice
 (
     id_               bigint   NOT NULL COMMENT '主键',
     create_time_      datetime NOT NULL COMMENT '创建时间',

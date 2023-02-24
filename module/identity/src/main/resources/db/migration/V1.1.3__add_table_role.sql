@@ -1,6 +1,6 @@
 -- 角色
-DROP TABLE IF EXISTS evol_identity_role;
-CREATE TABLE evol_identity_role
+DROP TABLE IF EXISTS evoltb_identity_role;
+CREATE TABLE evoltb_identity_role
 (
     id_               bigint       NOT NULL COMMENT '主键',
     create_time_      datetime     NOT NULL COMMENT '创建时间',

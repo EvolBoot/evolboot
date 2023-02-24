@@ -1,6 +1,6 @@
 -- QA
-DROP TABLE IF EXISTS evol_content_qa;
-CREATE TABLE evol_content_qa
+DROP TABLE IF EXISTS evoltb_content_qa;
+CREATE TABLE evoltb_content_qa
 (
     id_               bigint   NOT NULL COMMENT '主键',
     create_time_      datetime NOT NULL COMMENT '创建时间',

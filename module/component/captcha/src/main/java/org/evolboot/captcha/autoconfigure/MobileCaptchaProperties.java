@@ -17,7 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class MobileCaptchaProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.captcha.mobile";
+    public final static String CONFIGURATION_PREFIX = "evolpn.captcha.mobile";
 
     private Long timeout;
 

@@ -15,7 +15,7 @@ import static org.evolboot.storage.autoconfigure.StorageProperties.CONFIGURATION
 @ConfigurationProperties(prefix = CONFIGURATION_PREFIX)
 public class StorageProperties {
 
-    public final static String CONFIGURATION_PREFIX = "evol.storage";
+    public final static String CONFIGURATION_PREFIX = "evolpn.storage";
 
 
     @NestedConfigurationProperty

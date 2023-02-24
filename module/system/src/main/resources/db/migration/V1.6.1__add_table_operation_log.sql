@@ -1,6 +1,6 @@
 -- 操作日志
-DROP TABLE IF EXISTS evol_system_operation_log;
-CREATE TABLE evol_system_operation_log
+DROP TABLE IF EXISTS evoltb_system_operation_log;
+CREATE TABLE evoltb_system_operation_log
 (
     id_               bigint   NOT NULL COMMENT '主键',
     create_time_      datetime NOT NULL COMMENT '创建时间',

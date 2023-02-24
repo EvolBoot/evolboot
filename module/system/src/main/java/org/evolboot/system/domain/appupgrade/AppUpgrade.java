@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author evol
  */
-@Table(name = "evol_system_app_upgrade")
+@Table(name = "evoltb_system_app_upgrade")
 @Getter
 @Slf4j
 @NoArgsConstructor

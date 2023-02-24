@@ -10,7 +10,7 @@ server:
     max-connections: 8192
   port: 8083
 
-evol:
+evolpn:
   snowflake-host: 3
 
 logging:

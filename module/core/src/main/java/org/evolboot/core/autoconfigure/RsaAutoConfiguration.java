@@ -42,7 +42,7 @@ public class RsaAutoConfiguration {
     @ToString
     public static class RsaConfigProperties {
 
-        public final static String CONFIGURATION_PREFIX = "evol.rsa";
+        public final static String CONFIGURATION_PREFIX = "evolpn.rsa";
 
         public String rsaPrivate;
 

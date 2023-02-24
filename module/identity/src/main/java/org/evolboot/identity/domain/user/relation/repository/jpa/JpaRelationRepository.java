@@ -71,12 +71,12 @@ public interface JpaRelationRepository extends RelationRepository, ExtendedQuery
 
     @Override
     @Modifying
-    @Query(value = "insert into evol_identity_user_relation (ancestor_,descendant_,distance_) (select ancestor_,:id,distance_ + 1 FROM evol_identity_user_relation WHERE descendant_ = :parent)", nativeQuery = true)
+    @Query(value = "insert into evoltb_identity_user_relation (ancestor_,descendant_,distance_) (select ancestor_,:id,distance_ + 1 FROM evoltb_identity_user_relation WHERE descendant_ = :parent)", nativeQuery = true)
     void insertPath(@Param("id") Long id, @Param("parent") Long parent);
 
     @Override
     @Modifying
-    @Query(value = "delete from evol_identity_user_relation WHERE descendant_ = :descendant", nativeQuery = true)
+    @Query(value = "delete from evoltb_identity_user_relation WHERE descendant_ = :descendant", nativeQuery = true)
     void deleteByDescendant(@Param("descendant") Long descendant);
 
     @Override
@@ -97,7 +97,7 @@ public interface JpaRelationRepository extends RelationRepository, ExtendedQuery
 
     @Override
     @Modifying
-    @Query(value = "delete from evol_identity_user_relation where descendant_ <> 0 ", nativeQuery = true)
+    @Query(value = "delete from evoltb_identity_user_relation where descendant_ <> 0 ", nativeQuery = true)
     void deleteAll();
 
     @Override

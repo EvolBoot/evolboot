@@ -1,4 +1,4 @@
-evol:
+evolpn:
   rsa:
     rsa-private: MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAPBLiPre/nAyNJ2vM5RaTmPYV+2D6EPuKDjBHSdPTHGb8CkKl6airT7lyzlarylwrLIDwVoPpWllSxQlaFvBNzE3MxbiukH4/teb8fGvwIXeBt03tiKD9b1DNmzIQUcZSqsj/hb0qPvPPC6HZirTUdw7ymyF668oOmVTKdDhAfbdAgMBAAECgYEA3Ehyj4DDgbkUsQU+5J4QxMk8efl1gGigKL8n6bRxYKjSdd1G/rSc208viSmP8A5h0mNM6jHzsnXwaMyOKacr3sR7qPXY0D+qWBtZsiyhKw5RH589WPvgLYULZVoBUx3vGJJcpCUKa+F1WPT8ierdIkP4JLf6C3OUWv9AiMXWwiUCQQD5EVHw0yBTUstJaklIoZsaN2TG3CALr/mmuSWP1cxHjvrPgdD4W009CCnR5HsOAWqualrZvcFu2xKXe+mOIYm3AkEA9vu1KgFAVU9uR/adDeJff6vOQcejp/YpYIyor6MWBduVvB0JX5aA8tAq07YK6KWNqGFOWpBrzUW2NqJTgqdUCwJAR72KaaCWdgmqDlp0A1yxLUr5VyI+hL9KXJCF1jlR3ua7LZwJ0g+SXtsEGLYED9Ouo9B0nLVAiyrE3ydM7aiRXwJBAJPcf0oFc8FfC1PT5ZSBWNDzR0kEPwr4CS9/JiH4Td/15P+4lnr+fHZhf7I9guxi6JrMnn8DhTZgLMUqizpl+J8CQQCBBCg67lEl/7p0R5t61O6LpACOhSrXMcylT7uyNYbVUtWOG1O1oV5iVMPCyxK03h6R5s460WijMIdaH7DA3o+n
     rsa-public: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDwS4j63v5wMjSdrzOUWk5j2Fftg+hD7ig4wR0nT0xxm/ApCpemoq0+5cs5Wq8pcKyyA8FaD6VpZUsUJWhbwTcxNzMW4rpB+P7Xm/Hxr8CF3gbdN7Yig/W9QzZsyEFHGUqrI/4W9Kj7zzwuh2Yq01HcO8psheuvKDplUynQ4QH23QIDAQAB
@@ -75,7 +75,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/evol?allowPublicKeyRetrieval=true&useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=${evol.default.time-zone-cst}&rewriteBatchedStatements=true
+    url: jdbc:mysql://127.0.0.1:3306/evol?allowPublicKeyRetrieval=true&useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=${evolpn.default.time-zone-cst}&rewriteBatchedStatements=true
     username: root
     password: root
     hikari:
@@ -96,7 +96,7 @@ spring:
     placeholders:
       #TODO 这个需要更换为实际的
       storage-base-url: http://localhost:8090
-      default-avatar: ${evol.identity.user.avatar}
+      default-avatar: ${evolpn.identity.user.avatar}
   redis:
     host: 127.0.0.1
     port: 6379
@@ -132,4 +132,4 @@ rocketmq:
 logging:
   # 日志名称
   filename: app
-  config: classpath:logback-evol.xml
+  config: classpath:logback-evolpn.xml

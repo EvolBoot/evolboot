@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@ConditionalOnProperty("evol.schedule.enable")
+@ConditionalOnProperty("evolpn.schedule.enable")
 public class UserIdUpdateService {
 
     private final IdentityClient identityClient;
