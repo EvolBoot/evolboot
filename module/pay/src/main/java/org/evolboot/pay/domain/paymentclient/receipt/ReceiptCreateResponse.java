@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public class ReceiptOrderResponse {
+public class ReceiptCreateResponse {
 
     private boolean ok;
 

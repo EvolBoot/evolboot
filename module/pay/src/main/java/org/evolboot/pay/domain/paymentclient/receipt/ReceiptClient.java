@@ -18,15 +18,26 @@ public interface ReceiptClient extends PaymentClient {
      * @param request
      * @return
      */
-    ReceiptOrderResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptOrderRequest request);
+    ReceiptCreateResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptCreateRequest request);
 
     /**
      * 代收回调通知
      *
-     * @param parameters
+     * @param request
      * @param <T>
      * @return
      */
-    <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T parameters);
+    <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T request);
+
+
+
+    /**
+     * 代收前端同步通知
+     * @param gatewayAccount
+     * @param request
+     * @param <T>
+     * @return
+     */
+    <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request);
 
 }

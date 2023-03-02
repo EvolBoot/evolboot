@@ -1,6 +1,5 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 import java.math.BigDecimal;
@@ -10,21 +9,14 @@ import java.math.BigDecimal;
  *
  * @author evol
  */
-public interface ReceiptNotifyRequest {
+public interface ReceiptRedirectNotifyRequest {
+
 
     String getReceiptOrderId();
-
-    String getForeignOrderId();
 
     String getForeignStatus();
 
     String getNotifyParamsText();
-
-    BigDecimal getPayAmount();
-
-    BigDecimal getRealPayAmount();
-
-    BigDecimal getPoundage();
 
     boolean checkSign(String secretKey);
 

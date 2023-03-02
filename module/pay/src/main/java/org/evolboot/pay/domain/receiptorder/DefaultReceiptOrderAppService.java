@@ -3,6 +3,7 @@ package org.evolboot.pay.domain.receiptorder;
 import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +22,15 @@ public class DefaultReceiptOrderAppService extends ReceiptOrderSupportService im
     private final ReceiptOrderCreateFactory factory;
     private final ReceiptOrderUpdateService updateService;
     private final ReceiptOrderStatusHandleService statusHandleService;
+    private final ReceiptOrderBuildRedirectUrlService receiptOrderBuildRedirectUrlService;
 
-    protected DefaultReceiptOrderAppService(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderUpdateService updateService, ReceiptOrderStatusHandleService statusHandleService) {
+
+    protected DefaultReceiptOrderAppService(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderUpdateService updateService, ReceiptOrderStatusHandleService statusHandleService, ReceiptOrderBuildRedirectUrlService receiptOrderBuildRedirectUrlService) {
         super(repository);
         this.factory = factory;
         this.updateService = updateService;
         this.statusHandleService = statusHandleService;
+        this.receiptOrderBuildRedirectUrlService = receiptOrderBuildRedirectUrlService;
     }
 
     @Override
@@ -77,6 +81,11 @@ public class DefaultReceiptOrderAppService extends ReceiptOrderSupportService im
     @Transactional
     public void fail(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
         statusHandleService.fail(id, receiptOrderNotifyResult);
+    }
+
+    @Override
+    public String getRedirectUrl(String id, ReceiptOrderStatus status) {
+        return receiptOrderBuildRedirectUrlService.execute(id, status);
     }
 
 

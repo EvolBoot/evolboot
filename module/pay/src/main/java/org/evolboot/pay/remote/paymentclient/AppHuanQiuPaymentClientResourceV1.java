@@ -3,17 +3,21 @@ package org.evolboot.pay.remote.paymentclient;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.PaymentClientAppService;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayReleasedNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptRedirectNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
 import com.google.common.collect.Maps;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -77,8 +81,8 @@ public class AppHuanQiuPaymentClientResourceV1 {
             value = {"/success"},
             consumes = {"multipart/form-data"}
     )
-    public String huanQiuPaySuccess(HttpServletRequest request) {
-        return "success";
+    public void huanQiuPaySuccess(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(paymentClientAppService.getReceiptRedirectUrl(new HuanQiuPayReceiptRedirectNotifyRequest("111111")));
     }
 
 
@@ -87,8 +91,9 @@ public class AppHuanQiuPaymentClientResourceV1 {
             value = {"/fail"},
             consumes = {"multipart/form-data"}
     )
-    public String huanQiuPayfail(HttpServletRequest request) {
-        return "fail";
+    public void huanQiuPayfail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(paymentClientAppService.getReceiptRedirectUrl(new HuanQiuPayReceiptRedirectNotifyRequest("111111")));
+
     }
 
 

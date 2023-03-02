@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class ReceiptOrderRequest {
+public class ReceiptCreateRequest {
 
 
     // 内部订单ID
@@ -40,6 +40,6 @@ public class ReceiptOrderRequest {
 
     private Long payGatewayAccountId;
 
-    private String callbackUrl;
+    private String redirectUrl;
 
 }

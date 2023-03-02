@@ -59,7 +59,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     /**
      * 回调地址
      */
-    private String callbackUrl;
+    private String redirectUrl;
 
     /**
      * 请求第三方返回的结果信息
@@ -96,8 +96,8 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     private ReceiptOrderStatus status = ReceiptOrderStatus.PENDING;
 
 
-    private void setCallbackUrl(String callbackUrl) {
-        this.callbackUrl = callbackUrl;
+    private void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 
     private void setInternalOrderId(String merchantReceiptOrderId) {
@@ -181,7 +181,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
             Long payGatewayAccountId,
             BigDecimal payAmount,
             PayGateway payGateway,
-            String callbackUrl,
+            String redirectUrl,
             ReceiptOrderRequestResult result
 
     ) {
@@ -194,7 +194,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
         setPayGatewayAccountId(payGatewayAccountId);
         setPayAmount(payAmount);
         setPayGateway(payGateway);
-        setCallbackUrl(callbackUrl);
+        setRedirectUrl(redirectUrl);
         setRequestResult(result);
     }
 

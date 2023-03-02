@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 @AllArgsConstructor
 @Getter
-public class ReleasedOrderResponse {
+public class ReleasedCreateResponse {
 
     private boolean ok;
 

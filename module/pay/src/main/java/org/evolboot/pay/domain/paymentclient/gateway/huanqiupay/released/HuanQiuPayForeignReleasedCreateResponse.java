@@ -1,7 +1,6 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedRequestResult;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-public class HuanQiuPayReleasedRequestResult implements ReleasedRequestResult {
+public class HuanQiuPayForeignReleasedCreateResponse {
 
     //{"result":"success","code":"MSG_OK","msg":"操作成功","data":{"mer_id":"xt171219211449","businessnumber":"1639130417302","status":"处理中","transactiondate":"2021-12-10 18:00:33","amount":2000000,"transactiontype":"代付","inputdate":"2021-12-10 18:00:33","remark":"处理中","cash_type":1,"sign":"818E053870355BA630D104E18890DF16","sign_type":"md5"}}
 
@@ -24,12 +23,10 @@ public class HuanQiuPayReleasedRequestResult implements ReleasedRequestResult {
                 && "处理中".equals(data.getStatus());
     }
 
-    @Override
     public String getStatus() {
         return code;
     }
 
-    @Override
     public String getForeignOrderId() {
         return null;
     }

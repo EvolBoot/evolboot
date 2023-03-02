@@ -1,14 +1,12 @@
 package org.evolboot.pay.domain.paymentclient;
 
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptFacadeService;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptOrderRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptOrderResponse;
+import org.evolboot.pay.domain.paymentclient.receipt.*;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedFacadeService;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedOrderRequest;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedOrderResponse;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateRequest;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +27,7 @@ public class DefaultPaymentClientAppService implements PaymentClientAppService {
 
     @Override
     @Transactional
-    public ReceiptOrderResponse createReceiptOrder(ReceiptOrderRequest request) {
+    public ReceiptCreateResponse createReceiptOrder(ReceiptCreateRequest request) {
         return receiptFacadeService.createReceiptOrder(request);
     }
 
@@ -41,7 +39,7 @@ public class DefaultPaymentClientAppService implements PaymentClientAppService {
 
     @Override
     @Transactional
-    public ReleasedOrderResponse createReleasedOrder(ReleasedOrderRequest request) {
+    public ReleasedCreateResponse createReleasedOrder(ReleasedCreateRequest request) {
         return releasedFacadeService.createReleasedOrder(request);
     }
 
@@ -49,6 +47,11 @@ public class DefaultPaymentClientAppService implements PaymentClientAppService {
     @Transactional
     public <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request) {
         return releasedFacadeService.releasedOrderNotify(request);
+    }
+
+    @Override
+    public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+        return receiptFacadeService.getReceiptRedirectUrl(request);
     }
 
 

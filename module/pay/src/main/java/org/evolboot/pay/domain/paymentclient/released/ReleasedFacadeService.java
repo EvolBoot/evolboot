@@ -12,7 +12,7 @@ public interface ReleasedFacadeService {
      * @param request
      * @return
      */
-    ReleasedOrderResponse createReleasedOrder(ReleasedOrderRequest request);
+    ReleasedCreateResponse createReleasedOrder(ReleasedCreateRequest request);
 
 
     /**

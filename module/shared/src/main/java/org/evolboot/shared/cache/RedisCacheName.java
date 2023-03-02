@@ -75,4 +75,8 @@ public interface RedisCacheName {
     String APP_UPGRADE_CACHE_KEY = "evoltb_app_upgrade_";
 
 
+    /**
+     * 代收跳转数据暂存
+     */
+    String PAY_RECEIPT_REDIRECT_URL_CACHE_KEY = "evoltb_rruck_";
 }

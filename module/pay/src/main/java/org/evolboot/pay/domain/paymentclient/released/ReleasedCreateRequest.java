@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @ToString
-public class ReleasedOrderRequest {
+public class ReleasedCreateRequest {
 
     // 内部订单ID
     private String internalOrderId;

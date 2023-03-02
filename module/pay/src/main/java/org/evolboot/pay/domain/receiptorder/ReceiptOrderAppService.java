@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.receiptorder;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 import java.util.List;
 
@@ -29,5 +30,6 @@ public interface ReceiptOrderAppService {
 
     void fail(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult);
 
+    String getRedirectUrl(String id, ReceiptOrderStatus status);
 
 }

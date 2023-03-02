@@ -4,6 +4,8 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.BigDecimalUtil;
 import org.evolboot.core.util.ExtendHttpUtil;
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayForeignReceiptCraeteResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
@@ -25,7 +27,7 @@ import java.util.TreeMap;
  * @author evol
  */
 @Slf4j
-@Service
+@Service("HuanQiuPayPaymentClient")
 public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
     private final HuanQiuPayConfig huanQiuPayConfig;
@@ -51,7 +53,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
      * @return
      */
     @Override
-    public ReceiptOrderResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptOrderRequest request) {
+    public ReceiptCreateResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
         Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumReceipt()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumReceipt()));
         String url = huanQiuPayConfig.getReceiptUrl();
@@ -76,13 +78,17 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
         log.info("代收请求参数:{},返回结果:{}", JsonUtil.stringify(params), postData);
 
-        ReceiptRequestResult result = JsonUtil.parse(postData, HuanQiuPayReceiptRequestResult.class);
+        HuanQiuPayForeignReceiptCraeteResponse response = JsonUtil.parse(postData, HuanQiuPayForeignReceiptCraeteResponse.class);
 
-        if (result.isOk()) {
-            String payUrl = result.getPayUrl();
-            return new ReceiptOrderResponse(result.isOk(), receiptOrderId, payUrl, new ReceiptOrderRequestResult(result.getForeignOrderId(), payUrl, postData));
+        if (response.isOk()) {
+            String payUrl = response.getPayUrl();
+            return new ReceiptCreateResponse(response.isOk(), receiptOrderId, payUrl, new ReceiptOrderRequestResult(
+                    response.getForeignOrderId(),
+                    payUrl,
+                    response.getStatus(),
+                    postData));
         }
-        log.info("代收失败,返回信息:{},{}", result.getStatus(), postData);
+        log.info("代收失败,返回信息:{},{}", response.getStatus(), postData);
         throw new PayException("Pay Fail");
 
     }
@@ -100,12 +106,12 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     public <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T request) {
         String requestParamsText = request.getNotifyParamsText();
         log.info("HuanQiu:代收:回调通知:{}", requestParamsText);
-        return new ReceiptNotifyResponse(request.isOk(),
+        return new ReceiptNotifyResponse(request.getStatus(),
                 "success",
                 new ReceiptOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReceiptOrderId(),
-                        request.getStatus(),
+                        request.getForeignStatus(),
                         requestParamsText,
                         request.getPayAmount(),
                         request.getRealPayAmount(),
@@ -113,9 +119,14 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
                 ));
     }
 
+    @Override
+    public <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request) {
+        return new ReceiptRedirectNotifyResponse(request.getStatus());
+    }
+
 
     @Override
-    public ReleasedOrderResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedOrderRequest request) {
+    public ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request) {
         log.info("代付:创建订单");
         String url = huanQiuPayConfig.getReleasedUrl();
         String backUrl = huanQiuPayConfig.getReleasedNotifyUrl();
@@ -139,8 +150,8 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         String post = ExtendHttpUtil.post(url, map);
         String requestText = JsonUtil.stringify(map);
         log.info("代付:发起请求:{},参数:{},返回:{}", releasedOrderId, JsonUtil.stringify(map), post);
-        ReleasedRequestResult result = JsonUtil.parse(post, HuanQiuPayReleasedRequestResult.class);
-        return new ReleasedOrderResponse(
+        HuanQiuPayForeignReleasedCreateResponse result = JsonUtil.parse(post, HuanQiuPayForeignReleasedCreateResponse.class);
+        return new ReleasedCreateResponse(
                 result.isOk(),
                 request.getAmount(),
                 BigDecimal.ZERO,
@@ -191,7 +202,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         map.put("sign_type", "md5");
 
         String post = ExtendHttpUtil.post(url, map);
-        HuanQiuPayReceiptRequestResult parse = JsonUtil.parse(post, HuanQiuPayReceiptRequestResult.class);
+        HuanQiuPayForeignReceiptCraeteResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReceiptCraeteResponse.class);
         System.out.println(parse.getData().getTrade_qrcode());
         System.out.println(post);
     }
@@ -229,7 +240,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         System.out.println(JsonUtil.stringify(map));
         String post = ExtendHttpUtil.post(url, map);
         System.out.println(post);
-        HuanQiuPayReleasedRequestResult parse = JsonUtil.parse(post, HuanQiuPayReleasedRequestResult.class);
+        HuanQiuPayForeignReleasedCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReleasedCreateResponse.class);
         System.out.println(parse.isOk());
         System.out.println(new BigDecimal(parse.getData().getAmount()).movePointLeft(2));
 

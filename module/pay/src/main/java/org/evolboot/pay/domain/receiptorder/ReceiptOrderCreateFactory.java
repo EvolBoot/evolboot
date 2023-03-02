@@ -33,7 +33,7 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
                 request.getPayGatewayAccountId(),
                 request.getPayAmount(),
                 request.getPayGateway(),
-                request.getCallbackUrl(),
+                request.getRedirectUrl(),
                 request.getResult()
         );
         repository.save(receiptOrder);
@@ -43,7 +43,7 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
     @Getter
     @Builder
     @AllArgsConstructor
-    public static class Request extends ReceiptOrderRequestBase {
+    public static class Request {
         private String receiptOrderId;
         private String internalOrderId;
         private String productName;
@@ -53,7 +53,7 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
         private Long payGatewayAccountId;
         private BigDecimal payAmount;
         private PayGateway payGateway;
-        private String callbackUrl;
+        private String redirectUrl;
         private ReceiptOrderRequestResult result;
     }
 

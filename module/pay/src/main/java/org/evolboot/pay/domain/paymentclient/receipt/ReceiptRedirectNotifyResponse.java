@@ -1,6 +1,5 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
@@ -13,12 +12,9 @@ import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 @AllArgsConstructor
 @Getter
-public class ReceiptNotifyResponse {
+public class ReceiptRedirectNotifyResponse {
 
     private ReceiptOrderStatus status;
 
-    private String returnText;
-
-    private ReceiptOrderNotifyResult notifyResult;
 
 }

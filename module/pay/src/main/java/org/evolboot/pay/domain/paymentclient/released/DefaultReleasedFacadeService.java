@@ -42,14 +42,14 @@ public class DefaultReleasedFacadeService implements ReleasedFacadeService {
 
     @Override
     @Transactional
-    public ReleasedOrderResponse createReleasedOrder(ReleasedOrderRequest request) {
+    public ReleasedCreateResponse createReleasedOrder(ReleasedCreateRequest request) {
         log.info("代付:创建代付订单:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
         ReleasedClient releasedClient = releasedClients.get(gatewayAccount.getPayGateway());
         Assert.notNull(releasedClient, thePaymentGatewayDoesNotExist());
         String releasedOrderId = ReleasedOrder.generateId();
         log.info("代付:进入,网关:{},内部订单号:{},代付订单号:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), releasedOrderId);
-        ReleasedOrderResponse response = releasedClient.createReleasedOrder(releasedOrderId, gatewayAccount, request);
+        ReleasedCreateResponse response = releasedClient.createReleasedOrder(releasedOrderId, gatewayAccount, request);
         ReleasedOrderStatus status = ReleasedOrderStatus.PENDING;
         if (!response.isOk()) {
             status = ReleasedOrderStatus.FAIL;
@@ -76,18 +76,19 @@ public class DefaultReleasedFacadeService implements ReleasedFacadeService {
     @Override
     @Transactional
     public <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request) {
-        log.info("代付:收到回调通知:{},{}", request.getPayGateway(), request.getNotifyParamsText());
-        ReleasedClient releasedClient = releasedClients.get(request.getPayGateway());
+        log.info("代付:收到回调通知:{}", request.getNotifyParamsText());
         ReleasedOrder releasedOrder = releasedOrderAppService.findById(request.getReleasedOrderId());
         PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(releasedOrder.getPayGatewayAccountId());
+        ReleasedClient releasedClient = releasedClients.get(gatewayAccount.getPayGateway());
+        Assert.notNull(releasedClient, thePaymentGatewayDoesNotExist());
         boolean checkSign = request.checkSign(gatewayAccount.getSecretKey());
         Assert.isTrue(checkSign,"签名错误");
         ReleasedNotifyResponse response = releasedClient.releasedOrderNotify(gatewayAccount, request);
         if (response.isOk()) {
-            log.info("代付:成功:{},{}", request.getPayGateway(), request.getReleasedOrderId());
+            log.info("代付:成功:{},{}", gatewayAccount.getPayGateway(), request.getReleasedOrderId());
             releasedOrderAppService.success(releasedOrder.id(), response.getNotifyResult());
         } else {
-            log.info("代付:失败:{},{}", request.getPayGateway(), request.getReleasedOrderId());
+            log.info("代付:失败:{},{}", gatewayAccount.getPayGateway(), request.getReleasedOrderId());
             releasedOrderAppService.fail(releasedOrder.id(), response.getNotifyResult());
         }
         return response.getReturnText();

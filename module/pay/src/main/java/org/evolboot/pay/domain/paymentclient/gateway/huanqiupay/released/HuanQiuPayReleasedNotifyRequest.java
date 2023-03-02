@@ -1,5 +1,6 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
 
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
 import lombok.Getter;
@@ -39,11 +40,6 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
 
     public HuanQiuPayReleasedNotifyRequest(Map<String, String> notifyParams) {
         this.notifyParams = notifyParams;
-    }
-
-    @Override
-    public PayGateway getPayGateway() {
-        return PayGateway.HUANQIU_PAY;
     }
 
     @Override

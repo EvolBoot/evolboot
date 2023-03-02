@@ -1,14 +1,12 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
 
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRequestResult;
 
 /**
  * @author evol
  */
-public class HuanQiuPayReceiptRequestResult implements ReceiptRequestResult {
+public class HuanQiuPayForeignReceiptCraeteResponse {
 
-    @Override
     public boolean isOk() {
         if (ExtendObjects.isNull(this.getData())) {
             return false;
@@ -16,17 +14,14 @@ public class HuanQiuPayReceiptRequestResult implements ReceiptRequestResult {
         return "成功".equals(this.getData().getStatus());
     }
 
-    @Override
     public String getStatus() {
         return this.getData().getStatus();
     }
 
-    @Override
     public String getPayUrl() {
         return getData().getTrade_qrcode();
     }
 
-    @Override
     public String getForeignOrderId() {
         return null;
     }

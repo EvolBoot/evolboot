@@ -17,7 +17,7 @@ public interface ReleasedClient extends PaymentClient {
      * @param request
      * @return
      */
-    ReleasedOrderResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedOrderRequest request);
+    ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request);
 
 
     /**
@@ -28,5 +28,6 @@ public interface ReleasedClient extends PaymentClient {
      * @return
      */
     <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request);
+
 
 }

@@ -1,11 +1,13 @@
 package org.evolboot.pay.domain.paymentclient;
 
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptOrderRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptOrderResponse;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateRequest;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateResponse;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedOrderRequest;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedOrderResponse;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateRequest;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateResponse;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 /**
  * 支付客户端（对外）
@@ -20,7 +22,7 @@ public interface PaymentClientAppService {
      * @param request
      * @return
      */
-    ReceiptOrderResponse createReceiptOrder(ReceiptOrderRequest request);
+    ReceiptCreateResponse createReceiptOrder(ReceiptCreateRequest request);
 
 
     /**
@@ -38,7 +40,7 @@ public interface PaymentClientAppService {
      * @param request
      * @return
      */
-    ReleasedOrderResponse createReleasedOrder(ReleasedOrderRequest request);
+    ReleasedCreateResponse createReleasedOrder(ReleasedCreateRequest request);
 
 
     /**
@@ -49,4 +51,13 @@ public interface PaymentClientAppService {
      * @return
      */
     <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T parameters);
+
+
+    /**
+     * 获取前端跳转地址
+     *
+     * @param request
+     * @return
+     */
+    <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 }

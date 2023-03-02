@@ -10,6 +10,7 @@ import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderCreateFactory;
 import org.evolboot.pay.exception.PayException;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +41,7 @@ public class DefaultReceiptFacadeService implements ReceiptFacadeService {
 
     @Override
     @Transactional
-    public ReceiptOrderResponse createReceiptOrder(ReceiptOrderRequest request) {
+    public ReceiptCreateResponse createReceiptOrder(ReceiptCreateRequest request) {
         log.info("代收:进入代收:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
@@ -48,7 +49,7 @@ public class DefaultReceiptFacadeService implements ReceiptFacadeService {
         Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
         String receiptOrderId = ReceiptOrder.generateId();
         log.info("代收:进入代收支付,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), receiptOrderId);
-        ReceiptOrderResponse response = receiptClient.createReceiptOrder(receiptOrderId, gatewayAccount, request);
+        ReceiptCreateResponse response = receiptClient.createReceiptOrder(receiptOrderId, gatewayAccount, request);
         if (response.isOk()) {
             receiptOrderAppService.create(
                     new ReceiptOrderCreateFactory.Request(
@@ -61,7 +62,7 @@ public class DefaultReceiptFacadeService implements ReceiptFacadeService {
                             gatewayAccount.id(),
                             request.getPayAmount(),
                             gatewayAccount.getPayGateway(),
-                            request.getCallbackUrl(),
+                            request.getRedirectUrl(),
                             response.getRequestResult()
                     )
             );
@@ -72,22 +73,32 @@ public class DefaultReceiptFacadeService implements ReceiptFacadeService {
 
     @Override
     @Transactional
-    public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T parameters) {
-        log.info("代收:回调网关:{},数据:{}", parameters.getPayGateway(), parameters);
-        ReceiptClient receiptClient = receiptClients.get(parameters.getPayGateway());
-        Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
-        String receiptOrderId = parameters.getReceiptOrderId();
+    public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
+        log.info("代收:数据:{}", JsonUtil.stringify(request));
+        String receiptOrderId = request.getReceiptOrderId();
         ReceiptOrder receiptOrder = receiptOrderAppService.findById(receiptOrderId);
         PayGatewayAccount payGatewayAccount = payGatewayAccountAppService.findById(receiptOrder.getPayGatewayAccountId());
-        parameters.checkSign(payGatewayAccount.getSecretKey());
-        ReceiptNotifyResponse receiptNotifyResponse = receiptClient.receiptOrderNotify(payGatewayAccount, parameters);
-        if (receiptNotifyResponse.isOk()) {
-            log.info("代收:支付成功:{},{}", parameters.getPayGateway(), receiptOrder.id());
-            receiptOrderAppService.success(receiptOrderId, receiptNotifyResponse.getNotifyResult());
-        } else {
-            log.info("代收:支付失败:{},{}", parameters.getPayGateway(), receiptOrder.id());
-            receiptOrderAppService.fail(receiptOrderId, receiptNotifyResponse.getNotifyResult());
+        ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
+        Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
+        boolean checkSign = request.checkSign(payGatewayAccount.getSecretKey());
+        Assert.isTrue(checkSign, "签名错误");
+        ReceiptNotifyResponse response = receiptClient.receiptOrderNotify(payGatewayAccount, request);
+        if (ReceiptOrderStatus.SUCCESS == response.getStatus()) {
+            log.info("代收:支付成功:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
+            receiptOrderAppService.success(receiptOrderId, response.getNotifyResult());
+        } else if (ReceiptOrderStatus.FAIL == response.getStatus()) {
+            log.info("代收:支付失败:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
+            receiptOrderAppService.fail(receiptOrderId, response.getNotifyResult());
         }
-        return receiptNotifyResponse.getReturnText();
+        return response.getReturnText();
+    }
+
+    @Override
+    public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+        ReceiptOrder receiptOrder = receiptOrderAppService.findById(request.getReceiptOrderId());
+        PayGatewayAccount payGatewayAccount = payGatewayAccountAppService.findById(receiptOrder.getPayGatewayAccountId());
+        ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
+        ReceiptRedirectNotifyResponse response = receiptClient.receiptOrderRedirectNotify(payGatewayAccount, request);
+        return receiptOrderAppService.getRedirectUrl(request.getReceiptOrderId(), response.getStatus());
     }
 }

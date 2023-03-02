@@ -1,5 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
+import org.evolboot.shared.pay.ReceiptOrderStatus;
+
 /**
  * @author evol
  */
@@ -12,17 +14,23 @@ public interface ReceiptFacadeService {
      * @param request
      * @return
      */
-    ReceiptOrderResponse createReceiptOrder(ReceiptOrderRequest request);
+    ReceiptCreateResponse createReceiptOrder(ReceiptCreateRequest request);
 
 
     /**
      * 代收通知
      *
-     * @param parameters
+     * @param request
      * @param <T>
      * @return
      */
-    <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T parameters);
+    <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request);
 
+    /**
+     * 获取前端跳转地址
+     * @param request
+     * @return
+     */
+    <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 
 }

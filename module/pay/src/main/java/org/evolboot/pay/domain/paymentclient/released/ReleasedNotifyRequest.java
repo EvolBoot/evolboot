@@ -11,8 +11,6 @@ import java.math.BigDecimal;
  */
 public interface ReleasedNotifyRequest {
 
-    PayGateway getPayGateway();
-
     String getReleasedOrderId();
 
     String getForeignOrderId();
