@@ -18,8 +18,8 @@ import java.util.List;
 public class UserIdGetNextService extends UserIdSupportService {
 
     private final List<Long> userIds = Lists.newArrayList();
-    private int warnNum = 5000;
-    private int step = 10000;
+    private int warnNum = 500;
+    private int step = 1000;
 
     protected UserIdGetNextService(UserIdRepository repository) {
         super(repository);

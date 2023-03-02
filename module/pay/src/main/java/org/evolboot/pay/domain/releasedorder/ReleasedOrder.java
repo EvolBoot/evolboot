@@ -7,7 +7,6 @@ import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
-import org.evolboot.shared.pay.ReleasedOrderType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +21,6 @@ import static org.evolboot.shared.pay.ReleasedOrderStatus.PENDING;
  * 代付订单
  *
  * @author evol
-* 
  */
 @Table(name = "evoltb_pay_released_order")
 @Getter
@@ -35,9 +33,6 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
 
     @Id
     private String id;
-
-    @Enumerated(EnumType.STRING)
-    private ReleasedOrderType type;
 
     /**
      * 内部订单号
@@ -52,22 +47,17 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     /**
      * 客户姓名
      */
-    private String customName;
+    private String payeeName;
 
     /**
      * 客户电话
      */
-    private String customMobile;
+    private String payeePhone;
 
     /**
      * 客户邮箱
      */
-    private String customEmail;
-
-    /**
-     * 持卡人名称
-     */
-    private String bankBankCardholderName;
+    private String payeeEmail;
 
     /**
      * 银行编号
@@ -115,15 +105,26 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     @Enumerated(EnumType.STRING)
     private ReleasedOrderStatus status;
 
-    public ReleasedOrder(String id, ReleasedOrderType type, String internalOrderId, BigDecimal amount, String customName, String customMobile, String customEmail, String bankBankCardholderName, String bankCode, String bankNo, Long payGatewayAccountId, PayGateway payGateway, BigDecimal poundage, String foreignOrderId, ReleasedOrderRequestResult requestResult, ReleasedOrderStatus status) {
+    public ReleasedOrder(String id,
+                         String internalOrderId,
+                         BigDecimal amount,
+                         String payeeName,
+                         String payeePhone,
+                         String payeeEmail,
+                         String bankCode,
+                         String bankNo,
+                         Long payGatewayAccountId,
+                         PayGateway payGateway,
+                         BigDecimal poundage,
+                         String foreignOrderId,
+                         ReleasedOrderRequestResult requestResult,
+                         ReleasedOrderStatus status) {
         this.id = id;
-        this.type = type;
         this.internalOrderId = internalOrderId;
         this.amount = amount;
-        this.customName = customName;
-        this.customMobile = customMobile;
-        this.customEmail = customEmail;
-        this.bankBankCardholderName = bankBankCardholderName;
+        this.payeeName = payeeName;
+        this.payeePhone = payeePhone;
+        this.payeeEmail = payeeEmail;
         this.bankCode = bankCode;
         this.bankNo = bankNo;
         this.payGateway = payGateway;

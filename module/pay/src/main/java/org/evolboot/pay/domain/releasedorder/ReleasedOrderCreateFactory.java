@@ -2,7 +2,6 @@ package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
-import org.evolboot.shared.pay.ReleasedOrderType;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,13 +27,11 @@ public class ReleasedOrderCreateFactory extends ReleasedOrderSupportService {
     public ReleasedOrder execute(Request request) {
         ReleasedOrder releasedOrder = new ReleasedOrder(
                 request.id,
-                request.type,
                 request.internalOrderId,
                 request.amount,
-                request.customName,
-                request.customMobile,
-                request.customEmail,
-                request.bankBankCardholderName,
+                request.payeeName,
+                request.payeePhone,
+                request.payeeEmail,
                 request.bankCode,
                 request.bankNo,
                 request.payGatewayAccountId,
@@ -53,13 +50,11 @@ public class ReleasedOrderCreateFactory extends ReleasedOrderSupportService {
     @AllArgsConstructor
     public static class Request {
         private String id;
-        private ReleasedOrderType type;
         private String internalOrderId;
         private BigDecimal amount;
-        private String customName;
-        private String customMobile;
-        private String customEmail;
-        private String bankBankCardholderName;
+        private String payeeName;
+        private String payeePhone;
+        private String payeeEmail;
         private String bankCode;
         private String bankNo;
         private Long payGatewayAccountId;

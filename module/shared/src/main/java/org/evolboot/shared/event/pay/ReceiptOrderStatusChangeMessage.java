@@ -16,9 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class ReceiptOrderStatusChangeMessage implements TransactionRocketMQMessage<String> {
-
-    private Long mqTransactionId;
+public class ReceiptOrderStatusChangeMessage extends TransactionRocketMQMessage<String> {
 
     private String receiptOrderId;
 

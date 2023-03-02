@@ -24,6 +24,7 @@ spring:
       org.evolboot.storage.messages,
       org.evolboot.schedule.messages,
       org.evolboot.system.messages,
+      org.evolboot.pay.messages,
       org.evolboot.security.accesstoken.messages,
       org.evolboot.security.api.messages,
       org.evolboot.sms.messages

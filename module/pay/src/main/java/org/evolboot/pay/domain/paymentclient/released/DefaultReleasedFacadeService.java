@@ -56,18 +56,16 @@ public class DefaultReleasedFacadeService implements ReleasedFacadeService {
         }
         releasedOrderAppService.create(new ReleasedOrderCreateFactory.Request(
                 releasedOrderId,
-                request.getType(),
                 request.getInternalOrderId(),
                 request.getAmount(),
-                request.getBankBankCardholderName(),
-                request.getCustomMobile(),
-                request.getCustomEmail(),
-                request.getBankBankCardholderName(),
+                request.getPayeeName(),
+                request.getPayeePhone(),
+                request.getPayeeEmail(),
                 request.getBankCode(),
                 request.getBankNo(),
                 gatewayAccount.id(),
                 releasedClient.getPayGateway(),
-                response.getPoundage(),
+                response.getPoundageAmount(),
                 response.getForeignOrderId(),
                 response.getRequestResult(),
                 status
@@ -82,7 +80,8 @@ public class DefaultReleasedFacadeService implements ReleasedFacadeService {
         ReleasedClient releasedClient = releasedClients.get(request.getPayGateway());
         ReleasedOrder releasedOrder = releasedOrderAppService.findById(request.getReleasedOrderId());
         PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(releasedOrder.getPayGatewayAccountId());
-        request.checkSign(gatewayAccount.getSecretKey());
+        boolean checkSign = request.checkSign(gatewayAccount.getSecretKey());
+        Assert.isTrue(checkSign,"签名错误");
         ReleasedNotifyResponse response = releasedClient.releasedOrderNotify(gatewayAccount, request);
         if (response.isOk()) {
             log.info("代付:成功:{},{}", request.getPayGateway(), request.getReleasedOrderId());

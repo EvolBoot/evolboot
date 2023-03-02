@@ -23,10 +23,10 @@ public interface ReleasedClient extends PaymentClient {
     /**
      * 下发(代付)通知
      *
-     * @param parameters
+     * @param request
      * @param <T>
      * @return
      */
-    <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T parameters);
+    <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request);
 
 }

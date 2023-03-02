@@ -33,7 +33,7 @@ public abstract class PayI18nMessage {
      * 支付网关账户
      */
     public static class PayGatewayAccount {
-        public static final String NAMESPACE = PayI18nMessage.NAMESPACE + ".receiptorder";
+        public static final String NAMESPACE = PayI18nMessage.NAMESPACE + ".paygatewayaccount";
 
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
         public static final String theMinimumRechargeAmountIs = NAMESPACE + ".theMinimumRechargeAmountIs";

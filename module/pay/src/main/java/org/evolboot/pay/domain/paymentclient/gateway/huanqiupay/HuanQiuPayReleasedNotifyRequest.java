@@ -23,8 +23,9 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
     }
 
     @Override
-    public void checkSign(String secretKey) {
+    public boolean checkSign(String secretKey) {
         HuanQiuPayUtil.checkSign(notifyParams, secretKey);
+        return true;
     }
 
     public String getStatus() {

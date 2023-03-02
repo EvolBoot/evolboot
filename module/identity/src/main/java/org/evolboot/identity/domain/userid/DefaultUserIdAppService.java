@@ -19,7 +19,7 @@ import java.util.List;
 public class DefaultUserIdAppService extends UserIdSupportService implements UserIdAppService {
 
 
-    private final int step = 1000000;
+    private final int step = 10000;
     private final UserIdCreateFactory factory;
     private final UserIdUpdateService updateService;
     private final UserIdGetNextService userIdGetNextService;

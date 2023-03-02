@@ -57,6 +57,6 @@ public class PayAutoConfigure {
 
     @Bean
     public HuanQiuPayConfig huanQiuPayConfig(PayConfig config) {
-        return new HuanQiuPayConfig(config.getNotifyDomain());
+        return new HuanQiuPayConfig(config.getDomain());
     }
 }

@@ -28,5 +28,5 @@ public interface ReleasedNotifyRequest {
     boolean isOk();
 
 
-    void checkSign(String secretKey);
+    boolean checkSign(String secretKey);
 }

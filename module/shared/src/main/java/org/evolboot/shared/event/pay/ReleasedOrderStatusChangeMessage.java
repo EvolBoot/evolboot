@@ -16,9 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ReleasedOrderStatusChangeMessage implements TransactionRocketMQMessage<String> {
-
-    private Long mqTransactionId;
+public class ReleasedOrderStatusChangeMessage extends TransactionRocketMQMessage<String> {
 
     private String releasedOrderId;
 
@@ -30,7 +28,6 @@ public class ReleasedOrderStatusChangeMessage implements TransactionRocketMQMess
 
     private ReleasedOrderStatus releasedOrderStatus;
 
-    private ReleasedOrderType releasedOrderType;
 
 
     @Override

@@ -19,7 +19,7 @@ public class ReleasedOrderResponse {
 
     private BigDecimal amount;
 
-    private BigDecimal poundage;
+    private BigDecimal poundageAmount;
 
     private String foreignOrderId;
 

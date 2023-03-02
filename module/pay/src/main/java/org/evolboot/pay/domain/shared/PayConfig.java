@@ -18,8 +18,8 @@ import static org.evolboot.pay.domain.shared.PayConfig.CONFIGURATION_PREFIX;
 @Configuration
 public class PayConfig {
 
-    public final static String CONFIGURATION_PREFIX = "noai.pay";
+    public final static String CONFIGURATION_PREFIX = "evolpn.pay";
 
-    private String notifyDomain;
+    private String domain;
 
 }

@@ -127,7 +127,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         map.put("amount", request.getAmount().movePointRight(2));
         map.put("businessnumber", releasedOrderId);
         map.put("bankcardnumber", request.getBankNo());
-        map.put("bankcardname", request.getBankBankCardholderName());
+        map.put("bankcardname", request.getPayeeName());
         map.put("bankname", request.getBankCode());
         map.put("back_url", backUrl);
         map.put("cash_type", "3");

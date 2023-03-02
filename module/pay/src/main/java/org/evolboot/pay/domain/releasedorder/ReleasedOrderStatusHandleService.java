@@ -38,13 +38,11 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         if (success) {
             repository.save(releasedOrder);
             rocketMQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
-                    mqTransactionAppService.create("ReleasedOrder").id(),
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
                     releasedOrder.getAmount(),
-                    ReleasedOrderStatus.SUCCESS,
-                    releasedOrder.getType()));
+                    ReleasedOrderStatus.SUCCESS));
         }
     }
 
@@ -60,13 +58,11 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         if (fail) {
             repository.save(releasedOrder);
             rocketMQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
-                    mqTransactionAppService.create("ReleasedOrder").id(),
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
                     releasedOrder.getAmount(),
-                    ReleasedOrderStatus.FAIL,
-                    releasedOrder.getType()
+                    ReleasedOrderStatus.FAIL
             ));
         }
     }

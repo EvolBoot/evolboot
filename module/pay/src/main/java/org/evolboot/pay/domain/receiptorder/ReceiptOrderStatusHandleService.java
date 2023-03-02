@@ -28,7 +28,6 @@ public class ReceiptOrderStatusHandleService extends ReceiptOrderSupportService 
         boolean success = receiptOrder.success(receiptOrderNotifyResult);
         if (success) {
             mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStatusChangeMessage(
-                    mqTransactionAppService.create(this.getClass().getName()).id(),
                     receiptOrder.id(),
                     receiptOrder.getInternalOrderId(),
                     receiptOrder.getPayAmount(),
@@ -44,7 +43,6 @@ public class ReceiptOrderStatusHandleService extends ReceiptOrderSupportService 
         repository.save(receiptOrder);
         if (fail) {
             mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStatusChangeMessage(
-                    mqTransactionAppService.create(this.getClass().getName()).id(),
                     receiptOrder.id(),
                     receiptOrder.getInternalOrderId(),
                     receiptOrder.getPayAmount(),

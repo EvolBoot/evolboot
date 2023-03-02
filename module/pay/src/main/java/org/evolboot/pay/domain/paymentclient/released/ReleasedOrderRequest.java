@@ -1,6 +1,5 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-import org.evolboot.shared.pay.ReleasedOrderType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -23,11 +22,7 @@ public class ReleasedOrderRequest {
     // 金额数量
     private BigDecimal amount;
 
-    // 下发类型
-    private ReleasedOrderType type;
 
-    // 客户姓名
-    private String bankBankCardholderName;
 
     // 银行卡卡号
     private String bankNo;
@@ -38,9 +33,11 @@ public class ReleasedOrderRequest {
     // 代付网关
     private Long payGatewayAccountId;
 
-    private String customMobile;
+    private String payeeName;
 
-    private String customEmail;
+    private String payeePhone;
+
+    private String payeeEmail;
 
 
 }
