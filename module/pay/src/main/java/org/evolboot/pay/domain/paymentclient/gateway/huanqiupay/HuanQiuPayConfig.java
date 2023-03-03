@@ -10,9 +10,9 @@ public class HuanQiuPayConfig {
 
     private String domain;
 
-    private String releasedUrl = "http://api.xiongwei2000.com/pay.bank.to";
+    private String releasedCreateUrl = "http://api.xiongwei2000.com/pay.bank.to";
 
-    private String receiptUrl = "http://api.xiongwei2000.com/customer.pay";
+    private String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
 
     private String receiptNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/receipt/notify";
 

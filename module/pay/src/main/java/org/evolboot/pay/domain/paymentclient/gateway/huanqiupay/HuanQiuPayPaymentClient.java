@@ -56,7 +56,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     public ReceiptCreateResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
         Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumReceipt()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumReceipt()));
-        String url = huanQiuPayConfig.getReceiptUrl();
+        String url = huanQiuPayConfig.getReceiptCreateUrl();
         TreeMap<String, Object> params = Maps.newTreeMap();
         params.put("mer_id", account.getMerchantId());
         params.put("timestamp", HuanQiuPayUtil.getDate());
@@ -128,7 +128,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     @Override
     public ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request) {
         log.info("代付:创建订单");
-        String url = huanQiuPayConfig.getReleasedUrl();
+        String url = huanQiuPayConfig.getReleasedCreateUrl();
         String backUrl = huanQiuPayConfig.getReleasedNotifyUrl();
         TreeMap<String, Object> map = Maps.newTreeMap();
         map.put("mer_id", account.getMerchantId());
