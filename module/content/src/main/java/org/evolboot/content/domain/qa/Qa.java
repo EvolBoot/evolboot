@@ -54,19 +54,19 @@ public class Qa extends JpaAbstractEntity<Long> implements AggregateRoot<Qa>, Lo
         setEnable(enable);
     }
 
-    void setSort(Integer sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
-    void setLocales(List<QaLocale> locales) {
+    public void setLocales(List<QaLocale> locales) {
         this.locales = locales;
     }
 
-    void setEnable(Boolean enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
-    void setLink(String link) {
+    public void setLink(String link) {
         this.link = link;
     }
 

@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.qa;
 
 
-import org.evolboot.content.domain.qa.QaCreateFactory;
+import org.evolboot.content.domain.qa.service.QaCreateFactory;
 import lombok.Getter;
 import lombok.Setter;
 

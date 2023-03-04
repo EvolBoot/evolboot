@@ -1,6 +1,6 @@
 package org.evolboot.identity.remote.role;
 
-import org.evolboot.identity.domain.role.RoleCreateFactory;
+import org.evolboot.identity.domain.role.service.RoleCreateFactory;
 import com.google.common.collect.Sets;
 import lombok.Data;
 

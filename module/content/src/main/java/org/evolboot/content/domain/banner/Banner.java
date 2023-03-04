@@ -43,15 +43,15 @@ public class Banner extends JpaAbstractEntity<Long> implements AggregateRoot<Ban
         this.id = IdGenerate.longId();
     }
 
-    void setSort(Integer sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
-    void setShow(Boolean show) {
+    public  void setShow(Boolean show) {
         this.show = show;
     }
 
-    void setLocales(List<BannerLocale> locales) {
+    public void setLocales(List<BannerLocale> locales) {
         this.locales = locales;
     }
 

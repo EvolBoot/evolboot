@@ -3,6 +3,9 @@ package org.evolboot.identity.domain.user.relation;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
+import org.evolboot.identity.domain.user.relation.service.RelationMoveService;
+import org.evolboot.identity.domain.user.relation.service.RelationMoveTreeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

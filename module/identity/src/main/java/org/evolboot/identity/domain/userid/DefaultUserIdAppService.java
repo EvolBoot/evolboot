@@ -3,6 +3,10 @@ package org.evolboot.identity.domain.userid;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.userid.service.UserIdCreateFactory;
+import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
+import org.evolboot.identity.domain.userid.service.UserIdSupportService;
+import org.evolboot.identity.domain.userid.service.UserIdUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

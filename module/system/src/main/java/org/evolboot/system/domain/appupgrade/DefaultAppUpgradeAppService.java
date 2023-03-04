@@ -3,6 +3,9 @@ package org.evolboot.system.domain.appupgrade;
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.appupgrade.repository.AppUpgradeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeCreateFactory;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeSupportService;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

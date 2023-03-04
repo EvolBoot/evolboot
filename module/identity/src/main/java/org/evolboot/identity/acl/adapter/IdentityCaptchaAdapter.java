@@ -2,10 +2,10 @@ package org.evolboot.identity.acl.adapter;
 
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaAppService;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaCreateFactory;
+import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaCreateFactory;
+import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.shared.email.MessageTag;
 import lombok.extern.slf4j.Slf4j;

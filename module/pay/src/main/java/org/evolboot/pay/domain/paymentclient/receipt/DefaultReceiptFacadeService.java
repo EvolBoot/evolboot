@@ -7,7 +7,7 @@ import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderCreateFactory;
+import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderCreateFactory;
 import org.evolboot.pay.exception.PayException;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
@@ -42,13 +42,13 @@ public class DefaultReceiptFacadeService implements ReceiptFacadeService {
     @Override
     @Transactional
     public ReceiptCreateResponse createReceiptOrder(ReceiptCreateRequest request) {
-        log.info("代收:进入代收:{}", JsonUtil.stringify(request));
+        log.info("代收:创建代收订单:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
         ReceiptClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
         Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
         String receiptOrderId = ReceiptOrder.generateId();
-        log.info("代收:进入代收支付,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), receiptOrderId);
+        log.info("代收:创建代收,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), receiptOrderId);
         ReceiptCreateResponse response = receiptClient.createReceiptOrder(receiptOrderId, gatewayAccount, request);
         if (response.isOk()) {
             receiptOrderAppService.create(

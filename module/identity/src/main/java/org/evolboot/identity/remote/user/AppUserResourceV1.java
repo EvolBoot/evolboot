@@ -10,7 +10,7 @@ import org.evolboot.identity.acl.client.IdentityConfigClient;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
-import org.evolboot.identity.domain.user.UserSecurityPasswordUpdateService;
+import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.email.MessageTag;

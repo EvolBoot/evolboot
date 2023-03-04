@@ -1,5 +1,7 @@
 package org.evolboot.content.domain.qa;
 
+import org.evolboot.content.domain.qa.service.QaCreateFactory;
+import org.evolboot.content.domain.qa.service.QaUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;

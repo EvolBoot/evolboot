@@ -1,7 +1,7 @@
 package org.evolboot.identity.remote.role;
 
 
-import org.evolboot.identity.domain.role.RoleUpdateService;
+import org.evolboot.identity.domain.role.service.RoleUpdateService;
 import com.google.common.collect.Sets;
 import lombok.Data;
 

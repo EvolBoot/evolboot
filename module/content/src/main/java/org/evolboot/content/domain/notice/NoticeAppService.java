@@ -1,5 +1,7 @@
 package org.evolboot.content.domain.notice;
 
+import org.evolboot.content.domain.notice.service.NoticeCreateFactory;
+import org.evolboot.content.domain.notice.service.NoticeUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;

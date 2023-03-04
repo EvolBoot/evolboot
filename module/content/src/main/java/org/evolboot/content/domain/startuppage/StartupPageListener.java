@@ -2,6 +2,7 @@ package org.evolboot.content.domain.startuppage;
 
 import org.evolboot.content.domain.startuppage.repository.StartupPageRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.content.domain.startuppage.service.StartupPageSupportService;
 import org.springframework.stereotype.Service;
 
 /**

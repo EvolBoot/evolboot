@@ -42,35 +42,37 @@ public class AppUpgrade extends JpaAbstractEntity<Long> implements AggregateRoot
     @Convert(converter = AppUpgradeLocaleListConverter.class)
     private List<AppUpgradeLocale> locales;
 
-    void setAppVersion(String appVersion) {
+    public void setAppVersion(String appVersion) {
         this.appVersion = appVersion;
     }
 
 
-    void setUpgradeDate(String upgradeDate) {
+    public void setUpgradeDate(String upgradeDate) {
         this.upgradeDate = upgradeDate;
     }
 
-    void setDownloadUrl(String downloadUrl) {
+    public void setDownloadUrl(String downloadUrl) {
         this.downloadUrl = downloadUrl;
+    }
+
+
+
+    public void setClientType(ClientType clientType) {
+        this.clientType = clientType;
+    }
+
+    public void setShowDialog(Boolean showDialog) {
+        this.showDialog = showDialog;
+    }
+
+    public void setLocales(List<AppUpgradeLocale> locales) {
+        this.locales = locales;
     }
 
     private void generateId() {
         this.id = IdGenerate.longId();
     }
 
-
-    void setClientType(ClientType clientType) {
-        this.clientType = clientType;
-    }
-
-    void setShowDialog(Boolean showDialog) {
-        this.showDialog = showDialog;
-    }
-
-    void setLocales(List<AppUpgradeLocale> locales) {
-        this.locales = locales;
-    }
 
     public AppUpgrade(String appVersion, String upgradeDate, String downloadUrl, ClientType clientType, Boolean showDialog, List<AppUpgradeLocale> locales) {
         generateId();

@@ -1,7 +1,7 @@
 package org.evolboot.system.remote.appupgrade;
 
 
-import org.evolboot.system.domain.appupgrade.AppUpgradeCreateFactory;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeCreateFactory;
 import lombok.Getter;
 import lombok.Setter;
 

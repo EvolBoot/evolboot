@@ -10,7 +10,7 @@ import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserRegisterService;
-import org.evolboot.identity.domain.user.shared.UserStatus;
+import org.evolboot.identity.domain.user.UserStatus;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;

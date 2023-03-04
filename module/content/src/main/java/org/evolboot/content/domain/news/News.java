@@ -45,23 +45,23 @@ public class News extends JpaAbstractEntity<Long> implements AggregateRoot<News>
     @Convert(converter = NewsLocaleListConverter.class)
     private List<NewsLocale> locales;
 
-    void setSort(Integer sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
-    void setReleasedTime(Date releasedTime) {
+    public void setReleasedTime(Date releasedTime) {
         this.releasedTime = releasedTime;
     }
 
-    void setShow(Boolean show) {
+    public void setShow(Boolean show) {
         this.show = show;
     }
 
-    void setLocales(List<NewsLocale> locales) {
+    public void setLocales(List<NewsLocale> locales) {
         this.locales = locales;
     }
 
-    void setSource(String source) {
+    public void setSource(String source) {
         this.source = source;
     }
 

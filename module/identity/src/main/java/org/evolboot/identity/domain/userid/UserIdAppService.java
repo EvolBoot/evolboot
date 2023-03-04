@@ -1,6 +1,7 @@
 package org.evolboot.identity.domain.userid;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.userid.service.UserIdUpdateService;
 
 import java.util.List;
 

@@ -1,6 +1,9 @@
 package org.evolboot.content.domain.qa;
 
 import org.evolboot.content.domain.qa.repository.QaRepository;
+import org.evolboot.content.domain.qa.service.QaCreateFactory;
+import org.evolboot.content.domain.qa.service.QaSupportService;
+import org.evolboot.content.domain.qa.service.QaUpdateService;
 import org.evolboot.core.data.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

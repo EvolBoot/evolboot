@@ -1,6 +1,6 @@
 package org.evolboot.captcha.remote.mobilecaptcha;
 
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaCreateFactory;
+import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.shared.sms.MessageTag;
 import lombok.Data;
 

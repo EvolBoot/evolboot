@@ -1,5 +1,7 @@
 package org.evolboot.captcha.domain.imagecaptcha;
 
+import org.evolboot.captcha.domain.imagecaptcha.service.ImageCaptchaCreateFactory;
+
 /**
  * @author evol
  */

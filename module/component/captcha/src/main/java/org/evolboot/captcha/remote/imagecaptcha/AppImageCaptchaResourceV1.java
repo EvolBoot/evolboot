@@ -1,7 +1,7 @@
 package org.evolboot.captcha.remote.imagecaptcha;
 
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaCreateFactory;
+import org.evolboot.captcha.domain.imagecaptcha.service.ImageCaptchaCreateFactory;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;

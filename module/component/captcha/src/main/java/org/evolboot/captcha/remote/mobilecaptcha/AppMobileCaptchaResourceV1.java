@@ -2,7 +2,7 @@ package org.evolboot.captcha.remote.mobilecaptcha;
 
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaCreateFactory;
+import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;

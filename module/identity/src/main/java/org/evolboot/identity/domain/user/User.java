@@ -9,9 +9,6 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverter;
-import org.evolboot.identity.domain.user.shared.Gender;
-import org.evolboot.identity.domain.user.shared.UserStatus;
-import org.evolboot.identity.domain.user.shared.UserType;
 import org.evolboot.identity.domain.user.util.UserValidUtil;
 import org.evolboot.shared.lang.UserIdentity;
 import com.google.common.collect.Sets;
@@ -154,14 +151,14 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         this.remark = remark;
     }
 
-    void addUserIdentity(UserIdentity userIdentity) {
+    public void addUserIdentity(UserIdentity userIdentity) {
         if (ExtendObjects.nonNull(userIdentity) && !hasUserIdentity(userIdentity)) {
             this.userIdentity.add(userIdentity);
             this.identitySymbol += userIdentity.getIdentitySymbol();
         }
     }
 
-    void removeUserIdentity(UserIdentity userIdentity) {
+    public void removeUserIdentity(UserIdentity userIdentity) {
         if (ExtendObjects.nonNull(userIdentity) && hasUserIdentity(userIdentity)) {
             this.userIdentity.remove(userIdentity);
             this.identitySymbol -= userIdentity.getIdentitySymbol();
@@ -176,15 +173,15 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         this.delStatus = DelStatus.ARCHIVE;
     }
 
-    void setUserType(UserType userType) {
+    public   void setUserType(UserType userType) {
         this.userType = userType;
     }
 
-    void setInviterUserId(Long inviterUserId) {
+    public  void setInviterUserId(Long inviterUserId) {
         this.inviterUserId = inviterUserId;
     }
 
-    void setGoogleAuthSecret(String newGoogleAuthenticatorSecret) {
+    public void setGoogleAuthSecret(String newGoogleAuthenticatorSecret) {
         this.googleAuthSecret = newGoogleAuthenticatorSecret;
     }
 
@@ -210,7 +207,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         this.gender = gender;
     }
 
-    void changeInviterUserId(Long newInviterUserId) {
+    public void changeInviterUserId(Long newInviterUserId) {
         Assert.isTrue(!newInviterUserId.equals(inviterUserId), "邀请人和原来的一致,没有改变");
         this.inviterUserId = newInviterUserId;
     }
@@ -314,11 +311,11 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
      *
      * @param email
      */
-    void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    void setMobile(String mobile, String mobilePrefix) {
+    public void setMobile(String mobile, String mobilePrefix) {
         if (ExtendObjects.isNotBlank(mobile)) {
             this.mobile = mobile.trim();
         }

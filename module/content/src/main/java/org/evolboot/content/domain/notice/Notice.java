@@ -45,19 +45,19 @@ public class Notice extends JpaAbstractEntity<Long> implements AggregateRoot<Not
         this.id = IdGenerate.longId();
     }
 
-    void setSort(Integer sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
-    void setEnable(Boolean enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
-    void setReleasedTime(Date releasedTime) {
+    public void setReleasedTime(Date releasedTime) {
         this.releasedTime = releasedTime;
     }
 
-    void setLocales(List<NoticeLocale> locales) {
+    public void setLocales(List<NoticeLocale> locales) {
         this.locales = locales;
     }
 

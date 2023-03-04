@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.banner;
 
 
-import org.evolboot.content.domain.banner.BannerCreateFactory;
+import org.evolboot.content.domain.banner.service.BannerCreateFactory;
 import lombok.Getter;
 import lombok.Setter;
 

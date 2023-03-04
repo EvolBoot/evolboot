@@ -135,7 +135,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
         this.status = status;
     }
 
-    boolean success(ReleasedOrderNotifyResult result) {
+    public boolean success(ReleasedOrderNotifyResult result) {
         log.info("下发成功通知:{},{}", id, result);
         if (PENDING.equals(this.status)) {
             this.notifyResult = result;
@@ -149,7 +149,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
         return false;
     }
 
-    boolean fail(ReleasedOrderNotifyResult result) {
+    public boolean fail(ReleasedOrderNotifyResult result) {
         log.info("下发失败通知:{},{}", id, result);
         if (PENDING.equals(this.status)) {
             this.notifyResult = result;

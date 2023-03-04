@@ -3,7 +3,6 @@ package org.evolboot.identity.domain.user;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.domain.DelStatus;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.identity.domain.user.shared.UserType;
 import org.evolboot.shared.lang.UserIdentity;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,5 +1,7 @@
 package org.evolboot.content.domain.news;
 
+import org.evolboot.content.domain.news.service.NewsCreateFactory;
+import org.evolboot.content.domain.news.service.NewsUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;

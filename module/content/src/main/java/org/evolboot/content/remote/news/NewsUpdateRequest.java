@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.news;
 
 
-import org.evolboot.content.domain.news.NewsUpdateService;
+import org.evolboot.content.domain.news.service.NewsUpdateService;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,8 +1,8 @@
 package org.evolboot.bffadmin.domain.response;
 
-import org.evolboot.identity.domain.user.shared.Gender;
-import org.evolboot.identity.domain.user.shared.UserStatus;
-import org.evolboot.identity.domain.user.shared.UserType;
+import org.evolboot.identity.domain.user.Gender;
+import org.evolboot.identity.domain.user.UserStatus;
+import org.evolboot.identity.domain.user.UserType;
 import lombok.Getter;
 import lombok.Setter;
 

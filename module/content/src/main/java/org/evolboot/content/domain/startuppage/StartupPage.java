@@ -43,15 +43,15 @@ public class StartupPage extends JpaAbstractEntity<Long> implements AggregateRoo
         this.id = IdGenerate.longId();
     }
 
-    void setSort(Integer sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
-    void setEnable(Boolean show) {
+    public void setEnable(Boolean show) {
         this.enable = show;
     }
 
-    void setLocales(List<StartupPageLocale> locales) {
+    public void setLocales(List<StartupPageLocale> locales) {
         this.locales = locales;
     }
 

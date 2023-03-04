@@ -1,6 +1,8 @@
 package org.evolboot.system.domain.appupgrade;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeCreateFactory;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeUpdateService;
 
 import java.util.List;
 

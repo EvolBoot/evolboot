@@ -1,7 +1,7 @@
 package org.evolboot.identity.domain.user;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.identity.domain.user.shared.UserType;
+import org.evolboot.identity.domain.user.service.*;
 
 import java.util.Optional;
 

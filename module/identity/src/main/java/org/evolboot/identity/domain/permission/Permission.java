@@ -79,7 +79,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         return id;
     }
 
-    Permission setParentId(Long parentId) {
+    public Permission setParentId(Long parentId) {
         if (ExtendObjects.isNull(parentId)) {
             parentId = DEFAULT_PERMISSION_PARENT;
         }
@@ -87,23 +87,23 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         return this;
     }
 
-    Permission setTitle(String title) {
+    public Permission setTitle(String title) {
         Assert.notBlank(title, titleNotEmpty());
         this.title = title;
         return this;
     }
 
-    Permission setPerm(String perm) {
+    public Permission setPerm(String perm) {
         this.perm = perm;
         return this;
     }
 
-    Permission setPath(String url) {
+    public Permission setPath(String url) {
         this.path = url;
         return this;
     }
 
-    Permission setType(Type type) {
+    public Permission setType(Type type) {
         if (ExtendObjects.isNull(type)) {
             type = Type.PERM;
         }
@@ -111,7 +111,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         return this;
     }
 
-    Permission setSort(Integer sort) {
+    public Permission setSort(Integer sort) {
         if (ExtendObjects.isNull(sort)) {
             sort = 0;
         }
@@ -120,12 +120,12 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
     }
 
 
-    Permission setIcon(String uiIcon) {
+    public Permission setIcon(String uiIcon) {
         this.icon = uiIcon;
         return this;
     }
 
-    Permission setRemark(String remark) {
+    public Permission setRemark(String remark) {
         this.remark = remark;
         return this;
     }

@@ -2,7 +2,7 @@ package org.evolboot.captcha.remote.emailcaptcha;
 
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaAppService;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaCreateFactory;
+import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;

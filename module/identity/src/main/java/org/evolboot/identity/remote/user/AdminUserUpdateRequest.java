@@ -1,6 +1,6 @@
 package org.evolboot.identity.remote.user;
 
-import org.evolboot.identity.domain.user.UserUpdateService;
+import org.evolboot.identity.domain.user.service.UserUpdateService;
 
 /**
  * @author evol

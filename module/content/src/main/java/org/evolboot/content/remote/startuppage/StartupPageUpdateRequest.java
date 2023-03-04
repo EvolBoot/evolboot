@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.startuppage;
 
 
-import org.evolboot.content.domain.startuppage.StartupPageUpdateService;
+import org.evolboot.content.domain.startuppage.service.StartupPageUpdateService;
 import lombok.Getter;
 import lombok.Setter;
 

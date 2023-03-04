@@ -1,6 +1,6 @@
 package org.evolboot.identity.remote.user;
 
-import org.evolboot.identity.domain.user.UserResetPasswordService;
+import org.evolboot.identity.domain.user.service.UserResetPasswordService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

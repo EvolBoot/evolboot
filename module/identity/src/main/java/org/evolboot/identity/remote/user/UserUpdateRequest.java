@@ -1,7 +1,7 @@
 package org.evolboot.identity.remote.user;
 
-import org.evolboot.identity.domain.user.UserUpdateService;
-import org.evolboot.identity.domain.user.shared.Gender;
+import org.evolboot.identity.domain.user.service.UserUpdateService;
+import org.evolboot.identity.domain.user.Gender;
 import lombok.Getter;
 import lombok.Setter;
 

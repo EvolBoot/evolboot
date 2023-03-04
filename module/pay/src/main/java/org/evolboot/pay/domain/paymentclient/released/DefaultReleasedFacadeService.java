@@ -8,7 +8,7 @@ import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateFactory;
+import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderCreateFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

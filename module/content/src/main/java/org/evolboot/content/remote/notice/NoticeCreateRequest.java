@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.notice;
 
 
-import org.evolboot.content.domain.notice.NoticeCreateFactory;
+import org.evolboot.content.domain.notice.service.NoticeCreateFactory;
 import lombok.Getter;
 import lombok.Setter;
 

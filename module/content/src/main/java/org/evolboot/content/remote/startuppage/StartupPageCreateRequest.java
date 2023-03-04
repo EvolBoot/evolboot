@@ -1,7 +1,7 @@
 package org.evolboot.content.remote.startuppage;
 
 
-import org.evolboot.content.domain.startuppage.StartupPageCreateFactory;
+import org.evolboot.content.domain.startuppage.service.StartupPageCreateFactory;
 import lombok.Getter;
 import lombok.Setter;
 

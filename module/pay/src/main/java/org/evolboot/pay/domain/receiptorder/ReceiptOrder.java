@@ -140,15 +140,15 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
         this.payGateway = gateway;
     }
 
-    void setPayeePhone(String payeePhone) {
+    public void setPayeePhone(String payeePhone) {
         this.payeePhone = payeePhone;
     }
 
-    void setPayeeEmail(String payeeEmail) {
+    public void setPayeeEmail(String payeeEmail) {
         this.payeeEmail = payeeEmail;
     }
 
-    boolean success(ReceiptOrderNotifyResult notifyResult) {
+    public boolean success(ReceiptOrderNotifyResult notifyResult) {
         if (!ReceiptOrderStatus.PENDING.equals(this.status)) {
             log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.status);
             return false;
@@ -160,7 +160,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
         return true;
     }
 
-    boolean fail(ReceiptOrderNotifyResult notifyResult) {
+    public boolean fail(ReceiptOrderNotifyResult notifyResult) {
         if (!ReceiptOrderStatus.PENDING.equals(this.status)) {
             log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.status);
             return false;

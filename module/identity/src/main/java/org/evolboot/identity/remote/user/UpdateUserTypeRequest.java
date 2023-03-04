@@ -1,6 +1,6 @@
 package org.evolboot.identity.remote.user;
 
-import org.evolboot.identity.domain.user.shared.UserType;
+import org.evolboot.identity.domain.user.UserType;
 import lombok.Getter;
 import lombok.Setter;
 
