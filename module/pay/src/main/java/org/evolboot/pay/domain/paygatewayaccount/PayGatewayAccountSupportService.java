@@ -5,6 +5,8 @@ import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import lombok.extern.slf4j.Slf4j;
 
+import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
+
 /**
  * 支付网关账户
  *
@@ -20,7 +22,7 @@ public abstract class PayGatewayAccountSupportService {
     }
 
     public PayGatewayAccount findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new DomainNotFoundException(PayI18nMessage.PayGatewayAccount.notFound()));
+        return repository.findById(id).orElseThrow(() -> GATEWAY_NOT_FOUND);
     }
 
 }

@@ -5,7 +5,9 @@ import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
+import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ import static org.evolboot.shared.pay.ReleasedOrderStatus.PENDING;
  *
  * @author evol
  */
-@Table(name = "evoltb_pay_released_order")
+@Table(name = "gh_pay_released_order")
 @Getter
 @Slf4j
 @NoArgsConstructor
@@ -38,6 +40,9 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      * 内部订单号
      */
     private String internalOrderId;
+
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
 
     /**
      * 金额
@@ -59,6 +64,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      */
     private String payeeEmail;
 
+
     /**
      * 银行编号
      */
@@ -69,6 +75,20 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      */
     private String bankNo;
 
+
+    /**
+     * ifsc 代码
+     */
+    private String ifscCode;
+
+    /**
+     * IFSC 卡号
+     */
+    private String ifscCardNo;
+
+
+    @Enumerated(EnumType.STRING)
+    private ReleasedOrderOrgType orgType;
     /**
      * 网关账户ID
      */
@@ -79,6 +99,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      */
     @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
+
 
     /**
      * 手续费
@@ -107,12 +128,16 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
 
     public ReleasedOrder(String id,
                          String internalOrderId,
+                         Currency currency,
                          BigDecimal amount,
                          String payeeName,
                          String payeePhone,
                          String payeeEmail,
                          String bankCode,
                          String bankNo,
+                         String ifscCode,
+                         String ifscCardNo,
+                         ReleasedOrderOrgType orgType,
                          Long payGatewayAccountId,
                          PayGateway payGateway,
                          BigDecimal poundage,
@@ -121,12 +146,16 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
                          ReleasedOrderStatus status) {
         this.id = id;
         this.internalOrderId = internalOrderId;
+        this.currency = currency;
         this.amount = amount;
         this.payeeName = payeeName;
         this.payeePhone = payeePhone;
         this.payeeEmail = payeeEmail;
         this.bankCode = bankCode;
         this.bankNo = bankNo;
+        this.ifscCode = ifscCode;
+        this.ifscCardNo = ifscCardNo;
+        this.orgType = orgType;
         this.payGateway = payGateway;
         this.payGatewayAccountId = payGatewayAccountId;
         this.poundage = poundage;

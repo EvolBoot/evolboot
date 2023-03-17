@@ -1,5 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 /**
@@ -32,5 +33,6 @@ public interface ReceiptFacadeService {
      * @return
      */
     <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
+
 
 }

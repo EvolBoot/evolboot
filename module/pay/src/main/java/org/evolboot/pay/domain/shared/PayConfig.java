@@ -18,7 +18,7 @@ import static org.evolboot.pay.domain.shared.PayConfig.CONFIGURATION_PREFIX;
 @Configuration
 public class PayConfig {
 
-    public final static String CONFIGURATION_PREFIX = "evolpn.pay";
+    public final static String CONFIGURATION_PREFIX = "evolboot.pay";
 
     private String domain;
 

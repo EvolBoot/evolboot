@@ -33,6 +33,7 @@ public class ReceiptOrderNotifyResult {
     @Column(name = "notify_result_notify_text_")
     private String notifyText;
 
+
     // 支付金额
     @Column(name = "notify_result_pay_amount_")
     private BigDecimal payAmount;

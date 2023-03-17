@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>2.5.9</version>
     </parent>
     <packaging>pom</packaging>
     <groupId>org.evolboot</groupId>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>${project.default.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.default.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${project.default.encoding}</maven.compiler.encoding>
-        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.9</spring-boot.version>
         <alibaba-cloud.version>2.2.8.RELEASE</alibaba-cloud.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <springdoc.version>1.6.9</springdoc.version>
@@ -36,7 +36,7 @@
         <perf4j.version>0.9.16</perf4j.version>
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <google-guava.version>28.0-jre</google-guava.version>
-        <rocketmq-starter.version>2.2.1</rocketmq-starter.version>
+        <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
         <rocketmq-logappender.version>4.9.1</rocketmq-logappender.version>
         <minio.version>8.3.6</minio.version>
         <okhttp3.version>4.8.1</okhttp3.version>

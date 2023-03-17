@@ -13,7 +13,7 @@ evolpn:
 
   # 是否启用定时任务
   schedule:
-    enable: false
+    enable: true
 
   # 默认头像
   identity:
@@ -114,7 +114,7 @@ logging:
   config: classpath:logback-evol.xml
 
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: 192.168.5.10:9876
   group: group-test-evol
   topic: topic-test-evol
   producer:

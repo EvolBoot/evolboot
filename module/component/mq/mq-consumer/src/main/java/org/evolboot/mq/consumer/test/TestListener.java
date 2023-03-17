@@ -16,7 +16,7 @@ public class TestListener {
 
     @EventListener
     public void on(TestMessage message) {
-        log.info("收到消息:{},{}", message.getMessage(), message.getDate());
+        log.info("收到消息:{},{}", message.getMessage());
     }
 
 }

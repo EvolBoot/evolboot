@@ -11,6 +11,8 @@ public class CodeGeneraterUtil {
         return Integer.toString(i);
     }
 
+
+
     public static String get6Number() {
         Double v = Math.random() * 900000 + 100000;
         int i = v.intValue();

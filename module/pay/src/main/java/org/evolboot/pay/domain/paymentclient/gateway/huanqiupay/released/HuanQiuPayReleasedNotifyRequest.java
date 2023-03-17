@@ -1,8 +1,10 @@
 package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
 
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
+import org.evolboot.shared.pay.ReleasedOrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,17 +21,12 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
     private Map<String, String> notifyParams;
 
     @Override
-    public boolean isOk() {
-        return "成功".equals(getStatus());
-    }
-
-    @Override
-    public boolean checkSign(String secretKey) {
-        HuanQiuPayUtil.checkSign(notifyParams, secretKey);
+    public boolean checkSign(PayGatewayAccount payGatewayAccount) {
+        HuanQiuPayUtil.checkSign(notifyParams, payGatewayAccount.getSecretKey());
         return true;
     }
 
-    public String getStatus() {
+    public String getForeignStatus() {
         return notifyParams.get("status");
     }
 
@@ -60,4 +57,15 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
     public BigDecimal getPoundage() {
         return null;
     }
+
+    @Override
+    public ReleasedOrderStatus getStatus() {
+        if ("成功".equals(getForeignStatus())) {
+            return ReleasedOrderStatus.SUCCESS;
+        } else if ("失败".equals(getForeignStatus())) {
+            return ReleasedOrderStatus.FAIL;
+        }
+        return ReleasedOrderStatus.PENDING;
+    }
+
 }

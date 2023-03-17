@@ -1,20 +1,32 @@
 package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
 
-import lombok.AllArgsConstructor;
+import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
+import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * @author evol
  */
+
+@Setter
+@Getter
 @AllArgsConstructor
 public class HuanQiuPayReceiptRedirectNotifyRequest implements ReceiptRedirectNotifyRequest {
 
-    private  String receiptOrderId;
+
 
     @Override
     public String getReceiptOrderId() {
-        return receiptOrderId;
+        return null;
     }
 
     @Override
@@ -34,6 +46,6 @@ public class HuanQiuPayReceiptRedirectNotifyRequest implements ReceiptRedirectNo
 
     @Override
     public ReceiptOrderStatus getStatus() {
-        return null;
+        return ReceiptOrderStatus.PENDING;
     }
 }

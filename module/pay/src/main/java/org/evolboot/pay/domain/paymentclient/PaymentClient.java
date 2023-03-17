@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.paymentclient;
 
 
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 
 /**
@@ -11,5 +12,8 @@ import org.evolboot.shared.pay.PayGateway;
 public interface PaymentClient {
 
     PayGateway getPayGateway();
+
+    boolean supportCurrency(Currency currency);
+
 
 }

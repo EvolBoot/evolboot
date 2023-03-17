@@ -28,5 +28,7 @@ public interface PayGatewayAccountAppService {
 
     PayGatewayAccount findById(Long id);
 
+    PayGatewayAccount findByAlias(String alias);
+
 
 }

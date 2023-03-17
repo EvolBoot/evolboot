@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.shared;
+package org.evolboot.shared.pay;
 
 /**
  * 货币

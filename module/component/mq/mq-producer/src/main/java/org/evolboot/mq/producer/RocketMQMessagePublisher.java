@@ -30,6 +30,7 @@ public class RocketMQMessagePublisher {
         this.mqTransactionAppService = mqTransactionAppService;
     }
 
+
     public <T extends RocketMQMessage> TransactionSendResult sendMessageInTransaction(T message) {
         if (message instanceof TransactionRocketMQMessage) {
             TransactionRocketMQMessage<?> _message = (TransactionRocketMQMessage<?>) message;
@@ -43,7 +44,7 @@ public class RocketMQMessagePublisher {
                 .setHeader(MqConstant.TAG, tag)
                 .build();
         TransactionSendResult transactionSendResult =
-                rocketMQTemplate.sendMessageInTransaction(topic + ":" + tag, _message, message.getSource());
+                rocketMQTemplate.sendMessageInTransaction(buildDestination(topic, tag), _message, message.getSource());
         String msgId = transactionSendResult.getMsgId();
         log.info("发送事务消息:消息ID: {}, Source: {}, Tag: {}", msgId, message.getSource(), tag);
         return transactionSendResult;
@@ -56,7 +57,7 @@ public class RocketMQMessagePublisher {
                 .withPayload(message)
                 .setHeader(MqConstant.TAG, tag)
                 .build();
-        rocketMQTemplate.syncSend(topic + ":" + tag, _message);
+        rocketMQTemplate.syncSend(buildDestination(topic, tag), _message);
 
     }
 
@@ -73,7 +74,13 @@ public class RocketMQMessagePublisher {
                 .withPayload(message)
                 .setHeader(MqConstant.TAG, tag)
                 .build();
-        rocketMQTemplate.syncSend(topic + ":" + tag, _message, 3000L, delayLevel.getDelayLevel());
+        rocketMQTemplate.syncSendDelayTimeSeconds(buildDestination(topic, tag), _message, delayLevel.getDelayTimeSeconds());
+//        rocketMQTemplate.syncSend(topic + ":" + tag, _message, 3000L, delayLevel.getDelayLevel());
 
     }
+
+    private String buildDestination(String topic, String tag) {
+        return topic + ":" + tag;
+    }
+
 }

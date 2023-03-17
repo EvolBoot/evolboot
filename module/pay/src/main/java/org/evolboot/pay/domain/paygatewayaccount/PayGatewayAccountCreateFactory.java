@@ -28,7 +28,8 @@ public class PayGatewayAccountCreateFactory extends PayGatewayAccountSupportServ
                 request.getPayGateway(),
                 request.getSort(),
                 request.getWalletId(),
-                request.getLocales()
+                request.getLocales(),
+                request.getAlias()
         );
         repository.save(payGatewayAccount);
         return payGatewayAccount;

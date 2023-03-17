@@ -56,7 +56,7 @@ public class RedisMobileCaptchaRepository implements MobileCaptchaRepository {
     @Override
     public Optional<MobileCaptcha> findByMobile(String mobile) {
         String mobileRedisKey = getRedisKey(mobile);
-        String token = stringRedisTemplate.boundValueOps(mobile).get();
+        String token = stringRedisTemplate.boundValueOps(mobileRedisKey).get();
         if (token == null) {
             return Optional.empty();
         }
@@ -65,8 +65,8 @@ public class RedisMobileCaptchaRepository implements MobileCaptchaRepository {
         return Optional.ofNullable(mobileCaptcha);
     }
 
-    private String getRedisKey(String token) {
-        return TOKEN_PREFIX + "_" + token;
+    private String getRedisKey(String key) {
+        return TOKEN_PREFIX + "_" + key;
     }
 
 }

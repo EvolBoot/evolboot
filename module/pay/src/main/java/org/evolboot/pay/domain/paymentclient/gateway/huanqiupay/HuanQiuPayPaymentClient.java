@@ -4,8 +4,10 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.BigDecimalUtil;
 import org.evolboot.core.util.ExtendHttpUtil;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayForeignReceiptCraeteResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayForeignReceiptCreateResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
+import org.evolboot.pay.exception.PayException;
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
@@ -15,7 +17,7 @@ import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderRequestResult;
-import org.evolboot.pay.exception.PayException;
+import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,11 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         return PayGateway.HUANQIU_PAY;
     }
 
+    @Override
+    public boolean supportCurrency(Currency currency) {
+        return true;
+    }
+
     /**
      * 发起代收
      *
@@ -65,7 +72,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         params.put("amount", request.getPayAmount().movePointRight(POINT));
         params.put("backurl", huanQiuPayConfig.getSuccessUrl());
         params.put("failUrl", huanQiuPayConfig.getFailUrl());
-        params.put("ServerUrl", huanQiuPayConfig.getReceiptNotifyUrl());
+        params.put("ServerUrl", huanQiuPayConfig.getReceiptCreateNotifyUrl());
         params.put("businessnumber", receiptOrderId);
         params.put("goodsName", "GoodsName");
 
@@ -78,7 +85,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
         log.info("代收请求参数:{},返回结果:{}", JsonUtil.stringify(params), postData);
 
-        HuanQiuPayForeignReceiptCraeteResponse response = JsonUtil.parse(postData, HuanQiuPayForeignReceiptCraeteResponse.class);
+        HuanQiuPayForeignReceiptCreateResponse response = JsonUtil.parse(postData, HuanQiuPayForeignReceiptCreateResponse.class);
 
         if (response.isOk()) {
             String payUrl = response.getPayUrl();
@@ -89,7 +96,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
                     postData));
         }
         log.info("代收失败,返回信息:{},{}", response.getStatus(), postData);
-        throw new PayException("Pay Fail");
+        throw PayException.RECEIPT_ORDER_ERROR;
 
     }
 
@@ -121,6 +128,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
     @Override
     public <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request) {
+        //TODO 验证
         return new ReceiptRedirectNotifyResponse(request.getStatus());
     }
 
@@ -129,7 +137,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     public ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request) {
         log.info("代付:创建订单");
         String url = huanQiuPayConfig.getReleasedCreateUrl();
-        String backUrl = huanQiuPayConfig.getReleasedNotifyUrl();
+        String backUrl = huanQiuPayConfig.getReleasedCreateNotifyUrl();
         TreeMap<String, Object> map = Maps.newTreeMap();
         map.put("mer_id", account.getMerchantId());
         map.put("timestamp", HuanQiuPayUtil.getDate());
@@ -165,16 +173,21 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
     @Override
     public <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request) {
-        return new ReleasedNotifyResponse(request.isOk(),
+        return new ReleasedNotifyResponse(request.getStatus(),
                 "success",
                 new ReleasedOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReleasedOrderId(),
-                        request.getStatus(),
+                        request.getForeignStatus(),
                         request.getNotifyParamsText(),
                         request.getAmount(),
                         request.getPoundage()
                 ));
+    }
+
+    @Override
+    public boolean supportOrgType(ReleasedOrderOrgType orgType) {
+        return ReleasedOrderOrgType.IMPS.equals(orgType);
     }
 
 
@@ -202,7 +215,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         map.put("sign_type", "md5");
 
         String post = ExtendHttpUtil.post(url, map);
-        HuanQiuPayForeignReceiptCraeteResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReceiptCraeteResponse.class);
+        HuanQiuPayForeignReceiptCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReceiptCreateResponse.class);
         System.out.println(parse.getData().getTrade_qrcode());
         System.out.println(post);
     }

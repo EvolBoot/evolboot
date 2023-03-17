@@ -30,6 +30,7 @@ public class DefaultMqTransactionAppService extends MqTransactionSupportService 
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Optional<MqTransaction> findById(Long id) {
         return repository.findById(id);
     }

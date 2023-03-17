@@ -4,10 +4,10 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -21,7 +21,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
 
-     @Override
+
+    @Override
     public String getReceiptOrderId() {
         return requestParams.get("businessnumber");
     }
@@ -31,13 +32,6 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
         return null;
     }
 
-    @Override
-    public ReceiptOrderStatus getStatus() {
-        if ("成功".equals(requestParams.get("status"))) {
-            return ReceiptOrderStatus.SUCCESS;
-        }
-        return ReceiptOrderStatus.FAIL;
-    }
 
     private Map<String, String> requestParams;
 
@@ -75,6 +69,14 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
     public boolean checkSign(String secretKey) {
         HuanQiuPayUtil.checkSign(requestParams, secretKey);
         return true;
+    }
+
+    @Override
+    public ReceiptOrderStatus getStatus() {
+        if ("成功".equals(requestParams.get("status"))) {
+            return ReceiptOrderStatus.SUCCESS;
+        }
+        return ReceiptOrderStatus.FAIL;
     }
 
 

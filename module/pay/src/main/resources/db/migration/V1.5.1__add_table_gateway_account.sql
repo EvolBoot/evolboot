@@ -12,12 +12,17 @@ CREATE TABLE evoltb_pay_gateway_account
     merchant_id_      varchar(100) COMMENT '商户ID',
     appid_            varchar(100) COMMENT 'appid',
     secret_key_       varchar(100) COMMENT '秘钥',
-    minimum_receipt_  decimal(19, 2) COMMENT '最小代收',
-    maximum_receipt_  decimal(19, 2) COMMENT '最大代收',
+    minimum_receipt_  decimal(20, 3) COMMENT '最小代收',
+    maximum_receipt_  decimal(20, 3) COMMENT '最大代收',
     enable_           tinyint(1)           default 1 COMMENT '启用',
     pay_gateway_      varchar(50) COMMENT '对应的网关符号',
     wallet_id_        varchar(50) null comment '钱包ID',
     sort_             int                  default 0 COMMENT '排序',
+    alias_            varchar(50) COMMENT '别名',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='支付网关账户';
+
+create unique index evoltb_pay_gateway_account_alias__uindex
+    on evoltb_pay_gateway_account (alias_);
+

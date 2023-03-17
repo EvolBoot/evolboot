@@ -1,6 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.pay.domain.shared.Currency;
+import org.evolboot.shared.pay.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,5 +41,9 @@ public class ReceiptCreateRequest {
     private Long payGatewayAccountId;
 
     private String redirectUrl;
+
+    private String upi;
+
+    private String methodId;
 
 }

@@ -35,8 +35,4 @@ public class RestErrorController implements ErrorController {
     }
 
 
-    @Override
-    public String getErrorPath() {
-        return Constant.ERROR_PATH;
-    }
 }

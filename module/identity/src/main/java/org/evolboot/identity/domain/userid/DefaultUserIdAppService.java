@@ -99,6 +99,7 @@ public class DefaultUserIdAppService extends UserIdSupportService implements Use
         if (count < step / 2) {
             log.info("用户ID:往数据库里面增加用户ID");
             factory.execute(step);
+            checkAndAddCache();
         }
     }
 

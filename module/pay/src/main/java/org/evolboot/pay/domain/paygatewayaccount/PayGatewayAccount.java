@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author evol
  */
-@Table(name = "evoltb_pay_gateway_account")
+@Table(name = "gh_pay_gateway_account")
 @Getter
 @Slf4j
 @NoArgsConstructor
@@ -63,12 +63,24 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
     @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
+    private String alias;
 
     private void generateId() {
         this.id = IdGenerate.longId();
     }
 
-    public PayGatewayAccount(String logo, String merchantId, String appid, String secretKey, BigDecimal minimumReceipt, BigDecimal maximumReceipt, Boolean enable, PayGateway payGateway, Integer sort, String walletId, List<PayGatewayAccountLocale> locales) {
+    public PayGatewayAccount(String logo,
+                             String merchantId,
+                             String appid,
+                             String secretKey,
+                             BigDecimal minimumReceipt,
+                             BigDecimal maximumReceipt,
+                             Boolean enable,
+                             PayGateway payGateway,
+                             Integer sort,
+                             String walletId,
+                             List<PayGatewayAccountLocale> locales,
+                             String alias) {
         generateId();
         setLogo(logo);
         setMerchantId(merchantId);
@@ -81,6 +93,12 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
         setLocales(locales);
         setSort(sort);
         setWalletId(walletId);
+        setAlias(alias);
+
+    }
+
+    void setAlias(String alias) {
+        this.alias = alias;
     }
 
     void setWalletId(String walletId) {

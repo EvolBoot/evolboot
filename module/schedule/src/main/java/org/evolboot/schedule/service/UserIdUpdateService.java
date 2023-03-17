@@ -26,9 +26,7 @@ public class UserIdUpdateService {
      */
     @Scheduled(initialDelay = 1000, fixedDelay = 5 * 60 * 1000)
     public void userIdUpdate() throws Exception {
-        log.info("用户ID:定时任务更新:userIdUpdate:开始");
         identityClient.userIdUpdate();
-        log.info("用户ID:定时任务更新:userIdUpdate:结束");
     }
 
 
@@ -37,9 +35,7 @@ public class UserIdUpdateService {
      */
     @Scheduled(initialDelay = 1000, fixedDelay = 5 * 60 * 1000)
     public void userIdUpdateCache() throws Exception {
-        log.info("用户ID:定时任务更新:userIdUpdateCache:开始");
         identityClient.userIdUpdateCache();
-        log.info("用户ID:定时任务更新:userIdUpdateCache:结束");
     }
 
 

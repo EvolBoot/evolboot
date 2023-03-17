@@ -29,6 +29,7 @@ public class PayGatewayAccountUpdateService extends PayGatewayAccountSupportServ
         payGatewayAccount.setLocales(request.getLocales());
         payGatewayAccount.setSort(request.getSort());
         payGatewayAccount.setWalletId(request.getWalletId());
+        payGatewayAccount.setAlias(request.getAlias());
         repository.save(payGatewayAccount);
     }
 

@@ -2,6 +2,7 @@ package org.evolboot.core.util;
 
 
 import org.evolboot.core.exception.ExtendIllegalArgumentException;
+import org.evolboot.core.exception.ExtendRuntimeException;
 import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -109,6 +110,12 @@ public abstract class Assert {
     public static void isTrue(boolean expression, String message) {
         if (!expression) {
             throw new ExtendIllegalArgumentException(message);
+        }
+    }
+
+    public static void isTrue(boolean expression, ExtendIllegalArgumentException e) {
+        if (!expression) {
+            throw e;
         }
     }
 
@@ -754,6 +761,27 @@ public abstract class Assert {
     @Nullable
     private static String nullSafeGet(@Nullable Supplier<String> messageSupplier) {
         return (messageSupplier != null ? messageSupplier.get() : null);
+    }
+
+
+    public static void notNullOrElseThrow(@Nullable Object object, Supplier<ExtendIllegalArgumentException> messageSupplier) {
+        if (object == null) {
+            throw messageSupplier.get();
+        }
+    }
+
+
+    public static void notBlankOrElseThrow(final CharSequence cs, Supplier<ExtendIllegalArgumentException> messageSupplier) {
+        if (isBlank(cs)) {
+            throw messageSupplier.get();
+        }
+    }
+
+
+    public static void isTrueOrElseThrow(boolean expression, Supplier<ExtendRuntimeException> exceptionSupplier) {
+        if (!expression) {
+            throw exceptionSupplier.get();
+        }
     }
 
 

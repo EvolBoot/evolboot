@@ -2,6 +2,7 @@ package org.evolboot.mq.producer.remote;
 
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.mq.producer.DelayLevel;
 import org.evolboot.shared.event.mq.TestMessage;
 import org.evolboot.mq.producer.RocketMQMessagePublisher;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,9 +30,20 @@ public class AdminMqProducerResourceV1 {
 
     @Operation(summary = "发送消息")
     @GetMapping("/send")
-    public ResponseModel<?> configurations(
+    public ResponseModel<?> send(
     ) {
         rocketMQMessagePublisher.send(new TestMessage("中午吃啥?"));
+        return ResponseModel.ok();
+    }
+
+
+    @Operation(summary = "发送消息延时消息")
+    @GetMapping("/send-delay-time")
+    public ResponseModel<?> setDelayTime(
+            String message,
+            DelayLevel delayLevel
+    ) {
+        rocketMQMessagePublisher.send(new TestMessage(message), delayLevel);
         return ResponseModel.ok();
     }
 

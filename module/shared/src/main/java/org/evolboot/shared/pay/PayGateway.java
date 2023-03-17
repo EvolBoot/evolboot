@@ -6,6 +6,6 @@ package org.evolboot.shared.pay;
  */
 public enum PayGateway {
 
-    HUANQIU_PAY
+    HUANQIU_PAY,METAGO,QART
 
 }

@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
+import org.evolboot.shared.pay.ReleasedOrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +14,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ReleasedNotifyResponse {
 
-    private boolean ok;
+    private ReleasedOrderStatus status;
 
     private String returnText;
 

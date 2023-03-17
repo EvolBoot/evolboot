@@ -29,8 +29,6 @@ public interface ReceiptClient extends PaymentClient {
      */
     <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T request);
 
-
-
     /**
      * 代收前端同步通知
      * @param gatewayAccount

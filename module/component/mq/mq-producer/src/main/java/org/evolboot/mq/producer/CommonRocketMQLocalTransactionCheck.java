@@ -23,6 +23,7 @@ public class CommonRocketMQLocalTransactionCheck implements RocketMQLocalTransac
 
     @Override
     public RocketMQLocalTransactionState checkLocalTransaction(TransactionRocketMQMessage<?> message, int checkTimes) {
+        log.info("MQ:通用事务检测器:ID:{},checkTimes:{}", message.getMqTransactionId(), checkTimes);
         if (checkTimes > 20) {
             log.info("大于20次的查询,回滚吧,放弃了:{},{}", message.getMqTransactionId(), message);
             return RocketMQLocalTransactionState.ROLLBACK;
@@ -31,7 +32,7 @@ public class CommonRocketMQLocalTransactionCheck implements RocketMQLocalTransac
             log.info("MQ:通用事务检测器:ID:{},checkTimes:{},提交", message.getMqTransactionId(), checkTimes);
             return RocketMQLocalTransactionState.COMMIT;
         }
+        log.info("MQ:通用事务检测器:没有查到,返回UNKNOWN,ID:{},checkTimes:{}", message.getMqTransactionId(), checkTimes);
         return RocketMQLocalTransactionState.UNKNOWN;
     }
-
 }

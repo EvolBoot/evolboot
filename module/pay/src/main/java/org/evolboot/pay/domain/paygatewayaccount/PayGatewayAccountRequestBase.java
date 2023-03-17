@@ -43,4 +43,6 @@ public abstract class PayGatewayAccountRequestBase {
 
     private String walletId;
 
+    private String alias;
+
 }

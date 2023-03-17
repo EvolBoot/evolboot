@@ -18,6 +18,8 @@ public interface PayGatewayAccountRepository {
 
     Optional<PayGatewayAccount> findById(Long id);
 
+    Optional<PayGatewayAccount> findByAlias(String alias);
+
     Page<PayGatewayAccount> page(PayGatewayAccountQuery query);
 
     void deleteById(Long id);

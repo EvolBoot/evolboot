@@ -65,6 +65,10 @@
             <groupId>org.evolboot</groupId>
             <artifactId>pay</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>mq-consumer</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>entry-app</finalName>

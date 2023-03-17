@@ -1,6 +1,8 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.shared.pay.PayGateway;
+import org.evolboot.shared.pay.ReleasedOrderStatus;
 
 import java.math.BigDecimal;
 
@@ -15,7 +17,7 @@ public interface ReleasedNotifyRequest {
 
     String getForeignOrderId();
 
-    String getStatus();
+    String getForeignStatus();
 
     String getNotifyParamsText();
 
@@ -23,8 +25,7 @@ public interface ReleasedNotifyRequest {
 
     BigDecimal getPoundage();
 
-    boolean isOk();
+    ReleasedOrderStatus getStatus();
 
-
-    boolean checkSign(String secretKey);
+    boolean checkSign(PayGatewayAccount payGatewayAccount);
 }

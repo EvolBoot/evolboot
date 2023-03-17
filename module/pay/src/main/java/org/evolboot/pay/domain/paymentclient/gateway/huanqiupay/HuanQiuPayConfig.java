@@ -26,11 +26,11 @@ public class HuanQiuPayConfig {
         this.domain = domain;
     }
 
-    public String getReleasedNotifyUrl() {
+    public String getReleasedCreateNotifyUrl() {
         return domain + releasedNotifyUrl;
     }
 
-    public String getReceiptNotifyUrl() {
+    public String getReceiptCreateNotifyUrl() {
         return domain + receiptNotifyUrl;
     }
 

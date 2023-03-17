@@ -19,7 +19,7 @@ import java.math.BigDecimal;
  *
  * @author evol
  */
-@Table(name = "evoltb_pay_receipt_order")
+@Table(name = "gh_pay_receipt_order")
 @Getter
 @Slf4j
 @NoArgsConstructor
