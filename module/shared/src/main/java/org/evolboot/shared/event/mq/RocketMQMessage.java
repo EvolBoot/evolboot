@@ -7,7 +7,7 @@ import org.evolboot.shared.event.Event;
  * @author evol
  * 
  */
-public interface RocketMQMessage<T> extends Event<T> {
+public interface RocketMQMessage<T> extends MQMessage<T> {
 
 
 }

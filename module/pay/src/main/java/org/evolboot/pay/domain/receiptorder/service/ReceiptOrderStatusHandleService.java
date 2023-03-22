@@ -1,7 +1,6 @@
 package org.evolboot.pay.domain.receiptorder.service;
 
-import org.evolboot.mq.producer.RocketMQMessagePublisher;
-import org.evolboot.mq.producer.mqtransaction.MqTransactionAppService;
+import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
@@ -16,14 +15,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ReceiptOrderStatusHandleService extends ReceiptOrderSupportService {
 
-    private final RocketMQMessagePublisher mqMessagePublisher;
-    private final MqTransactionAppService mqTransactionAppService;
+    private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReceiptOrderStatusHandleService(ReceiptOrderRepository repository, RocketMQMessagePublisher mqMessagePublisher, MqTransactionAppService mqTransactionAppService) {
+    protected ReceiptOrderStatusHandleService(ReceiptOrderRepository repository, MQMessagePublisher mqMessagePublisher) {
         super(repository);
         this.mqMessagePublisher = mqMessagePublisher;
-        this.mqTransactionAppService = mqTransactionAppService;
-    }
+     }
 
     public void success(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
         ReceiptOrder receiptOrder = findById(id);

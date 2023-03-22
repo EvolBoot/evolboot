@@ -101,6 +101,11 @@ spring:
     password:
     timeout: 3000
     database: 0
+    # 自定义
+    mq-stream:
+      key: evolpn-stream
+      group: evolpn-group
+      consumer: evolpn-consumer
   jpa:
     show-sql: true
 

@@ -159,14 +159,32 @@
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>mq-producer</artifactId>
+                <artifactId>mq-core</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>mq-consumer</artifactId>
+                <artifactId>mq-rocketmq-producer</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>mq-rocketmq-consumer</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>mq-redis-producer</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>mq-redis-consumer</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>bff-app</artifactId>

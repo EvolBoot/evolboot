@@ -1,9 +1,8 @@
 package org.evolboot.shared.event.pay;
 
 import lombok.*;
-import org.evolboot.shared.event.mq.TransactionRocketMQMessage;
+import org.evolboot.shared.event.mq.TransactionMQMessage;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
-import org.evolboot.shared.pay.ReleasedOrderType;
 
 import java.math.BigDecimal;
 
@@ -16,7 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ReleasedOrderStatusChangeMessage extends TransactionRocketMQMessage<String> {
+public class ReleasedOrderStatusChangeMessage extends TransactionMQMessage<String> {
 
     private String releasedOrderId;
 

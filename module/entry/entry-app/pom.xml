@@ -67,8 +67,9 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>mq-consumer</artifactId>
+            <artifactId>mq-redis-consumer</artifactId>
         </dependency>
+
     </dependencies>
     <build>
         <finalName>entry-app</finalName>

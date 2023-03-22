@@ -1,7 +1,6 @@
 package org.evolboot.pay.domain.releasedorder.service;
 
-import org.evolboot.mq.producer.RocketMQMessagePublisher;
-import org.evolboot.mq.producer.mqtransaction.MqTransactionAppService;
+import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
 import org.evolboot.shared.event.pay.ReleasedOrderStatusChangeMessage;
@@ -19,14 +18,12 @@ import java.util.Optional;
 @Slf4j
 public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportService {
 
-    private final RocketMQMessagePublisher rocketMQMessagePublisher;
-    private final MqTransactionAppService mqTransactionAppService;
+    private final MQMessagePublisher MQMessagePublisher;
 
-    protected ReleasedOrderStatusHandleService(ReleasedOrderRepository repository, RocketMQMessagePublisher rocketMQMessagePublisher, MqTransactionAppService mqTransactionAppService) {
+    protected ReleasedOrderStatusHandleService(ReleasedOrderRepository repository, MQMessagePublisher MQMessagePublisher) {
         super(repository);
-        this.rocketMQMessagePublisher = rocketMQMessagePublisher;
-        this.mqTransactionAppService = mqTransactionAppService;
-    }
+        this.MQMessagePublisher = MQMessagePublisher;
+     }
 
     public void success(String id, ReleasedOrderNotifyResult notifyResult) {
         log.info("下发通知:成功:{}", id);
@@ -39,7 +36,7 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         boolean success = releasedOrder.success(notifyResult);
         if (success) {
             repository.save(releasedOrder);
-            rocketMQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
+            MQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
@@ -59,7 +56,7 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         boolean fail = releasedOrder.fail(notifyResult);
         if (fail) {
             repository.save(releasedOrder);
-            rocketMQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
+            MQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
