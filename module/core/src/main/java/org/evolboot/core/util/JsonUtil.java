@@ -19,6 +19,7 @@ package org.evolboot.core.util;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -26,6 +27,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.text.SimpleDateFormat;
 
+@Slf4j
 public abstract class JsonUtil {
 
     private static ObjectMapper objectMapper;
@@ -44,6 +46,7 @@ public abstract class JsonUtil {
         try {
             return getObjectMapper().readValue(content, valueType);
         } catch (Exception e) {
+            log.error("序列化异常", e);
             throw new RuntimeException(e);
         }
     }
@@ -62,6 +65,7 @@ public abstract class JsonUtil {
         try {
             return getObjectMapper().writeValueAsString(object);
         } catch (Exception e) {
+            log.error("序列化异常", e);
             throw new RuntimeException(e);
         }
     }

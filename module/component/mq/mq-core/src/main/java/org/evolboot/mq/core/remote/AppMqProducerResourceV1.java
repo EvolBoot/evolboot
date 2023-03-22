@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
+import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.shared.event.mq.TestMessage;
@@ -23,8 +24,8 @@ public class AppMqProducerResourceV1 {
 
     private final MQMessagePublisher mqMessagePublisher;
 
-    public AppMqProducerResourceV1(MQMessagePublisher MQMessagePublisher) {
-        this.mqMessagePublisher = MQMessagePublisher;
+    public AppMqProducerResourceV1(MQMessagePublisher mqMessagePublisher) {
+        this.mqMessagePublisher = mqMessagePublisher;
     }
 
     @Operation(summary = "发送消息")

@@ -24,12 +24,6 @@ import java.time.Duration;
 @Slf4j
 public class RedisProducerMqConfiguration {
 
-    @Value("${spring.redis.mq-stream.key}")
-    private String key;
-
-
-    @Value("${spring.redis.mq-stream.group}")
-    private String group;
 
 
     @Bean

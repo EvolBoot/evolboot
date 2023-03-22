@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import java.util.HashMap;
 
 /**
- * @author linjie
+ * @author evol
  */
 public class MqMessageRedisTemplate extends RedisTemplate<String, String> {
 
@@ -46,7 +46,7 @@ public class MqMessageRedisTemplate extends RedisTemplate<String, String> {
     }
 
     public <T extends MQMessage<?>> void addMessage(String stream, T message) {
-        HashMap<String, String> data = Maps.newHashMapWithExpectedSize(1);
+        HashMap<String, String> data = new HashMap<>(1);
         data.put(message.getClass().getName(), JsonUtil.stringify(message));
         this.opsForStream().add(MapRecord.create(stream, data));
     }

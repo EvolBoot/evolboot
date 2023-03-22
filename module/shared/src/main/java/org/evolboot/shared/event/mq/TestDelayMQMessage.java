@@ -4,20 +4,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 /**
  * @author evol
- * 
  */
 @Getter
 @Setter
 @NoArgsConstructor
-public class TestMessage extends RocketMQMessage<String> {
+public class TestDelayMQMessage extends DelayMQMessage<String> {
 
     private String message;
 
-    public TestMessage(String message) {
+    public TestDelayMQMessage(String message) {
         this.message = message;
     }
 

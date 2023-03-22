@@ -34,6 +34,7 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
 
     @Override
     public <T extends TransactionMQMessage> void sendMessageInTransaction(T message) {
+        message.setMessageCreateTimestamp(System.currentTimeMillis());
         if (message.getMqTransactionId() == null) {
             message.setMqTransactionId(mqTransactionAppService.create().id());
         }
@@ -51,6 +52,7 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
 
     @Override
     public <T extends MQMessage> void send(T message) {
+        message.setMessageCreateTimestamp(System.currentTimeMillis());
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)
@@ -69,13 +71,13 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
      */
     @Override
     public <T extends MQMessage> void send(T message, DelayLevel delayLevel) {
+        message.setMessageCreateTimestamp(System.currentTimeMillis());
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)
                 .setHeader(MqConstant.TAG, tag)
                 .build();
         rocketMQTemplate.syncSendDelayTimeSeconds(buildDestination(topic, tag), _message, delayLevel.getDelayTimeSeconds());
-//        rocketMQTemplate.syncSend(topic + ":" + tag, _message, 3000L, delayLevel.getDelayLevel());
 
     }
 
@@ -88,6 +90,7 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
      */
     @Override
     public <T extends MQMessage> void sendDelayTimeSeconds(T message, long delayTime) {
+        message.setMessageCreateTimestamp(System.currentTimeMillis());
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)

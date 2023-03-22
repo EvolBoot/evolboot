@@ -1,33 +1,21 @@
 package org.evolboot.shared.event.mq;
 
 
-/**
- * @author evol
- * 
- */
-public abstract class TransactionMQMessage<T> implements RocketMQMessage<T> {
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * 事务消息
+ * @author evol
+ */
+@Setter
+@Getter
+public abstract class TransactionMQMessage<T> extends RocketMQMessage<T> {
+
+    /**
+     * 事务ID,不用手动
+     */
     private Long mqTransactionId;
 
-    private long messageCreateTimestamp;
 
-    public void setMqTransactionId(Long mqTransactionId) {
-        this.mqTransactionId = mqTransactionId;
-    }
-
-    public TransactionMQMessage() {
-        this.messageCreateTimestamp = System.currentTimeMillis();
-    }
-
-    public Long getMqTransactionId() {
-        return mqTransactionId;
-    }
-
-    public long getMessageCreateTimestamp() {
-        return messageCreateTimestamp;
-    }
-
-    public void setMessageCreateTimestamp(long messageCreateTimestamp) {
-        this.messageCreateTimestamp = messageCreateTimestamp;
-    }
 }

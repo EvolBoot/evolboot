@@ -5,6 +5,7 @@ import org.evolboot.shared.event.mq.TransactionMQMessage;
 
 
 /**
+ * 消息队列,消息发送器
  * @author evol
  */
 public interface MQMessagePublisher {

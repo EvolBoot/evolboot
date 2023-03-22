@@ -106,6 +106,7 @@ spring:
       key: evolpn-stream
       group: evolpn-group
       consumer: evolpn-consumer
+      thread-number: 10
   jpa:
     show-sql: true
 

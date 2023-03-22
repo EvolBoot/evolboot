@@ -1,8 +1,12 @@
 package org.evolboot.mq.redis.consumer.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.mq.redis.consumer.RedisListenerMessage;
+import org.evolboot.mq.redis.consumer.task.RedisMQMessageScheduledTask;
+import org.evolboot.mq.redis.consumer.listener.RedisDelayTimeListenerMessage;
+import org.evolboot.mq.redis.consumer.listener.RedisRealTimeListenerMessage;
+import org.evolboot.mq.redis.consumer.listener.RedisTransactionListenerMessage;
 import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
+import org.evolboot.mq.redis.producer.RedisStreamProperty;
 import org.evolboot.shared.event.mq.MQMessage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +17,8 @@ import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
-import org.springframework.data.redis.stream.Subscription;
 
 import java.time.Duration;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @author evol
@@ -26,16 +28,11 @@ import java.util.concurrent.ScheduledExecutorService;
 public class RedisConsumerMqConfiguration {
 
 
-    private final MqMessageRedisTemplate mqMessageRedisTemplate;
     private final RedisStreamProperty redisStreamProperty;
 
-    public RedisConsumerMqConfiguration(MqMessageRedisTemplate mqMessageRedisTemplate, RedisStreamProperty redisStreamProperty) {
-        this.mqMessageRedisTemplate = mqMessageRedisTemplate;
+    public RedisConsumerMqConfiguration(RedisStreamProperty redisStreamProperty) {
         this.redisStreamProperty = redisStreamProperty;
     }
-
-
-
 
 
     @Bean
@@ -43,34 +40,77 @@ public class RedisConsumerMqConfiguration {
         return StreamMessageListenerContainer
                 .StreamMessageListenerContainerOptions
                 .builder()
-                .pollTimeout(Duration.ofSeconds(1))
+                .pollTimeout(Duration.ofSeconds(2))
                 // 可以理解为 Stream Key 的序列化方式
                 .keySerializer(RedisSerializer.string())
                 // 一次最多获取多少条消息
-                .batchSize(10)
+                .batchSize(50)
                 .build();
     }
 
     @Bean
-    public <T extends MQMessage<?>> StreamMessageListenerContainer<String, MapRecord<String, String, T>> streamMessageListenerContainer(RedisConnectionFactory factory, StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, T>> streamMessageListenerContainerOptions, MqMessageRedisTemplate mqMessageRedisTemplate) {
-        if (!mqMessageRedisTemplate.hasKey(redisStreamProperty.getKey())) {
-            mqMessageRedisTemplate.createGroup(redisStreamProperty.getKey(), redisStreamProperty.getGroup());
+    public <T extends MQMessage<?>> StreamMessageListenerContainer<String, MapRecord<String, String, T>> streamMessageListenerContainer(
+            RedisConnectionFactory factory,
+            StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, T>> streamMessageListenerContainerOptions,
+            MqMessageRedisTemplate mqMessageRedisTemplate,
+            RedisTransactionListenerMessage redisTransactionListenerMessage,
+            RedisRealTimeListenerMessage redisRealTimeListenerMessage,
+            RedisDelayTimeListenerMessage redisDelayTimeListenerMessage,
+            RedisMQMessageScheduledTask redisMQMessageScheduledTask
+    ) {
+
+        /**
+         * 实时消息队列
+         */
+        if (Boolean.FALSE.equals(mqMessageRedisTemplate.hasKey(redisStreamProperty.getKeyForRealTime()))) {
+            mqMessageRedisTemplate.createGroup(redisStreamProperty.getKeyForRealTime(), redisStreamProperty.getGroup());
         }
+
+        /**
+         * 事务消息队列
+         */
+        if (Boolean.FALSE.equals(mqMessageRedisTemplate.hasKey(redisStreamProperty.getKeyForTransaction()))) {
+            mqMessageRedisTemplate.createGroup(redisStreamProperty.getKeyForTransaction(), redisStreamProperty.getGroup());
+        }
+
+        /**
+         * 延时消息队列
+         */
+        if (Boolean.FALSE.equals(mqMessageRedisTemplate.hasKey(redisStreamProperty.getKeyForDelayTime()))) {
+            mqMessageRedisTemplate.createGroup(redisStreamProperty.getKeyForDelayTime(), redisStreamProperty.getGroup());
+        }
+
         StreamMessageListenerContainer listenerContainer = StreamMessageListenerContainer.create(factory,
                 streamMessageListenerContainerOptions);
+
+        // 实时队列线程数给多一点
+        log.info("消息队列:Redis:实时监听线程数:{}", redisStreamProperty.getThreadNumber());
+        for (int i = 0; i < redisStreamProperty.getThreadNumber(); i++) {
+            listenerContainer.receive(Consumer.from(redisStreamProperty.getGroup(), redisStreamProperty.getConsumer()),
+                    StreamOffset.create(redisStreamProperty.getKeyForRealTime(), ReadOffset.lastConsumed()),
+                    redisRealTimeListenerMessage);
+        }
+
+        /**
+         * 延时消息处理
+         */
+        listenerContainer.receive(Consumer.from(redisStreamProperty.getGroup(), redisStreamProperty.getConsumer()),
+                StreamOffset.create(redisStreamProperty.getKeyForDelayTime(), ReadOffset.lastConsumed()),
+                redisDelayTimeListenerMessage);
+
+        /**
+         * 事务消息处理
+         */
+        listenerContainer.receive(Consumer.from(redisStreamProperty.getGroup(), redisStreamProperty.getConsumer()),
+                StreamOffset.create(redisStreamProperty.getKeyForTransaction(), ReadOffset.lastConsumed()),
+                redisTransactionListenerMessage);
+
+
         listenerContainer.start();
+
+        // 定时任务
+        redisMQMessageScheduledTask.init();
         return listenerContainer;
-    }
-
-
-    @Bean
-    public Subscription subscription(StreamMessageListenerContainer streamMessageListenerContainer, RedisListenerMessage redisListenerMessage) {
-        Subscription subscription = streamMessageListenerContainer.receive(
-                Consumer.from(redisStreamProperty.getGroup(), redisStreamProperty.getConsumer()),
-                StreamOffset.create(redisStreamProperty.getKey(), ReadOffset.lastConsumed()),
-                redisListenerMessage
-        );
-        return subscription;
     }
 
 

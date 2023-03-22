@@ -18,11 +18,11 @@ import java.util.Optional;
 @Slf4j
 public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportService {
 
-    private final MQMessagePublisher MQMessagePublisher;
+    private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReleasedOrderStatusHandleService(ReleasedOrderRepository repository, MQMessagePublisher MQMessagePublisher) {
+    protected ReleasedOrderStatusHandleService(ReleasedOrderRepository repository, MQMessagePublisher mqMessagePublisher) {
         super(repository);
-        this.MQMessagePublisher = MQMessagePublisher;
+        this.mqMessagePublisher = mqMessagePublisher;
      }
 
     public void success(String id, ReleasedOrderNotifyResult notifyResult) {
@@ -36,7 +36,7 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         boolean success = releasedOrder.success(notifyResult);
         if (success) {
             repository.save(releasedOrder);
-            MQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
+            mqMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
@@ -56,7 +56,7 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         boolean fail = releasedOrder.fail(notifyResult);
         if (fail) {
             repository.save(releasedOrder);
-            MQMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
+            mqMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
                     id,
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
