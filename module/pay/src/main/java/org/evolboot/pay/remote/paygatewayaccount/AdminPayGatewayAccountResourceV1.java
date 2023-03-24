@@ -27,7 +27,7 @@ import static org.evolboot.pay.PayAccessAuthorities.PayGatewayAccount.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/pay")
+@RequestMapping("/v1/admin/pay-gateway-account")
 @Tag(name = "支付网关账户", description = "支付网关账户")
 @AdminClient
 public class AdminPayGatewayAccountResourceV1 {
@@ -41,7 +41,7 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "创建支付网关账户")
     @OperationLog("创建支付网关账户")
-    @PostMapping("/pay-gateway-account")
+    @PostMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
@@ -54,7 +54,7 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "删除支付网关账户")
     @OperationLog("删除支付网关账户")
-    @DeleteMapping("/pay-gateway-account/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
@@ -66,7 +66,7 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "修改支付网关账户")
     @OperationLog("修改支付网关账户")
-    @PutMapping("/pay-gateway-account/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
@@ -79,7 +79,7 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "查询支付网关账户")
     @OperationLog("查询支付网关账户")
-    @GetMapping("/pay-gateway-account")
+    @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<PayGatewayAccount>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -97,7 +97,7 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "查询单个支付网关账户")
     @OperationLog("查询单个支付网关账户")
-    @GetMapping("/pay-gateway-account/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<PayGatewayAccount> get(
             @PathVariable("id") Long id

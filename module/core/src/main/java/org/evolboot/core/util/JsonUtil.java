@@ -57,6 +57,7 @@ public abstract class JsonUtil {
             JavaType javaType = objectMapper.getTypeFactory().constructParametricType(parametrized, parameterClasses);
             return objectMapper.readValue(content, javaType);
         } catch (Exception e) {
+            log.error("序列化异常", e);
             throw new RuntimeException(e);
         }
     }

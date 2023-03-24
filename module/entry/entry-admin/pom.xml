@@ -39,10 +39,6 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>content</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.evolboot</groupId>
             <artifactId>bff-admin</artifactId>
         </dependency>
     </dependencies>

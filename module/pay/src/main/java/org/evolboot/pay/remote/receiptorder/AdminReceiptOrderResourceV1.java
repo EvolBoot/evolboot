@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/pay")
+@RequestMapping("/v1/admin/receipt-order")
 @Tag(name = "第三方代收订单", description = "第三方代收订单")
 @AdminClient
 public class AdminReceiptOrderResourceV1 {
@@ -29,7 +29,7 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "创建第三方代收订单")
     @OperationLog("创建第三方代收订单")
-    @PostMapping("/receipt-order")
+    @PostMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
@@ -42,7 +42,7 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "删除第三方代收订单")
     @OperationLog("删除第三方代收订单")
-    @DeleteMapping("/receipt-order/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") String id
@@ -54,7 +54,7 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "修改第三方代收订单")
     @OperationLog("修改第三方代收订单")
-    @PutMapping("/receipt-order/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @PathVariable("id") String id,
@@ -67,7 +67,7 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "查询第三方代收订单")
     @OperationLog("查询第三方代收订单")
-    @GetMapping("/receipt-order")
+    @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<ReceiptOrder>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -85,7 +85,7 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "查询单个第三方代收订单")
     @OperationLog("查询单个第三方代收订单")
-    @GetMapping("/receipt-order/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<ReceiptOrder> get(
             @PathVariable("id") String id

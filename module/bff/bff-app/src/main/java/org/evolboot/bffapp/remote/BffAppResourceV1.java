@@ -30,7 +30,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/bff-app")
+@RequestMapping("/v1/api/bff")
 @Tag(name = "APP专用", description = "APP专用")
 @ApiClient
 public class BffAppResourceV1 {

@@ -1,6 +1,5 @@
 package org.evolboot.pay.autoconfigure;
 
-import org.evolboot.pay.domain.paymentclient.gateway.metago.MetagoConfig;
 import org.evolboot.pay.domain.paymentclient.gateway.qart.QartConfig;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
@@ -62,10 +61,7 @@ public class PayAutoConfigure {
         return new HuanQiuPayConfig(config.getDomain());
     }
 
-    @Bean
-    public MetagoConfig metagoConfig(PayConfig config) {
-        return new MetagoConfig(config.getDomain());
-    }
+
     @Bean
     public QartConfig qartConfig(PayConfig config) {
         return new QartConfig(config.getDomain());

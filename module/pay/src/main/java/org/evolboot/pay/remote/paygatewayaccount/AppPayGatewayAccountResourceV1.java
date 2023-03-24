@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/pay")
+@RequestMapping("/v1/api/pay-gateway-account")
 @Tag(name = "支付网关账户", description = "支付网关账户")
 @ApiClient
 public class AppPayGatewayAccountResourceV1 {
@@ -37,7 +37,7 @@ public class AppPayGatewayAccountResourceV1 {
 
 
     @Operation(summary = "查询支付网关账户")
-    @GetMapping("/pay-gateway-account")
+    @GetMapping("")
     public ResponseModel<List<PayGatewayAccountLocaleResponse>> findAll(
     ) {
         List<PayGatewayAccount> result = service.findAll(defaultQuery);
@@ -48,7 +48,7 @@ public class AppPayGatewayAccountResourceV1 {
     /*
 
     @Operation(summary = "查询支付网关账户")
-    @GetMapping("/pay-gateway-account")
+    @GetMapping("")
     public ResponseModel<List<PayGatewayAccountLocaleResponse>> findAll(
     ) {
         List<PayGatewayAccount> result = service.findAll();
@@ -56,7 +56,7 @@ public class AppPayGatewayAccountResourceV1 {
     }
 
     @Operation(summary = "查询支付网关账户")
-    @GetMapping("/pay-gateway-account")
+    @GetMapping("")
     public ResponseModel<Page<PayGatewayAccountLocaleResponse>> page(
        @RequestParam(name = "page", defaultValue = "1") Integer page,
        @RequestParam(name = "limit", defaultValue = "20") Integer limit

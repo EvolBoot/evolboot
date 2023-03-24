@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/identity")
+@RequestMapping("/v1/api")
 @Tag(name = "用户角色管理", description = "用户角色管理")
 @ApiClient
 public class AppUserRoleResourceV1 {

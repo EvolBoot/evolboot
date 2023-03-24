@@ -30,7 +30,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/bff-admin")
+@RequestMapping("/v1/admin/bff")
 @Tag(name = "BFF", description = "BFF")
 @AdminClient
 public class BffAdminResourceV1 {

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/system")
+@RequestMapping("/v1/api/app-upgrade")
 @Tag(name = "APP更新", description = "APP更新")
 @ApiClient
 public class AppAppUpgradeResourceV1 {
@@ -33,7 +33,7 @@ public class AppAppUpgradeResourceV1 {
 
 
     @Operation(summary = "查询APP更新")
-    @GetMapping("/app-upgrade/check")
+    @GetMapping("/check")
     public ResponseModel<AppUpgradeLocaleResponse> check(
             ClientType clientType
     ) {

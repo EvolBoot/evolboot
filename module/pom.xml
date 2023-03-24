@@ -24,7 +24,6 @@
         <module>schedule</module>
         <module>identity</module>
         <module>system</module>
-        <module>content</module>
         <module>bff</module>
         <module>pay</module>
     </modules>

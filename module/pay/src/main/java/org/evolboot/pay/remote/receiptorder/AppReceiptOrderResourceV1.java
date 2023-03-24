@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/pay")
+@RequestMapping("/v1/api/receipt-order")
 @Tag(name = "第三方代收订单", description = "第三方代收订单")
 @ApiClient
 public class AppReceiptOrderResourceV1 {
@@ -29,7 +29,7 @@ public class AppReceiptOrderResourceV1 {
     /*
 
     @Operation(summary = "查询第三方代收订单")
-    @GetMapping("/receipt-order")
+    @GetMapping("")
     public ResponseModel<List<ReceiptOrderLocaleResponse>> findAll(
     ) {
         List<ReceiptOrder> result = service.findAll();
@@ -37,7 +37,7 @@ public class AppReceiptOrderResourceV1 {
     }
 
     @Operation(summary = "查询第三方代收订单")
-    @GetMapping("/receipt-order")
+    @GetMapping("")
     public ResponseModel<Page<ReceiptOrderLocaleResponse>> page(
        @RequestParam(name = "page", defaultValue = "1") Integer page,
        @RequestParam(name = "limit", defaultValue = "20") Integer limit

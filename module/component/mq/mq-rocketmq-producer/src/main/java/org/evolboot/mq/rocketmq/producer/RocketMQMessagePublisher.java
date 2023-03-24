@@ -34,7 +34,9 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
 
     @Override
     public <T extends TransactionMQMessage> void sendMessageInTransaction(T message) {
-        message.setMessageCreateTimestamp(System.currentTimeMillis());
+        if (message.getMessageCreateTimestamp() == null) {
+            message.setMessageCreateTimestamp(System.currentTimeMillis());
+        }
         if (message.getMqTransactionId() == null) {
             message.setMqTransactionId(mqTransactionAppService.create().id());
         }
@@ -52,7 +54,9 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
 
     @Override
     public <T extends MQMessage> void send(T message) {
-        message.setMessageCreateTimestamp(System.currentTimeMillis());
+        if (message.getMessageCreateTimestamp() == null) {
+            message.setMessageCreateTimestamp(System.currentTimeMillis());
+        }
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)
@@ -71,7 +75,9 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
      */
     @Override
     public <T extends MQMessage> void send(T message, DelayLevel delayLevel) {
-        message.setMessageCreateTimestamp(System.currentTimeMillis());
+        if (message.getMessageCreateTimestamp() == null) {
+            message.setMessageCreateTimestamp(System.currentTimeMillis());
+        }
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)
@@ -90,7 +96,9 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
      */
     @Override
     public <T extends MQMessage> void sendDelayTimeSeconds(T message, long delayTime) {
-        message.setMessageCreateTimestamp(System.currentTimeMillis());
+        if (message.getMessageCreateTimestamp() == null) {
+            message.setMessageCreateTimestamp(System.currentTimeMillis());
+        }
         String tag = message.getClass().getName();
         Message<T> _message = MessageBuilder
                 .withPayload(message)

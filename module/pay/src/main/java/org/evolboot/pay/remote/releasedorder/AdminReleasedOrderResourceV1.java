@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/pay")
+@RequestMapping("/v1/admin/released-order")
 @Tag(name = "代付订单", description = "代付订单")
 @AdminClient
 public class AdminReleasedOrderResourceV1 {
@@ -29,7 +29,7 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "创建代付订单")
     @OperationLog("创建代付订单")
-    @PostMapping("/released-order")
+    @PostMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
@@ -42,7 +42,7 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "删除代付订单")
     @OperationLog("删除代付订单")
-    @DeleteMapping("/released-order/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") String id
@@ -54,7 +54,7 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "修改代付订单")
     @OperationLog("修改代付订单")
-    @PutMapping("/released-order/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @PathVariable("id") String id,
@@ -67,7 +67,7 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "查询代付订单")
     @OperationLog("查询代付订单")
-    @GetMapping("/released-order")
+    @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<ReleasedOrder>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -85,7 +85,7 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "查询单个代付订单")
     @OperationLog("查询单个代付订单")
-    @GetMapping("/released-order/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<ReleasedOrder> get(
             @PathVariable("id") String id

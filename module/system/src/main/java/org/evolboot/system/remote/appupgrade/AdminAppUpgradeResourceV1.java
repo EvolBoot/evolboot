@@ -28,7 +28,7 @@ import static org.evolboot.system.SystemAccessAuthorities.AppUpgrade.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/system")
+@RequestMapping("/v1/admin/app-upgrade")
 @Tag(name = "APP更新", description = "APP更新")
 @AdminClient
 public class AdminAppUpgradeResourceV1 {
@@ -42,7 +42,7 @@ public class AdminAppUpgradeResourceV1 {
 
     @Operation(summary = "创建APP更新")
     @OperationLog("创建APP更新")
-    @PostMapping("/appupgrade")
+    @PostMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
@@ -55,7 +55,7 @@ public class AdminAppUpgradeResourceV1 {
 
     @Operation(summary = "删除APP更新")
     @OperationLog("删除APP更新")
-    @DeleteMapping("/appupgrade/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
@@ -67,7 +67,7 @@ public class AdminAppUpgradeResourceV1 {
 
     @Operation(summary = "修改APP更新")
     @OperationLog("修改APP更新")
-    @PutMapping("/appupgrade/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
@@ -80,7 +80,7 @@ public class AdminAppUpgradeResourceV1 {
 
     @Operation(summary = "查询APP更新")
     @OperationLog("查询APP更新")
-    @GetMapping("/appupgrade")
+    @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<AppUpgrade>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -98,7 +98,7 @@ public class AdminAppUpgradeResourceV1 {
 
     @Operation(summary = "查询单个APP更新")
     @OperationLog("查询单个APP更新")
-    @GetMapping("/appupgrade/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<AppUpgrade> get(
             @PathVariable("id") Long id
