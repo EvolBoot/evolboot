@@ -152,14 +152,14 @@ public class AdminUserResourceV1 {
     public ResponseModel<Page<User>> getUsers(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
-            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false, name = "user_id") Long userId,
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String mobile,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String registerIp,
-            @RequestParam(required = false) Long inviterUserId,
-            @RequestParam(required = false) UserType userType,
-            @RequestParam(required = false) UserIdentity userIdentity
+            @RequestParam(required = false, name = "register_ip") String registerIp,
+            @RequestParam(required = false, name = "inviter_user_id") Long inviterUserId,
+            @RequestParam(required = false, name = "user_type") UserType userType,
+            @RequestParam(required = false, name = "user_identity") UserIdentity userIdentity
     ) {
         UserQuery query = UserQuery
                 .builder()

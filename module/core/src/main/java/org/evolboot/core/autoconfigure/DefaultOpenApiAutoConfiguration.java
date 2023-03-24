@@ -1,5 +1,7 @@
 package org.evolboot.core.autoconfigure;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -35,5 +37,10 @@ public class DefaultOpenApiAutoConfiguration {
                 )
                 .info(new Info().title(properties.getTitle()).version(properties.getVersion()));
 
+    }
+
+    @Bean
+    public ModelResolver modelResolver(ObjectMapper objectMapper) {
+        return new ModelResolver(objectMapper);
     }
 }

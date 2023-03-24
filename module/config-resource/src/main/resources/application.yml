@@ -12,6 +12,7 @@ spring:
       accept-case-insensitive-enums: true
     time-zone: GMT+8
     default-property-inclusion: ALWAYS
+    property-naming-strategy: SNAKE_CASE
   profiles:
     active: evol,evol-app
   messages:

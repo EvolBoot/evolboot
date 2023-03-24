@@ -3,6 +3,7 @@ package org.evolboot.core.autoconfigure;
 import org.evolboot.core.DefaultConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Locale;
 
@@ -12,7 +13,7 @@ import java.util.Locale;
  */
 @Configuration
 @Slf4j
-public class DefaultAutoConfiguration {
+public class DefaultAutoConfiguration  {
 
 
     public DefaultAutoConfiguration(DefaultConfigProperties properties) {
