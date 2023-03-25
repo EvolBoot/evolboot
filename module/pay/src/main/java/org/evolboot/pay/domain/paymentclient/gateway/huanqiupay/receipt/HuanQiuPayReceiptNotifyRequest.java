@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
 
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
@@ -66,8 +67,8 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
     }
 
     @Override
-    public boolean checkSign(String secretKey) {
-        HuanQiuPayUtil.checkSign(requestParams, secretKey);
+    public boolean checkSign(PayGatewayAccount payGatewayAccount) {
+        HuanQiuPayUtil.checkSign(requestParams, payGatewayAccount.getSecretKey());
         return true;
     }
 

@@ -2,13 +2,14 @@ package org.evolboot.pay.remote.paymentclient;
 
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paymentclient.PaymentClientAppService;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
 import com.google.common.collect.Maps;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +27,14 @@ import java.util.Map;
 @ApiClient
 public class AppHuanQiuPaymentClientResourceV1 {
 
-    private final PaymentClientAppService paymentClientAppService;
+    private final ReleasedOrderAppService releasedOrderAppService;
 
-    public AppHuanQiuPaymentClientResourceV1(PaymentClientAppService paymentClientAppService) {
-        this.paymentClientAppService = paymentClientAppService;
+    private final ReceiptOrderAppService receiptOrderAppService;
+
+
+    public AppHuanQiuPaymentClientResourceV1(ReleasedOrderAppService releasedOrderAppService, ReceiptOrderAppService receiptOrderAppService) {
+        this.releasedOrderAppService = releasedOrderAppService;
+        this.receiptOrderAppService = receiptOrderAppService;
     }
 
 
@@ -42,7 +47,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球代收回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) paymentClientAppService.receiptOrderNotify(new HuanQiuPayReceiptNotifyRequest(requestParams));
+        return (String) receiptOrderAppService.receiptOrderNotify(new HuanQiuPayReceiptNotifyRequest(requestParams));
     }
 
 
@@ -68,7 +73,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球下发回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) paymentClientAppService.releasedOrderNotify(new HuanQiuPayReleasedNotifyRequest(requestParams));
+        return (String) releasedOrderAppService.releasedOrderNotify(new HuanQiuPayReleasedNotifyRequest(requestParams));
     }
 
 

@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
 import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderCreateFactory;
 
 import java.util.List;
@@ -23,20 +24,6 @@ public interface ReleasedOrderAppService {
 
     ReleasedOrder findById(String id);
 
-    /**
-     * 代付订单成功
-     *
-     * @param id
-     * @param notifyResult
-     */
-    void success(String id, ReleasedOrderNotifyResult notifyResult);
 
-    /**
-     * 代付订单失败
-     *
-     * @param id
-     * @param notifyResult
-     */
-    void fail(String id, ReleasedOrderNotifyResult notifyResult);
-
+    <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request);
 }

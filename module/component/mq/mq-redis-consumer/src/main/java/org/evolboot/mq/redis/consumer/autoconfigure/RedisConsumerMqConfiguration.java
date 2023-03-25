@@ -8,6 +8,7 @@ import org.evolboot.mq.redis.consumer.listener.RedisTransactionListenerMessage;
 import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
 import org.evolboot.mq.redis.producer.RedisStreamProperty;
 import org.evolboot.shared.event.mq.MQMessage;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -18,6 +19,7 @@ import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
+import javax.annotation.PreDestroy;
 import java.time.Duration;
 
 /**
@@ -29,6 +31,7 @@ public class RedisConsumerMqConfiguration {
 
 
     private final RedisStreamProperty redisStreamProperty;
+    private StreamMessageListenerContainer streamMessageListenerContainer;
 
     public RedisConsumerMqConfiguration(RedisStreamProperty redisStreamProperty) {
         this.redisStreamProperty = redisStreamProperty;
@@ -48,10 +51,11 @@ public class RedisConsumerMqConfiguration {
                 .build();
     }
 
+
     @Bean
-    public <T extends MQMessage<?>> StreamMessageListenerContainer<String, MapRecord<String, String, T>> streamMessageListenerContainer(
+    public StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamMessageListenerContainer(
             RedisConnectionFactory factory,
-            StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, T>> streamMessageListenerContainerOptions,
+            StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, MapRecord<String, String, String>> streamMessageListenerContainerOptions,
             MqMessageRedisTemplate mqMessageRedisTemplate,
             RedisTransactionListenerMessage redisTransactionListenerMessage,
             RedisRealTimeListenerMessage redisRealTimeListenerMessage,
@@ -82,7 +86,6 @@ public class RedisConsumerMqConfiguration {
 
         StreamMessageListenerContainer listenerContainer = StreamMessageListenerContainer.create(factory,
                 streamMessageListenerContainerOptions);
-
         // 实时队列线程数给多一点
         log.info("消息队列:Redis:实时监听线程数:{}", redisStreamProperty.getThreadNumber());
         for (int i = 0; i < redisStreamProperty.getThreadNumber(); i++) {
@@ -110,6 +113,8 @@ public class RedisConsumerMqConfiguration {
 
         // 定时任务
         redisMQMessageScheduledTask.init();
+
+        this.streamMessageListenerContainer = listenerContainer;
         return listenerContainer;
     }
 

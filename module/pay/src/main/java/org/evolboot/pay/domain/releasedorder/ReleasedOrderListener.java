@@ -1,9 +1,13 @@
 package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
+import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderSendService;
 import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderSupportService;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.event.pay.ReleasedOrderCreatedMessage;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 代付订单
@@ -15,15 +19,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ReleasedOrderListener extends ReleasedOrderSupportService {
 
-    protected ReleasedOrderListener(ReleasedOrderRepository repository) {
+    private final ReleasedOrderSendService releasedOrderSendService;
+
+
+    protected ReleasedOrderListener(ReleasedOrderRepository repository, ReleasedOrderSendService releasedOrderSendService) {
         super(repository);
+        this.releasedOrderSendService = releasedOrderSendService;
     }
-/*
-
     @EventListener
-    public void on(DomainEvent event) {
-
+    @Transactional
+    public void on(ReleasedOrderCreatedMessage event) {
+        log.info("消息:监听到代付:{}", event.getReleasedOrderId());
+        releasedOrderSendService.send(event.getReleasedOrderId());
     }
-*/
+
 
 }

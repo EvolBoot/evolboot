@@ -30,6 +30,15 @@ public interface ReleasedClient extends PaymentClient {
      */
     <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request);
 
+
+    /**
+     * 查询订单
+     * @param releasedOrderId
+     * @param account
+     * @return
+     */
+    ReleasedQueryResponse queryReleasedOrder(String releasedOrderId, PayGatewayAccount account);
+
     /**
      * 支持下发的组织类型
      * @param orgType

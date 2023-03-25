@@ -1,6 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderRequestResult;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -25,7 +25,7 @@ public class ReleasedCreateResponse {
 
     private String releasedOrderId;
 
-    private ReleasedOrderRequestResult requestResult;
+    private ReleasedOrderCreateResult createResult;
 
 
 }

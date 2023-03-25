@@ -9,6 +9,7 @@ import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -25,44 +26,42 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
         this.mqMessagePublisher = mqMessagePublisher;
      }
 
-    public void success(String id, ReleasedOrderNotifyResult notifyResult) {
-        log.info("下发通知:成功:{}", id);
-        Optional<ReleasedOrder> optional = repository.findById(id);
-        if (optional.isEmpty()) {
-            log.info("下发回调查询不到:{}", id);
-            return;
-        }
-        ReleasedOrder releasedOrder = optional.get();
-        boolean success = releasedOrder.success(notifyResult);
+
+    public void success(ReleasedOrder releasedOrder) {
+        log.info("代付:成功:{}", releasedOrder.id());
+        boolean success = releasedOrder.success();
         if (success) {
-            repository.save(releasedOrder);
             mqMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
-                    id,
+                    releasedOrder.id(),
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
                     releasedOrder.getAmount(),
                     ReleasedOrderStatus.SUCCESS));
         }
+        repository.save(releasedOrder);
     }
 
-    public void fail(String id, ReleasedOrderNotifyResult notifyResult) {
-        log.info("下发通知:失败:{}", id);
-        Optional<ReleasedOrder> optional = repository.findById(id);
-        if (optional.isEmpty()) {
-            log.info("下发回调查询不到:{}", id);
-            return;
-        }
-        ReleasedOrder releasedOrder = optional.get();
-        boolean fail = releasedOrder.fail(notifyResult);
+    public void fail(ReleasedOrder releasedOrder) {
+        log.info("代付:失败:{}", releasedOrder.id());
+        boolean fail = releasedOrder.fail();
         if (fail) {
-            repository.save(releasedOrder);
             mqMessagePublisher.sendMessageInTransaction(new ReleasedOrderStatusChangeMessage(
-                    id,
+                    releasedOrder.id(),
                     releasedOrder.getForeignOrderId(),
                     releasedOrder.getInternalOrderId(),
                     releasedOrder.getAmount(),
                     ReleasedOrderStatus.FAIL
             ));
         }
+        repository.save(releasedOrder);
+    }
+
+
+    public void pending(ReleasedOrder releasedOrder, BigDecimal poundage,
+                        String foreignOrderId) {
+        log.info("代付:Pending:{}", releasedOrder.id());
+        releasedOrder.pending(poundage, foreignOrderId);
+        repository.save(releasedOrder);
+
     }
 }

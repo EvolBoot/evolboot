@@ -21,8 +21,8 @@ import java.math.BigDecimal;
 @Builder
 public class ReleasedCreateRequest {
 
-    // 内部订单ID
-    private String internalOrderId;
+
+
 
     private Currency  currency;
 
@@ -35,9 +35,6 @@ public class ReleasedCreateRequest {
     private String payeePhone;
 
     private String payeeEmail;
-
-    // 代付网关
-    private Long payGatewayAccountId;
 
     // 银行代码
     private String bankCode;
@@ -52,5 +49,6 @@ public class ReleasedCreateRequest {
     private String ifscCardNo;
 
     private ReleasedOrderOrgType orgType;
+
 
 }

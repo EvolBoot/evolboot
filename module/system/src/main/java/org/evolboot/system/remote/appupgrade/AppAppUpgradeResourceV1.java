@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -35,7 +36,7 @@ public class AppAppUpgradeResourceV1 {
     @Operation(summary = "查询APP更新")
     @GetMapping("/check")
     public ResponseModel<AppUpgradeLocaleResponse> check(
-            ClientType clientType
+            @RequestParam("client_type") ClientType clientType
     ) {
         AppUpgrade appUpgrade = service.check(clientType);
         return ResponseModel.ok(AppUpgradeLocaleResponse.of(appUpgrade));

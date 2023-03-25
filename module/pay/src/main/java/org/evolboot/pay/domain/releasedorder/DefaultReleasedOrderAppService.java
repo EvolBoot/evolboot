@@ -1,11 +1,9 @@
 package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderCreateFactory;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderStatusHandleService;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderSupportService;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderUpdateService;
+import org.evolboot.pay.domain.releasedorder.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +21,13 @@ public class DefaultReleasedOrderAppService extends ReleasedOrderSupportService 
 
 
     private final ReleasedOrderCreateFactory factory;
-    private final ReleasedOrderUpdateService updateService;
-    private final ReleasedOrderStatusHandleService statusHandleService;
+    private final ReleasedOrderNotifyService notifyService;
 
-    protected DefaultReleasedOrderAppService(ReleasedOrderRepository repository, ReleasedOrderCreateFactory factory, ReleasedOrderUpdateService updateService, ReleasedOrderStatusHandleService statusHandleService) {
+
+    protected DefaultReleasedOrderAppService(ReleasedOrderRepository repository, ReleasedOrderCreateFactory factory, ReleasedOrderNotifyService notifyService) {
         super(repository);
         this.factory = factory;
-        this.updateService = updateService;
-        this.statusHandleService = statusHandleService;
+        this.notifyService = notifyService;
     }
 
     @Override
@@ -58,14 +55,9 @@ public class DefaultReleasedOrderAppService extends ReleasedOrderSupportService 
 
     @Override
     @Transactional
-    public void success(String id, ReleasedOrderNotifyResult notifyResult) {
-        statusHandleService.success(id, notifyResult);
+    public <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request) {
+        return notifyService.releasedOrderNotify(request);
     }
 
-    @Override
-    @Transactional
-    public void fail(String id, ReleasedOrderNotifyResult notifyResult) {
-        statusHandleService.fail(id, notifyResult);
-    }
 
 }

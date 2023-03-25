@@ -1,9 +1,10 @@
 package org.evolboot.pay.domain.receiptorder;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import org.evolboot.pay.domain.receiptorder.service.*;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,38 +22,21 @@ public class DefaultReceiptOrderAppService extends ReceiptOrderSupportService im
 
 
     private final ReceiptOrderCreateFactory factory;
-    private final ReceiptOrderUpdateService updateService;
-    private final ReceiptOrderStatusHandleService statusHandleService;
-    private final ReceiptOrderBuildRedirectUrlService receiptOrderBuildRedirectUrlService;
+    private final ReceiptOrderBuildRedirectUrlService redirectUrlService;
+    private final ReceiptOrderNotifyService notifyService;
 
 
-    protected DefaultReceiptOrderAppService(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderUpdateService updateService, ReceiptOrderStatusHandleService statusHandleService, ReceiptOrderBuildRedirectUrlService receiptOrderBuildRedirectUrlService) {
+    protected DefaultReceiptOrderAppService(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderBuildRedirectUrlService redirectUrlService, ReceiptOrderNotifyService notifyService) {
         super(repository);
         this.factory = factory;
-        this.updateService = updateService;
-        this.statusHandleService = statusHandleService;
-        this.receiptOrderBuildRedirectUrlService = receiptOrderBuildRedirectUrlService;
+        this.redirectUrlService = redirectUrlService;
+        this.notifyService = notifyService;
     }
 
     @Override
     @Transactional
     public ReceiptOrder create(ReceiptOrderCreateFactory.Request request) {
         return factory.execute(request);
-    }
-
-
-    @Override
-    @Transactional
-    public void update(String id, ReceiptOrderUpdateService.Request request) {
-        updateService.execute(id, request);
-    }
-
-
-    @Override
-    @Transactional
-    public void delete(String id) {
-        findById(id);
-        repository.deleteById(id);
     }
 
 
@@ -72,21 +56,17 @@ public class DefaultReceiptOrderAppService extends ReceiptOrderSupportService im
         return repository.page(query);
     }
 
+
     @Override
     @Transactional
-    public void success(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
-        statusHandleService.success(id, receiptOrderNotifyResult);
+    public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
+        return notifyService.receiptOrderNotify(request);
     }
 
     @Override
     @Transactional
-    public void fail(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
-        statusHandleService.fail(id, receiptOrderNotifyResult);
-    }
-
-    @Override
-    public String getRedirectUrl(String id, ReceiptOrderStatus status) {
-        return receiptOrderBuildRedirectUrlService.execute(id, status);
+    public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+        return redirectUrlService.getReceiptRedirectUrl(request);
     }
 
 

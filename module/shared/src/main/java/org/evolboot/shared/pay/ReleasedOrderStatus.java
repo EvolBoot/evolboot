@@ -5,5 +5,5 @@ package org.evolboot.shared.pay;
  * @date 2021/12/10
  */
 public enum ReleasedOrderStatus {
-    PENDING, SUCCESS, FAIL
+    WAIT, PENDING, SUCCESS, FAIL
 }

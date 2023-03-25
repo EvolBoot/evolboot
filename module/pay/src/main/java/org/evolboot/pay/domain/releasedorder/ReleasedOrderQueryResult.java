@@ -14,29 +14,29 @@ import javax.persistence.Embeddable;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReleasedOrderRequestResult {
+public class ReleasedOrderQueryResult {
 
 
-    @Column(name = "request_text_")
+    @Column(name = "query_request_text_")
     private String requestText;
 
     /**
      *
      */
-    @Column(name = "request_result_text_")
+    @Column(name = "query_result_text_")
     private String resultText;
 
     /**
      *
      */
-    @Column(name = "request_result_foreign_order_id_")
+    @Column(name = "query_result_foreign_order_id_")
     private String foreignOrderId;
 
 
     /**
      * 请求时返回的代收状态
      */
-    @Column(name = "request_result_foreign_status_")
+    @Column(name = "query_result_foreign_status_")
     private String foreignStatus;
 
 }

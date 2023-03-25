@@ -16,7 +16,7 @@ import org.evolboot.pay.domain.paymentclient.released.*;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderRequestResult;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateResult;
 import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.TreeMap;
+
+import static org.evolboot.pay.exception.PayException.RELEASED_ORDER_ERROR;
 
 /**
  * @author evol
@@ -159,16 +161,20 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         String requestText = JsonUtil.stringify(map);
         log.info("代付:发起请求:{},参数:{},返回:{}", releasedOrderId, JsonUtil.stringify(map), post);
         HuanQiuPayForeignReleasedCreateResponse result = JsonUtil.parse(post, HuanQiuPayForeignReleasedCreateResponse.class);
-        return new ReleasedCreateResponse(
-                result.isOk(),
-                request.getAmount(),
-                BigDecimal.ZERO,
-                result.getForeignOrderId(),
-                releasedOrderId,
-                new ReleasedOrderRequestResult(
-                        requestText, post, result.getForeignOrderId(), result.getStatus()
-                )
-        );
+        if (result.isOk()) {
+            return new ReleasedCreateResponse(
+                    result.isOk(),
+                    request.getAmount(),
+                    BigDecimal.ZERO,
+                    result.getForeignOrderId(),
+                    releasedOrderId,
+                    new ReleasedOrderCreateResult(
+                            requestText, post, result.getForeignOrderId(), result.getStatus()
+                    )
+            );
+        }
+        throw RELEASED_ORDER_ERROR;
+
     }
 
     @Override
@@ -183,6 +189,11 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
                         request.getAmount(),
                         request.getPoundage()
                 ));
+    }
+
+    @Override
+    public ReleasedQueryResponse queryReleasedOrder(String releasedOrderId, PayGatewayAccount account) {
+        return new ReleasedQueryResponse(false);
     }
 
     @Override

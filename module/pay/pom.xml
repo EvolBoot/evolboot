@@ -15,7 +15,6 @@
             <groupId>org.evolboot</groupId>
             <artifactId>security-api</artifactId>
         </dependency>
-
     </dependencies>
 
     <properties>

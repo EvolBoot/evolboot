@@ -38,6 +38,8 @@ public class SecurityApiWebSecurityConfigurerAdapter extends WebSecurityConfigur
                 .anyRequest()
                 .permitAll()
                 .and()
+                .formLogin()
+                .disable()
                 .addFilterAfter(new AccessTokenAuthenticationFilter(securityAccessTokenAppService, securityDefaultConfigProperties), BasicAuthenticationFilter.class)
                 .csrf()
                 .disable();

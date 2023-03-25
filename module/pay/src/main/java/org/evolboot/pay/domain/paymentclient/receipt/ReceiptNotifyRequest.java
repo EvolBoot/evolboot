@@ -1,5 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 
@@ -26,7 +27,7 @@ public interface ReceiptNotifyRequest {
 
     BigDecimal getPoundage();
 
-    boolean checkSign(String secretKey);
+    boolean checkSign(PayGatewayAccount payGatewayAccount);
 
     ReceiptOrderStatus getStatus();
 }

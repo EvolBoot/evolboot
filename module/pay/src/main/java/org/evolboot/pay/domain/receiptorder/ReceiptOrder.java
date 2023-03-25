@@ -4,6 +4,7 @@ import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendDateUtil;
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 import lombok.Getter;
@@ -61,6 +62,9 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
      */
     private String redirectUrl;
 
+
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
     /**
      * 请求第三方返回的结果信息
      */
@@ -172,7 +176,6 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     }
 
     public ReceiptOrder(
-            String id,
             String internalOrderId,
             String productName,
             String payeeName,
@@ -182,10 +185,11 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
             BigDecimal payAmount,
             PayGateway payGateway,
             String redirectUrl,
+            Currency currency,
             ReceiptOrderRequestResult result
 
     ) {
-        this.id = id;
+        this.id = generateId();
         setInternalOrderId(internalOrderId);
         setProductName(productName);
         setPayeeName(payeeName);
@@ -196,7 +200,9 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
         setPayGateway(payGateway);
         setRedirectUrl(redirectUrl);
         setRequestResult(result);
+        this.currency = currency;
     }
+
 
     public static String generateId() {
         return ID_PREFIX + ExtendDateUtil.intOfToDay() + IdGenerate.longId();

@@ -17,6 +17,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 import static org.evolboot.shared.pay.ReleasedOrderStatus.PENDING;
+import static org.evolboot.shared.pay.ReleasedOrderStatus.WAIT;
 
 
 /**
@@ -115,7 +116,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      * 请求参数
      */
     @Embedded
-    private ReleasedOrderRequestResult requestResult;
+    private ReleasedOrderCreateResult createResult;
 
     /**
      * 通知参数
@@ -123,28 +124,30 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     @Embedded
     private ReleasedOrderNotifyResult notifyResult;
 
-    @Enumerated(EnumType.STRING)
-    private ReleasedOrderStatus status;
+    /**
+     * 查询参数
+     */
+    @Embedded
+    private ReleasedOrderQueryResult queryResult;
 
-    public ReleasedOrder(String id,
-                         String internalOrderId,
-                         Currency currency,
-                         BigDecimal amount,
-                         String payeeName,
-                         String payeePhone,
-                         String payeeEmail,
-                         String bankCode,
-                         String bankNo,
-                         String ifscCode,
-                         String ifscCardNo,
-                         ReleasedOrderOrgType orgType,
-                         Long payGatewayAccountId,
-                         PayGateway payGateway,
-                         BigDecimal poundage,
-                         String foreignOrderId,
-                         ReleasedOrderRequestResult requestResult,
-                         ReleasedOrderStatus status) {
-        this.id = id;
+    @Enumerated(EnumType.STRING)
+    private ReleasedOrderStatus status = WAIT;
+
+    public ReleasedOrder(
+            String internalOrderId,
+            Currency currency,
+            BigDecimal amount,
+            String payeeName,
+            String payeePhone,
+            String payeeEmail,
+            String bankCode,
+            String bankNo,
+            String ifscCode,
+            String ifscCardNo,
+            ReleasedOrderOrgType orgType,
+            Long payGatewayAccountId,
+            PayGateway payGateway) {
+        this.id = generateId();
         this.internalOrderId = internalOrderId;
         this.currency = currency;
         this.amount = amount;
@@ -158,36 +161,65 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
         this.orgType = orgType;
         this.payGateway = payGateway;
         this.payGatewayAccountId = payGatewayAccountId;
-        this.poundage = poundage;
-        this.foreignOrderId = foreignOrderId;
-        this.requestResult = requestResult;
-        this.status = status;
     }
 
-    public boolean success(ReleasedOrderNotifyResult result) {
-        log.info("下发成功通知:{},{}", id, result);
+    /**
+     * 处理
+     *
+     * @param poundage
+     * @param foreignOrderId
+     * @return
+     */
+    public boolean pending(BigDecimal poundage,
+                           String foreignOrderId) {
+        if (!WAIT.equals(this.status)) {
+            log.info("代付:{},当前订单不在WAIT状态,不需要重复PENDING", id);
+            return false;
+        }
+        this.poundage = poundage;
+        this.foreignOrderId = foreignOrderId;
+        return true;
+    }
+
+    public boolean success() {
+        log.info("代付:成功通知:{}", id);
         if (PENDING.equals(this.status)) {
-            this.notifyResult = result;
             this.status = ReleasedOrderStatus.SUCCESS;
-            if (ExtendObjects.nonNull(result) && ExtendObjects.nonNull(result.getPoundage())) {
-                this.poundage = result.getPoundage();
-            }
             return true;
         }
-        log.info("下发成功通知:重复通知,已经通过的下发订单:{},{}", id, result);
+        log.info("代付成功通知:重复通知,已经通过的代付订单:{}", id);
         return false;
     }
 
-    public boolean fail(ReleasedOrderNotifyResult result) {
-        log.info("下发失败通知:{},{}", id, result);
-        if (PENDING.equals(this.status)) {
-            this.notifyResult = result;
+
+    public boolean fail() {
+        log.info("代付:失败通知:{}", id);
+        if (PENDING.equals(this.status) || WAIT.equals(this.status)) {
+
             this.status = ReleasedOrderStatus.FAIL;
             return true;
         }
-        log.info("下发失败通知:重复通知,已经通过的下发订单:{},{}", id, result);
+        log.info("代付:失败通知:重复通知,已经通过的代付订单:{}", id);
         return false;
     }
+
+
+    public void setNotifyResult(ReleasedOrderNotifyResult result) {
+        if (ExtendObjects.nonNull(result) && ExtendObjects.nonNull(result.getPoundage())) {
+            this.poundage = result.getPoundage();
+        }
+        this.notifyResult = result;
+    }
+
+    public void setCreateResult(ReleasedOrderCreateResult createResult) {
+        this.createResult = createResult;
+    }
+
+
+    public void setQueryResult(ReleasedOrderQueryResult queryResult) {
+        this.queryResult = queryResult;
+    }
+
 
     public static String generateId() {
         return ID_PREFIX + ExtendDateUtil.intOfToDay() + IdGenerate.longId();

@@ -1,7 +1,17 @@
 package org.evolboot.pay.domain.receiptorder.service;
 
+import lombok.NoArgsConstructor;
+import org.evolboot.core.util.Assert;
+import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateRequest;
+import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateResponse;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
+import org.evolboot.pay.exception.PayException;
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import lombok.AllArgsConstructor;
@@ -11,6 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Map;
+
+import static org.evolboot.pay.PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist;
 
 /**
  * 第三方代收订单
@@ -20,13 +33,37 @@ import java.math.BigDecimal;
 @Slf4j
 @Service
 public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
-    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository) {
+
+
+    private final Map<PayGateway, ReceiptClient> receiptClients;
+
+    private final PayGatewayAccountAppService payGatewayAccountAppService;
+
+
+    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountAppService payGatewayAccountAppService) {
         super(repository);
+        this.receiptClients = receiptClients;
+        this.payGatewayAccountAppService = payGatewayAccountAppService;
     }
 
     public ReceiptOrder execute(Request request) {
+
+        log.info("代收:创建订单:{}", JsonUtil.stringify(request));
+        PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
+        log.info("代收:网关:{}", gatewayAccount.getPayGateway());
+        ReceiptClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
+
+        if (!receiptClient.supportCurrency(request.getCurrency())) {
+            log.info("代收:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
+            throw PayException.dotSupportCurrency(gatewayAccount.getAlias(), request.getCurrency());
+        }
+        Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
+        String receiptOrderId = ReceiptOrder.generateId();
+        log.info("代收:创建代收,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), receiptOrderId);
+        ReceiptCreateResponse response = receiptClient.createReceiptOrder(receiptOrderId, gatewayAccount, request.to());
+        Assert.isTrueOrElseThrow(response.isOk(), () -> PayException.RECEIPT_ORDER_ERROR);
+
         ReceiptOrder receiptOrder = new ReceiptOrder(
-                request.getReceiptOrderId(),
                 request.getInternalOrderId(),
                 request.getProductName(),
                 request.getPayeeName(),
@@ -34,29 +71,53 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
                 request.getPayeeEmail(),
                 request.getPayGatewayAccountId(),
                 request.getPayAmount(),
-                request.getPayGateway(),
+                gatewayAccount.getPayGateway(),
                 request.getRedirectUrl(),
-                request.getResult()
+                request.getCurrency(),
+                response.getRequestResult()
         );
         repository.save(receiptOrder);
         return receiptOrder;
     }
 
     @Getter
+    @NoArgsConstructor
     @Builder
     @AllArgsConstructor
     public static class Request {
-        private String receiptOrderId;
+
+
+        // 内部订单ID
         private String internalOrderId;
+
+        // 商品信息
         private String productName;
+
+        // 支付人姓名
         private String payeeName;
+
         private String payeePhone;
+
         private String payeeEmail;
-        private Long payGatewayAccountId;
+
+        // 支付金额
         private BigDecimal payAmount;
-        private PayGateway payGateway;
+
+        private Currency currency;
+
+        private Long payGatewayAccountId;
+
         private String redirectUrl;
-        private ReceiptOrderRequestResult result;
+
+        private String upi;
+
+        private String methodId;
+
+        public ReceiptCreateRequest to() {
+            return new ReceiptCreateRequest(internalOrderId, productName, payeeName, payeePhone, payeeEmail, payAmount, currency, payGatewayAccountId, redirectUrl, upi, methodId);
+        }
+
     }
+
 
 }
