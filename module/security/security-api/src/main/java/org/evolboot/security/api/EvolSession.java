@@ -18,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class EvolSession implements Serializable {
 
-    private Long userId;
+    private Long principalId;
 
     /**
      * 设备信息
@@ -31,7 +31,7 @@ public class EvolSession implements Serializable {
      */
     private List<String> authorities;
 
-    public EvolSession(Long userId) {
-        this.userId = userId;
+    public EvolSession(Long principalId) {
+        this.principalId = principalId;
     }
 }

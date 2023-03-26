@@ -23,12 +23,14 @@ public class AdminAccessTokenAuthenticateTokenRequest {
     private String googleAuthenticatorCode;
 
 
-    public AccessTokenAuthenticateToken to() {
+
+    public AccessTokenAuthenticateToken to(String ip) {
         return AccessTokenAuthenticateToken.builder()
                 .username(username)
                 .password(password)
                 .googleAuthenticatorCode(googleAuthenticatorCode)
                 .authenticationTokenType(AuthenticationTokenType.GOOGLE_AUTHENTICATOR)
+                .ip(ip)
                 .build();
     }
 

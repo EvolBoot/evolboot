@@ -74,7 +74,7 @@ public class OperationLogAspect {
         //用ID
         Long userId = 0L;
         if (SecurityAccessTokenHolder.isLogin()) {
-            userId = SecurityAccessTokenHolder.getUserId();
+            userId = SecurityAccessTokenHolder.getPrincipalId();
         }
         //执行方法
         log.info("请求ID:{}, 请求人:{}, 请求URL: {}, 请求方法:{},类方法: {} 参数:{} ,IP:{} ", requestId, userId, requestUrl, httpMethod, classMethod, params, ip);

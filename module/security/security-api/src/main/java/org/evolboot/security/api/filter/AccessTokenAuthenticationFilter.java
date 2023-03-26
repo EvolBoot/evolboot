@@ -64,7 +64,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             if (debug) {
                 this.logger
                         .debug("Token Authentication Authorization header found for token '"
-                                + evolSession.getUserId() + "'");
+                                + evolSession.getPrincipalId() + "'");
             }
 
             Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, evolSession);

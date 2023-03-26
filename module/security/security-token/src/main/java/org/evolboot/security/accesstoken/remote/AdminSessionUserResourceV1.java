@@ -50,7 +50,7 @@ public class AdminSessionUserResourceV1 {
             @Valid @RequestBody
                     AdminAccessTokenAuthenticateTokenRequest accessTokenAuthenticateToken
     ) {
-        AccessToken accessToken = service.authenticate(accessTokenAuthenticateToken.to(), IpUtil.getClientIP(servletRequest));
+        AccessToken accessToken = service.authenticate(accessTokenAuthenticateToken.to(IpUtil.getClientIP(servletRequest)));
         return ResponseModel.ok(accessToken.getToken());
     }
 

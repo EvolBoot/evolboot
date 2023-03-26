@@ -4,6 +4,7 @@ import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTok
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.shared.lang.DeviceType;
 
 /**
  * @author evol
@@ -16,9 +17,13 @@ public class MobileCaptchaAuthenticationToken implements AuthenticationToken {
 
     private String mobile;
 
-    private String mobileCaptchaToken;
+    private String captchaToken;
 
-    private String mobileCaptchaCode;
+    private String captchaCode;
+
+    private DeviceType deviceType;
+
+    private String ip;
 
 
     @Override

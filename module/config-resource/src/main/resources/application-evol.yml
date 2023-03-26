@@ -121,8 +121,8 @@ logging:
 
 rocketmq:
   name-server: 192.168.5.10:9876
-  group: group-test-evol
-  topic: topic-test-evol
+  group: group-test-evolpn
+  topic: topic-test-evolpn
   producer:
     group: ${rocketmq.group}
     topic: ${rocketmq.topic}

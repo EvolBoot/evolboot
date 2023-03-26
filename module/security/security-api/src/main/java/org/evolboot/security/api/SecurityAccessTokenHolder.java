@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 public abstract class SecurityAccessTokenHolder {
 
-    public static EvolSession getSessionUser() {
+    public static EvolSession getPrincipal() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof EvolSession) {
             return ((EvolSession) principal);
@@ -47,8 +47,8 @@ public abstract class SecurityAccessTokenHolder {
     }
 
 
-    public static Long getUserId() {
-        return getSessionUser().getUserId();
+    public static Long getPrincipalId() {
+        return getPrincipal().getPrincipalId();
     }
 
 }

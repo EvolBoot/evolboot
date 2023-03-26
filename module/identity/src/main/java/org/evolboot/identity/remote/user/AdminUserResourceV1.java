@@ -49,7 +49,7 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
                     UserUpdateRequest request
     ) {
-        service.update(SecurityAccessTokenHolder.getUserId(), request.to());
+        service.update(SecurityAccessTokenHolder.getPrincipalId(), request.to());
         return ResponseModel.ok();
     }
 
@@ -57,7 +57,7 @@ public class AdminUserResourceV1 {
     @GetMapping("/me")
     @Authenticated
     public ResponseModel<User> get() {
-        User user = service.findByUserId(SecurityAccessTokenHolder.getUserId());
+        User user = service.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
         return ResponseModel.ok(user);
     }
 
@@ -83,7 +83,7 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
                     UserPasswordUpdateRequest request
     ) {
-        service.updatePassword(SecurityAccessTokenHolder.getUserId(), request.getOldPassword(), request.getNewPassword(), request.getConfirmPassword());
+        service.updatePassword(SecurityAccessTokenHolder.getPrincipalId(), request.getOldPassword(), request.getNewPassword(), request.getConfirmPassword());
         return ResponseModel.ok();
     }
 

@@ -23,16 +23,16 @@ public class AccessToken {
 
     private String token;
 
-    private Long userId;
+    private Long principalId;
 
     private String loginIp;
 
     private List<String> authorities = new ArrayList<>();
 
     @Builder
-    public AccessToken(Long userId, List<String> authorities) {
-        Assert.notNull(userId, IdentityI18nMessage.User.userIdNotNull());
-        this.userId = userId;
+    public AccessToken(Long principalId, List<String> authorities) {
+        Assert.notNull(principalId, IdentityI18nMessage.User.userIdNotNull());
+        this.principalId = principalId;
         this.authorities = authorities.stream().filter(authorization -> !authorization.isBlank()).collect(Collectors.toList());
     }
 

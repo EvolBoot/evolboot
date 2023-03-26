@@ -176,6 +176,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     }
 
     public ReceiptOrder(
+            String receiptOrderId,
             String internalOrderId,
             String productName,
             String payeeName,
@@ -189,7 +190,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
             ReceiptOrderRequestResult result
 
     ) {
-        this.id = generateId();
+        this.id = receiptOrderId;
         setInternalOrderId(internalOrderId);
         setProductName(productName);
         setPayeeName(payeeName);

@@ -18,6 +18,13 @@ public interface IdentityClient {
 
     UserInfo register(UserRegisterService.Request request);
 
+    /**
+     *
+     * @param request
+     * @return
+     */
+    UserInfo findByMobileAndSmsCode(UserRegisterService.Request request);
+
     @Getter
     @Setter
     @AllArgsConstructor

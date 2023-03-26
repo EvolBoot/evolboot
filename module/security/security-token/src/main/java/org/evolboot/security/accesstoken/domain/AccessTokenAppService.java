@@ -4,7 +4,6 @@ import org.evolboot.identity.domain.user.UserRegisterService;
 
 /**
  * @author evol
-
  */
 public interface AccessTokenAppService {
 
@@ -12,10 +11,9 @@ public interface AccessTokenAppService {
      * 进行身份认证
      *
      * @param accessTokenAuthenticateToken 认证数据
-     * @param loginIp
      * @return
      */
-    AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken, String loginIp);
+    AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken);
 
     /**
      * 注册并登录
@@ -23,6 +21,7 @@ public interface AccessTokenAppService {
      * @param request
      * @return
      */
+    @Deprecated
     AccessToken registerAndGetAccessToken(UserRegisterService.Request request);
 
 

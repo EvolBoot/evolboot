@@ -39,7 +39,7 @@ public class AppSessionUserResourceV1 {
                     AppAccessTokenAuthenticateTokenRequest accessTokenAuthenticateToken
     ) {
 
-        AccessToken accessToken = service.authenticate(accessTokenAuthenticateToken.to(), IpUtil.getClientIP(servletRequest));
+        AccessToken accessToken = service.authenticate(accessTokenAuthenticateToken.to(IpUtil.getClientIP(servletRequest)));
         return ResponseModel.ok(accessToken.getToken());
     }
 

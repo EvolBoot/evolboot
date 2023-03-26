@@ -1,6 +1,7 @@
 package org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha;
 
 import org.evolboot.core.i18n.I18NMessageHolder;
+import org.evolboot.identity.domain.user.UserRegisterService;
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
 import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
@@ -10,6 +11,7 @@ import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTok
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import org.evolboot.security.accesstoken.exception.AccessTokenException;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.lang.DeviceType;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,20 +22,26 @@ import org.springframework.stereotype.Component;
 public class MobileCaptchaAuthenticationProvider implements AuthenticationProvider {
 
     private final IdentityClient identityClient;
-    private final CaptchaClient captchaClient;
 
-    public MobileCaptchaAuthenticationProvider(IdentityClient identityClient, CaptchaClient captchaClient) {
-
+    public MobileCaptchaAuthenticationProvider(IdentityClient identityClient) {
         this.identityClient = identityClient;
-        this.captchaClient = captchaClient;
     }
 
     @Override
     public AccessToken authenticate(AuthenticationToken authenticationToken) {
         MobileCaptchaAuthenticationToken token = (MobileCaptchaAuthenticationToken) authenticationToken;
-        captchaClient.verifyMobileCaptchaIsTrue(token.getMobilePrefix(), token.getMobile(), token.getMobileCaptchaCode(), token.getMobileCaptchaToken());
         try {
-            IdentityClient.UserInfo userInfo = identityClient.findByMobile(token.getMobile());
+            IdentityClient.UserInfo userInfo = identityClient.findByMobileAndSmsCode(new UserRegisterService.Request(
+                    token.getMobilePrefix(),
+                    token.getMobile(),
+                    null,
+                    token.getCaptchaToken(),
+                    token.getCaptchaCode(),
+                    null,
+                    token.getIp(),
+                    null,
+                    token.getDeviceType()
+            ));
             return new AccessToken(userInfo.getUserId(), userInfo.getAuthorities());
         } catch (Exception e) {
             throw new AccessTokenException(I18NMessageHolder.message(AccessTokenI18nMessage.AUTHENTICATION_ERROR));

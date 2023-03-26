@@ -64,6 +64,7 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
         Assert.isTrueOrElseThrow(response.isOk(), () -> PayException.RECEIPT_ORDER_ERROR);
 
         ReceiptOrder receiptOrder = new ReceiptOrder(
+                receiptOrderId,
                 request.getInternalOrderId(),
                 request.getProductName(),
                 request.getPayeeName(),

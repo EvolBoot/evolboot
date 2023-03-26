@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.shared.lang.DeviceType;
 
 /**
  * @author evol
@@ -30,5 +31,9 @@ public class AccessTokenAuthenticateToken {
 
     private AuthenticationTokenType authenticationTokenType;
 
+
+    private DeviceType deviceType;
+
+    private String ip;
 
 }

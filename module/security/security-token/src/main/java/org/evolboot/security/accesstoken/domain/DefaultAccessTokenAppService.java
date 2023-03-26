@@ -38,7 +38,7 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
 
     @Override
     @Transactional
-    public AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken, String loginIp) {
+    public AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken) {
 
         AuthenticationToken token;
         if (AuthenticationTokenType.MOBILE_CAPTCHA.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
@@ -46,7 +46,9 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
                     accessTokenAuthenticateToken.getMobilePrefix(),
                     accessTokenAuthenticateToken.getUsername(),
                     accessTokenAuthenticateToken.getMobileCaptchaToken(),
-                    accessTokenAuthenticateToken.getMobileCaptchaCode()
+                    accessTokenAuthenticateToken.getMobileCaptchaCode(),
+                    accessTokenAuthenticateToken.getDeviceType(),
+                    accessTokenAuthenticateToken.getIp()
             );
         } else if (AuthenticationTokenType.GOOGLE_AUTHENTICATOR.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new GoogleAuthenticatorAuthenticationToken(
@@ -58,19 +60,20 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
             );
         }
         AccessToken accessToken = accessTokenAuthenticationManager.authenticate(token);
-        accessToken.setLoginIp(loginIp);
+        accessToken.setLoginIp(accessTokenAuthenticateToken.getIp());
 
         kickOutUser(accessToken);// 踢除其他用户下线
 
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getUserId(), loginIp, accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         return accessToken;
     }
 
     @Override
+    @Deprecated
     public AccessToken registerAndGetAccessToken(UserRegisterService.Request request) {
         AccessToken accessToken = registerUserAndGetAccessToken.execute(request);
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getUserId(), request.getRegisterIp(), accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), request.getRegisterIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         return accessToken;
     }
@@ -83,7 +86,7 @@ public class DefaultAccessTokenAppService implements AccessTokenAppService {
         if (accessToken.getAuthorities().contains(UserIdentity.ROLE_STAFF.name()) || accessToken.getAuthorities().contains(UserIdentity.ROLE_ADMIN.name())) {
             return;
         }
-        securityAccessTokenAppService.kickOut(accessToken.getUserId());
+        securityAccessTokenAppService.kickOut(accessToken.getPrincipalId());
     }
 
     @Override

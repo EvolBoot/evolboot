@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * @author evol
@@ -79,14 +80,21 @@ public class UserCreateFactory extends UserSupportService {
 
         Long id = userIdAppService.getNextUserId();
 
-        ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
+        String OriginalPassword;
+        if (ExtendObjects.isBlank(request.getEncodePassword())) {
+            //TODO 如果密码为空,则产生一个随机密码,需要改
+            OriginalPassword = UUID.randomUUID().toString();
+        } else {
+            ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
+            OriginalPassword = reversiblePassword.toOriginalPassword();
+        }
         User user = User.builder()
                 .id(id)
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .mobilePrefix(request.getMobilePrefix())
                 .mobile(request.getMobile())
-                .password(reversiblePassword.toOriginalPassword())
+                .password(OriginalPassword)
                 .avatar(UserConfiguration.getValue().getDefaultAvatar())
                 .userIdentity(request.getUserIdentity())
                 .inviterUserId(request.getInviterUserId())

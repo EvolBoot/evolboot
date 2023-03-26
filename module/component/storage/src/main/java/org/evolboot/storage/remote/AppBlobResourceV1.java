@@ -41,7 +41,7 @@ public class AppBlobResourceV1 {
         String fileUrl = "";
         try {
             long size = uploadFile.getSize();
-            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.IMAGE, SecurityAccessTokenHolder.getUserId());
+            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.IMAGE, SecurityAccessTokenHolder.getPrincipalId());
         } catch (IOException e) {
             log.error("上传图片异常", e);
         }

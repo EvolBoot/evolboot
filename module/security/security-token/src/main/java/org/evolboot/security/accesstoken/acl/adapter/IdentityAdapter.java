@@ -13,6 +13,7 @@ import org.evolboot.identity.domain.user.UserRegisterService;
 import org.evolboot.identity.domain.user.UserStatus;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
+import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.shared.lang.UserIdentity;
 import com.google.common.collect.Lists;
@@ -35,13 +36,16 @@ public class IdentityAdapter implements IdentityClient {
     private final RoleAppService roleAppService;
     private final PermissionAppService permissionAppService;
     private final UserRoleAppService userRoleAppService;
+    private final CaptchaClient captchaClient;
 
 
-    public IdentityAdapter(UserAppService userAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService) {
+
+    public IdentityAdapter(UserAppService userAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService, CaptchaClient captchaClient) {
         this.userAppService = userAppService;
         this.roleAppService = roleAppService;
         this.permissionAppService = permissionAppService;
         this.userRoleAppService = userRoleAppService;
+        this.captchaClient = captchaClient;
     }
 
     @Override
@@ -69,6 +73,14 @@ public class IdentityAdapter implements IdentityClient {
         return new UserInfo(user.id(), false, user.getGoogleAuthSecret(), authorities);
     }
 
+    @Override
+    public UserInfo findByMobileAndSmsCode(UserRegisterService.Request request) {
+        if (userAppService.existsByMobile(request.getMobile())) {
+            captchaClient.verifyMobileCaptchaIsTrue(request.getMobilePrefix(), request.getMobile(), request.getCaptchaCode(), request.getCaptchaToken());
+            return findByMobile(request.getMobile());
+        }
+        return register(request);
+    }
 
 
     private List<String> getAuthorities(User user) {
