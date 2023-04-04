@@ -10,6 +10,7 @@ import org.evolboot.configuration.domain.system.SystemConfig;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.JsonUtil;
 import com.google.common.collect.Maps;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,10 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author evol
- *
  */
 @Slf4j
 @RestController
@@ -55,6 +57,29 @@ public class BffAppResourceV1 {
         map.put("num", BigDecimal.valueOf(100L));
 
         return ResponseModel.ok(map);
+    }
+
+
+    @Operation(summary = "测试异步")
+    @GetMapping("/test-async")
+    public ResponseModel<?> testAsync(
+    ) throws ExecutionException, InterruptedException {
+        String xx = "这是啥?";
+        CompletableFuture.supplyAsync(() -> {
+            System.out.println("调用时:" + Thread.currentThread().getName());
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            AboutConfig byKey = configAppService.getByKey(AboutConfig.KEY, AboutConfig.class);
+            return byKey.getLocales().get(0).getPrivacy();
+        }).thenAcceptAsync(s -> {
+            System.out.println("回调时:" + Thread.currentThread().getName());
+            System.out.println(s + xx + ExtendDateUtil.now());
+        });
+//        System.out.println(stringCompletableFuture.get());
+        return ResponseModel.ok();
     }
 
 

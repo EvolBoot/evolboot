@@ -43,6 +43,7 @@
         <poi.version>5.2.2</poi.version>
         <querydsl.version>4.4.0</querydsl.version>
         <hikaricp.version>5.0.0</hikaricp.version>
+        <netty-socketio.version>1.7.23</netty-socketio.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -185,19 +186,40 @@
                 <artifactId>bff-app</artifactId>
                 <version>${revision}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>bff-admin</artifactId>
                 <version>${revision}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>sentinel</artifactId>
                 <version>${revision}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>pay</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>websocket</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>ws-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>ws-netty-socketio</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -282,6 +304,11 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.corundumstudio.socketio</groupId>
+                <artifactId>netty-socketio</artifactId>
+                <version>${netty-socketio.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

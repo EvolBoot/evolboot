@@ -26,10 +26,6 @@
             <artifactId>identity</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.evolboot</groupId>
             <artifactId>system</artifactId>
         </dependency>
@@ -64,6 +60,14 @@
         <dependency>
             <groupId>org.evolboot</groupId>
             <artifactId>mq-redis-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>ws-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>ws-netty-socketio</artifactId>
         </dependency>
 
     </dependencies>

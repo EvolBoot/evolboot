@@ -69,6 +69,9 @@ evolpn:
       endpoint: http://192.168.0.251:19000
       access-key: sa1
       secret-access-key: 1234567890@a
+  socketio:
+    port: 8821
+    url:
 
 spring:
   datasource:

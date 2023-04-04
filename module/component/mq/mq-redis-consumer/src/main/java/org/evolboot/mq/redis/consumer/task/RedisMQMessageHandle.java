@@ -29,8 +29,10 @@ public class RedisMQMessageHandle implements Runnable {
     private final MqTransactionAppService mqTransactionAppService;
     private final RedisMQMessagePublisher redisMQMessagePublisher;
 
-    private long TRANSACTION_TIMEOUT = 3 * 24 * 60 * 60;
-    private long DELAY_TIME_TIMEOUT = 24 * 60 * 60;
+    // 事务超时时间,如果在此时间内还没有查询到消息,则视为未提交事务
+    private final static long TRANSACTION_TIMEOUT = 30 * 60;
+    // 延时消息超时时间
+    private final static long DELAY_TIME_TIMEOUT = 24 * 60 * 60;
 
     private final String key;
     private final String group;

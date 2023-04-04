@@ -17,5 +17,6 @@
         <module>config</module>
         <module>mq</module>
         <module>sentinel</module>
+        <module>websocket</module>
     </modules>
 </project>

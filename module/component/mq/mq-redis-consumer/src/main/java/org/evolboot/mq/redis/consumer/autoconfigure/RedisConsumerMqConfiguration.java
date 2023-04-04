@@ -43,7 +43,7 @@ public class RedisConsumerMqConfiguration {
         return StreamMessageListenerContainer
                 .StreamMessageListenerContainerOptions
                 .builder()
-                .pollTimeout(Duration.ofSeconds(2))
+                .pollTimeout(Duration.ofSeconds(1))
                 // 可以理解为 Stream Key 的序列化方式
                 .keySerializer(RedisSerializer.string())
                 // 一次最多获取多少条消息
@@ -88,6 +88,7 @@ public class RedisConsumerMqConfiguration {
                 streamMessageListenerContainerOptions);
         // 实时队列线程数给多一点
         log.info("消息队列:Redis:实时监听线程数:{}", redisStreamProperty.getThreadNumber());
+
         for (int i = 0; i < redisStreamProperty.getThreadNumber(); i++) {
             listenerContainer.receive(Consumer.from(redisStreamProperty.getGroup(), redisStreamProperty.getConsumer()),
                     StreamOffset.create(redisStreamProperty.getKeyForRealTime(), ReadOffset.lastConsumed()),
