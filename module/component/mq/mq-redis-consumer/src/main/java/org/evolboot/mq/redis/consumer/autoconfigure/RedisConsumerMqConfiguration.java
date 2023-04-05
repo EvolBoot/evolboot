@@ -27,7 +27,7 @@ import java.time.Duration;
  */
 @Configuration
 @Slf4j
-public class RedisConsumerMqConfiguration {
+public class RedisConsumerMqConfiguration implements DisposableBean {
 
 
     private final RedisStreamProperty redisStreamProperty;
@@ -120,4 +120,10 @@ public class RedisConsumerMqConfiguration {
     }
 
 
+    @Override
+    public void destroy() throws Exception {
+        log.info("消息队列:Redis:开始停止");
+        this.streamMessageListenerContainer.stop();
+        log.info("消息队列:Redis:已停止");
+    }
 }

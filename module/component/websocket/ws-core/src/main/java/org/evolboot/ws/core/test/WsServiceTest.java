@@ -74,8 +74,9 @@ public class WsServiceTest {
     }
 
     @WsOnMessage("test11")
-    public void test11(TestMessage msg) {
+    public Object test11(TestMessage msg) {
         System.out.println(msg);
+        return JsonUtil.stringify(msg);
     }
 
     @WsOnMessage(value = "test12", convert = ListStringConvert.class)

@@ -15,7 +15,8 @@ public enum DeviceType {
     OSX(4),
     WEB(5),
     MINI_PROGRAM(6),
-    LINUX(7);
+    LINUX(7),
+    UNKNOWN(999);
 
     private int platform;
 

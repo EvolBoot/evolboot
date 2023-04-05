@@ -25,15 +25,12 @@ public class RedisRealTimeListenerMessage implements StreamListener<String, MapR
     private final RedisStreamProperty redisStreamProperty;
     private final EventPublisher eventPublisher;
     private final MqMessageRedisTemplate mqMessageRedisTemplate;
-    private final MqTransactionAppService mqTransactionAppService;
-    private long TIMEOUT_TRANSACTION_SECONDS = 60 * 60;
     private final RedisMQMessagePublisher redisMQMessagePublisher;
 
-    public RedisRealTimeListenerMessage(RedisStreamProperty redisStreamProperty, EventPublisher eventPublisher, MqMessageRedisTemplate mqMessageRedisTemplate, MqTransactionAppService mqTransactionAppService, RedisMQMessagePublisher redisMQMessagePublisher) {
+    public RedisRealTimeListenerMessage(RedisStreamProperty redisStreamProperty, EventPublisher eventPublisher, MqMessageRedisTemplate mqMessageRedisTemplate, RedisMQMessagePublisher redisMQMessagePublisher) {
         this.redisStreamProperty = redisStreamProperty;
         this.eventPublisher = eventPublisher;
         this.mqMessageRedisTemplate = mqMessageRedisTemplate;
-        this.mqTransactionAppService = mqTransactionAppService;
         this.redisMQMessagePublisher = redisMQMessagePublisher;
     }
 
