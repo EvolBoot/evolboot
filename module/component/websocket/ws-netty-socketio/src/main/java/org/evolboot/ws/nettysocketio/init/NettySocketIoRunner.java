@@ -49,9 +49,10 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
     @Override
     public void run(String... args) throws Exception {
         Configuration config = new Configuration();
+
+        //TODO 配置
         config.setHostname("localhost");
         config.setPort(9092);
-//        config.setPingTimeout(10);
         server = new SocketIOServer(config);
         messageClient = server.addNamespace("/ws");
 
@@ -64,7 +65,7 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
                 client.disconnect();
                 return;
             }
-            // 校验 token 和设备类型
+            //TODO 校验 token 和设备类型
             String principalId = token;
             List<UUID> uuids = principalSocketClient.get(principalId);
             if (ExtendObjects.isEmpty(uuids)) {
@@ -75,7 +76,7 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
             principalSocketClient.put(principalId, uuids);
             WsConnectedEvent wsConnectedEvent = new WsConnectedEvent(principalId, deviceType);
             Object handledMessage = wsMessageHandle.handleMessage(connectedAction, JsonUtil.stringify(wsConnectedEvent));
-            if (!ExtendObjects.isNull(handledMessage)) {
+            if (ExtendObjects.nonNull(handledMessage)) {
                 client.sendEvent(connectedAction, handledMessage);
             }
             // 发布登录事件

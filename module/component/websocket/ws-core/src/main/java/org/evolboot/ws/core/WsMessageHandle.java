@@ -31,9 +31,9 @@ public final class WsMessageHandle {
     /**
      * 不知类型时，先转为 string，然后再转
      *
-     * @param action
-     * @param message
-     * @return
+     * @param action  消息类型
+     * @param message 消息
+     * @return 返回处理结果
      */
     public Object handleMessage(String action, String message) {
         MethodAndParamClass methodAndParamClass = wsHandles.get(action);
@@ -60,9 +60,9 @@ public final class WsMessageHandle {
     /**
      * message 已知类型
      *
-     * @param action
-     * @param message
-     * @return
+     * @param action 接收类型
+     * @param message 接收的行为
+     * @return 返回的类型
      */
     public Object handleMessage(String action, Object message) {
         MethodAndParamClass methodAndParamClass = wsHandles.get(action);

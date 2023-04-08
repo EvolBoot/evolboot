@@ -8,16 +8,16 @@ public interface WsMessageSender {
 
     /**
      * 主动发送消息
-     * @param principalId
-     * @param action
-     * @param msg
+     * @param principalId 接收的用户ID
+     * @param action 接收的类型
+     * @param msg 接收的消息
      */
     void send(String principalId, String action, Object msg);
 
     /**
      * 广播
-     * @param action
-     * @param msg
+     * @param action 接收的类型
+     * @param msg 接收的消息
      */
     void broadcast(String action, Object msg);
 
