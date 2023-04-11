@@ -59,7 +59,7 @@ public class ResponseModel<T> {
 
     public static <T> ResponseModel<T> ok(T data) {
         return new ResponseModel<T>(
-                0, SUCCESS, data
+                SUCCESS_CODE, SUCCESS, data
         );
     }
 
