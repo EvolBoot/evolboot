@@ -26,7 +26,7 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
     default JPQLQuery<User> fillQueryParameter(UserQuery query) {
         QUser q = QUser.user;
         JPQLQuery<User> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createTime.asc());
+        jpqlQuery.select(q).from(q).orderBy(q.createAt.asc());
         if (ExtendObjects.nonNull(query.getUserId())) {
             jpqlQuery.where(q.id.eq(query.getUserId()));
         }
@@ -83,7 +83,7 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
                         q.id,
                         q.inviterUserId
                 )
-        ).from(q).orderBy(q.createTime.asc());
+        ).from(q).orderBy(q.createAt.asc());
         return findAll(jpqlQuery);
     }
 

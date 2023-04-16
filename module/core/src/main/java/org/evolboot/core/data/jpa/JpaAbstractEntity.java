@@ -22,11 +22,11 @@ public abstract class JpaAbstractEntity<ID extends Serializable> extends Abstrac
     protected Long version;
 
     @Getter
-    protected Date createTime = new Date();
+    protected Date createAt = new Date();
 
     @UpdateTimestamp
     @Column(nullable = false)
-    private Date lastModifyTime;
+    private Date updateAt;
 
 
 }

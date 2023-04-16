@@ -25,10 +25,10 @@ public interface JpaOperationLogRepository extends OperationLogRepository, Exten
         JPQLQuery<OperationLog> jpqlQuery = getJPQLQuery();
         jpqlQuery.select(q).from(q);
         if (ExtendObjects.nonNull(query.getBegin())) {
-            jpqlQuery.where(q.createTime.goe(query.getBegin()));
+            jpqlQuery.where(q.createAt.goe(query.getBegin()));
         }
         if (ExtendObjects.nonNull(query.getEnd())) {
-            jpqlQuery.where(q.createTime.loe(query.getEnd()));
+            jpqlQuery.where(q.createAt.loe(query.getEnd()));
         }
         if (ExtendObjects.nonNull(query.getUserId())) {
             jpqlQuery.where(q.userId.eq(query.getUserId()));

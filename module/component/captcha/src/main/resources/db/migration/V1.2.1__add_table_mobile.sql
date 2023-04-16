@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS evoltb_mobile_captcha;
 CREATE TABLE evoltb_mobile_captcha
 (
     token_              varchar(50) NOT NULL COMMENT '主键',
-    create_time_        datetime    NOT NULL COMMENT '创建时间',
+    create_at_          datetime    NOT NULL COMMENT '创建时间',
     mobile_prefix_      varchar(10) NOT NULL COMMENT '手机号前缀',
     mobile_             varchar(20) NOT NULL COMMENT '手机号',
     sms_content_        text        NOT NULL COMMENT '验证码内容',
@@ -10,7 +10,7 @@ CREATE TABLE evoltb_mobile_captcha
     code_               varchar(20) NOT NULL COMMENT '验证码',
     expires_            bigint      NOT NULL COMMENT '有效期',
     interval_           bigint      NOT NULL COMMENT '间隔时间',
-    limit_verify_count_ int        default 0 COMMENT '验证次数',
+    limit_verify_count_ int default 0 COMMENT '验证次数',
     verify_result_      tinyint(1) default 0 comment '验证结果',
     ip_                 varchar(50) COMMENT '获取IP',
     internal_code_      varchar(50) COMMENT '内部码',

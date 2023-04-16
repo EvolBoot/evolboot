@@ -3,6 +3,7 @@ package org.evolboot.core.util;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
+import org.springframework.util.MimeTypeUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -146,7 +147,7 @@ public class ExtendHttpUtil {
      */
     public static String postJson(String urlString, Map<String, Object> paramMap) {
         return HttpUtil.createPost(urlString)
-                .header("Content-Type", "application/json")
+                .header("Content-Type", MimeTypeUtils.APPLICATION_JSON_VALUE)
                 .body(JsonUtil.stringify(paramMap))
                 .execute().body();
     }
@@ -161,7 +162,7 @@ public class ExtendHttpUtil {
      */
     public static String postJson(String urlString, Map<String, Object> paramMap, Map<String, String> header) {
         return HttpUtil.createPost(urlString)
-                .header("Content-Type", "application/json")
+                .header("Content-Type", MimeTypeUtils.APPLICATION_JSON_VALUE)
                 .headerMap(header, true)
                 .body(JsonUtil.stringify(paramMap))
                 .execute().body();
@@ -179,7 +180,7 @@ public class ExtendHttpUtil {
      */
     public static String postJson(String urlString, Map<String, Object> paramMap, Map<String, String> header, int timeoutMs) {
         return HttpUtil.createPost(urlString)
-                .header("Content-Type", "application/json")
+                .header("Content-Type", MimeTypeUtils.APPLICATION_JSON_VALUE)
                 .headerMap(header, true)
                 .timeout(timeoutMs)
                 .body(JsonUtil.stringify(paramMap))
@@ -196,7 +197,7 @@ public class ExtendHttpUtil {
      */
     public static HttpResponse postJsonReturnResponse(String urlString, Map<String, Object> paramMap) {
         return HttpUtil.createPost(urlString)
-                .header("Content-Type", "application/json")
+                .header("Content-Type", MimeTypeUtils.APPLICATION_JSON_VALUE)
                 .body(JsonUtil.stringify(paramMap))
                 .execute();
     }
