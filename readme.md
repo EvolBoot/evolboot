@@ -1,6 +1,7 @@
 # evolboot 
 
-# 使用maven `mvn archetype:generate` 生成后需要替换的
+
+ 如果使用maven `mvn archetype:generate` 生成后需要替换的
 
 1. config 配置的报名 全局替换包名：org.evolboot
 
