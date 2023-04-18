@@ -16,7 +16,7 @@ import java.util.Set;
 public class UserCreateStaffRequest {
 
     @NotEmpty(message = IdentityI18nMessage.User.USERNAME_NOT_EMPTY)
-    @Schema(description = "用户名",example = "zhangsan")
+    @Schema(description = "用户名",example = "evol")
     private String username;
 
     @NotEmpty(message = IdentityI18nMessage.User.PASSWORD_NOT_EMPTY)

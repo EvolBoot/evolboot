@@ -1,7 +1,7 @@
 package org.evolboot.shared.pay;
 
 /**
- * @author zhangsan
+ * @author evol
  */
 public enum ReleasedOrderOrgType {
 

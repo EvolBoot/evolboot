@@ -13,7 +13,7 @@ public abstract class RegexUtil {
     /**
      * 验证Email
      *
-     * @param email email地址，格式：zhangsan@gtexpress.cn，zhangsan@xxx.com.cn，xxx代表邮件服务商
+     * @param email email地址，格式：evol@gtexpress.cn，evol@xxx.com.cn，xxx代表邮件服务商
      * @return 验证成功返回true，验证失败返回false
      */
     public static boolean checkEmail(String email) {
