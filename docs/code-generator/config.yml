@@ -1,0 +1,36 @@
+# 代码生成器配置(配置后去执行:org.evolboot.core.gen.GenCode 的main函数)
+# 模板路径,如果不为空,则使用此路径
+templatePath:
+# 原始占位符,不用动
+placeholder:
+  projectPackage: projectPackage
+  tablePrefix: tableprefix_
+  author: authorxRQXP
+  boundContext: lrxxoiecygkjh
+  boundContextClass: Lrxxoiecygkjh
+  boundContextUrl: lh6wf4pd9y
+
+  domainName: xarvkgvvrllnc
+  classNamePrefix: Xarvkgvvrllnc
+  instantiationObjectName: instantiationObjectName
+  classNameUrl: irkdf3nfva
+
+  remark: 模板
+  datePlaceholder: datePlaceholder
+  pkIdClass: Keya2Akk5iV3n
+
+
+# 替换的字符串
+replace:
+  projectPackage: org.evolboot
+  tablePrefix: evol_
+  author: evol
+  # 上下文名 多个单线用下划线连接
+  boundContext: pay
+
+  #领域名称,多个单词用下划线连接
+  domainName: receipt_order
+
+  remark: 收款
+  # 主键类型
+  pkIdClass: String
