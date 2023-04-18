@@ -1,6 +1,7 @@
 package org.evolboot.core.gen;
 
 import cn.hutool.core.io.FileUtil;
+import com.google.common.io.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.Version;
 import org.evolboot.core.util.Assert;
@@ -38,21 +39,22 @@ public class GenCode {
      */
     private final static String TEMPLATE_PATH = CODE_GENERATOR_PATH + "/template";
 
-    private final static String TARGET_PATH = CODE_GENERATOR_PATH + "/module";
+    private final static String TARGET_PATH = CODE_GENERATOR_PATH + "/target";
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Yaml yaml = new Yaml();
         GenConfig genConfig = yaml.loadAs(new FileInputStream(CONFIG_YAML_RELATIVE_PATH), GenConfig.class);
 
         String templatePath = ExtendObjects.isBlank(genConfig.getTemplatePath()) ? TEMPLATE_PATH : genConfig.getTemplatePath();
         File template = new File(templatePath);
+        File target = new File(TARGET_PATH);
+
         Assert.isTrue(template.exists(), "模板文件不存在");
         // 删除之前的生成代码
         FileUtil.del(TARGET_PATH);
         // 拷贝一份新的模板
-        FileUtil.copy(template.getPath(), TARGET_PATH, true);
-        File target = new File(TARGET_PATH);
+        FileUtil.copyContent(template, target, true);
         GenConfig.ConfigYaml placeholder = genConfig.getPlaceholder();
         GenConfig.ConfigYaml replace = genConfig.getReplace();
 
