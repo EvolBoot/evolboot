@@ -1,6 +1,8 @@
 package org.evolboot.ws.core.test;
 
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.core.websocket.WsAuthentication;
+import org.evolboot.core.websocket.WsSecurityContextHolder;
 import org.evolboot.shared.event.mq.TestMessage;
 import org.evolboot.ws.core.WsOnMessage;
 import org.evolboot.ws.core.WsService;
@@ -23,9 +25,11 @@ public class WsServiceTest {
 
 
     @WsOnMessage("test2")
-    public String test2(String msg) {
+    public String test2(String msg) throws InterruptedException {
+        String principalId = WsSecurityContextHolder.getContext().getPrincipalId();
         System.out.println(msg);
-        return "返回Test2";
+        Thread.sleep(20 * 1000);
+        return principalId + "返回Test2";
     }
 
     @WsOnMessage("test3")

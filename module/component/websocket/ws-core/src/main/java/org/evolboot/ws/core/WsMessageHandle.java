@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.core.websocket.WsAuthentication;
+import org.evolboot.core.websocket.WsSecurityContextHolder;
 import org.evolboot.ws.core.convert.WsAttributeConverter;
 
 import java.lang.reflect.InvocationTargetException;
@@ -35,13 +37,14 @@ public final class WsMessageHandle {
      * @param message 消息
      * @return 返回处理结果
      */
-    public Object handleMessage(String action, String message) {
+    public Object handleMessage(String principalId, String action, String message) {
         MethodAndParamClass methodAndParamClass = wsHandles.get(action);
         if (methodAndParamClass == null) {
             log.info("没有对应的Websocket处理器:{}", action);
             return null;
         }
         try {
+            WsSecurityContextHolder.setContext(new WsAuthentication(principalId));
             Method method = methodAndParamClass.getMethod();
             Object invoke;
             if (methodAndParamClass.getValueOf() != null) {
@@ -60,17 +63,18 @@ public final class WsMessageHandle {
     /**
      * message 已知类型
      *
-     * @param action 接收类型
+     * @param action  接收类型
      * @param message 接收的行为
      * @return 返回的类型
      */
-    public Object handleMessage(String action, Object message) {
+    public Object handleMessage(String principalId, String action, Object message) {
         MethodAndParamClass methodAndParamClass = wsHandles.get(action);
         if (methodAndParamClass == null) {
             log.info("没有对应的Websocket处理器:{}", action);
             return null;
         }
         try {
+            WsSecurityContextHolder.setContext(new WsAuthentication(principalId));
             Method method = methodAndParamClass.getMethod();
             return method.invoke(methodAndParamClass.getBean(), message);
         } catch (IllegalAccessException | InvocationTargetException e) {

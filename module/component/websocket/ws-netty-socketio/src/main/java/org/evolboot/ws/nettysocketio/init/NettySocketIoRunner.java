@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.EventPublisher;
+import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.shared.event.ws.WsConnectedEvent;
@@ -20,6 +21,7 @@ import com.corundumstudio.socketio.*;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author evol
@@ -39,7 +41,7 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
     private final WsMessageHandle wsMessageHandle;
 
     private SocketIOServer server;
-    private SocketIONamespace messageClient;
+//    private SocketIONamespace messageClient;
 
     public NettySocketIoRunner(EventPublisher eventPublisher, WsMessageHandle wsMessageHandle) {
         this.eventPublisher = eventPublisher;
@@ -54,15 +56,15 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
         config.setHostname("localhost");
         config.setPort(9092);
         server = new SocketIOServer(config);
-        messageClient = server.addNamespace("/ws");
+//        messageClient = server.addNamespace("/ws");
 
-        messageClient.addConnectListener(client -> {
+        server.addConnectListener(client -> {
             String token = getToken(client);
             DeviceType deviceType = getDeviceType(client);
             log.info("WS:Netty-SocketIO:连接:{},{},{}", token, client.getSessionId(), deviceType);
             if (ExtendObjects.isBlank(token)) {
-                log.info("WS:Netty-SocketIO:连接:没有Token:断开连接");
                 client.disconnect();
+                log.info("WS:Netty-SocketIO:连接:没有Token:断开连接:{}", client.isChannelOpen());
                 return;
             }
             //TODO 校验 token 和设备类型
@@ -75,8 +77,8 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
             sessionIdAndPrincipalId.put(client.getSessionId().toString(), principalId);
             principalSocketClient.put(principalId, uuids);
             WsConnectedEvent wsConnectedEvent = new WsConnectedEvent(principalId, deviceType);
-            Object handledMessage = wsMessageHandle.handleMessage(connectedAction, JsonUtil.stringify(wsConnectedEvent));
-            if (ExtendObjects.nonNull(handledMessage)) {
+            Object handledMessage = wsMessageHandle.handleMessage(principalId, connectedAction, JsonUtil.stringify(wsConnectedEvent));
+            if (handledMessage != null) {
                 client.sendEvent(connectedAction, handledMessage);
             }
             // 发布登录事件
@@ -84,18 +86,18 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
             log.info("WS:Netty-SocketIO:连接:{},{},{},目前有: {} 个连接", token, client.getSessionId(), deviceType, sessionIdAndPrincipalId.size());
         });
 
-        messageClient.addDisconnectListener(client -> {
+        server.addDisconnectListener(client -> {
             String token = getToken(client);
             String sessionId = client.getSessionId().toString();
             String principalId = sessionIdAndPrincipalId.get(sessionId);
             if (ExtendObjects.isBlank(principalId)) {
-                log.info("WS:Netty-SocketIO:离线监听异常,找不到对应的 principalId");
+                log.error("WS:Netty-SocketIO:离线监听异常,找不到对应的 principalId");
                 return;
             }
             List<UUID> sessionIds = principalSocketClient.get(principalId);
             sessionIdAndPrincipalId.remove(client.getSessionId().toString());
             if (ExtendObjects.isEmpty(sessionIds)) {
-                log.info("WS:Netty-SocketIO:离线监听异常,找不到对应的 sessionId");
+                log.error("WS:Netty-SocketIO:离线监听异常,找不到对应的 sessionId");
                 return;
             }
             sessionIds.remove(client.getSessionId());
@@ -107,14 +109,19 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
 
         wsMessageHandle.getAllAction().forEach(action -> {
             log.info("WS:Netty-SocketIO:启动监听事件:{}", action);
-            messageClient.addEventListener(action, wsMessageHandle.getByAction(action).getClazz(), (client, data, ackRequest) -> {
-                Object handledMessage = wsMessageHandle.handleMessage(action, data);
-                if (!ExtendObjects.isNull(handledMessage)) {
+            server.addEventListener(action, wsMessageHandle.getByAction(action).getClazz(), (client, data, ackRequest) -> {
+                String principalId = sessionIdAndPrincipalId.get(client.getSessionId().toString());
+                if (principalId == null) {
+                    log.error("未登录用户尝试发送消息,拒绝");
+                    client.disconnect();
+                    return;
+                }
+                Object handledMessage = wsMessageHandle.handleMessage(principalId, action, data);
+                if (handledMessage != null) {
                     client.sendEvent(action, handledMessage);
                 }
             });
         });
-
         server.start();
         log.info("Websocket-Netty-SocketIO:启动");
     }
@@ -137,7 +144,7 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
         List<UUID> uuids = principalSocketClient.get(principalId);
         if (!ExtendObjects.isEmpty(uuids)) {
             uuids.forEach(uuid -> {
-                SocketIOClient client = messageClient.getClient(uuid);
+                SocketIOClient client = server.getClient(uuid);
                 if (ExtendObjects.nonNull(client) && client.isChannelOpen()) {
                     client.sendEvent(action, msg);
                 }
@@ -149,7 +156,7 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
 
     @Override
     public void broadcast(String action, Object msg) {
-        messageClient.getBroadcastOperations().sendEvent(action, JsonUtil.stringify(msg));
+        server.getBroadcastOperations().sendEvent(action, JsonUtil.stringify(msg));
     }
 
     @Override

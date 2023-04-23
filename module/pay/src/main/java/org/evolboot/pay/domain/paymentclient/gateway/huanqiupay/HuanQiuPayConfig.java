@@ -8,19 +8,19 @@ import lombok.Getter;
 @Getter
 public class HuanQiuPayConfig {
 
-    private String domain;
+    private final String domain;
 
-    private String releasedCreateUrl = "http://api.xiongwei2000.com/pay.bank.to";
+    private final String releasedCreateUrl = "http://api.xiongwei2000.com/pay.bank.to";
 
-    private String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
+    private final String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
 
-    private String receiptNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/receipt/notify";
+    private final String receiptNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/receipt/notify";
 
-    private String successUrl = "/v1/api/pay/payment/huan-qiu-pay/success";
+    private final String successUrl = "/v1/api/pay/payment/huan-qiu-pay/success";
 
-    private String failUrl = "/v1/api/pay/payment/huan-qiu-pay/fail";
+    private final String failUrl = "/v1/api/pay/payment/huan-qiu-pay/fail";
 
-    private String releasedNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/released/notify";
+    private final String releasedNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/released/notify";
 
     public HuanQiuPayConfig(String domain) {
         this.domain = domain;

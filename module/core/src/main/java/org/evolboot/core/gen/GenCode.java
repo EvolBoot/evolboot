@@ -59,6 +59,7 @@ public class GenCode {
         GenConfig.ConfigYaml replace = genConfig.getReplace();
 
 
+
         // 包名,去除下划线转小写
         String boundContext =  replace.getBoundContext().replaceAll("_", "").toLowerCase();
         // 类名前缀,驼峰
