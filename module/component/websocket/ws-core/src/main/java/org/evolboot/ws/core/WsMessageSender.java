@@ -26,4 +26,11 @@ public interface WsMessageSender {
      */
     void printOnline();
 
+    /**
+     * 是否在线
+     * @param principalId
+     * @return
+     */
+    boolean isOnline(String principalId);
+
 }

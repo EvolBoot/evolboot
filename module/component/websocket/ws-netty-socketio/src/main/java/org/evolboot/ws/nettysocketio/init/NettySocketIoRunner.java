@@ -165,6 +165,11 @@ public class NettySocketIoRunner implements CommandLineRunner, DisposableBean, W
     }
 
     @Override
+    public boolean isOnline(String principalId) {
+        return principalSocketClient.containsKey(principalId);
+    }
+
+    @Override
     public void destroy() throws Exception {
         log.info("Websocket-Netty-SocketIO:开始暂停");
         server.stop();
