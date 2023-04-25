@@ -70,8 +70,8 @@ evolpn:
       access-key: sa1
       secret-access-key: 1234567890@a
   socketio:
-    port: 8821
-    url:
+    port: 9092
+    host: localhost
 
 spring:
   datasource:
