@@ -28,8 +28,8 @@ public class WsServiceTest {
     public String test2(String msg) throws InterruptedException {
         String principalId = WsSecurityContextHolder.getContext().getPrincipalId();
         System.out.println(msg);
-        Thread.sleep(20 * 1000);
-        return principalId + "返回Test2";
+        Thread.sleep(5 * 1000);
+        return principalId + ":返回Test2:"+msg;
     }
 
     @WsOnMessage("test3")

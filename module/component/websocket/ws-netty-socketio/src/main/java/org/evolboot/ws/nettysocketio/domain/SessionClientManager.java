@@ -9,6 +9,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.lang.DeviceType;
+import org.evolboot.ws.core.authentication.WsAuthenticationServiceManager;
+import org.evolboot.ws.core.authentication.WsAuthenticationType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public final class SessionClientManager {
 
     /**
      * 上线
+     *
      * @param client
      * @return
      */
@@ -48,8 +51,7 @@ public final class SessionClientManager {
             log.info("WS:Netty-SocketIO:连接:没有Token:断开连接:{}", client.isChannelOpen());
             return null;
         }
-        //TODO 校验 token 和设备类型
-        String principalId = token;
+        String principalId = WsAuthenticationServiceManager.getWsAuthenticationService(WsAuthenticationType.TOKEN).findPrincipalIdByToken(token);
         List<Device> devices = this.devices.get(principalId);
         if (ExtendObjects.isEmpty(devices)) {
             devices = Lists.newArrayList();
@@ -68,6 +70,7 @@ public final class SessionClientManager {
 
     /**
      * 离线
+     *
      * @param client
      * @return
      */
@@ -85,6 +88,7 @@ public final class SessionClientManager {
 
     /**
      * 是否在线
+     *
      * @param principalId
      * @return
      */
