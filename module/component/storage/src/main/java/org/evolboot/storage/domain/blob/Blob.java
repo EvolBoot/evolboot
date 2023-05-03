@@ -84,12 +84,10 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
     /**
      * 文件类型（预留）
      */
-    @Enumerated(EnumType.STRING)
     private BlobType type;
     /**
      * 文件类型（预留）
      */
-    @Enumerated(EnumType.STRING)
     private StorageType storageType = StorageType.LOCAL;
 
     private Long ownerUserId;

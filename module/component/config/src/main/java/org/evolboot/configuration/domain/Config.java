@@ -21,7 +21,6 @@ public class Config extends AbstractEntity<String> implements AggregateRoot<Conf
     @Id
     private String key;
 
-    @Enumerated(EnumType.STRING)
     private Scope scope;
 
     private String propertyValue;

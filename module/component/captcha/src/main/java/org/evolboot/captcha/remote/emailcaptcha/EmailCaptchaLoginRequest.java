@@ -1,7 +1,7 @@
 package org.evolboot.captcha.remote.emailcaptcha;
 
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import lombok.Data;
 public class EmailCaptchaLoginRequest {
     @Schema(defaultValue = "邮箱", example = "admin@qq.com")
     private String email;
-    private MessageTag messageTag;
+    private EmailMessageTag messageTag;
     private String imageCaptchaToken;
     private String imageCaptchaCode;
 

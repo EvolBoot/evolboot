@@ -1,6 +1,6 @@
 package org.evolboot.captcha.acl.client;
 
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.evolboot.sms.domain.SmsSender;
 
 /**
@@ -19,6 +19,6 @@ public interface CaptchaSmsClient {
      * @param params       参数
      * @return
      */
-    SmsSender.Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String... params);
+    SmsSender.Response sendSms(SmsMessageTag messageTag, String mobilePrefix, String mobile, String... params);
 
 }

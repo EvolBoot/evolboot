@@ -13,7 +13,7 @@ CREATE TABLE evoltb_storage_blob
     size_          long COMMENT '大小',
     md5_           varchar(256) COMMENT 'md5',
     crc32_         varchar(256) COMMENT 'crc32',
-    type_          varchar(20) COMMENT '类型',
+    type_          tinyint COMMENT '类型',
     owner_user_id_ bigint COMMENT '文件上传人',
 
 

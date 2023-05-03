@@ -1,6 +1,5 @@
 package org.evolboot.captcha.domain.mobilecaptcha.service;
 
-import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.acl.client.CaptchaSmsClient;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
@@ -10,7 +9,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.CodeGeneraterUtil;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.evolboot.sms.domain.SmsSender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
 import static org.evolboot.captcha.CaptchaI18nMessage.MobileCaptcha.*;
 
 
@@ -95,7 +93,7 @@ public class MobileCaptchaCreateFactory {
     public static class Request {
         private String mobilePrefix;
         private String mobile;
-        private MessageTag messageTag;
+        private SmsMessageTag messageTag;
         private String imageCaptchaToken;
         private String imageCaptchaCode;
         private Boolean verifyImageCaptcha;

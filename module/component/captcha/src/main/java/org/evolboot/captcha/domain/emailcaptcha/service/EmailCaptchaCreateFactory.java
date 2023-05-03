@@ -10,7 +10,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.CodeGeneraterUtil;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.RegexUtil;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -72,7 +72,7 @@ public class EmailCaptchaCreateFactory {
     @Builder
     public static class Request {
         private String email;
-        private MessageTag messageTag;
+        private EmailMessageTag messageTag;
         private String imageCaptchaToken;
         private String imageCaptchaCode;
         private Boolean verifyImageCaptcha;

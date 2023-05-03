@@ -6,7 +6,7 @@ import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactor
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +50,7 @@ public class AppEmailCaptchaResourceV1 {
             @RequestBody @Valid AppEmailCaptchaRequest request) {
         EmailCaptcha emailCaptcha = appService.create(new EmailCaptchaCreateFactory.Request(
                 request.getEmail(),
-                MessageTag.CHECK,
+                EmailMessageTag.CHECK,
                 null,
                 null,
                 false,

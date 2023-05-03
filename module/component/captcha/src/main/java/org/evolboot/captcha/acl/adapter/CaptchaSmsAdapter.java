@@ -1,7 +1,7 @@
 package org.evolboot.captcha.acl.adapter;
 
 import org.evolboot.captcha.acl.client.CaptchaSmsClient;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.evolboot.sms.domain.SmsAppService;
 import org.evolboot.sms.domain.SmsSender;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CaptchaSmsAdapter implements CaptchaSmsClient {
     }
 
     @Override
-    public SmsSender.Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String... params) {
+    public SmsSender.Response sendSms(SmsMessageTag messageTag, String mobilePrefix, String mobile, String... params) {
         return smsAppService.sendSms(messageTag, mobilePrefix, mobile, params);
     }
 }

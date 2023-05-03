@@ -6,7 +6,7 @@ import org.evolboot.core.domain.AbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,12 +65,9 @@ public class EmailCaptcha extends AbstractEntity<String> implements AggregateRoo
      */
     private Long interval = EmailCaptchaConfiguration.getValue().getInterval();
 
-    @Enumerated(EnumType.STRING)
-    private MessageTag messageTag;
+    private EmailMessageTag messageTag;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @org.hibernate.annotations.CreationTimestamp
-    protected Date createTime;
+    protected Date createAt;
 
     private void generateId() {
         this.token = IdGenerate.stringId();
@@ -88,7 +85,7 @@ public class EmailCaptcha extends AbstractEntity<String> implements AggregateRoo
         this.ip = ip;
     }
 
-    private void setMessageTag(MessageTag messageTag) {
+    private void setMessageTag(EmailMessageTag messageTag) {
         this.messageTag = messageTag;
     }
 
@@ -97,14 +94,14 @@ public class EmailCaptcha extends AbstractEntity<String> implements AggregateRoo
     }
 
     @Builder
-    public EmailCaptcha(String email, String code, MessageTag messageTag, String internalCode, String ip) {
-        this.createTime = new DateTime();
+    public EmailCaptcha(String email, String code, EmailMessageTag messageTag, String internalCode, String ip) {
         generateId();
         setEmail(email);
         setCode(code);
         setIp(ip);
         setMessageTag(messageTag);
         setInternalCode(internalCode);
+        this.createAt = new Date();
     }
 
     public boolean verify(String email, String code, String internalCode) {
@@ -124,12 +121,12 @@ public class EmailCaptcha extends AbstractEntity<String> implements AggregateRoo
 
     @JsonIgnore
     public Long getRemainExpires() {
-        return expires - (System.currentTimeMillis() - (createTime.getTime()));
+        return expires - (System.currentTimeMillis() - (createAt.getTime()));
     }
 
     @JsonIgnore
     public boolean isAllowGetNext() {
-        long timeoutTime = interval - (System.currentTimeMillis() - createTime.getTime());
+        long timeoutTime = interval - (System.currentTimeMillis() - createAt.getTime());
         return timeoutTime <= 0;
     }
 

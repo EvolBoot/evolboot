@@ -1,6 +1,6 @@
 package org.evolboot.sms.domain;
 
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.evolboot.shared.sms.SmsSendChannel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public interface SmsSender {
      * @param content      短信内容
      * @return
      */
-    Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String content);
+    Response sendSms(SmsMessageTag messageTag, String mobilePrefix, String mobile, String content);
 
     @Builder
     @Getter

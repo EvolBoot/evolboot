@@ -36,7 +36,6 @@ public abstract class PayGatewayAccountRequestBase {
 
     private Boolean enable = true;
 
-    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
     private Integer sort;

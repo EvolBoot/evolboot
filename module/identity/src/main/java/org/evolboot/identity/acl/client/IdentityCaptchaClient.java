@@ -1,6 +1,7 @@
 package org.evolboot.identity.acl.client;
 
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 
 /**
  * @author evol
@@ -36,7 +37,7 @@ public interface IdentityCaptchaClient {
      */
     String sendMobileCaptcha(String mobilePrefix,
                              String mobile,
-                             org.evolboot.shared.sms.MessageTag messageTag,
+                             SmsMessageTag messageTag,
                              String ip,
                              String internalCode);
 
@@ -46,7 +47,7 @@ public interface IdentityCaptchaClient {
                                   String internalCode);
 
     String sendEmailCaptcha(String email,
-                            MessageTag messageTag,
+                            EmailMessageTag messageTag,
                             String ip,
                             String internalCode);
 }

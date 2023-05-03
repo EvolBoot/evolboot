@@ -13,9 +13,10 @@ import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -129,7 +130,7 @@ public class AppUserResourceV1 {
                 identityCaptchaClient.sendMobileCaptcha(
                         user.getMobilePrefix(),
                         user.getMobile(),
-                        org.evolboot.shared.sms.MessageTag.CHECK,
+                        SmsMessageTag.CHECK,
                         IpUtil.getClientIP(servletRequest),
                         SecurityAccessTokenHolder.getToken()
                 );
@@ -148,7 +149,7 @@ public class AppUserResourceV1 {
         String token =
                 identityCaptchaClient.sendEmailCaptcha(
                         user.getEmail(),
-                        MessageTag.CHECK,
+                        EmailMessageTag.CHECK,
                         IpUtil.getClientIP(servletRequest),
                         SecurityAccessTokenHolder.getToken());
         return ResponseModel.ok(new TokenResponse(token));

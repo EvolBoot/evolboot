@@ -60,7 +60,6 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
     private Integer sort = 0;
 
     // 网关
-    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
     private String alias;

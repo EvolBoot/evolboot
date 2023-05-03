@@ -27,6 +27,7 @@ import static org.evolboot.identity.IdentityI18nMessage.Permission.titleNotEmpty
 public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot<Permission> {
 
     public static final long DEFAULT_PERMISSION_PARENT = 0L;
+
     public static final String SEPARATOR = ";";
 
 
@@ -41,7 +42,6 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
 
     private String path;
 
-    @Enumerated(EnumType.STRING)
     private Type type;
 
     private Integer sort;

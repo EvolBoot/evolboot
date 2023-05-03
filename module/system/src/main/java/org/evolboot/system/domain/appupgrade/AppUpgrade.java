@@ -34,7 +34,6 @@ public class AppUpgrade extends JpaAbstractEntity<Long> implements AggregateRoot
 
     private String downloadUrl;
 
-    @Enumerated(EnumType.STRING)
     private ClientType clientType;
 
     private Boolean showDialog = true;

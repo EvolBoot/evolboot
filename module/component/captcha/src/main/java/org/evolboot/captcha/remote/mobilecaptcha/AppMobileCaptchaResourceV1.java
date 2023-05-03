@@ -6,7 +6,7 @@ import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFact
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +53,7 @@ public class AppMobileCaptchaResourceV1 {
         MobileCaptcha mobileCaptcha = appService.create(new MobileCaptchaCreateFactory.Request(
                 request.getPrefix(),
                 request.getMobile(),
-                MessageTag.CHECK,
+                SmsMessageTag.CHECK,
                 null,
                 null,
                 false,

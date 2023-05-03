@@ -9,12 +9,12 @@ CREATE TABLE evoltb_system_app_upgrade
 
     title_        varchar(128) COMMENT 'APP版本号',
     app_version_  varchar(256) COMMENT 'APP版本号',
-    client_type_  varchar(50) COMMENT '客户端类型',
+    client_type_  tinyint COMMENT '客户端类型',
     upgrade_info_ varchar(4096) COMMENT '升级描述',
     upgrade_date_ varchar(50) COMMENT '升级时间',
     download_url_ varchar(256) COMMENT '下载地址',
     locales_      text COMMENT '更新标题',
-    show_dialog_  tinyint(1) default 1 comment '显示弹窗',
+    show_dialog_  tinyint(1)        default 1 comment '显示弹窗',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='APP更新';

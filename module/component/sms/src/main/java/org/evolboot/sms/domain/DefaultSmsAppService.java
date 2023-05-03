@@ -4,7 +4,7 @@ import org.evolboot.configuration.domain.sms.SmsConfig;
 import org.evolboot.configuration.domain.sms.SmsLocale;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.evolboot.shared.sms.SmsSendChannel;
 import org.evolboot.sms.acl.client.SmsConfigClient;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class DefaultSmsAppService implements SmsAppService {
 
 
     @Override
-    public SmsSender.Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String... params) {
+    public SmsSender.Response sendSms(SmsMessageTag messageTag, String mobilePrefix, String mobile, String... params) {
         SmsConfig smsConfig = smsConfigClient.getSmsConfig();
         Assert.isTrue(!ExtendObjects.isEmpty(smsConfig.getLocales()), "Please configure SMS.");
         String content = getSmsContent(smsConfig, messageTag, params);
@@ -46,7 +46,7 @@ public class DefaultSmsAppService implements SmsAppService {
      * @param params
      * @return
      */
-    private String getSmsContent(SmsConfig smsConfig, MessageTag useChannel, Object... params) {
+    private String getSmsContent(SmsConfig smsConfig, SmsMessageTag useChannel, Object... params) {
         String content = "Your verification code is %s";
         SmsLocale locale = smsConfig.findLocaleByCurrentLanguage(SmsLocale.class);
         switch (useChannel) {

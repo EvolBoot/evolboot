@@ -36,7 +36,6 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Id
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     private DelStatus delStatus = DelStatus.ACTIVE;
 
     @Schema(description = "用户名")
@@ -62,20 +61,17 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     /**
      * 用户性别
      */
-    @Enumerated(value = EnumType.STRING)
     private Gender gender = Gender.UNKNOWN;
 
     /**
      * 用户状态
      */
-    @Enumerated(value = EnumType.STRING)
     private UserStatus status = UserStatus.ACTIVE;
 
     /**
      * 用户类比（测试用户，正常用户）
      */
-    @Enumerated(value = EnumType.STRING)
-    private UserType userType;
+    private UserType userType = UserType.NORMAL;
 
     /**
      * 昵称

@@ -1,7 +1,7 @@
 package org.evolboot.captcha.remote.mobilecaptcha;
 
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import lombok.Data;
 
 /**
@@ -12,7 +12,7 @@ import lombok.Data;
 public class MobileCaptchaRequest {
     private String mobilePrefix;
     private String mobile;
-    private MessageTag messageTag;
+    private SmsMessageTag messageTag;
     private String imageCaptchaToken;
     private String imageCaptchaCode;
 

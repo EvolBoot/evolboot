@@ -6,7 +6,7 @@ import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.cache.RedisCacheName;
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,11 +66,9 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
      */
     private Long interval = MobileCaptchaConfiguration.getValue().getInterval();
 
-    @Enumerated(EnumType.STRING)
-    private MessageTag messageTag;
+    private SmsMessageTag messageTag;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date createTime;
+    protected Date createAt;
 
     private void generateId() {
         this.token = IdGenerate.stringId();
@@ -85,7 +83,7 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
     }
 
 
-    private void setMessageTag(MessageTag messageTag) {
+    private void setMessageTag(SmsMessageTag messageTag) {
         this.messageTag = messageTag;
     }
 
@@ -106,7 +104,7 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
     }
 
     @Builder
-    public MobileCaptcha(String mobilePrefix, String mobile, String code, MessageTag messageTag, String smsContent, String internalCode, String ip) {
+    public MobileCaptcha(String mobilePrefix, String mobile, String code, SmsMessageTag messageTag, String smsContent, String internalCode, String ip) {
         generateId();
         setMobilePrefix(mobilePrefix);
         setMobile(mobile);
@@ -115,7 +113,7 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
         setSmsContent(smsContent);
         setIp(ip);
         setInternalCode(internalCode);
-        this.createTime = new Date();
+        this.createAt = new Date();
     }
 
     public boolean verify(String mobilePrefix, String mobile, String code, String internalCode) {
@@ -135,7 +133,7 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
 
     @JsonIgnore
     public Long getRemainExpires() {
-        return expires - (System.currentTimeMillis() - (createTime.getTime()));
+        return expires - (System.currentTimeMillis() - (createAt.getTime()));
     }
 
     @JsonIgnore
@@ -149,7 +147,7 @@ public class MobileCaptcha extends AbstractEntity<String> implements AggregateRo
 
     @JsonIgnore
     public boolean isAllowGetNext() {
-        long timeoutTime = interval - (System.currentTimeMillis() - createTime.getTime());
+        long timeoutTime = interval - (System.currentTimeMillis() - createAt.getTime());
         return timeoutTime <= 0;
     }
 

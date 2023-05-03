@@ -42,7 +42,9 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      */
     private String internalOrderId;
 
-    @Enumerated(EnumType.STRING)
+    /**
+     * 货币
+     */
     private Currency currency;
 
     /**
@@ -88,7 +90,6 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     private String ifscCardNo;
 
 
-    @Enumerated(EnumType.STRING)
     private ReleasedOrderOrgType orgType;
     /**
      * 网关账户ID
@@ -98,7 +99,6 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     /**
      * 网关
      */
-    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
 
@@ -130,7 +130,9 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     @Embedded
     private ReleasedOrderQueryResult queryResult;
 
-    @Enumerated(EnumType.STRING)
+    /**
+     * 状态
+     */
     private ReleasedOrderStatus status = WAIT;
 
     public ReleasedOrder(

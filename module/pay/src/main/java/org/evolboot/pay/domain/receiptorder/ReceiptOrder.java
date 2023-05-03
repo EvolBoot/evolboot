@@ -63,7 +63,9 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     private String redirectUrl;
 
 
-    @Enumerated(EnumType.STRING)
+    /**
+     * 货币
+     */
     private Currency currency;
     /**
      * 请求第三方返回的结果信息
@@ -85,7 +87,6 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     /**
      * 第三方支付网关
      */
-    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
     /**
@@ -96,7 +97,6 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     /**
      * 状态
      */
-    @Enumerated(EnumType.STRING)
     private ReceiptOrderStatus status = ReceiptOrderStatus.PENDING;
 
 

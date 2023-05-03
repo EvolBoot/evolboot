@@ -14,10 +14,10 @@ CREATE TABLE evoltb_pay_receipt_order
     payee_email_                     varchar(100) COMMENT '支付人邮箱',
     redirect_url_                    varchar(256) COMMENT '前端回调地址',
     pay_gateway_account_id_          bigint COMMENT '支付网关的账户ID',
-    pay_gateway_                     varchar(50) COMMENT '支付网关',
+    pay_gateway_                     tinyint COMMENT '支付网关',
     pay_amount_                      decimal(20, 3) COMMENT '支付金额',
-    status_                          varchar(50) COMMENT '支付状态',
-    currency_                        varchar(50) null comment '货币',
+    status_                          tinyint COMMENT '支付状态',
+    currency_                        smallint    null comment '货币',
 
     request_result_foreign_order_id_ varchar(100) COMMENT '请求返回时的第三方订单ID',
     request_result_pay_url_          varchar(256) COMMENT '请求返回的URL',

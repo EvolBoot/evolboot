@@ -1,6 +1,6 @@
 package org.evolboot.sms.domain;
 
-import org.evolboot.shared.sms.MessageTag;
+import org.evolboot.shared.sms.SmsMessageTag;
 
 /**
  * @author evol
@@ -17,6 +17,6 @@ public interface SmsAppService {
      * @param params       参数
      * @return
      */
-    SmsSender.Response sendSms(MessageTag messageTag, String mobilePrefix, String mobile, String... params);
+    SmsSender.Response sendSms(SmsMessageTag messageTag, String mobilePrefix, String mobile, String... params);
 
 }

@@ -7,8 +7,9 @@ import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.identity.acl.client.IdentityCaptchaClient;
-import org.evolboot.shared.email.MessageTag;
+import org.evolboot.shared.email.EmailMessageTag;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.sms.SmsMessageTag;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,7 +41,7 @@ public class IdentityCaptchaAdapter implements IdentityCaptchaClient {
     @Override
     public String sendMobileCaptcha(String mobilePrefix,
                                     String mobile,
-                                    org.evolboot.shared.sms.MessageTag messageTag,
+                                    SmsMessageTag messageTag,
                                     String ip,
                                     String internalCode) {
         MobileCaptcha mobileCaptcha = mobileCaptchaAppService.create(MobileCaptchaCreateFactory
@@ -62,7 +63,7 @@ public class IdentityCaptchaAdapter implements IdentityCaptchaClient {
     }
 
     @Override
-    public String sendEmailCaptcha(String email, MessageTag messageTag, String ip, String internalCode) {
+    public String sendEmailCaptcha(String email, EmailMessageTag messageTag, String ip, String internalCode) {
         EmailCaptcha emailCaptcha = emailCaptchaAppService.create(
                 EmailCaptchaCreateFactory
                         .Request
