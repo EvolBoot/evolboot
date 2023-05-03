@@ -32,15 +32,15 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
     default JPQLQuery<Xarvkgvvrllnc> fillQueryParameter(XarvkgvvrllncQuery query) {
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
         JPQLQuery<Xarvkgvvrllnc> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createTime.desc());
+        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
         if (ExtendObjects.nonNull(query.getStartDate())) {
-            jpqlQuery.where(q.createTime.goe(query.getStartDate()));
+            jpqlQuery.where(q.createAt.goe(query.getStartDate()));
         }
         if (ExtendObjects.nonNull(query.getEndDate())) {
-            jpqlQuery.where(q.createTime.loe(query.getEndDate()));
+            jpqlQuery.where(q.createAt.loe(query.getEndDate()));
         }
         return jpqlQuery;
     }
@@ -49,7 +49,7 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
     default List<Xarvkgvvrllnc> findAll() {
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
         JPQLQuery<Xarvkgvvrllnc> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createTime.desc());
+        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
         return this.findAll(jpqlQuery);
     }
 
