@@ -46,7 +46,6 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
     /**
      * 会话类型
      */
-    @Enumerated(EnumType.STRING)
     private ConversationType conversationType;
 
     /**
