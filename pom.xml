@@ -223,6 +223,12 @@
                 <version>${revision}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>im</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <!-- springdoc ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>

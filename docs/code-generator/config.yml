@@ -29,8 +29,8 @@ replace:
   boundContext: im
 
   #领域名称,多个单词用下划线连接
-  domainName: chat_record
+  domainName: friend_apply
 
-  remark: 聊天记录
+  remark: 好友申请
   # 主键类型
   pkIdClass: Long

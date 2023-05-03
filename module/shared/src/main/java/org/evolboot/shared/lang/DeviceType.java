@@ -1,12 +1,18 @@
 package org.evolboot.shared.lang;
 
+import com.google.common.collect.Maps;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.Map;
 
 /**
  * @author corona
  * 
  */
 @Getter
+@AllArgsConstructor
 public enum DeviceType {
 
     IOS(1),
@@ -18,9 +24,21 @@ public enum DeviceType {
     LINUX(7),
     UNKNOWN(999);
 
-    private int platform;
+    private final Integer value;
 
-    DeviceType(int platform) {
-        this.platform = platform;
+    private static final Map<Integer, DeviceType> VALUES = Maps.newHashMapWithExpectedSize(DeviceType.values().length);
+
+    static {
+        Arrays.stream(DeviceType.values()).forEach(e -> {
+            VALUES.put(e.getValue(), e);
+        });
     }
+
+
+    public static DeviceType convertTo(Integer value) {
+        return VALUES.get(value);
+    }
+
+
+
 }
