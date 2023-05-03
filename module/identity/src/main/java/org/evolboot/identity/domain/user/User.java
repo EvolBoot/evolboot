@@ -85,11 +85,6 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Convert(converter = UserIdentitySetConverter.class)
     private Set<UserIdentity> userIdentity = Sets.newHashSet();
 
-    /**
-     * 身份符号，用来检索
-     */
-    @JsonIgnore
-    private Integer identitySymbol = 0;
 
     /**
      * 上级ID
@@ -150,14 +145,12 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     public void addUserIdentity(UserIdentity userIdentity) {
         if (ExtendObjects.nonNull(userIdentity) && !hasUserIdentity(userIdentity)) {
             this.userIdentity.add(userIdentity);
-            this.identitySymbol += userIdentity.getIdentitySymbol();
         }
     }
 
     public void removeUserIdentity(UserIdentity userIdentity) {
         if (ExtendObjects.nonNull(userIdentity) && hasUserIdentity(userIdentity)) {
             this.userIdentity.remove(userIdentity);
-            this.identitySymbol -= userIdentity.getIdentitySymbol();
         }
     }
 
@@ -169,11 +162,11 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         this.delStatus = DelStatus.ARCHIVE;
     }
 
-    public   void setUserType(UserType userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
-    public  void setInviterUserId(Long inviterUserId) {
+    public void setInviterUserId(Long inviterUserId) {
         this.inviterUserId = inviterUserId;
     }
 

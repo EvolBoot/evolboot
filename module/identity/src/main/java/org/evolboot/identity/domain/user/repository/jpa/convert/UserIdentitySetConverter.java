@@ -1,23 +1,19 @@
 package org.evolboot.identity.domain.user.repository.jpa.convert;
 
-import org.evolboot.core.util.JsonUtil;
 import org.evolboot.shared.lang.UserIdentity;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-public class UserIdentitySetConverter implements AttributeConverter<Set<UserIdentity>, String> {
+public class UserIdentitySetConverter implements AttributeConverter<Set<UserIdentity>, Integer> {
 
     @Override
-    public String convertToDatabaseColumn(Set<UserIdentity> attribute) {
-        return Objects.isNull(attribute) ? null : JsonUtil.stringify(attribute);
+    public Integer convertToDatabaseColumn(Set<UserIdentity> attribute) {
+        return UserIdentity.convertToSymbol(attribute);
     }
 
     @Override
-    public Set<UserIdentity> convertToEntityAttribute(String dbData) {
-        return StringUtils.isEmpty(dbData) ? new HashSet<>() : JsonUtil.parse(dbData, Set.class, UserIdentity.class);
+    public Set<UserIdentity> convertToEntityAttribute(Integer dbData) {
+        return UserIdentity.convertEnum(dbData);
     }
 }

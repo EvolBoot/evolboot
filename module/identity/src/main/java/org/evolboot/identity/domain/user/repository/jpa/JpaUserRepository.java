@@ -51,8 +51,8 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         if (ExtendObjects.nonNull(query.getUserType())) {
             jpqlQuery.where(q.userType.eq(query.getUserType()));
         }
-        if (ExtendObjects.nonNull(query.getIdentitySymbol())) {
-            jpqlQuery.where(BitwiseExpressions.bitand(q.identitySymbol, query.getIdentitySymbol()).gt(0));
+        if (ExtendObjects.nonNull(query.getUserIdentity())) {
+            jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, query.getUserIdentity().getIdentitySymbol()).gt(0));
         }
         return jpqlQuery;
     }

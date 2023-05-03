@@ -30,8 +30,8 @@ public class UserQuery extends Query {
 
     private final UserType userType;
 
-    private Integer identitySymbol;
 
+    private UserIdentity userIdentity;
 
     @Builder
     public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity) {
@@ -44,8 +44,9 @@ public class UserQuery extends Query {
         this.delStatus = delStatus;
         this.inviterUserId = inviterUserId;
         this.userType = userType;
-        if (ExtendObjects.nonNull(userIdentity)) {
-            this.identitySymbol = userIdentity.getIdentitySymbol();
-        }
+        this.userIdentity = userIdentity;
+//        if (ExtendObjects.nonNull(userIdentity)) {
+//            this.identitySymbol = userIdentity.getIdentitySymbol();
+//        }
     }
 }

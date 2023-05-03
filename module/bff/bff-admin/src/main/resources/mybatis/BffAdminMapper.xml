@@ -15,7 +15,7 @@
         from (
                  select *
                  from evoltb_identity_user
-                 where identity_symbol_ <![CDATA[ & ]]> 4 > 0
+                 where user_identity_ <![CDATA[ & ]]> 4 > 0
                    and del_status_ = 'ACTIVE'
              ) as t1
                  left join (
