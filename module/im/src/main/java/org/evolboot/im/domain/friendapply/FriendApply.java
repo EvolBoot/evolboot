@@ -71,11 +71,15 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
         this.id = IdGenerate.longId();
     }
 
-
-    public FriendApply(String name) {
-        //   setLocales(locales);
+    public FriendApply(Long ownerUserId, Long applyUserId, String applyReason, FriendApplyStatus status, Date expireAt) {
         generateId();
+        this.ownerUserId = ownerUserId;
+        this.applyUserId = applyUserId;
+        this.applyReason = applyReason;
+        this.status = status;
+        this.expireAt = expireAt;
     }
+
 
     @Override
     public Long id() {

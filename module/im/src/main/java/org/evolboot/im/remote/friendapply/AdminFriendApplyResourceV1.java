@@ -43,6 +43,7 @@ public class AdminFriendApplyResourceV1 {
     }
 
 
+/*
     @Operation(summary = "创建好友申请")
     @OperationLog("创建好友申请")
     @PostMapping("")
@@ -51,9 +52,10 @@ public class AdminFriendApplyResourceV1 {
             @RequestBody @Valid
                     FriendApplyCreateRequest request
     ) {
-        FriendApply friendApply = service.create(request);
+        FriendApply friendApply = service.create(request.to(Se));
         return ResponseModel.ok(new DomainId(friendApply.id()));
     }
+*/
 
 
     @Operation(summary = "删除好友申请")

@@ -9,6 +9,7 @@ import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.shared.event.ws.WsConnectedEvent;
 import org.evolboot.shared.event.ws.WsDisconnectdEvent;
+import org.evolboot.ws.core.WsExceptionMessage;
 import org.evolboot.ws.core.WsMessageHandle;
 import org.evolboot.ws.nettysocketio.autoconfigure.NettySocketIoConfiguration;
 import org.springframework.beans.factory.DisposableBean;
@@ -80,7 +81,11 @@ public class NettyScoketIORunner implements DisposableBean {
         WsConnectedEvent wsConnectedEvent = new WsConnectedEvent(device.getPrincipalId(), device.getDeviceType());
         Object handledMessage = wsMessageHandle.handleMessage(device.getPrincipalId(), CONNECTED_ACTION, JsonUtil.stringify(wsConnectedEvent));
         if (handledMessage != null) {
-            client.sendEvent(CONNECTED_ACTION, handledMessage);
+            if (handledMessage instanceof WsExceptionMessage) {
+                client.sendEvent(WsExceptionMessage.ERROR_ACTION, handledMessage);
+            } else {
+                client.sendEvent(CONNECTED_ACTION, handledMessage);
+            }
         }
         // 发布登录事件
         eventPublisher.publishEvent(wsConnectedEvent);
@@ -89,6 +94,7 @@ public class NettyScoketIORunner implements DisposableBean {
 
     /**
      * 离线监听
+     *
      * @param client
      */
     private void disconnectListener(SocketIOClient client) {
@@ -118,7 +124,11 @@ public class NettyScoketIORunner implements DisposableBean {
             }
             Object handledMessage = wsMessageHandle.handleMessage(device.getPrincipalId(), action, data);
             if (handledMessage != null) {
-                client.sendEvent(action, handledMessage);
+                if (handledMessage instanceof WsExceptionMessage) {
+                    client.sendEvent(WsExceptionMessage.ERROR_ACTION, handledMessage);
+                } else {
+                    client.sendEvent(action, handledMessage);
+                }
             }
         });
     }

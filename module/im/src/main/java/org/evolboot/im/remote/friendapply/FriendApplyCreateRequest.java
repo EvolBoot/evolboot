@@ -15,7 +15,23 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class FriendApplyCreateRequest extends FriendApplyCreateFactory.Request {
+public class FriendApplyCreateRequest {
+
+    /**
+     * 被申请的用户
+     */
+    private Long userId;
+
+    /**
+     * 申请原因
+     */
+    private String applyReason;
+
+    public FriendApplyCreateFactory.Request to(Long applyUserId) {
+        return new FriendApplyCreateFactory.Request(
+                userId, applyUserId, applyReason
+        );
+    }
 
 
 }

@@ -11,7 +11,6 @@ import static java.lang.Integer.parseInt;
 
 /**
  * @author evol
- * 
  */
 public class ExtendDateUtil {
 
@@ -78,6 +77,16 @@ public class ExtendDateUtil {
      */
     public static DateTime offsetDay(Date date, int offset) {
         return DateUtil.offsetDay(date, offset);
+    }
+
+    /**
+     * 偏移天
+     *
+     * @param offset 偏移天数，正数向未来偏移，负数向历史偏移
+     * @return 偏移后的日期
+     */
+    public static DateTime offsetDay(int offset) {
+        return DateUtil.offsetDay(new Date(), offset);
     }
 
 

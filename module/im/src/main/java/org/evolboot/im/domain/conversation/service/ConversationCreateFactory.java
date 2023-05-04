@@ -52,7 +52,7 @@ public class ConversationCreateFactory extends ConversationSupportService {
         /**
          * 关联的ID
          */
-        private Long relationId;
+        private String relationId;
 
         private int quantityOfPeople;
     }

@@ -30,4 +30,5 @@ public interface FriendApplyAppService {
     Page<FriendApply> page(FriendApplyQuery query);
 
 
+
 }

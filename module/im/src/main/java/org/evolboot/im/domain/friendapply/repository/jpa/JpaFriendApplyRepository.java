@@ -2,6 +2,7 @@ package org.evolboot.im.domain.friendapply.repository.jpa;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
+import org.evolboot.im.domain.friendapply.FriendApplyStatus;
 import org.evolboot.im.domain.friendapply.QFriendApply;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyQuery;
@@ -65,4 +66,5 @@ public interface JpaFriendApplyRepository extends FriendApplyRepository, Extende
         JPQLQuery<FriendApply> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
 }

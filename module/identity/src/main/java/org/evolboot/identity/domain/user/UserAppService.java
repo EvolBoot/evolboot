@@ -171,6 +171,13 @@ public interface UserAppService {
     boolean existsByMobile(String mobile);
 
     /**
+     * 是否存在此用户Id
+     * @param userId
+     * @return
+     */
+    boolean existsByUserId(Long userId);
+
+    /**
      * 重构用户关系
      * 关系错乱用来维护
      */
@@ -190,5 +197,6 @@ public interface UserAppService {
      * @param userId
      */
     User updateGoogleAuthenticatorSecret(Long userId);
+
 
 }

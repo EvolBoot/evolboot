@@ -39,7 +39,7 @@ public class Conversation extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 关联的ID
      */
-    private Long relationId;
+    private String relationId;
 
     /**
      * 人数
@@ -63,7 +63,7 @@ public class Conversation extends JpaAbstractEntity<Long> implements AggregateRo
         return this;
     }
 
-    public Conversation(ConversationType type, Long relationId, int quantityOfPeople) {
+    public Conversation(ConversationType type, String relationId, int quantityOfPeople) {
         //TODO 多语言
         Assert.isTrue(quantityOfPeople > 0, "会话人员数量不能小于0");
         generateId();

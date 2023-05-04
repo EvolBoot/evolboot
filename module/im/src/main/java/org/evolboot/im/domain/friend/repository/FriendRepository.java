@@ -29,4 +29,7 @@ public interface FriendRepository {
     List<Friend> findAll();
 
     List<Friend> findAll(FriendQuery query);
+
+    Optional<Friend> findByOwnerUserIdAndFriendUserId(Long ownerUserId, Long friendUserId);
+
 }

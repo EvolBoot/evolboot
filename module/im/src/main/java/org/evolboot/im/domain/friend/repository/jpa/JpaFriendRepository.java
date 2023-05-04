@@ -65,4 +65,5 @@ public interface JpaFriendRepository extends FriendRepository, ExtendedQuerydslP
         JPQLQuery<Friend> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
 }

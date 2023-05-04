@@ -217,6 +217,11 @@ public class DefaultUserAppService implements UserAppService {
     }
 
     @Override
+    public boolean existsByUserId(Long userId) {
+        return repository.findById(userId).isPresent();
+    }
+
+    @Override
     @Transactional
     public void refactorRelation() {
         userRelationRefactorService.execute();

@@ -16,3 +16,6 @@ CREATE TABLE evol_im_friend_apply
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='好友申请';
+
+create index evol_im_friend_apply__index
+    on evol_im_friend_apply (owner_user_id_, apply_user_id_, status_);

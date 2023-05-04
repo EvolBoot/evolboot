@@ -6,6 +6,7 @@ import org.evolboot.im.domain.friend.service.FriendCreateFactory;
 import org.evolboot.im.domain.friend.service.FriendUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 好友关系
@@ -29,5 +30,5 @@ public interface FriendAppService {
 
     Page<Friend> page(FriendQuery query);
 
-
+    void allowAddFriend(Long ownerUserId, Long friendUserId);
 }

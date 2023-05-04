@@ -56,8 +56,8 @@ public final class WsMessageHandle {
             return invoke;
         } catch (IllegalAccessException | InvocationTargetException e) {
             log.error("Websocket处理器报错", e);
+            return new WsExceptionMessage(action, e.getMessage());
         }
-        return null;
     }
 
     /**
@@ -79,8 +79,8 @@ public final class WsMessageHandle {
             return method.invoke(methodAndParamClass.getBean(), message);
         } catch (IllegalAccessException | InvocationTargetException e) {
             log.error("Websocket处理器报错", e);
+            return new WsExceptionMessage(action, e.getMessage());
         }
-        return null;
     }
 
 

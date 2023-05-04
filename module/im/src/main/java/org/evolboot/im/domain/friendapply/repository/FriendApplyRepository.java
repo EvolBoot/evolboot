@@ -5,6 +5,7 @@ import org.evolboot.core.data.Sort;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.FriendApplyStatus;
 
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface FriendApplyRepository {
     List<FriendApply> findAll();
 
     List<FriendApply> findAll(FriendApplyQuery query);
+
+    Optional<FriendApply> findByOwnerUserIdAndApplyUserIdAndStatus(Long ownerUserId, Long applyUserId, FriendApplyStatus status);
+
 }

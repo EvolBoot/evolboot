@@ -29,7 +29,7 @@ replace:
   boundContext: im
 
   #领域名称,多个单词用下划线连接
-  domainName: friend_apply
+  domainName: friend_conversation
 
   remark: 好友申请
   # 主键类型
