@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS evoltb_pay_gateway_account;
 CREATE TABLE evoltb_pay_gateway_account
 (
     id_              bigint      NOT NULL COMMENT '主键',
-    create_at_       datetime    NOT NULL COMMENT '创建时间',
-    update_at_       datetime    NOT NULL COMMENT '最后修改时间',
+    create_at_       timestamp   NOT NULL COMMENT '创建时间',
+    update_at_       timestamp   NOT NULL COMMENT '最后修改时间',
     version_         bigint      NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
 
     logo_            varchar(128) COMMENT 'Logo',

@@ -2,14 +2,14 @@
 DROP TABLE IF EXISTS evoltb_system_operation_log;
 CREATE TABLE evoltb_system_operation_log
 (
-    id_           bigint   NOT NULL COMMENT '主键',
-    create_at_    datetime NOT NULL COMMENT '创建时间',
-    update_at_    datetime NOT NULL COMMENT '最后修改时间',
-    version_      bigint   NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
+    id_           bigint    NOT NULL COMMENT '主键',
+    create_at_    timestamp NOT NULL COMMENT '创建时间',
+    update_at_    timestamp NOT NULL COMMENT '最后修改时间',
+    version_      bigint    NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
 
-    begin_time_   bigint   NOT NULL COMMENT '开始时间',
-    end_time_     bigint   NOT NULL COMMENT '结束时间',
-    time_         bigint   NOT NULL COMMENT '持续时间',
+    begin_time_   bigint    NOT NULL COMMENT '开始时间',
+    end_time_     bigint    NOT NULL COMMENT '结束时间',
+    time_         bigint    NOT NULL COMMENT '持续时间',
 
     user_id_      bigint COMMENT '用户ID',
     operation_    varchar(100) COMMENT '操作名称',

@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS evoltb_storage_blob;
 CREATE TABLE evoltb_storage_blob
 (
     id_            bigint       NOT NULL COMMENT '主键',
-    create_at_     datetime     NOT NULL COMMENT '创建时间',
+    create_at_     timestamp    NOT NULL COMMENT '创建时间',
     path_          varchar(256) NOT NULL COMMENT '本地路径',
     url_           varchar(256) NOT NULL COMMENT 'URL',
     name_          varchar(256) NOT NULL COMMENT '文件名',

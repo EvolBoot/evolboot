@@ -2,10 +2,10 @@
 DROP TABLE IF EXISTS evol_im_friend;
 CREATE TABLE evol_im_friend
 (
-    id_              bigint   NOT NULL COMMENT '主键',
-    create_at_       datetime NOT NULL COMMENT '创建时间',
-    update_at_       datetime NOT NULL COMMENT '最后修改时间',
-    version_         bigint   NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
+    id_              bigint    NOT NULL COMMENT '主键',
+    create_at_       timestamp NOT NULL COMMENT '创建时间',
+    update_at_       timestamp NOT NULL COMMENT '最后修改时间',
+    version_         bigint    NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
 
     owner_user_id_   bigint COMMENT '所有者ID',
     friend_user_id_  bigint COMMENT '好友ID',

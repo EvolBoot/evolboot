@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS evoltb_pay_released_order;
 CREATE TABLE evoltb_pay_released_order
 (
     id_                              varchar(50) NOT NULL COMMENT '订单号主键',
-    create_at_                       datetime    NOT NULL COMMENT '创建时间',
-    update_at_                       datetime    NOT NULL COMMENT '最后修改时间',
+    create_at_                       timestamp   NOT NULL COMMENT '创建时间',
+    update_at_                       timestamp   NOT NULL COMMENT '最后修改时间',
     version_                         bigint      NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
 
     internal_order_id_               varchar(100) COMMENT '内部订单号',

@@ -2,8 +2,8 @@
 DROP TABLE IF EXISTS evoltb_mq_core_mq_transaction;
 CREATE TABLE evoltb_mq_core_mq_transaction
 (
-    id_        bigint   NOT NULL COMMENT '主键',
-    create_at_ datetime NOT NULL COMMENT '创建时间',
+    id_        bigint    NOT NULL COMMENT '主键',
+    create_at_ timestamp NOT NULL COMMENT '创建时间',
     remark_    varchar(100) COMMENT '备注',
 
     PRIMARY KEY (id_)
