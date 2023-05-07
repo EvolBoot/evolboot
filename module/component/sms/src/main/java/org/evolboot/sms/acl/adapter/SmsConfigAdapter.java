@@ -1,7 +1,7 @@
 package org.evolboot.sms.acl.adapter;
 
-import org.evolboot.configuration.domain.ConfigAppService;
-import org.evolboot.configuration.domain.sms.SmsConfig;
+import org.evolboot.configuration.domain.config.ConfigAppService;
+import org.evolboot.configuration.domain.config.sms.SmsConfig;
 import org.evolboot.sms.acl.client.SmsConfigClient;
 import org.springframework.stereotype.Service;
 

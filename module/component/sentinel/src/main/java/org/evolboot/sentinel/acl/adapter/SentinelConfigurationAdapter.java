@@ -1,6 +1,6 @@
 package org.evolboot.sentinel.acl.adapter;
 
-import org.evolboot.configuration.domain.ConfigAppService;
+import org.evolboot.configuration.domain.config.ConfigAppService;
 import org.evolboot.sentinel.SentinelRole;
 import org.evolboot.sentinel.acl.port.SentinelConfigurationPort;
 import lombok.extern.slf4j.Slf4j;

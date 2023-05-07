@@ -1,7 +1,7 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
-import org.evolboot.configuration.domain.ConfigAppService;
-import org.evolboot.configuration.domain.system.SystemConfig;
+import org.evolboot.configuration.domain.config.ConfigAppService;
+import org.evolboot.configuration.domain.config.system.SystemConfig;
 import org.evolboot.security.accesstoken.acl.client.AccessTokenConfigClient;
 import org.springframework.stereotype.Service;
 

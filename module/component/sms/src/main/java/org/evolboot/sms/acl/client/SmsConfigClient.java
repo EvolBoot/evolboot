@@ -1,7 +1,7 @@
 package org.evolboot.sms.acl.client;
 
 
-import org.evolboot.configuration.domain.sms.SmsConfig;
+import org.evolboot.configuration.domain.config.sms.SmsConfig;
 
 /**
  * @author evol

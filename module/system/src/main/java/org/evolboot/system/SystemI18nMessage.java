@@ -111,4 +111,26 @@ public abstract class SystemI18nMessage {
         }
     }
 
+
+    /**
+     * 字典key
+     */
+    public static class DictKey {
+        public static final String NAMESPACE = SystemI18nMessage.NAMESPACE + ".dictkey";
+
+        public static final String NOT_FOUND = NAMESPACE + ".notFound";
+
+    }
+
+
+    /**
+     * 字典Value
+     */
+    public static class DictValue {
+        public static final String NAMESPACE = SystemI18nMessage.NAMESPACE + ".dictvalue";
+
+        public static final String NOT_FOUND = NAMESPACE + ".notFound";
+
+    }
+
 }

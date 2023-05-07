@@ -1,7 +1,7 @@
 package org.evolboot.sms.domain;
 
-import org.evolboot.configuration.domain.sms.SmsConfig;
-import org.evolboot.configuration.domain.sms.SmsLocale;
+import org.evolboot.configuration.domain.config.sms.SmsConfig;
+import org.evolboot.configuration.domain.config.sms.SmsLocale;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.sms.SmsMessageTag;
