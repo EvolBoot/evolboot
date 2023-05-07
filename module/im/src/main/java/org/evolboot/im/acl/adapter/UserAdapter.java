@@ -19,7 +19,7 @@ public class UserAdapter implements UserClient {
     }
 
     @Override
-    public boolean allowAddFriend(Long userId) {
+    public boolean existsByUserId(Long userId) {
         return userAppService.existsByUserId(userId);
     }
 }

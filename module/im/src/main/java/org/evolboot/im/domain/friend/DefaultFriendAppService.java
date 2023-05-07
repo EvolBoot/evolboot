@@ -1,11 +1,9 @@
 package org.evolboot.im.domain.friend;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.core.lang.BusinessResult;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
-import org.evolboot.im.domain.friend.service.AllowAddFriendService;
-import org.evolboot.im.domain.friend.service.FriendCreateFactory;
-import org.evolboot.im.domain.friend.service.FriendSupportService;
-import org.evolboot.im.domain.friend.service.FriendUpdateService;
+import org.evolboot.im.domain.friend.service.*;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,16 +25,16 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
     private final FriendCreateFactory factory;
     private final FriendUpdateService updateService;
 
-    /**
-     * 允许添加好友判断
-     */
-    private final AllowAddFriendService allowAddFriendService;
+    private final ApplyFriendService applyFriendService;
 
-    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, AllowAddFriendService allowAddFriendService) {
+    private final ApplyAuditService applyAuditService;
+
+    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, ApplyFriendService applyFriendService, ApplyAuditService applyAuditService) {
         super(repository);
         this.factory = factory;
         this.updateService = updateService;
-        this.allowAddFriendService = allowAddFriendService;
+        this.applyFriendService = applyFriendService;
+        this.applyAuditService = applyAuditService;
     }
 
     @Override
@@ -78,8 +76,14 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
     }
 
     @Override
-    public void allowAddFriend(Long ownerUserId, Long friendUserId) {
-        allowAddFriendService.execute(ownerUserId, friendUserId);
+    public BusinessResult<Object> apply(ApplyFriendService.Request request) {
+        return applyFriendService.execute(request);
+    }
+
+    @Override
+    @Transactional
+    public Friend auditApply(ApplyAuditService.Request request) {
+        return applyAuditService.execute(request);
     }
 
 

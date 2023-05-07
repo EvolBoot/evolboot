@@ -13,3 +13,8 @@ CREATE TABLE evol_im_conversation
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='会话';
+
+create unique index evol_im_conversation_relation_id__uindex
+    on evol_im_conversation (relation_id_);
+
+

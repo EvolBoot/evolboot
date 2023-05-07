@@ -43,6 +43,9 @@ public interface JpaFriendApplyRepository extends FriendApplyRepository, Extende
         if (ExtendObjects.nonNull(query.getEndDate())) {
             jpqlQuery.where(q.createAt.loe(query.getEndDate()));
         }
+        if (ExtendObjects.nonNull(query.getToUserId())) {
+            jpqlQuery.where(q.toUserId.eq(query.getToUserId()));
+        }
         return jpqlQuery;
     }
 

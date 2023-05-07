@@ -1,6 +1,5 @@
 package org.evolboot.core.exception;
 
-import org.evolboot.core.exception.ExtendRuntimeException;
 import lombok.Getter;
 
 /**
@@ -12,12 +11,12 @@ public class ErrorCodeException extends ExtendRuntimeException {
 
     private final int errorCode;
 
-    public ErrorCodeException(ErrCodeI18nMsg errCodeI18NMsg) {
-        super(errCodeI18NMsg.getMsg());
-        this.errorCode = errCodeI18NMsg.getCode();
+    public ErrorCodeException(ErrCodeMsg errCodeMsg) {
+        super(errCodeMsg.getMsg());
+        this.errorCode = errCodeMsg.getCode();
     }
 
-    public static ErrorCodeException of(ErrCodeI18nMsg errCodeI18NMsg) {
-        return new ErrorCodeException(errCodeI18NMsg);
+    public static ErrorCodeException of(ErrCodeMsg errCodeMsg) {
+        return new ErrorCodeException(errCodeMsg);
     }
 }

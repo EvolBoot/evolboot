@@ -64,6 +64,13 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
     }
 
 
+    public Friend(Long ownerUserId, Long friendUserId, Long conversationId) {
+        generateId();
+        this.ownerUserId = ownerUserId;
+        this.friendUserId = friendUserId;
+        this.conversationId = conversationId;
+    }
+
     public Friend(String name) {
         //   setLocales(locales);
         generateId();

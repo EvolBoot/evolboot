@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class FriendCreateRequest extends FriendCreateFactory.Request {
+public class FriendCreateRequest  {
 
 
 }

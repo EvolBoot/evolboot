@@ -27,13 +27,9 @@ public enum FriendApplyStatus {
      */
     AGREE(2),
     /**
-     * 自动同意
-     */
-    AUTO_AGREE(3),
-    /**
      * 过期
      */
-    EXPIRE(4);
+    EXPIRE(3);
 
 
     private final Integer value;

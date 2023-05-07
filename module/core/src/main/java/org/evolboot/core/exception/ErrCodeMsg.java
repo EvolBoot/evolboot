@@ -11,11 +11,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ErrCodeI18nMsg {
+public class ErrCodeMsg {
     private int code;
     private String msg;
 
-    public static ErrCodeI18nMsg of(int code, String msg) {
-        return new ErrCodeI18nMsg(code, msg);
+    public static ErrCodeMsg of(int code, String msg) {
+        return new ErrCodeMsg(code, msg);
     }
 }

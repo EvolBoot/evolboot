@@ -30,11 +30,11 @@ public class ConversationCreateFactory extends ConversationSupportService {
     }
 
     public Conversation execute(Request request) {
-        Conversation conversation = new Conversation(
+        Conversation conversation = repository.findByRelationId(request.getRelationId()).orElseGet(() -> new Conversation(
                 request.getType(),
                 request.getRelationId(),
                 request.getQuantityOfPeople()
-        );
+        ));
         repository.save(conversation);
         return conversation;
     }

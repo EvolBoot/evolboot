@@ -1,8 +1,6 @@
 package org.evolboot.im.domain.friendapply.repository;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyQuery;
 import org.evolboot.im.domain.friendapply.FriendApplyStatus;
@@ -31,6 +29,6 @@ public interface FriendApplyRepository {
 
     List<FriendApply> findAll(FriendApplyQuery query);
 
-    Optional<FriendApply> findByOwnerUserIdAndApplyUserIdAndStatus(Long ownerUserId, Long applyUserId, FriendApplyStatus status);
+    Optional<FriendApply> findByToUserIdAndFromUserIdAndStatus(Long toUserId, Long fromUserId, FriendApplyStatus status);
 
 }

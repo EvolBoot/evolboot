@@ -1,6 +1,7 @@
 package org.evolboot.im.domain.friendapply;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.im.domain.friendapply.service.FriendApplyAuditService;
 import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.friendapply.service.FriendApplyCreateFactory;
 import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
@@ -19,7 +20,7 @@ public interface FriendApplyAppService {
 
     FriendApply create(FriendApplyCreateFactory.Request request);
 
-    void update(Long id, FriendApplyUpdateService.Request request);
+    FriendApply audit(FriendApplyAuditService.Request request);
 
     void delete(Long id);
 

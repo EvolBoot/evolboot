@@ -6,7 +6,7 @@ package org.evolboot.im.acl.client;
 public interface UserClient {
 
 
-    boolean allowAddFriend(Long userId);
+    boolean existsByUserId(Long userId);
 
 
 }

@@ -22,10 +22,6 @@ public enum FriendStatus {
      * 拉黑
      */
     BLOCK(1),
-    /**
-     * 删除好友关系
-     */
-    DELETE(2),
 
     ;
     private final Integer value;

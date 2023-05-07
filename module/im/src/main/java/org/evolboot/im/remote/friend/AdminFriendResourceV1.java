@@ -42,44 +42,44 @@ public class AdminFriendResourceV1 {
         this.service = service;
     }
 
-
-    @Operation(summary = "创建好友关系")
-    @OperationLog("创建好友关系")
-    @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
-    public ResponseModel<?> create(
-            @RequestBody @Valid
-                    FriendCreateRequest request
-    ) {
-        Friend friend = service.create(request);
-        return ResponseModel.ok(new DomainId(friend.id()));
-    }
-
-
-    @Operation(summary = "删除好友关系")
-    @OperationLog("删除好友关系")
-    @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
-    public ResponseModel<?> delete(
-            @PathVariable("id") Long id
-    ) {
-        service.delete(id);
-        return ResponseModel.ok();
-    }
-
-
-    @Operation(summary = "修改好友关系")
-    @OperationLog("修改好友关系")
-    @PutMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
-    public ResponseModel<?> update(
-            @PathVariable("id") Long id,
-            @RequestBody @Valid
-                    FriendUpdateRequest request
-    ) {
-        service.update(id, request);
-        return ResponseModel.ok();
-    }
+//
+//    @Operation(summary = "创建好友关系")
+//    @OperationLog("创建好友关系")
+//    @PostMapping("")
+//    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+//    public ResponseModel<?> create(
+//            @RequestBody @Valid
+//                    FriendCreateRequest request
+//    ) {
+//        Friend friend = service.create(request);
+//        return ResponseModel.ok(new DomainId(friend.id()));
+//    }
+//
+//
+//    @Operation(summary = "删除好友关系")
+//    @OperationLog("删除好友关系")
+//    @DeleteMapping("/{id}")
+//    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+//    public ResponseModel<?> delete(
+//            @PathVariable("id") Long id
+//    ) {
+//        service.delete(id);
+//        return ResponseModel.ok();
+//    }
+//
+//
+//    @Operation(summary = "修改好友关系")
+//    @OperationLog("修改好友关系")
+//    @PutMapping("/{id}")
+//    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+//    public ResponseModel<?> update(
+//            @PathVariable("id") Long id,
+//            @RequestBody @Valid
+//                    FriendUpdateRequest request
+//    ) {
+//        service.update(id, request);
+//        return ResponseModel.ok();
+//    }
 
     @Operation(summary = "查询好友关系")
     @GetMapping("")

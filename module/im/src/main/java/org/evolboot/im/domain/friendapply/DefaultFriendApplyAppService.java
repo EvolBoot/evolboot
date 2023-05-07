@@ -1,11 +1,8 @@
 package org.evolboot.im.domain.friendapply;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.ImAccessAuthorities;
-import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
+import org.evolboot.im.domain.friendapply.service.FriendApplyAuditService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyCreateFactory;
 import org.evolboot.im.domain.friendapply.service.FriendApplySupportService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
@@ -30,10 +27,13 @@ public class DefaultFriendApplyAppService extends FriendApplySupportService impl
     private final FriendApplyCreateFactory factory;
     private final FriendApplyUpdateService updateService;
 
-    protected DefaultFriendApplyAppService(FriendApplyRepository repository, FriendApplyCreateFactory factory, FriendApplyUpdateService updateService) {
+    private final FriendApplyAuditService applyAuditService;
+
+    protected DefaultFriendApplyAppService(FriendApplyRepository repository, FriendApplyCreateFactory factory, FriendApplyUpdateService updateService, FriendApplyAuditService applyAuditService) {
         super(repository);
         this.factory = factory;
         this.updateService = updateService;
+        this.applyAuditService = applyAuditService;
     }
 
     @Override
@@ -42,11 +42,10 @@ public class DefaultFriendApplyAppService extends FriendApplySupportService impl
         return factory.execute(request);
     }
 
-
     @Override
     @Transactional
-    public void update(Long id, FriendApplyUpdateService.Request request) {
-        updateService.execute(id, request);
+    public FriendApply audit(FriendApplyAuditService.Request request) {
+        return applyAuditService.execute(request);
     }
 
 

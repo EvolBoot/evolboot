@@ -22,6 +22,8 @@ public interface ConversationRepository {
 
     Optional<Conversation> findById(Long id);
 
+    Optional<Conversation> findByRelationId(String relationId);
+
     Page<Conversation> page(ConversationQuery query);
 
     void deleteById(Long id);

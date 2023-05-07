@@ -32,7 +32,7 @@ import java.util.Date;
 @Slf4j
 @RestController
 @RequestMapping("/v1/admin/im/friend-apply")
-@Tag(name = "好友申请", description = "好友申请")
+@Tag(name = "好友关系", description = "好友关系")
 @AdminClient
 public class AdminFriendApplyResourceV1 {
 
@@ -56,7 +56,7 @@ public class AdminFriendApplyResourceV1 {
         return ResponseModel.ok(new DomainId(friendApply.id()));
     }
 */
-
+/*
 
     @Operation(summary = "删除好友申请")
     @OperationLog("删除好友申请")
@@ -70,20 +70,9 @@ public class AdminFriendApplyResourceV1 {
     }
 
 
-    @Operation(summary = "修改好友申请")
-    @OperationLog("修改好友申请")
-    @PutMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
-    public ResponseModel<?> update(
-            @PathVariable("id") Long id,
-            @RequestBody @Valid
-                    FriendApplyUpdateRequest request
-    ) {
-        service.update(id, request);
-        return ResponseModel.ok();
-    }
+ */
 
-    @Operation(summary = "查询好友申请")
+    @Operation(summary = "查询好友申请列表")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<FriendApply>> page(

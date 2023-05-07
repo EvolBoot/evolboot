@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friendapply.FriendApplyQuery;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
 
 import static org.evolboot.im.ImAccessAuthorities.FriendApply.HAS_CREATE;
+import static org.evolboot.im.ImAccessAuthorities.FriendApply.HAS_PAGE;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
 
@@ -35,8 +37,8 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/friend-apply")
-@Tag(name = "好友申请", description = "好友申请")
+@RequestMapping("/v1/api/im/friend/apply")
+@Tag(name = "好友关系", description = "好友关系")
 @ApiClient
 public class AppFriendApplyResourceV1 {
 
@@ -47,18 +49,29 @@ public class AppFriendApplyResourceV1 {
     }
 
 
-    @Operation(summary = "好友申请")
-    @OperationLog("好友申请")
-    @PostMapping("")
+    @Operation(summary = "查询好友申请列表")
+    @GetMapping("")
     @Authenticated
-    @NoRepeatSubmit
-    public ResponseModel<?> create(
-            @RequestBody @Valid
-            FriendApplyCreateRequest request
+     public ResponseModel<Page<FriendApply>> page(
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date endDate
     ) {
-        FriendApply friendApply = service.create(request.to(SecurityAccessTokenHolder.getPrincipalId()));
-        return ResponseModel.ok(new DomainId(friendApply.id()));
+        FriendApplyQuery query = FriendApplyQuery
+                .builder()
+                .id(id)
+                .startDate(startDate)
+                .endDate(endDate)
+                .page(page)
+                .limit(limit)
+                .toUserId(SecurityAccessTokenHolder.getPrincipalId())
+                .build();
+        Page<FriendApply> response = service.page(query);
+        return ResponseModel.ok(response);
     }
+
 
 
     /*

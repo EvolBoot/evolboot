@@ -9,7 +9,7 @@ CREATE TABLE evol_im_group_apply
 
     group_id_       bigint COMMENT '群ID',
     apply_user_id_  bigint COMMENT '申请人ID',
-    apply_reason_   varchar(128) COMMENT '申请加群原因',
+    apply_reason_   json COMMENT '申请加群原因',
     status_         tinyint COMMENT '状态',
     expire_at_      timestamp COMMENT '时间时间',
     handle_user_id_ bigint COMMENT '处理人ID',

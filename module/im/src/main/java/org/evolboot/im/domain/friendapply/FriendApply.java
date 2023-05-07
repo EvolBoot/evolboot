@@ -1,21 +1,20 @@
 package org.evolboot.im.domain.friendapply;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.data.jpa.convert.StringListConverter;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.im.domain.friendapply.repository.jpa.convert.FriendApplyLocaleListConverter;
-import org.evolboot.core.domain.LocaleDomainPart;
-import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.evolboot.core.util.Assert;
 
-import javax.persistence.*;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.Set;
 import java.util.List;
 
 
@@ -38,23 +37,25 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 被申请的用户
      */
-    private Long ownerUserId;
+    private Long toUserId;
 
     /**
      * 申请用户
      */
-    private Long applyUserId;
+    private Long fromUserId;
 
 
     /**
      * 申请原因
      */
-    private String applyReason;
+    @Convert(converter = StringListConverter.class)
+    private List<String> applyReason = Lists.newArrayList();
+
 
     /**
      * 状态
      */
-    private FriendApplyStatus status;
+    private FriendApplyStatus status = FriendApplyStatus.PENDING;
 
     /**
      * 未处理到期时间
@@ -71,14 +72,33 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
         this.id = IdGenerate.longId();
     }
 
-    public FriendApply(Long ownerUserId, Long applyUserId, String applyReason, FriendApplyStatus status, Date expireAt) {
+    public FriendApply(Long toUserId, Long fromUserId) {
         generateId();
-        this.ownerUserId = ownerUserId;
-        this.applyUserId = applyUserId;
-        this.applyReason = applyReason;
-        this.status = status;
+        this.toUserId = toUserId;
+        this.fromUserId = fromUserId;
+    }
+
+    public void addApplyReason(String applyReason, Date expireAt) {
+        this.applyReason.add(applyReason);
         this.expireAt = expireAt;
     }
+
+     private void setStatus(FriendApplyStatus status) {
+        this.status = status;
+    }
+
+    public void agree() {
+        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()),"已经处理过这个申请");
+        setStatus(FriendApplyStatus.AGREE);
+        this.handleAt = new Date();
+    }
+
+    public void refuse() {
+        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()),"已经处理过这个申请");
+        setStatus(FriendApplyStatus.REFUSE);
+        this.handleAt = new Date();
+    }
+
 
 
     @Override
