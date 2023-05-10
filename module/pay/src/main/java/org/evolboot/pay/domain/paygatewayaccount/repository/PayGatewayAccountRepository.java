@@ -29,4 +29,12 @@ public interface PayGatewayAccountRepository {
     List<PayGatewayAccount> findAll(PayGatewayAccountQuery query);
 
     Optional<PayGatewayAccount> findFirstByEnableIsTrue();
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
 }

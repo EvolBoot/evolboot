@@ -26,4 +26,11 @@ public interface BannerRepository {
     List<Banner> findAll();
 
     List<Banner> findAll(BannerQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Banner> findOne(BannerQuery query);
 }

@@ -21,4 +21,12 @@ public interface OperationLogRepository {
     void deleteById(Long id);
 
     List<OperationLog> findAll();
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<OperationLog> findOne(OperationLogQuery query);
+
 }

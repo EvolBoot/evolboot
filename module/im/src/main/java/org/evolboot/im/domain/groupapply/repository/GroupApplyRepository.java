@@ -29,4 +29,12 @@ public interface GroupApplyRepository {
     List<GroupApply> findAll();
 
     List<GroupApply> findAll(GroupApplyQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<GroupApply> findOne(GroupApplyQuery query);
+
 }

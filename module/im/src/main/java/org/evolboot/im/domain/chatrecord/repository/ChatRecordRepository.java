@@ -29,4 +29,13 @@ public interface ChatRecordRepository {
     List<ChatRecord> findAll();
 
     List<ChatRecord> findAll(ChatRecordQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ChatRecord> findOne(ChatRecordQuery query);
+
+
 }

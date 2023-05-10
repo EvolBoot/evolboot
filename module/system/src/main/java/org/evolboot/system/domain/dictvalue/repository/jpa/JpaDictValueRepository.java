@@ -68,4 +68,10 @@ public interface JpaDictValueRepository extends DictValueRepository, ExtendedQue
         JPQLQuery<DictValue> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+    @Override
+    default Optional<DictValue> findOne(DictValueQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

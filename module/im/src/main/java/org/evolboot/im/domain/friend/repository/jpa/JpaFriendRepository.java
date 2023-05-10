@@ -2,6 +2,7 @@ package org.evolboot.im.domain.friend.repository.jpa;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
+import org.evolboot.im.domain.friend.FriendStatus;
 import org.evolboot.im.domain.friend.QFriend;
 import org.evolboot.im.domain.friend.Friend;
 import org.evolboot.im.domain.friend.FriendQuery;
@@ -66,4 +67,10 @@ public interface JpaFriendRepository extends FriendRepository, ExtendedQuerydslP
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
 
+
+
+    @Override
+    default Optional<Friend> findOne(FriendQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

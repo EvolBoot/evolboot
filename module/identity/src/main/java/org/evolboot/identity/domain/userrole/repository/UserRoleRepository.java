@@ -33,4 +33,12 @@ public interface UserRoleRepository {
 
     <S extends UserRole> List<S> saveAll(Iterable<S> entities);
 
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<UserRole> findOne(UserRoleQuery query);
+
 }

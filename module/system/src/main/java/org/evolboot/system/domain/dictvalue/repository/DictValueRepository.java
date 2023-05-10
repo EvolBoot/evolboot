@@ -31,4 +31,12 @@ public interface DictValueRepository {
     List<DictValue> findAll();
 
     List<DictValue> findAll(DictValueQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<DictValue> findOne(DictValueQuery query);
+
 }

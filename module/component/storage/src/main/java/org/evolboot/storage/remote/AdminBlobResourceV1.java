@@ -36,7 +36,6 @@ public class AdminBlobResourceV1 {
 
 
     @Operation(summary = "查询文件服务")
-    @OperationLog("查询文件服务")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<Page<Blob>> page(
@@ -55,7 +54,6 @@ public class AdminBlobResourceV1 {
 
     @PostMapping(path = "/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传图片")
-    @OperationLog("上传图片")
     @PreAuthorize(HAS_ROLE_ADMIN)
 
     public ResponseModel<BlobResponse> upload(
@@ -74,7 +72,6 @@ public class AdminBlobResourceV1 {
 
     @PostMapping(path = "/video", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传视频")
-    @OperationLog("上传视频")
     @PreAuthorize(HAS_ROLE_ADMIN)
 
     public ResponseModel<BlobResponse> uploadVideo(
@@ -93,7 +90,6 @@ public class AdminBlobResourceV1 {
 
     @PostMapping(path = "/document", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传文档")
-    @OperationLog("上传文档")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<BlobResponse> uploadDocument(
             @RequestPart("file") MultipartFile uploadFile
@@ -111,7 +107,6 @@ public class AdminBlobResourceV1 {
 
     @PostMapping(path = "/app", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传APP")
-    @OperationLog("上传APP")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<BlobResponse> uploadApp(
             @RequestPart("file") MultipartFile uploadFile

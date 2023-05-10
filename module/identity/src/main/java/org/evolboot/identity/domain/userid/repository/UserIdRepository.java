@@ -32,4 +32,14 @@ public interface UserIdRepository {
     List<Long> rand(int num);
 
     Long countByStatus(Boolean status);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<UserId> findOne(UserIdQuery query);
+
+
+
 }

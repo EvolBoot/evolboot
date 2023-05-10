@@ -65,4 +65,9 @@ public interface JpaChatRecordRepository extends ChatRecordRepository, ExtendedQ
         JPQLQuery<ChatRecord> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+    @Override
+    default Optional<ChatRecord> findOne(ChatRecordQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

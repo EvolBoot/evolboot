@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +25,12 @@ import java.util.stream.Collectors;
 @Repository
 public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuerydslPredicateExecutor<UserRole>, JpaRepository<UserRole, Long> {
 
+    default JPQLQuery<UserRole> fillQueryParameter(UserRoleQuery query) {
+        QUserRole q = QUserRole.userRole;
+        JPQLQuery<UserRole> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(q).from(q);
+        return jpqlQuery;
+    }
 
     @Override
     default List<UserRole> findAll() {
@@ -35,16 +42,9 @@ public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuery
 
     @Override
     default Page<UserRole> page(UserRoleQuery query) {
-        QUserRole q = QUserRole.userRole;
-        JPQLQuery<UserRole> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q);
-        return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+        return PageImpl.of(this.findAll(fillQueryParameter(query), query.toJpaPageRequest()));
     }
 
-    @Override
-    @Modifying(clearAutomatically = true)
-    @Query(value = "delete from evoltb_identity_user_role where user_id_ =?1", nativeQuery = true)
-    void deleteByUserId(Long userId);
 
     @Override
     @Modifying(clearAutomatically = true)
@@ -52,5 +52,9 @@ public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuery
     void deleteByRoleId(Long roleId);
 
 
+    @Override
+    default Optional<UserRole> findOne(UserRoleQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 
 }

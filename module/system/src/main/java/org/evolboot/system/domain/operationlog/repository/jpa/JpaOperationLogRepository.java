@@ -12,11 +12,19 @@ import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author evol
  */
 @Repository
 public interface JpaOperationLogRepository extends OperationLogRepository, ExtendedQuerydslPredicateExecutor<OperationLog>, JpaRepository<OperationLog, Long> {
+
+    default JPQLQuery<OperationLog> fillQueryParameter(OperationLogQuery query) {
+        QOperationLog q = QOperationLog.operationLog;
+        JPQLQuery<OperationLog> jpqlQuery = getJPQLQuery();
+        return jpqlQuery;
+    }
 
 
     @Override
@@ -38,6 +46,12 @@ public interface JpaOperationLogRepository extends OperationLogRepository, Exten
         }
         jpqlQuery.orderBy(q.id.desc());
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+    @Override
+    default Optional<OperationLog> findOne(OperationLogQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 
 }

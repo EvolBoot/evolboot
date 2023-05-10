@@ -14,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * UserId
@@ -56,5 +57,9 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
     @Query(nativeQuery = true, value = "select id_ from evoltb_identity_user_id where  status_ = 0  ORDER BY (37*(UNIX_TIMESTAMP() ^ id_)) & 0xffff   limit :num")
     List<Long> rand(@Param("num") int num);
 
+    @Override
+    default Optional<UserId> findOne(UserIdQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 
 }

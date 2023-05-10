@@ -24,6 +24,13 @@ public interface UserRepository {
 
     Optional<User> findById(Long userId);
 
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<User> findOne(UserQuery query);
+
     Page<User> page(UserQuery userQuery);
 
     boolean existsByMobile(String mobile);

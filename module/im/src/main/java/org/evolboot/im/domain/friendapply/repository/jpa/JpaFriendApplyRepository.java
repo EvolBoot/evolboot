@@ -70,4 +70,11 @@ public interface JpaFriendApplyRepository extends FriendApplyRepository, Extende
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
 
+
+
+    @Override
+    default Optional<FriendApply> findOne(FriendApplyQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
+
 }

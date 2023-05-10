@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 新闻
@@ -67,5 +68,12 @@ public interface JpaNewsRepository extends NewsRepository, ExtendedQuerydslPredi
     default Page<News> page(NewsQuery query) {
         JPQLQuery<News> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+
+    @Override
+    default Optional<News> findOne(NewsQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

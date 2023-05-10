@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * banner
@@ -68,5 +69,12 @@ public interface JpaBannerRepository extends BannerRepository, ExtendedQuerydslP
     default Page<Banner> page(BannerQuery query) {
         JPQLQuery<Banner> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+
+    @Override
+    default Optional<Banner> findOne(BannerQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

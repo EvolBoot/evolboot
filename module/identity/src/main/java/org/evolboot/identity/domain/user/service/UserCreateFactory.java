@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.user.service;
 
+import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
@@ -111,6 +112,9 @@ public class UserCreateFactory extends UserSupportService {
         eventPublisher.publishEvent(new UserCreatedEvent(user.id(), user.getUserIdentity()));
         return user;
     }
+
+
+
 
     @Getter
     @Builder

@@ -29,4 +29,11 @@ public interface GroupRepository {
     List<Group> findAll();
 
     List<Group> findAll(GroupQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Group> findOne(GroupQuery query);
 }

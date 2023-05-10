@@ -65,4 +65,10 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
         JPQLQuery<DictKey> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+    @Override
+    default Optional<DictKey> findOne(DictKeyQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

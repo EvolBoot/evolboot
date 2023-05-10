@@ -32,4 +32,12 @@ public interface FriendRepository {
 
     Optional<Friend> findByOwnerUserIdAndFriendUserId(Long ownerUserId, Long friendUserId);
 
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Friend> findOne(FriendQuery query);
+
 }

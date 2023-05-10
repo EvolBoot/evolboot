@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * APP更新
@@ -66,5 +67,11 @@ public interface JpaAppUpgradeRepository extends AppUpgradeRepository, ExtendedQ
     default Page<AppUpgrade> page(AppUpgradeQuery query) {
         JPQLQuery<AppUpgrade> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+    @Override
+    default Optional<AppUpgrade> findOne(AppUpgradeQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

@@ -94,7 +94,6 @@ public class AdminFriendResourceV1 {
         FriendQuery query = FriendQuery
                 .builder()
                 .id(id)
-                .startDate(startDate)
                 .endDate(endDate)
                 .page(page)
                 .limit(limit)

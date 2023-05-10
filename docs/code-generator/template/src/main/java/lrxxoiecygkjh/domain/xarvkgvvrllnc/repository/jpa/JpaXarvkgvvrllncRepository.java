@@ -65,4 +65,10 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
         JPQLQuery<Xarvkgvvrllnc> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+    @Override
+    default Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

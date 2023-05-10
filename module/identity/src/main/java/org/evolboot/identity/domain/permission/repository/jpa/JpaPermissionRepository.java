@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author evol
@@ -42,5 +43,10 @@ public interface JpaPermissionRepository extends PermissionRepository, ExtendedQ
     default Page<Permission> page(PermissionQuery query) {
         BooleanExpression expression = Expressions.asBoolean(true).isTrue();
         return PageImpl.of(this.findAll(expression, query.toJpaPageRequest()));
+    }
+
+    @Override
+    default Optional<Permission> findOne(PermissionQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

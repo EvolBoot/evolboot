@@ -29,4 +29,12 @@ public interface AppUpgradeRepository {
     List<AppUpgrade> findAll(AppUpgradeQuery query);
 
     AppUpgrade findFirstByClientTypeOrderByAppVersionDesc(ClientType client);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<AppUpgrade> findOne(AppUpgradeQuery query);
+
 }

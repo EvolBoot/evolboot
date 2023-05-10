@@ -31,4 +31,12 @@ public interface ConversationRepository {
     List<Conversation> findAll();
 
     List<Conversation> findAll(ConversationQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Conversation> findOne(ConversationQuery query);
+
 }

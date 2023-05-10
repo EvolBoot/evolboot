@@ -7,6 +7,7 @@ CREATE TABLE evoltb_identity_permission
     update_at_ timestamp    NOT NULL COMMENT '最后修改时间',
     version_   bigint       NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
 
+    parent_id_ bigint       null comment '父级ID',
     title_     varchar(256) null comment '权限名称',
     perm_      varchar(256) null comment '权限',
     path_      varchar(256) null comment 'URL',

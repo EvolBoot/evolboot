@@ -77,4 +77,10 @@ public interface JpaNoticeRepository extends NoticeRepository, ExtendedQuerydslP
         jpqlQuery.select(q).from(q).where(q.enable.eq(true)).orderBy(q.sort.desc());
         return findOne(jpqlQuery);
     }
+
+
+    @Override
+    default Optional<Notice> findOne(NoticeQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

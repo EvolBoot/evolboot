@@ -25,4 +25,11 @@ public interface ReceiptOrderRepository {
     List<ReceiptOrder> findAll();
 
     List<ReceiptOrder> findAll(ReceiptOrderQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ReceiptOrder> findOne(ReceiptOrderQuery query);
 }

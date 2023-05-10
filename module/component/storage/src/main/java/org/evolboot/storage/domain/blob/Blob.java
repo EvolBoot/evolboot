@@ -39,7 +39,7 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
 
     @Temporal(TemporalType.TIMESTAMP)
     @org.hibernate.annotations.CreationTimestamp
-    protected Date createTime;
+    protected Date createAt;
 
     /**
      * 新的文件名

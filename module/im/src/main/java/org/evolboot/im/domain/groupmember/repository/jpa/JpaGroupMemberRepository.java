@@ -65,4 +65,11 @@ public interface JpaGroupMemberRepository extends GroupMemberRepository, Extende
         JPQLQuery<GroupMember> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+
+    @Override
+    default Optional<GroupMember> findOne(GroupMemberQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

@@ -29,4 +29,11 @@ public interface GroupMemberRepository {
     List<GroupMember> findAll();
 
     List<GroupMember> findAll(GroupMemberQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<GroupMember> findOne(GroupMemberQuery query);
 }

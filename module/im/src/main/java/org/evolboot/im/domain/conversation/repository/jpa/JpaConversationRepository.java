@@ -68,4 +68,10 @@ public interface JpaConversationRepository extends ConversationRepository, Exten
         JPQLQuery<Conversation> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+    @Override
+    default Optional<Conversation> findOne(ConversationQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

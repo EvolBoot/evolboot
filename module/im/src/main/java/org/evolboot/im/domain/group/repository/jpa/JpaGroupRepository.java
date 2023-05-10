@@ -65,4 +65,11 @@ public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPre
         JPQLQuery<Group> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+
+    @Override
+    default Optional<Group> findOne(GroupQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

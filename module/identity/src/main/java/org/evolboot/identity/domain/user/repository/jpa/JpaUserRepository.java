@@ -95,4 +95,8 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         return findOne(jpqlQuery).orElse(UserConfiguration.getValue().getDefaultAvatar());
     }
 
+    @Override
+    default Optional<User> findOne(UserQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

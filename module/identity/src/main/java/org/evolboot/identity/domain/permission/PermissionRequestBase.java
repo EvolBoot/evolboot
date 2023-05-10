@@ -22,7 +22,7 @@ public class PermissionRequestBase {
     @Schema(description = "对应的PATH", example = "123456")
     private String path;
 
-    @Schema(description = "类型", example = "directory")
+    @Schema(description = "类型", example = "PERM")
     private Type type;
 
     @Schema(description = "排序", example = "1")

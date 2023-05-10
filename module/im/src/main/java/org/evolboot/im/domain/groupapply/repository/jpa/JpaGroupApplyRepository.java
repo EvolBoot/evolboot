@@ -65,4 +65,10 @@ public interface JpaGroupApplyRepository extends GroupApplyRepository, ExtendedQ
         JPQLQuery<GroupApply> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+
+    @Override
+    default Optional<GroupApply> findOne(GroupApplyQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

@@ -31,4 +31,11 @@ public interface FriendApplyRepository {
 
     Optional<FriendApply> findByToUserIdAndFromUserIdAndStatus(Long toUserId, Long fromUserId, FriendApplyStatus status);
 
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<FriendApply> findOne(FriendApplyQuery query);
+
 }

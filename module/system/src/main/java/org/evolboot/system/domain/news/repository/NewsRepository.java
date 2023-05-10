@@ -26,4 +26,11 @@ public interface NewsRepository {
     List<News> findAll();
 
     List<News> findAll(NewsQuery query);
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<News> findOne(NewsQuery query);
+
 }

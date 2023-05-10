@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 第三方代收订单
@@ -47,5 +48,12 @@ public interface JpaReceiptOrderRepository extends ReceiptOrderRepository, Exten
     default Page<ReceiptOrder> page(ReceiptOrderQuery query) {
         JPQLQuery<ReceiptOrder> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+
+    @Override
+    default Optional<ReceiptOrder> findOne(ReceiptOrderQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

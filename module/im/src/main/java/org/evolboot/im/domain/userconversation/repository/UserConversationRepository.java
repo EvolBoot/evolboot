@@ -29,4 +29,11 @@ public interface UserConversationRepository {
     List<UserConversation> findAll();
 
     List<UserConversation> findAll(UserConversationQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<UserConversation> findOne(UserConversationQuery query);
 }

@@ -29,4 +29,12 @@ public interface XarvkgvvrllncRepository {
     List<Xarvkgvvrllnc> findAll();
 
     List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query);
+
 }

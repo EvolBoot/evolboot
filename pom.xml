@@ -38,7 +38,7 @@
         <google-guava.version>28.0-jre</google-guava.version>
         <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
         <rocketmq-logappender.version>4.9.1</rocketmq-logappender.version>
-        <minio.version>8.3.6</minio.version>
+        <minio.version>8.5.2</minio.version>
         <okhttp3.version>4.8.1</okhttp3.version>
         <poi.version>5.2.2</poi.version>
         <querydsl.version>4.4.0</querydsl.version>

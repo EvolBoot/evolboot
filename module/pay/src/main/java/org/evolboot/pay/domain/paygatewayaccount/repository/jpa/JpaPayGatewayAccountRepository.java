@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 支付网关账户
@@ -55,4 +56,9 @@ public interface JpaPayGatewayAccountRepository extends PayGatewayAccountReposit
     }
 
 
+
+    @Override
+    default Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
 }

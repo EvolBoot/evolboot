@@ -29,8 +29,8 @@ replace:
   boundContext: system
 
   #领域名称,多个单词用下划线连接
-  domainName: dict_value
+  domainName: product
 
-  remark: 字典Value
+  remark: 产品
   # 主键类型
   pkIdClass: Long

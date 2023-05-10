@@ -26,4 +26,10 @@ public interface PermissionRepository {
 
     List<Permission> findAll(PermissionQuery query);
 
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Permission> findOne(PermissionQuery query);
 }

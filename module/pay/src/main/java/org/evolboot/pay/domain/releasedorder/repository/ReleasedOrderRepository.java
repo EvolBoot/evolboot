@@ -25,4 +25,11 @@ public interface ReleasedOrderRepository {
     List<ReleasedOrder> findAll();
 
     List<ReleasedOrder> findAll(ReleasedOrderQuery query);
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ReleasedOrder> findOne(ReleasedOrderQuery query);
 }
