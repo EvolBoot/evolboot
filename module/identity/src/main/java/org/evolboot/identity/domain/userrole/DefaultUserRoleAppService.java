@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -49,5 +50,11 @@ public class DefaultUserRoleAppService extends UserRoleSupportService implements
     @Override
     public List<UserRole> findAll(Long userId) {
         return repository.findAllByUserId(userId);
+    }
+
+
+    @Override
+    public Optional<UserRole> findOne(UserRoleQuery query) {
+        return repository.findOne(query);
     }
 }

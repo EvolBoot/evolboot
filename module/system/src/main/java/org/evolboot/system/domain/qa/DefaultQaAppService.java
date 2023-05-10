@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * QA
@@ -68,5 +69,6 @@ public class DefaultQaAppService extends QaSupportService implements QaAppServic
     public Page<Qa> page(QaQuery query) {
         return repository.page(query);
     }
+
 
 }

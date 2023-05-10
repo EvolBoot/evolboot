@@ -6,6 +6,7 @@ import org.evolboot.im.domain.groupapply.service.GroupApplyCreateFactory;
 import org.evolboot.im.domain.groupapply.service.GroupApplyUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 群申请
@@ -28,6 +29,14 @@ public interface GroupApplyAppService {
     List<GroupApply> findAll(GroupApplyQuery query);
 
     Page<GroupApply> page(GroupApplyQuery query);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<GroupApply> findOne(GroupApplyQuery query);
 
 
 }

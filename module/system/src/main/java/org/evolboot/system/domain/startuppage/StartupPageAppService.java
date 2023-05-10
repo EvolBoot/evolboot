@@ -5,6 +5,7 @@ import org.evolboot.system.domain.startuppage.service.StartupPageUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 启动页
@@ -26,6 +27,16 @@ public interface StartupPageAppService {
     Page<StartupPage> page(StartupPageQuery query);
 
     StartupPage findById(Long id);
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<StartupPage> findOne(StartupPageQuery query);
+
 
 
 }

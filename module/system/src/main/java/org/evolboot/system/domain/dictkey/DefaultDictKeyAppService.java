@@ -87,4 +87,11 @@ public class DefaultDictKeyAppService extends DictKeySupportService implements D
         return repository.page(query);
     }
 
+
+
+    @Override
+    public Optional<DictKey> findOne(DictKeyQuery query) {
+        return repository.findOne(query);
+    }
+
 }

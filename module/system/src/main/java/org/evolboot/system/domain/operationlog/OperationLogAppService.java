@@ -3,6 +3,7 @@ package org.evolboot.system.domain.operationlog;
 import org.evolboot.core.data.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author evol
@@ -16,5 +17,16 @@ public interface OperationLogAppService {
     Page<OperationLog> page(OperationLogQuery query);
 
     OperationLog findById(Long id);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<OperationLog> findOne(OperationLogQuery query);
+
+
+
 }
 

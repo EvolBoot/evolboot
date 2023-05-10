@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 会话
@@ -90,4 +91,9 @@ public class DefaultConversationAppService extends ConversationSupportService im
         return repository.page(query);
     }
 
+
+    @Override
+    public Optional<Conversation> findOne(ConversationQuery query) {
+        return repository.findOne(query);
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 聊天记录
@@ -74,4 +75,10 @@ public class DefaultChatRecordAppService extends ChatRecordSupportService implem
         return repository.page(query);
     }
 
+
+
+    @Override
+    public Optional<ChatRecord> findOne(ChatRecordQuery query) {
+        return repository.findOne(query);
+    }
 }

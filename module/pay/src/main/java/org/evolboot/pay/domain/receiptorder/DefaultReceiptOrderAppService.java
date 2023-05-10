@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 第三方代收订单
@@ -70,4 +71,8 @@ public class DefaultReceiptOrderAppService extends ReceiptOrderSupportService im
     }
 
 
+    @Override
+    public Optional<ReceiptOrder> findOne(ReceiptOrderQuery query) {
+        return repository.findOne(query);
+    }
 }

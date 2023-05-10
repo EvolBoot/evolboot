@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 群申请
@@ -72,6 +73,13 @@ public class DefaultGroupApplyAppService extends GroupApplySupportService implem
     @Override
     public Page<GroupApply> page(GroupApplyQuery query) {
         return repository.page(query);
+    }
+
+
+
+    @Override
+    public Optional<GroupApply> findOne(GroupApplyQuery query) {
+        return repository.findOne(query);
     }
 
 }

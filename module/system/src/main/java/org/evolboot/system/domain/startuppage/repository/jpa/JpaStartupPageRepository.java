@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 启动页
@@ -66,5 +67,12 @@ public interface JpaStartupPageRepository extends StartupPageRepository, Extende
     default Page<StartupPage> page(StartupPageQuery query) {
         JPQLQuery<StartupPage> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+
+    @Override
+    default Optional<StartupPage> findOne(StartupPageQuery query) {
+        return findOne(fillQueryParameter(query));
     }
 }

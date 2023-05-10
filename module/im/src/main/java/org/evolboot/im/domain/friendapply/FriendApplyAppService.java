@@ -7,6 +7,7 @@ import org.evolboot.im.domain.friendapply.service.FriendApplyCreateFactory;
 import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 好友申请
@@ -29,6 +30,15 @@ public interface FriendApplyAppService {
     List<FriendApply> findAll(FriendApplyQuery query);
 
     Page<FriendApply> page(FriendApplyQuery query);
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<FriendApply> findOne(FriendApplyQuery query);
 
 
 

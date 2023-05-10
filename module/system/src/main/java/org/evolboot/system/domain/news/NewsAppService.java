@@ -5,6 +5,7 @@ import org.evolboot.system.domain.news.service.NewsUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 新闻
@@ -28,5 +29,13 @@ public interface NewsAppService {
 
     News findById(Long id);
 
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<News> findOne(NewsQuery query);
 
 }

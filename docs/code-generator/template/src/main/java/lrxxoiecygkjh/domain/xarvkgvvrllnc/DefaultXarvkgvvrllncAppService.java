@@ -74,4 +74,9 @@ public class DefaultXarvkgvvrllncAppService extends XarvkgvvrllncSupportService 
         return repository.page(query);
     }
 
+
+    @Override
+    public Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query) {
+        return repository.findOne(query);
+    }
 }

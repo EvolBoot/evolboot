@@ -5,6 +5,7 @@ import org.evolboot.system.domain.qa.service.QaUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * QA
@@ -27,6 +28,8 @@ public interface QaAppService {
     Page<Qa> page(QaQuery query);
 
     Qa findById(Long id);
+
+
 
 
 }

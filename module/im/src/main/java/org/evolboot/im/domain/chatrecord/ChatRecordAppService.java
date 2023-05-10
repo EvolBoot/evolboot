@@ -6,6 +6,7 @@ import org.evolboot.im.domain.chatrecord.service.ChatRecordCreateFactory;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 聊天记录
@@ -28,6 +29,14 @@ public interface ChatRecordAppService {
     List<ChatRecord> findAll(ChatRecordQuery query);
 
     Page<ChatRecord> page(ChatRecordQuery query);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ChatRecord> findOne(ChatRecordQuery query);
 
 
 }

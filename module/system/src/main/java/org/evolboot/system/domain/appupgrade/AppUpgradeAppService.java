@@ -5,6 +5,7 @@ import org.evolboot.system.domain.appupgrade.service.AppUpgradeCreateFactory;
 import org.evolboot.system.domain.appupgrade.service.AppUpgradeUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * APP更新
@@ -28,6 +29,15 @@ public interface AppUpgradeAppService {
     AppUpgrade findById(Long id);
 
     AppUpgrade check(ClientType clientType);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<AppUpgrade> findOne(AppUpgradeQuery query);
+
 
 
 }

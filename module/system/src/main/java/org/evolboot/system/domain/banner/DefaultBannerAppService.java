@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * banner
@@ -67,6 +68,12 @@ public class DefaultBannerAppService extends BannerSupportService implements Ban
     @Override
     public Page<Banner> page(BannerQuery query) {
         return repository.page(query);
+    }
+
+
+    @Override
+    public Optional<Banner> findOne(BannerQuery query) {
+        return repository.findOne(query);
     }
 
 }

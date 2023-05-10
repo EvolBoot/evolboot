@@ -5,6 +5,7 @@ import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
 import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderCreateFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 代付订单
@@ -26,4 +27,14 @@ public interface ReleasedOrderAppService {
 
 
     <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ReleasedOrder> findOne(ReleasedOrderQuery query);
+
+
 }

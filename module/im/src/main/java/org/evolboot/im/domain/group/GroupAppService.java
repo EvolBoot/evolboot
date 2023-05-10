@@ -6,6 +6,7 @@ import org.evolboot.im.domain.group.service.GroupCreateFactory;
 import org.evolboot.im.domain.group.service.GroupUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 群组
@@ -29,5 +30,13 @@ public interface GroupAppService {
 
     Page<Group> page(GroupQuery query);
 
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Group> findOne(GroupQuery query);
 
 }

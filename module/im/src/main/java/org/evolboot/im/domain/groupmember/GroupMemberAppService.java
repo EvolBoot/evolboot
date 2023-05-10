@@ -6,6 +6,7 @@ import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
 import org.evolboot.im.domain.groupmember.service.GroupMemberUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 群成员
@@ -28,6 +29,15 @@ public interface GroupMemberAppService {
     List<GroupMember> findAll(GroupMemberQuery query);
 
     Page<GroupMember> page(GroupMemberQuery query);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<GroupMember> findOne(GroupMemberQuery query);
+
 
 
 }

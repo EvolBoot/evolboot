@@ -5,6 +5,7 @@ import org.evolboot.identity.domain.permission.service.PermissionCreateFactory;
 import org.evolboot.identity.domain.permission.service.PermissionUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author evol
@@ -27,5 +28,15 @@ public interface PermissionAppService {
     List<Permission> findAllById(Iterable<Long> permissionIds);
 
     List<Permission> findAllConvertTree();
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Permission> findOne(PermissionQuery query);
+
+
 
 }

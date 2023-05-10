@@ -5,6 +5,7 @@ import org.evolboot.system.domain.dictvalue.service.DictValueCreateFactory;
 import org.evolboot.system.domain.dictvalue.service.DictValueUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 字典Value
@@ -31,6 +32,15 @@ public interface DictValueAppService {
     List<DictValue> findAll(DictValueQuery query);
 
     Page<DictValue> page(DictValueQuery query);
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<DictValue> findOne(DictValueQuery query);
 
 
 }

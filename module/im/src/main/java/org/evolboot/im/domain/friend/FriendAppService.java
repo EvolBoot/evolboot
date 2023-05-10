@@ -47,4 +47,14 @@ public interface FriendAppService {
      * @return
      */
     Friend auditApply(ApplyAuditService.Request request);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Friend> findOne(FriendQuery query);
+
+
 }

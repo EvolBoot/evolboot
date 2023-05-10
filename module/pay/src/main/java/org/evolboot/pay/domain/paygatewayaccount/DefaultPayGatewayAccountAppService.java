@@ -80,4 +80,11 @@ public class DefaultPayGatewayAccountAppService extends PayGatewayAccountSupport
         return repository.findByAlias(alias).orElseThrow(() -> GATEWAY_NOT_FOUND);
     }
 
+
+
+    @Override
+    public Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query) {
+        return repository.findOne(query);
+    }
+
 }

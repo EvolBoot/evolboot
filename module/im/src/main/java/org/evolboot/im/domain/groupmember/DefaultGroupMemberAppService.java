@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 群成员
@@ -74,4 +75,9 @@ public class DefaultGroupMemberAppService extends GroupMemberSupportService impl
         return repository.page(query);
     }
 
+
+    @Override
+    public Optional<GroupMember> findOne(GroupMemberQuery query) {
+        return repository.findOne(query);
+    }
 }

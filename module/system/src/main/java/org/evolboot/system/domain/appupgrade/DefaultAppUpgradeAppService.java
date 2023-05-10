@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * APP更新
@@ -71,6 +72,12 @@ public class DefaultAppUpgradeAppService extends AppUpgradeSupportService implem
     @Override
     public AppUpgrade check(ClientType clientType) {
         return repository.findFirstByClientTypeOrderByAppVersionDesc(clientType);
+    }
+
+
+    @Override
+    public Optional<AppUpgrade> findOne(AppUpgradeQuery query) {
+        return repository.findOne(query);
     }
 
 }

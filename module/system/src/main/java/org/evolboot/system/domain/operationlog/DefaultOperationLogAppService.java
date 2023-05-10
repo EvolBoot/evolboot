@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author evol
@@ -46,5 +47,11 @@ public class DefaultOperationLogAppService implements OperationLogAppService {
     @Override
     public OperationLog findById(Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+
+    @Override
+    public Optional<OperationLog> findOne(OperationLogQuery query) {
+        return repository.findOne(query);
     }
 }

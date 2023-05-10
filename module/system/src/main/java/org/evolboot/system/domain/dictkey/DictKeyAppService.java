@@ -6,6 +6,7 @@ import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
 import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 字典key
@@ -30,5 +31,13 @@ public interface DictKeyAppService {
 
     Page<DictKey> page(DictKeyQuery query);
 
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<DictKey> findOne(DictKeyQuery query);
 
 }

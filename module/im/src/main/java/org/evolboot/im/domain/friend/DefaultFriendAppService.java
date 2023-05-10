@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 好友关系
@@ -86,5 +87,9 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
         return applyAuditService.execute(request);
     }
 
+    @Override
+    public Optional<Friend> findOne(FriendQuery query) {
+        return repository.findOne(query);
+    }
 
 }

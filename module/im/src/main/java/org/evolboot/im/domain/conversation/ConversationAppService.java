@@ -6,6 +6,7 @@ import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
 import org.evolboot.im.domain.conversation.service.ConversationUpdateService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 会话
@@ -31,6 +32,16 @@ public interface ConversationAppService {
     List<Conversation> findAll(ConversationQuery query);
 
     Page<Conversation> page(ConversationQuery query);
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Conversation> findOne(ConversationQuery query);
+
 
 
 }

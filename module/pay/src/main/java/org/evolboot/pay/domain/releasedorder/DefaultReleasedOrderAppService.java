@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 代付订单
@@ -59,5 +60,10 @@ public class DefaultReleasedOrderAppService extends ReleasedOrderSupportService 
         return notifyService.releasedOrderNotify(request);
     }
 
+
+    @Override
+    public Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
+        return repository.findOne(query);
+    }
 
 }

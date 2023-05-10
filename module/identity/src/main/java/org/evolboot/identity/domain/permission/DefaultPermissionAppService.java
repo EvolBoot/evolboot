@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author evol
@@ -78,5 +79,10 @@ public class DefaultPermissionAppService implements PermissionAppService {
     @Override
     public List<Permission> findAllConvertTree() {
         return PermissionUtil.convertTree(repository.findAll());
+    }
+
+    @Override
+    public Optional<Permission> findOne(PermissionQuery query) {
+        return repository.findOne(query);
     }
 }

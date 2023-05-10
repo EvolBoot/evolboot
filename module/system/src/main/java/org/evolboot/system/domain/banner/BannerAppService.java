@@ -5,6 +5,7 @@ import org.evolboot.system.domain.banner.service.BannerUpdateService;
 import org.evolboot.core.data.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * banner
@@ -27,6 +28,16 @@ public interface BannerAppService {
     Page<Banner> page(BannerQuery query);
 
     Banner findById(Long id);
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<Banner> findOne(BannerQuery query);
+
 
 
 }

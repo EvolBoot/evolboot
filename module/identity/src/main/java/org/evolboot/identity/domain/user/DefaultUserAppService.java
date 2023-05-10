@@ -242,4 +242,9 @@ public class DefaultUserAppService implements UserAppService {
         repository.save(user);
         return user;
     }
+
+    @Override
+    public Optional<User> findOne(UserQuery query) {
+        return repository.findOne(query);
+    }
 }

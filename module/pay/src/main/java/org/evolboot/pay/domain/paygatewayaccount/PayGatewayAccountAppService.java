@@ -31,4 +31,13 @@ public interface PayGatewayAccountAppService {
     PayGatewayAccount findByAlias(String alias);
 
 
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
+
+
+
 }

@@ -8,6 +8,7 @@ import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderUpdateService;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 第三方代收订单
@@ -34,5 +35,15 @@ public interface ReceiptOrderAppService {
     <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request);
 
     <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) ;
+
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<ReceiptOrder> findOne(ReceiptOrderQuery query);
+
 
 }

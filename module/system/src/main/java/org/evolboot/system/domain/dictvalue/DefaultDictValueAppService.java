@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 字典Value
@@ -85,4 +86,9 @@ public class DefaultDictValueAppService extends DictValueSupportService implemen
         return repository.page(query);
     }
 
+
+    @Override
+    public Optional<DictValue> findOne(DictValueQuery query) {
+        return repository.findOne(query);
+    }
 }

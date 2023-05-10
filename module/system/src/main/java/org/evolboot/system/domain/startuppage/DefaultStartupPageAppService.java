@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 启动页
@@ -66,6 +67,12 @@ public class DefaultStartupPageAppService extends StartupPageSupportService impl
     @Override
     public Page<StartupPage> page(StartupPageQuery query) {
         return repository.page(query);
+    }
+
+
+    @Override
+    public Optional<StartupPage> findOne(StartupPageQuery query) {
+        return repository.findOne(query);
     }
 
 }

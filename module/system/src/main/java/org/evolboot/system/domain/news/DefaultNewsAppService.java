@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 新闻
@@ -67,6 +68,11 @@ public class DefaultNewsAppService extends NewsSupportService implements NewsApp
     @Override
     public Page<News> page(NewsQuery query) {
         return repository.page(query);
+    }
+
+    @Override
+    public Optional<News> findOne(NewsQuery query) {
+        return repository.findOne(query);
     }
 
 }

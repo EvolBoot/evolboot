@@ -26,4 +26,14 @@ public interface StartupPageRepository {
     List<StartupPage> findAll();
 
     List<StartupPage> findAll(StartupPageQuery query);
+
+
+    /**
+     * 根据条件查询单个
+     * @param query
+     * @return
+     */
+    Optional<StartupPage> findOne(StartupPageQuery query);
+
+
 }
