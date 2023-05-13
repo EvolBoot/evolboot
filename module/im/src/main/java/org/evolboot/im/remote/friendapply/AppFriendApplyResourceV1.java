@@ -52,7 +52,7 @@ public class AppFriendApplyResourceV1 {
     @Operation(summary = "查询好友申请列表")
     @GetMapping("")
     @Authenticated
-     public ResponseModel<Page<FriendApply>> page(
+    public ResponseModel<Page<FriendApply>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
@@ -72,6 +72,29 @@ public class AppFriendApplyResourceV1 {
         return ResponseModel.ok(response);
     }
 
+    @Operation(summary = "好友申请")
+    @OperationLog("好友申请")
+    @PostMapping("")
+    @Authenticated
+    @NoRepeatSubmit
+    public ResponseModel<FriendApply> create(
+            @RequestBody @Valid
+            FriendApplyCreateRequest request
+    ) {
+        return ResponseModel.ok(service.create(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+    }
+
+    @Operation(summary = "好友申请审核")
+    @OperationLog("好友申请")
+    @PostMapping("/audit")
+    @Authenticated
+    @NoRepeatSubmit
+    public ResponseModel<FriendApply> audit(
+            @RequestBody @Valid
+            FriendApplyAuditRequest request
+    ) {
+        return ResponseModel.ok(service.audit(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+    }
 
 
     /*

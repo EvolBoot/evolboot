@@ -28,14 +28,12 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
 
     private final ApplyFriendService applyFriendService;
 
-    private final ApplyAuditService applyAuditService;
 
-    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, ApplyFriendService applyFriendService, ApplyAuditService applyAuditService) {
+    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, ApplyFriendService applyFriendService) {
         super(repository);
         this.factory = factory;
         this.updateService = updateService;
         this.applyFriendService = applyFriendService;
-        this.applyAuditService = applyAuditService;
     }
 
     @Override
@@ -77,14 +75,8 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
     }
 
     @Override
-    public BusinessResult<Object> apply(ApplyFriendService.Request request) {
+    public Friend apply(ApplyFriendService.Request request) {
         return applyFriendService.execute(request);
-    }
-
-    @Override
-    @Transactional
-    public Friend auditApply(ApplyAuditService.Request request) {
-        return applyAuditService.execute(request);
     }
 
     @Override

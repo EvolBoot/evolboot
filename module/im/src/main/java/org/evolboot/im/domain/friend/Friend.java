@@ -54,6 +54,7 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
      */
     private FriendStatus status = FriendStatus.NORMAL;
 
+
     /**
      * 昵称备注
      */

@@ -27,9 +27,9 @@ public class FriendApplyCreateRequest {
      */
     private String applyReason;
 
-    public FriendApplyCreateFactory.Request to(Long applyUserId) {
+    public FriendApplyCreateFactory.Request to(Long fromUserId) {
         return new FriendApplyCreateFactory.Request(
-                userId, applyUserId, applyReason
+                userId, fromUserId, applyReason
         );
     }
 

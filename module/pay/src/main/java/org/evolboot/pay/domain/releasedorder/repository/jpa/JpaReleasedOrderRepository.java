@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 代付订单
@@ -48,4 +49,9 @@ public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, Ext
         JPQLQuery<ReleasedOrder> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
+
+    default Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
+        return findOne(fillQueryParameter(query));
+    }
+
 }

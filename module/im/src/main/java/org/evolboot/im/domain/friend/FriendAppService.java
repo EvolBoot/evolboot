@@ -1,10 +1,7 @@
 package org.evolboot.im.domain.friend;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.lang.BusinessResult;
-import org.evolboot.im.domain.friend.service.ApplyAuditService;
 import org.evolboot.im.domain.friend.service.ApplyFriendService;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.friend.service.FriendCreateFactory;
 import org.evolboot.im.domain.friend.service.FriendUpdateService;
 
@@ -39,14 +36,7 @@ public interface FriendAppService {
      * @param request
      * @return
      */
-    BusinessResult<Object> apply(ApplyFriendService.Request request);
-
-    /**
-     * 审核请求
-     * @param request
-     * @return
-     */
-    Friend auditApply(ApplyAuditService.Request request);
+    Friend apply(ApplyFriendService.Request request);
 
 
     /**

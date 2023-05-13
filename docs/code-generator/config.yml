@@ -26,11 +26,11 @@ replace:
   tablePrefix: evol_
   author: evol
   # 上下文名 多个单线用下划线连接
-  boundContext: system
+  boundContext: im
 
   #领域名称,多个单词用下划线连接
-  domainName: product
+  domainName: friendship
 
-  remark: 产品
+  remark: 好友关系
   # 主键类型
   pkIdClass: Long

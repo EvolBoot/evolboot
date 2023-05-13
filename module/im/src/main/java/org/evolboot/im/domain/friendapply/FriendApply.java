@@ -67,6 +67,11 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
      */
     private Date handleAt;
 
+    /**
+     * 会话ID
+     */
+    private Long conversationId;
+
 
     private void generateId() {
         this.id = IdGenerate.longId();
@@ -83,22 +88,29 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
         this.expireAt = expireAt;
     }
 
-     private void setStatus(FriendApplyStatus status) {
+    private void setStatus(FriendApplyStatus status) {
         this.status = status;
     }
 
-    public void agree() {
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()),"已经处理过这个申请");
+    public void agree(Long conversationId) {
+        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
         setStatus(FriendApplyStatus.AGREE);
         this.handleAt = new Date();
+        this.conversationId = conversationId;
     }
 
     public void refuse() {
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()),"已经处理过这个申请");
+        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
         setStatus(FriendApplyStatus.REFUSE);
         this.handleAt = new Date();
     }
 
+    public void autoAgree(Long conversationId) {
+        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
+        setStatus(FriendApplyStatus.AUTO_AGREE);
+        this.handleAt = new Date();
+        this.conversationId = conversationId;
+    }
 
 
     @Override

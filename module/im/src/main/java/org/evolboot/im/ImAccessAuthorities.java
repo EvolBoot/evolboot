@@ -104,4 +104,17 @@ public interface ImAccessAuthorities {
     }
 
 
+    /**
+     * 产品
+     */
+    interface Friendship {
+        String HAS_CREATE = AUTHORITY_PREFIX + "im_friendship_create" + AUTHORITY_SUFFIX;
+        String HAS_DELETE = AUTHORITY_PREFIX + "im_friendship_delete" + AUTHORITY_SUFFIX;
+        String HAS_UPDATE = AUTHORITY_PREFIX + "im_friendship_update" + AUTHORITY_SUFFIX;
+        String HAS_PAGE = AUTHORITY_PREFIX + "im_friendship_page" + AUTHORITY_SUFFIX;
+        String HAS_SINGLE = AUTHORITY_PREFIX + "im_friendship_single" + AUTHORITY_SUFFIX;
+    }
+
+
+
 }

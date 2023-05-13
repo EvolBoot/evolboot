@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendDateUtil;
+import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.FriendAppService;
+import org.evolboot.im.domain.friend.service.ApplyFriendService;
 import org.evolboot.im.domain.friendapply.FriendApplyStatus;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Optional;
 
 /**
  * 好友申请
@@ -35,15 +37,23 @@ public class FriendApplyCreateFactory extends FriendApplySupportService {
      */
     private final static int MAXIMUM_OF_APPLY = 10;
 
-    protected FriendApplyCreateFactory(FriendApplyRepository repository) {
+    private final FriendAppService friendAppService;
+
+    protected FriendApplyCreateFactory(FriendApplyRepository repository, FriendAppService friendAppService) {
         super(repository);
+        this.friendAppService = friendAppService;
     }
 
     public FriendApply execute(Request request) {
+        Friend ownerFriend = friendAppService.apply(new ApplyFriendService.Request(request.getFromUserId(), request.getToUserId()));
         FriendApply friendApply = repository.findByToUserIdAndFromUserIdAndStatus(request.getToUserId(), request.getFromUserId(), FriendApplyStatus.PENDING).
                 orElseGet(() -> new FriendApply(request.getToUserId(), request.getFromUserId()));
-        Assert.isTrue(friendApply.getApplyReason().size() <= MAXIMUM_OF_APPLY, "已经发出申请了,请等待对方审核");
-        friendApply.addApplyReason(request.getApplyReason(), ExtendDateUtil.offsetDay(EXPIRE_MAX_OF_DAY));
+        if (ExtendObjects.isNull(ownerFriend)) {
+            Assert.isTrue(friendApply.getApplyReason().size() <= MAXIMUM_OF_APPLY, "已经发出申请了,请等待对方审核");
+            friendApply.addApplyReason(request.getApplyReason(), ExtendDateUtil.offsetDay(EXPIRE_MAX_OF_DAY));
+        } else {
+            friendApply.autoAgree(ownerFriend.getConversationId());
+        }
         repository.save(friendApply);
         return friendApply;
     }

@@ -45,29 +45,7 @@ public class AppFriendResourceV1 {
     }
 
 
-    @Operation(summary = "好友申请")
-    @OperationLog("好友申请")
-    @PostMapping("/apply")
-    @Authenticated
-    @NoRepeatSubmit
-    public ResponseModel<BusinessResult<Object>> create(
-            @RequestBody @Valid
-            FriendApplyCreateRequest request
-    ) {
-        return ResponseModel.ok(service.apply(request.to(SecurityAccessTokenHolder.getPrincipalId())));
-    }
 
-    @Operation(summary = "好友申请审核")
-    @OperationLog("好友申请")
-    @PostMapping("/apply/audit")
-    @Authenticated
-    @NoRepeatSubmit
-    public ResponseModel<Friend> audit(
-            @RequestBody @Valid
-            FriendApplyAuditRequest request
-    ) {
-        return ResponseModel.ok(service.auditApply(request.to(SecurityAccessTokenHolder.getPrincipalId())));
-    }
 
     /*
 
