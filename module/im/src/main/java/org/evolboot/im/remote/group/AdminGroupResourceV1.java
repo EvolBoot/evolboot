@@ -41,7 +41,7 @@ public class AdminGroupResourceV1 {
     public AdminGroupResourceV1(GroupAppService service) {
         this.service = service;
     }
-
+/*
 
     @Operation(summary = "创建群组")
     @OperationLog("创建群组")
@@ -56,6 +56,7 @@ public class AdminGroupResourceV1 {
     }
 
 
+
     @Operation(summary = "删除群组")
     @OperationLog("删除群组")
     @DeleteMapping("/{id}")
@@ -66,6 +67,7 @@ public class AdminGroupResourceV1 {
         service.delete(id);
         return ResponseModel.ok();
     }
+
 
 
     @Operation(summary = "修改群组")
@@ -81,6 +83,8 @@ public class AdminGroupResourceV1 {
         return ResponseModel.ok();
     }
 
+
+ */
     @Operation(summary = "查询群组")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)

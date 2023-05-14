@@ -45,25 +45,38 @@ public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 状态
      */
-    private GroupMemberStatus status;
+    private GroupMemberStatus status = GroupMemberStatus.NORMAL;
 
-
-
-
+    /**
+     *
+     */
+    private Long conversationId;
 
     /**
      * 禁言截止时间
      */
     private Date forbidTalkDeadline;
 
+
     private void generateId() {
         this.id = IdGenerate.longId();
     }
 
-    public GroupMember(String name) {
-        //   setLocales(locales);
-        generateId();
+    public GroupMember(Long groupId,
+                       Long memberUserId,
+                       Long conversationId,
+                       GroupMemberRole role,
+                       GroupMemberStatus status,
+                       Date forbidTalkDeadline) {
+        this.generateId();
+        this.groupId = groupId;
+        this.memberUserId = memberUserId;
+        this.conversationId = conversationId;
+        this.role = role;
+        this.status = status;
+        this.forbidTalkDeadline = forbidTalkDeadline;
     }
+
 
     @Override
     public Long id() {

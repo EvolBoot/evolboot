@@ -77,7 +77,6 @@ public class DefaultGroupAppService extends GroupSupportService implements Group
 
 
 
-
     @Override
     public Optional<Group> findOne(GroupQuery query) {
         return repository.findOne(query);

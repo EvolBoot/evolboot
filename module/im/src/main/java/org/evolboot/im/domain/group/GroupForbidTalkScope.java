@@ -19,7 +19,7 @@ public enum GroupForbidTalkScope {
     /**
      * 不禁言
      */
-    DONT(0),
+    NONE(0),
     /**
      * 全员
      */

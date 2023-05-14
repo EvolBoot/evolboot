@@ -12,7 +12,7 @@ import java.util.Map;
  */
 @Getter
 @AllArgsConstructor
-public enum GroupStatus {
+public enum GroupApplyStatus {
 
     /**
      * 可自由
@@ -30,15 +30,15 @@ public enum GroupStatus {
     ;
     private final Integer value;
 
-    private static final Map<Integer, GroupStatus> VALUES = Maps.newHashMapWithExpectedSize(GroupStatus.values().length);
+    private static final Map<Integer, GroupApplyStatus> VALUES = Maps.newHashMapWithExpectedSize(GroupApplyStatus.values().length);
 
     static {
-        Arrays.stream(GroupStatus.values()).forEach(e -> {
+        Arrays.stream(GroupApplyStatus.values()).forEach(e -> {
             VALUES.put(e.getValue(), e);
         });
     }
 
-    public static GroupStatus convertTo(Integer value) {
+    public static GroupApplyStatus convertTo(Integer value) {
         return VALUES.get(value);
     }
 

@@ -16,10 +16,7 @@ public enum GroupMemberStatus {
 
     NORMAL(0),
 
-
-    PRIVATE_FORBID_TALK(1),
-
-    GROUP_FORBID_TALK(2),
+    FORBID_TALK(1),
     ;
     private final Integer value;
 

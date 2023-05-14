@@ -42,6 +42,7 @@ public class AdminGroupMemberResourceV1 {
         this.service = service;
     }
 
+/*
 
     @Operation(summary = "创建群成员")
     @OperationLog("创建群成员")
@@ -80,6 +81,7 @@ public class AdminGroupMemberResourceV1 {
         service.update(id, request);
         return ResponseModel.ok();
     }
+*/
 
     @Operation(summary = "查询群成员")
     @GetMapping("")

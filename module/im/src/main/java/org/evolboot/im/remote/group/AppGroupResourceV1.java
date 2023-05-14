@@ -9,6 +9,8 @@ import org.evolboot.im.domain.group.GroupAppService;
 import org.evolboot.im.domain.group.DefaultGroupAppService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.security.api.SecurityAccessTokenHolder;
+import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.evolboot.core.data.Page;
@@ -17,6 +19,12 @@ import org.evolboot.im.domain.group.GroupQuery;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.Valid;
+
+import static org.evolboot.im.ImAccessAuthorities.Group.HAS_CREATE;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.or;
 
 /**
  * 群组
@@ -35,6 +43,19 @@ public class AppGroupResourceV1 {
 
     public AppGroupResourceV1(GroupAppService service) {
         this.service = service;
+    }
+
+
+    @Operation(summary = "创建群组")
+    @OperationLog("创建群组")
+    @PostMapping("")
+    @Authenticated
+    public ResponseModel<Group> create(
+            @RequestBody @Valid
+            GroupCreateRequest request
+    ) {
+        Group group = service.create(request.to(SecurityAccessTokenHolder.getPrincipalId()));
+        return ResponseModel.ok(group);
     }
 
 

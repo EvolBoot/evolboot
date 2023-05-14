@@ -18,6 +18,11 @@ public interface GroupAppService {
 
     Group findById(Long id);
 
+    /**
+     * 创建群
+     * @param request
+     * @return
+     */
     Group create(GroupCreateFactory.Request request);
 
     void update(Long id, GroupUpdateService.Request request);
@@ -31,13 +36,15 @@ public interface GroupAppService {
     Page<Group> page(GroupQuery query);
 
 
-
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<Group> findOne(GroupQuery query);
+
+
 
 
     /**
@@ -52,7 +59,7 @@ public interface GroupAppService {
 
     /**
      * TODO
-     *  发布公告
+     * 发布公告
      */
 
     /**
@@ -84,7 +91,6 @@ public interface GroupAppService {
      * TODO
      * 解散群
      */
-
 
 
 }

@@ -7,10 +7,7 @@ import org.evolboot.im.domain.userconversation.service.UserConversationDeleteSer
 import org.evolboot.im.domain.userconversation.service.UserConversationForbidTalkCausesChangeService;
 import org.evolboot.im.domain.userconversation.service.UserConversationSupportService;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.shared.event.im.FriendCreateEvent;
-import org.evolboot.shared.event.im.FriendDeleteEvent;
-import org.evolboot.shared.event.im.FriendJoinBlacklistEvent;
-import org.evolboot.shared.event.im.FriendRemoveBlacklistEvent;
+import org.evolboot.shared.event.im.*;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +65,13 @@ public class UserConversationListener extends UserConversationSupportService {
         log.info("监听到将好友移出黑名单:{},{},{}", event.getOwnerUserId(), event.getFriendUserId(), event.getConversationId());
         forbidTalkCausesChangeService.removeForbidTalkCauses(event.getOwnerUserId(), event.getConversationId(), UserConversationForbidTalkCause.SINGLE_BLACKLIST);
         forbidTalkCausesChangeService.removeForbidTalkCauses(event.getFriendUserId(), event.getConversationId(), UserConversationForbidTalkCause.SINGLE_BE_BLACKLIST);
+    }
+
+
+    @EventListener
+    public void on(GroupMemberCreateEvent event) {
+        log.info("监听到群员增加创建:{},{},{}", event.getMemberUserId(), event.getGroupId(), event.getConversationId());
+        factory.execute(new UserConversationCreateFactory.Request(event.getMemberUserId(), event.getConversationId(), ConversationType.GROUP, event.getGroupId(), null));
     }
 
 

@@ -6,8 +6,11 @@ import org.evolboot.core.domain.IdGenerate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.util.Assert;
+import org.evolboot.core.util.RegexUtil;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -59,21 +62,27 @@ public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Grou
     /**
      * 群状态
      */
-    private GroupStatus status = GroupStatus.NEED_APPLY;
+    private GroupApplyStatus applyStatus = GroupApplyStatus.NEED_APPLY;
 
     /**
      * 群类型
      */
     private GroupType type = GroupType.NORMAL;
 
-
     /**
      * 禁言范围
      */
-    private GroupForbidTalkScope forbidTalkScope = GroupForbidTalkScope.DONT;
+    private GroupForbidTalkScope forbidTalkScope = GroupForbidTalkScope.NONE;
 
+    /**
+     * 禁言截止时间
+     */
+    private Date forbidTalkDeadline;
 
-
+    /**
+     * 群成员数量
+     */
+    private Short quantityOfMember = 0;
 
     /**
      * 限制人数
@@ -88,11 +97,38 @@ public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Grou
 
     public Group(Long id, Long ownerUserId, String name, String avatar, String description, Long conversationId) {
         this.id = id;
-        this.ownerUserId = ownerUserId;
-        this.name = name;
-        this.avatar = avatar;
-        this.description = description;
+        setOwnerUserId(ownerUserId);
+        setName(name);
+        setAvatar(avatar);
+        setDescription(description);
         this.conversationId = conversationId;
+    }
+
+    public void setOwnerUserId(Long ownerUserId) {
+        this.ownerUserId = ownerUserId;
+    }
+
+    public void setName(String name) {
+        Assert.notBlank(name, "请填写群名称");
+        this.name = name;
+    }
+
+    public void setAvatar(String avatar) {
+        Assert.notBlank(avatar, "请上传群头像");
+        Assert.isTrue(RegexUtil.checkURL(avatar), "请上传正确的头像");
+        this.avatar = avatar;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void addMember() {
+        this.quantityOfMember++;
+    }
+
+    public void reductionMember() {
+        this.quantityOfMember--;
     }
 
     public static Long generateId() {

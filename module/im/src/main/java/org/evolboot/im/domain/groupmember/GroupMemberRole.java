@@ -21,7 +21,7 @@ public enum GroupMemberRole {
     /**
      * 管理员
      */
-    ADMIN(1),
+    MANAGER(1),
     /**
      * 一般成员
      */

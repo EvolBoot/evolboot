@@ -1,12 +1,19 @@
 package org.evolboot.im.domain.group.service;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.event.EventPublisher;
 import org.evolboot.im.domain.conversation.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
+import org.evolboot.im.domain.groupmember.GroupMemberAppService;
+import org.evolboot.im.domain.groupmember.GroupMemberRole;
+import org.evolboot.im.domain.groupmember.GroupMemberStatus;
+import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
 import org.evolboot.im.domain.shared.ConversationType;
+import org.evolboot.shared.event.im.GroupCreateEvent;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.group.Group;
@@ -24,9 +31,16 @@ public class GroupCreateFactory extends GroupSupportService {
 
     private final ConversationAppService conversationAppService;
 
-    protected GroupCreateFactory(GroupRepository repository, ConversationAppService conversationAppService) {
+    private final EventPublisher eventPublisher;
+
+    private final GroupMemberAppService groupMemberAppService;
+
+
+    protected GroupCreateFactory(GroupRepository repository, ConversationAppService conversationAppService, EventPublisher eventPublisher, GroupMemberAppService groupMemberAppService) {
         super(repository);
         this.conversationAppService = conversationAppService;
+        this.eventPublisher = eventPublisher;
+        this.groupMemberAppService = groupMemberAppService;
     }
 
     public Group execute(Request request) {
@@ -41,11 +55,21 @@ public class GroupCreateFactory extends GroupSupportService {
                 conversation.id()
         );
         repository.save(group);
+        groupMemberAppService.create(new GroupMemberCreateFactory.Request(
+                groupId,
+                group.getOwnerUserId(),
+                group.getConversationId(),
+                GroupMemberRole.OWNER,
+                GroupMemberStatus.NORMAL,
+                null
+        ));
+        eventPublisher.publishEvent(new GroupCreateEvent(groupId, group.getOwnerUserId(), group.getName(), group.getConversationId()));
         return group;
     }
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class Request {
 
         private Long ownerUserId;

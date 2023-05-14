@@ -20,6 +20,21 @@ public interface GroupMemberAppService {
 
     GroupMember create(GroupMemberCreateFactory.Request request);
 
+    /**
+     * 禁言
+     */
+
+
+
+    /**
+     * 解禁
+     */
+
+    /**
+     * 踢除
+     */
+
+
     void update(Long id, GroupMemberUpdateService.Request request);
 
     void delete(Long id);

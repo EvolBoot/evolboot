@@ -1,12 +1,18 @@
 package org.evolboot.im.domain.groupmember.service;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.evolboot.core.event.EventPublisher;
+import org.evolboot.im.domain.groupmember.GroupMemberRole;
+import org.evolboot.im.domain.groupmember.GroupMemberStatus;
+import org.evolboot.shared.event.im.GroupMemberCreateEvent;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
 import org.evolboot.im.domain.groupmember.GroupMember;
-import org.evolboot.im.domain.groupmember.
-        GroupMemberRequestBase;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
 
 /**
  * 群成员
@@ -17,18 +23,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class GroupMemberCreateFactory extends GroupMemberSupportService {
-    protected GroupMemberCreateFactory(GroupMemberRepository repository) {
+
+    private final EventPublisher eventPublisher;
+
+    protected GroupMemberCreateFactory(GroupMemberRepository repository, EventPublisher eventPublisher) {
         super(repository);
+        this.eventPublisher = eventPublisher;
     }
 
     public GroupMember execute(Request request) {
-        GroupMember groupMember = new GroupMember("test");
+        GroupMember groupMember = new GroupMember(
+                request.getGroupId(),
+                request.getMemberUserId(),
+                request.getConversationId(),
+                request.getRole(),
+                request.getStatus(),
+                request.getForbidTalkDeadline()
+        );
+        eventPublisher.publishEvent(
+                new GroupMemberCreateEvent(
+                        groupMember.id(),
+                        groupMember.getGroupId(),
+                        groupMember.getMemberUserId(),
+                        groupMember.getConversationId()
+                ));
         repository.save(groupMember);
         return groupMember;
     }
 
-    public static class Request extends GroupMemberRequestBase {
-
+    @Getter
+    @AllArgsConstructor
+    public static class Request {
+        private Long groupId;
+        private Long memberUserId;
+        private Long conversationId;
+        private GroupMemberRole role;
+        private GroupMemberStatus status;
+        private Date forbidTalkDeadline;
     }
 
 }

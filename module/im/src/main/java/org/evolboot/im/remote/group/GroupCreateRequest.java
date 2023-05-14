@@ -15,7 +15,20 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GroupCreateRequest extends GroupCreateFactory.Request {
+public class GroupCreateRequest {
 
+
+    private String name;
+
+    private String avatar;
+
+    private String description;
+
+
+    public GroupCreateFactory.Request to(Long ownerUserId) {
+        return new GroupCreateFactory.Request(
+                ownerUserId, name, avatar, description
+        );
+    }
 
 }

@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GroupMemberCreateRequest extends GroupMemberCreateFactory.Request {
+public class GroupMemberCreateRequest {
 
 
 }
