@@ -43,8 +43,8 @@ public class UserConversationListener extends UserConversationSupportService {
         factory.execute(new UserConversationCreateFactory.Request(event.getOwnerUserId(), event.getConversationId(), ConversationType.SINGLE, null, event.getFriendUserId()));
         factory.execute(new UserConversationCreateFactory.Request(event.getFriendUserId(), event.getConversationId(), ConversationType.SINGLE, null, event.getOwnerUserId()));
         // 移除禁言
-        forbidTalkCausesChangeService.removeForbidTalkCauses(event.getOwnerUserId(), event.getConversationId(), UserConversationForbidTalkCause.BE_DELETE_RELATION);
         forbidTalkCausesChangeService.removeForbidTalkCauses(event.getFriendUserId(), event.getConversationId(), UserConversationForbidTalkCause.BE_DELETE_RELATION);
+        forbidTalkCausesChangeService.removeForbidTalkCauses(event.getFriendUserId(), event.getConversationId(), UserConversationForbidTalkCause.SINGLE_BE_BLACKLIST);
 
     }
 
