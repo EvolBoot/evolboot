@@ -11,6 +11,7 @@ import org.evolboot.im.domain.conversation.service.ConversationSupportService;
 import org.evolboot.im.domain.conversation.service.ConversationUpdateService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,16 +46,16 @@ public class DefaultConversationAppService extends ConversationSupportService im
 
     @Override
     @Transactional
-    public Conversation addPeople(Long id, int quantityOfPeople) {
-        Conversation conversation = findById(id).addPeople(quantityOfPeople);
+    public Conversation addPeople(Long id) {
+        Conversation conversation = findById(id).addPeople();
         repository.save(conversation);
-         return conversation;
+        return conversation;
     }
 
     @Override
     @Transactional
-    public Conversation reductionPeople(Long id, int quantityOfPeople) {
-        Conversation conversation = findById(id).reductionPeople(quantityOfPeople);
+    public Conversation reductionPeople(Long id) {
+        Conversation conversation = findById(id).reductionPeople();
         repository.save(conversation);
         return conversation;
     }

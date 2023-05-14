@@ -9,7 +9,7 @@ import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.friend.Friend;
 import org.evolboot.im.domain.friend.FriendAppService;
-import org.evolboot.im.domain.friend.service.ApplyFriendService;
+import org.evolboot.im.domain.friend.service.FriendApplyService;
 import org.evolboot.im.domain.friendapply.FriendApplyStatus;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
@@ -45,7 +45,7 @@ public class FriendApplyCreateFactory extends FriendApplySupportService {
     }
 
     public FriendApply execute(Request request) {
-        Friend ownerFriend = friendAppService.apply(new ApplyFriendService.Request(request.getFromUserId(), request.getToUserId()));
+        Friend ownerFriend = friendAppService.apply(new FriendApplyService.Request(request.getFromUserId(), request.getToUserId()));
         FriendApply friendApply = repository.findByToUserIdAndFromUserIdAndStatus(request.getToUserId(), request.getFromUserId(), FriendApplyStatus.PENDING).
                 orElseGet(() -> new FriendApply(request.getToUserId(), request.getFromUserId()));
         if (ExtendObjects.isNull(ownerFriend)) {

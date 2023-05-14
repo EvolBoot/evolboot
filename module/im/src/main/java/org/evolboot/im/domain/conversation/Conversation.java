@@ -15,6 +15,7 @@ import javax.persistence.*;
 /**
  * 会话
  * TODO 多语言
+ *
  * @author evol
  * @date 2023-05-02 21:43:03
  */
@@ -44,31 +45,27 @@ public class Conversation extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 人数
      */
-    private Integer quantityOfPeople;
+    private Integer quantityOfPeople = 0;
 
 
     private void generateId() {
         this.id = IdGenerate.longId();
     }
 
-    public Conversation addPeople(int quantityOfPeople) {
-        Assert.isTrue(quantityOfPeople > 0, "增加的人员数量不能小于0");
-        this.quantityOfPeople += quantityOfPeople;
+    public Conversation addPeople() {
+        this.quantityOfPeople++;
         return this;
     }
 
-    public Conversation reductionPeople(int quantityOfPeople) {
-        Assert.isTrue(quantityOfPeople > 0, "减少的人员数量不能小于0");
-        this.quantityOfPeople -= quantityOfPeople;
+    public Conversation reductionPeople() {
+        this.quantityOfPeople--;
         return this;
     }
 
-    public Conversation(ConversationType type, String relationId, int quantityOfPeople) {
-        Assert.isTrue(quantityOfPeople > 0, "会话人员数量不能小于0");
+    public Conversation(ConversationType type, String relationId) {
         generateId();
         this.type = type;
         this.relationId = relationId;
-        this.quantityOfPeople = quantityOfPeople;
     }
 
 

@@ -4,18 +4,19 @@ package org.evolboot.im.domain.friend.service;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.util.Assert;
 import org.evolboot.im.acl.client.UserClient;
 import org.evolboot.im.domain.conversation.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
 import org.evolboot.im.domain.shared.ConversationType;
+import org.evolboot.im.domain.userconversation.service.UserConversationCreateFactory;
+import org.evolboot.shared.event.im.FriendCreateEvent;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.friend.Friend;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Optional;
 
 import static org.evolboot.identity.IdentityI18nMessage.User.USER_NOT_FOUND;
 
@@ -33,23 +34,23 @@ public class FriendCreateFactory extends FriendSupportService {
 
     private final UserClient userClient;
 
-    /**
-     * 私聊会话人数
-     */
-    private final static int CONVERSATION_PEOPLE = 2;
+    private final EventPublisher eventPublisher;
 
-    protected FriendCreateFactory(FriendRepository repository, ConversationAppService conversationAppService, UserClient userClient) {
+
+    protected FriendCreateFactory(FriendRepository repository, ConversationAppService conversationAppService, UserClient userClient, EventPublisher eventPublisher) {
         super(repository);
         this.conversationAppService = conversationAppService;
         this.userClient = userClient;
+        this.eventPublisher = eventPublisher;
     }
 
     public Friend execute(Request request) {
         // 判断用户是否存在
         Assert.isTrue(userClient.existsByUserId(request.getFriendUserId()), USER_NOT_FOUND);
         Assert.isTrue(userClient.existsByUserId(request.getOwnerUserId()), USER_NOT_FOUND);
-        // 创建一个会话
-        Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.SINGLE, buildConversationId(request.getOwnerUserId(), request.getFriendUserId()), CONVERSATION_PEOPLE));
+        // 创建会话
+        Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.SINGLE, buildConversationId(request.getOwnerUserId(), request.getFriendUserId())));
+
         Friend owner = repository.findByOwnerUserIdAndFriendUserId(request.getOwnerUserId(), request.getFriendUserId()).orElseGet(() -> new Friend(
                 request.getOwnerUserId(),
                 request.getFriendUserId(),
@@ -62,6 +63,8 @@ public class FriendCreateFactory extends FriendSupportService {
         ));
         repository.save(friend);
         repository.save(owner);
+        // 发出事件
+        eventPublisher.publishEvent(new FriendCreateEvent(owner.id(), owner.getOwnerUserId(), owner.getFriendUserId(), conversation.id()));
         return owner;
     }
 

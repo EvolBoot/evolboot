@@ -8,37 +8,38 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
+ * 禁言范围
+ *
  * @author evol
  */
 @Getter
 @AllArgsConstructor
-public enum GroupStatus {
+public enum GroupForbidTalkScope {
 
     /**
-     * 可自由
+     * 不禁言
      */
-    FREE_JOIN(0),
+    DONT(0),
     /**
-     * 需要申请加入
+     * 全员
      */
-    NEED_APPLY(1),
+    FULL(1),
     /**
-     * 禁止申请
+     * 仅会员
      */
-    FORBID_APPLY(2),
+    ONLY_MEMBER(2);
 
-    ;
     private final Integer value;
 
-    private static final Map<Integer, GroupStatus> VALUES = Maps.newHashMapWithExpectedSize(GroupStatus.values().length);
+    private static final Map<Integer, GroupForbidTalkScope> VALUES = Maps.newHashMapWithExpectedSize(GroupForbidTalkScope.values().length);
 
     static {
-        Arrays.stream(GroupStatus.values()).forEach(e -> {
+        Arrays.stream(GroupForbidTalkScope.values()).forEach(e -> {
             VALUES.put(e.getValue(), e);
         });
     }
 
-    public static GroupStatus convertTo(Integer value) {
+    public static GroupForbidTalkScope convertTo(Integer value) {
         return VALUES.get(value);
     }
 

@@ -1,11 +1,15 @@
 package org.evolboot.im.domain.group.service;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import org.evolboot.im.domain.conversation.Conversation;
+import org.evolboot.im.domain.conversation.ConversationAppService;
+import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
+import org.evolboot.im.domain.shared.ConversationType;
 import org.springframework.stereotype.Service;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.group.Group;
-import org.evolboot.im.domain.group.
-        GroupRequestBase;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -17,18 +21,40 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class GroupCreateFactory extends GroupSupportService {
-    protected GroupCreateFactory(GroupRepository repository) {
+
+    private final ConversationAppService conversationAppService;
+
+    protected GroupCreateFactory(GroupRepository repository, ConversationAppService conversationAppService) {
         super(repository);
+        this.conversationAppService = conversationAppService;
     }
 
     public Group execute(Request request) {
-        Group group = new Group("test");
+        Long groupId = Group.generateId();
+        Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.GROUP, groupId.toString()));
+        Group group = new Group(
+                groupId,
+                request.getOwnerUserId(),
+                request.getName(),
+                request.getAvatar(),
+                request.getDescription(),
+                conversation.id()
+        );
         repository.save(group);
         return group;
     }
 
-    public static class Request extends GroupRequestBase {
+    @Getter
+    @Setter
+    public static class Request {
 
+        private Long ownerUserId;
+
+        private String name;
+
+        private String avatar;
+
+        private String description;
     }
 
 }

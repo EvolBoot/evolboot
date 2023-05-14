@@ -16,7 +16,15 @@ import java.util.Map;
 @AllArgsConstructor
 public enum ConversationType {
 
+
+    /**
+     * 群聊
+     */
     GROUP(0),
+
+    /**
+     * 私聊
+     */
     SINGLE(1);
 
 

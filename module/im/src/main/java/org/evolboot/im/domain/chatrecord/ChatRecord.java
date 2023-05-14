@@ -62,7 +62,7 @@ public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long
     private Long conversationId;
 
     /**
-     * 消息内容
+     * 消息内容（不会返回给前端）
      */
     @JsonIgnore
     @Column(name = "message_content_")
@@ -84,6 +84,9 @@ public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long
     @JsonIgnore
     private String revokeMessageContentValue;
 
+    /**
+     * 消息内容，返回给前端
+     */
     @Transient
     private M messageContent;
 

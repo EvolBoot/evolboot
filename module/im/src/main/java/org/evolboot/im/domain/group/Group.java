@@ -1,21 +1,13 @@
 package org.evolboot.im.domain.group;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.im.domain.group.repository.jpa.convert.GroupLocaleListConverter;
-import org.evolboot.core.domain.LocaleDomainPart;
-import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.Set;
-import java.util.List;
 
 
 /**
@@ -70,23 +62,41 @@ public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Grou
     private GroupStatus status = GroupStatus.NEED_APPLY;
 
     /**
+     * 群类型
+     */
+    private GroupType type = GroupType.NORMAL;
+
+
+    /**
+     * 禁言范围
+     */
+    private GroupForbidTalkScope forbidTalkScope = GroupForbidTalkScope.DONT;
+
+
+
+
+    /**
      * 限制人数
      */
     private Short limit = 500;
 
     /**
-     * 群通知
+     * 群备注
      */
     private String remark;
 
-    private void generateId() {
-        this.id = IdGenerate.longId();
+
+    public Group(Long id, Long ownerUserId, String name, String avatar, String description, Long conversationId) {
+        this.id = id;
+        this.ownerUserId = ownerUserId;
+        this.name = name;
+        this.avatar = avatar;
+        this.description = description;
+        this.conversationId = conversationId;
     }
 
-
-    public Group(String name) {
-        //   setLocales(locales);
-        generateId();
+    public static Long generateId() {
+        return IdGenerate.longId();
     }
 
     @Override

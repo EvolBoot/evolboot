@@ -45,6 +45,41 @@ public class AppFriendResourceV1 {
     }
 
 
+    @Operation(summary = "删除好友关系")
+    @OperationLog("删除好友关系")
+    @DeleteMapping("/friend-user-id/{friendUserId}")
+    @Authenticated
+    public ResponseModel<?> delete(
+            @PathVariable("friendUserId") Long friendUserId
+    ) {
+        service.deleteByFriendUserId(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        return ResponseModel.ok();
+    }
+
+
+    @Operation(summary = "将好友拉入黑名单")
+    @OperationLog("将好友拉入黑名单")
+    @PutMapping("/join-blacklist/friend-user-id/{friendUserId}")
+    @Authenticated
+    public ResponseModel<?> joinBlacklist(
+            @PathVariable("friendUserId") Long friendUserId
+    ) {
+        service.joinBlacklist(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        return ResponseModel.ok();
+    }
+
+
+    @Operation(summary = "将好友移出黑名单")
+    @OperationLog("将好友移出黑名单")
+    @PutMapping("/remove-blacklist/friend-user-id/{friendUserId}")
+    @Authenticated
+    public ResponseModel<?> removeBlacklist(
+            @PathVariable("friendUserId") Long friendUserId
+    ) {
+        service.removeBlacklist(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        return ResponseModel.ok();
+    }
+
 
 
     /*

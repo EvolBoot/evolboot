@@ -19,18 +19,10 @@ public enum UserConversationStatus {
      */
     NORMAL(0),
     /**
-     * 拉黑,不能说话
+     * 禁言
      */
-    BLOCK(1),
-    /**
-     * 被禁言
-     */
-    FORBID_TALK(2),
+    FORBID_TALK(1),
 
-    /**
-     * 删除关系
-     */
-    DELETE_RELATION(3)
     ;
     private final Integer value;
 

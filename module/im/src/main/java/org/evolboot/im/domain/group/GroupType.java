@@ -1,4 +1,4 @@
-package org.evolboot.im.domain.friend;
+package org.evolboot.im.domain.group;
 
 import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
@@ -12,29 +12,25 @@ import java.util.Map;
  */
 @Getter
 @AllArgsConstructor
-public enum FriendStatus {
+public enum GroupType {
 
     /**
-     * 正常
+     * 可自由假如
      */
     NORMAL(0),
-    /**
-     * 拉黑
-     */
-    BLACKLIST(1),
 
     ;
     private final Integer value;
 
-    private static final Map<Integer, FriendStatus> VALUES = Maps.newHashMapWithExpectedSize(FriendStatus.values().length);
+    private static final Map<Integer, GroupType> VALUES = Maps.newHashMapWithExpectedSize(GroupType.values().length);
 
     static {
-        Arrays.stream(FriendStatus.values()).forEach(e -> {
+        Arrays.stream(GroupType.values()).forEach(e -> {
             VALUES.put(e.getValue(), e);
         });
     }
 
-    public static FriendStatus convertTo(Integer value) {
+    public static GroupType convertTo(Integer value) {
         return VALUES.get(value);
     }
 

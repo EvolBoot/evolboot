@@ -72,4 +72,6 @@ public interface JpaUserConversationRepository extends UserConversationRepositor
     default Optional<UserConversation> findOne(UserConversationQuery query) {
         return findOne(fillQueryParameter(query));
     }
+
+
 }

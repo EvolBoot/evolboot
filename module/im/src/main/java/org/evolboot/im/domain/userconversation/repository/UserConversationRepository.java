@@ -36,4 +36,12 @@ public interface UserConversationRepository {
      * @return
      */
     Optional<UserConversation> findOne(UserConversationQuery query);
+
+    /**
+     * 查找用户的会话
+     * @param ownerUserId
+     * @param conversationId
+     * @return
+     */
+    Optional<UserConversation> findByOwnerUserIdAndConversationId(Long ownerUserId, Long conversationId);
 }

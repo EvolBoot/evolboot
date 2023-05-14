@@ -42,6 +42,7 @@ public class AdminUserConversationResourceV1 {
         this.service = service;
     }
 
+/*
 
     @Operation(summary = "创建用户会话")
     @OperationLog("创建用户会话")
@@ -80,6 +81,7 @@ public class AdminUserConversationResourceV1 {
         service.update(id, request);
         return ResponseModel.ok();
     }
+*/
 
     @Operation(summary = "查询用户会话")
     @GetMapping("")

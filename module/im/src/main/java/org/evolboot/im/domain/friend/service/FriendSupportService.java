@@ -30,6 +30,10 @@ public abstract class FriendSupportService {
         repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(I18NMessageHolder.message(ImI18nMessage.Friend.NOT_FOUND)));
     }
 
+    public Friend findByOwnerUserIdAndFriendUserId(Long ownerUserId, Long friendUserId) {
+        return repository.findByOwnerUserIdAndFriendUserId(ownerUserId, friendUserId).orElseThrow(() -> new DomainNotFoundException("对方不是你的好友"));
+    }
+
     /**
      * 会话ID构建
      *

@@ -39,4 +39,52 @@ public interface GroupAppService {
      */
     Optional<Group> findOne(GroupQuery query);
 
+
+    /**
+     * TODO
+     * 修改群资料
+     */
+
+    /**
+     * TODO
+     * 修改禁言
+     */
+
+    /**
+     * TODO
+     *  发布公告
+     */
+
+    /**
+     * TODO
+     * 转让群主
+     */
+
+    /**
+     * TODO
+     * 踢除群员
+     */
+
+    /**
+     * TODO
+     * 邀请群员
+     */
+
+    /**
+     * TODO
+     * 审核申请
+     */
+
+    /**
+     * TODO
+     * 修改群状态
+     */
+
+    /**
+     * TODO
+     * 解散群
+     */
+
+
+
 }

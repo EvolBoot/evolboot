@@ -45,7 +45,6 @@ public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot
      */
     private Long applyUserId;
 
-
     /**
      * 申请原因
      */

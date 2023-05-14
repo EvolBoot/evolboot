@@ -1,22 +1,17 @@
 package org.evolboot.im.domain.userconversation;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.im.domain.shared.ConversationType;
-import org.evolboot.im.domain.userconversation.repository.jpa.convert.UserConversationLocaleListConverter;
-import org.evolboot.core.domain.LocaleDomainPart;
+import org.evolboot.im.domain.userconversation.repository.jpa.convert.UserConversationForbidTalkCauseSetConverter;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
-import java.util.List;
 
 
 /**
@@ -49,9 +44,26 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
     private ConversationType conversationType;
 
     /**
-     * 禁言状态
+     * 状态
      */
-    private UserConversationStatus status;
+    private UserConversationStatus status = UserConversationStatus.NORMAL;
+
+    /**
+     * 禁言原因
+     */
+    @Convert(converter = UserConversationForbidTalkCauseSetConverter.class)
+    private Set<UserConversationForbidTalkCause> forbidTalkCauses = Sets.newHashSet();
+
+    /**
+     * 群ID，如果会话类型为 GROUP，则此ID不为空
+     */
+    private Long groupId;
+
+    /**
+     * 朋友会话ID，如果类型为 SINGLE ，则此ID不为空
+     */
+    private Long friendUserId;
+
 
     /**
      * 备注
@@ -62,10 +74,36 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
         this.id = IdGenerate.longId();
     }
 
-
-    public UserConversation(String name) {
-        //   setLocales(locales);
+    public UserConversation(Long ownerUserId, Long conversationId, ConversationType conversationType, Long groupId, Long friendUserId) {
         generateId();
+
+        this.groupId = groupId;
+        this.friendUserId = friendUserId;
+        this.ownerUserId = ownerUserId;
+        this.conversationId = conversationId;
+        this.conversationType = conversationType;
+    }
+
+    /**
+     * 增加禁言原因，并切会话状态改为禁言
+     *
+     * @param forbidTalkCause
+     */
+    public void addForbidTalkCauses(UserConversationForbidTalkCause forbidTalkCause) {
+        this.forbidTalkCauses.add(forbidTalkCause);
+        this.status = UserConversationStatus.FORBID_TALK;
+    }
+
+    /**
+     * 移除禁言原因，如果禁言原因为空，则恢复正常聊天
+     *
+     * @param forbidTalkCause
+     */
+    public void removeForbidTalkCauses(UserConversationForbidTalkCause forbidTalkCause) {
+        this.forbidTalkCauses.remove(forbidTalkCause);
+        if (this.forbidTalkCauses.isEmpty()) {
+            this.status = UserConversationStatus.NORMAL;
+        }
     }
 
     @Override

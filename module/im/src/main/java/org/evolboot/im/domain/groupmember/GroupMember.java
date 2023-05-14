@@ -48,6 +48,9 @@ public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoo
     private GroupMemberStatus status;
 
 
+
+
+
     /**
      * 禁言截止时间
      */

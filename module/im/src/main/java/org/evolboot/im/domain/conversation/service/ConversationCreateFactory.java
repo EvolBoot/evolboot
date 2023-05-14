@@ -32,8 +32,7 @@ public class ConversationCreateFactory extends ConversationSupportService {
     public Conversation execute(Request request) {
         Conversation conversation = repository.findByRelationId(request.getRelationId()).orElseGet(() -> new Conversation(
                 request.getType(),
-                request.getRelationId(),
-                request.getQuantityOfPeople()
+                request.getRelationId()
         ));
         repository.save(conversation);
         return conversation;
@@ -54,7 +53,6 @@ public class ConversationCreateFactory extends ConversationSupportService {
          */
         private String relationId;
 
-        private int quantityOfPeople;
     }
 
 }

@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class UserConversationCreateRequest extends UserConversationCreateFactory.Request {
+public class UserConversationCreateRequest  {
 
 
 }

@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.friend;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.lang.BusinessResult;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.friend.service.*;
 
@@ -26,14 +25,20 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
     private final FriendCreateFactory factory;
     private final FriendUpdateService updateService;
 
-    private final ApplyFriendService applyFriendService;
+    private final FriendApplyService applyService;
+
+    private final FriendDeleteService deleteService;
+
+    private final FriendBlacklistService blacklistService;
 
 
-    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, ApplyFriendService applyFriendService) {
+    protected DefaultFriendAppService(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, FriendApplyService applyService, FriendDeleteService deleteService, FriendBlacklistService blacklistService) {
         super(repository);
         this.factory = factory;
         this.updateService = updateService;
-        this.applyFriendService = applyFriendService;
+        this.applyService = applyService;
+        this.deleteService = deleteService;
+        this.blacklistService = blacklistService;
     }
 
     @Override
@@ -75,13 +80,33 @@ public class DefaultFriendAppService extends FriendSupportService implements Fri
     }
 
     @Override
-    public Friend apply(ApplyFriendService.Request request) {
-        return applyFriendService.execute(request);
+    @Transactional
+    public Friend apply(FriendApplyService.Request request) {
+        return applyService.execute(request);
     }
 
     @Override
     public Optional<Friend> findOne(FriendQuery query) {
         return repository.findOne(query);
+    }
+
+    @Override
+    @Transactional
+    public void joinBlacklist(Long ownerUserId, Long friendUserId) {
+        blacklistService.joinBlacklist(ownerUserId, friendUserId);
+
+    }
+
+    @Override
+    @Transactional
+    public void removeBlacklist(Long ownerUserId, Long friendUserId) {
+        blacklistService.removeBlacklist(ownerUserId, friendUserId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByFriendUserId(Long ownerUserId, Long friendUserId) {
+        deleteService.deleteByFriendUserId(ownerUserId, friendUserId);
     }
 
 }

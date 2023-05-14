@@ -15,7 +15,11 @@ import java.util.Map;
 public enum GroupMemberStatus {
 
     NORMAL(0),
-    FORBID_TALK(1),
+
+
+    PRIVATE_FORBID_TALK(1),
+
+    GROUP_FORBID_TALK(2),
     ;
     private final Integer value;
 

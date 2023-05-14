@@ -20,8 +20,9 @@ public interface ConversationAppService {
 
     Conversation create(ConversationCreateFactory.Request request);
 
-    Conversation addPeople(Long id, int quantityOfPeople);
-    Conversation reductionPeople(Long id, int quantityOfPeople);
+    Conversation addPeople(Long id);
+
+    Conversation reductionPeople(Long id);
 
     void update(Long id, ConversationUpdateService.Request request);
 
@@ -32,8 +33,6 @@ public interface ConversationAppService {
     List<Conversation> findAll(ConversationQuery query);
 
     Page<Conversation> page(ConversationQuery query);
-
-
 
     /**
      * 根据条件查询单个

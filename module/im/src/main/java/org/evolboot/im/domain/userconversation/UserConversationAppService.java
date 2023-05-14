@@ -18,6 +18,10 @@ public interface UserConversationAppService {
 
     UserConversation findById(Long id);
 
+    /**
+     * 创建用户会话
+     */
+
     UserConversation create(UserConversationCreateFactory.Request request);
 
     void update(Long id, UserConversationUpdateService.Request request);
@@ -38,6 +42,8 @@ public interface UserConversationAppService {
      * @return
      */
     Optional<UserConversation> findOne(UserConversationQuery query);
+
+
 
 
 }
