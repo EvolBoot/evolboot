@@ -1,7 +1,6 @@
 package org.evolboot.identity.domain.user.repository.jpa.convert;
 
 import org.evolboot.identity.domain.user.Gender;
-import org.evolboot.identity.domain.user.UserType;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

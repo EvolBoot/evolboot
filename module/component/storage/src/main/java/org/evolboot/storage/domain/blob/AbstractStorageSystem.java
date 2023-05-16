@@ -9,7 +9,6 @@ import java.util.UUID;
 
 /**
  * @author evol
- * 
  */
 public abstract class AbstractStorageSystem implements StorageSystem {
 

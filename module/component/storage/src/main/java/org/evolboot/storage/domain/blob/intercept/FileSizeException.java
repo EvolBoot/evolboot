@@ -4,7 +4,6 @@ import org.evolboot.core.exception.DomainException;
 
 /**
  * @author evol
- * 
  */
 public class FileSizeException extends DomainException {
 

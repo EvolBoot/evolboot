@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * Websocket 服务
+ *
  * @author evol
  */
 @Target({ElementType.TYPE})

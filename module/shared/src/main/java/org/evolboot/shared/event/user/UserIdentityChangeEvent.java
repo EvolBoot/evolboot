@@ -1,9 +1,9 @@
 package org.evolboot.shared.event.user;
 
-import org.evolboot.shared.event.Event;
-import org.evolboot.shared.lang.UserIdentity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.shared.event.Event;
+import org.evolboot.shared.lang.UserIdentity;
 
 import java.util.Set;
 

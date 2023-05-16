@@ -1,14 +1,13 @@
 package org.evolboot.bffapp.domain;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.bffapp.domain.repository.BffAppMapper;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- *
  */
 @Service
 @Slf4j

@@ -1,12 +1,11 @@
 package org.evolboot.captcha.remote.mobilecaptcha;
 
+import lombok.Data;
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.shared.sms.SmsMessageTag;
-import lombok.Data;
 
 /**
  * @author evol
- * 
  */
 @Data
 public class MobileCaptchaRequest {

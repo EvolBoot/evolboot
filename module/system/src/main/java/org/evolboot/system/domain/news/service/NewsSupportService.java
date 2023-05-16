@@ -1,13 +1,10 @@
 package org.evolboot.system.domain.news.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.news.News;
-import org.evolboot.system.domain.news.NewsQuery;
 import org.evolboot.system.domain.news.repository.NewsRepository;
-import org.evolboot.core.exception.DomainNotFoundException;
-
-import java.util.Optional;
 
 /**
  * 新闻
@@ -26,8 +23,6 @@ public abstract class NewsSupportService {
     public News findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new DomainNotFoundException(SystemI18nMessage.News.notFound()));
     }
-
-
 
 
 }

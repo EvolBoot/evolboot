@@ -3,28 +3,27 @@ package org.evolboot.system.remote.notice;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.notice.Notice;
-import org.evolboot.system.domain.notice.NoticeAppService;
-import org.evolboot.system.domain.notice.NoticeQuery;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.system.domain.notice.Notice;
+import org.evolboot.system.domain.notice.NoticeAppService;
+import org.evolboot.system.domain.notice.NoticeQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.evolboot.system.SystemAccessAuthorities.Notice.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.system.SystemAccessAuthorities.Notice.*;
 
 /**
  * 公告
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController
@@ -46,7 +45,7 @@ public class AdminNoticeResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    NoticeCreateRequest request
+            NoticeCreateRequest request
     ) {
         Notice notice = service.create(request);
         return ResponseModel.ok(new DomainId(notice.id()));
@@ -72,7 +71,7 @@ public class AdminNoticeResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    NoticeUpdateRequest request
+            NoticeUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

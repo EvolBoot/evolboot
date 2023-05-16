@@ -1,11 +1,11 @@
 package org.evolboot.captcha.domain.imagecaptcha.service;
 
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaConfiguration;
-import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import com.wf.captcha.ArithmeticCaptcha;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaConfiguration;
+import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.springframework.stereotype.Service;
 
 /**

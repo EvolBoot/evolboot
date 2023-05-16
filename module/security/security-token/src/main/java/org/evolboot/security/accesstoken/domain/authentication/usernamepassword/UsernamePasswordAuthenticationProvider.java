@@ -1,5 +1,6 @@
 package org.evolboot.security.accesstoken.domain.authentication.usernamepassword;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;
@@ -7,7 +8,6 @@ import org.evolboot.security.accesstoken.domain.authentication.AuthenticationPro
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import org.evolboot.security.accesstoken.exception.AccessTokenException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**

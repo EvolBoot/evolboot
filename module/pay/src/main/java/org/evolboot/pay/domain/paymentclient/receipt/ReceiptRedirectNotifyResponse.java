@@ -1,9 +1,8 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 /**
  * 代收通知返回

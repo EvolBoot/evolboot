@@ -1,8 +1,8 @@
 package org.evolboot.system.remote.operationlog;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.system.domain.operationlog.OperationLogAppService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

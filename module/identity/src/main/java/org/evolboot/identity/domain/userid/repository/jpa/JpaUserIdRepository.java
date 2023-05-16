@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.userid.repository.jpa;
 
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
@@ -7,7 +8,6 @@ import org.evolboot.identity.domain.userid.QUserId;
 import org.evolboot.identity.domain.userid.UserId;
 import org.evolboot.identity.domain.userid.UserIdQuery;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
-import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,10 +20,9 @@ import java.util.Optional;
  * UserId
  *
  * @author evol
- * 
  */
 @Repository
-public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslPredicateExecutor<UserId>, JpaRepository<UserId, Long> {
+public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslPredicateExecutor<UserId, Long>, JpaRepository<UserId, Long> {
 
     default JPQLQuery<UserId> fillQueryParameter(UserIdQuery query) {
         QUserId q = QUserId.userId;

@@ -1,8 +1,8 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
 
 /**
  * 代收下单返回

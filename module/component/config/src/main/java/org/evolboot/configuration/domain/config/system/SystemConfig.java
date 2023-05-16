@@ -1,10 +1,10 @@
 package org.evolboot.configuration.domain.config.system;
 
-import org.evolboot.configuration.domain.config.PropertyValue;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.configuration.domain.config.PropertyValue;
 
 /**
  * 基础默认配置

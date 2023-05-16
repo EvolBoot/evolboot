@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.group.repository.jpa.convert;
 
 
-
 import org.evolboot.im.domain.group.GroupForbidTalkScope;
 
 import javax.persistence.AttributeConverter;

@@ -1,7 +1,6 @@
 package org.evolboot.system.domain.dictkey;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
 import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 
@@ -17,6 +16,7 @@ import java.util.Optional;
 public interface DictKeyAppService {
 
     DictKey findById(Long id);
+
     DictKey findByKey(String key);
 
     DictKey create(DictKeyCreateFactory.Request request);
@@ -32,9 +32,9 @@ public interface DictKeyAppService {
     Page<DictKey> page(DictKeyQuery query);
 
 
-
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

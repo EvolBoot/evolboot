@@ -1,13 +1,12 @@
 package org.evolboot.pay.remote.paymentclient.util;
 
-import org.evolboot.core.util.JsonUtil;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.evolboot.core.util.JsonUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.TreeMap;

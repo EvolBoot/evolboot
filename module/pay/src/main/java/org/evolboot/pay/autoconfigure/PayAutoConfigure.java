@@ -1,13 +1,13 @@
 package org.evolboot.pay.autoconfigure;
 
-import org.evolboot.pay.domain.paymentclient.gateway.qart.QartConfig;
-import org.evolboot.shared.pay.PayGateway;
+import com.google.common.collect.Maps;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayConfig;
+import org.evolboot.pay.domain.paymentclient.gateway.qart.QartConfig;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
 import org.evolboot.pay.domain.shared.PayConfig;
-import com.google.common.collect.Maps;
+import org.evolboot.shared.pay.PayGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -6,6 +6,7 @@ import org.evolboot.shared.event.mq.TransactionMQMessage;
 
 /**
  * 消息队列,消息发送器
+ *
  * @author evol
  */
 public interface MQMessagePublisher {
@@ -13,6 +14,7 @@ public interface MQMessagePublisher {
 
     /**
      * 事务消息
+     *
      * @param message
      * @param <T>
      * @return
@@ -21,6 +23,7 @@ public interface MQMessagePublisher {
 
     /**
      * 实时消息
+     *
      * @param message
      * @param <T>
      */

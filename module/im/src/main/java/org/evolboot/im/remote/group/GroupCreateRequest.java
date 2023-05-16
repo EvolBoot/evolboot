@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.group;
 
 
-import org.evolboot.im.domain.group.service.GroupCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.group.service.GroupCreateFactory;
 
 /**
  * 群组

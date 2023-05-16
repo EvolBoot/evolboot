@@ -41,5 +41,4 @@ public class ReceiptOrderRequestResult {
     private String requestText;
 
 
-
 }

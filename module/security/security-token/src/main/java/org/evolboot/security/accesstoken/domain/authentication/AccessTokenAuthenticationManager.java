@@ -1,7 +1,7 @@
 package org.evolboot.security.accesstoken.domain.authentication;
 
-import org.evolboot.security.accesstoken.domain.AccessToken;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

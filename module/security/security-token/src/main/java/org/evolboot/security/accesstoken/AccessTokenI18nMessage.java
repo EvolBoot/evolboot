@@ -10,9 +10,7 @@ public abstract class AccessTokenI18nMessage {
     public static final String NAMESPACE = "security.accesstoken";
 
 
-     public static final String AUTHENTICATION_ERROR = NAMESPACE + ".authenticationError";
-
-
+    public static final String AUTHENTICATION_ERROR = NAMESPACE + ".authenticationError";
 
 
     public static String authenticationError() {

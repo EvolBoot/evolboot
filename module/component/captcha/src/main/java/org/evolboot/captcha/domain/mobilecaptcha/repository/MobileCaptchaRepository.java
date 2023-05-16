@@ -1,14 +1,14 @@
 package org.evolboot.captcha.domain.mobilecaptcha.repository;
 
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.core.data.BaseRepository;
 
 import java.util.Optional;
 
 /**
  * @author evol
- * 
  */
-public interface MobileCaptchaRepository {
+public interface MobileCaptchaRepository extends BaseRepository<MobileCaptcha, Long> {
 
     MobileCaptcha save(MobileCaptcha mobileCaptcha);
 

@@ -1,12 +1,9 @@
 package org.evolboot.im.domain.userconversation;
 
-import org.evolboot.core.data.Query;
-import org.evolboot.core.data.Sort;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
+import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 

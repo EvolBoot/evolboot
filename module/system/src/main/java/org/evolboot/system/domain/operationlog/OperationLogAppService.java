@@ -21,11 +21,11 @@ public interface OperationLogAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<OperationLog> findOne(OperationLogQuery query);
-
 
 
 }

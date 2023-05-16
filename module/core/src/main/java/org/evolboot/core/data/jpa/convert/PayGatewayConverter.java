@@ -10,7 +10,7 @@ import javax.persistence.Converter;
  * @author evol
  */
 @Converter(autoApply = true)
-public class PayGatewayConverter implements AttributeConverter<PayGateway,Integer> {
+public class PayGatewayConverter implements AttributeConverter<PayGateway, Integer> {
     @Override
     public Integer convertToDatabaseColumn(PayGateway attribute) {
         return attribute.getValue();

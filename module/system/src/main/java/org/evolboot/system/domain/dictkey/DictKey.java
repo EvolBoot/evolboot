@@ -1,23 +1,16 @@
 package org.evolboot.system.domain.dictkey;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Setter;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.Assert;
-import org.evolboot.system.domain.dictkey.repository.jpa.convert.DictKeyLocaleListConverter;
-import org.evolboot.core.domain.LocaleDomainPart;
-import com.google.common.collect.Sets;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
-import java.util.Set;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**

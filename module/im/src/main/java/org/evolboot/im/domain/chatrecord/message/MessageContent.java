@@ -5,6 +5,6 @@ package org.evolboot.im.domain.chatrecord.message;
  */
 public interface MessageContent {
 
-     MessageType getType();
+    MessageType getType();
 
 }

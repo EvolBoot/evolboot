@@ -9,7 +9,6 @@ import org.evolboot.core.data.Query;
  * banner
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

@@ -33,6 +33,7 @@ public interface ReleasedClient extends PaymentClient {
 
     /**
      * 查询订单
+     *
      * @param releasedOrderId
      * @param account
      * @return
@@ -41,6 +42,7 @@ public interface ReleasedClient extends PaymentClient {
 
     /**
      * 支持下发的组织类型
+     *
      * @param orgType
      * @return
      */

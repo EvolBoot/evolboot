@@ -10,7 +10,6 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * @author evol
- * 
  */
 public class ImageCaptchaRedisTemplate extends RedisTemplate<String, ImageCaptcha> {
 

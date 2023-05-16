@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.groupapply;
 
 
-import org.evolboot.im.domain.groupapply.service.GroupApplyUpdateService;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.groupapply.service.GroupApplyUpdateService;
 
 /**
  * 群申请

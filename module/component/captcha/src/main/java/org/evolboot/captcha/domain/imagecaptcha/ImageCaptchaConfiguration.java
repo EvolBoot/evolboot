@@ -1,13 +1,12 @@
 package org.evolboot.captcha.domain.imagecaptcha;
 
-import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 
 /**
  * @author evol
- * 
  */
 
 public class ImageCaptchaConfiguration {

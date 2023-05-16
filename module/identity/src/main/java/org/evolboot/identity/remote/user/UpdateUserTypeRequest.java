@@ -1,12 +1,11 @@
 package org.evolboot.identity.remote.user;
 
-import org.evolboot.identity.domain.user.UserType;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.identity.domain.user.UserType;
 
 /**
  * @author evol
- * 
  */
 @Setter
 @Getter

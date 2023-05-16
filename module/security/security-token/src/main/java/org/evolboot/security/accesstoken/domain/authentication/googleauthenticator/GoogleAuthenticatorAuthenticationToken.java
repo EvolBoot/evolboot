@@ -1,9 +1,9 @@
 package org.evolboot.security.accesstoken.domain.authentication.googleauthenticator;
 
-import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
-import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
+import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 
 /**
  * @author evol

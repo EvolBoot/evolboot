@@ -7,7 +7,6 @@ import lombok.Setter;
  * 用户角色
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

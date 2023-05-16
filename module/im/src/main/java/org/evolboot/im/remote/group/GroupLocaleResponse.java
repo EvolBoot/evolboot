@@ -1,15 +1,12 @@
 package org.evolboot.im.remote.group;
 
-import org.evolboot.im.domain.group.Group;
-import org.evolboot.im.domain.group.GroupLocale;
-
-import org.evolboot.core.data.Page;
-import org.evolboot.core.data.PageImpl;
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.core.data.Page;
+import org.evolboot.core.data.PageImpl;
+import org.evolboot.im.domain.group.Group;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,11 +1,11 @@
 package org.evolboot.im.domain.userconversation.service;
 
-import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
-import org.evolboot.im.domain.userconversation.UserConversation;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.userconversation.UserConversation;
+import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 
 /**
  * 用户会话

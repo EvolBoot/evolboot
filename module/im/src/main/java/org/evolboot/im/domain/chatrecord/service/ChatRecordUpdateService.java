@@ -1,13 +1,10 @@
 package org.evolboot.im.domain.chatrecord.service;
 
-import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.chatrecord.ChatRecord;
 import org.evolboot.im.domain.chatrecord.ChatRecordRequestBase;
-
-import java.util.Objects;
-
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 聊天记录

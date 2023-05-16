@@ -22,5 +22,4 @@ public abstract class DictKeyRequestBase {
     private String remark;
 
 
-
 }

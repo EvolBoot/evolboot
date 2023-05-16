@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author evol
- * 
  */
 public final class PermissionUtil {
 

@@ -1,13 +1,8 @@
 package org.evolboot.im.domain.userconversation.service;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.conversation.ConversationAppService;
-import org.evolboot.im.domain.shared.ConversationType;
-import org.evolboot.im.domain.userconversation.UserConversation;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.springframework.stereotype.Service;
 

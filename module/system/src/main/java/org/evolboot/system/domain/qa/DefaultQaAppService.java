@@ -1,22 +1,20 @@
 package org.evolboot.system.domain.qa;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.qa.repository.QaRepository;
 import org.evolboot.system.domain.qa.service.QaCreateFactory;
 import org.evolboot.system.domain.qa.service.QaSupportService;
 import org.evolboot.system.domain.qa.service.QaUpdateService;
-import org.evolboot.core.data.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * QA
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

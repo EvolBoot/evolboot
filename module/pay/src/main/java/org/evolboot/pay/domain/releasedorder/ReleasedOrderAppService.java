@@ -11,7 +11,6 @@ import java.util.Optional;
  * 代付订单
  *
  * @author evol
-* 
  */
 public interface ReleasedOrderAppService {
 
@@ -31,6 +30,7 @@ public interface ReleasedOrderAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

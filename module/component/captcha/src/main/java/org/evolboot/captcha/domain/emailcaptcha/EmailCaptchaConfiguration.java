@@ -1,14 +1,13 @@
 package org.evolboot.captcha.domain.emailcaptcha;
 
 import cn.hutool.core.date.DateUnit;
-import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 
 /**
  * @author evol
- * 
  */
 public class EmailCaptchaConfiguration {
 

@@ -1,19 +1,13 @@
 package org.evolboot.im.domain.conversation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.ImAccessAuthorities;
-import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
 import org.evolboot.im.domain.conversation.service.ConversationSupportService;
 import org.evolboot.im.domain.conversation.service.ConversationUpdateService;
-
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;

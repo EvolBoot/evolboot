@@ -1,7 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedRequestResult;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

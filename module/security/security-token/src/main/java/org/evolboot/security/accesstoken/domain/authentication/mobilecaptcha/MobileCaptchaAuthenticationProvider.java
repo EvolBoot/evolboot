@@ -1,17 +1,15 @@
 package org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.identity.domain.user.UserRegisterService;
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
-import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationProvider;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import org.evolboot.security.accesstoken.exception.AccessTokenException;
-import lombok.extern.slf4j.Slf4j;
-import org.evolboot.shared.lang.DeviceType;
 import org.springframework.stereotype.Component;
 
 /**

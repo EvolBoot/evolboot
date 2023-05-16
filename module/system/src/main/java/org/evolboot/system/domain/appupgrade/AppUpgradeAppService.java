@@ -33,11 +33,11 @@ public interface AppUpgradeAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<AppUpgrade> findOne(AppUpgradeQuery query);
-
 
 
 }

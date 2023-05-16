@@ -4,7 +4,6 @@ import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactor
 
 /**
  * @author evol
- * 
  */
 public interface EmailCaptchaAppService {
 

@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.user.relation.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.relation.Relation;
 import org.evolboot.identity.domain.user.relation.RelationQuery;
@@ -12,9 +13,8 @@ import java.util.Optional;
  * 用户上下级关系
  *
  * @author evol
- * 
  */
-public interface RelationRepository {
+public interface RelationRepository extends BaseRepository<Relation, Long> {
 
     Relation save(Relation relation);
 

@@ -3,11 +3,11 @@ package org.evolboot.system.domain.startuppage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.startuppage.repository.jpa.convert.StartupPageLocaleListConverter;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.domain.LocaleDomainPart;
+import org.evolboot.system.domain.startuppage.repository.jpa.convert.StartupPageLocaleListConverter;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -20,7 +20,6 @@ import java.util.List;
  * 启动页
  *
  * @author evol
- * 
  */
 @Table(name = "evoltb_system_startup_page")
 @Getter

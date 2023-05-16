@@ -1,15 +1,12 @@
 package org.evolboot.system.remote.dictvalue;
 
-import org.evolboot.system.domain.dictvalue.DictValue;
-import org.evolboot.system.domain.dictvalue.DictValueLocale;
-
-import org.evolboot.core.data.Page;
-import org.evolboot.core.data.PageImpl;
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.core.data.Page;
+import org.evolboot.core.data.PageImpl;
+import org.evolboot.system.domain.dictvalue.DictValue;
 
 import java.util.List;
 import java.util.stream.Collectors;

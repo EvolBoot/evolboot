@@ -9,7 +9,6 @@ import org.evolboot.system.domain.banner.service.BannerUpdateService;
  * banner
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

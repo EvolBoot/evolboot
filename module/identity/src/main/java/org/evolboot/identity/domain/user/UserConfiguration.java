@@ -1,12 +1,11 @@
 package org.evolboot.identity.domain.user;
 
-import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.exception.ConfigurationRepeatSettingException;
 
 /**
  * @author evol
- * 
  */
 public final class UserConfiguration {
 

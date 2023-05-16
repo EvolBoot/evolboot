@@ -1,10 +1,9 @@
 package org.evolboot.im.domain.friendapply;
 
-import org.evolboot.core.data.Query;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
+import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 
@@ -27,7 +26,7 @@ public class FriendApplyQuery extends Query {
 
     private Date endDate;
 
-    private  Long toUserId;
+    private Long toUserId;
 
     @Builder
     public FriendApplyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long toUserId) {

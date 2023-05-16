@@ -31,6 +31,7 @@ public interface ReceiptClient extends PaymentClient {
 
     /**
      * 代收前端同步通知
+     *
      * @param gatewayAccount
      * @param request
      * @param <T>

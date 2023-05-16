@@ -1,12 +1,12 @@
 package org.evolboot.im.domain.userconversation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.evolboot.im.domain.userconversation.service.UserConversationCreateFactory;
 import org.evolboot.im.domain.userconversation.service.UserConversationDeleteService;
 import org.evolboot.im.domain.userconversation.service.UserConversationForbidTalkCausesChangeService;
 import org.evolboot.im.domain.userconversation.service.UserConversationSupportService;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.shared.event.im.*;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;

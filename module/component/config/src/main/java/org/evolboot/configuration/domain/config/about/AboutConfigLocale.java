@@ -1,7 +1,7 @@
 package org.evolboot.configuration.domain.config.about;
 
-import org.evolboot.core.lang.LocaleLanguage;
 import lombok.*;
+import org.evolboot.core.lang.LocaleLanguage;
 
 /**
  * @author evol

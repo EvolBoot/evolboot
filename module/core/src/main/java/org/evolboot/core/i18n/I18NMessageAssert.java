@@ -10,7 +10,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 
@@ -21,11 +20,11 @@ public abstract class I18NMessageAssert {
     }
 
     public static void fieldNotBlank(String str, String field) {
-        Assert.notBlank(str, I18NMessageHolder.message(CoreI18nMessage.NOT_BLANK,  field));
+        Assert.notBlank(str, I18NMessageHolder.message(CoreI18nMessage.NOT_BLANK, field));
     }
 
     public static void fieldNotEmpty(String str, String field) {
-        notEmpty(str, I18NMessageHolder.message(CoreI18nMessage.NOT_EMPTY,  field));
+        notEmpty(str, I18NMessageHolder.message(CoreI18nMessage.NOT_EMPTY, field));
     }
 
 

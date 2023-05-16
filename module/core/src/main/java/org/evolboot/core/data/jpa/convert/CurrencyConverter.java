@@ -10,7 +10,7 @@ import javax.persistence.Converter;
  * @author evol
  */
 @Converter(autoApply = true)
-public class CurrencyConverter implements AttributeConverter<Currency,Integer> {
+public class CurrencyConverter implements AttributeConverter<Currency, Integer> {
     @Override
     public Integer convertToDatabaseColumn(Currency attribute) {
         return attribute.getValue();

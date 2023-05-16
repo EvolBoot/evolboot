@@ -1,13 +1,12 @@
 package org.evolboot.identity.autoconfigure;
 
-import org.evolboot.identity.domain.user.UserConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.user.UserConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author evol
- * 
  */
 @EnableConfigurationProperties(UserProperties.class)
 @Configuration

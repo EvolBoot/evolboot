@@ -6,7 +6,6 @@ import org.evolboot.core.lang.LocaleLanguage;
 
 /**
  * @author evol
- * 
  */
 @Getter
 @Setter

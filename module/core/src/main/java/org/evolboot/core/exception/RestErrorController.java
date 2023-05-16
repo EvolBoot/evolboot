@@ -1,8 +1,8 @@
 package org.evolboot.core.exception;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.evolboot.core.Constant;
 import org.evolboot.core.remote.ResponseModel;
-import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

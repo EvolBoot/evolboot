@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
  * 公告
  *
  * @author evol
- * 
  */
 @Service
 @Slf4j

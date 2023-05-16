@@ -1,8 +1,8 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateResult;
 
 import java.math.BigDecimal;
 

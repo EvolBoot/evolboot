@@ -6,7 +6,6 @@ import java.util.Set;
 
 /**
  * @author evol
- * 
  */
 @Data
 public class UserRoleUpdateRequest {

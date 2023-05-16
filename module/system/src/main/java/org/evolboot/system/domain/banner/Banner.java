@@ -3,11 +3,11 @@ package org.evolboot.system.domain.banner;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.banner.repository.jpa.convert.BannerLocaleListConverter;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.domain.LocaleDomainPart;
+import org.evolboot.system.domain.banner.repository.jpa.convert.BannerLocaleListConverter;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -20,7 +20,6 @@ import java.util.List;
  * banner
  *
  * @author evol
- * 
  */
 @Table(name = "evoltb_system_banner")
 @Getter
@@ -47,7 +46,7 @@ public class Banner extends JpaAbstractEntity<Long> implements AggregateRoot<Ban
         this.sort = sort;
     }
 
-    public  void setShow(Boolean show) {
+    public void setShow(Boolean show) {
         this.show = show;
     }
 

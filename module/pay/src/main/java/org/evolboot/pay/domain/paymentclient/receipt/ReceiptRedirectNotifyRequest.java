@@ -1,9 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
-
-import java.math.BigDecimal;
 
 /**
  * 代收通知

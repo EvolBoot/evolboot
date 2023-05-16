@@ -1,13 +1,10 @@
 package org.evolboot.im.domain.friendapply.service;
 
-import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.friendapply.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyRequestBase;
-
-import java.util.Objects;
-
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 好友申请

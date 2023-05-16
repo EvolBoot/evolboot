@@ -1,11 +1,11 @@
 package org.evolboot.system.domain.banner;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.banner.repository.BannerRepository;
 import org.evolboot.system.domain.banner.service.BannerCreateFactory;
 import org.evolboot.system.domain.banner.service.BannerSupportService;
 import org.evolboot.system.domain.banner.service.BannerUpdateService;
-import org.evolboot.core.data.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,6 @@ import java.util.Optional;
  * banner
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

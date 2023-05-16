@@ -1,8 +1,6 @@
 package org.evolboot.im.domain.groupapply.repository.jpa.convert;
 
 
-
-
 import org.evolboot.im.domain.groupapply.GroupApplyStatus;
 
 import javax.persistence.AttributeConverter;

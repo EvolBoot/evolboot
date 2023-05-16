@@ -9,7 +9,6 @@ import java.util.Collection;
 
 /**
  * @author evol
- * 
  */
 public interface LocaleDomainPart<T extends LocaleLanguage> {
 

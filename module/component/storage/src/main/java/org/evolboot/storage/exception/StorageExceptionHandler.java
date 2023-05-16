@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author evol
- * 
  */
 @Component
 public class StorageExceptionHandler extends DefaultCoreHandlerExceptionResolver {

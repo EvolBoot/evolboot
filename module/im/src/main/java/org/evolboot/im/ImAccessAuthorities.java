@@ -1,7 +1,8 @@
 package org.evolboot.im;
 
 
-import static org.evolboot.security.api.access.AccessAuthorities.*;
+import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_PREFIX;
+import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFIX;
 
 /**
  * 权限控制标识符
@@ -114,7 +115,6 @@ public interface ImAccessAuthorities {
         String HAS_PAGE = AUTHORITY_PREFIX + "im_friendship_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "im_friendship_single" + AUTHORITY_SUFFIX;
     }
-
 
 
 }

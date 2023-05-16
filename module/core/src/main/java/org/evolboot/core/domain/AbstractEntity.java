@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 /**
  * @author evol
- * 
  */
 @Scope("prototype")
 @MappedSuperclass

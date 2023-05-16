@@ -5,7 +5,6 @@ import org.evolboot.shared.sms.SmsMessageTag;
 
 /**
  * @author evol
- * 
  */
 public interface IdentityCaptchaClient {
 

@@ -5,7 +5,6 @@ import org.evolboot.core.lang.Snowflake;
 
 /**
  * @author evol
- * 
  */
 public abstract class IdGenerate {
 

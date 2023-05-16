@@ -1,9 +1,6 @@
 package org.evolboot.storage.domain.blob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.evolboot.core.domain.AbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +8,9 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.evolboot.core.domain.AbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 import org.springframework.util.DigestUtils;
 
 import javax.persistence.*;

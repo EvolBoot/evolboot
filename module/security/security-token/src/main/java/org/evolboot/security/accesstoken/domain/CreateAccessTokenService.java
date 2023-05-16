@@ -4,7 +4,6 @@ import org.evolboot.core.event.EventPublisher;
 
 /**
  * @author evol
-
  */
 public class CreateAccessTokenService {
 

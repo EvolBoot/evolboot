@@ -1,14 +1,14 @@
 package org.evolboot.system.domain.userloginlog.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.userloginlog.UserLoginLog;
 import org.evolboot.system.domain.userloginlog.UserLoginLogQuery;
 
 /**
  * @author evol
- * 
  */
-public interface UserLoginLogRepository {
+public interface UserLoginLogRepository extends BaseRepository<UserLoginLog, Long> {
 
     UserLoginLog save(UserLoginLog userLoginLog);
 

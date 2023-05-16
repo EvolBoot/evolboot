@@ -3,28 +3,27 @@ package org.evolboot.system.remote.news;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.news.News;
-import org.evolboot.system.domain.news.NewsAppService;
-import org.evolboot.system.domain.news.NewsQuery;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.system.domain.news.News;
+import org.evolboot.system.domain.news.NewsAppService;
+import org.evolboot.system.domain.news.NewsQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.evolboot.system.SystemAccessAuthorities.News.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.system.SystemAccessAuthorities.News.*;
 
 /**
  * 新闻
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController
@@ -46,7 +45,7 @@ public class AdminNewsResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    NewsCreateRequest request
+            NewsCreateRequest request
     ) {
         News news = service.create(request);
         return ResponseModel.ok(new DomainId(news.id()));
@@ -72,7 +71,7 @@ public class AdminNewsResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    NewsUpdateRequest request
+            NewsUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

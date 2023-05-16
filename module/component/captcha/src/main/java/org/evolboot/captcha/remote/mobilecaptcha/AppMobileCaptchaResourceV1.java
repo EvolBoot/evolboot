@@ -1,5 +1,7 @@
 package org.evolboot.captcha.remote.mobilecaptcha;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
@@ -7,8 +9,6 @@ import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.shared.sms.SmsMessageTag;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +36,7 @@ public class AppMobileCaptchaResourceV1 {
 //    @Operation(summary = "获取短信验证码")
     public ResponseModel<MobileCaptchaLoginResponse> create(
             @RequestBody
-                    MobileCaptchaRequest request, HttpServletRequest httpServletRequest
+            MobileCaptchaRequest request, HttpServletRequest httpServletRequest
     ) {
         MobileCaptcha mobileCaptcha = appService.create(request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(MobileCaptchaLoginResponse.of(mobileCaptcha));
@@ -48,7 +48,7 @@ public class AppMobileCaptchaResourceV1 {
     public ResponseModel<MobileCaptchaLoginResponse> smsCaptcha(
             HttpServletRequest servletRequest,
             @RequestBody @Valid
-                    AppSmsCaptchaRequest request
+            AppSmsCaptchaRequest request
     ) {
         MobileCaptcha mobileCaptcha = appService.create(new MobileCaptchaCreateFactory.Request(
                 request.getPrefix(),

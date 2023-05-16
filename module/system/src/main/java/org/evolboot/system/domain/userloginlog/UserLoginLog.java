@@ -1,13 +1,13 @@
 package org.evolboot.system.domain.userloginlog;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 /**
  * @author evol
- * 
  */
 @Table(name = "evoltb_system_user_login_log")
 @Entity

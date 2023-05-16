@@ -1,11 +1,11 @@
 package org.evolboot.system.domain.startuppage;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.startuppage.repository.StartupPageRepository;
 import org.evolboot.system.domain.startuppage.service.StartupPageCreateFactory;
 import org.evolboot.system.domain.startuppage.service.StartupPageSupportService;
 import org.evolboot.system.domain.startuppage.service.StartupPageUpdateService;
-import org.evolboot.core.data.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

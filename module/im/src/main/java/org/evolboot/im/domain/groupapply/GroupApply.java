@@ -1,22 +1,16 @@
 package org.evolboot.im.domain.groupapply;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.im.domain.groupapply.repository.jpa.convert.GroupApplyLocaleListConverter;
-import org.evolboot.core.domain.LocaleDomainPart;
-import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.Set;
-import java.util.List;
 
 
 /**

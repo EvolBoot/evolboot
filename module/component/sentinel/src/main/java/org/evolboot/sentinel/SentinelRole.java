@@ -1,16 +1,15 @@
 package org.evolboot.sentinel;
 
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
-import org.evolboot.configuration.domain.config.PropertyValue;
-import org.evolboot.core.util.ExtendObjects;
 import com.google.common.collect.Lists;
 import lombok.*;
+import org.evolboot.configuration.domain.config.PropertyValue;
+import org.evolboot.core.util.ExtendObjects;
 
 import java.util.List;
 
 /**
  * @author evol
- * 
  */
 @Setter
 @Getter

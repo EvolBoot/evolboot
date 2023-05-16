@@ -1,24 +1,21 @@
 package org.evolboot.im.domain.conversation.repository.jpa;
 
+import com.querydsl.core.types.Expression;
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.im.domain.conversation.QConversation;
+import org.evolboot.core.data.Query;
+import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.conversation.Conversation;
 import org.evolboot.im.domain.conversation.ConversationQuery;
+import org.evolboot.im.domain.conversation.QConversation;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.Sort;
-import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
-import com.querydsl.jpa.JPQLQuery;
-import org.evolboot.core.util.ExtendObjects;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Date;
 
 /**
  * 会话
@@ -27,12 +24,14 @@ import java.util.Date;
  * @date 2023-05-02 21:43:03
  */
 @Repository
-public interface JpaConversationRepository extends ConversationRepository, ExtendedQuerydslPredicateExecutor<Conversation>, JpaRepository<Conversation, Long> {
+public interface JpaConversationRepository extends ConversationRepository, ExtendedQuerydslPredicateExecutor<Conversation, Long>, JpaRepository<Conversation, Long> {
 
-    default JPQLQuery<Conversation> fillQueryParameter(ConversationQuery query) {
+
+    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
+        ConversationQuery query = (ConversationQuery) _query;
         QConversation q = QConversation.conversation;
-        JPQLQuery<Conversation> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
@@ -57,21 +56,25 @@ public interface JpaConversationRepository extends ConversationRepository, Exten
     }
 
     @Override
-    default List<Conversation> findAll(ConversationQuery query) {
-        JPQLQuery<Conversation> jpqlQuery = fillQueryParameter(query);
-        return findAll(jpqlQuery);
-    }
-
-
-    @Override
-    default Page<Conversation> page(ConversationQuery query) {
-        JPQLQuery<Conversation> jpqlQuery = fillQueryParameter(query);
+    default <Q extends Query> Page<Conversation> page(Q query) {
+        JPQLQuery<Conversation> jpqlQuery = fillQueryParameter(query, QConversation.conversation);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
 
 
     @Override
-    default Optional<Conversation> findOne(ConversationQuery query) {
-        return findOne(fillQueryParameter(query));
+    default <Q extends Query> Optional<Conversation> findOne(Q query) {
+        return findOne(fillQueryParameter(query, QConversation.conversation));
+    }
+
+    @Override
+    default <Q extends Query> List<Conversation> findAll(Q query) {
+        return findAll(fillQueryParameter(query, QConversation.conversation));
+    }
+
+    @Override
+    default <Q extends Query> long count(Q query) {
+        JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QConversation.conversation.id.count());
+        return findOne(jpqlQuery).orElse(0L);
     }
 }

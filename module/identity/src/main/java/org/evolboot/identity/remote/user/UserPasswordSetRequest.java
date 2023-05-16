@@ -4,7 +4,6 @@ import lombok.Data;
 
 /**
  * @author evol
- * 
  */
 @Data
 public class UserPasswordSetRequest {

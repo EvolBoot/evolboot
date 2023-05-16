@@ -1,26 +1,24 @@
 package org.evolboot.captcha.domain.imagecaptcha;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.evolboot.captcha.CaptchaI18nMessage;
-import org.evolboot.core.domain.AbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.core.i18n.I18NMessageHolder;
-import org.evolboot.core.util.Assert;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.domain.AbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.i18n.I18NMessageHolder;
+import org.evolboot.core.util.Assert;
 
 import javax.persistence.*;
 import java.util.Date;
 
-import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.*;
+import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
 
 /**
  * @author evol
- * 
  */
 @Table(name = "evoltb_image_captcha")
 @Entity

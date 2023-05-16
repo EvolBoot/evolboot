@@ -1,11 +1,11 @@
 package org.evolboot.captcha.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaConfiguration;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.evolboot.captcha.domain.imagecaptcha.repository.jpa.JpaImageCaptchaRepository;
 import org.evolboot.captcha.domain.imagecaptcha.repository.redis.ImageCaptchaRedisTemplate;
 import org.evolboot.captcha.domain.imagecaptcha.repository.redis.RedisImageCaptchaRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,7 +19,6 @@ import javax.persistence.EntityManager;
 
 /**
  * @author evol
- * 
  */
 @EnableConfigurationProperties(ImageCaptchaProperties.class)
 @Configuration

@@ -1,7 +1,7 @@
 package org.evolboot.schedule.service;
 
-import org.evolboot.schedule.acl.client.IdentityClient;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.schedule.acl.client.IdentityClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

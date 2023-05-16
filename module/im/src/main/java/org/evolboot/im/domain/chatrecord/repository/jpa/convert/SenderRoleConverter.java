@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.chatrecord.repository.jpa.convert;
 
 
-
 import org.evolboot.im.domain.chatrecord.SenderRole;
 
 import javax.persistence.AttributeConverter;

@@ -9,7 +9,6 @@ import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFI
  * 系统模块
  *
  * @author evol
- * 
  */
 public abstract class SystemI18nMessage {
 
@@ -43,7 +42,6 @@ public abstract class SystemI18nMessage {
             return I18NMessageHolder.message(NOT_FOUND);
         }
     }
-
 
 
     public static class News {
@@ -132,7 +130,6 @@ public abstract class SystemI18nMessage {
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 
     }
-
 
 
 }

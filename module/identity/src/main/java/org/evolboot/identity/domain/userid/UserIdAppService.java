@@ -9,7 +9,6 @@ import java.util.List;
  * UserId
  *
  * @author evol
- * 
  */
 public interface UserIdAppService {
 

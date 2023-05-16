@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.user.relation.repository.jpa;
 
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
@@ -9,7 +10,6 @@ import org.evolboot.identity.domain.user.relation.Relation;
 import org.evolboot.identity.domain.user.relation.RelationId;
 import org.evolboot.identity.domain.user.relation.RelationQuery;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
-import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,10 +23,9 @@ import java.util.Optional;
  * 用户上下级关系
  *
  * @author evol
- * 
  */
 @Repository
-public interface JpaRelationRepository extends RelationRepository, ExtendedQuerydslPredicateExecutor<Relation>, JpaRepository<Relation, RelationId> {
+public interface JpaRelationRepository extends RelationRepository, ExtendedQuerydslPredicateExecutor<Relation, Long>, JpaRepository<Relation, RelationId> {
 
     default JPQLQuery<Relation> fillQueryParameter(RelationQuery query) {
         QRelation q = QRelation.relation;

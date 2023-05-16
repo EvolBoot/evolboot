@@ -5,7 +5,6 @@ import lombok.Data;
 
 /**
  * @author evol
- * 
  */
 public abstract class PermissionRequestSupport {
 

@@ -1,8 +1,9 @@
 package org.evolboot.pay.domain.paygatewayaccount.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.Optional;
  *
  * @author evol
  */
-public interface PayGatewayAccountRepository {
+public interface PayGatewayAccountRepository extends BaseRepository<PayGatewayAccount, Long> {
 
     PayGatewayAccount save(PayGatewayAccount payGatewayAccount);
 
@@ -20,21 +21,22 @@ public interface PayGatewayAccountRepository {
 
     Optional<PayGatewayAccount> findByAlias(String alias);
 
-    Page<PayGatewayAccount> page(PayGatewayAccountQuery query);
 
     void deleteById(Long id);
 
     List<PayGatewayAccount> findAll();
 
-    List<PayGatewayAccount> findAll(PayGatewayAccountQuery query);
 
     Optional<PayGatewayAccount> findFirstByEnableIsTrue();
 
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
+    <Q extends Query> List<PayGatewayAccount> findAll(Q query);
+
+    <Q extends Query> Optional<PayGatewayAccount> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<PayGatewayAccount> page(Q query);
+
+
 }

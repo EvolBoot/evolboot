@@ -1,7 +1,6 @@
 package org.evolboot.ws.core.test;
 
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.core.websocket.WsAuthentication;
 import org.evolboot.core.websocket.WsSecurityContextHolder;
 import org.evolboot.shared.event.mq.TestMessage;
 import org.evolboot.ws.core.WsOnMessage;
@@ -29,7 +28,7 @@ public class WsServiceTest {
         String principalId = WsSecurityContextHolder.getContext().getPrincipalId();
         System.out.println(msg);
         Thread.sleep(5 * 1000);
-        return principalId + ":返回Test2:"+msg;
+        return principalId + ":返回Test2:" + msg;
     }
 
     @WsOnMessage("test3")

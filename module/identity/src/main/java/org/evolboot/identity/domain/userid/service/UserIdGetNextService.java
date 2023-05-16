@@ -1,17 +1,16 @@
 package org.evolboot.identity.domain.userid.service;
 
+import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
-import com.google.common.collect.Lists;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 分页数据承载
+ *
  * @author evol
  */
 public interface Page<T> extends Slice<T> {

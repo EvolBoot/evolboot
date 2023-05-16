@@ -1,19 +1,18 @@
 package org.evolboot.security.api;
 
-import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.security.api.repository.EvolSessionRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.security.api.repository.EvolSessionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

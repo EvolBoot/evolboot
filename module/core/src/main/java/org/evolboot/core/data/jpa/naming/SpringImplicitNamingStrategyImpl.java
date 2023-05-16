@@ -6,7 +6,6 @@ import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
 
 /**
  * @author evol
- * 
  */
 public class SpringImplicitNamingStrategyImpl extends SpringImplicitNamingStrategy {
 

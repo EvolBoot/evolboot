@@ -1,8 +1,8 @@
 package org.evolboot.captcha.acl.adapter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.acl.client.EmailCodeClient;
 import org.evolboot.core.util.EmailSenderUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**

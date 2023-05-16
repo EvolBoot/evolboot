@@ -1,11 +1,11 @@
 package org.evolboot.system.domain.news;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.news.repository.NewsRepository;
 import org.evolboot.system.domain.news.service.NewsCreateFactory;
 import org.evolboot.system.domain.news.service.NewsSupportService;
 import org.evolboot.system.domain.news.service.NewsUpdateService;
-import org.evolboot.core.data.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,6 @@ import java.util.Optional;
  * 新闻
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

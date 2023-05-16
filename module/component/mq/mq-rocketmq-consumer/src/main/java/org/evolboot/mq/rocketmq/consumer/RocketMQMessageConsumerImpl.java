@@ -1,19 +1,18 @@
 package org.evolboot.mq.rocketmq.consumer;
 
-import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.core.util.JsonUtil;
-import org.evolboot.shared.event.mq.RocketMQMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
+import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.core.util.JsonUtil;
+import org.evolboot.shared.event.mq.RocketMQMessage;
 import org.springframework.stereotype.Service;
 
 /**
  * 消费者
  *
  * @author evol
- * 
  */
 @Slf4j
 @RocketMQMessageListener(topic = "${rocketmq.topic}", consumerGroup = "${rocketmq.group}")

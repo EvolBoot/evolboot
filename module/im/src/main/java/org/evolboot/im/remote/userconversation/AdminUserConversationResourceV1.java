@@ -1,27 +1,23 @@
 package org.evolboot.im.remote.userconversation;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
-import org.evolboot.core.annotation.OperationLog;
-import org.evolboot.core.remote.DomainId;
+import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.userconversation.UserConversation;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.im.domain.userconversation.UserConversationQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.evolboot.im.domain.userconversation.UserConversationQuery;
-import org.evolboot.core.data.Page;
-
-import javax.validation.Valid;
-import java.util.List;
-
-import static org.evolboot.security.api.access.AccessAuthorities.*;
-import static org.evolboot.im.ImAccessAuthorities.UserConversation.*;
-
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+
+import static org.evolboot.im.ImAccessAuthorities.UserConversation.HAS_PAGE;
+import static org.evolboot.im.ImAccessAuthorities.UserConversation.HAS_SINGLE;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.or;
 
 /**
  * 用户会话

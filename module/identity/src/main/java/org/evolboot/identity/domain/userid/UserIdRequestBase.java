@@ -7,7 +7,6 @@ import lombok.Setter;
  * UserId
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

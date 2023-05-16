@@ -1,9 +1,9 @@
 package org.evolboot.identity.domain.userid.repository.jpa.convert;
 
+import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.identity.domain.userid.UserIdLocale;
-import com.google.common.collect.Lists;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;
@@ -11,7 +11,6 @@ import java.util.List;
 
 /**
  * @author evol
- * 
  */
 public class UserIdLocaleListConverter implements AttributeConverter<List<UserIdLocale>, String> {
 

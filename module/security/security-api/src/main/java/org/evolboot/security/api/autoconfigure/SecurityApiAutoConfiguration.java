@@ -1,9 +1,9 @@
 package org.evolboot.security.api.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.security.api.repository.EvolSessionRepository;
 import org.evolboot.security.api.repository.redis.EvolSessionRedisTemplate;
 import org.evolboot.security.api.repository.redis.RedisEvolSessionRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

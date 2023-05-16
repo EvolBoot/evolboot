@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.userrole;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.userrole.service.UserRoleSupportService;
 import org.evolboot.identity.domain.userrole.service.UserRoleUpdateService;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import java.util.Set;
  * 用户角色
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

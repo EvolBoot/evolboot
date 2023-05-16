@@ -1,13 +1,15 @@
 package org.evolboot.pay.domain.releasedorder.repository.jpa;
 
+import com.querydsl.core.types.Expression;
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
+import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.pay.domain.releasedorder.QReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderQuery;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +22,13 @@ import java.util.Optional;
  * @author evol
  */
 @Repository
-public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, ExtendedQuerydslPredicateExecutor<ReleasedOrder>, JpaRepository<ReleasedOrder, String> {
+public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, ExtendedQuerydslPredicateExecutor<ReleasedOrder, Long>, JpaRepository<ReleasedOrder, String> {
 
-    default JPQLQuery<ReleasedOrder> fillQueryParameter(ReleasedOrderQuery query) {
+    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
+        ReleasedOrderQuery query = (ReleasedOrderQuery) _query;
         QReleasedOrder q = QReleasedOrder.releasedOrder;
-        JPQLQuery<ReleasedOrder> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q);
+        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(select).from(q);
         return jpqlQuery;
     }
 
@@ -37,21 +40,32 @@ public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, Ext
         return this.findAll(jpqlQuery);
     }
 
-    @Override
-    default List<ReleasedOrder> findAll(ReleasedOrderQuery query) {
-        JPQLQuery<ReleasedOrder> jpqlQuery = fillQueryParameter(query);
-        return findAll(jpqlQuery);
+
+    default Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
+        return findOne(fillQueryParameter(query, QReleasedOrder.releasedOrder));
     }
 
 
     @Override
-    default Page<ReleasedOrder> page(ReleasedOrderQuery query) {
-        JPQLQuery<ReleasedOrder> jpqlQuery = fillQueryParameter(query);
+    default <Q extends Query> Page<ReleasedOrder> page(Q query) {
+        JPQLQuery<ReleasedOrder> jpqlQuery = fillQueryParameter(query, QReleasedOrder.releasedOrder);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
 
-    default Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
-        return findOne(fillQueryParameter(query));
+
+    @Override
+    default <Q extends Query> Optional<ReleasedOrder> findOne(Q query) {
+        return findOne(fillQueryParameter(query, QReleasedOrder.releasedOrder));
     }
 
+    @Override
+    default <Q extends Query> List<ReleasedOrder> findAll(Q query) {
+        return findAll(fillQueryParameter(query, QReleasedOrder.releasedOrder));
+    }
+
+    @Override
+    default <Q extends Query> long count(Q query) {
+        JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QReleasedOrder.releasedOrder.id.count());
+        return findOne(jpqlQuery).orElse(0L);
+    }
 }

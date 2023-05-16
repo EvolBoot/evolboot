@@ -1,9 +1,7 @@
 package org.evolboot.pay.domain.paygatewayaccount;
 
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.pay.PayI18nMessage;
-import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 
 import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
 

@@ -1,13 +1,12 @@
 package org.evolboot.system.domain.dictvalue.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.dictkey.DictKey;
 import org.evolboot.system.domain.dictkey.DictKeyAppService;
-import org.springframework.stereotype.Service;
-import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
 import org.evolboot.system.domain.dictvalue.DictValue;
 import org.evolboot.system.domain.dictvalue.DictValueRequestBase;
-
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 字典Value
@@ -20,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DictValueUpdateService extends DictValueSupportService {
 
     private final DictKeyAppService dictKeyAppService;
+
     protected DictValueUpdateService(DictValueRepository repository, DictKeyAppService dictKeyAppService) {
         super(repository);
         this.dictKeyAppService = dictKeyAppService;

@@ -1,12 +1,11 @@
 package org.evolboot.configuration.domain.config.sms;
 
+import lombok.*;
 import org.evolboot.core.DefaultConfig;
 import org.evolboot.core.lang.LocaleLanguage;
-import lombok.*;
 
 /**
  * @author evol
- *
  */
 @Setter
 @Getter

@@ -9,7 +9,6 @@ import java.util.List;
  * QA
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

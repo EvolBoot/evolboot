@@ -1,5 +1,7 @@
 package org.evolboot.configuration.remote.config;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.configuration.ConfigAccessAuthorities;
 import org.evolboot.configuration.domain.config.ConfigAppService;
 import org.evolboot.configuration.domain.config.about.AboutConfig;
@@ -8,8 +10,6 @@ import org.evolboot.configuration.domain.config.system.SystemConfig;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +40,7 @@ public class AdminConfigResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + ConfigAccessAuthorities.System.HAS_UPDATE)
     public ResponseModel<SystemConfig> setSystem(
             @RequestBody @Valid
-                    SystemConfig request
+            SystemConfig request
     ) {
         SystemConfig config = (SystemConfig) service.setPropertyValue(request);
         return ResponseModel.ok(config);
@@ -63,7 +63,7 @@ public class AdminConfigResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + ConfigAccessAuthorities.System.HAS_UPDATE)
     public ResponseModel<AboutConfig> setAbout(
             @RequestBody @Valid
-                    AboutConfig request
+            AboutConfig request
     ) {
         AboutConfig config = (AboutConfig) service.setPropertyValue(request);
         return ResponseModel.ok(config);
@@ -85,7 +85,7 @@ public class AdminConfigResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + ConfigAccessAuthorities.System.HAS_UPDATE)
     public ResponseModel<SmsConfig> setSms(
             @RequestBody @Valid
-                    SmsConfig request
+            SmsConfig request
     ) {
         SmsConfig config = (SmsConfig) service.setPropertyValue(request);
         return ResponseModel.ok(config);

@@ -4,19 +4,18 @@ package org.evolboot.im.domain.friend.service;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.util.Assert;
 import org.evolboot.im.acl.client.UserClient;
 import org.evolboot.im.domain.conversation.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
+import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.shared.ConversationType;
-import org.evolboot.im.domain.userconversation.service.UserConversationCreateFactory;
 import org.evolboot.shared.event.im.FriendCreateEvent;
 import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.friend.repository.FriendRepository;
-import org.evolboot.im.domain.friend.Friend;
-import lombok.extern.slf4j.Slf4j;
 
 import static org.evolboot.identity.IdentityI18nMessage.User.USER_NOT_FOUND;
 

@@ -1,9 +1,9 @@
 package org.evolboot.captcha.remote.emailcaptcha;
 
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
 
 /**
  * @author evol

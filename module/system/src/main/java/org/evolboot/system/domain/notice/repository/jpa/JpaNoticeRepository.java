@@ -1,15 +1,17 @@
 package org.evolboot.system.domain.notice.repository.jpa;
 
+import com.querydsl.core.types.Expression;
 import com.querydsl.jpa.JPQLQuery;
+import org.evolboot.core.data.Page;
+import org.evolboot.core.data.PageImpl;
+import org.evolboot.core.data.Query;
+import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.system.domain.notice.Notice;
 import org.evolboot.system.domain.notice.NoticeQuery;
 import org.evolboot.system.domain.notice.QNotice;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
-import org.evolboot.core.data.Page;
-import org.evolboot.core.data.PageImpl;
-import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
-import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,17 +24,17 @@ import java.util.Optional;
  * 公告
  *
  * @author evol
- * 
  */
 @Repository
-public interface JpaNoticeRepository extends NoticeRepository, ExtendedQuerydslPredicateExecutor<Notice>, JpaRepository<Notice, Long> {
+public interface JpaNoticeRepository extends NoticeRepository, ExtendedQuerydslPredicateExecutor<Notice, Long>, JpaRepository<Notice, Long> {
 
     String CACHE_KEY = RedisCacheName.NOTICE_CACHE_KEY;
 
-    default JPQLQuery<Notice> fillQueryParameter(NoticeQuery query) {
+    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
+        NoticeQuery query = (NoticeQuery) _query;
         QNotice q = QNotice.notice;
-        JPQLQuery<Notice> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.sort.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
         if (ExtendObjects.nonNull(query.getEnable())) {
             jpqlQuery.where(q.enable.eq(query.getEnable()));
         }
@@ -56,18 +58,6 @@ public interface JpaNoticeRepository extends NoticeRepository, ExtendedQuerydslP
         return this.findAll(jpqlQuery);
     }
 
-    @Override
-    default List<Notice> findAll(NoticeQuery query) {
-        JPQLQuery<Notice> jpqlQuery = fillQueryParameter(query);
-        return findAll(jpqlQuery);
-    }
-
-
-    @Override
-    default Page<Notice> page(NoticeQuery query) {
-        JPQLQuery<Notice> jpqlQuery = fillQueryParameter(query);
-        return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
-    }
 
     @Override
     @Cacheable(cacheNames = CACHE_KEY, key = "'lastest'")
@@ -80,7 +70,25 @@ public interface JpaNoticeRepository extends NoticeRepository, ExtendedQuerydslP
 
 
     @Override
-    default Optional<Notice> findOne(NoticeQuery query) {
-        return findOne(fillQueryParameter(query));
+    default <Q extends Query> Page<Notice> page(Q query) {
+        JPQLQuery<Notice> jpqlQuery = fillQueryParameter(query, QNotice.notice);
+        return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
+    }
+
+
+    @Override
+    default <Q extends Query> Optional<Notice> findOne(Q query) {
+        return findOne(fillQueryParameter(query, QNotice.notice));
+    }
+
+    @Override
+    default <Q extends Query> List<Notice> findAll(Q query) {
+        return findAll(fillQueryParameter(query, QNotice.notice));
+    }
+
+    @Override
+    default <Q extends Query> long count(Q query) {
+        JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QNotice.notice.id.count());
+        return findOne(jpqlQuery).orElse(0L);
     }
 }

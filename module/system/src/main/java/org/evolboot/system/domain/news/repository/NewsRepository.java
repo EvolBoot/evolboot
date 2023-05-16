@@ -1,8 +1,9 @@
 package org.evolboot.system.domain.news.repository;
 
-import org.evolboot.system.domain.news.News;
-import org.evolboot.system.domain.news.NewsQuery;
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
+import org.evolboot.system.domain.news.News;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,26 +12,24 @@ import java.util.Optional;
  * 新闻
  *
  * @author evol
- * 
  */
-public interface NewsRepository {
+public interface NewsRepository extends BaseRepository<News, Long> {
 
     News save(News news);
 
     Optional<News> findById(Long id);
 
-    Page<News> page(NewsQuery query);
 
     void deleteById(Long id);
 
     List<News> findAll();
 
-    List<News> findAll(NewsQuery query);
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<News> findOne(NewsQuery query);
 
+    <Q extends Query> List<News> findAll(Q query);
+
+    <Q extends Query> Optional<News> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<News> page(Q query);
 }

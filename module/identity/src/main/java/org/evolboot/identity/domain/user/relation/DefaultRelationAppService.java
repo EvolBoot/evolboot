@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.user.relation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
 import org.evolboot.identity.domain.user.relation.service.RelationMoveService;
 import org.evolboot.identity.domain.user.relation.service.RelationMoveTreeService;
@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

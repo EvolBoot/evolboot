@@ -12,8 +12,14 @@ import org.springframework.lang.NonNull;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
-public class QuerydslJpaRepositoryFactoryBean<R extends JpaRepository<T, ID>, T, ID extends Serializable>
-        extends JpaRepositoryFactoryBean<R, T, ID> {
+/**
+ * QueryDSL 创建工厂，但同时也兼容了JPA
+ *
+ * @param <R>
+ * @param <T>
+ * @param <ID>
+ */
+public class QuerydslJpaRepositoryFactoryBean<R extends JpaRepository<T, ID>, T, ID extends Serializable> extends JpaRepositoryFactoryBean<R, T, ID> {
 
     public QuerydslJpaRepositoryFactoryBean(Class<? extends R> repositoryInterface) {
         super(repositoryInterface);

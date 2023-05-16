@@ -49,7 +49,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    XarvkgvvrllncCreateRequest request
+            XarvkgvvrllncCreateRequest request
     ) {
         Xarvkgvvrllnc instantiationObjectName = service.create(request);
         return ResponseModel.ok(new DomainId(instantiationObjectName.id()));
@@ -75,7 +75,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Keya2Akk5iV3n id,
             @RequestBody @Valid
-                    XarvkgvvrllncUpdateRequest request
+            XarvkgvvrllncUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

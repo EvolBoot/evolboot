@@ -9,7 +9,6 @@ import org.evolboot.system.domain.qa.service.QaCreateFactory;
  * QA
  *
  * @author evol
- * 
  */
 
 @Setter

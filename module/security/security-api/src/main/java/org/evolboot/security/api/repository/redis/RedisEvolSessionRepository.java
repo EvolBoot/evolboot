@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author evol
- * 
  */
 public class RedisEvolSessionRepository implements EvolSessionRepository {
 

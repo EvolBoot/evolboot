@@ -1,12 +1,11 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-import org.evolboot.shared.pay.Currency;
-import org.evolboot.shared.pay.ReleasedOrderOperator;
-import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.evolboot.shared.pay.Currency;
+import org.evolboot.shared.pay.ReleasedOrderOrgType;
 
 import java.math.BigDecimal;
 
@@ -22,9 +21,7 @@ import java.math.BigDecimal;
 public class ReleasedCreateRequest {
 
 
-
-
-    private Currency  currency;
+    private Currency currency;
 
     // 金额数量
     private BigDecimal amount;

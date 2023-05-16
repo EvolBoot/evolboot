@@ -7,7 +7,6 @@ import lombok.Getter;
  * 手机验证码发送
  *
  * @author evol
- * 
  */
 public interface MobileCodeSender {
 

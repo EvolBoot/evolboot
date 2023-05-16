@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.friendapply;
 
 
-import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
 
 /**
  * 好友申请

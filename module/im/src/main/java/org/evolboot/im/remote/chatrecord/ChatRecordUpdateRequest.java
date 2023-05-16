@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.chatrecord;
 
 
-import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
 
 /**
  * 聊天记录

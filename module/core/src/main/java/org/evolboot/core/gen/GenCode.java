@@ -1,7 +1,6 @@
 package org.evolboot.core.gen;
 
 import cn.hutool.core.io.FileUtil;
-import com.google.common.io.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.Version;
 import org.evolboot.core.util.Assert;
@@ -59,13 +58,12 @@ public class GenCode {
         GenConfig.ConfigYaml replace = genConfig.getReplace();
 
 
-
         // 包名,去除下划线转小写
-        String boundContext =  replace.getBoundContext().replaceAll("_", "").toLowerCase();
+        String boundContext = replace.getBoundContext().replaceAll("_", "").toLowerCase();
         // 类名前缀,驼峰
         String boundContextClass = toCamelCase(replace.getBoundContext());
         // URL,将_ 转为 - 转小写
-        String boundContextUrl = replace.getBoundContext().replaceAll("_","-").toLowerCase();
+        String boundContextUrl = replace.getBoundContext().replaceAll("_", "-").toLowerCase();
 
         // 领域名称
         String module = replace.getDomainName().replaceAll("_", "").toLowerCase();
@@ -176,6 +174,7 @@ public class GenCode {
 
     /**
      * 驼峰
+     *
      * @param str
      * @return
      */
@@ -196,6 +195,7 @@ public class GenCode {
 
     /**
      * 首字母小写
+     *
      * @param str
      * @return
      */

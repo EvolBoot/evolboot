@@ -2,7 +2,6 @@ package org.evolboot.security.api.access;
 
 /**
  * @author evol
- * 
  */
 public interface AccessAuthorities {
 

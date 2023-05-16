@@ -4,7 +4,6 @@ import org.evolboot.security.api.EvolSession;
 
 /**
  * @author evol
- * 
  */
 public interface EvolSessionRepository {
 

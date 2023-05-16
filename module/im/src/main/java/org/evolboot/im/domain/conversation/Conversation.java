@@ -1,15 +1,16 @@
 package org.evolboot.im.domain.conversation;
 
-import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.util.Assert;
+import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.im.domain.shared.ConversationType;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**

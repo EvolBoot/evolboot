@@ -1,22 +1,20 @@
 package org.evolboot.identity.domain.userrole;
 
-import org.evolboot.core.domain.AbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
-import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.CollectionUtils;
+import org.evolboot.core.domain.AbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 用户角色
  *
  * @author evol
- * 
  */
 @Table(name = "evoltb_identity_user_role")
 @Getter

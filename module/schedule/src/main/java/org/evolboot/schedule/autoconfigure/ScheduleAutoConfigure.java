@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author evol
- * 
  */
 @EnableScheduling
 @Component

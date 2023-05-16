@@ -1,18 +1,17 @@
 package org.evolboot.identity.domain.user.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.relation.RelationAppService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * 更换邀请人
  *
  * @author evol
- * 
  */
 @Service
 @Slf4j

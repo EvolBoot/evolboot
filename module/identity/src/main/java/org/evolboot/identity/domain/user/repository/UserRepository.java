@@ -1,8 +1,9 @@
 package org.evolboot.identity.domain.user.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
 import org.evolboot.identity.domain.user.User;
-import org.evolboot.identity.domain.user.UserQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,11 @@ import java.util.Optional;
 /**
  * @author evol
  */
-public interface UserRepository {
+public interface UserRepository extends BaseRepository<User, Long> {
 
     User save(User user);
+
+    Optional<User> findById(Long aLong);
 
     Optional<User> findByUsername(String username);
 
@@ -22,21 +25,10 @@ public interface UserRepository {
 
     Optional<User> findByUsernameOrMobileOrEmail(String value);
 
-    Optional<User> findById(Long userId);
-
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<User> findOne(UserQuery query);
-
-    Page<User> page(UserQuery userQuery);
 
     boolean existsByMobile(String mobile);
 
     List<UserIdAndInviterUserId> findIdAndInviterUserId();
-
 
     /**
      * 根据用户ID显示头像
@@ -45,4 +37,14 @@ public interface UserRepository {
      * @return
      */
     String findAvatarByUserId(Long userId);
+
+    List<User> findAllById(Iterable<Long> ids);
+
+    <Q extends Query> List<User> findAll(Q query);
+
+    <Q extends Query> Optional<User> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<User> page(Q query);
 }

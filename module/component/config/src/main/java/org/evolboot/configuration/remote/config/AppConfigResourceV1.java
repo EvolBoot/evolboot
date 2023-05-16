@@ -1,12 +1,12 @@
 package org.evolboot.configuration.remote.config;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.configuration.domain.config.ConfigAppService;
 import org.evolboot.configuration.domain.config.system.SystemConfig;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.security.api.annotation.Authenticated;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

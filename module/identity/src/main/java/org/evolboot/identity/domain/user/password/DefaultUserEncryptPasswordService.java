@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author evol
-
  */
 @Service
 public class DefaultUserEncryptPasswordService implements UserEncryptPasswordService {

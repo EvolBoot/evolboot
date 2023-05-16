@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.chatrecord;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordCreateFactory;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
 
@@ -33,6 +32,7 @@ public interface ChatRecordAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

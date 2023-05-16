@@ -9,7 +9,6 @@ import org.evolboot.system.domain.notice.service.NoticeCreateFactory;
  * 公告
  *
  * @author evol
- * 
  */
 
 @Setter

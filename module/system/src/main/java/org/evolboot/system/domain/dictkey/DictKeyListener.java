@@ -1,9 +1,8 @@
 package org.evolboot.system.domain.dictkey;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
 import org.evolboot.system.domain.dictkey.service.DictKeySupportService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**

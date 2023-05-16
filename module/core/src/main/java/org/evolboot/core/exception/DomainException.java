@@ -1,8 +1,6 @@
 package org.evolboot.core.exception;
 
 
-import org.evolboot.core.exception.ExtendRuntimeException;
-
 /**
  * 领域层的所有自定义异常都派生自 DomainException 超类
  *

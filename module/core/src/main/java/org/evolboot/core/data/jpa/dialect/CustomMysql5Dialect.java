@@ -6,7 +6,6 @@ import org.hibernate.type.IntegerType;
 
 /**
  * @author evol
- * 
  */
 public class CustomMysql5Dialect extends MySQL5Dialect {
 

@@ -4,8 +4,6 @@ import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderCreateFactory;
-import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderUpdateService;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +17,7 @@ public interface ReceiptOrderAppService {
 
     /**
      * 创建订单
+     *
      * @param request
      * @return
      */
@@ -34,12 +33,12 @@ public interface ReceiptOrderAppService {
 
     <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request);
 
-    <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) ;
-
+    <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

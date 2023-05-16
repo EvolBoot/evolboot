@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.userconversation;
 
 
-import org.evolboot.im.domain.userconversation.service.UserConversationUpdateService;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.userconversation.service.UserConversationUpdateService;
 
 /**
  * 用户会话

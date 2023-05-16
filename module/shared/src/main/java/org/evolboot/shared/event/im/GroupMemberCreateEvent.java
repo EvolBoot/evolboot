@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.evolboot.shared.event.Event;
 
-import java.util.Date;
-
 /**
  * @author evol
  */
@@ -29,7 +27,6 @@ public class GroupMemberCreateEvent implements Event<Long> {
      * 会话ID
      */
     private Long conversationId;
-
 
 
     @Override

@@ -10,7 +10,6 @@ import java.util.List;
  * 公告
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

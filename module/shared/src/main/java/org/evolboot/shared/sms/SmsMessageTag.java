@@ -9,7 +9,6 @@ import java.util.Map;
 
 /**
  * @author evol
- *
  */
 @AllArgsConstructor
 @Getter
@@ -32,7 +31,6 @@ public enum SmsMessageTag {
     public static SmsMessageTag convertTo(Integer value) {
         return VALUES.get(value);
     }
-
 
 
 }

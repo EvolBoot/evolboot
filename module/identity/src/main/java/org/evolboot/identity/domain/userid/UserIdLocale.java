@@ -1,12 +1,11 @@
 package org.evolboot.identity.domain.userid;
 
-import org.evolboot.core.lang.LocaleLanguage;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.lang.LocaleLanguage;
 
 /**
  * @author evol
- * 
  */
 @Getter
 @Setter

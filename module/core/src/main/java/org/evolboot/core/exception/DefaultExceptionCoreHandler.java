@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
  * 注解拦截器
  *
  * @author evol
- * 
  */
 @Component
 public class DefaultExceptionCoreHandler extends DefaultCoreHandlerExceptionResolver {

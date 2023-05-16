@@ -1,5 +1,7 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.evolboot.core.domain.DelStatus;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
@@ -16,8 +18,6 @@ import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.shared.lang.UserIdentity;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -37,7 +37,6 @@ public class IdentityAdapter implements IdentityClient {
     private final PermissionAppService permissionAppService;
     private final UserRoleAppService userRoleAppService;
     private final CaptchaClient captchaClient;
-
 
 
     public IdentityAdapter(UserAppService userAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService, CaptchaClient captchaClient) {

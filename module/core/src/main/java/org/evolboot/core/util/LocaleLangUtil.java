@@ -8,7 +8,6 @@ import java.util.Collection;
 
 /**
  * @author evol
- * 
  */
 public final class LocaleLangUtil {
 

@@ -6,9 +6,9 @@ import com.alibaba.csp.sentinel.log.RecordLog;
 import com.alibaba.csp.sentinel.property.DynamicSentinelProperty;
 import com.alibaba.csp.sentinel.property.SentinelProperty;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.sentinel.acl.port.SentinelConfigurationPort;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ import java.util.List;
  * 数据源，将规则存储到数据库（配置中心）
  *
  * @author evol
- * 
  */
 @Slf4j
 public class MysqlSentinelDataSource implements ReadableDataSource<String, List<FlowRule>>, WritableDataSource<List<FlowRule>> {

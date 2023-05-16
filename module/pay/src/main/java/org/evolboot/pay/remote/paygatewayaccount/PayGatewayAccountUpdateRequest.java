@@ -1,9 +1,9 @@
 package org.evolboot.pay.remote.paygatewayaccount;
 
 
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountUpdateService;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountUpdateService;
 
 /**
  * 支付网关账户

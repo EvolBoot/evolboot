@@ -7,7 +7,6 @@ import org.evolboot.shared.event.Event;
  * 事件发布
  *
  * @author evol
- * 
  */
 public interface EventPublisher {
 

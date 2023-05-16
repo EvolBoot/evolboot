@@ -4,7 +4,6 @@ import org.evolboot.core.CoreI18nMessage;
 
 /**
  * @author evol
- * 
  */
 public class ConfigurationRepeatSettingException extends RuntimeException {
 

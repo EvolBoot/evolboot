@@ -1,13 +1,12 @@
 package org.evolboot.core.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.DomainEventPublisher;
 import org.evolboot.core.event.EventConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author evol
- * 
  */
 @Configuration
 @Slf4j

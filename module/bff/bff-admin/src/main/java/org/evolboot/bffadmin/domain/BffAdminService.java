@@ -1,5 +1,7 @@
 package org.evolboot.bffadmin.domain;
 
+import com.google.common.collect.Sets;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.bffadmin.domain.repository.BffAdminMapper;
 import org.evolboot.bffadmin.domain.response.BffStaffUser;
 import org.evolboot.bffadmin.domain.response.BffUser;
@@ -13,8 +15,6 @@ import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.shared.lang.UserIdentity;
-import com.google.common.collect.Sets;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author evol
- *
  */
 @Service
 @Slf4j

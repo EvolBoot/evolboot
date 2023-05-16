@@ -2,7 +2,6 @@ package org.evolboot.core;
 
 /**
  * @author evol
- * 
  */
 public interface Constant {
 

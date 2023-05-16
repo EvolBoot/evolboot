@@ -10,7 +10,6 @@ import java.io.InputStream;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class BlobCreateFactory {

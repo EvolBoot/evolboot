@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- *
  */
 @Service
 @Deprecated

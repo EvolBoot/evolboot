@@ -1,9 +1,9 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
+import org.evolboot.shared.pay.ReleasedOrderStatus;
 
 /**
  * 代付通知 回复

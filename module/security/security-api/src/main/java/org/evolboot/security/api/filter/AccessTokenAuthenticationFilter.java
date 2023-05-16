@@ -1,11 +1,11 @@
 package org.evolboot.security.api.filter;
 
+import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.security.api.EvolSession;
 import org.evolboot.security.api.SecurityAccessTokenAppService;
 import org.evolboot.security.api.autoconfigure.SecurityDefaultConfigProperties;
 import org.evolboot.shared.lang.UserIdentity;
-import com.google.common.collect.Lists;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;

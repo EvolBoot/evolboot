@@ -1,15 +1,14 @@
 package org.evolboot.identity.domain.userrole;
 
-import org.evolboot.core.data.Query;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Query;
 
 /**
  * 用户角色
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

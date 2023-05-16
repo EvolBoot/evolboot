@@ -6,6 +6,7 @@ import java.util.UUID;
 
 /**
  * 校验Token
+ *
  * @author evol
  */
 @Slf4j

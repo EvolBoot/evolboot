@@ -1,13 +1,12 @@
 package org.evolboot.mq.rocketmq.producer;
 
-import org.evolboot.shared.event.mq.RocketMQMessage;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionState;
+import org.evolboot.shared.event.mq.RocketMQMessage;
 
 /**
  * 事务检查器
  *
  * @author evol
- * 
  */
 public interface RocketMQLocalTransactionCheck<T extends RocketMQMessage> {
 

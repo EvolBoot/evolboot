@@ -5,7 +5,6 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 
 /**
  * @author evol
- *
  */
 public abstract class ConfigI18nMessage {
 

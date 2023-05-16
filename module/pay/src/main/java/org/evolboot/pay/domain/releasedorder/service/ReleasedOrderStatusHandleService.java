@@ -1,16 +1,14 @@
 package org.evolboot.pay.domain.releasedorder.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderNotifyResult;
+import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
 import org.evolboot.shared.event.pay.ReleasedOrderStatusChangeMessage;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
-import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 /**
  * @author evol
@@ -24,7 +22,7 @@ public class ReleasedOrderStatusHandleService extends ReleasedOrderSupportServic
     protected ReleasedOrderStatusHandleService(ReleasedOrderRepository repository, MQMessagePublisher mqMessagePublisher) {
         super(repository);
         this.mqMessagePublisher = mqMessagePublisher;
-     }
+    }
 
 
     public void success(ReleasedOrder releasedOrder) {

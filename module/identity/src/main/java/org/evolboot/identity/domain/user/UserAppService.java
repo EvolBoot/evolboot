@@ -172,6 +172,7 @@ public interface UserAppService {
 
     /**
      * 是否存在此用户Id
+     *
      * @param userId
      * @return
      */
@@ -200,6 +201,7 @@ public interface UserAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

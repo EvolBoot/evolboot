@@ -1,9 +1,9 @@
 package org.evolboot.pay.domain.receiptorder.repository.jpa.convert;
 
+import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderLocale;
-import com.google.common.collect.Lists;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

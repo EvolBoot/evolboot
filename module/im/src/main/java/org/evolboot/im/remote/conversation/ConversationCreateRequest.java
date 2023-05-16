@@ -1,10 +1,9 @@
 package org.evolboot.im.remote.conversation;
 
 
-import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
 
 /**
  * 会话
@@ -15,7 +14,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ConversationCreateRequest  extends ConversationCreateFactory.Request{
+public class ConversationCreateRequest extends ConversationCreateFactory.Request {
 
 
 }

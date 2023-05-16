@@ -3,11 +3,11 @@ package org.evolboot.storage.domain.blob.aliyun;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import lombok.Setter;
 import org.evolboot.core.util.PathUtil;
 import org.evolboot.storage.domain.blob.AbstractStorageSystem;
 import org.evolboot.storage.domain.blob.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageType;
-import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 

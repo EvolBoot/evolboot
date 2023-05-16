@@ -1,13 +1,13 @@
 package org.evolboot.identity.domain.permission;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.permission.service.PermissionBatchDeleteService;
 import org.evolboot.identity.domain.permission.service.PermissionCreateFactory;
 import org.evolboot.identity.domain.permission.service.PermissionDeleteService;
 import org.evolboot.identity.domain.permission.service.PermissionUpdateService;
-import org.evolboot.identity.domain.permission.util.*;
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.permission.util.PermissionUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,6 @@ import java.util.Optional;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

@@ -1,27 +1,23 @@
 package org.evolboot.core.autoconfigure;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.method.annotation.RequestAttributeMethodArgumentResolver;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * 针对使用@RequestParam 注解参数，转为 SNAKE_CASE 类型
  * 用不上
+ *
  * @author evol
  */
 @Deprecated
@@ -35,7 +31,7 @@ public class SnakeCaseConfiguration implements WebMvcConfigurer {
 //        return new SnakeCaseParameterNameDiscoverer();
 //    }
 
-    public static  class SnakeCaseParameterNameDiscoverer implements ParameterNameDiscoverer {
+    public static class SnakeCaseParameterNameDiscoverer implements ParameterNameDiscoverer {
 
         private ParameterNameDiscoverer defaultParameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 

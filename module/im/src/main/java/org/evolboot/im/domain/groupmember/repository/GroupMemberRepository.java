@@ -1,11 +1,10 @@
 package org.evolboot.im.domain.groupmember.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.im.domain.groupmember.GroupMember;
+import org.evolboot.core.data.Query;
 import org.evolboot.im.domain.groupmember.GroupMember;
 import org.evolboot.im.domain.groupmember.GroupMemberQuery;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -14,26 +13,26 @@ import java.util.Optional;
  * 群成员
  *
  * @author evol
- * @date 2023-05-03 16:20:09
+ * @date 2023-05-16 17:06:45
  */
-public interface GroupMemberRepository {
+public interface GroupMemberRepository extends BaseRepository<GroupMember, Long> {
 
     GroupMember save(GroupMember groupMember);
 
     Optional<GroupMember> findById(Long id);
 
-    Page<GroupMember> page(GroupMemberQuery query);
-
     void deleteById(Long id);
 
     List<GroupMember> findAll();
 
-    List<GroupMember> findAll(GroupMemberQuery query);
+    Long count(GroupMemberQuery query);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<GroupMember> findOne(GroupMemberQuery query);
+    <Q extends Query> List<GroupMember> findAll(Q query);
+
+    <Q extends Query> Optional<GroupMember> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<GroupMember> page(Q query);
+
 }

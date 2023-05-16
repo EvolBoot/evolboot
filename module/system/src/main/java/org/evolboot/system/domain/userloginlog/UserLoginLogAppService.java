@@ -4,7 +4,6 @@ import org.evolboot.core.data.Page;
 
 /**
  * @author evol
- * 
  */
 public interface UserLoginLogAppService {
 

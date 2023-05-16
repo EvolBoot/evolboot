@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 /**
  * @author evol
- * 
  */
 
 public interface Event<T> extends Serializable {

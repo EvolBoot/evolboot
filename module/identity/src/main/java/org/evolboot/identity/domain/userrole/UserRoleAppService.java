@@ -10,7 +10,6 @@ import java.util.Set;
  * 用户角色
  *
  * @author evol
- * 
  */
 public interface UserRoleAppService {
 
@@ -27,11 +26,11 @@ public interface UserRoleAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<UserRole> findOne(UserRoleQuery query);
-
 
 
 }

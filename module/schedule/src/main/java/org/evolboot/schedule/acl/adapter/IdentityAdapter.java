@@ -1,8 +1,8 @@
 package org.evolboot.schedule.acl.adapter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.userid.UserIdAppService;
 import org.evolboot.schedule.acl.client.IdentityClient;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**

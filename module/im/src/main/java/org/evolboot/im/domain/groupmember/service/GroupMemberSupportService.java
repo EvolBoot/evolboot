@@ -1,11 +1,11 @@
 package org.evolboot.im.domain.groupmember.service;
 
-import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
-import org.evolboot.im.domain.groupmember.GroupMember;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.groupmember.GroupMember;
+import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
 
 /**
  * 群成员

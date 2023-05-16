@@ -7,7 +7,6 @@ import lombok.Getter;
  * 邮箱验证码发送
  *
  * @author evol
- * 
  */
 public interface EmailCodeClient {
 

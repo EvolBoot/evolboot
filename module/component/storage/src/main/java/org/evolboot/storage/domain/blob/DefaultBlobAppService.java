@@ -1,9 +1,9 @@
 package org.evolboot.storage.domain.blob;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +11,6 @@ import java.io.InputStream;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

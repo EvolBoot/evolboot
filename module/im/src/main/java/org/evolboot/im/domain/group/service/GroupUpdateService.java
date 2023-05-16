@@ -1,13 +1,10 @@
 package org.evolboot.im.domain.group.service;
 
-import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.group.repository.GroupRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.group.Group;
 import org.evolboot.im.domain.group.GroupRequestBase;
-
-import java.util.Objects;
-
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.group.repository.GroupRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 群组

@@ -1,10 +1,10 @@
 package org.evolboot.system.domain.appupgrade.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.appupgrade.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.AppUpgradeRequestBase;
 import org.evolboot.system.domain.appupgrade.repository.AppUpgradeRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**

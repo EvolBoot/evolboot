@@ -1,10 +1,7 @@
 package org.evolboot.core.exception;
 
-import org.evolboot.core.exception.ExtendRuntimeException;
-
 /**
  * @author evol
- * 
  */
 public class ExtendIllegalArgumentException extends ExtendRuntimeException {
 

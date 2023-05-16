@@ -9,7 +9,6 @@ import java.util.Map;
 
 /**
  * @author evol
- * 
  */
 @Getter
 @AllArgsConstructor

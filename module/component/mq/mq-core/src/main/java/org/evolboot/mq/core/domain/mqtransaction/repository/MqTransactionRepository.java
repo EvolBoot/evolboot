@@ -1,6 +1,7 @@
 package org.evolboot.mq.core.domain.mqtransaction.repository;
 
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.mq.core.domain.mqtransaction.MqTransaction;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Optional;
  *
  * @author evol
  */
-public interface MqTransactionRepository {
+public interface MqTransactionRepository extends BaseRepository<MqTransaction, Long> {
 
     MqTransaction save(MqTransaction mqTransaction);
 

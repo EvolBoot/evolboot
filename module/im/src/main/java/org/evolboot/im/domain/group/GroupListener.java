@@ -1,9 +1,8 @@
 package org.evolboot.im.domain.group;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.group.service.GroupSupportService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**

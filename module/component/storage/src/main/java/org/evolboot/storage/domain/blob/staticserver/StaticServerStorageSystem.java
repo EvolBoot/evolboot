@@ -13,7 +13,6 @@ import static org.apache.commons.io.FileUtils.touch;
 
 /**
  * @author evol
- * 
  */
 public class StaticServerStorageSystem extends AbstractStorageSystem {
 

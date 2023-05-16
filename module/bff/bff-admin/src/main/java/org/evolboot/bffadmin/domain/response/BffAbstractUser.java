@@ -1,13 +1,12 @@
 package org.evolboot.bffadmin.domain.response;
 
-import org.evolboot.identity.domain.user.Gender;
-import org.evolboot.identity.domain.user.UserType;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.identity.domain.user.Gender;
+import org.evolboot.identity.domain.user.UserType;
 
 /**
  * @author evol
- *
  */
 @Setter
 @Getter

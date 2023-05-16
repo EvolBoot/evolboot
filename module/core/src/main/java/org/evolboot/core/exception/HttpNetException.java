@@ -1,7 +1,5 @@
 package org.evolboot.core.exception;
 
-import org.evolboot.core.exception.ExtendRuntimeException;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 

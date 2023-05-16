@@ -1,8 +1,8 @@
 package org.evolboot.storage.domain.blob.intercept;
 
-import org.evolboot.storage.StorageI18nMessage;
 import com.google.common.collect.Lists;
 import org.apache.commons.io.FilenameUtils;
+import org.evolboot.storage.StorageI18nMessage;
 import org.springframework.stereotype.Component;
 import org.springframework.util.unit.DataSize;
 
@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * @author evol
- * 
  */
 @Component
 public class ImageFileLimitIntercept implements FileLimitIntercept {

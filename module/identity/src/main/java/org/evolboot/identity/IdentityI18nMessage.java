@@ -42,7 +42,7 @@ public abstract class IdentityI18nMessage {
         public static final String permissionsNotFound = NAMESPACE + ".permissions.notFound";
 
         public static String roleNameRepetitionException(String roleName) {
-            return I18NMessageHolder.message(ROLE_NAME_REPETITION_EXCEPTION,  roleName);
+            return I18NMessageHolder.message(ROLE_NAME_REPETITION_EXCEPTION, roleName);
         }
 
         public static String roleNotFound() {

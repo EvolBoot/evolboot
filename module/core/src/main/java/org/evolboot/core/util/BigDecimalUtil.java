@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 /**
  * @author evol
- * 
  */
 public final class BigDecimalUtil {
 

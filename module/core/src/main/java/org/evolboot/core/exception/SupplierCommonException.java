@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 /**
  * @author evol
- * 
  */
 public class SupplierCommonException implements Supplier<ApplicationException> {
 

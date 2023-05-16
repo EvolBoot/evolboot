@@ -1,11 +1,11 @@
 package org.evolboot.captcha.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaConfiguration;
 import org.evolboot.captcha.domain.emailcaptcha.repository.EmailCaptchaRepository;
 import org.evolboot.captcha.domain.emailcaptcha.repository.jpa.JpaEmailCaptchaRepository;
 import org.evolboot.captcha.domain.emailcaptcha.repository.redis.EmailCaptchaRedisTemplate;
 import org.evolboot.captcha.domain.emailcaptcha.repository.redis.RedisEmailCaptchaRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -19,7 +19,6 @@ import javax.persistence.EntityManager;
 
 /**
  * @author evol
- * 
  */
 @EnableConfigurationProperties(EmailCaptchaProperties.class)
 @Configuration

@@ -1,9 +1,9 @@
 package org.evolboot.pay.remote.receiptorder;
 
-import org.evolboot.core.annotation.AdminClient;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,12 +1,12 @@
 package org.evolboot.mq.rocketmq.producer.autoconfigure;
 
 import cn.hutool.core.util.TypeUtil;
+import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.mq.rocketmq.producer.RocketMQLocalTransactionCheck;
 import org.evolboot.shared.event.mq.RocketMQMessage;
-import com.google.common.collect.Maps;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;

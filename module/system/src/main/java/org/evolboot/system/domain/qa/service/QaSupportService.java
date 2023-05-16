@@ -1,16 +1,15 @@
 package org.evolboot.system.domain.qa.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.qa.Qa;
 import org.evolboot.system.domain.qa.repository.QaRepository;
-import org.evolboot.core.exception.DomainNotFoundException;
 
 /**
  * QA
  *
  * @author evol
- * 
  */
 @Slf4j
 public abstract class QaSupportService {

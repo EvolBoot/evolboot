@@ -1,12 +1,9 @@
 package org.evolboot.system.domain.dictkey;
 
-import org.evolboot.core.lang.LocaleLanguage;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import org.evolboot.core.lang.LocaleLanguage;
 
 /**
  * @author evol

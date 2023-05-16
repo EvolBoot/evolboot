@@ -1,10 +1,9 @@
 package org.evolboot.system.remote.dictvalue;
 
 
-import org.evolboot.system.domain.dictvalue.service.DictValueUpdateService;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.system.domain.dictvalue.service.DictValueUpdateService;
 
 /**
  * 字典Value

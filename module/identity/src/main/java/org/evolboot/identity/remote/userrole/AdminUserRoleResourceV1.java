@@ -1,5 +1,8 @@
 package org.evolboot.identity.remote.userrole;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
@@ -8,9 +11,6 @@ import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.identity.domain.userrole.UserRoleQuery;
 import org.evolboot.identity.remote.user.UserRoleUpdateRequest;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,6 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
  * 用户角色
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController
@@ -78,7 +77,7 @@ public class AdminUserRoleResourceV1 {
     public ResponseModel<?> updateRole(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    UserRoleUpdateRequest request
+            UserRoleUpdateRequest request
     ) {
         service.updateRole(id, request.getRoles());
         return ResponseModel.ok();

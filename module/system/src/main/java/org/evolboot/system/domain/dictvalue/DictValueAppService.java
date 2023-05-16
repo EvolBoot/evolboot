@@ -34,9 +34,9 @@ public interface DictValueAppService {
     Page<DictValue> page(DictValueQuery query);
 
 
-
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

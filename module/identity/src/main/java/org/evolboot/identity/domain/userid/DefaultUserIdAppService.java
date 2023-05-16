@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.userid;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.userid.service.UserIdCreateFactory;
 import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
 import org.evolboot.identity.domain.userid.service.UserIdSupportService;
@@ -16,7 +16,6 @@ import java.util.List;
  * UserId
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

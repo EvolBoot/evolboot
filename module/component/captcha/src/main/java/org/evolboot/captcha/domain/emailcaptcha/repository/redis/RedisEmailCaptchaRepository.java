@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author evol
- * 
  */
 public class RedisEmailCaptchaRepository implements EmailCaptchaRepository {
 

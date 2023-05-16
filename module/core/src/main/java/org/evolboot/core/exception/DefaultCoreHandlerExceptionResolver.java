@@ -2,12 +2,12 @@ package org.evolboot.core.exception;
 
 import cn.hutool.crypto.CryptoException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.CoreI18nMessage;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.BeanCreationNotAllowedException;
@@ -49,7 +49,6 @@ import static org.evolboot.core.Constant.ErrorStatusCode.ERROR_CODE;
  * 用来拦截错误信息的异常拦截器
  *
  * @author evol
- * 
  */
 @Slf4j
 public abstract class DefaultCoreHandlerExceptionResolver extends org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver {

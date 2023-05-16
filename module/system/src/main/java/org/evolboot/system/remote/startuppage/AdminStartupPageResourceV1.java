@@ -3,28 +3,27 @@ package org.evolboot.system.remote.startuppage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.startuppage.StartupPage;
-import org.evolboot.system.domain.startuppage.StartupPageAppService;
-import org.evolboot.system.domain.startuppage.StartupPageQuery;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.system.domain.startuppage.StartupPage;
+import org.evolboot.system.domain.startuppage.StartupPageAppService;
+import org.evolboot.system.domain.startuppage.StartupPageQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.evolboot.system.SystemAccessAuthorities.StartupPage.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.system.SystemAccessAuthorities.StartupPage.*;
 
 /**
  * 启动页
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController
@@ -46,7 +45,7 @@ public class AdminStartupPageResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    StartupPageCreateRequest request
+            StartupPageCreateRequest request
     ) {
         StartupPage startupPage = service.create(request);
         return ResponseModel.ok(new DomainId(startupPage.id()));
@@ -72,7 +71,7 @@ public class AdminStartupPageResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    StartupPageUpdateRequest request
+            StartupPageUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

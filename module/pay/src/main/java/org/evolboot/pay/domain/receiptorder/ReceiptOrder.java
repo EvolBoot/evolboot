@@ -1,5 +1,8 @@
 package org.evolboot.pay.domain.receiptorder;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
@@ -7,11 +10,11 @@ import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 

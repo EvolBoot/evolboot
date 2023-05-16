@@ -2,9 +2,7 @@ package org.evolboot.im.domain.friendapply;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friendapply.service.FriendApplyAuditService;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.friendapply.service.FriendApplyCreateFactory;
-import org.evolboot.im.domain.friendapply.service.FriendApplyUpdateService;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,14 +30,13 @@ public interface FriendApplyAppService {
     Page<FriendApply> page(FriendApplyQuery query);
 
 
-
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<FriendApply> findOne(FriendApplyQuery query);
-
 
 
 }

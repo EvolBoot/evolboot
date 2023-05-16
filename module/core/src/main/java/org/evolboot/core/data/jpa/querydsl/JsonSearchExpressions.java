@@ -4,6 +4,8 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 
 /**
+ * Json 搜索器
+ *
  * @author evol
  */
 public class JsonSearchExpressions {

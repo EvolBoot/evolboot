@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.groupmember;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
 import org.evolboot.im.domain.groupmember.service.GroupMemberUpdateService;
 
@@ -23,7 +22,6 @@ public interface GroupMemberAppService {
     /**
      * 禁言
      */
-
 
 
     /**
@@ -48,11 +46,11 @@ public interface GroupMemberAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<GroupMember> findOne(GroupMemberQuery query);
-
 
 
 }

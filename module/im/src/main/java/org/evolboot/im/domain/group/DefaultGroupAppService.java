@@ -1,18 +1,13 @@
 package org.evolboot.im.domain.group;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.ImAccessAuthorities;
-import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.group.service.GroupCreateFactory;
 import org.evolboot.im.domain.group.service.GroupSupportService;
 import org.evolboot.im.domain.group.service.GroupUpdateService;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,7 +69,6 @@ public class DefaultGroupAppService extends GroupSupportService implements Group
     public Page<Group> page(GroupQuery query) {
         return repository.page(query);
     }
-
 
 
     @Override

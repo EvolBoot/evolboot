@@ -1,14 +1,13 @@
 package org.evolboot.sentinel.acl.adapter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.configuration.domain.config.ConfigAppService;
 import org.evolboot.sentinel.SentinelRole;
 import org.evolboot.sentinel.acl.port.SentinelConfigurationPort;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

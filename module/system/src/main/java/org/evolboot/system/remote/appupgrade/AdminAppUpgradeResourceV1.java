@@ -1,5 +1,8 @@
 package org.evolboot.system.remote.appupgrade;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
@@ -8,9 +11,6 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.appupgrade.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.AppUpgradeAppService;
 import org.evolboot.system.domain.appupgrade.AppUpgradeQuery;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +24,6 @@ import static org.evolboot.system.SystemAccessAuthorities.AppUpgrade.*;
  * APP更新
  *
  * @author evol
- *
  */
 @Slf4j
 @RestController
@@ -46,7 +45,7 @@ public class AdminAppUpgradeResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    AppUpgradeCreateRequest request
+            AppUpgradeCreateRequest request
     ) {
         AppUpgrade appUpgrade = service.create(request);
         return ResponseModel.ok(new DomainId(appUpgrade.id()));
@@ -72,7 +71,7 @@ public class AdminAppUpgradeResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    AppUpgradeUpdateRequest request
+            AppUpgradeUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

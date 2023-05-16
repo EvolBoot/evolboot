@@ -3,6 +3,7 @@ package org.evolboot.im;
 /**
  * IM 错误码
  * IM:  11000-11999
+ *
  * @author evol
  */
 public interface ImErrorCode {
@@ -21,7 +22,6 @@ public interface ImErrorCode {
      * 已经被对方拉黑
      */
     int HAS_BEEN_BLOCKED_BY_FRIENDS = 11002;
-
 
 
 }

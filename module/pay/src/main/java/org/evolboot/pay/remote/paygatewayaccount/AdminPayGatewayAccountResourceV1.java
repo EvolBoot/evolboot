@@ -1,5 +1,8 @@
 package org.evolboot.pay.remote.paygatewayaccount;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
@@ -8,17 +11,14 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQuery;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static org.evolboot.pay.PayAccessAuthorities.PayGatewayAccount.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
-import static org.evolboot.pay.PayAccessAuthorities.PayGatewayAccount.*;
 
 /**
  * 支付网关账户
@@ -45,7 +45,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    PayGatewayAccountCreateRequest request
+            PayGatewayAccountCreateRequest request
     ) {
         PayGatewayAccount payGatewayAccount = service.create(request);
         return ResponseModel.ok(new DomainId(payGatewayAccount.id()));
@@ -71,7 +71,7 @@ public class AdminPayGatewayAccountResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    PayGatewayAccountUpdateRequest request
+            PayGatewayAccountUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

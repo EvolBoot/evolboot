@@ -1,11 +1,12 @@
 package org.evolboot.identity.remote.permission;
 
 
-import org.evolboot.identity.domain.permission.service.PermissionUpdateService;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.identity.domain.permission.service.PermissionUpdateService;
 
 /**
+ *
  */
 @Setter
 @Getter

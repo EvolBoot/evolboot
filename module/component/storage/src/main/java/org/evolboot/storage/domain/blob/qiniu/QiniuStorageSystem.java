@@ -1,17 +1,17 @@
 
 package org.evolboot.storage.domain.blob.qiniu;
 
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
+import lombok.Setter;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.PathUtil;
 import org.evolboot.storage.domain.blob.AbstractStorageSystem;
 import org.evolboot.storage.domain.blob.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.evolboot.storage.domain.blob.StorageType;
-import com.qiniu.storage.Configuration;
-import com.qiniu.storage.Region;
-import com.qiniu.storage.UploadManager;
-import com.qiniu.util.Auth;
-import lombok.Setter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.ReflectionUtils;
 

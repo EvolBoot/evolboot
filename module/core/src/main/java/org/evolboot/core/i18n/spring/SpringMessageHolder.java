@@ -4,7 +4,6 @@ package org.evolboot.core.i18n.spring;
 import org.evolboot.core.i18n.DefaultMessageSourceAccessor;
 import org.evolboot.core.i18n.I18NMessage;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.evolboot.core.i18n.Messages.codeKey;

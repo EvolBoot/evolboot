@@ -1,7 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
-import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
 
 import java.math.BigDecimal;

@@ -1,8 +1,6 @@
 package org.evolboot.im.remote.friend;
 
 
-import org.evolboot.im.domain.friend.service.FriendCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +13,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class FriendCreateRequest  {
+public class FriendCreateRequest {
 
 
 }

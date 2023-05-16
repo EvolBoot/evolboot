@@ -1,6 +1,5 @@
 package org.evolboot.ws.core;
 
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import org.evolboot.ws.core.convert.WsAttributeConverter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**

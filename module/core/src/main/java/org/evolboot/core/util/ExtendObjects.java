@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
  * 扩展Objects
  *
  * @author evol
- * 
  */
 public final class ExtendObjects {
 

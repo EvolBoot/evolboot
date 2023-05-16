@@ -1,5 +1,7 @@
 package org.evolboot.identity.remote.user;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
@@ -8,13 +10,11 @@ import org.evolboot.core.util.IpUtil;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserQuery;
-import org.evolboot.identity.domain.user.service.UserStatusChangeService;
 import org.evolboot.identity.domain.user.UserType;
+import org.evolboot.identity.domain.user.service.UserStatusChangeService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.lang.UserIdentity;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +47,7 @@ public class AdminUserResourceV1 {
     @Authenticated
     public ResponseModel<?> update(
             @RequestBody @Valid
-                    UserUpdateRequest request
+            UserUpdateRequest request
     ) {
         service.update(SecurityAccessTokenHolder.getPrincipalId(), request.to());
         return ResponseModel.ok();
@@ -68,7 +68,7 @@ public class AdminUserResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<User> create(
             @RequestBody @Valid
-                    UserCreateRequest request,
+            UserCreateRequest request,
             HttpServletRequest httpServletRequest
     ) {
         User user = service.create(request.to(IpUtil.getClientIP(httpServletRequest)));
@@ -81,7 +81,7 @@ public class AdminUserResourceV1 {
     @Authenticated
     public ResponseModel<?> updatePassword(
             @RequestBody @Valid
-                    UserPasswordUpdateRequest request
+            UserPasswordUpdateRequest request
     ) {
         service.updatePassword(SecurityAccessTokenHolder.getPrincipalId(), request.getOldPassword(), request.getNewPassword(), request.getConfirmPassword());
         return ResponseModel.ok();
@@ -94,7 +94,7 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> resetPassword(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    UserPasswordSetRequest request
+            UserPasswordSetRequest request
     ) {
         service.resetPassword(id, request.getPassword());
         return ResponseModel.ok();
@@ -107,7 +107,7 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    AdminUserUpdateRequest request
+            AdminUserUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();
@@ -197,7 +197,7 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> updateUserType(
             @PathVariable("id") Long id,
             @RequestBody
-                    UpdateUserTypeRequest request
+            UpdateUserTypeRequest request
     ) {
         service.setUserType(id, request.getUserType());
         return ResponseModel.ok();
@@ -210,7 +210,7 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> changeInviterUserId(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    ChangeInviterUserIdRequest request
+            ChangeInviterUserIdRequest request
     ) {
         service.changeInviterUserId(id, request.getNewInviterUserId());
         return ResponseModel.ok();
@@ -244,7 +244,7 @@ public class AdminUserResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<?> changeStatus(
             @RequestBody @Valid
-                    UserStatusChangeService.Request request
+            UserStatusChangeService.Request request
     ) {
         service.changeStatus(request);
         return ResponseModel.ok();

@@ -11,7 +11,8 @@ import org.springframework.lang.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public interface ExtendedQuerydslPredicateExecutor<T> extends QuerydslPredicateExecutor<T> {
+public interface ExtendedQuerydslPredicateExecutor<T, ID> extends QuerydslPredicateExecutor<T> {
+
     <P> Optional<P> findOne(@NonNull JPQLQuery<P> query);
 
     <P> Optional<P> findOne(@NonNull FactoryExpression<P> factoryExpression, @NonNull Predicate predicate);
@@ -25,4 +26,5 @@ public interface ExtendedQuerydslPredicateExecutor<T> extends QuerydslPredicateE
     <P> Page<P> findAll(@NonNull FactoryExpression<P> factoryExpression, @NonNull Predicate predicate, @NonNull Pageable pageable);
 
     <P> JPQLQuery<P> getJPQLQuery();
+
 }

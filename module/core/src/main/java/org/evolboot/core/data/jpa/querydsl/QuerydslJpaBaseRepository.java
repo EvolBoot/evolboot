@@ -20,7 +20,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements ExtendedQuerydslPredicateExecutor<T> {
+/**
+ * QueryDSL 实现，但同时也兼容了JPA实现
+ *
+ * @param <T>
+ * @param <ID>
+ */
+public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements ExtendedQuerydslPredicateExecutor<T, ID> {
+
+
     private final QuerydslPredicateExecutor<T> querydslPredicateExecutor;
     private final Querydsl querydsl;
 
@@ -80,6 +88,7 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
     public <P> JPQLQuery<P> getJPQLQuery() {
         return querydsl.createQuery();
     }
+
 
     @Override
     @NonNull

@@ -1,9 +1,9 @@
 package org.evolboot.system.domain.dictvalue.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
 import org.evolboot.system.domain.dictvalue.DictValue;
-import org.evolboot.system.domain.dictvalue.DictValueQuery;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -14,13 +14,12 @@ import java.util.Optional;
  * @author evol
  * @date 2023-05-07 12:55:06
  */
-public interface DictValueRepository {
+public interface DictValueRepository extends BaseRepository<DictValue, Long> {
 
     DictValue save(DictValue dictValue);
 
     Optional<DictValue> findById(Long id);
 
-    Page<DictValue> page(DictValueQuery query);
 
     void deleteById(Long id);
 
@@ -30,13 +29,12 @@ public interface DictValueRepository {
 
     List<DictValue> findAll();
 
-    List<DictValue> findAll(DictValueQuery query);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<DictValue> findOne(DictValueQuery query);
+    <Q extends Query> List<DictValue> findAll(Q query);
 
+    <Q extends Query> Optional<DictValue> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<DictValue> page(Q query);
 }

@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.groupapply;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.groupapply.service.GroupApplyCreateFactory;
 import org.evolboot.im.domain.groupapply.service.GroupApplyUpdateService;
 
@@ -33,6 +32,7 @@ public interface GroupApplyAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

@@ -5,7 +5,6 @@ import org.evolboot.identity.domain.role.service.RoleCreateFactory;
 import org.evolboot.identity.domain.role.service.RoleUpdateService;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author evol
@@ -23,8 +22,6 @@ public interface RoleAppService {
     Page<Role> page(RoleQuery query);
 
     List<Role> findAllById(Iterable<Long> roleIds);
-
-
 
 
 }

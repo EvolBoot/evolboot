@@ -1,11 +1,11 @@
 package org.evolboot.identity.domain.user.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.identity.domain.user.User;
-import org.evolboot.shared.event.user.UserIdentityChangeEvent;
 import org.evolboot.identity.domain.user.repository.UserRepository;
+import org.evolboot.shared.event.user.UserIdentityChangeEvent;
 import org.evolboot.shared.lang.UserIdentity;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**

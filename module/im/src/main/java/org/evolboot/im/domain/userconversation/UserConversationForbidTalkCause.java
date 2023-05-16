@@ -1,23 +1,19 @@
 package org.evolboot.im.domain.userconversation;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.evolboot.shared.lang.UserIdentity;
 
-import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * 禁言原因
+ *
  * @author evol
  */
 @Getter
 @AllArgsConstructor
 public enum UserConversationForbidTalkCause {
-
 
 
     /**
@@ -39,8 +35,7 @@ public enum UserConversationForbidTalkCause {
     /**
      * 被单方面删除
      */
-    BE_DELETE_RELATION(8)
-    ;
+    BE_DELETE_RELATION(8);
 
     private final Integer value;
 
@@ -64,7 +59,6 @@ public enum UserConversationForbidTalkCause {
         }
         return userIdentities;
     }
-
 
 
 }

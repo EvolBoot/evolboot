@@ -1,10 +1,10 @@
 package org.evolboot.im.domain.friendapply.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
 import org.evolboot.im.domain.friendapply.FriendApply;
-import org.evolboot.im.domain.friendapply.FriendApplyQuery;
 import org.evolboot.im.domain.friendapply.FriendApplyStatus;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -15,27 +15,27 @@ import java.util.Optional;
  * @author evol
  * @date 2023-05-03 17:57:08
  */
-public interface FriendApplyRepository {
+public interface FriendApplyRepository extends BaseRepository<FriendApply, Long> {
 
     FriendApply save(FriendApply friendApply);
 
     Optional<FriendApply> findById(Long id);
 
-    Page<FriendApply> page(FriendApplyQuery query);
 
     void deleteById(Long id);
 
     List<FriendApply> findAll();
 
-    List<FriendApply> findAll(FriendApplyQuery query);
 
     Optional<FriendApply> findByToUserIdAndFromUserIdAndStatus(Long toUserId, Long fromUserId, FriendApplyStatus status);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<FriendApply> findOne(FriendApplyQuery query);
+
+    <Q extends Query> List<FriendApply> findAll(Q query);
+
+    <Q extends Query> Optional<FriendApply> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<FriendApply> page(Q query);
 
 }

@@ -1,9 +1,8 @@
 package org.evolboot.im.domain.friend;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.friend.service.FriendSupportService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**

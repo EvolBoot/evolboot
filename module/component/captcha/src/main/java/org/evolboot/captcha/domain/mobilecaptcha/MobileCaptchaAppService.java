@@ -4,7 +4,6 @@ import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFact
 
 /**
  * @author evol
- * 
  */
 
 public interface MobileCaptchaAppService {

@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 /**
  * @author evol
-* 
  */
 @Getter
 @Embeddable

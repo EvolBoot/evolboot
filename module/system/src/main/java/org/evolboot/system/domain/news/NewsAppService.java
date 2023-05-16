@@ -1,8 +1,8 @@
 package org.evolboot.system.domain.news;
 
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.news.service.NewsCreateFactory;
 import org.evolboot.system.domain.news.service.NewsUpdateService;
-import org.evolboot.core.data.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,6 @@ import java.util.Optional;
  * 新闻
  *
  * @author evol
- * 
  */
 public interface NewsAppService {
 
@@ -30,9 +29,9 @@ public interface NewsAppService {
     News findById(Long id);
 
 
-
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

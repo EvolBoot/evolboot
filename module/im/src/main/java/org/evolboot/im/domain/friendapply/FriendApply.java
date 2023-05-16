@@ -1,13 +1,13 @@
 package org.evolboot.im.domain.friendapply;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.data.jpa.convert.StringListConverter;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 
 import javax.persistence.Convert;

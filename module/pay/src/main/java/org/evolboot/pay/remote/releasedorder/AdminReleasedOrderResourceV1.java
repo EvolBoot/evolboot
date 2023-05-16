@@ -1,9 +1,9 @@
 package org.evolboot.pay.remote.releasedorder;
 
-import org.evolboot.core.annotation.AdminClient;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

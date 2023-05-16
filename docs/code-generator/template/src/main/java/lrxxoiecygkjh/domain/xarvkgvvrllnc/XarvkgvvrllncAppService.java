@@ -32,11 +32,11 @@ public interface XarvkgvvrllncAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query);
-
 
 
 }

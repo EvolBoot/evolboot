@@ -1,5 +1,7 @@
 package org.evolboot.captcha.remote.emailcaptcha;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaAppService;
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
@@ -7,8 +9,6 @@ import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.shared.email.EmailMessageTag;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +36,7 @@ public class AppEmailCaptchaResourceV1 {
 //    @Operation(summary = "邮箱-获取验证码")
     public ResponseModel<EmailCaptchaLoginResponse> create(
             @RequestBody
-                    EmailCaptchaLoginRequest request, HttpServletRequest httpServletRequest
+            EmailCaptchaLoginRequest request, HttpServletRequest httpServletRequest
     ) {
         EmailCaptcha captcha = appService.create(request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(EmailCaptchaLoginResponse.of(captcha));

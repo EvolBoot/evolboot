@@ -1,17 +1,18 @@
 package org.evolboot.identity.domain.role.service;
 
+import lombok.Builder;
+import lombok.Getter;
 import org.evolboot.core.exception.DomainRepetitionException;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.role.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
-import lombok.Builder;
-import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
+ *
  */
 @Service
 public class RoleCreateFactory {

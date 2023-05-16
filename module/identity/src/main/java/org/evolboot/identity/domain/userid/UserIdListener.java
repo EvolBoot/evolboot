@@ -1,7 +1,7 @@
 package org.evolboot.identity.domain.userid;
 
-import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 import org.evolboot.identity.domain.userid.service.UserIdSupportService;
 import org.springframework.stereotype.Service;
 

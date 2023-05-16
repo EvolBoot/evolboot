@@ -1,7 +1,7 @@
 package org.evolboot.pay.domain.paygatewayaccount;
 
-import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import org.springframework.stereotype.Service;
 
 /**

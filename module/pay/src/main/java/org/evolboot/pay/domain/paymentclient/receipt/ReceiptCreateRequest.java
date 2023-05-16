@@ -1,10 +1,10 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.shared.pay.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.evolboot.shared.pay.Currency;
 
 import java.math.BigDecimal;
 

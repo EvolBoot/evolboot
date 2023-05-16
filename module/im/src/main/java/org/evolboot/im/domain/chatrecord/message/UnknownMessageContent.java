@@ -15,7 +15,6 @@ import lombok.Setter;
 public class UnknownMessageContent implements MessageContent {
 
 
-
     private String text = "unknown";
 
 

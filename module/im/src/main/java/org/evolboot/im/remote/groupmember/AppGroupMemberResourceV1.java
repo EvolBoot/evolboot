@@ -1,22 +1,11 @@
 package org.evolboot.im.remote.groupmember;
 
-import org.evolboot.core.annotation.ApiClient;
-import org.evolboot.core.annotation.OperationLog;
-import org.evolboot.core.remote.DomainId;
-import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.groupmember.GroupMember;
-import org.evolboot.im.domain.groupmember.GroupMemberAppService;
-import org.evolboot.im.domain.groupmember.DefaultGroupMemberAppService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.evolboot.core.data.Page;
-import org.evolboot.im.domain.groupmember.GroupMemberQuery;
-
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.annotation.ApiClient;
+import org.evolboot.im.domain.groupmember.GroupMemberAppService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 群成员

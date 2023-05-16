@@ -1,11 +1,9 @@
 package org.evolboot.im.domain.friend.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
+import org.evolboot.core.data.Query;
 import org.evolboot.im.domain.friend.Friend;
-import org.evolboot.im.domain.friend.Friend;
-import org.evolboot.im.domain.friend.FriendQuery;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -16,28 +14,25 @@ import java.util.Optional;
  * @author evol
  * @date 2023-05-03 17:40:14
  */
-public interface FriendRepository {
+public interface FriendRepository extends BaseRepository<Friend, Long> {
 
-    Friend save(Friend friend);
-
-    Optional<Friend> findById(Long id);
-
-    Page<Friend> page(FriendQuery query);
 
     void deleteById(Long id);
-
-    List<Friend> findAll();
-
-    List<Friend> findAll(FriendQuery query);
 
     Optional<Friend> findByOwnerUserIdAndFriendUserId(Long ownerUserId, Long friendUserId);
 
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<Friend> findOne(FriendQuery query);
+    List<Friend> findAll();
 
+    Friend save(Friend friend);
+
+    Optional<Friend> findById(Long aLong);
+
+    <Q extends Query> List<Friend> findAll(Q query);
+
+    <Q extends Query> Optional<Friend> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<Friend> page(Q query);
 }

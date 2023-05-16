@@ -1,19 +1,19 @@
 package org.evolboot.identity.domain.user;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.NoRepeatSubmit;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.GoogleAuthenticator;
-import org.evolboot.identity.domain.user.service.*;
-import org.evolboot.shared.event.user.UserDeleteEvent;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.relation.RelationAppService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.user.service.*;
+import org.evolboot.shared.event.user.UserDeleteEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +21,6 @@ import java.util.Optional;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

@@ -9,7 +9,6 @@ import org.evolboot.core.data.Query;
  * 公告
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

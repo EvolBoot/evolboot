@@ -1,29 +1,15 @@
 package org.evolboot.im.remote.friend;
 
-import org.evolboot.core.annotation.ApiClient;
-import org.evolboot.core.annotation.NoRepeatSubmit;
-import org.evolboot.core.annotation.OperationLog;
-import org.evolboot.core.lang.BusinessResult;
-import org.evolboot.core.remote.DomainId;
-import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.friend.Friend;
-import org.evolboot.im.domain.friend.FriendAppService;
-import org.evolboot.im.domain.friend.DefaultFriendAppService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.evolboot.im.domain.friendapply.FriendApply;
+import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.annotation.ApiClient;
+import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.friend.FriendAppService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.evolboot.core.data.Page;
-import org.evolboot.im.domain.friend.FriendQuery;
-
-import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
-
-import javax.validation.Valid;
 
 /**
  * 好友关系

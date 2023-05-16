@@ -1,15 +1,14 @@
 package org.evolboot.system.domain.dictvalue;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.dictkey.DictKeyAppService;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
 import org.evolboot.system.domain.dictvalue.service.DictValueCreateFactory;
 import org.evolboot.system.domain.dictvalue.service.DictValueSupportService;
 import org.evolboot.system.domain.dictvalue.service.DictValueUpdateService;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +66,6 @@ public class DefaultDictValueAppService extends DictValueSupportService implemen
     public List<DictValue> findByDictKey(String dictKey) {
         return repository.findByDictKeyId(dictKeyAppService.findByKey(dictKey).id());
     }
-
 
 
     @Override

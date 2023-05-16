@@ -1,9 +1,9 @@
 package org.evolboot.pay.domain.releasedorder;
 
-import org.evolboot.core.data.Query;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Query;
 
 /**
  * 代付订单

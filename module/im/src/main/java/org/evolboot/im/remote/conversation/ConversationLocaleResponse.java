@@ -1,15 +1,12 @@
 package org.evolboot.im.remote.conversation;
 
-import org.evolboot.im.domain.conversation.Conversation;
-import org.evolboot.im.domain.conversation.ConversationLocale;
-
-import org.evolboot.core.data.Page;
-import org.evolboot.core.data.PageImpl;
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.core.data.Page;
+import org.evolboot.core.data.PageImpl;
+import org.evolboot.im.domain.conversation.Conversation;
 
 import java.util.List;
 import java.util.stream.Collectors;

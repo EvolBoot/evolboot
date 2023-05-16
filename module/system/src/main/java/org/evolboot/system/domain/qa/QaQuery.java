@@ -9,7 +9,6 @@ import org.evolboot.core.data.Query;
  * QA
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

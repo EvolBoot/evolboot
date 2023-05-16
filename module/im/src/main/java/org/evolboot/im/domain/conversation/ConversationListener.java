@@ -1,9 +1,8 @@
 package org.evolboot.im.domain.conversation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
 import org.evolboot.im.domain.conversation.service.ConversationSupportService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**

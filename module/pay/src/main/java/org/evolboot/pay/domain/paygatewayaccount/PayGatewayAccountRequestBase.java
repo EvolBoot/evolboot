@@ -1,11 +1,9 @@
 package org.evolboot.pay.domain.paygatewayaccount;
 
-import org.evolboot.shared.pay.PayGateway;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.shared.pay.PayGateway;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.util.List;
 

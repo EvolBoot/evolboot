@@ -1,13 +1,12 @@
 package org.evolboot.mq.redis.consumer.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.mq.redis.consumer.task.RedisMQMessageScheduledTask;
 import org.evolboot.mq.redis.consumer.listener.RedisDelayTimeListenerMessage;
 import org.evolboot.mq.redis.consumer.listener.RedisRealTimeListenerMessage;
 import org.evolboot.mq.redis.consumer.listener.RedisTransactionListenerMessage;
+import org.evolboot.mq.redis.consumer.task.RedisMQMessageScheduledTask;
 import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
 import org.evolboot.mq.redis.producer.RedisStreamProperty;
-import org.evolboot.shared.event.mq.MQMessage;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +18,6 @@ import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
-import javax.annotation.PreDestroy;
 import java.time.Duration;
 
 /**

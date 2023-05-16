@@ -1,11 +1,11 @@
 package org.evolboot.system.domain.notice;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
 import org.evolboot.system.domain.notice.service.NoticeCreateFactory;
 import org.evolboot.system.domain.notice.service.NoticeSupportService;
 import org.evolboot.system.domain.notice.service.NoticeUpdateService;
-import org.evolboot.core.data.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

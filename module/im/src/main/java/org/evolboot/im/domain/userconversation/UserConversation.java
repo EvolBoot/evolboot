@@ -1,16 +1,19 @@
 package org.evolboot.im.domain.userconversation;
 
+import com.google.common.collect.Sets;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.im.domain.userconversation.repository.jpa.convert.UserConversationForbidTalkCauseSetConverter;
-import com.google.common.collect.Sets;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Set;
 
 

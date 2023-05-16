@@ -1,17 +1,15 @@
 package org.evolboot.system.domain.qa;
 
+import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.qa.service.QaCreateFactory;
 import org.evolboot.system.domain.qa.service.QaUpdateService;
-import org.evolboot.core.data.Page;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * QA
  *
  * @author evol
- * 
  */
 public interface QaAppService {
 
@@ -28,8 +26,6 @@ public interface QaAppService {
     Page<Qa> page(QaQuery query);
 
     Qa findById(Long id);
-
-
 
 
 }

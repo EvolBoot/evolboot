@@ -5,7 +5,6 @@ import org.evolboot.core.exception.ApplicationException;
 
 /**
  * @author evol
- * 
  */
 public class AccessTokenExpiredException extends ApplicationException {
     public AccessTokenExpiredException(String message) {

@@ -4,7 +4,6 @@ import cn.hutool.extra.mail.MailUtil;
 
 /**
  * @author evol
- * 
  */
 public class EmailSenderUtil {
 

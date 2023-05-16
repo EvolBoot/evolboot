@@ -1,5 +1,6 @@
 package org.evolboot.system.domain.userloginlog.repository.jpa;
 
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
@@ -8,14 +9,12 @@ import org.evolboot.system.domain.userloginlog.QUserLoginLog;
 import org.evolboot.system.domain.userloginlog.UserLoginLog;
 import org.evolboot.system.domain.userloginlog.UserLoginLogQuery;
 import org.evolboot.system.domain.userloginlog.repository.UserLoginLogRepository;
-import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author evol
- * 
  */
-public interface JpaUserLoginLogRepository extends UserLoginLogRepository, ExtendedQuerydslPredicateExecutor<UserLoginLog>, JpaRepository<UserLoginLog, String> {
+public interface JpaUserLoginLogRepository extends UserLoginLogRepository, ExtendedQuerydslPredicateExecutor<UserLoginLog, Long>, JpaRepository<UserLoginLog, String> {
 
 
     default JPQLQuery<UserLoginLog> fillQueryParameter(UserLoginLogQuery query) {

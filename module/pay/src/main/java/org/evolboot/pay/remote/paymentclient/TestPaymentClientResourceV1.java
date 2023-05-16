@@ -1,12 +1,12 @@
 package org.evolboot.pay.remote.paymentclient;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.shared.event.pay.ReceiptOrderStatusChangeMessage;
 import org.evolboot.shared.event.pay.ReleasedOrderStatusChangeMessage;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,7 +84,6 @@ public class TestPaymentClientResourceV1 {
         }
         return "ok";
     }
-
 
 
 }

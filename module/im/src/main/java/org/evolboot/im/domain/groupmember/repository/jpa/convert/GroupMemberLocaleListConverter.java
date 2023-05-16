@@ -1,9 +1,9 @@
 package org.evolboot.im.domain.groupmember.repository.jpa.convert;
 
-import org.evolboot.im.domain.groupmember.GroupMemberLocale;
+import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import com.google.common.collect.Lists;
+import org.evolboot.im.domain.groupmember.GroupMemberLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @author evol
- * @date 2023-05-03 16:20:09
+ * @date 2023-05-16 17:06:45
  */
 public class GroupMemberLocaleListConverter implements AttributeConverter<List<GroupMemberLocale>, String> {
 

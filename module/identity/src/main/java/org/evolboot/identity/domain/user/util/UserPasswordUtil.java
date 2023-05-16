@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author evol
- * 
  */
 public abstract class UserPasswordUtil {
 

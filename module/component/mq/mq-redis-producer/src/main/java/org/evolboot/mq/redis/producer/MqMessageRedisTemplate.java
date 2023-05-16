@@ -1,6 +1,5 @@
 package org.evolboot.mq.redis.producer;
 
-import com.google.common.collect.Maps;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.shared.event.mq.MQMessage;
 import org.springframework.data.redis.connection.DefaultStringRedisConnection;

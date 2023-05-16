@@ -1,5 +1,8 @@
 package org.evolboot.bffadmin.remote;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.bffadmin.domain.BffAdminQuery;
 import org.evolboot.bffadmin.domain.BffAdminService;
 import org.evolboot.bffadmin.domain.response.BffStaffUser;
@@ -10,9 +13,6 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.permission.Permission;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,6 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 
 /**
  * @author evol
- *
  */
 @Slf4j
 @RestController

@@ -1,22 +1,21 @@
 package org.evolboot.identity.domain.user.service;
 
 
-import org.evolboot.core.service.crypto.rsa.RsaService;
-import org.evolboot.identity.acl.client.IdentityCaptchaClient;
-import org.evolboot.identity.domain.user.User;
-import org.evolboot.identity.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.service.crypto.rsa.RsaService;
+import org.evolboot.identity.acl.client.IdentityCaptchaClient;
+import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 /**
  * 交易密码
  *
  * @author evol
- *
  */
 @Slf4j
 @Service

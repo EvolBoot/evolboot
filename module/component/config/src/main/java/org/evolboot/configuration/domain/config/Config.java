@@ -1,12 +1,14 @@
 package org.evolboot.configuration.domain.config;
 
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.domain.AbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.util.JsonUtil;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author evol

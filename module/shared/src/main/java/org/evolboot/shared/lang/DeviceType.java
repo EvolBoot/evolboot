@@ -9,7 +9,6 @@ import java.util.Map;
 
 /**
  * @author corona
- * 
  */
 @Getter
 @AllArgsConstructor
@@ -38,7 +37,6 @@ public enum DeviceType {
     public static DeviceType convertTo(Integer value) {
         return VALUES.get(value);
     }
-
 
 
 }

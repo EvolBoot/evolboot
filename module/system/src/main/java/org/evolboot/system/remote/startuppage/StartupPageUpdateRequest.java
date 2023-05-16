@@ -9,7 +9,6 @@ import org.evolboot.system.domain.startuppage.service.StartupPageUpdateService;
  * 启动页
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

@@ -1,9 +1,9 @@
 package org.evolboot.system.domain.dictvalue;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.shared.event.dict.DictKeyDeleteEvent;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
 import org.evolboot.system.domain.dictvalue.service.DictValueSupportService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

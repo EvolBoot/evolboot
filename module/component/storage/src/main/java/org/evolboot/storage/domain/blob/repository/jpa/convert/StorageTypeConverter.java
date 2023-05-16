@@ -1,5 +1,4 @@
-package org.evolboot.storage.domain.blob.repository.jpa;
-
+package org.evolboot.storage.domain.blob.repository.jpa.convert;
 
 
 import org.evolboot.storage.domain.blob.StorageType;
@@ -11,7 +10,7 @@ import javax.persistence.Converter;
  * @author evol
  */
 @Converter(autoApply = true)
-public class StorageTypeConverter implements AttributeConverter<StorageType,Integer> {
+public class StorageTypeConverter implements AttributeConverter<StorageType, Integer> {
     @Override
     public Integer convertToDatabaseColumn(StorageType attribute) {
         return attribute.getValue();

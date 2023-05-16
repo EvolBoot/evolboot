@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.user.relation.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.user.relation.Relation;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -10,7 +10,6 @@ import java.util.List;
  * 用户上下级关系
  *
  * @author evol
- * 
  */
 @Slf4j
 public abstract class RelationSupportService {

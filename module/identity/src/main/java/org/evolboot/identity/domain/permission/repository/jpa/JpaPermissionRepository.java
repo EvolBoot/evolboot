@@ -1,5 +1,9 @@
 package org.evolboot.identity.domain.permission.repository.jpa;
 
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
@@ -8,9 +12,6 @@ import org.evolboot.identity.domain.permission.Permission;
 import org.evolboot.identity.domain.permission.PermissionQuery;
 import org.evolboot.identity.domain.permission.QPermission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,21 +22,21 @@ import java.util.Optional;
  * @author evol
  */
 @Repository
-public interface JpaPermissionRepository extends PermissionRepository, ExtendedQuerydslPredicateExecutor<Permission>, JpaRepository<Permission, Long> {
+public interface JpaPermissionRepository extends PermissionRepository, ExtendedQuerydslPredicateExecutor<Permission, Long>, JpaRepository<Permission, Long> {
 
-    default JPQLQuery<Permission> fillQueryParameter(PermissionQuery query) {
+    default <U> JPQLQuery<U> fillQueryParameter(PermissionQuery query, Expression<U> select) {
         QPermission q = QPermission.permission;
-        JPQLQuery<Permission> jpqlQuery = getJPQLQuery();
+        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
         if (ExtendObjects.nonNull(query.getParentId())) {
             jpqlQuery.where(q.parentId.eq(query.getParentId()));
         }
-        jpqlQuery.select(q).from(q).orderBy(q.sort.desc());
         return jpqlQuery;
     }
 
     @Override
     default List<Permission> findAll(PermissionQuery query) {
-        JPQLQuery<Permission> jpqlQuery = fillQueryParameter(query);
+        JPQLQuery<Permission> jpqlQuery = fillQueryParameter(query, QPermission.permission);
         return findAll(jpqlQuery);
     }
 
@@ -47,6 +48,15 @@ public interface JpaPermissionRepository extends PermissionRepository, ExtendedQ
 
     @Override
     default Optional<Permission> findOne(PermissionQuery query) {
-        return findOne(fillQueryParameter(query));
+        return findOne(fillQueryParameter(query, QPermission.permission));
     }
+
+
+    @Override
+    default Long count(PermissionQuery query) {
+        JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QPermission.permission.id.count());
+        return findOne(jpqlQuery).orElse(0L);
+    }
+
+
 }

@@ -1,11 +1,11 @@
 package org.evolboot.bffapp.remote.response;
 
-import org.evolboot.configuration.domain.config.about.AboutConfig;
-import org.evolboot.configuration.domain.config.about.AboutConfigLocale;
-import org.evolboot.configuration.domain.config.system.SystemConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.configuration.domain.config.about.AboutConfig;
+import org.evolboot.configuration.domain.config.about.AboutConfigLocale;
+import org.evolboot.configuration.domain.config.system.SystemConfig;
 
 /**
  * @author evol

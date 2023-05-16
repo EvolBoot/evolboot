@@ -1,6 +1,12 @@
 package org.evolboot.identity.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Sets;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.DelStatus;
@@ -11,12 +17,6 @@ import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverter;
 import org.evolboot.identity.domain.user.util.UserValidUtil;
 import org.evolboot.shared.lang.UserIdentity;
-import com.google.common.collect.Sets;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.util.Date;

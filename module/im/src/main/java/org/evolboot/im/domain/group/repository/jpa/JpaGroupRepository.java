@@ -1,24 +1,21 @@
 package org.evolboot.im.domain.group.repository.jpa;
 
+import com.querydsl.core.types.Expression;
+import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.im.domain.group.QGroup;
+import org.evolboot.core.data.Query;
+import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.group.Group;
 import org.evolboot.im.domain.group.GroupQuery;
+import org.evolboot.im.domain.group.QGroup;
 import org.evolboot.im.domain.group.repository.GroupRepository;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.Sort;
-import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
-import com.querydsl.jpa.JPQLQuery;
-import org.evolboot.core.util.ExtendObjects;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Date;
 
 /**
  * 群组
@@ -27,12 +24,13 @@ import java.util.Date;
  * @date 2023-05-03 15:52:47
  */
 @Repository
-public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPredicateExecutor<Group>, JpaRepository<Group, Long> {
+public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPredicateExecutor<Group, Long>, JpaRepository<Group, Long> {
 
-    default JPQLQuery<Group> fillQueryParameter(GroupQuery query) {
+    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
+        GroupQuery query = (GroupQuery) _query;
         QGroup q = QGroup.group;
-        JPQLQuery<Group> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
@@ -54,22 +52,25 @@ public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPre
     }
 
     @Override
-    default List<Group> findAll(GroupQuery query) {
-        JPQLQuery<Group> jpqlQuery = fillQueryParameter(query);
-        return findAll(jpqlQuery);
-    }
-
-
-    @Override
-    default Page<Group> page(GroupQuery query) {
-        JPQLQuery<Group> jpqlQuery = fillQueryParameter(query);
+    default <Q extends Query> Page<Group> page(Q query) {
+        JPQLQuery<Group> jpqlQuery = fillQueryParameter(query, QGroup.group);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
 
 
+    @Override
+    default <Q extends Query> Optional<Group> findOne(Q query) {
+        return findOne(fillQueryParameter(query, QGroup.group));
+    }
 
     @Override
-    default Optional<Group> findOne(GroupQuery query) {
-        return findOne(fillQueryParameter(query));
+    default <Q extends Query> List<Group> findAll(Q query) {
+        return findAll(fillQueryParameter(query, QGroup.group));
+    }
+
+    @Override
+    default <Q extends Query> long count(Q query) {
+        JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QGroup.group.id.count());
+        return findOne(jpqlQuery).orElse(0L);
     }
 }

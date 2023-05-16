@@ -5,7 +5,6 @@ import lombok.Setter;
 
 /**
  * @author evol
- *
  */
 @Getter
 @Setter

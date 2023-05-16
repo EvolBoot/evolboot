@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 /**
  * @author evol
- *
  */
 public interface RedisClientAppService {
 

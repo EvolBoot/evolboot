@@ -1,13 +1,12 @@
 package org.evolboot.identity.domain.user.relation.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

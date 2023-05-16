@@ -41,7 +41,6 @@ public interface SystemAccessAuthorities {
     }
 
 
-
     interface News {
         String HAS_CREATE = AUTHORITY_PREFIX + "content_news_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "content_news_delete" + AUTHORITY_SUFFIX;
@@ -119,9 +118,6 @@ public interface SystemAccessAuthorities {
         String HAS_PAGE = AUTHORITY_PREFIX + "system_dictvalue_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "system_dictvalue_single" + AUTHORITY_SUFFIX;
     }
-
-
-
 
 
 }

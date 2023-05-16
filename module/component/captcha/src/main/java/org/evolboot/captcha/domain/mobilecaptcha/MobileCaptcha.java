@@ -1,24 +1,26 @@
 package org.evolboot.captcha.domain.mobilecaptcha;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.domain.AbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.shared.sms.SmsMessageTag;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
  * @author evol
- * 
  */
 @Table(name = "evoltb_mobile_captcha")
 @Slf4j

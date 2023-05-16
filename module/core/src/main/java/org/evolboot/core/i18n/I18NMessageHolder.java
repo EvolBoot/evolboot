@@ -3,10 +3,6 @@ package org.evolboot.core.i18n;
 
 import org.evolboot.core.util.ExtendObjects;
 
-import java.util.List;
-
-import static org.evolboot.core.i18n.Messages.codeKey;
-
 /**
  * I18N 消息内容
  */

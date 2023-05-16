@@ -2,10 +2,10 @@ package org.evolboot.ws.core.autoconfigure;
 
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.ws.core.convert.WsAttributeConverter;
 import org.evolboot.ws.core.WsMessageHandle;
 import org.evolboot.ws.core.WsOnMessage;
 import org.evolboot.ws.core.WsService;
+import org.evolboot.ws.core.convert.WsAttributeConverter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

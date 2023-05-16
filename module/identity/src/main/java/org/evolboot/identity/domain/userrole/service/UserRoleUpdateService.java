@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.userrole.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.role.Role;
@@ -7,7 +8,6 @@ import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.identity.domain.user.exception.UserRoleNotExistException;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class UserRoleUpdateService extends UserRoleSupportService {

@@ -1,11 +1,11 @@
 package org.evolboot.im.domain.chatrecord.service;
 
-import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
-import org.evolboot.im.domain.chatrecord.ChatRecord;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.chatrecord.ChatRecord;
+import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
 
 /**
  * 聊天记录

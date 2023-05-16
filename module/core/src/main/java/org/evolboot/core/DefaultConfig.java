@@ -1,8 +1,8 @@
 package org.evolboot.core;
 
-import org.evolboot.core.util.ExtendObjects;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.util.ExtendObjects;
 
 import java.util.Locale;
 

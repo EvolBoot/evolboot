@@ -1,13 +1,10 @@
 package org.evolboot.im.domain.conversation.service;
 
-import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.conversation.repository.ConversationRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.conversation.Conversation;
 import org.evolboot.im.domain.conversation.ConversationRequestBase;
-
-import java.util.Objects;
-
-import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.conversation.repository.ConversationRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 会话

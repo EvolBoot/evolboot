@@ -1,8 +1,8 @@
 package org.evolboot.core.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.i18n.DefaultMessageSourceAccessor;
 import org.evolboot.core.i18n.I18NConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.i18n.spring.SpringMessageHolder;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;

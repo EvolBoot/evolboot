@@ -11,7 +11,6 @@ import java.util.Map;
 
 /**
  * @author evol
- * 
  */
 @Getter
 @Setter

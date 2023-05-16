@@ -15,7 +15,6 @@ import java.io.Serializable;
  * 用户上下级关系
  *
  * @author evol
- * 
  */
 @Table(name = "evoltb_identity_user_relation")
 @Getter

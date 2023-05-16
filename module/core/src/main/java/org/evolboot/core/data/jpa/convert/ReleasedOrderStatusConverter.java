@@ -10,7 +10,7 @@ import javax.persistence.Converter;
  * @author evol
  */
 @Converter(autoApply = true)
-public class ReleasedOrderStatusConverter implements AttributeConverter<ReleasedOrderStatus,Integer> {
+public class ReleasedOrderStatusConverter implements AttributeConverter<ReleasedOrderStatus, Integer> {
     @Override
     public Integer convertToDatabaseColumn(ReleasedOrderStatus attribute) {
         return attribute.getValue();

@@ -1,13 +1,12 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
 import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

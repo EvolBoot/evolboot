@@ -5,7 +5,6 @@ import org.evolboot.core.util.RegexUtil;
 
 /**
  * @author evol
- * 
  */
 public abstract class UserValidUtil {
 

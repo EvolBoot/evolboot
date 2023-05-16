@@ -10,7 +10,6 @@ import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class ImageCaptchaVerifyService {

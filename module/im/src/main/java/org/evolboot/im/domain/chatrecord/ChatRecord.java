@@ -1,18 +1,18 @@
 package org.evolboot.im.domain.chatrecord;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.im.domain.chatrecord.message.MessageContent;
-import org.evolboot.im.domain.chatrecord.message.convert.MessageContentConvert;
-import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.im.domain.chatrecord.message.MessageStatus;
 import org.evolboot.im.domain.chatrecord.message.MessageType;
+import org.evolboot.im.domain.chatrecord.message.convert.MessageContentConvert;
+import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.shared.lang.DeviceType;
 
 import javax.persistence.*;
@@ -29,7 +29,7 @@ import javax.persistence.*;
 @Slf4j
 @NoArgsConstructor
 @Entity
-public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long> implements AggregateRoot<ChatRecord> {
+public class ChatRecord extends JpaAbstractEntity<Long> implements AggregateRoot<ChatRecord> {
 
     @Id
     private Long id;
@@ -88,7 +88,7 @@ public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long
      * 消息内容，返回给前端
      */
     @Transient
-    private M messageContent;
+    private MessageContent messageContent;
 
 
     private void generateId() {
@@ -96,7 +96,7 @@ public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long
     }
 
 
-    public ChatRecord(String clientMsgId, Long senderId, SenderRole senderRole, DeviceType deviceType, ConversationType conversationType, Long conversationId, M messageContent) {
+    public ChatRecord(String clientMsgId, Long senderId, SenderRole senderRole, DeviceType deviceType, ConversationType conversationType, Long conversationId, MessageContent messageContent) {
         generateId();
         this.clientMsgId = clientMsgId;
         this.senderId = senderId;
@@ -118,7 +118,7 @@ public class ChatRecord<M extends MessageContent> extends JpaAbstractEntity<Long
         return this;
     }
 
-    public M getMessageContent() {
+    public MessageContent getMessageContent() {
         if (messageContent == null) {
             this.messageContent = MessageContentConvert.convert(messageType, messageContentValue);
         }

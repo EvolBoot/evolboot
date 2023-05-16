@@ -1,9 +1,9 @@
 
 package org.evolboot.core.data;
 
-import org.evolboot.core.util.Assert;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.evolboot.core.util.Assert;
 import org.springframework.data.util.MethodInvocationRecorder;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;

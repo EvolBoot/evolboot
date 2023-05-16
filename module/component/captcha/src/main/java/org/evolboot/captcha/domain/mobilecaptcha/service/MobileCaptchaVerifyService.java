@@ -1,6 +1,5 @@
 package org.evolboot.captcha.domain.mobilecaptcha.service;
 
-import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
@@ -11,7 +10,6 @@ import static org.evolboot.captcha.CaptchaI18nMessage.MobileCaptcha.CODE_ERROR;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class MobileCaptchaVerifyService {

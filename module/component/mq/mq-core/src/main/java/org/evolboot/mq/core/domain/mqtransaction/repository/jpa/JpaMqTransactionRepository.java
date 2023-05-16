@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author evol
  */
 @Repository
-public interface JpaMqTransactionRepository extends MqTransactionRepository, ExtendedQuerydslPredicateExecutor<MqTransaction>, JpaRepository<MqTransaction, Long> {
+public interface JpaMqTransactionRepository extends MqTransactionRepository, ExtendedQuerydslPredicateExecutor<MqTransaction, Long>, JpaRepository<MqTransaction, Long> {
 
 
 }

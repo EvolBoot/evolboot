@@ -6,6 +6,7 @@ import lombok.Setter;
 
 /**
  * 事务消息
+ *
  * @author evol
  */
 @Setter

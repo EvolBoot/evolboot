@@ -1,7 +1,9 @@
 package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository;
 
 import projectPackage.core.data.Page;
+import projectPackage.core.data.Query;
 import projectPackage.core.data.Sort;
+import projectPackage.core.data.BaseRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncQuery;
@@ -16,25 +18,24 @@ import java.util.Optional;
  * @author authorxRQXP
  * @date datePlaceholder
  */
-public interface XarvkgvvrllncRepository {
+public interface XarvkgvvrllncRepository extends BaseRepository<Xarvkgvvrllnc, Keya2Akk5iV3n> {
 
     Xarvkgvvrllnc save(Xarvkgvvrllnc instantiationObjectName);
 
     Optional<Xarvkgvvrllnc> findById(Keya2Akk5iV3n id);
 
-    Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query);
-
     void deleteById(Keya2Akk5iV3n id);
 
     List<Xarvkgvvrllnc> findAll();
 
-    List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query);
+    Long count(XarvkgvvrllncQuery query);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query);
+    <Q extends Query> List<Xarvkgvvrllnc> findAll(Q query);
+
+    <Q extends Query> Optional<Xarvkgvvrllnc> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<Xarvkgvvrllnc> page(Q query);
 
 }

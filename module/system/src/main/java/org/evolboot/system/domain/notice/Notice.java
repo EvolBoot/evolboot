@@ -3,11 +3,11 @@ package org.evolboot.system.domain.notice;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.notice.repository.jpa.convert.NoticeLocaleListConverter;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.domain.LocaleDomainPart;
+import org.evolboot.system.domain.notice.repository.jpa.convert.NoticeLocaleListConverter;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;

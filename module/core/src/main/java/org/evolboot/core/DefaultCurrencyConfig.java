@@ -6,7 +6,6 @@ import java.math.RoundingMode;
 
 /**
  * @author evol
- * 
  */
 public abstract class DefaultCurrencyConfig {
     /**

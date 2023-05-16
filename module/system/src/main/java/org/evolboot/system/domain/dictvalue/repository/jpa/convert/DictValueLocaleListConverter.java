@@ -1,9 +1,9 @@
 package org.evolboot.system.domain.dictvalue.repository.jpa.convert;
 
-import org.evolboot.system.domain.dictvalue.DictValueLocale;
+import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import com.google.common.collect.Lists;
+import org.evolboot.system.domain.dictvalue.DictValueLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

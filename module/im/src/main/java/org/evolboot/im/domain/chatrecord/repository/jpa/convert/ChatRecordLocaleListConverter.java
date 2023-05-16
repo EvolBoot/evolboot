@@ -1,9 +1,9 @@
 package org.evolboot.im.domain.chatrecord.repository.jpa.convert;
 
-import org.evolboot.im.domain.chatrecord.ChatRecordLocale;
+import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import com.google.common.collect.Lists;
+import org.evolboot.im.domain.chatrecord.ChatRecordLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

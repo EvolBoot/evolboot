@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * 启动页
  *
  * @author evol
- * 
  */
 @Slf4j
 @Service

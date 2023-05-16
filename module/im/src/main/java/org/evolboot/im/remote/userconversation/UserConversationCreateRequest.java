@@ -1,8 +1,6 @@
 package org.evolboot.im.remote.userconversation;
 
 
-import org.evolboot.im.domain.userconversation.service.UserConversationCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +13,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class UserConversationCreateRequest  {
+public class UserConversationCreateRequest {
 
 
 }

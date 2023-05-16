@@ -1,5 +1,7 @@
 package org.evolboot.identity.remote.user;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
@@ -10,13 +12,15 @@ import org.evolboot.identity.acl.client.IdentityConfigClient;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
+import org.evolboot.identity.domain.user.UserQuery;
+import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.email.EmailMessageTag;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.shared.lang.UserIdentity;
 import org.evolboot.shared.sms.SmsMessageTag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +43,9 @@ public class AppUserResourceV1 {
     private final IdentityConfigClient identityConfigClient;
     private final IdentityCaptchaClient identityCaptchaClient;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public AppUserResourceV1(UserAppService service, IdentityConfigClient identityConfigClient, IdentityCaptchaClient identityCaptchaClient) {
         this.service = service;
         this.identityConfigClient = identityConfigClient;
@@ -50,7 +57,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<?> update(
             @RequestBody @Valid
-                    UserUpdateRequest request
+            UserUpdateRequest request
     ) {
         service.update(SecurityAccessTokenHolder.getPrincipalId(), request.to());
         return ResponseModel.ok();
@@ -70,7 +77,7 @@ public class AppUserResourceV1 {
     @PostMapping("/register")
     public ResponseModel<User> register(
             @RequestBody @Valid
-                    UserRegisterRequest request,
+            UserRegisterRequest request,
             HttpServletRequest httpServletRequest
     ) {
         User user = service.register(request.to(IpUtil.getClientIP(httpServletRequest)));
@@ -82,7 +89,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<?> updatePassword(
             @RequestBody @Valid
-                    UserPasswordUpdateRequest request
+            UserPasswordUpdateRequest request
     ) {
         service.updatePassword(
                 SecurityAccessTokenHolder.getPrincipalId(),
@@ -156,21 +163,18 @@ public class AppUserResourceV1 {
     }
 
 
-    @Operation(summary = "重置登录密码")
-    @OperationLog(value = "重置登录密码", serializable = false)
-    @PostMapping("/password/reset")
-    public ResponseModel<?> resetLoginPassword(
-            @RequestBody @Valid UserResetPasswordRequest request,
-            HttpServletRequest httpServletRequest) {
-        service.resetPassword(request.to(IpUtil.getClientIP(httpServletRequest)));
-        return ResponseModel.ok();
-    }
-
-
     @Operation(summary = "查看用户头像")
     @GetMapping("/avatar/{id}")
     public void getAvatar(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String avatar = service.findAvatarByUserId(id);
         response.sendRedirect(UserConfiguration.getValue().getDefaultAvatar());
+    }
+
+
+    @Operation(summary = "count")
+    @OperationLog(value = "count")
+    @PostMapping("/count")
+    public ResponseModel<?> resetLoginPassword() {
+        return ResponseModel.ok(userRepository.count(UserQuery.builder().userIdentity(UserIdentity.ROLE_MEMBER).build()));
     }
 }

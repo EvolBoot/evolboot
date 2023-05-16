@@ -1,7 +1,7 @@
 package org.evolboot.core.domain;
 
-import org.evolboot.core.util.IdUtil;
 import lombok.Getter;
+import org.evolboot.core.util.IdUtil;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

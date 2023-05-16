@@ -1,12 +1,11 @@
 package org.evolboot.system.domain.userloginlog;
 
-import org.evolboot.core.data.Query;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.data.Query;
 
 /**
  * @author evol
- * 
  */
 @Getter
 public class UserLoginLogQuery extends Query {

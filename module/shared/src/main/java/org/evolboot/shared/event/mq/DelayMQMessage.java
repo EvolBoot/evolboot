@@ -20,5 +20,4 @@ public abstract class DelayMQMessage<T> extends RocketMQMessage<T> {
     private long delayTimeSeconds;
 
 
-
 }

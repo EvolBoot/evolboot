@@ -1,12 +1,12 @@
 package org.evolboot.identity.domain.userid;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.domain.AbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
@@ -14,7 +14,6 @@ import javax.persistence.*;
  * UserId
  *
  * @author evol
- * 
  */
 @Table(name = "evoltb_identity_user_id")
 @Getter

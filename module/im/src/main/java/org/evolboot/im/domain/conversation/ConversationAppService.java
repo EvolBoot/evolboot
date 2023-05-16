@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.conversation;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
 import org.evolboot.im.domain.conversation.service.ConversationUpdateService;
 
@@ -36,11 +35,11 @@ public interface ConversationAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<Conversation> findOne(ConversationQuery query);
-
 
 
 }

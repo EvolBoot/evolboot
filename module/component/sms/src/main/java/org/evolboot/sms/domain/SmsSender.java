@@ -1,9 +1,9 @@
 package org.evolboot.sms.domain;
 
-import org.evolboot.shared.sms.SmsMessageTag;
-import org.evolboot.shared.sms.SmsSendChannel;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.shared.sms.SmsMessageTag;
+import org.evolboot.shared.sms.SmsSendChannel;
 
 /**
  * @author evol

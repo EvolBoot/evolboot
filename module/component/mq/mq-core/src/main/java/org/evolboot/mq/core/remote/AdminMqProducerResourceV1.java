@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
-import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.core.mq.DelayLevel;
 import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.core.remote.ResponseModel;

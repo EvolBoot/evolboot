@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.permission.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.Permission;
 import org.evolboot.identity.domain.permission.PermissionQuery;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface PermissionRepository {
+public interface PermissionRepository extends BaseRepository<Permission, Long> {
 
     Permission save(Permission permission);
 
@@ -28,8 +29,13 @@ public interface PermissionRepository {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<Permission> findOne(PermissionQuery query);
+
+    Long count(PermissionQuery query);
+
+
 }

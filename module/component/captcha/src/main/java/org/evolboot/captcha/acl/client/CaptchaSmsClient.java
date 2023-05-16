@@ -5,7 +5,6 @@ import org.evolboot.sms.domain.SmsSender;
 
 /**
  * @author evol
- * 
  */
 public interface CaptchaSmsClient {
 

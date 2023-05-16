@@ -1,5 +1,7 @@
 package org.evolboot.security.accesstoken.remote;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
@@ -8,8 +10,6 @@ import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.AccessTokenAppService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +48,7 @@ public class AdminSessionUserResourceV1 {
     public ResponseModel<?> login(
             HttpServletRequest servletRequest,
             @Valid @RequestBody
-                    AdminAccessTokenAuthenticateTokenRequest accessTokenAuthenticateToken
+            AdminAccessTokenAuthenticateTokenRequest accessTokenAuthenticateToken
     ) {
         AccessToken accessToken = service.authenticate(accessTokenAuthenticateToken.to(IpUtil.getClientIP(servletRequest)));
         return ResponseModel.ok(accessToken.getToken());

@@ -1,11 +1,9 @@
 package org.evolboot.im.domain.chatrecord.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
+import org.evolboot.core.data.Query;
 import org.evolboot.im.domain.chatrecord.ChatRecord;
-import org.evolboot.im.domain.chatrecord.ChatRecord;
-import org.evolboot.im.domain.chatrecord.ChatRecordQuery;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -16,26 +14,22 @@ import java.util.Optional;
  * @author evol
  * @date 2023-05-03 00:02:35
  */
-public interface ChatRecordRepository {
+public interface ChatRecordRepository extends BaseRepository<ChatRecord, Long> {
 
     ChatRecord save(ChatRecord chatRecord);
 
     Optional<ChatRecord> findById(Long id);
 
-    Page<ChatRecord> page(ChatRecordQuery query);
-
     void deleteById(Long id);
 
     List<ChatRecord> findAll();
 
-    List<ChatRecord> findAll(ChatRecordQuery query);
+    <Q extends Query> List<ChatRecord> findAll(Q query);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<ChatRecord> findOne(ChatRecordQuery query);
+    <Q extends Query> Optional<ChatRecord> findOne(Q query);
 
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<ChatRecord> page(Q query);
 
 }

@@ -1,5 +1,7 @@
 package org.evolboot.identity.domain.user.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
@@ -7,14 +9,11 @@ import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 
 /**
  * @author evol
- * 
  */
 @Service
 public class UserSecurityPasswordUpdateService {

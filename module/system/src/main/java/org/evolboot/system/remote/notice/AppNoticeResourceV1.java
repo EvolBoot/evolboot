@@ -3,15 +3,15 @@ package org.evolboot.system.remote.notice;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.notice.Notice;
-import org.evolboot.system.domain.notice.NoticeAppService;
-import org.evolboot.system.domain.notice.NoticeQuery;
 import org.evolboot.core.DefaultConfig;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.i18n.DelegatingLocaleContextHolder;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.system.domain.notice.Notice;
+import org.evolboot.system.domain.notice.NoticeAppService;
+import org.evolboot.system.domain.notice.NoticeQuery;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,6 @@ import java.util.Locale;
  * 公告
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController

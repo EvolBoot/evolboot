@@ -1,8 +1,9 @@
 package org.evolboot.pay.domain.receiptorder.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.data.Query;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,24 +13,23 @@ import java.util.Optional;
  *
  * @author evol
  */
-public interface ReceiptOrderRepository {
+public interface ReceiptOrderRepository extends BaseRepository<ReceiptOrder, Long> {
 
     ReceiptOrder save(ReceiptOrder receiptOrder);
 
     Optional<ReceiptOrder> findById(String id);
 
-    Page<ReceiptOrder> page(ReceiptOrderQuery query);
 
     void deleteById(String id);
 
     List<ReceiptOrder> findAll();
 
-    List<ReceiptOrder> findAll(ReceiptOrderQuery query);
 
-    /**
-     * 根据条件查询单个
-     * @param query
-     * @return
-     */
-    Optional<ReceiptOrder> findOne(ReceiptOrderQuery query);
+    <Q extends Query> List<ReceiptOrder> findAll(Q query);
+
+    <Q extends Query> Optional<ReceiptOrder> findOne(Q query);
+
+    <Q extends Query> long count(Q query);
+
+    <Q extends Query> Page<ReceiptOrder> page(Q query);
 }

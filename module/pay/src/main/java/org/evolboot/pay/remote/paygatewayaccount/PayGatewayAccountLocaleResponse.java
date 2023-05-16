@@ -1,13 +1,13 @@
 package org.evolboot.pay.remote.paygatewayaccount;
 
-import org.evolboot.core.data.Page;
-import org.evolboot.core.data.PageImpl;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountLocale;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.core.data.Page;
+import org.evolboot.core.data.PageImpl;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountLocale;
 
 import java.math.BigDecimal;
 import java.util.List;

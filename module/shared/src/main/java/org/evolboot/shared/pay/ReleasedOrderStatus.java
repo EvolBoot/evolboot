@@ -34,4 +34,4 @@ public enum ReleasedOrderStatus {
         return VALUES.get(value);
     }
 
-    }
+}

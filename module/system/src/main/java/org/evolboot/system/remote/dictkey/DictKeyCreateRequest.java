@@ -1,10 +1,9 @@
 package org.evolboot.system.remote.dictkey;
 
 
-import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
 
 /**
  * 字典key

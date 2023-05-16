@@ -2,7 +2,6 @@ package org.evolboot.shared.cache;
 
 /**
  * @author evol
- * 
  */
 public interface RedisCacheName {
 

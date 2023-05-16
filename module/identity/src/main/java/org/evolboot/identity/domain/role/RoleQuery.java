@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.role;
 
-import org.evolboot.core.data.Query;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.data.Query;
 
 /**
  * @author evol

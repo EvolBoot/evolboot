@@ -4,7 +4,6 @@ import org.evolboot.core.exception.DomainException;
 
 /**
  * @author evol
- * 
  */
 public class FileContentTypeException extends DomainException {
     public FileContentTypeException(String message) {

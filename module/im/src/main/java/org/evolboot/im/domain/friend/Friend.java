@@ -1,14 +1,16 @@
 package org.evolboot.im.domain.friend;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.Assert;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -67,12 +69,12 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
 
 
     public void joinBlacklist() {
-        Assert.isTrue(FriendStatus.NORMAL.equals(this.getStatus()),"已经在你黑名单中了");
+        Assert.isTrue(FriendStatus.NORMAL.equals(this.getStatus()), "已经在你黑名单中了");
         this.status = FriendStatus.BLACKLIST;
     }
 
     public void removeBlacklist() {
-        Assert.isTrue(FriendStatus.BLACKLIST.equals(this.getStatus()),"已经不在黑名单中了");
+        Assert.isTrue(FriendStatus.BLACKLIST.equals(this.getStatus()), "已经不在黑名单中了");
         this.status = FriendStatus.NORMAL;
     }
 

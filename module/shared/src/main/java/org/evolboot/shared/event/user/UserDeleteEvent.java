@@ -1,8 +1,8 @@
 package org.evolboot.shared.event.user;
 
-import org.evolboot.shared.event.Event;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.evolboot.shared.event.Event;
 
 /**
  * @author evol

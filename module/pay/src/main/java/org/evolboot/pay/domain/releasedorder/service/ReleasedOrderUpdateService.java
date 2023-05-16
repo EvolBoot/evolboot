@@ -1,9 +1,9 @@
 package org.evolboot.pay.domain.releasedorder.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderRequestBase;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**

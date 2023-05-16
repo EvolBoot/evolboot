@@ -1,9 +1,8 @@
 package org.evolboot.im.domain.chatrecord;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordSupportService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 /**

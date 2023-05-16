@@ -1,11 +1,11 @@
 package org.evolboot.identity.domain.userrole;
 
+import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
 import org.evolboot.identity.domain.userrole.service.DeleteRoleService;
 import org.evolboot.identity.domain.userrole.service.UserRoleDeleteService;
 import org.evolboot.identity.domain.userrole.service.UserRoleSupportService;
 import org.evolboot.shared.event.role.RoleDeleteEvent;
-import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

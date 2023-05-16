@@ -1,5 +1,10 @@
 package org.evolboot.identity.domain.user.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
@@ -9,11 +14,6 @@ import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**

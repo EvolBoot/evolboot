@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.userrole.repository;
 
+import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userrole.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleQuery;
@@ -11,9 +12,8 @@ import java.util.Optional;
  * 用户角色
  *
  * @author evol
- * 
  */
-public interface UserRoleRepository {
+public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
 
     UserRole save(UserRole userRole);
 
@@ -36,6 +36,7 @@ public interface UserRoleRepository {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */

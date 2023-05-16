@@ -11,7 +11,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author evol
- * 
  */
 @Configuration
 @Slf4j

@@ -5,17 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.chatrecord.ChatRecord;
 import org.evolboot.im.domain.chatrecord.SenderRole;
 import org.evolboot.im.domain.chatrecord.message.MessageContent;
-import org.evolboot.im.domain.chatrecord.message.MessageType;
+import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.shared.lang.DeviceType;
 import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
-import org.evolboot.im.domain.chatrecord.ChatRecord;
-import org.evolboot.im.domain.chatrecord.
-        ChatRecordRequestBase;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 聊天记录

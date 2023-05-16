@@ -1,18 +1,17 @@
 package org.evolboot.captcha.domain.emailcaptcha;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaVerifyService;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.core.annotation.NoRepeatSubmit;
 import org.evolboot.core.util.Assert;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

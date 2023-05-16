@@ -6,7 +6,6 @@ import org.evolboot.core.util.JsonUtil;
 
 /**
  * @author evol
- * 
  */
 public class DefaultRsaService implements RsaService {
 

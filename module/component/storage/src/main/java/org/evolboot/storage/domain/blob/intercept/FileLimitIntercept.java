@@ -2,7 +2,6 @@ package org.evolboot.storage.domain.blob.intercept;
 
 /**
  * @author evol
- * 
  */
 public interface FileLimitIntercept {
 

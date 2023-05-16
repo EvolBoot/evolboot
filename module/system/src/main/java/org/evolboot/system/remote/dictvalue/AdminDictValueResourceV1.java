@@ -1,27 +1,25 @@
 package org.evolboot.system.remote.dictvalue;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.dictvalue.DictValue;
 import org.evolboot.system.domain.dictvalue.DictValueAppService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.system.domain.dictvalue.DictValueQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.evolboot.system.domain.dictvalue.DictValueQuery;
-import org.evolboot.core.data.Page;
 
 import javax.validation.Valid;
-import java.util.List;
-
-import static org.evolboot.security.api.access.AccessAuthorities.*;
-import static org.evolboot.system.SystemAccessAuthorities.DictValue.*;
-
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Date;
+
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.system.SystemAccessAuthorities.DictValue.*;
 
 /**
  * 字典Value
@@ -49,7 +47,7 @@ public class AdminDictValueResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    DictValueCreateRequest request
+            DictValueCreateRequest request
     ) {
         DictValue dictValue = service.create(request);
         return ResponseModel.ok(new DomainId(dictValue.id()));
@@ -75,7 +73,7 @@ public class AdminDictValueResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    DictValueUpdateRequest request
+            DictValueUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();
@@ -88,7 +86,7 @@ public class AdminDictValueResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
-            @RequestParam(required = false) Long  dictKeyId,
+            @RequestParam(required = false) Long dictKeyId,
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {

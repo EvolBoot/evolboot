@@ -1,16 +1,15 @@
 package org.evolboot.identity.domain.user.relation;
 
-import org.evolboot.core.data.Query;
-import org.evolboot.shared.lang.SqlOperator;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Query;
+import org.evolboot.shared.lang.SqlOperator;
 
 /**
  * 用户上下级关系
  *
  * @author evol
- * 
  */
 @Setter
 @Getter

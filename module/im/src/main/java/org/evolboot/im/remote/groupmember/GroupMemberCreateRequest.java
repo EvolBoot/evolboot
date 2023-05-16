@@ -1,8 +1,6 @@
 package org.evolboot.im.remote.groupmember;
 
 
-import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

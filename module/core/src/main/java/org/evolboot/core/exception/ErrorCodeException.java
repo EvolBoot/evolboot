@@ -4,7 +4,6 @@ import lombok.Getter;
 
 /**
  * @author evol
- * 
  */
 @Getter
 public class ErrorCodeException extends ExtendRuntimeException {

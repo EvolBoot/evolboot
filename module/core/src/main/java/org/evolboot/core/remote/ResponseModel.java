@@ -1,8 +1,8 @@
 package org.evolboot.core.remote;
 
-import org.evolboot.core.Constant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.evolboot.core.Constant;
 
 /**
  * 返回数据

@@ -1,13 +1,9 @@
 package org.evolboot.im.domain.userconversation.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.im.domain.userconversation.UserConversation;
 import org.evolboot.im.domain.userconversation.UserConversationForbidTalkCause;
-import org.evolboot.im.domain.userconversation.UserConversationStatus;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * @author evol

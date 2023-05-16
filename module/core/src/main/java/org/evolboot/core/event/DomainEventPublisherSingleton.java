@@ -4,7 +4,6 @@ import org.evolboot.shared.event.Event;
 
 /**
  * @author evol
- * 
  */
 public final class DomainEventPublisherSingleton {
 

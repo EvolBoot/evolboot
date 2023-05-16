@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 /**
  * @author evol
- * 
  */
 @AllArgsConstructor
 @NoArgsConstructor

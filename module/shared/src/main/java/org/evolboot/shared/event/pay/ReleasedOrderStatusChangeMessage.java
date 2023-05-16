@@ -28,7 +28,6 @@ public class ReleasedOrderStatusChangeMessage extends TransactionMQMessage<Strin
     private ReleasedOrderStatus releasedOrderStatus;
 
 
-
     @Override
     public String getSource() {
         return releasedOrderId;

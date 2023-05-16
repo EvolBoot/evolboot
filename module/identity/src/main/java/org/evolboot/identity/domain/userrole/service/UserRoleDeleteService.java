@@ -1,7 +1,7 @@
 package org.evolboot.identity.domain.userrole.service;
 
-import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
 import org.springframework.stereotype.Service;
 
 /**

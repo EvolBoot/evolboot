@@ -1,13 +1,13 @@
 package org.evolboot.im;
 
 import org.evolboot.core.exception.ErrCodeMsg;
-import org.evolboot.core.i18n.I18NMessageHolder;
 
 import static org.evolboot.im.ImErrorCode.*;
 
 /**
  * 国际化
  * TODO 多语言
+ *
  * @author evol
  * @date 2023-05-02 21:43:03
  */
@@ -97,10 +97,11 @@ public abstract class ImI18nMessage {
             return ErrCodeMsg.of(HAVE_BEEN_FRIENDS, "你们已经是好友了");
         }
 
-        public static ErrCodeMsg  alreadyOnYourBlacklist() {
+        public static ErrCodeMsg alreadyOnYourBlacklist() {
             return ErrCodeMsg.of(ALREADY_ON_YOUR_BLACKLIST, "Ta已经被你拉黑了");
         }
-        public static ErrCodeMsg  hasBeenBlockedByFriends() {
+
+        public static ErrCodeMsg hasBeenBlockedByFriends() {
             return ErrCodeMsg.of(HAS_BEEN_BLOCKED_BY_FRIENDS, "你已经被Ta拉黑了");
         }
 
@@ -114,8 +115,6 @@ public abstract class ImI18nMessage {
         public static final String NAMESPACE = ImI18nMessage.NAMESPACE + ".friendapply";
 
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
-
-
 
 
     }

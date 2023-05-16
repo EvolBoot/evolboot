@@ -1,5 +1,9 @@
 package org.evolboot.identity.domain.user.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.service.crypto.rsa.RsaService;
 import org.evolboot.core.util.Assert;
@@ -8,15 +12,10 @@ import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.Gender;
 import org.evolboot.identity.domain.user.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class UserUpdateService extends UserSupportService {

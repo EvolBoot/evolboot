@@ -1,17 +1,16 @@
 package org.evolboot.identity.domain.user;
 
+import lombok.NoArgsConstructor;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.util.UserPasswordUtil;
 import org.evolboot.identity.domain.user.util.UserValidUtil;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
  * @author evol
- * 
  */
 @NoArgsConstructor
 @Embeddable

@@ -1,5 +1,6 @@
 package org.evolboot.security.accesstoken.domain.authentication.googleauthenticator;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.GoogleAuthenticator;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
@@ -7,7 +8,6 @@ import org.evolboot.security.accesstoken.domain.AccessToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationProvider;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**

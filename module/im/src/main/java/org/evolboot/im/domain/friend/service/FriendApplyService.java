@@ -15,7 +15,8 @@ import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
 import org.springframework.stereotype.Service;
 
-import static org.evolboot.im.ImI18nMessage.Friend.*;
+import static org.evolboot.im.ImI18nMessage.Friend.USER_NOT_FOUND;
+import static org.evolboot.im.ImI18nMessage.Friend.YOU_CANNOT_ADD_YOURSELF_AS_A_FRIEND;
 
 
 /**

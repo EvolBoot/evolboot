@@ -7,7 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * @author evol
- * 
  */
 @NoRepositoryBean
 public interface JpaEmailCaptchaRepository extends EmailCaptchaRepository, JpaRepository<EmailCaptcha, String> {

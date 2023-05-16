@@ -1,7 +1,6 @@
 package org.evolboot.im.domain.group;
 
 import org.evolboot.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
 import org.evolboot.im.domain.group.service.GroupCreateFactory;
 import org.evolboot.im.domain.group.service.GroupUpdateService;
 
@@ -20,6 +19,7 @@ public interface GroupAppService {
 
     /**
      * 创建群
+     *
      * @param request
      * @return
      */
@@ -45,8 +45,6 @@ public interface GroupAppService {
     Optional<Group> findOne(GroupQuery query);
 
 
-
-
     /**
      * TODO
      * 修改群资料
@@ -54,7 +52,7 @@ public interface GroupAppService {
 
     /**
      * TODO
-     * 修改禁言
+     * 修改禁言（全员禁言）
      */
 
     /**

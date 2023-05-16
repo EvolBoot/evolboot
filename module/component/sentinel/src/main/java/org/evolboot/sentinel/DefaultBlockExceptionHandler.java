@@ -2,10 +2,10 @@ package org.evolboot.sentinel;
 
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.Constant;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.JsonUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
 
@@ -19,7 +19,6 @@ import java.nio.charset.StandardCharsets;
  * 触发流控时,默认返回
  *
  * @author evol
- * 
  */
 @Service
 @Slf4j

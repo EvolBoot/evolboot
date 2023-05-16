@@ -41,6 +41,7 @@ public class RedisStreamProperty {
 
     /**
      * 实时消息
+     *
      * @return
      */
     public String getKeyForRealTime() {
@@ -49,6 +50,7 @@ public class RedisStreamProperty {
 
     /**
      * 事务消息
+     *
      * @return
      */
     public String getKeyForTransaction() {
@@ -57,6 +59,7 @@ public class RedisStreamProperty {
 
     /**
      * 延时消息
+     *
      * @return
      */
     public String getKeyForDelayTime() {

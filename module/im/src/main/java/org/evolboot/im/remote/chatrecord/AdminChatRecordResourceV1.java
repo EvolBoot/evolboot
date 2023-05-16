@@ -1,27 +1,25 @@
 package org.evolboot.im.remote.chatrecord;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.chatrecord.ChatRecord;
 import org.evolboot.im.domain.chatrecord.ChatRecordAppService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.evolboot.im.domain.chatrecord.ChatRecordQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.evolboot.im.domain.chatrecord.ChatRecordQuery;
-import org.evolboot.core.data.Page;
 
 import javax.validation.Valid;
-import java.util.List;
-
-import static org.evolboot.security.api.access.AccessAuthorities.*;
-import static org.evolboot.im.ImAccessAuthorities.ChatRecord.*;
-
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Date;
+
+import static org.evolboot.im.ImAccessAuthorities.ChatRecord.*;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.or;
 
 /**
  * 聊天记录
@@ -49,7 +47,7 @@ public class AdminChatRecordResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    ChatRecordCreateRequest request
+            ChatRecordCreateRequest request
     ) {
         ChatRecord chatRecord = service.create(request);
         return ResponseModel.ok(new DomainId(chatRecord.id()));
@@ -75,7 +73,7 @@ public class AdminChatRecordResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    ChatRecordUpdateRequest request
+            ChatRecordUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

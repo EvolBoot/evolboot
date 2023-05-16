@@ -1,16 +1,16 @@
 
 package org.evolboot.storage.domain.blob.qcloud;
 
-import org.evolboot.core.util.PathUtil;
-import org.evolboot.storage.domain.blob.AbstractStorageSystem;
-import org.evolboot.storage.domain.blob.StorageBlob;
-import org.evolboot.storage.domain.blob.StorageType;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.region.Region;
 import lombok.Setter;
+import org.evolboot.core.util.PathUtil;
+import org.evolboot.storage.domain.blob.AbstractStorageSystem;
+import org.evolboot.storage.domain.blob.StorageBlob;
+import org.evolboot.storage.domain.blob.StorageType;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 

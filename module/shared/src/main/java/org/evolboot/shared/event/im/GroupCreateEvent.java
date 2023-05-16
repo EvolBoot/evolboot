@@ -9,7 +9,7 @@ import org.evolboot.shared.event.Event;
  */
 @Getter
 @AllArgsConstructor
-public class GroupCreateEvent  implements Event<Long> {
+public class GroupCreateEvent implements Event<Long> {
 
     private Long groupId;
 
@@ -28,8 +28,6 @@ public class GroupCreateEvent  implements Event<Long> {
      * 会话ID
      */
     private Long conversationId;
-
-
 
 
     @Override

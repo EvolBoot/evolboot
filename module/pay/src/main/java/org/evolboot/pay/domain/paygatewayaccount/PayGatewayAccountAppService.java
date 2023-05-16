@@ -33,11 +33,11 @@ public interface PayGatewayAccountAppService {
 
     /**
      * 根据条件查询单个
+     *
      * @param query
      * @return
      */
     Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
-
 
 
 }

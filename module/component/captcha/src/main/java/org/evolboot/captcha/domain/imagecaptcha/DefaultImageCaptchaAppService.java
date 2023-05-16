@@ -1,11 +1,11 @@
 package org.evolboot.captcha.domain.imagecaptcha;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.evolboot.captcha.domain.imagecaptcha.service.ImageCaptchaCreateFactory;
 import org.evolboot.captcha.domain.imagecaptcha.service.ImageCaptchaVerifyService;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +13,6 @@ import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;
 
 /**
  * @author evol
- * 
  */
 @Service
 @Slf4j

@@ -8,7 +8,6 @@ import java.util.List;
  * 用户上下级关系
  *
  * @author evol
- * 
  */
 public interface RelationAppService {
 

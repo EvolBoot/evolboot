@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author evol
- * 
  */
 @Service
 public class EmailCaptchaVerifyService {

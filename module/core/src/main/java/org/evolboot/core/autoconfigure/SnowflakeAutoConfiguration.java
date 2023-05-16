@@ -1,12 +1,12 @@
 package org.evolboot.core.autoconfigure;
 
-import org.evolboot.core.domain.IdGenerate;
-import org.evolboot.core.lang.Snowflake;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.lang.Snowflake;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,6 @@ import static org.evolboot.core.autoconfigure.SnowflakeAutoConfiguration.Snowfla
 
 /**
  * @author evol
- * 
  */
 @Configuration
 @EnableConfigurationProperties(SnowflakeAutoConfiguration.SnowflakeConfigProperties.class)

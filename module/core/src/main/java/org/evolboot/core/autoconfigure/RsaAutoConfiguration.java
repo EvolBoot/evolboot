@@ -1,14 +1,14 @@
 package org.evolboot.core.autoconfigure;
 
 import cn.hutool.crypto.asymmetric.RSA;
-import org.evolboot.core.service.crypto.rsa.DefaultRsaService;
-import org.evolboot.core.service.crypto.rsa.RsaConfig;
-import org.evolboot.core.service.crypto.rsa.RsaService;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.service.crypto.rsa.DefaultRsaService;
+import org.evolboot.core.service.crypto.rsa.RsaConfig;
+import org.evolboot.core.service.crypto.rsa.RsaService;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author evol
- * 
  */
 @Configuration
 @EnableConfigurationProperties(RsaAutoConfiguration.RsaConfigProperties.class)

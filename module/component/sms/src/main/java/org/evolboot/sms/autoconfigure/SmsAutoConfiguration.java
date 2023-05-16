@@ -1,9 +1,9 @@
 package org.evolboot.sms.autoconfigure;
 
-import org.evolboot.shared.sms.SmsSendChannel;
-import org.evolboot.sms.domain.SmsSender;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.sms.SmsSendChannel;
+import org.evolboot.sms.domain.SmsSender;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

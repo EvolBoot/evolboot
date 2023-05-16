@@ -2,9 +2,9 @@ package org.evolboot.mq.redis.consumer.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.mq.core.domain.mqtransaction.MqTransactionAppService;
+import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
 import org.evolboot.mq.redis.producer.RedisMQMessagePublisher;
 import org.evolboot.mq.redis.producer.RedisStreamProperty;
-import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Executors;

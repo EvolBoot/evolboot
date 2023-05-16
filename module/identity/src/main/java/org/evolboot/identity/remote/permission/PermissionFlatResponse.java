@@ -1,11 +1,11 @@
 package org.evolboot.identity.remote.permission;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.identity.domain.permission.Permission;
 import org.evolboot.identity.domain.permission.Type;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author evol
- * 
  */
 @Setter
 @Getter

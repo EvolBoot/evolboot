@@ -3,28 +3,27 @@ package org.evolboot.system.remote.qa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.qa.Qa;
-import org.evolboot.system.domain.qa.QaAppService;
-import org.evolboot.system.domain.qa.QaQuery;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.system.domain.qa.Qa;
+import org.evolboot.system.domain.qa.QaAppService;
+import org.evolboot.system.domain.qa.QaQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.evolboot.system.SystemAccessAuthorities.Qa.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.system.SystemAccessAuthorities.Qa.*;
 
 /**
  * QA
  *
  * @author evol
- * 
  */
 @Slf4j
 @RestController
@@ -46,7 +45,7 @@ public class AdminQaResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    QaCreateRequest request
+            QaCreateRequest request
     ) {
         Qa qa = service.create(request);
         return ResponseModel.ok(new DomainId(qa.id()));
@@ -72,7 +71,7 @@ public class AdminQaResourceV1 {
     public ResponseModel<?> update(
             @PathVariable("id") Long id,
             @RequestBody @Valid
-                    QaUpdateRequest request
+            QaUpdateRequest request
     ) {
         service.update(id, request);
         return ResponseModel.ok();

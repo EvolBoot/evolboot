@@ -1,15 +1,18 @@
 package org.evolboot.system.domain.appupgrade;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.domain.LocaleDomainPart;
 import org.evolboot.system.domain.appupgrade.repository.jpa.convert.AppUpgradeLocaleListConverter;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
 
 
@@ -53,7 +56,6 @@ public class AppUpgrade extends JpaAbstractEntity<Long> implements AggregateRoot
     public void setDownloadUrl(String downloadUrl) {
         this.downloadUrl = downloadUrl;
     }
-
 
 
     public void setClientType(ClientType clientType) {

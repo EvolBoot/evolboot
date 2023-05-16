@@ -1,9 +1,9 @@
 package org.evolboot.captcha.remote.emailcaptcha;
 
-import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
-import org.evolboot.shared.email.EmailMessageTag;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
+import org.evolboot.shared.email.EmailMessageTag;
 
 /**
  * @author evol

@@ -1,11 +1,11 @@
 package org.evolboot.captcha.autoconfigure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaConfiguration;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.jpa.JpaMobileCaptchaRepository;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.redis.MobileCaptchaRedisTemplate;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.redis.RedisMobileCaptchaRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -19,7 +19,6 @@ import javax.persistence.EntityManager;
 
 /**
  * @author evol
- * 
  */
 @EnableConfigurationProperties(MobileCaptchaProperties.class)
 @Configuration

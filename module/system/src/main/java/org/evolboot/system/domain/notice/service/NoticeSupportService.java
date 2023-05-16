@@ -1,16 +1,15 @@
 package org.evolboot.system.domain.notice.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.notice.Notice;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
-import org.evolboot.core.exception.DomainNotFoundException;
 
 /**
  * 公告
  *
  * @author evol
- * 
  */
 @Slf4j
 public abstract class NoticeSupportService {

@@ -1,12 +1,11 @@
 package org.evolboot.im.domain.groupapply.service;
 
 
-import org.springframework.stereotype.Service;
-import org.evolboot.im.domain.groupapply.repository.GroupApplyRepository;
-import org.evolboot.im.domain.groupapply.GroupApply;
-import org.evolboot.im.domain.groupapply.
-        GroupApplyRequestBase;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.groupapply.GroupApply;
+import org.evolboot.im.domain.groupapply.GroupApplyRequestBase;
+import org.evolboot.im.domain.groupapply.repository.GroupApplyRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 群申请

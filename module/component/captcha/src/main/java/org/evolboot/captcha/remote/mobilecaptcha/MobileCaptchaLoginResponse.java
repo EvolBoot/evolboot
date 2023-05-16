@@ -1,12 +1,11 @@
 package org.evolboot.captcha.remote.mobilecaptcha;
 
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
 
 /**
  * @author evol
- * 
  */
 @Getter
 @Builder

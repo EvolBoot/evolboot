@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author evol
- * 
  */
 @Component
 public class DomainEventPublisher implements EventPublisher {

@@ -9,7 +9,6 @@ import org.evolboot.system.domain.news.service.NewsCreateFactory;
  * 新闻
  *
  * @author evol
- * 
  */
 
 @Setter

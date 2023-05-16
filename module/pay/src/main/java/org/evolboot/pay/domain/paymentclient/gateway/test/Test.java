@@ -4,7 +4,7 @@ import cn.hutool.http.HttpUtil;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
-import java.security.*;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @author evol

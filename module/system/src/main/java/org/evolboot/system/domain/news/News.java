@@ -3,11 +3,11 @@ package org.evolboot.system.domain.news;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.news.repository.jpa.convert.NewsLocaleListConverter;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.domain.LocaleDomainPart;
+import org.evolboot.system.domain.news.repository.jpa.convert.NewsLocaleListConverter;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -21,7 +21,6 @@ import java.util.List;
  * 新闻
  *
  * @author evol
- * 
  */
 
 @Entity
