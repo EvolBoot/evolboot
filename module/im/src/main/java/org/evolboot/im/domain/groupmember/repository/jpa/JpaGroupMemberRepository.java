@@ -30,7 +30,7 @@ public interface JpaGroupMemberRepository extends GroupMemberRepository, Extende
         GroupMemberQuery query = (GroupMemberQuery) _query;
         QGroupMember q = QGroupMember.groupMember;
         JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
+        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }

@@ -25,8 +25,6 @@ public interface GroupMemberRepository extends BaseRepository<GroupMember, Long>
 
     List<GroupMember> findAll();
 
-    Long count(GroupMemberQuery query);
-
     <Q extends Query> List<GroupMember> findAll(Q query);
 
     <Q extends Query> Optional<GroupMember> findOne(Q query);
