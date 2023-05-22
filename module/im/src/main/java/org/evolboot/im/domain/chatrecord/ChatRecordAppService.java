@@ -1,7 +1,9 @@
 package org.evolboot.im.domain.chatrecord;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordCreateFactory;
+import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
 
 import java.util.List;

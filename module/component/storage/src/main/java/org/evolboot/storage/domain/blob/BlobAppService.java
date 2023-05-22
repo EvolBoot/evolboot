@@ -1,7 +1,9 @@
 package org.evolboot.storage.domain.blob;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
+import org.evolboot.storage.domain.blob.service.BlobQuery;
 
 import java.io.InputStream;
 

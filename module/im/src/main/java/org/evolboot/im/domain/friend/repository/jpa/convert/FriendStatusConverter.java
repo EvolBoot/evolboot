@@ -1,7 +1,7 @@
 package org.evolboot.im.domain.friend.repository.jpa.convert;
 
 
-import org.evolboot.im.domain.friend.FriendStatus;
+import org.evolboot.im.domain.friend.entity.FriendStatus;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

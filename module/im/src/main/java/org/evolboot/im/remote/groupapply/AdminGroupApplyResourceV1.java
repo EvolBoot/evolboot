@@ -8,9 +8,9 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.groupapply.GroupApply;
+import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.GroupApplyAppService;
-import org.evolboot.im.domain.groupapply.GroupApplyQuery;
+import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

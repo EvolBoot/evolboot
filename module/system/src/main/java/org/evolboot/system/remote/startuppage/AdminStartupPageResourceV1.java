@@ -8,9 +8,9 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.startuppage.StartupPage;
+import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.StartupPageAppService;
-import org.evolboot.system.domain.startuppage.StartupPageQuery;
+import org.evolboot.system.domain.startuppage.service.StartupPageQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

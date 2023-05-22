@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.shared.pay.ReceiptOrderStatus;

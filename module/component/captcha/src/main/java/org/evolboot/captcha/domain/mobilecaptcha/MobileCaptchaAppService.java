@@ -1,5 +1,6 @@
 package org.evolboot.captcha.domain.mobilecaptcha;
 
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 
 /**

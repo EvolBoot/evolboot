@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
 import org.evolboot.shared.pay.ReleasedOrderStatus;

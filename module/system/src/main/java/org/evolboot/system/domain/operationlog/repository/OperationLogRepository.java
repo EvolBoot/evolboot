@@ -4,7 +4,7 @@ package org.evolboot.system.domain.operationlog.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.system.domain.operationlog.OperationLog;
+import org.evolboot.system.domain.operationlog.entity.OperationLog;
 
 import java.util.List;
 import java.util.Optional;

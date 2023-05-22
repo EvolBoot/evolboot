@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.paygatewayaccount.repository.jpa.convert;
 import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountLocale;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccountLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

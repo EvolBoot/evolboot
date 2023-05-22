@@ -3,7 +3,7 @@ package org.evolboot.system.domain.news.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.system.domain.news.News;
+import org.evolboot.system.domain.news.entity.News;
 
 import java.util.List;
 import java.util.Optional;

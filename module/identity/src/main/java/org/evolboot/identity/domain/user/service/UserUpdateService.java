@@ -9,8 +9,8 @@ import org.evolboot.core.service.crypto.rsa.RsaService;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.user.Gender;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.Gender;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

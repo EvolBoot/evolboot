@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.mobilecaptcha.repository.redis;
 
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.springframework.data.redis.connection.DefaultStringRedisConnection;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

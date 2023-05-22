@@ -3,7 +3,7 @@ package org.evolboot.system.domain.news.repository.jpa.convert;
 import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.system.domain.news.NewsLocale;
+import org.evolboot.system.domain.news.entity.NewsLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

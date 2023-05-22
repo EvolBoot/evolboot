@@ -1,8 +1,7 @@
 package org.evolboot.system.domain.notice.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.notice.Notice;
-import org.evolboot.system.domain.notice.NoticeRequestBase;
+import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
 import org.springframework.stereotype.Service;
 

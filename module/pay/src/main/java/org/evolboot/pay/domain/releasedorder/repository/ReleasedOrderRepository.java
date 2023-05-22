@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.releasedorder.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrder;
+import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
 
 import java.util.List;
 import java.util.Optional;

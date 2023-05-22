@@ -3,7 +3,7 @@ package org.evolboot.identity.remote.user;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.user.UserType;
+import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.UserCreateFactory;
 import org.evolboot.shared.lang.UserIdentity;
 

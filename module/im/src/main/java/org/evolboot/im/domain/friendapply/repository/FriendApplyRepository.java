@@ -3,8 +3,8 @@ package org.evolboot.im.domain.friendapply.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.friendapply.FriendApply;
-import org.evolboot.im.domain.friendapply.FriendApplyStatus;
+import org.evolboot.im.domain.friendapply.entity.FriendApply;
+import org.evolboot.im.domain.friendapply.entity.FriendApplyStatus;
 
 import java.util.List;
 import java.util.Optional;

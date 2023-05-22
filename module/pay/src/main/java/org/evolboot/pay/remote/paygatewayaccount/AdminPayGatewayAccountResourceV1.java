@@ -8,9 +8,9 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

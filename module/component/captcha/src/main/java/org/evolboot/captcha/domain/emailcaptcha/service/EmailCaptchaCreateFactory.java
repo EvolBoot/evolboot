@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.captcha.CaptchaI18nMessage;
 import org.evolboot.captcha.acl.client.EmailCodeClient;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.repository.EmailCaptchaRepository;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.core.exception.DomainRepetitionException;

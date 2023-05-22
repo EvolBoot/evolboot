@@ -4,7 +4,7 @@ package org.evolboot.identity.domain.permission.service;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
-import org.evolboot.identity.domain.permission.Permission;
+import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.shared.event.permission.PermissionDeleteEvent;
 import org.springframework.stereotype.Service;

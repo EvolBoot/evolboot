@@ -1,7 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.shared.pay.ReleasedOrderOrgType;
 

@@ -2,7 +2,7 @@ package org.evolboot.identity.domain.role.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.permission.Permission;
+import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.role.RolePermissionNotExistException;
 import org.evolboot.identity.domain.role.repository.RoleRepository;

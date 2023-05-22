@@ -3,7 +3,7 @@ package org.evolboot.system.domain.notice.repository.jpa.convert;
 import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.system.domain.notice.NoticeLocale;
+import org.evolboot.system.domain.notice.entity.NoticeLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

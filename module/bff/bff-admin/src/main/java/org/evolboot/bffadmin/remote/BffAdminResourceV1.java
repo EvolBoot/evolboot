@@ -10,7 +10,7 @@ import org.evolboot.bffadmin.domain.response.BffUser;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.identity.domain.permission.Permission;
+import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.security.access.prepost.PreAuthorize;

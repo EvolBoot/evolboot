@@ -4,9 +4,8 @@ import projectPackage.core.data.Page;
 import projectPackage.core.data.Query;
 import projectPackage.core.data.Sort;
 import projectPackage.core.data.BaseRepository;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
 
 
 import java.util.List;

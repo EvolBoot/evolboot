@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.imagecaptcha.repository.jpa;
 
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

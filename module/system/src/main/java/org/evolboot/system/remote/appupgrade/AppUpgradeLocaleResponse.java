@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.system.domain.appupgrade.AppUpgrade;
-import org.evolboot.system.domain.appupgrade.AppUpgradeLocale;
-import org.evolboot.system.domain.appupgrade.ClientType;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgradeLocale;
+import org.evolboot.system.domain.appupgrade.entity.ClientType;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.acl.client.CaptchaSmsClient;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
 import org.evolboot.core.i18n.I18NMessageHolder;

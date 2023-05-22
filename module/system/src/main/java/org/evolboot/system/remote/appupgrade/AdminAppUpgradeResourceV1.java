@@ -8,9 +8,9 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.appupgrade.AppUpgrade;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.AppUpgradeAppService;
-import org.evolboot.system.domain.appupgrade.AppUpgradeQuery;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

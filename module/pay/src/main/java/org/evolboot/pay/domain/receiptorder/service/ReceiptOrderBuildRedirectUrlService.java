@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.service.RedisClientAppService;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;

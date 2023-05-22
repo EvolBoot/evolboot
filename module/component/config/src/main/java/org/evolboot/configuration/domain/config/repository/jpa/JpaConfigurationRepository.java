@@ -1,6 +1,6 @@
 package org.evolboot.configuration.domain.config.repository.jpa;
 
-import org.evolboot.configuration.domain.config.Config;
+import org.evolboot.configuration.domain.config.entity.Config;
 import org.evolboot.configuration.domain.config.repository.ConfigurationRepository;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.cache.annotation.CacheEvict;

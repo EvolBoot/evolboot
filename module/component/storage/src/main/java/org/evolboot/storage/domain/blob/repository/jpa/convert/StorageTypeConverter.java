@@ -1,7 +1,7 @@
 package org.evolboot.storage.domain.blob.repository.jpa.convert;
 
 
-import org.evolboot.storage.domain.blob.StorageType;
+import org.evolboot.storage.domain.blob.entity.StorageType;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

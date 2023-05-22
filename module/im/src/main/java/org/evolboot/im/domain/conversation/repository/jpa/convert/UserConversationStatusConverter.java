@@ -1,7 +1,7 @@
 package org.evolboot.im.domain.conversation.repository.jpa.convert;
 
 
-import org.evolboot.im.domain.userconversation.UserConversationStatus;
+import org.evolboot.im.domain.userconversation.entity.UserConversationStatus;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.service.crypto.rsa.RsaService;
 import org.evolboot.identity.acl.client.IdentityCaptchaClient;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

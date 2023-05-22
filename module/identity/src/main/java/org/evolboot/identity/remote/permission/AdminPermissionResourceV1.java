@@ -6,9 +6,9 @@ import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.identity.domain.permission.Permission;
+import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.PermissionAppService;
-import org.evolboot.identity.domain.permission.PermissionQuery;
+import org.evolboot.identity.domain.permission.service.PermissionQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

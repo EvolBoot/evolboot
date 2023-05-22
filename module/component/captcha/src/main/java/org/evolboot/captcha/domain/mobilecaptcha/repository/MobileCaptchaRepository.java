@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.mobilecaptcha.repository;
 
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.core.data.BaseRepository;
 
 import java.util.Optional;

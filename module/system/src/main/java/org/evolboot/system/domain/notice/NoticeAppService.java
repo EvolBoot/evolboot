@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.notice;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.service.NoticeCreateFactory;
+import org.evolboot.system.domain.notice.service.NoticeQuery;
 import org.evolboot.system.domain.notice.service.NoticeUpdateService;
 
 import java.util.List;

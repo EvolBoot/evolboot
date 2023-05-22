@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.qa;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.qa.entity.Qa;
 import org.evolboot.system.domain.qa.service.QaCreateFactory;
+import org.evolboot.system.domain.qa.service.QaQuery;
 import org.evolboot.system.domain.qa.service.QaUpdateService;
 
 import java.util.List;

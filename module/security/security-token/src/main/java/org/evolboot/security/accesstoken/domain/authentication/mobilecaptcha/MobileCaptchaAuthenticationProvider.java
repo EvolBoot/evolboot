@@ -2,7 +2,7 @@ package org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.i18n.I18NMessageHolder;
-import org.evolboot.identity.domain.user.UserRegisterService;
+import org.evolboot.identity.domain.user.service.UserRegisterService;
 import org.evolboot.security.accesstoken.AccessTokenI18nMessage;
 import org.evolboot.security.accesstoken.acl.client.IdentityClient;
 import org.evolboot.security.accesstoken.domain.AccessToken;

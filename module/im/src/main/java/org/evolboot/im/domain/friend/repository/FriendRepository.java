@@ -3,7 +3,7 @@ package org.evolboot.im.domain.friend.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.entity.Friend;
 
 import java.util.List;
 import java.util.Optional;

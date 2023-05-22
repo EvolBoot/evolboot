@@ -6,7 +6,7 @@ import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.role.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.identity.domain.user.exception.UserRoleNotExistException;
-import org.evolboot.identity.domain.userrole.UserRole;
+import org.evolboot.identity.domain.userrole.entity.UserRole;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

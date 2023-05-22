@@ -2,8 +2,8 @@ package org.evolboot.identity.domain.userid.repository;
 
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.identity.domain.userid.UserId;
-import org.evolboot.identity.domain.userid.UserIdQuery;
+import org.evolboot.identity.domain.userid.entity.UserId;
+import org.evolboot.identity.domain.userid.service.UserIdQuery;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.jpa.convert;
 
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncLocale;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.XarvkgvvrllncLocale;
 import projectPackage.core.util.ExtendObjects;
 import projectPackage.core.util.JsonUtil;
 import com.google.common.collect.Lists;

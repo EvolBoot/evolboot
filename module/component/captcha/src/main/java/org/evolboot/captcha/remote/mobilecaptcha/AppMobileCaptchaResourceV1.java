@@ -2,7 +2,7 @@ package org.evolboot.captcha.remote.mobilecaptcha;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptchaAppService;
 import org.evolboot.captcha.domain.mobilecaptcha.service.MobileCaptchaCreateFactory;
 import org.evolboot.core.annotation.ApiClient;

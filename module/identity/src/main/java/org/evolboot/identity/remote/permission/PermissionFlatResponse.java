@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.identity.domain.permission.Permission;
-import org.evolboot.identity.domain.permission.Type;
+import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.Type;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;

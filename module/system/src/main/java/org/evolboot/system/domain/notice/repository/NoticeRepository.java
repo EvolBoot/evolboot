@@ -3,7 +3,7 @@ package org.evolboot.system.domain.notice.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.system.domain.notice.Notice;
+import org.evolboot.system.domain.notice.entity.Notice;
 
 import java.util.List;
 import java.util.Optional;

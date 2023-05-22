@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.dictvalue;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.service.DictValueCreateFactory;
+import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
 import org.evolboot.system.domain.dictvalue.service.DictValueUpdateService;
 
 import java.util.List;

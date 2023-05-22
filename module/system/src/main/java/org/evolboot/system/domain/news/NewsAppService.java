@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.news;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.service.NewsCreateFactory;
+import org.evolboot.system.domain.news.service.NewsQuery;
 import org.evolboot.system.domain.news.service.NewsUpdateService;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package org.evolboot.system.domain.dictvalue.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.system.domain.dictvalue.DictValue;
+import org.evolboot.system.domain.dictvalue.entity.DictValue;
 
 import java.util.List;
 import java.util.Optional;

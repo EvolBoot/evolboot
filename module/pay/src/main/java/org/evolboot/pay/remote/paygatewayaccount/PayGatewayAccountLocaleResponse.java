@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountLocale;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccountLocale;
 
 import java.math.BigDecimal;
 import java.util.List;

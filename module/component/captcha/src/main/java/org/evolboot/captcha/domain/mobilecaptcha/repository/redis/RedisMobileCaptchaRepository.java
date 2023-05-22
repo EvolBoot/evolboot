@@ -1,7 +1,7 @@
 package org.evolboot.captcha.domain.mobilecaptcha.repository.redis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.data.redis.core.StringRedisTemplate;

@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.imagecaptcha.repository;
 
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
 import org.evolboot.core.data.BaseRepository;
 
 /**

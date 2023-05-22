@@ -1,6 +1,6 @@
 package org.evolboot.system.domain.operationlog.service;
 
-import org.evolboot.system.domain.operationlog.OperationLog;
+import org.evolboot.system.domain.operationlog.entity.OperationLog;
 import org.evolboot.system.domain.operationlog.repository.OperationLogRepository;
 import org.springframework.stereotype.Service;
 

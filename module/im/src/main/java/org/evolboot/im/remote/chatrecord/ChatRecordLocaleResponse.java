@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.im.domain.chatrecord.ChatRecord;
+import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 
 import java.util.List;
 import java.util.stream.Collectors;

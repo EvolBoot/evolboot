@@ -3,7 +3,7 @@ package org.evolboot.im.domain.group.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.group.Group;
+import org.evolboot.im.domain.group.entity.Group;
 
 import java.util.List;
 import java.util.Optional;

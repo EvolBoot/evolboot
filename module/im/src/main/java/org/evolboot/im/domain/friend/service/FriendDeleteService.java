@@ -3,7 +3,7 @@ package org.evolboot.im.domain.friend.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.shared.event.im.FriendDeleteEvent;
 import org.springframework.stereotype.Service;

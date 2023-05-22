@@ -1,5 +1,6 @@
 package org.evolboot.captcha.domain.emailcaptcha;
 
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
 
 /**

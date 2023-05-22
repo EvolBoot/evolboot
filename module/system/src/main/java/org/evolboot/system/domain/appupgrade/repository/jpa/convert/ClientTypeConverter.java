@@ -1,7 +1,7 @@
 package org.evolboot.system.domain.appupgrade.repository.jpa.convert;
 
 
-import org.evolboot.system.domain.appupgrade.ClientType;
+import org.evolboot.system.domain.appupgrade.entity.ClientType;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -8,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.FriendAppService;
 import org.evolboot.im.domain.friend.service.FriendApplyService;
-import org.evolboot.im.domain.friendapply.FriendApply;
-import org.evolboot.im.domain.friendapply.FriendApplyStatus;
+import org.evolboot.im.domain.friendapply.entity.FriendApply;
+import org.evolboot.im.domain.friendapply.entity.FriendApplyStatus;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.springframework.stereotype.Service;
 

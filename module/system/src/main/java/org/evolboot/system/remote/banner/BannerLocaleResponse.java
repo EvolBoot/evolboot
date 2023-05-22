@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.system.domain.banner.Banner;
-import org.evolboot.system.domain.banner.BannerLocale;
+import org.evolboot.system.domain.banner.entity.Banner;
+import org.evolboot.system.domain.banner.entity.BannerLocale;
 
 import java.util.List;
 import java.util.stream.Collectors;

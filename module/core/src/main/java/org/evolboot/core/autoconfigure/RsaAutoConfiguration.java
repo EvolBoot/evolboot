@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.service.crypto.rsa.DefaultRsaService;
+import org.evolboot.core.service.crypto.rsa.RsaServiceImpl;
 import org.evolboot.core.service.crypto.rsa.RsaConfig;
 import org.evolboot.core.service.crypto.rsa.RsaService;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -29,7 +29,7 @@ public class RsaAutoConfiguration {
         String rsaPublic = properties.getRsaPublic();
         RSA rsa = new RSA(rsaPrivate, rsaPublic);
         RsaConfig.setRsa(rsa);
-        return new DefaultRsaService(rsa);
+        return new RsaServiceImpl(rsa);
     }
 
 

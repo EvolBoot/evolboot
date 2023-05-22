@@ -5,7 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 import org.evolboot.system.SystemI18nMessage;
-import org.evolboot.system.domain.dictkey.DictKey;
+import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
 
 /**

@@ -3,8 +3,8 @@ package org.evolboot.system.domain.appupgrade.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.system.domain.appupgrade.AppUpgrade;
-import org.evolboot.system.domain.appupgrade.ClientType;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
+import org.evolboot.system.domain.appupgrade.entity.ClientType;
 
 import java.util.List;
 import java.util.Optional;

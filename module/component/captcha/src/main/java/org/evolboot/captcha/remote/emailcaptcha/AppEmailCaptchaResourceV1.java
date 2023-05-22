@@ -2,7 +2,7 @@ package org.evolboot.captcha.remote.emailcaptcha;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaAppService;
 import org.evolboot.captcha.domain.emailcaptcha.service.EmailCaptchaCreateFactory;
 import org.evolboot.core.annotation.ApiClient;

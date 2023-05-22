@@ -3,7 +3,7 @@ package org.evolboot.im.domain.groupapply.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.groupapply.GroupApply;
+import org.evolboot.im.domain.groupapply.entity.GroupApply;
 
 import java.util.List;
 import java.util.Optional;

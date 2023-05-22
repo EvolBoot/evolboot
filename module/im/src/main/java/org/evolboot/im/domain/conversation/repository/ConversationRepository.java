@@ -3,7 +3,7 @@ package org.evolboot.im.domain.conversation.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.conversation.Conversation;
+import org.evolboot.im.domain.conversation.entity.Conversation;
 
 import java.util.List;
 import java.util.Optional;

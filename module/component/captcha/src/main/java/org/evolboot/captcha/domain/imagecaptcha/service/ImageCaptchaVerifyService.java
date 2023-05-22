@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.imagecaptcha.service;
 
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;

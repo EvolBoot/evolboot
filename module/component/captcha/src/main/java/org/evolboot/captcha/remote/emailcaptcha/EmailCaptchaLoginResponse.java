@@ -3,7 +3,7 @@ package org.evolboot.captcha.remote.emailcaptcha;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 
 /**
  * @author evol

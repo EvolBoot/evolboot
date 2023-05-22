@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.mobilecaptcha.service;
 
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 import org.evolboot.captcha.domain.mobilecaptcha.repository.MobileCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
 import org.evolboot.core.i18n.I18NMessageHolder;

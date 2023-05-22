@@ -1,5 +1,7 @@
 package org.evolboot.configuration.domain.config;
 
+import org.evolboot.configuration.domain.config.serivce.PropertyValue;
+
 /**
  * @author evol
  */

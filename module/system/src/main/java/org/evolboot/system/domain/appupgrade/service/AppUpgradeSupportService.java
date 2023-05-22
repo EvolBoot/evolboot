@@ -3,7 +3,7 @@ package org.evolboot.system.domain.appupgrade.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
-import org.evolboot.system.domain.appupgrade.AppUpgrade;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.repository.AppUpgradeRepository;
 
 /**

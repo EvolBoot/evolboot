@@ -5,9 +5,9 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.system.domain.userloginlog.QUserLoginLog;
-import org.evolboot.system.domain.userloginlog.UserLoginLog;
-import org.evolboot.system.domain.userloginlog.UserLoginLogQuery;
+import org.evolboot.system.domain.userloginlog.entity.QUserLoginLog;
+import org.evolboot.system.domain.userloginlog.entity.UserLoginLog;
+import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
 import org.evolboot.system.domain.userloginlog.repository.UserLoginLogRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 

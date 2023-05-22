@@ -1,7 +1,7 @@
 package projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc;
 
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncLocale;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.XarvkgvvrllncLocale;
 
 import projectPackage.core.data.Page;
 import projectPackage.core.data.PageImpl;

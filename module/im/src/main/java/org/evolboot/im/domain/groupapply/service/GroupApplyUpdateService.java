@@ -1,8 +1,7 @@
 package org.evolboot.im.domain.groupapply.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.im.domain.groupapply.GroupApply;
-import org.evolboot.im.domain.groupapply.GroupApplyRequestBase;
+import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.repository.GroupApplyRepository;
 import org.springframework.stereotype.Service;
 

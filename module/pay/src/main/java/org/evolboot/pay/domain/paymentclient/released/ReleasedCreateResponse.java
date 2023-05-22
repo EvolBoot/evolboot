@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paymentclient.released;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderCreateResult;
+import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderCreateResult;
 
 import java.math.BigDecimal;
 

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.im.domain.conversation.Conversation;
+import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.springframework.stereotype.Service;

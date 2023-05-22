@@ -2,8 +2,8 @@ package org.evolboot.bffapp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.identity.domain.user.Gender;
-import org.evolboot.identity.domain.user.UserType;
+import org.evolboot.identity.domain.user.entity.Gender;
+import org.evolboot.identity.domain.user.entity.UserType;
 
 /**
  * @author evol

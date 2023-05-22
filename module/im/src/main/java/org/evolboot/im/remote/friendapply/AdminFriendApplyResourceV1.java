@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.friendapply.FriendApply;
+import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
-import org.evolboot.im.domain.friendapply.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
 package org.evolboot.captcha.domain.emailcaptcha.service;
 
 import org.evolboot.captcha.CaptchaI18nMessage;
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 import org.evolboot.captcha.domain.emailcaptcha.repository.EmailCaptchaRepository;
 import org.evolboot.core.exception.DomainException;
 import org.springframework.stereotype.Service;

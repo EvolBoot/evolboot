@@ -1,7 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 import lombok.Getter;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderQueryResult;
+import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderQueryResult;
 import org.evolboot.shared.pay.ReleasedOrderStatus;
 
 import java.math.BigDecimal;

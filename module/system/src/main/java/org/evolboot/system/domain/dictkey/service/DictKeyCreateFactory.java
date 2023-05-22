@@ -2,8 +2,7 @@ package org.evolboot.system.domain.dictkey.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.dictkey.DictKey;
-import org.evolboot.system.domain.dictkey.DictKeyRequestBase;
+import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
 import org.springframework.stereotype.Service;
 

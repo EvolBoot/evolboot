@@ -3,7 +3,7 @@ package org.evolboot.system.domain.startuppage.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
-import org.evolboot.system.domain.startuppage.StartupPage;
+import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.repository.StartupPageRepository;
 
 /**

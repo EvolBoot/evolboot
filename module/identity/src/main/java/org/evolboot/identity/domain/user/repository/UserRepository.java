@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.user.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.User;
 
 import java.util.List;
 import java.util.Optional;

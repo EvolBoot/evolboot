@@ -1,10 +1,11 @@
 package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
 
 import projectPackage.core.data.Page;
-import org.springframework.transaction.annotation.Transactional;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncCreateFactory;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncUpdateService;
-
+import java.util.Optional;
 import java.util.List;
 
 /**

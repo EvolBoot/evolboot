@@ -1,7 +1,9 @@
 package org.evolboot.im.domain.conversation;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.service.ConversationCreateFactory;
+import org.evolboot.im.domain.conversation.service.ConversationQuery;
 import org.evolboot.im.domain.conversation.service.ConversationUpdateService;
 
 import java.util.List;

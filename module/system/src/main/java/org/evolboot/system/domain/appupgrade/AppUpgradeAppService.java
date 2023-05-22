@@ -1,7 +1,10 @@
 package org.evolboot.system.domain.appupgrade;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
+import org.evolboot.system.domain.appupgrade.entity.ClientType;
 import org.evolboot.system.domain.appupgrade.service.AppUpgradeCreateFactory;
+import org.evolboot.system.domain.appupgrade.service.AppUpgradeQuery;
 import org.evolboot.system.domain.appupgrade.service.AppUpgradeUpdateService;
 
 import java.util.List;

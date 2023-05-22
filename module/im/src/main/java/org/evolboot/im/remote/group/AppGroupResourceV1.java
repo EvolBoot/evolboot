@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.group.Group;
+import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.GroupAppService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;

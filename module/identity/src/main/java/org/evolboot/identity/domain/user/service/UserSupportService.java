@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.user.service;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

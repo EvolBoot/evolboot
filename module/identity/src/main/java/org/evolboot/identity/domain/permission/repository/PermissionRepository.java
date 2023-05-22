@@ -2,8 +2,8 @@ package org.evolboot.identity.domain.permission.repository;
 
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.identity.domain.permission.Permission;
-import org.evolboot.identity.domain.permission.PermissionQuery;
+import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.service.PermissionQuery;
 
 import java.util.List;
 import java.util.Optional;

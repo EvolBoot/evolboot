@@ -2,7 +2,7 @@ package org.evolboot.mq.core.domain.mqtransaction.repository;
 
 
 import org.evolboot.core.data.BaseRepository;
-import org.evolboot.mq.core.domain.mqtransaction.MqTransaction;
+import org.evolboot.mq.core.domain.mqtransaction.entity.MqTransaction;
 
 import java.util.List;
 import java.util.Optional;

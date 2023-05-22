@@ -3,7 +3,7 @@ package org.evolboot.captcha.domain.imagecaptcha.service;
 import com.wf.captcha.ArithmeticCaptcha;
 import lombok.Builder;
 import lombok.Getter;
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaConfiguration;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.springframework.stereotype.Service;

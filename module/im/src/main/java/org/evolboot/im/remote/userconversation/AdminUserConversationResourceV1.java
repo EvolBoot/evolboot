@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.userconversation.UserConversation;
+import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
-import org.evolboot.im.domain.userconversation.UserConversationQuery;
+import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.imagecaptcha.repository.redis;
 
-import org.evolboot.captcha.domain.imagecaptcha.ImageCaptcha;
+import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaConfiguration;
 import org.evolboot.captcha.domain.imagecaptcha.repository.ImageCaptchaRepository;
 import org.evolboot.shared.cache.RedisCacheName;

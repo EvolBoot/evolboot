@@ -10,7 +10,7 @@ import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
-import org.evolboot.system.domain.operationlog.OperationLog;
+import org.evolboot.system.domain.operationlog.entity.OperationLog;
 import org.evolboot.system.domain.operationlog.OperationLogAppService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;

@@ -2,7 +2,7 @@ package org.evolboot.configuration.domain.config.about;
 
 import com.google.common.collect.Lists;
 import lombok.*;
-import org.evolboot.configuration.domain.config.PropertyValue;
+import org.evolboot.configuration.domain.config.serivce.PropertyValue;
 import org.evolboot.core.DefaultConfig;
 import org.evolboot.core.domain.LocaleDomainPart;
 import org.evolboot.core.util.ExtendObjects;

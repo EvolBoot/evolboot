@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.dictkey;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
+import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 
 import java.util.List;

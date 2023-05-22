@@ -3,7 +3,7 @@ package org.evolboot.im.domain.chatrecord.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.im.domain.chatrecord.ChatRecord;
+import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 
 import java.util.List;
 import java.util.Optional;

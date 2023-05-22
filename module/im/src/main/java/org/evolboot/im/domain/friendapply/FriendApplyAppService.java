@@ -1,8 +1,10 @@
 package org.evolboot.im.domain.friendapply;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.service.FriendApplyAuditService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyCreateFactory;
+import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
 
 import java.util.List;
 import java.util.Optional;

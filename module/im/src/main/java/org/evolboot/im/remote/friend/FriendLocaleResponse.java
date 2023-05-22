@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.entity.Friend;
 
 import java.util.List;
 import java.util.stream.Collectors;

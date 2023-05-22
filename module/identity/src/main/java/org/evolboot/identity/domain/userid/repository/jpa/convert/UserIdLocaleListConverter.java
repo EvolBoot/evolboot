@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.userid.repository.jpa.convert;
 import com.google.common.collect.Lists;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.identity.domain.userid.UserIdLocale;
+import org.evolboot.identity.domain.userid.entity.UserIdLocale;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.AttributeConverter;

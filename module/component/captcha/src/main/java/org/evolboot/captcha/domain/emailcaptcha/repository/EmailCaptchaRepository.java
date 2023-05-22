@@ -1,6 +1,6 @@
 package org.evolboot.captcha.domain.emailcaptcha.repository;
 
-import org.evolboot.captcha.domain.emailcaptcha.EmailCaptcha;
+import org.evolboot.captcha.domain.emailcaptcha.entity.EmailCaptcha;
 import org.evolboot.core.data.BaseRepository;
 
 import java.util.Optional;

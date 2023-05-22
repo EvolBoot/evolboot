@@ -2,9 +2,9 @@ package org.evolboot.bffadmin.domain.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.identity.domain.user.Gender;
-import org.evolboot.identity.domain.user.UserStatus;
-import org.evolboot.identity.domain.user.UserType;
+import org.evolboot.identity.domain.user.entity.Gender;
+import org.evolboot.identity.domain.user.entity.UserStatus;
+import org.evolboot.identity.domain.user.entity.UserType;
 
 import java.util.Date;
 

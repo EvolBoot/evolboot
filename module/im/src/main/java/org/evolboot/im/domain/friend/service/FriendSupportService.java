@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
-import org.evolboot.im.domain.friend.Friend;
+import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 
 /**

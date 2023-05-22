@@ -1,6 +1,8 @@
 package org.evolboot.system.domain.operationlog;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.operationlog.entity.OperationLog;
+import org.evolboot.system.domain.operationlog.service.OperationLogQuery;
 
 import java.util.List;
 import java.util.Optional;

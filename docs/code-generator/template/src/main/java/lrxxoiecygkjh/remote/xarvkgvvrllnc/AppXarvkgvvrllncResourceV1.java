@@ -4,15 +4,14 @@ import projectPackage.core.annotation.ApiClient;
 import projectPackage.core.annotation.OperationLog;
 import projectPackage.core.remote.DomainId;
 import projectPackage.core.remote.ResponseModel;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncAppService;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.DefaultXarvkgvvrllncAppService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import projectPackage.core.data.Page;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
 
 import java.util.List;
 

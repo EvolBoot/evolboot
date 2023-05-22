@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.evolboot.configuration.domain.config.PropertyValue;
+import org.evolboot.configuration.domain.config.serivce.PropertyValue;
 import org.evolboot.core.domain.LocaleDomainPart;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.sms.SmsSendChannel;

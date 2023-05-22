@@ -8,9 +8,9 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.news.News;
+import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.NewsAppService;
-import org.evolboot.system.domain.news.NewsQuery;
+import org.evolboot.system.domain.news.service.NewsQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

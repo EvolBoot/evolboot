@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.banner;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.banner.entity.Banner;
 import org.evolboot.system.domain.banner.service.BannerCreateFactory;
+import org.evolboot.system.domain.banner.service.BannerQuery;
 import org.evolboot.system.domain.banner.service.BannerUpdateService;
 
 import java.util.List;

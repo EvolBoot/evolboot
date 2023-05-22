@@ -1,6 +1,6 @@
 package org.evolboot.configuration.domain.config.repository;
 
-import org.evolboot.configuration.domain.config.Config;
+import org.evolboot.configuration.domain.config.entity.Config;
 
 import java.util.Optional;
 

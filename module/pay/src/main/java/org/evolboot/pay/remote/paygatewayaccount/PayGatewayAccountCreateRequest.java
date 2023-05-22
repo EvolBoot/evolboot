@@ -3,7 +3,7 @@ package org.evolboot.pay.remote.paygatewayaccount;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountCreateFactory;
+import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountCreateFactory;
 
 /**
  * 支付网关账户

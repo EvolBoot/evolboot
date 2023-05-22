@@ -2,7 +2,7 @@ package org.evolboot.identity.remote.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import org.evolboot.identity.domain.user.UserRegisterService;
+import org.evolboot.identity.domain.user.service.UserRegisterService;
 import org.evolboot.shared.lang.DeviceType;
 
 /**

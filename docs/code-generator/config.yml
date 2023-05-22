@@ -29,7 +29,7 @@ replace:
   boundContext: im
 
   #领域名称,多个单词用下划线连接
-  domainName: role
+  domainName: test_test
 
   remark: 好友关系
   # 主键类型

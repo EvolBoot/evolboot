@@ -5,8 +5,7 @@ import lombok.Setter;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.permission.Permission;
-import org.evolboot.identity.domain.permission.PermissionRequestBase;
+import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.springframework.stereotype.Service;
 

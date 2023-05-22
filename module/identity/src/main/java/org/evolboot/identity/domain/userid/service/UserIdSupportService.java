@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.userid.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.userid.UserId;
+import org.evolboot.identity.domain.userid.entity.UserId;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 
 /**

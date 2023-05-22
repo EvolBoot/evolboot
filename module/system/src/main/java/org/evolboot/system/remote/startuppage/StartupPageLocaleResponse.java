@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.system.domain.startuppage.StartupPage;
-import org.evolboot.system.domain.startuppage.StartupPageLocale;
+import org.evolboot.system.domain.startuppage.entity.StartupPage;
+import org.evolboot.system.domain.startuppage.entity.StartupPageLocale;
 
 import java.util.List;
 import java.util.stream.Collectors;

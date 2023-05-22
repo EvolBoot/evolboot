@@ -9,10 +9,10 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.identity.acl.client.IdentityConfigClient;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
-import org.evolboot.identity.domain.user.UserQuery;
+import org.evolboot.identity.domain.user.service.UserQuery;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -111,7 +111,7 @@ public class AppUserResourceV1 {
     }
 
 
-    @Operation(summary = "重置资金(安全,交易)密码")
+    @Operation(summary = "重置安全密码")
     @PostMapping("/security-password/reset")
     @Authenticated
     public ResponseModel<?> update(@RequestBody @Valid AppSecurityPasswordResetRequest request) {

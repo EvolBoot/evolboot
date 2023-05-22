@@ -1,8 +1,7 @@
 package org.evolboot.system.domain.news.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.system.domain.news.News;
-import org.evolboot.system.domain.news.NewsRequestBase;
+import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.repository.NewsRepository;
 import org.springframework.stereotype.Service;
 

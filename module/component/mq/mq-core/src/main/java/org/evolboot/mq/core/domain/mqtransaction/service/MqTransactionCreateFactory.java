@@ -1,7 +1,7 @@
 package org.evolboot.mq.core.domain.mqtransaction.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.mq.core.domain.mqtransaction.MqTransaction;
+import org.evolboot.mq.core.domain.mqtransaction.entity.MqTransaction;
 import org.evolboot.mq.core.domain.mqtransaction.repository.MqTransactionRepository;
 import org.springframework.stereotype.Service;
 

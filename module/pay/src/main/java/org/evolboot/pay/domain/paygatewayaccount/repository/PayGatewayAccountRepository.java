@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.paygatewayaccount.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccount;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 
 import java.util.List;
 import java.util.Optional;

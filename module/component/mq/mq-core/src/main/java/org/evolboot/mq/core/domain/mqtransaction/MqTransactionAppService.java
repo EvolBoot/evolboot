@@ -1,5 +1,7 @@
 package org.evolboot.mq.core.domain.mqtransaction;
 
+import org.evolboot.mq.core.domain.mqtransaction.entity.MqTransaction;
+
 import java.util.List;
 import java.util.Optional;
 

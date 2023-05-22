@@ -1,6 +1,8 @@
 package org.evolboot.identity.domain.userrole;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.userrole.entity.UserRole;
+import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
 
 import java.util.List;
 import java.util.Optional;

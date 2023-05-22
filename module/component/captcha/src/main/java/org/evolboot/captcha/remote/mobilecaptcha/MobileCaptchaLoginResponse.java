@@ -2,7 +2,7 @@ package org.evolboot.captcha.remote.mobilecaptcha;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.evolboot.captcha.domain.mobilecaptcha.MobileCaptcha;
+import org.evolboot.captcha.domain.mobilecaptcha.entity.MobileCaptcha;
 
 /**
  * @author evol

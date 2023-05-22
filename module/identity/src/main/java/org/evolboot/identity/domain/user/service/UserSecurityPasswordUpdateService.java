@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.user.User;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.repository.UserRepository;

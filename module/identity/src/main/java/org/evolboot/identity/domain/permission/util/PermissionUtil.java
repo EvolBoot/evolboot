@@ -1,6 +1,6 @@
 package org.evolboot.identity.domain.permission.util;
 
-import org.evolboot.identity.domain.permission.Permission;
+import org.evolboot.identity.domain.permission.entity.Permission;
 
 import java.util.List;
 import java.util.Map;

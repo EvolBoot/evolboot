@@ -1,7 +1,9 @@
 package org.evolboot.system.domain.startuppage;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.service.StartupPageCreateFactory;
+import org.evolboot.system.domain.startuppage.service.StartupPageQuery;
 import org.evolboot.system.domain.startuppage.service.StartupPageUpdateService;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package org.evolboot.security.accesstoken.acl.client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.identity.domain.user.UserRegisterService;
+import org.evolboot.identity.domain.user.service.UserRegisterService;
 
 import java.util.List;
 

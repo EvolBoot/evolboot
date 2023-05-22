@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.system.domain.notice.Notice;
-import org.evolboot.system.domain.notice.NoticeLocale;
+import org.evolboot.system.domain.notice.entity.Notice;
+import org.evolboot.system.domain.notice.entity.NoticeLocale;
 
 import java.util.Date;
 import java.util.List;
