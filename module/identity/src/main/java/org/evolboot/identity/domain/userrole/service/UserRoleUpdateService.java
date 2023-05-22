@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.userrole.service;
 import org.apache.commons.lang3.StringUtils;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.role.Role;
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.identity.domain.user.exception.UserRoleNotExistException;
 import org.evolboot.identity.domain.userrole.entity.UserRole;

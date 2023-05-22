@@ -1,15 +1,11 @@
 package org.evolboot.identity.domain.role.repository.jpa;
 
-import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
-import org.evolboot.core.data.Query;
-import org.evolboot.identity.domain.role.QRole;
-import org.evolboot.identity.domain.role.Role;
-import org.evolboot.identity.domain.role.RoleQuery;
+import org.evolboot.identity.domain.role.entity.Role;
+import org.evolboot.identity.domain.role.service.RoleQuery;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;

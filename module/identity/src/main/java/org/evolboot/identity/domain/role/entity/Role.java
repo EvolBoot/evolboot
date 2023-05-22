@@ -1,4 +1,4 @@
-package org.evolboot.identity.domain.role;
+package org.evolboot.identity.domain.role.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Builder;

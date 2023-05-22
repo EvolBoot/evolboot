@@ -1,4 +1,4 @@
-package org.evolboot.identity.domain.role;
+package org.evolboot.identity.domain.role.service;
 
 import lombok.Builder;
 import lombok.Getter;

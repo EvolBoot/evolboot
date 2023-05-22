@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.exception.DomainRepetitionException;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.role.Role;
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 

@@ -2,9 +2,8 @@ package org.evolboot.identity.domain.role.repository;
 
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Query;
-import org.evolboot.identity.domain.role.Role;
-import org.evolboot.identity.domain.role.RoleQuery;
+import org.evolboot.identity.domain.role.entity.Role;
+import org.evolboot.identity.domain.role.service.RoleQuery;
 
 import java.util.List;
 import java.util.Optional;

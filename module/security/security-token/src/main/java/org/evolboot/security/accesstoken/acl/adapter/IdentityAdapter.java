@@ -7,7 +7,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.PermissionAppService;
-import org.evolboot.identity.domain.role.Role;
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.UserAppService;

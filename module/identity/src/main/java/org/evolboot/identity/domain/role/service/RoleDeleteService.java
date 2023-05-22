@@ -4,7 +4,7 @@ import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.role.Role;
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.shared.event.role.RoleDeleteEvent;
 import org.springframework.stereotype.Service;

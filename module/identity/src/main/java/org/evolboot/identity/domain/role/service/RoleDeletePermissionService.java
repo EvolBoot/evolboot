@@ -1,5 +1,6 @@
-package org.evolboot.identity.domain.role;
+package org.evolboot.identity.domain.role.service;
 
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
