@@ -9,6 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.NewsAppService;
 import org.evolboot.system.domain.news.service.NewsQuery;
+import org.evolboot.system.remote.news.dto.NewsLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

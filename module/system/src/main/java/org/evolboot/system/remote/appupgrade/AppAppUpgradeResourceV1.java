@@ -8,6 +8,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.AppUpgradeAppService;
 import org.evolboot.system.domain.appupgrade.entity.ClientType;
+import org.evolboot.system.remote.appupgrade.dto.AppUpgradeLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

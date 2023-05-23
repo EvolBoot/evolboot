@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.NewsAppService;
 import org.evolboot.system.domain.news.service.NewsQuery;
+import org.evolboot.system.remote.news.dto.NewsCreateRequest;
+import org.evolboot.system.remote.news.dto.NewsUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

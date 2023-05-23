@@ -8,6 +8,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.StartupPageAppService;
 import org.evolboot.system.domain.startuppage.service.StartupPageQuery;
+import org.evolboot.system.remote.startuppage.dto.StartupPageLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

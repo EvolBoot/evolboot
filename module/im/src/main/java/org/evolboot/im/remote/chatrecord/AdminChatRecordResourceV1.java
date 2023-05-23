@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.ChatRecordAppService;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
+import org.evolboot.im.remote.chatrecord.dto.ChatRecordCreateRequest;
+import org.evolboot.im.remote.chatrecord.dto.ChatRecordUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

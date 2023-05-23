@@ -11,6 +11,7 @@ import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.BlobAppService;
 import org.evolboot.storage.domain.blob.service.BlobQuery;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
+import org.evolboot.storage.remote.dto.BlobResponse;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

@@ -8,6 +8,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.banner.entity.Banner;
 import org.evolboot.system.domain.banner.BannerAppService;
 import org.evolboot.system.domain.banner.service.BannerQuery;
+import org.evolboot.system.remote.banner.dto.BannerLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

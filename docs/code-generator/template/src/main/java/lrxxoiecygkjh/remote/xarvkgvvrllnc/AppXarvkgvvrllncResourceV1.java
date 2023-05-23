@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import projectPackage.core.data.Page;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
+
 
 import java.util.List;
 

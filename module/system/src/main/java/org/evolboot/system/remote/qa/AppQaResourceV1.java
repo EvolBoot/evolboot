@@ -7,6 +7,7 @@ import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.qa.entity.Qa;
 import org.evolboot.system.domain.qa.QaAppService;
+import org.evolboot.system.remote.qa.dto.QaLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.dictvalue.DictValueAppService;
+import org.evolboot.system.remote.dictvalue.dto.DictValueAppResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

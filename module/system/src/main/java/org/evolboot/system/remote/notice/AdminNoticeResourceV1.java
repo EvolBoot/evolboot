@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.NoticeAppService;
 import org.evolboot.system.domain.notice.service.NoticeQuery;
+import org.evolboot.system.remote.notice.dto.NoticeCreateRequest;
+import org.evolboot.system.remote.notice.dto.NoticeUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.StartupPageAppService;
 import org.evolboot.system.domain.startuppage.service.StartupPageQuery;
+import org.evolboot.system.remote.startuppage.dto.StartupPageCreateRequest;
+import org.evolboot.system.remote.startuppage.dto.StartupPageUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

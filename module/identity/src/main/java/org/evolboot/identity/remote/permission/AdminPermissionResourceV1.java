@@ -9,6 +9,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.permission.service.PermissionQuery;
+import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
+import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

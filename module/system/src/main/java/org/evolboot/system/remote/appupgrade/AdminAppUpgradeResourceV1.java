@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.AppUpgradeAppService;
 import org.evolboot.system.domain.appupgrade.service.AppUpgradeQuery;
+import org.evolboot.system.remote.appupgrade.dto.AppUpgradeCreateRequest;
+import org.evolboot.system.remote.appupgrade.dto.AppUpgradeUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

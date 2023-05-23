@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.qa.entity.Qa;
 import org.evolboot.system.domain.qa.QaAppService;
 import org.evolboot.system.domain.qa.service.QaQuery;
+import org.evolboot.system.remote.qa.dto.QaCreateRequest;
+import org.evolboot.system.remote.qa.dto.QaUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

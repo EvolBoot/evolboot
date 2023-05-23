@@ -12,6 +12,7 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.NoticeAppService;
 import org.evolboot.system.domain.notice.service.NoticeQuery;
+import org.evolboot.system.remote.notice.dto.NoticeLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

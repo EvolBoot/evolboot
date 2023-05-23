@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.receiptorder.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 
 import java.util.List;
 import java.util.Optional;

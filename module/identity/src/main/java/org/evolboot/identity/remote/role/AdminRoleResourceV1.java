@@ -9,6 +9,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.role.service.RoleQuery;
+import org.evolboot.identity.remote.role.dto.CreateRoleRequest;
+import org.evolboot.identity.remote.role.dto.UpdateRoleRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paymentclient.receipt;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderNotifyResult;
 import org.evolboot.shared.pay.ReceiptOrderStatus;
 
 /**

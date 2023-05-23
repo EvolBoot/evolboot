@@ -2,8 +2,8 @@ package org.evolboot.pay.domain.receiptorder.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.mq.MQMessagePublisher;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderNotifyResult;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import org.evolboot.shared.event.pay.ReceiptOrderStatusChangeMessage;
 import org.springframework.stereotype.Service;

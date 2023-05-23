@@ -10,7 +10,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
-import org.evolboot.identity.remote.user.UserRoleUpdateRequest;
+import org.evolboot.identity.remote.user.dto.UserRoleUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

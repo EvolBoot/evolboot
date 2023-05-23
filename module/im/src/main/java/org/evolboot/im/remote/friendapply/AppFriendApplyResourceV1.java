@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
+import org.evolboot.im.remote.friendapply.dto.FriendApplyAuditRequest;
+import org.evolboot.im.remote.friendapply.dto.FriendApplyCreateRequest;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;

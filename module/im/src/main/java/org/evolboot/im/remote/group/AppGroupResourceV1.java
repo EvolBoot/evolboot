@@ -8,6 +8,7 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.GroupAppService;
+import org.evolboot.im.remote.group.dto.GroupCreateRequest;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -9,7 +9,7 @@ import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyResponse;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.shared.pay.PayGateway;

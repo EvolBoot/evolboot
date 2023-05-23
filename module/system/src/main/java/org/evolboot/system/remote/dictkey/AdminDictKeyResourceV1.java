@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.DictKeyAppService;
 import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
+import org.evolboot.system.remote.dictkey.dto.DictKeyCreateRequest;
+import org.evolboot.system.remote.dictkey.dto.DictKeyUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

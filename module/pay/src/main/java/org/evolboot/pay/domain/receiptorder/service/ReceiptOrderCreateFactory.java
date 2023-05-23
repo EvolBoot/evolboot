@@ -12,7 +12,7 @@ import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateResponse;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import org.evolboot.pay.exception.PayException;
 import org.evolboot.shared.pay.Currency;

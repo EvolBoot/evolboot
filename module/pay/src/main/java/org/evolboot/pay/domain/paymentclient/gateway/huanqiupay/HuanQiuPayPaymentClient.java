@@ -12,8 +12,8 @@ import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuP
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
 import org.evolboot.pay.domain.paymentclient.receipt.*;
 import org.evolboot.pay.domain.paymentclient.released.*;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderNotifyResult;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderRequestResult;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderNotifyResult;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderRequestResult;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderCreateResult;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderNotifyResult;
 import org.evolboot.pay.exception.PayException;

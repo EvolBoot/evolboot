@@ -11,7 +11,7 @@ import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyResponse;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
 import org.evolboot.shared.event.pay.ReceiptOrderStatusChangeMessage;
 import org.evolboot.shared.pay.PayGateway;

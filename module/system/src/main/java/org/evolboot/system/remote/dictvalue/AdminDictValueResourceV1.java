@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.DictValueAppService;
 import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.system.remote.dictvalue.dto.DictValueCreateRequest;
+import org.evolboot.system.remote.dictvalue.dto.DictValueUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

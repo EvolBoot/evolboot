@@ -11,6 +11,8 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.banner.entity.Banner;
 import org.evolboot.system.domain.banner.BannerAppService;
 import org.evolboot.system.domain.banner.service.BannerQuery;
+import org.evolboot.system.remote.banner.dto.BannerCreateRequest;
+import org.evolboot.system.remote.banner.dto.BannerUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

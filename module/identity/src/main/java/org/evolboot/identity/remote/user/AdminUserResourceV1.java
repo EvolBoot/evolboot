@@ -12,6 +12,7 @@ import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.service.UserQuery;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.UserStatusChangeService;
+import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.lang.UserIdentity;

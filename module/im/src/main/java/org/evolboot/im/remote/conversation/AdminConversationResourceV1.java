@@ -12,6 +12,8 @@ import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
 import org.evolboot.im.domain.conversation.service.ConversationQuery;
 import org.evolboot.im.domain.shared.ConversationType;
+import org.evolboot.im.remote.conversation.dto.ConversationCreateRequest;
+import org.evolboot.im.remote.conversation.dto.ConversationUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
