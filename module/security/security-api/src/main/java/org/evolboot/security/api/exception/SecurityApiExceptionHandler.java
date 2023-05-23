@@ -3,7 +3,7 @@ package org.evolboot.security.api.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.Constant;
-import org.evolboot.core.exception.DefaultCoreHandlerExceptionResolver;
+import org.evolboot.core.exception.handler.DefaultCoreHandlerExceptionResolver;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.security.api.SecurityI18nMessage;
 import org.springframework.security.access.AccessDeniedException;

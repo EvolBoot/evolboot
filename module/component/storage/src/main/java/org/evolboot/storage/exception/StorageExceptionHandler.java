@@ -1,7 +1,7 @@
 package org.evolboot.storage.exception;
 
 import org.evolboot.core.Constant;
-import org.evolboot.core.exception.DefaultCoreHandlerExceptionResolver;
+import org.evolboot.core.exception.handler.DefaultCoreHandlerExceptionResolver;
 import org.evolboot.storage.StorageI18nMessage;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;
 import org.springframework.stereotype.Component;

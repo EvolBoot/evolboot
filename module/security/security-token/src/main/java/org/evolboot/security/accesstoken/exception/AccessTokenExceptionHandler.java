@@ -3,7 +3,7 @@ package org.evolboot.security.accesstoken.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.Constant;
-import org.evolboot.core.exception.DefaultCoreHandlerExceptionResolver;
+import org.evolboot.core.exception.handler.DefaultCoreHandlerExceptionResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 

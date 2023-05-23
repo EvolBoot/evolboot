@@ -1,4 +1,4 @@
-package org.evolboot.core.exception;
+package org.evolboot.core.exception.handler;
 
 
 import org.evolboot.core.Constant;

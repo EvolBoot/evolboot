@@ -1,4 +1,4 @@
-package org.evolboot.core.exception;
+package org.evolboot.core.exception.handler;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import org.evolboot.core.Constant;

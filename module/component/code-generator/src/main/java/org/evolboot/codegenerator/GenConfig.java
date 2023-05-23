@@ -1,4 +1,4 @@
-package org.evolboot.core.gen;
+package org.evolboot.codegenerator;
 
 import lombok.Getter;
 import lombok.Setter;

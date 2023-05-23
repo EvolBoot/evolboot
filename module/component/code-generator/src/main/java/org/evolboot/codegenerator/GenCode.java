@@ -1,4 +1,4 @@
-package org.evolboot.core.gen;
+package org.evolboot.codegenerator;
 
 import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +22,7 @@ public class GenCode {
      */
     private final static String CODE_GENERATOR_PATH =
             new File(Objects.requireNonNull(Version.class.getResource("/")).getPath())
+                    .getParentFile()
                     .getParentFile()
                     .getParentFile()
                     .getParentFile()

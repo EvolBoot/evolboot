@@ -7,7 +7,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
-import org.evolboot.pay.domain.receiptorder.QReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.entity.QReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderQuery;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;

@@ -18,5 +18,6 @@
         <module>mq</module>
         <module>sentinel</module>
         <module>websocket</module>
+        <module>code-generator</module>
     </modules>
 </project>
