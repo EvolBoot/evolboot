@@ -6,6 +6,7 @@ import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
 import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +24,11 @@ public interface DictKeyAppService {
 
     DictKey create(DictKeyCreateFactory.Request request);
 
-    void update(Long id, DictKeyUpdateService.Request request);
+    void update(DictKeyUpdateService.Request request);
 
     void delete(Long id);
+
+    void delete(Collection<Long> ids);
 
     List<DictKey> findAll();
 

@@ -4,6 +4,7 @@ import org.evolboot.identity.domain.user.entity.UserType;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.util.Objects;
 
 @Converter(autoApply = true)
 public class UserTypeConverter implements AttributeConverter<UserType, Integer> {
@@ -11,7 +12,7 @@ public class UserTypeConverter implements AttributeConverter<UserType, Integer> 
 
     @Override
     public Integer convertToDatabaseColumn(UserType attribute) {
-        return attribute.getValue();
+        return Objects.requireNonNullElse(attribute, UserType.NORMAL).getValue();
     }
 
     @Override

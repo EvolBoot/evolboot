@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.ChatRecordAppService;
+import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
 import org.evolboot.im.remote.chatrecord.dto.ChatRecordCreateRequest;
 import org.evolboot.im.remote.chatrecord.dto.ChatRecordUpdateRequest;
@@ -70,14 +70,13 @@ public class AdminChatRecordResourceV1 {
 
     @Operation(summary = "修改聊天记录")
     @OperationLog("修改聊天记录")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             ChatRecordUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

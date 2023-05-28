@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.dictkey.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
@@ -18,8 +20,8 @@ public class DictKeyUpdateService extends DictKeySupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        DictKey dictKey = findById(id);
+    public void execute(Request request) {
+        DictKey dictKey = findById(request.getId());
         if (!request.getKey().equals(dictKey.getKey())) {
             keyMustNotFound(request.getKey());
         }
@@ -30,8 +32,10 @@ public class DictKeyUpdateService extends DictKeySupportService {
         repository.save(dictKey);
     }
 
+    @Getter
+    @Setter
     public static class Request extends DictKeyRequestBase {
-
+        private Long id;
     }
 
 }

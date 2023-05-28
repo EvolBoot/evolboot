@@ -1,4 +1,4 @@
-package org.evolboot.identity.domain.role;
+package org.evolboot.identity.domain.role.exception;
 
 
 import org.evolboot.core.exception.DomainException;

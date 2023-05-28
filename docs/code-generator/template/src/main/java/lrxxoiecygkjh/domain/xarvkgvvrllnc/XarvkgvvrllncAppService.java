@@ -20,7 +20,7 @@ public interface XarvkgvvrllncAppService {
 
     Xarvkgvvrllnc create(XarvkgvvrllncCreateFactory.Request request);
 
-    void update(Keya2Akk5iV3n id, XarvkgvvrllncUpdateService.Request request);
+    void update(XarvkgvvrllncUpdateService.Request request);
 
     void delete(Keya2Akk5iV3n id);
 

@@ -1,10 +1,10 @@
 package org.evolboot.shared.sms;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,7 +19,7 @@ public enum SmsMessageTag {
 
     private final Integer value;
 
-    private static final Map<Integer, SmsMessageTag> VALUES = Maps.newHashMapWithExpectedSize(SmsMessageTag.values().length);
+    private static final Map<Integer, SmsMessageTag> VALUES = new HashMap<>(SmsMessageTag.values().length);
 
     static {
         Arrays.stream(SmsMessageTag.values()).forEach(e -> {

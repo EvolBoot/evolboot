@@ -152,8 +152,8 @@ public class UserAppServiceImpl implements UserAppService {
 
     @Transactional
     @Override
-    public void update(Long userId, UserUpdateService.Request request) {
-        userUpdateService.execute(userId, request);
+    public void update(UserUpdateService.Request request) {
+        userUpdateService.execute(request);
     }
 
     @Transactional

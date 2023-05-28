@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
+@Deprecated
 public class UserRoleListener extends UserRoleSupportService {
 
     private final DeleteRoleService deleteRoleService;
@@ -30,9 +31,9 @@ public class UserRoleListener extends UserRoleSupportService {
     }
 
 
-    @EventListener
-    public void on(RoleDeleteEvent event) {
-        deleteRoleService.execute(event.getRoleId());
-    }
+//    @EventListener
+//    public void on(RoleDeleteEvent event) {
+//        deleteRoleService.execute(event.getRoleId());
+//    }
 
 }

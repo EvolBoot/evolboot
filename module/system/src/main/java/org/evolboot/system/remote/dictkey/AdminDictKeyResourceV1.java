@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.DictKeyAppService;
+import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 import org.evolboot.system.remote.dictkey.dto.DictKeyCreateRequest;
 import org.evolboot.system.remote.dictkey.dto.DictKeyUpdateRequest;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.Set;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
@@ -67,17 +68,27 @@ public class AdminDictKeyResourceV1 {
         return ResponseModel.ok();
     }
 
+    @Operation(summary = "删除字典key")
+    @OperationLog("删除字典key")
+    @DeleteMapping()
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    public ResponseModel<?> delete(
+            @RequestBody Set<Long> ids
+    ) {
+        service.delete(ids);
+        return ResponseModel.ok();
+    }
+
 
     @Operation(summary = "修改字典key")
     @OperationLog("修改字典key")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             DictKeyUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 
@@ -88,6 +99,7 @@ public class AdminDictKeyResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String key,
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
@@ -96,6 +108,7 @@ public class AdminDictKeyResourceV1 {
                 .id(id)
                 .startDate(startDate)
                 .endDate(endDate)
+                .key(key)
                 .page(page)
                 .limit(limit)
                 .build();

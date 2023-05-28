@@ -5,5 +5,7 @@ package org.evolboot.core.data;
  */
 public interface BaseRepository<T, ID> {
 
+    void deleteAllByIdInBatch(Iterable<ID> ids);
+
 
 }

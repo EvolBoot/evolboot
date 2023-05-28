@@ -68,14 +68,13 @@ public class AdminQaResourceV1 {
 
     @Operation(summary = "修改QA")
     @OperationLog("修改QA")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             QaUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update( request);
         return ResponseModel.ok();
     }
 

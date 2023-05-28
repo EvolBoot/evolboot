@@ -1,7 +1,9 @@
 package org.evolboot.core.exception.handler;
 
 import cn.hutool.crypto.CryptoException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.CoreI18nMessage;
 import org.evolboot.core.exception.*;
@@ -54,6 +56,7 @@ import static org.evolboot.core.Constant.ErrorStatusCode.ERROR_CODE;
 @Slf4j
 public abstract class DefaultCoreHandlerExceptionResolver extends org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver {
 
+    public static final ModelAndView DEFAULT_MODEL_AND_VIEW = new ModelAndView();
 
     public DefaultCoreHandlerExceptionResolver() {
         super();
@@ -179,9 +182,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
                 return handle((ConversionFailedException) ex, request, response, handler);
 
             } else {
-                if (log.isDebugEnabled()) {
-                    log.error("Handling of [" + ex.getClass().getName() + "] resulted in Exception", ex);
-                }
+                log.error("Handling of [" + ex.getClass().getName() + "] resulted in Exception", ex);
                 return handleException(ex, request, response, handler);
             }
         } catch (Exception handlerException) {
@@ -191,11 +192,11 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
     }
 
     protected ModelAndView handleClientAbortException(IOException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         if (log.isDebugEnabled()) {
             log.debug("ClientAbortException , url:" + request.getRequestURI());
         }
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     @Override
@@ -214,32 +215,32 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      * @
      */
     protected ModelAndView handleHttpNetException(HttpNetException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
     protected ModelAndView handleException(Exception ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         response.setStatus(HttpServletResponse.SC_OK);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
     protected ModelAndView handleIllegalArgumentException(IllegalArgumentException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         response.setContentType(MimeTypeUtils.APPLICATION_JSON_VALUE);
         outputStreamWrite(response, ResponseModel.error(ex.getLocalizedMessage()), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected ModelAndView handleMyNoHandlerFoundException(NoHandlerFoundException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
@@ -255,31 +256,38 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      */
     @Override
     protected ModelAndView handleNoHandlerFoundException(NoHandlerFoundException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
         pageNotFoundLogger.warn(ex.getMessage());
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     @Override
     protected ModelAndView handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
-        handlerJsonMessage(response, CoreI18nMessage.parameterTypeError(), ex);
-        return modelAndView;
+        Throwable mostSpecificCause = ex.getMostSpecificCause();
+        if (mostSpecificCause instanceof ExtendRuntimeException) {
+            handlerJsonMessage(response, mostSpecificCause.getMessage(), ex);
+        } else if (mostSpecificCause instanceof InvalidFormatException) {
+            handlerJsonMessage(response, "参数格式错误:" + ex.getMessage(), ex);
+        } else if (mostSpecificCause instanceof JsonParseException) {
+            handlerJsonMessage(response, "Json解析错误:" + ex.getMessage(), ex);
+        } else {
+            handlerJsonMessage(response, "发生错误:" + ex.getMessage(), ex);
+        }
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected ModelAndView handleObjectOptimisticLockingFailureException(ObjectOptimisticLockingFailureException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, CoreI18nMessage.objectOptimisticLockingFailureException(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
     protected ModelAndView handleDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, CoreI18nMessage.dataIntegrityViolationException(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -300,9 +308,9 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
             response.setHeader("Allow", StringUtils.arrayToDelimitedString(supportedMethods, ", "));
         }
         response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -320,11 +328,11 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      */
     @Override
     protected ModelAndView handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         pageNotFoundLogger.warn(ex.getMessage());
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
@@ -340,16 +348,16 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
     }
 
     protected ModelAndView handleInvalidDataAccessApiUsageException(InvalidDataAccessApiUsageException ex, HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ex.getCause().getMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
     protected ModelAndView handleBeanCreationNotAllowedException(BeanCreationNotAllowedException ex, HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ex.getCause().getMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
@@ -367,9 +375,9 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
         */
         FieldError error = fieldErrors.get(0);
         String msg = I18NMessageHolder.message(error.getDefaultMessage());
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, msg, ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -384,7 +392,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
 //        response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return new ModelAndView();
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -398,7 +406,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
     public ModelAndView handleMethodArgumentConversionNotSupportedException(MethodArgumentConversionNotSupportedException ex, HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         handlerJsonMessage(response, ex.getLocalizedMessage(), ex);
-        return new ModelAndView();
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
@@ -412,7 +420,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      */
     public ModelAndView handleDomainException(DomainException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
         handlerJsonMessage(response, ex.getMessage(), ex);
-        return new ModelAndView();
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
@@ -428,7 +436,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
         log.error("空指针", ex);
         response.setStatus(HttpServletResponse.SC_OK);
         handlerJsonMessage(response, "NullPointerException Exception:" + ex.getLocalizedMessage(), ex);
-        return new ModelAndView();
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -441,35 +449,35 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      */
     public ModelAndView handle(ConversionFailedException ex, HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         log.error("字段不匹配", ex);
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ERROR_CODE, "The field type does not match", ex);
-        return new ModelAndView();
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
 
     protected ModelAndView handle(CryptoException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ERROR_CODE, "crypto invalid", ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected ModelAndView handle(JsonMappingException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
         log.error("Json 异常", ex);
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ERROR_CODE, "JsonMapping Exception", ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected ModelAndView handle(ExtendRuntimeException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ERROR_CODE, ex.getMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected ModelAndView handle(ErrorCodeException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         handlerJsonMessage(response, ex.getErrorCode(), ex.getMessage(), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     /**
@@ -480,10 +488,10 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
      * @return
      */
     protected ModelAndView handleApplicationException(ApplicationException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-        ModelAndView modelAndView = new ModelAndView();
+
         response.setContentType(MimeTypeUtils.APPLICATION_JSON_VALUE);
         outputStreamWrite(response, error(ex.getCode(), ex.getLocalizedMessage()), ex);
-        return modelAndView;
+        return DEFAULT_MODEL_AND_VIEW;
     }
 
     protected void outputStreamWrite(HttpServletResponse response, Object data, Exception ex) {

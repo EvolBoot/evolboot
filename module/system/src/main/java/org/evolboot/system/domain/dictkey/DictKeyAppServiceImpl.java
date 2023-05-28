@@ -16,6 +16,7 @@ import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,8 @@ public class DictKeyAppServiceImpl extends DictKeySupportService implements Dict
 
     @Override
     @Transactional
-    public void update(Long id, DictKeyUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(DictKeyUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 
@@ -68,6 +69,11 @@ public class DictKeyAppServiceImpl extends DictKeySupportService implements Dict
         repository.deleteById(id);
         // 删除下级
         eventPublisher.publishEvent(new DictKeyDeleteEvent(id));
+    }
+
+    @Override
+    public void delete(Collection<Long> ids) {
+        repository.deleteAllByIdInBatch(ids);
     }
 
 

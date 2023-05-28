@@ -44,8 +44,8 @@ public class PayGatewayAccountAppServiceImpl extends PayGatewayAccountSupportSer
 
     @Override
     @Transactional
-    public void update(Long id, PayGatewayAccountUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(PayGatewayAccountUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

@@ -9,6 +9,7 @@ import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.i18n.I18NMessageAssert;
+import org.evolboot.core.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ import java.util.Set;
 @Getter
 @Slf4j
 @NoArgsConstructor
+//TODO 多语言
 public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role> {
 
     @Id
@@ -58,7 +60,7 @@ public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role>
     }
 
     private void setRoleName(String roleName) {
-        I18NMessageAssert.fieldNotBlank(roleName, "roleName");
+        Assert.notBlank(roleName, "角色名称不能为空");
         this.roleName = roleName;
     }
 

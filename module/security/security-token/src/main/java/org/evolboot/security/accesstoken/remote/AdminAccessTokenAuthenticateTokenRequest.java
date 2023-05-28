@@ -23,12 +23,20 @@ public class AdminAccessTokenAuthenticateTokenRequest {
     private String googleAuthenticatorCode;
 
 
+
+    private String imageCaptchaToken;
+
+    private String imageCaptchaCode;
+
+
     public AccessTokenAuthenticateToken to(String ip) {
         return AccessTokenAuthenticateToken.builder()
                 .username(username)
                 .password(password)
                 .googleAuthenticatorCode(googleAuthenticatorCode)
-                .authenticationTokenType(AuthenticationTokenType.GOOGLE_AUTHENTICATOR)
+                .authenticationTokenType(AuthenticationTokenType.IMAGE_CAPTCHA)
+                .imageCaptchaToken(imageCaptchaToken)
+                .imageCaptchaCode(imageCaptchaCode)
                 .ip(ip)
                 .build();
     }

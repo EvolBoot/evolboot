@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author evol
@@ -28,7 +29,7 @@ public class EvolSession implements Serializable {
     /**
      * 权限信息
      */
-    private List<String> authorities;
+    private Set<String> authorities;
 
     public EvolSession(Long principalId) {
         this.principalId = principalId;

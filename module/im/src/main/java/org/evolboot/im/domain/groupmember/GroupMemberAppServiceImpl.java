@@ -1,8 +1,7 @@
-package org.evolboot.im.domain.groupmember.listener;
+package org.evolboot.im.domain.groupmember;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
-import org.evolboot.im.domain.groupmember.GroupMemberAppService;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
 import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
@@ -44,8 +43,8 @@ public class GroupMemberAppServiceImpl extends GroupMemberSupportService impleme
 
     @Override
     @Transactional
-    public void update(Long id, GroupMemberUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(GroupMemberUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

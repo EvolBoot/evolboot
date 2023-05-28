@@ -16,7 +16,6 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverter;
-import org.evolboot.identity.domain.user.util.UserValidUtil;
 import org.evolboot.shared.lang.UserIdentity;
 
 import javax.persistence.*;
@@ -110,6 +109,8 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Embedded
     private ImmutableSecurityPassword securityPassword;
 
+    private Long roleId;
+
     @Builder
     public User(
             Long id,
@@ -120,23 +121,33 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
             String password,
             String avatar,
             UserIdentity userIdentity,
+            Gender gender,
+            UserStatus status,
             Long inviterUserId,
             UserType userType,
             String registerIp,
-            String remark
+            String remark,
+            Long roleId
     ) {
         this.id = id;
         setEmail(email);
         setUsername(username);
         setPassword(ImmutablePassword.of(password));
         setAvatar(avatar);
+        setStatus(status);
+        setGender(gender);
         addUserIdentity(userIdentity);
         setNickname(username);
         setMobile(mobile, mobilePrefix);
         setUserType(userType);
         setInviterUserId(inviterUserId);
         setRegisterIp(registerIp);
+        setRoleId(roleId);
         setRemark(remark);
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public void setRemark(String remark) {
@@ -159,13 +170,18 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         this.registerIp = registerIp;
     }
 
+
     public void delete() {
         this.delStatus = DelStatus.ARCHIVE;
     }
 
     public void setUserType(UserType userType) {
+        if (userType == null) {
+            userType = UserType.NORMAL;
+        }
         this.userType = userType;
     }
+
 
     public void setInviterUserId(Long inviterUserId) {
         this.inviterUserId = inviterUserId;
@@ -314,13 +330,13 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         }
     }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         if (ExtendObjects.isNotBlank(username)) {
             I18NMessageAssert.fieldNotEmpty(IdentityI18nMessage.User.usernameNotEmpty(), username);
-            Assert.isTrue(
-                    UserValidUtil.checkUsername(username),
-                    IdentityI18nMessage.User.usernameValidFail());
-            this.username = username.toLowerCase();
+//            Assert.isTrue(
+//                    UserValidUtil.checkUsername(username),
+//                    IdentityI18nMessage.User.usernameValidFail());
+            this.username = username.trim().toLowerCase();
         }
     }
 
@@ -336,6 +352,9 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setStatus(UserStatus.LOCK);
     }
 
+    public void removeRoleId() {
+        this.roleId = null;
+    }
 
     @Override
     public Long id() {

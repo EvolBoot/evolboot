@@ -21,7 +21,7 @@ public interface ChatRecordAppService {
 
     ChatRecord create(ChatRecordCreateFactory.Request request);
 
-    void update(Long id, ChatRecordUpdateService.Request request);
+    void update(ChatRecordUpdateService.Request request);
 
     void delete(Long id);
 

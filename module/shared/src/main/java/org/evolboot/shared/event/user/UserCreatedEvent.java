@@ -17,7 +17,6 @@ public class UserCreatedEvent implements Event<Long> {
     private final Long userId;
     private final Set<UserIdentity> currentUserIdentity;
 
-
     @Override
     public Long getSource() {
         return userId;

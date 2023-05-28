@@ -17,9 +17,9 @@ public class MobileCaptchaAuthenticationToken implements AuthenticationToken {
 
     private String mobile;
 
-    private String captchaToken;
+    private String mobileCaptchaToken;
 
-    private String captchaCode;
+    private String mobileCaptchaCode;
 
     private DeviceType deviceType;
 

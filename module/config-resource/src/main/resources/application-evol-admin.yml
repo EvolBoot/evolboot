@@ -8,7 +8,7 @@ server:
     accept-count: 100
     connection-timeout: 30000
     max-connections: 8192
-  port: 8082
+  port: 8081
 
 
 rocketmq:

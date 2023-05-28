@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.notice.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
@@ -17,8 +19,8 @@ public class NoticeUpdateService extends NoticeSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        Notice notice = findById(id);
+    public void execute(Request request) {
+        Notice notice = findById(request.getId());
         notice.setSort(request.getSort());
         notice.setEnable(request.getEnable());
         notice.setReleasedTime(request.getReleasedTime());
@@ -26,7 +28,10 @@ public class NoticeUpdateService extends NoticeSupportService {
         repository.save(notice);
     }
 
+    @Getter
+    @Setter
     public static class Request extends NoticeRequestBase {
+        private Long id;
     }
 
 }

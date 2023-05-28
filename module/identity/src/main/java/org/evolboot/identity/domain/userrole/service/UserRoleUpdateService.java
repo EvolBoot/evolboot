@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.role.entity.Role;
-import org.evolboot.identity.domain.role.repository.RoleRepository;
+import org.evolboot.identity.domain.role.service.RoleQueryService;
 import org.evolboot.identity.domain.user.exception.UserRoleNotExistException;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserRoleUpdateService extends UserRoleSupportService {
 
-    private final RoleRepository roleRepository;
+    private final RoleQueryService roleQueryService;
 
-    protected UserRoleUpdateService(UserRoleRepository repository, RoleRepository roleRepository) {
+    protected UserRoleUpdateService(UserRoleRepository repository, RoleQueryService roleQueryService) {
         super(repository);
-        this.roleRepository = roleRepository;
+        this.roleQueryService = roleQueryService;
     }
 
     public void execute(Long userId, Set<Long> roles) {
@@ -40,7 +40,7 @@ public class UserRoleUpdateService extends UserRoleSupportService {
 
     private void requireExistRoles(Set<Long> roleIds) {
         if (!CollectionUtils.isEmpty(roleIds)) {
-            List<Role> roles = roleRepository.findAllById(roleIds);
+            List<Role> roles = roleQueryService.findAllById(roleIds);
             if (roles.size() != roleIds.size()) {
                 roleIds.removeAll(roles.stream().map(Role::getId).collect(Collectors.toList()));
                 String ids = StringUtils.join(roleIds.toArray(), ",");

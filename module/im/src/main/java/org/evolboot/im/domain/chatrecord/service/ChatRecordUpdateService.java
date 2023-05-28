@@ -1,5 +1,7 @@
 package org.evolboot.im.domain.chatrecord.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
@@ -18,12 +20,15 @@ public class ChatRecordUpdateService extends ChatRecordSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        ChatRecord chatRecord = findById(id);
+    public void execute(Request request) {
+        ChatRecord chatRecord = findById(request.getId());
         repository.save(chatRecord);
     }
 
+    @Getter
+    @Setter
     public static class Request extends ChatRecordRequestBase {
+        private Long id;
     }
 
 }

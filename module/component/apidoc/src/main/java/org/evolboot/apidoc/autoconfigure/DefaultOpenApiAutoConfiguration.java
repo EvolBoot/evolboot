@@ -1,4 +1,4 @@
-package org.evolboot.core.autoconfigure;
+package org.evolboot.apidoc.autoconfigure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.jackson.ModelResolver;

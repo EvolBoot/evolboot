@@ -5,6 +5,7 @@ import projectPackage.core.data.jpa.JpaAbstractEntity;
 import projectPackage.core.domain.AggregateRoot;
 import projectPackage.core.domain.IdGenerate;
 import projectPackage.core.domain.LocaleDomainPart;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.jpa.convert.XarvkgvvrllncLocaleListConverter;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

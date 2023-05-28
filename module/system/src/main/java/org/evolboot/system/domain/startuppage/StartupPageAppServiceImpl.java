@@ -42,8 +42,8 @@ public class StartupPageAppServiceImpl extends StartupPageSupportService impleme
 
     @Override
     @Transactional
-    public void update(Long id, StartupPageUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(StartupPageUpdateService.Request request) {
+        updateService.execute( request);
     }
 
 

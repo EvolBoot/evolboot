@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class ChangeInviterUserIdRequest {
 
+    private Long id;
+
     private Long newInviterUserId;
 
 }

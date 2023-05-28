@@ -18,7 +18,7 @@ public interface StartupPageAppService {
 
     StartupPage create(StartupPageCreateFactory.Request request);
 
-    void update(Long id, StartupPageUpdateService.Request request);
+    void update(StartupPageUpdateService.Request request);
 
     void delete(Long id);
 

@@ -4,13 +4,14 @@ import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.*;
+import org.evolboot.shared.api.identity.user.UserServiceApi;
 
 import java.util.Optional;
 
 /**
  * @author evol
  */
-public interface UserAppService {
+public interface UserAppService extends UserServiceApi {
 
     /**
      * 管理员帮用户重置密码
@@ -92,10 +93,9 @@ public interface UserAppService {
     /**
      * 更新
      *
-     * @param userId
      * @param request
      */
-    void update(Long userId, UserUpdateService.Request request);
+    void update(UserUpdateService.Request request);
 
     /**
      * 锁定
@@ -172,13 +172,6 @@ public interface UserAppService {
      */
     boolean existsByMobile(String mobile);
 
-    /**
-     * 是否存在此用户Id
-     *
-     * @param userId
-     * @return
-     */
-    boolean existsByUserId(Long userId);
 
     /**
      * 重构用户关系

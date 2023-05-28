@@ -68,14 +68,13 @@ public class AdminNoticeResourceV1 {
 
     @Operation(summary = "修改公告")
     @OperationLog("修改公告")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             NoticeUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

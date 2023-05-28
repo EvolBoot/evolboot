@@ -22,6 +22,7 @@ public interface DictKeyRepository extends BaseRepository<DictKey, Long> {
 
     Optional<DictKey> findByKey(String key);
 
+    void deleteAllByIdInBatch(Iterable<Long> ids);
 
     void deleteById(Long id);
 

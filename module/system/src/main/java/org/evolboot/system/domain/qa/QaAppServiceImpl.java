@@ -41,8 +41,8 @@ public class QaAppServiceImpl extends QaSupportService implements QaAppService {
 
     @Override
     @Transactional
-    public void update(Long id, QaUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(QaUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

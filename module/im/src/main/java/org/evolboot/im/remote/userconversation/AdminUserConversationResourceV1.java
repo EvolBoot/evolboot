@@ -67,20 +67,19 @@ public class AdminUserConversationResourceV1 {
 
     @Operation(summary = "修改用户会话")
     @OperationLog("修改用户会话")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
                     UserConversationUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 */
 
     @Operation(summary = "查询用户会话")
-    @GetMapping("")
+    @GetMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<UserConversation>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,

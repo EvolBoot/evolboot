@@ -42,8 +42,8 @@ public class NewsAppServiceImpl extends NewsSupportService implements NewsAppSer
 
     @Override
     @Transactional
-    public void update(Long id, NewsUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(NewsUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

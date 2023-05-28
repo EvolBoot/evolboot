@@ -1,10 +1,10 @@
 package org.evolboot.shared.pay;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +21,7 @@ public enum ReleasedOrderStatus {
 
     private final Integer value;
 
-    private static final Map<Integer, ReleasedOrderStatus> VALUES = Maps.newHashMapWithExpectedSize(ReleasedOrderStatus.values().length);
+    private static final Map<Integer, ReleasedOrderStatus> VALUES = new HashMap<>(ReleasedOrderStatus.values().length);
 
     static {
         Arrays.stream(ReleasedOrderStatus.values()).forEach(e -> {

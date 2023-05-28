@@ -43,8 +43,8 @@ public class UserConversationAppServiceImpl extends UserConversationSupportServi
 
     @Override
     @Transactional
-    public void update(Long id, UserConversationUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update( UserConversationUpdateService.Request request) {
+        updateService.execute( request);
     }
 
 

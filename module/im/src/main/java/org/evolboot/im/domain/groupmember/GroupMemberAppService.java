@@ -35,7 +35,7 @@ public interface GroupMemberAppService {
      */
 
 
-    void update(Long id, GroupMemberUpdateService.Request request);
+    void update(GroupMemberUpdateService.Request request);
 
     void delete(Long id);
 

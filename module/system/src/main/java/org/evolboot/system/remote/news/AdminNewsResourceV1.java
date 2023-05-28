@@ -68,14 +68,13 @@ public class AdminNewsResourceV1 {
 
     @Operation(summary = "修改新闻")
     @OperationLog("修改新闻")
-    @PutMapping("/news/{id}")
+    @PutMapping("/news")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             NewsUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update( request);
         return ResponseModel.ok();
     }
 

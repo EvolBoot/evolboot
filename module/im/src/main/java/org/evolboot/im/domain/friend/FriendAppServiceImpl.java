@@ -50,8 +50,8 @@ public class FriendAppServiceImpl extends FriendSupportService implements Friend
 
     @Override
     @Transactional
-    public void update(Long id, FriendUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update( FriendUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

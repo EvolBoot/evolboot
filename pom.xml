@@ -44,6 +44,7 @@
         <querydsl.version>4.4.0</querydsl.version>
         <hikaricp.version>5.0.0</hikaricp.version>
         <netty-socketio.version>1.7.23</netty-socketio.version>
+        <swagger-core.version>2.2.8</swagger-core.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -235,6 +236,12 @@
                 <version>${revision}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>apidoc</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <!-- springdoc ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -322,15 +329,13 @@
                 <artifactId>netty-socketio</artifactId>
                 <version>${netty-socketio.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-core.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
     <!-- 阿里云maven仓库 -->
     <repositories>
         <repository>
@@ -392,6 +397,14 @@
                         </configuration>
                     </execution>
                 </executions>
+                <!-- 将 querydsl-apt 依赖配置在 apt-maven-plugin 的 dependencies 下 -->
+                <dependencies>
+                    <dependency>
+                        <groupId>com.querydsl</groupId>
+                        <artifactId>querydsl-apt</artifactId>
+                        <version>${querydsl.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -402,9 +415,11 @@
                     <target>${maven.compiler.target}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
+                    <!--  下划线分割变量
                     <compilerArgs>
                         <arg>-J-Dmicronaut.openapi.property.naming.strategy=SNAKE_CASE</arg>
                     </compilerArgs>
+                    -->
                 </configuration>
             </plugin>
             <plugin>

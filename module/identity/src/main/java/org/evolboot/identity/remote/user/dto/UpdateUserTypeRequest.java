@@ -10,5 +10,6 @@ import org.evolboot.identity.domain.user.entity.UserType;
 @Setter
 @Getter
 public class UpdateUserTypeRequest {
+    private Long id;
     private UserType userType;
 }

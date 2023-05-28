@@ -64,4 +64,5 @@ public class RedisEmailCaptchaRepository implements EmailCaptchaRepository {
     private String getRedisKey(String token) {
         return TOKEN_PREFIX + "_" + token;
     }
+
 }

@@ -17,7 +17,7 @@ public interface NoticeAppService {
 
     Notice create(NoticeCreateFactory.Request request);
 
-    void update(Long id, NoticeUpdateService.Request request);
+    void update(NoticeUpdateService.Request request);
 
     void delete(Long id);
 

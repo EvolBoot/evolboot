@@ -21,7 +21,7 @@ public interface GroupApplyAppService {
 
     GroupApply create(GroupApplyCreateFactory.Request request);
 
-    void update(Long id, GroupApplyUpdateService.Request request);
+    void update(GroupApplyUpdateService.Request request);
 
     void delete(Long id);
 

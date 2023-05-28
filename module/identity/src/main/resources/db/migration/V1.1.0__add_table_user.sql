@@ -26,6 +26,7 @@ CREATE TABLE evoltb_identity_user
     google_auth_secret_ varchar(20) comment '谷歌验证秘钥',
     enable_google_auth_ tinyint            default 0 comment '启用谷歌验证',
     security_password_  varchar(256) COMMENT '安全密码',
+    role_id_            bigint COMMENT '用户角色',
     remark_             varchar(100) COMMENT '备注',
 
 

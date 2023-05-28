@@ -13,8 +13,8 @@ import java.util.Map;
 @Getter
 @AllArgsConstructor
 public enum Type {
-    PERM(0),
-    MENU(1);
+    btn(0),
+    menu(1);
 
     private final Integer value;
 

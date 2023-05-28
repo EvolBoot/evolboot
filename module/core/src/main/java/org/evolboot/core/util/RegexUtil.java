@@ -38,7 +38,7 @@ public abstract class RegexUtil {
      * @return 验证成功返回true，验证失败返回false
      */
     public static boolean checkUsername(String username) {
-        String regex = "^[a-zA-Z][a-zA-Z0-9]{6,16}$";
+        String regex = "^[a-zA-Z][a-zA-Z0-9]{4,16}$";
         return Pattern.matches(regex, username);
     }
 

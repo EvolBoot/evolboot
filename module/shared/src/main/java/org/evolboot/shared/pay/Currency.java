@@ -1,10 +1,10 @@
 package org.evolboot.shared.pay;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +21,7 @@ public enum Currency {
 
     private final Integer value;
 
-    private static final Map<Integer, Currency> VALUES = Maps.newHashMapWithExpectedSize(Currency.values().length);
+    private static final Map<Integer, Currency> VALUES = new HashMap<>(Currency.values().length);
 
     static {
         Arrays.stream(Currency.values()).forEach(e -> {

@@ -8,13 +8,14 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.BitwiseExpressions;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.core.domain.DelStatus;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.entity.QUser;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.UserConfiguration;
-import org.evolboot.identity.domain.user.service.UserQuery;
 import org.evolboot.identity.domain.user.repository.UserIdAndInviterUserId;
 import org.evolboot.identity.domain.user.repository.UserRepository;
+import org.evolboot.identity.domain.user.service.UserQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -50,12 +51,23 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         }
         if (ExtendObjects.nonNull(userQuery.getDelStatus())) {
             jpqlQuery.where(q.delStatus.eq(userQuery.getDelStatus()));
+        } else {
+            jpqlQuery.where(q.delStatus.eq(DelStatus.ACTIVE));
         }
         if (ExtendObjects.nonNull(userQuery.getUserType())) {
             jpqlQuery.where(q.userType.eq(userQuery.getUserType()));
         }
+        if (ExtendObjects.nonNull(userQuery.getRoleId())) {
+            jpqlQuery.where(q.roleId.eq(((UserQuery) query).getRoleId()));
+        }
         if (ExtendObjects.nonNull(userQuery.getUserIdentity())) {
             jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, userQuery.getUserIdentity().getIdentitySymbol()).gt(0));
+        }
+        if (ExtendObjects.isNotBlank(userQuery.getKey())) {
+            jpqlQuery.where(q.username.like("%" + ((UserQuery) query).getKey() + "%")
+                    .or(q.nickname.like("%" + ((UserQuery) query).getKey() + "%"))
+                    .or(q.email.like("%"+ ((UserQuery) query).getKey() +"%"))
+            );
         }
         return jpqlQuery;
     }

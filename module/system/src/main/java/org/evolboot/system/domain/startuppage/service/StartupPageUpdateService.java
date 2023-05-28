@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.startuppage.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.repository.StartupPageRepository;
@@ -17,15 +19,18 @@ public class StartupPageUpdateService extends StartupPageSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        StartupPage startupPage = findById(id);
+    public void execute( Request request) {
+        StartupPage startupPage = findById(request.getId());
         startupPage.setSort(request.getSort());
         startupPage.setEnable(request.getEnable());
         startupPage.setLocales(request.getLocales());
         repository.save(startupPage);
     }
 
+    @Getter
+    @Setter
     public static class Request extends StartupPageRequestBase {
+        private Long id;
     }
 
 }

@@ -18,7 +18,7 @@ public interface PayGatewayAccountAppService {
 
     PayGatewayAccount create(PayGatewayAccountCreateFactory.Request request);
 
-    void update(Long id, PayGatewayAccountUpdateService.Request request);
+    void update(PayGatewayAccountUpdateService.Request request);
 
     void delete(Long id);
 

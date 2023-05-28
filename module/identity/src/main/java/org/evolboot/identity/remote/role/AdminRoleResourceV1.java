@@ -6,8 +6,8 @@ import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.RoleAppService;
+import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.service.RoleQuery;
 import org.evolboot.identity.remote.role.dto.CreateRoleRequest;
 import org.evolboot.identity.remote.role.dto.UpdateRoleRequest;
@@ -29,10 +29,10 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 @AdminClient
 public class AdminRoleResourceV1 {
 
-    private final RoleAppService appService;
+    private final RoleAppService service;
 
-    public AdminRoleResourceV1(RoleAppService appService) {
-        this.appService = appService;
+    public AdminRoleResourceV1(RoleAppService service) {
+        this.service = service;
     }
 
     /**
@@ -45,7 +45,7 @@ public class AdminRoleResourceV1 {
     @Operation(summary = "创建角色")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel create(@Valid @RequestBody CreateRoleRequest request) {
-        appService.create(request.toRequest());
+        service.create(request.toRequest());
         return ResponseModel.ok();
     }
 
@@ -56,12 +56,12 @@ public class AdminRoleResourceV1 {
      * @param request
      * @return
      */
-    @PutMapping("/{id}")
+    @PutMapping("")
     @Operation(summary = "修改角色")
     @OperationLog("修改角色")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
-    public ResponseModel<?> update(@PathVariable("id") Long id, @Valid @RequestBody UpdateRoleRequest request) {
-        appService.update(request.toRequest().setId(id));
+    public ResponseModel<?> update(@Valid @RequestBody UpdateRoleRequest request) {
+        service.update(request);
         return ResponseModel.ok();
     }
 
@@ -76,9 +76,24 @@ public class AdminRoleResourceV1 {
     @OperationLog("删除角色")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
-        appService.delete(id);
+        service.delete(id);
         return ResponseModel.ok();
     }
+
+    /**
+     * 获取单个角色
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/{id}")
+    @Operation(summary = "获取单个角色")
+    @OperationLog("获取单个角色")
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    public ResponseModel<?> get(@PathVariable("id") Long id) {
+        return ResponseModel.ok(service);
+    }
+
 
     /**
      * 删除批量权限
@@ -99,12 +114,14 @@ public class AdminRoleResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<Role>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", defaultValue = "10") Integer limit
+            @RequestParam(name = "limit", defaultValue = "10") Integer limit,
+            String  roleName
     ) {
         RoleQuery query = RoleQuery.builder()
+                .roleName(roleName)
                 .page(page)
                 .limit(limit)
                 .build();
-        return ResponseModel.ok(appService.page(query));
+        return ResponseModel.ok(service.page(query));
     }
 }

@@ -1,5 +1,7 @@
 package org.evolboot.pay.domain.paygatewayaccount.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
@@ -17,8 +19,8 @@ public class PayGatewayAccountUpdateService extends PayGatewayAccountSupportServ
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        PayGatewayAccount payGatewayAccount = findById(id);
+    public void execute(Request request) {
+        PayGatewayAccount payGatewayAccount = findById(request.getId());
         payGatewayAccount.setLogo(request.getLogo());
         payGatewayAccount.setMerchantId(request.getMerchantId());
         payGatewayAccount.setAppid(request.getAppid());
@@ -34,7 +36,10 @@ public class PayGatewayAccountUpdateService extends PayGatewayAccountSupportServ
         repository.save(payGatewayAccount);
     }
 
+    @Getter
+    @Setter
     public static class Request extends PayGatewayAccountRequestBase {
+        private Long id;
     }
 
 }

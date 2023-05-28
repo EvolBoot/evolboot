@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.dictvalue.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.DictKeyAppService;
@@ -24,9 +26,9 @@ public class DictValueUpdateService extends DictValueSupportService {
         this.dictKeyAppService = dictKeyAppService;
     }
 
-    public void execute(Long id, Request request) {
+    public void execute(Request request) {
         DictKey dictKey = dictKeyAppService.findById(request.getDictKeyId());
-        DictValue dictValue = findById(id);
+        DictValue dictValue = findById(request.getId());
         dictValue.setDictKeyId(dictKey.id());
         dictValue.setDisplayName(request.getDisplayName());
         dictValue.setValue(request.getValue());
@@ -35,7 +37,10 @@ public class DictValueUpdateService extends DictValueSupportService {
         repository.save(dictValue);
     }
 
+    @Getter
+    @Setter
     public static class Request extends DictValueRequestBase {
+        private Long id;
     }
 
 }

@@ -18,7 +18,7 @@ public interface NewsAppService {
 
     News create(NewsCreateFactory.Request request);
 
-    void update(Long id, NewsUpdateService.Request request);
+    void update( NewsUpdateService.Request request);
 
     void delete(Long id);
 

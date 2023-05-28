@@ -4,17 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.evolboot.shared.event.Event;
 
+import java.util.List;
+
 /**
  * @author evol
  */
 @Getter
 @AllArgsConstructor
-public class PermissionDeleteEvent implements Event<Long> {
+public class PermissionDeleteEvent implements Event<List<Long>> {
 
-    private final Long permissionId;
+    private final List<Long> permissionIds;
 
     @Override
-    public Long getSource() {
-        return permissionId;
+    public List<Long> getSource() {
+        return permissionIds;
     }
 }

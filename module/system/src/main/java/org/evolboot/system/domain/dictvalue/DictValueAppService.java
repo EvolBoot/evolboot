@@ -21,7 +21,7 @@ public interface DictValueAppService {
 
     DictValue create(DictValueCreateFactory.Request request);
 
-    void update(Long id, DictValueUpdateService.Request request);
+    void update(DictValueUpdateService.Request request);
 
     void delete(Long id);
 

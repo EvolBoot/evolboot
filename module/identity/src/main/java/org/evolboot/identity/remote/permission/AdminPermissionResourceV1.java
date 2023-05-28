@@ -6,11 +6,13 @@ import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.PermissionAppService;
+import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.service.PermissionQuery;
 import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
 import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
+import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.Permission.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.*;
 
 /**
  * 15:41:42
@@ -57,12 +58,12 @@ public class AdminPermissionResourceV1 {
      * @param request
      * @return
      */
-    @PutMapping("/{id}")
+    @PutMapping()
     @Operation(summary = "修改权限")
     @OperationLog("修改权限")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
-    public ResponseModel<Permission> update(@PathVariable("id") Long id, @Valid @RequestBody UpdatePermissionRequest request) {
-        Permission permission = service.update(id, request);
+    public ResponseModel<Permission> update(@Valid @RequestBody UpdatePermissionRequest request) {
+        Permission permission = service.update(request);
         return ResponseModel.ok(permission);
     }
 
@@ -83,6 +84,21 @@ public class AdminPermissionResourceV1 {
 
 
     /**
+     * 删除权限
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/{id}")
+    @Operation(summary = "获取权限")
+    @OperationLog("获取权限")
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    public ResponseModel<?> get(@PathVariable("id") Long id) {
+        return ResponseModel.ok(service.findById(id));
+    }
+
+
+    /**
      * @return
      */
     @GetMapping("/tree")
@@ -91,6 +107,18 @@ public class AdminPermissionResourceV1 {
     public ResponseModel<List<Permission>> page() {
         return ResponseModel.ok(service.findAllConvertTree());
     }
+
+
+    /**
+     * @return
+     */
+    @GetMapping("/current-user/tree")
+    @Operation(summary = "权限列表(树形)")
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ROLE_STAFF)
+    public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
+        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId(), Type.menu));
+    }
+
 
     /**
      * @param page
@@ -109,6 +137,21 @@ public class AdminPermissionResourceV1 {
                 .limit(limit)
                 .build();
         return ResponseModel.ok(service.page(query));
+    }
+
+    /**
+     * 创建权限
+     *
+     * @param url
+     * @return
+     */
+    @PostMapping("/import")
+    @Operation(summary = "导入权限数据")
+    @OperationLog("导入权限数据")
+    @PreAuthorize(HAS_ROLE_ADMIN)
+    public ResponseModel<List<Permission>> importData(String url) {
+        List<Permission> permissions = service.importJsonData(url);
+        return ResponseModel.ok(permissions);
     }
 
 

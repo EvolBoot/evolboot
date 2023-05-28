@@ -26,10 +26,13 @@ public class DictKeyQuery extends Query {
 
     private Date endDate;
 
+    private final String key;
+
     @Builder
-    public DictKeyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate) {
+    public DictKeyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String key) {
         super(page, limit);
         this.id = id;
+        this.key = key;
         if (ExtendObjects.nonNull(startDate)) {
             this.startDate = ExtendDateUtil.beginOfDay(startDate);
         }

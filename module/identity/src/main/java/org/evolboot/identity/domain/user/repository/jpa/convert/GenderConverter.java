@@ -4,6 +4,7 @@ import org.evolboot.identity.domain.user.entity.Gender;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.util.Objects;
 
 @Converter(autoApply = true)
 public class GenderConverter implements AttributeConverter<Gender, Integer> {
@@ -11,7 +12,7 @@ public class GenderConverter implements AttributeConverter<Gender, Integer> {
 
     @Override
     public Integer convertToDatabaseColumn(Gender attribute) {
-        return attribute.getValue();
+        return Objects.requireNonNullElse(attribute, Gender.UNKNOWN).getValue();
     }
 
     @Override

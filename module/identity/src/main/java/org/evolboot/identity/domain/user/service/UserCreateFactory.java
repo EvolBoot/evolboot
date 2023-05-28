@@ -10,21 +10,23 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.user.entity.User;
+import org.evolboot.identity.domain.role.service.RoleQueryService;
 import org.evolboot.identity.domain.user.UserConfiguration;
+import org.evolboot.identity.domain.user.entity.Gender;
+import org.evolboot.identity.domain.user.entity.User;
+import org.evolboot.identity.domain.user.entity.UserStatus;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
-import org.evolboot.identity.domain.user.relation.RelationAppService;
+import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import org.evolboot.identity.domain.userid.UserIdAppService;
-import org.evolboot.identity.domain.userrole.UserRoleAppService;
+import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
+import org.evolboot.identity.domain.userrole.service.UserRoleUpdateService;
 import org.evolboot.shared.event.user.UserCreatedEvent;
 import org.evolboot.shared.lang.DeviceType;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -36,25 +38,107 @@ public class UserCreateFactory extends UserSupportService {
 
     private final EventPublisher eventPublisher;
     private final UserEncryptPasswordService userEncryptPasswordService;
-    private final RelationAppService relationAppService;
-    private final UserIdAppService userIdAppService;
-    private final UserRoleAppService userRoleAppService;
+    /**
+     * 用户上下级关联
+     */
+    private final RelationCreateService relationCreateService;
+    /**
+     * 用户ID
+     */
+    private final UserIdGetNextService userIdGetNextService;
+
+    /**
+     * 角色查询
+     */
+    private final RoleQueryService roleQueryService;
 
 
-    public UserCreateFactory(UserRepository repository, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationAppService relationAppService, UserIdAppService userIdAppService, UserRoleAppService userRoleAppService) {
+    public UserCreateFactory(UserRepository repository, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationCreateService relationCreateService, UserIdGetNextService userIdGetNextService, RoleQueryService roleQueryService) {
         super(repository);
         this.eventPublisher = eventPublisher;
         this.userEncryptPasswordService = userEncryptPasswordService;
-        this.relationAppService = relationAppService;
-        this.userIdAppService = userIdAppService;
-        this.userRoleAppService = userRoleAppService;
+        this.relationCreateService = relationCreateService;
+        this.userIdGetNextService = userIdGetNextService;
+        this.roleQueryService = roleQueryService;
     }
 
 
+    /**
+     * 注册主流程
+     *
+     * @param request
+     * @return
+     */
     public User create(Request request) {
-        if (ExtendObjects.nonNull(request.getInviterUserId()) && request.getInviterUserId() > 0) {
-            repository.findById(request.getInviterUserId()).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.inviterDoesNotExist()));
+
+        // 检查邀请人是否存在
+        checkInviterUserId(request.getInviterUserId());
+
+        // 检查邮箱，手机号，用户名等唯一性
+        checkEmailOrMobileOrUsername(request);
+
+        Long id = userIdGetNextService.next();
+
+        String originalPassword;
+        //TODO 如果密码为空,则产生一个随机密码,需要改
+        if (ExtendObjects.isBlank(request.getEncodePassword())) {
+            originalPassword = UUID.randomUUID().toString();
+        } else {
+            ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
+            originalPassword = reversiblePassword.toOriginalPassword();
         }
+        // 创建用户
+        User user = User.builder()
+                .id(id)
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .mobilePrefix(request.getMobilePrefix())
+                .mobile(request.getMobile())
+                .password(originalPassword)
+                .avatar(UserConfiguration.getValue().getDefaultAvatar())
+                .userIdentity(request.getUserIdentity())
+                .inviterUserId(request.getInviterUserId())
+                .userType(request.getUserType())
+                .registerIp(request.getRegisterIp())
+                .remark(request.getRemark())
+                .gender(request.getGender())
+                .status(request.getStatus())
+                .build();
+
+        // 如果是员工，且存在角色信息,则更新
+        if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && ExtendObjects.nonNull(request.getRoleId())) {
+            Assert.isTrue(roleQueryService.exist(request.getRoleId()), "不存在的角色信息");
+//            List<Role> roles = roleQueryService.findAllById(request.getRoles());
+//            Assert.isTrue(roles.size() == request.getRoles().size(), "不存在的角色信息");
+//            userRoleUpdateService.execute(id, request.getRoles());
+            user.setRoleId(request.getRoleId());
+        }
+
+        repository.save(user);
+        relationCreateService.execute(request.getInviterUserId(), user.id());
+        eventPublisher.publishEvent(new UserCreatedEvent(user.id(), user.getUserIdentity()));
+        return user;
+    }
+
+
+    /**
+     * 检查邀请人是否存在
+     *
+     * @param inviterUserId
+     */
+    private void checkInviterUserId(Long inviterUserId) {
+        //  检查邀请人
+        if (ExtendObjects.nonNull(inviterUserId) && inviterUserId > 0) {
+            repository.findById(inviterUserId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.inviterDoesNotExist()));
+        }
+    }
+
+    /**
+     * 检查邮箱，手机号，用户名等唯一性
+     *
+     * @param request
+     */
+    private void checkEmailOrMobileOrUsername(Request request) {
 
         Assert.isTrue(
                 ExtendObjects.isNotBlank(request.getEmail())
@@ -75,42 +159,12 @@ public class UserCreateFactory extends UserSupportService {
         if (ExtendObjects.isNotBlank(request.getMobile())) {
             requireMobileIsNoExist(request.getMobile());
         }
-
-        Long id = userIdAppService.getNextUserId();
-
-        String OriginalPassword;
-        if (ExtendObjects.isBlank(request.getEncodePassword())) {
-            //TODO 如果密码为空,则产生一个随机密码,需要改
-            OriginalPassword = UUID.randomUUID().toString();
-        } else {
-            ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
-            OriginalPassword = reversiblePassword.toOriginalPassword();
-        }
-        User user = User.builder()
-                .id(id)
-                .username(request.getUsername())
-                .email(request.getEmail())
-                .mobilePrefix(request.getMobilePrefix())
-                .mobile(request.getMobile())
-                .password(OriginalPassword)
-                .avatar(UserConfiguration.getValue().getDefaultAvatar())
-                .userIdentity(request.getUserIdentity())
-                .inviterUserId(request.getInviterUserId())
-                .userType(request.getUserType())
-                .registerIp(request.getRegisterIp())
-                .remark(request.getRemark())
-                .build();
-
-        if (!ExtendObjects.isEmpty(request.getRoles()) && UserIdentity.ROLE_STAFF.equals(request.getUserIdentity())) {
-            userRoleAppService.updateRole(id, request.getRoles());
-        }
-        repository.save(user);
-        relationAppService.create(request.getInviterUserId(), user.id());
-        eventPublisher.publishEvent(new UserCreatedEvent(user.id(), user.getUserIdentity()));
-        return user;
     }
 
 
+    /**
+     * 请求信息
+     */
     @Getter
     @Builder
     @Setter
@@ -125,11 +179,13 @@ public class UserCreateFactory extends UserSupportService {
         private UserIdentity userIdentity;
         private Long inviterUserId;
         private UserType userType;
+        private UserStatus status;
         private String registerIp;
         private String remark;
         private String nickname;
         private DeviceType deviceType;
-        private Set<Long> roles;
+        private Gender gender;
+        private Long roleId;
 
         public String getUsername() {
             return ExtendObjects.trimToNull(username);

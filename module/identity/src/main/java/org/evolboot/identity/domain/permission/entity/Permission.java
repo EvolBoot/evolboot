@@ -1,22 +1,20 @@
 package org.evolboot.identity.domain.permission.entity;
 
+import com.google.common.collect.Lists;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.data.jpa.convert.LongListConverter;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
-
-import static org.evolboot.identity.IdentityI18nMessage.Permission.titleNotEmpty;
 
 /**
  * @author evol
@@ -26,54 +24,65 @@ import static org.evolboot.identity.IdentityI18nMessage.Permission.titleNotEmpty
 @Getter
 @Slf4j
 @NoArgsConstructor
+@Setter
+//TODO 多语言
 public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot<Permission> {
 
     public static final long DEFAULT_PERMISSION_PARENT = 0L;
 
     public static final String SEPARATOR = ";";
 
-
     @Id
     private Long id;
 
+    /**
+     * 以这个为主
+     */
     private Long parentId;
 
-    private String title;
+    /**
+     * 只是为了回显
+     */
+    @Convert(converter = LongListConverter.class)
+    private List<Long> parentIds;
 
-    private String perm;
+    private String name;
+
+    private String component;
 
     private String path;
 
-    private Type type;
+    private Type type = Type.menu;
 
-    private Integer sort;
+    private Integer sort = 0;
 
-    private String icon;
+    private Boolean isLink = false;
 
-    private String remark;
+    @Embedded
+    private Meta meta;
 
     @Transient
     private List<Permission> children;
 
     @Builder
     public Permission(
-            Long parentId,
-            String title,
-            String perm,
+            List<Long> parentIds,
+            String name,
+            String component,
             String path,
             Type type,
             Integer sort,
-            String icon,
-            String remark) {
+            Boolean isLink,
+            Meta meta) {
         generateId();
-        setParentId(parentId);
-        setTitle(title);
-        setPerm(perm);
+        setParentIds(parentIds);
+        setName(name);
+        setComponent(component);
         setPath(path);
         setType(type);
         setSort(sort);
-        setIcon(icon);
-        setRemark(remark);
+        setIsLink(isLink);
+        setMeta(meta);
     }
 
     @Override
@@ -81,57 +90,46 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         return id;
     }
 
-    public Permission setParentId(Long parentId) {
-        if (ExtendObjects.isNull(parentId)) {
-            parentId = DEFAULT_PERMISSION_PARENT;
+    public void setParentIds(List<Long> parentIds) {
+        if (ExtendObjects.isEmpty(parentIds)) {
+            parentIds = Lists.newArrayList();
+            this.parentId = DEFAULT_PERMISSION_PARENT;
+        } else {
+            this.parentId = parentIds.get(parentIds.size() - 1);
         }
-        this.parentId = parentId;
-        return this;
+        this.parentIds = parentIds;
     }
 
-    public Permission setTitle(String title) {
-        Assert.notBlank(title, titleNotEmpty());
-        this.title = title;
-        return this;
-    }
-
-    public Permission setPerm(String perm) {
-        this.perm = perm;
-        return this;
-    }
-
-    public Permission setPath(String url) {
-        this.path = url;
-        return this;
-    }
-
-    public Permission setType(Type type) {
+    public void setType(Type type) {
         if (ExtendObjects.isNull(type)) {
-            type = Type.PERM;
+            type = Type.menu;
         }
         this.type = type;
-        return this;
     }
 
-    public Permission setSort(Integer sort) {
+    public void setSort(Integer sort) {
         if (ExtendObjects.isNull(sort)) {
             sort = 0;
         }
         this.sort = sort;
-        return this;
     }
 
-
-    public Permission setIcon(String uiIcon) {
-        this.icon = uiIcon;
-        return this;
+    public void setComponent(String component) {
+        this.component = component;
     }
 
-    public Permission setRemark(String remark) {
-        this.remark = remark;
-        return this;
+    public void setPath(String path) {
+        if (ExtendObjects.isBlank(path)) {
+            path = IdGenerate.stringId();
+        }
+        this.path = path;
+        this.name = path.replace("/", "-");
     }
 
+    public void setMeta(Meta meta) {
+        Assert.notNull(meta, "元数据不能为空");
+        this.meta = meta;
+    }
 
     @Override
     public Permission root() {
@@ -143,7 +141,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
     }
 
     public String[] permSplitToArray() {
-        String _perm = ExtendObjects.requireNonNullElse(ExtendObjects.replaceBlank(perm), "");
+        String _perm = ExtendObjects.requireNonNullElse(ExtendObjects.replaceBlank(meta.getPerm()), "");
         return _perm.split(SEPARATOR);
     }
 
@@ -155,7 +153,8 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         this.children = children;
     }
 
-    public String getKey() {
-        return id.toString();
+    public String getTitle() {
+        return this.meta.getTitle();
     }
+
 }

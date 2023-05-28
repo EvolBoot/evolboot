@@ -68,14 +68,13 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "修改banner")
     @OperationLog("修改banner")
-    @PutMapping("/banner/{id}")
+    @PutMapping("/banner")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             BannerUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

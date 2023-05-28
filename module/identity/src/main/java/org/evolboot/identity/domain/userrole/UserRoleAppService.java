@@ -9,10 +9,11 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * 用户角色
+ * 用户角色(废弃不用)
  *
  * @author evol
  */
+@Deprecated
 public interface UserRoleAppService {
 
     List<UserRole> findAll();

@@ -1,5 +1,7 @@
 package org.evolboot.im.domain.friend.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
@@ -18,12 +20,15 @@ public class FriendUpdateService extends FriendSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        Friend friend = findById(id);
+    public void execute(Request request) {
+        Friend friend = findById(request.getId());
         repository.save(friend);
     }
 
+    @Getter
+    @Setter
     public static class Request extends FriendRequestBase {
+        private Long id;
     }
 
 }

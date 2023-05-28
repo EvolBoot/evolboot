@@ -10,6 +10,7 @@ import org.evolboot.security.api.repository.EvolSessionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author evol
@@ -54,7 +55,7 @@ public class LoginService {
 
         private String loginIp;
 
-        private List<String> authorities;
+        private Set<String> authorities;
 
     }
 

@@ -7,6 +7,7 @@ import org.evolboot.security.accesstoken.domain.authentication.AccessTokenAuthen
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import org.evolboot.security.accesstoken.domain.authentication.googleauthenticator.GoogleAuthenticatorAuthenticationToken;
+import org.evolboot.security.accesstoken.domain.authentication.imagecaptcha.ImageCaptchaAuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha.MobileCaptchaAuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.usernamepassword.UsernamePasswordAuthenticationToken;
 import org.evolboot.security.api.LoginService;
@@ -41,6 +42,9 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
     public AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken) {
 
         AuthenticationToken token;
+        /**
+         * 手机验证码登录
+         */
         if (AuthenticationTokenType.MOBILE_CAPTCHA.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new MobileCaptchaAuthenticationToken(
                     accessTokenAuthenticateToken.getMobilePrefix(),
@@ -50,19 +54,37 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
                     accessTokenAuthenticateToken.getDeviceType(),
                     accessTokenAuthenticateToken.getIp()
             );
+            /**
+             * 谷歌验证码登录
+             */
         } else if (AuthenticationTokenType.GOOGLE_AUTHENTICATOR.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new GoogleAuthenticatorAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword(), accessTokenAuthenticateToken.getGoogleAuthenticatorCode()
             );
-        } else {
+            /**
+             * 普通账户密码登录
+             */
+        } else if (AuthenticationTokenType.USERNAME_EMAIL_MOBILE.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new UsernamePasswordAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword()
+            );
+            /**
+             * 图片校验码+账号密码登录
+             */
+        } else {
+            token = new ImageCaptchaAuthenticationToken(
+                    accessTokenAuthenticateToken.getUsername(),
+                    accessTokenAuthenticateToken.getPassword(),
+                    accessTokenAuthenticateToken.getImageCaptchaToken(),
+                    accessTokenAuthenticateToken.getImageCaptchaCode(),
+                    accessTokenAuthenticateToken.getDeviceType(),
+                    accessTokenAuthenticateToken.getIp()
             );
         }
         AccessToken accessToken = accessTokenAuthenticationManager.authenticate(token);
         accessToken.setLoginIp(accessTokenAuthenticateToken.getIp());
 
-        kickOutUser(accessToken);// 踢除其他用户下线
+//        kickOutUser(accessToken);// 踢除其他用户下线
 
         LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());

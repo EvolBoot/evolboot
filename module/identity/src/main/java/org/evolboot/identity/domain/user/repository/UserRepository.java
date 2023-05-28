@@ -15,6 +15,8 @@ public interface UserRepository extends BaseRepository<User, Long> {
 
     User save(User user);
 
+    <S extends User> List<S> saveAll(Iterable<S> users);
+
     Optional<User> findById(Long aLong);
 
     Optional<User> findByUsername(String username);

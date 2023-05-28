@@ -23,6 +23,11 @@ public class AccessTokenAuthenticateToken {
 
     String mobilePrefix;
 
+
+    private String imageCaptchaToken;
+
+    private String imageCaptchaCode;
+
     private String mobileCaptchaToken;
 
     private String mobileCaptchaCode;

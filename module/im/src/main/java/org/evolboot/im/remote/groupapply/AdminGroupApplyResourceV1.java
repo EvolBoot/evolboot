@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.GroupApplyAppService;
+import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
 import org.evolboot.im.remote.groupapply.dto.GroupApplyCreateRequest;
 import org.evolboot.im.remote.groupapply.dto.GroupApplyUpdateRequest;
@@ -70,14 +70,13 @@ public class AdminGroupApplyResourceV1 {
 
     @Operation(summary = "修改群申请")
     @OperationLog("修改群申请")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             GroupApplyUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

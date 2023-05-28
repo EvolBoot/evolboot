@@ -8,9 +8,9 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
-import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 import org.evolboot.system.domain.dictkey.entity.QDictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
+import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +30,7 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
         DictKeyQuery query = (DictKeyQuery) _query;
         QDictKey q = QDictKey.dictKey;
         JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
+        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
@@ -39,6 +39,9 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
         }
         if (ExtendObjects.nonNull(query.getEndDate())) {
             jpqlQuery.where(q.createAt.loe(query.getEndDate()));
+        }
+        if (ExtendObjects.isNotBlank(query.getKey())) {
+            jpqlQuery.where((q.displayName.like("%" + query.getKey() + "%")).or(q.key.like("%" + query.getKey() + "%")));
         }
         return jpqlQuery;
     }
@@ -50,6 +53,7 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
         jpqlQuery.select(q).from(q).orderBy(q.sort.desc());
         return this.findAll(jpqlQuery);
     }
+
 
 
     @Override

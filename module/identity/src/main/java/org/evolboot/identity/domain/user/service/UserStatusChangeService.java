@@ -26,10 +26,10 @@ public class UserStatusChangeService extends UserSupportService {
     }
 
     public void execute(Request request) {
-        User user = findById(request.getUserId());
+        User user = findById(request.getId());
         user.setStatus(request.getStatus());
         if (UserStatus.LOCK.equals(request.getStatus())) {
-            securityAccessTokenClient.kickOut(request.getUserId());
+            securityAccessTokenClient.kickOut(request.getId());
         }
         repository.save(user);
     }
@@ -40,7 +40,7 @@ public class UserStatusChangeService extends UserSupportService {
     @NoArgsConstructor
     public static class Request {
 
-        private Long userId;
+        private Long id;
 
         private UserStatus status;
 

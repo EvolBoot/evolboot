@@ -3,8 +3,8 @@ package org.evolboot.identity.domain.role.service;
 import org.apache.commons.lang3.StringUtils;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.identity.domain.permission.repository.PermissionRepository;
-import org.evolboot.identity.domain.role.RolePermissionNotExistException;
+import org.evolboot.identity.domain.permission.service.PermissionQueryService;
+import org.evolboot.identity.domain.role.exception.RolePermissionNotExistException;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 @Service
 public class RoleSupportService {
     protected final RoleRepository roleRepository;
-    private final PermissionRepository permissionRepository;
+    private final PermissionQueryService permissionQueryService;
 
-    public RoleSupportService(RoleRepository roleRepository, PermissionRepository permissionRepository) {
+    public RoleSupportService(RoleRepository roleRepository, PermissionQueryService permissionQueryService) {
         this.roleRepository = roleRepository;
-        this.permissionRepository = permissionRepository;
+        this.permissionQueryService = permissionQueryService;
     }
 
     public void requireExistPermissions(Set<Long> permissionIds) {
         if (!CollectionUtils.isEmpty(permissionIds)) {
-            List<Permission> permissions = permissionRepository.findAllById(permissionIds);
+            List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
             if (permissions.size() != permissionIds.size()) {
                 permissionIds.removeAll(permissions.stream().map(Permission::getId).collect(Collectors.toList()));
                 String ids = StringUtils.join(permissionIds.toArray(), ",");

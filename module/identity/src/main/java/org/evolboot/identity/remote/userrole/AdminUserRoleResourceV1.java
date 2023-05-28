@@ -1,5 +1,6 @@
 package org.evolboot.identity.remote.userrole;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
 
 /**
- * 用户角色
+ * 用户角色(废弃不用)
  *
  * @author evol
  */
@@ -32,6 +33,8 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 @RequestMapping("/v1/admin")
 @Tag(name = "用户角色管理", description = "用户角色管理")
 @AdminClient
+@Hidden
+@Deprecated
 public class AdminUserRoleResourceV1 {
 
     private final UserRoleAppService service;
@@ -41,6 +44,7 @@ public class AdminUserRoleResourceV1 {
     }
 
 
+    @Deprecated
     @Operation(summary = "查询用户角色")
     @OperationLog("查询用户角色")
     @GetMapping("/user-roles")
@@ -59,6 +63,7 @@ public class AdminUserRoleResourceV1 {
     }
 
 
+    @Deprecated
     @Operation(summary = "查询单个用户角色")
     @OperationLog("查询单个用户角色")
     @GetMapping("/user-roles/{id}")
@@ -70,6 +75,7 @@ public class AdminUserRoleResourceV1 {
     }
 
 
+    @Deprecated
     @Operation(summary = "管理员修改员工角色")
     @OperationLog("管理员修改员工角色")
     @PutMapping("/users/{id}/role/update")

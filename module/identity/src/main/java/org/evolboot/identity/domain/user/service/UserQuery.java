@@ -32,8 +32,12 @@ public class UserQuery extends Query {
 
     private UserIdentity userIdentity;
 
+    private final Long roleId;
+
+    private final String key;
+
     @Builder
-    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity) {
+    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key) {
         super(page, limit);
         this.userId = userId;
         this.username = username;
@@ -47,5 +51,7 @@ public class UserQuery extends Query {
 //        if (ExtendObjects.nonNull(userIdentity)) {
 //            this.identitySymbol = userIdentity.getIdentitySymbol();
 //        }
+        this.roleId = roleId;
+        this.key = key;
     }
 }

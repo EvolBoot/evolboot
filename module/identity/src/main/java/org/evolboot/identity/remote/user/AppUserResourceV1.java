@@ -9,11 +9,11 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.identity.acl.client.IdentityConfigClient;
-import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
+import org.evolboot.identity.domain.user.service.UserQuery;
 import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.identity.remote.user.dto.TokenResponse;
 import org.evolboot.identity.remote.user.dto.UserPasswordUpdateRequest;
@@ -63,7 +63,7 @@ public class AppUserResourceV1 {
             @RequestBody @Valid
             UserUpdateRequest request
     ) {
-        service.update(SecurityAccessTokenHolder.getPrincipalId(), request.to());
+        service.update(request.to(SecurityAccessTokenHolder.getPrincipalId()));
         return ResponseModel.ok();
     }
 

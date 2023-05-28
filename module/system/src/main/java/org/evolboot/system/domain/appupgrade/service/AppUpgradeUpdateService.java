@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.appupgrade.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
@@ -18,8 +20,8 @@ public class AppUpgradeUpdateService extends AppUpgradeSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        AppUpgrade upgrade = findById(id);
+    public void execute(Request request) {
+        AppUpgrade upgrade = findById(request.getId());
         if (ExtendObjects.isNotBlank(request.getAppVersion())) {
             upgrade.setAppVersion(request.getAppVersion());
         }
@@ -41,7 +43,10 @@ public class AppUpgradeUpdateService extends AppUpgradeSupportService {
         repository.save(upgrade);
     }
 
+    @Getter
+    @Setter
     public static class Request extends AppUpgradeRequestBase {
+        private Long id;
     }
 
 }

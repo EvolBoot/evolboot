@@ -1,4 +1,4 @@
-package org.evolboot.im.domain.groupmember;
+package org.evolboot.im.domain.groupmember.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;

@@ -50,8 +50,8 @@ public class XarvkgvvrllncAppServiceImpl extends XarvkgvvrllncSupportService imp
 
     @Override
     @Transactional
-    public void update(Keya2Akk5iV3n id, XarvkgvvrllncUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(XarvkgvvrllncUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

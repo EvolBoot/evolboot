@@ -5,12 +5,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.remote.IdRequest;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
-import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.UserAppService;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
+import org.evolboot.identity.domain.user.service.UserQuery;
 import org.evolboot.identity.domain.user.service.UserStatusChangeService;
 import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -50,7 +51,7 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             UserUpdateRequest request
     ) {
-        service.update(SecurityAccessTokenHolder.getPrincipalId(), request.to());
+        service.update(request.to(SecurityAccessTokenHolder.getPrincipalId()));
         return ResponseModel.ok();
     }
 
@@ -90,49 +91,47 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "管理员重置用户密码")
     @OperationLog("管理员重置用户密码")
-    @PutMapping("/{id}/password/reset")
+    @PutMapping("/password/reset")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PASSWORD_RESET)
     public ResponseModel<?> resetPassword(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             UserPasswordSetRequest request
     ) {
-        service.resetPassword(id, request.getPassword());
+        service.resetPassword(request.getId(), request.getPassword());
         return ResponseModel.ok();
     }
 
     @Operation(summary = "管理员修改用户资料")
     @OperationLog("管理员修改用户资料")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             AdminUserUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 
     @Operation(summary = "管理员冻结(锁定)用户")
     @OperationLog("管理员冻结(锁定)用户")
-    @PutMapping("/{id}/status/lock")
+    @PutMapping("/status/lock")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_LOCK)
     public ResponseModel<?> lock(
-            @PathVariable("id") Long id
+            @RequestBody IdRequest<Long> request
     ) {
-        service.lock(id);
+        service.lock(request.getId());
         return ResponseModel.ok();
     }
 
     @Operation(summary = "管理员解锁用户")
     @OperationLog("管理员解锁用户")
-    @PutMapping("/{id}/status/active")
+    @PutMapping("/status/active")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ACTIVE)
     public ResponseModel<?> active(
-            @PathVariable("id") Long id
+            @RequestBody IdRequest<Long> request
     ) {
-        service.active(id);
+        service.active(request.getId());
         return ResponseModel.ok();
     }
 
@@ -148,7 +147,7 @@ public class AdminUserResourceV1 {
     }
 
     @Operation(summary = "管理员查询用户(用户列表)")
-    @GetMapping("")
+    @GetMapping("/members")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<User>> getUsers(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -159,20 +158,19 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String email,
             @RequestParam(required = false, name = "register_ip") String registerIp,
             @RequestParam(required = false, name = "inviter_user_id") Long inviterUserId,
-            @RequestParam(required = false, name = "user_type") UserType userType,
-            @RequestParam(required = false, name = "user_identity") UserIdentity userIdentity
+            @RequestParam(required = false, name = "user_type") UserType userType
     ) {
         UserQuery query = UserQuery
                 .builder()
                 .page(page)
                 .limit(limit)
                 .userId(userId)
-                .userIdentity(userIdentity)
                 .username(username)
                 .mobile(mobile)
                 .email(email)
                 .registerIp(registerIp)
                 .inviterUserId(inviterUserId)
+                .userIdentity(UserIdentity.ROLE_MEMBER)
                 .userType(userType)
                 .build();
         Page<User> userPage = service.page(query);
@@ -182,38 +180,36 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "改为测试账号")
     @OperationLog("改为测试账号")
-    @PutMapping("/{id}/user-type/set-test")
+    @PutMapping("/user-type/set-test")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<?> setUserTypeIsTest(
-            @PathVariable("id") Long id
+            @RequestBody IdRequest<Long> request
     ) {
-        service.setUserType(id, UserType.TEST);
+        service.setUserType(request.getId(), UserType.TEST);
         return ResponseModel.ok();
     }
 
     @Operation(summary = "更改账号类型")
     @OperationLog("更改账号类型")
-    @PutMapping("/{id}/user-type")
+    @PutMapping("/user-type")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<?> updateUserType(
-            @PathVariable("id") Long id,
             @RequestBody
             UpdateUserTypeRequest request
     ) {
-        service.setUserType(id, request.getUserType());
+        service.setUserType(request.getId(), request.getUserType());
         return ResponseModel.ok();
     }
 
     @Operation(summary = "管理员更换用户代理")
     @OperationLog("管理员更换用户代理")
-    @PutMapping("/{id}/inviter-user-id/change")
+    @PutMapping("/inviter-user-id/change")
     @PreAuthorize(HAS_ROLE_ADMIN)
     public ResponseModel<?> changeInviterUserId(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             ChangeInviterUserIdRequest request
     ) {
-        service.changeInviterUserId(id, request.getNewInviterUserId());
+        service.changeInviterUserId(request.getId(), request.getNewInviterUserId());
         return ResponseModel.ok();
     }
 
@@ -229,12 +225,12 @@ public class AdminUserResourceV1 {
 
 
     @Operation(summary = "更新谷歌验证器")
-    @PutMapping("/{id}/google-authenticator-secret/update")
+    @PutMapping("/google-authenticator-secret/update")
     @Authenticated
     public ResponseModel<?> updateGoogleAuthenticatorSecret(
-            @PathVariable("id") Long id
+            @RequestBody IdRequest<Long> request
     ) {
-        User user = service.updateGoogleAuthenticatorSecret(id);
+        User user = service.updateGoogleAuthenticatorSecret(request.getId());
         return ResponseModel.ok(user.getGoogleAuthSecret());
     }
 
@@ -252,9 +248,9 @@ public class AdminUserResourceV1 {
     }
 
     @Operation(summary = "创建员工")
-    @OperationLog("创建员工")
+    @OperationLog(value = "创建员工", serializable = false)
     @PostMapping("/staff")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<User> createStaff(
             @RequestBody @Valid UserCreateStaffRequest request,
             HttpServletRequest httpServletRequest
@@ -262,4 +258,33 @@ public class AdminUserResourceV1 {
         User user = service.create(request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(user);
     }
+
+
+    @Operation(summary = "查询员工")
+    @GetMapping("/staffs")
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    public ResponseModel<Page<User>> getStaff(
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+            @RequestParam(required = false, name = "user_id") Long userId,
+            @RequestParam(required = false) String key,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String mobile,
+            @RequestParam(required = false) String email
+    ) {
+        UserQuery query = UserQuery
+                .builder()
+                .page(page)
+                .limit(limit)
+                .userId(userId)
+                .username(username)
+                .mobile(mobile)
+                .email(email)
+                .key(key)
+                .userIdentity(UserIdentity.ROLE_STAFF)
+                .build();
+        Page<User> userPage = service.page(query);
+        return ResponseModel.ok(userPage);
+    }
+
 }

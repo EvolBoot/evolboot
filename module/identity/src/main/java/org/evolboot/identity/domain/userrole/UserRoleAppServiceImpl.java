@@ -15,12 +15,13 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * 用户角色
+ * 用户角色(废弃)
  *
  * @author evol
  */
 @Slf4j
 @Service
+@Deprecated
 public class UserRoleAppServiceImpl extends UserRoleSupportService implements UserRoleAppService {
 
 

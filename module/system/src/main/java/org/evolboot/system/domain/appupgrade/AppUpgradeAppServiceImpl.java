@@ -43,8 +43,8 @@ public class AppUpgradeAppServiceImpl extends AppUpgradeSupportService implement
 
     @Override
     @Transactional
-    public void update(Long id, AppUpgradeUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(AppUpgradeUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

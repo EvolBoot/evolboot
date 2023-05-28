@@ -1,13 +1,12 @@
 package org.evolboot.captcha.domain.imagecaptcha.repository;
 
 import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
-import org.evolboot.core.data.BaseRepository;
 
 /**
  * @author evol
  */
 
-public interface ImageCaptchaRepository extends BaseRepository<ImageCaptcha, Long> {
+public interface ImageCaptchaRepository {
 
     ImageCaptcha save(ImageCaptcha imageCaptcha);
 

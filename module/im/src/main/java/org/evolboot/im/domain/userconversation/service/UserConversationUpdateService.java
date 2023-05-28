@@ -1,5 +1,7 @@
 package org.evolboot.im.domain.userconversation.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
@@ -18,12 +20,15 @@ public class UserConversationUpdateService extends UserConversationSupportServic
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        UserConversation userConversation = findById(id);
+    public void execute( Request request) {
+        UserConversation userConversation = findById(request.getId());
         repository.save(userConversation);
     }
 
+    @Getter
+    @Setter
     public static class Request extends UserConversationRequestBase {
+        private Long id;
     }
 
 }

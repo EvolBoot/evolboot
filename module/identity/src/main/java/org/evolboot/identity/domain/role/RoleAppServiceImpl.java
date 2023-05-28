@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.role;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
+import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.identity.domain.role.service.*;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
+//TODO 多语言
 public class RoleAppServiceImpl implements RoleAppService {
 
     private final RoleCreateFactory roleCreateFactory;
@@ -65,6 +67,11 @@ public class RoleAppServiceImpl implements RoleAppService {
     @Override
     public List<Role> findAllById(Iterable<Long> roleIds) {
         return repository.findAllById(roleIds);
+    }
+
+    @Override
+    public Role findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new DomainNotFoundException("找不到这个角色"));
     }
 
 

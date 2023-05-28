@@ -17,9 +17,10 @@ public class UserUpdateRequest {
     private String avatar;
     private Gender gender;
 
-    public UserUpdateService.Request to() {
+    public UserUpdateService.Request to(Long id) {
         return UserUpdateService.Request
                 .builder()
+                .id(id)
                 .nickname(nickname)
                 .avatar(avatar)
                 .gender(gender)

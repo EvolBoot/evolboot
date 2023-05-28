@@ -54,14 +54,13 @@ public class AdminReleasedOrderResourceV1 {
 
     @Operation(summary = "修改代付订单")
     @OperationLog("修改代付订单")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") String id,
             @RequestBody @Valid
                     ReleasedOrderUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

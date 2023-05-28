@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountCreateRequest;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountUpdateRequest;
@@ -68,14 +68,13 @@ public class AdminPayGatewayAccountResourceV1 {
 
     @Operation(summary = "修改支付网关账户")
     @OperationLog("修改支付网关账户")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             PayGatewayAccountUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

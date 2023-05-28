@@ -17,23 +17,27 @@ import org.springframework.stereotype.Service;
 public class PermissionUpdateService {
 
     private final PermissionRepository repository;
+    private final CheckParentIdsService checkParentIdsService;
 
-    public PermissionUpdateService(PermissionRepository repository) {
+
+    public PermissionUpdateService(PermissionRepository repository, CheckParentIdsService checkParentIdsService) {
         this.repository = repository;
+        this.checkParentIdsService = checkParentIdsService;
     }
 
-    public Permission update(Long id, Request request) {
-        Assert.notNull(id, IdentityI18nMessage.Permission.idNotNull());
-        Permission permission = repository.findById(id).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.Permission.notFound()));
-        permission
-                .setTitle(request.getTitle())
-                .setPerm(request.getPerm())
-                .setPath(request.getPath())
-                .setType(request.getType())
-                .setSort(request.getSort())
-                .setIcon(request.getIcon())
-                .setPath(request.getPath())
-                .setRemark(request.getRemark());
+    public Permission update(Request request) {
+        checkParentIdsService.parentIdExist(request.getParentIds());
+        Assert.notNull(request.getId(), IdentityI18nMessage.Permission.idNotNull());
+        Permission permission = repository.findById(request.getId()).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.Permission.notFound()));
+        permission.setName(request.getName());
+        permission.setPath(request.getPath());
+        permission.setType(request.getType());
+        permission.setSort(request.getSort());
+        permission.setPath(request.getPath());
+        permission.setMeta(request.getMeta());
+        permission.setIsLink(request.getIsLink());
+        permission.setParentIds(request.getParentIds());
+        permission.setComponent(request.getComponent());
         repository.save(permission);
         return permission;
     }
@@ -41,7 +45,6 @@ public class PermissionUpdateService {
     @Getter
     @Setter
     public static class Request extends PermissionRequestBase {
-
-
+        private Long id;
     }
 }

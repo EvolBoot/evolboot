@@ -1,10 +1,10 @@
 package org.evolboot.shared.lang;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,7 +25,7 @@ public enum DeviceType {
 
     private final Integer value;
 
-    private static final Map<Integer, DeviceType> VALUES = Maps.newHashMapWithExpectedSize(DeviceType.values().length);
+    private static final Map<Integer, DeviceType> VALUES = new HashMap<>(DeviceType.values().length);
 
     static {
         Arrays.stream(DeviceType.values()).forEach(e -> {

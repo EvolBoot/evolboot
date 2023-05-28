@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import org.evolboot.core.exception.DomainRepetitionException;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,10 @@ import java.util.Set;
 public class RoleCreateFactory {
 
     private final RoleRepository repository;
-    private final PermissionRepository permissionRepository;
     private final RoleSupportService roleSupportService;
 
-    public RoleCreateFactory(RoleRepository repository, PermissionRepository permissionRepository, RoleSupportService roleSupportService) {
+    public RoleCreateFactory(RoleRepository repository, RoleSupportService roleSupportService) {
         this.repository = repository;
-        this.permissionRepository = permissionRepository;
         this.roleSupportService = roleSupportService;
     }
 

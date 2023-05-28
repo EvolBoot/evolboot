@@ -37,10 +37,10 @@ evolpn:
       limit-verify-count: 5
   # 存储
   storage:
-    type: minio
+    type: local
     local:
       base-url: http://localhost:8081
-      directory: /data/upload
+      directory: /opt/wwwroot/upload
       prefix: /files
     static-server:
       base-url: http://localhost:8090

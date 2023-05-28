@@ -71,14 +71,13 @@ public class AdminXarvkgvvrllncResourceV1 {
 
     @Operation(summary = "修改模板")
     @OperationLog("修改模板")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Keya2Akk5iV3n id,
             @RequestBody @Valid
             XarvkgvvrllncUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

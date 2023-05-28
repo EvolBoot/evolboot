@@ -47,8 +47,8 @@ public class DictValueAppServiceImpl extends DictValueSupportService implements 
 
     @Override
     @Transactional
-    public void update(Long id, DictValueUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(DictValueUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

@@ -41,13 +41,6 @@ public class UserIdAppServiceImpl extends UserIdSupportService implements UserId
 
     @Override
     @Transactional
-    public void update(Long id, UserIdUpdateService.Request request) {
-        updateService.execute(id, request);
-    }
-
-
-    @Override
-    @Transactional
     public void delete(Long id) {
         findById(id);
         repository.deleteById(id);

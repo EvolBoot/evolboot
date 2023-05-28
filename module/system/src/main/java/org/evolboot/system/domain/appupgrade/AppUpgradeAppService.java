@@ -19,7 +19,7 @@ public interface AppUpgradeAppService {
 
     AppUpgrade create(AppUpgradeCreateFactory.Request request);
 
-    void update(Long id, AppUpgradeUpdateService.Request request);
+    void update(AppUpgradeUpdateService.Request request);
 
     void delete(Long id);
 

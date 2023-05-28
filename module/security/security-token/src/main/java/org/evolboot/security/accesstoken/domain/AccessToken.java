@@ -8,7 +8,9 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -26,13 +28,13 @@ public class AccessToken {
 
     private String loginIp;
 
-    private List<String> authorities = new ArrayList<>();
+    private Set<String> authorities = new HashSet<>();
 
     @Builder
-    public AccessToken(Long principalId, List<String> authorities) {
+    public AccessToken(Long principalId, Set<String> authorities) {
         Assert.notNull(principalId, IdentityI18nMessage.User.userIdNotNull());
         this.principalId = principalId;
-        this.authorities = authorities.stream().filter(authorization -> !authorization.isBlank()).collect(Collectors.toList());
+        this.authorities = authorities.stream().filter(authorization -> !authorization.isBlank()).collect(Collectors.toSet());
     }
 
     public void setToken(String token) {

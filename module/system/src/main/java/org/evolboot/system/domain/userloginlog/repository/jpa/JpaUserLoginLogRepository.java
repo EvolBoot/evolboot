@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author evol
  */
-public interface JpaUserLoginLogRepository extends UserLoginLogRepository, ExtendedQuerydslPredicateExecutor<UserLoginLog, Long>, JpaRepository<UserLoginLog, String> {
+public interface JpaUserLoginLogRepository extends UserLoginLogRepository, ExtendedQuerydslPredicateExecutor<UserLoginLog, Long>, JpaRepository<UserLoginLog, Long> {
 
 
     default JPQLQuery<UserLoginLog> fillQueryParameter(UserLoginLogQuery query) {

@@ -25,7 +25,7 @@ public interface UserConversationAppService {
 
     UserConversation create(UserConversationCreateFactory.Request request);
 
-    void update(Long id, UserConversationUpdateService.Request request);
+    void update(UserConversationUpdateService.Request request);
 
     void delete(Long id);
 

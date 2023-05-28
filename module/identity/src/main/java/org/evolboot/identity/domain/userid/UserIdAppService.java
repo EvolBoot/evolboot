@@ -18,8 +18,6 @@ public interface UserIdAppService {
 
     void create(int generateNum);
 
-    void update(Long id, UserIdUpdateService.Request request);
-
     void delete(Long id);
 
     List<UserId> findAll();

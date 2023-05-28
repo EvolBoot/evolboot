@@ -1,5 +1,7 @@
 package org.evolboot.im.domain.group.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.repository.GroupRepository;
@@ -18,12 +20,15 @@ public class GroupUpdateService extends GroupSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        Group group = findById(id);
+    public void execute(Request request) {
+        Group group = findById(request.getId());
         repository.save(group);
     }
 
+    @Getter
+    @Setter
     public static class Request extends GroupRequestBase {
+        private Long id;
     }
 
 }

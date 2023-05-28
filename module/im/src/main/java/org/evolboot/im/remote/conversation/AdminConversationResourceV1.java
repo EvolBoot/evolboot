@@ -72,14 +72,13 @@ public class AdminConversationResourceV1 {
 
     @Operation(summary = "修改会话")
     @OperationLog("修改会话")
-    @PutMapping("/{id}")
+    @PutMapping
 //    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             ConversationUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update( request);
         return ResponseModel.ok();
     }
 

@@ -1,4 +1,4 @@
-package org.evolboot.core.autoconfigure;
+package org.evolboot.apidoc.autoconfigure;
 
 import lombok.Data;
 import lombok.Getter;

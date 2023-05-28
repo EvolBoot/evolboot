@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.DictValueAppService;
+import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
 import org.evolboot.system.remote.dictvalue.dto.DictValueCreateRequest;
 import org.evolboot.system.remote.dictvalue.dto.DictValueUpdateRequest;
@@ -70,14 +70,13 @@ public class AdminDictValueResourceV1 {
 
     @Operation(summary = "修改字典Value")
     @OperationLog("修改字典Value")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             DictValueUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

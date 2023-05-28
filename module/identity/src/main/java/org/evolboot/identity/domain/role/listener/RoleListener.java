@@ -21,7 +21,7 @@ public class RoleListener {
 
     @EventListener
     public void onPermissionDeleteEvent(PermissionDeleteEvent event) {
-        roleDeletePermissionService.execute(event.getPermissionId());
+        roleDeletePermissionService.execute(event.getPermissionIds());
     }
 
 

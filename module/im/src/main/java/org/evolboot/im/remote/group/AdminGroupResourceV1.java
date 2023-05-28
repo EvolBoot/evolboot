@@ -4,18 +4,20 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.GroupAppService;
 import org.evolboot.im.domain.group.service.GroupQuery;
+import org.evolboot.im.remote.group.dto.GroupUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 
-import static org.evolboot.im.ImAccessAuthorities.Group.HAS_PAGE;
-import static org.evolboot.im.ImAccessAuthorities.Group.HAS_SINGLE;
+import static org.evolboot.im.ImAccessAuthorities.Group.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
 
@@ -67,21 +69,23 @@ public class AdminGroupResourceV1 {
 
 
 
-        @Operation(summary = "修改群组")
-        @OperationLog("修改群组")
-        @PutMapping("/{id}")
-        @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
-        public ResponseModel<?> update(
-                @PathVariable("id") Long id,
-                @RequestBody @Valid
-                        GroupUpdateRequest request
-        ) {
-            service.update(id, request);
-            return ResponseModel.ok();
-        }
-
 
      */
+
+    @Operation(summary = "修改群组")
+    @OperationLog("修改群组")
+    @PutMapping
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    public ResponseModel<?> update(
+            @RequestBody @Valid
+            GroupUpdateRequest request
+    ) {
+        service.update(request);
+        return ResponseModel.ok();
+    }
+
+
+
     @Operation(summary = "查询群组")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)

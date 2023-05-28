@@ -54,14 +54,13 @@ public class AdminReceiptOrderResourceV1 {
 
     @Operation(summary = "修改第三方代收订单")
     @OperationLog("修改第三方代收订单")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") String id,
             @RequestBody @Valid
                     ReceiptOrderUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update( request);
         return ResponseModel.ok();
     }
 

@@ -1,5 +1,7 @@
 package org.evolboot.system.domain.qa.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.system.domain.qa.entity.Qa;
 import org.evolboot.system.domain.qa.repository.QaRepository;
@@ -17,8 +19,8 @@ public class QaUpdateService extends QaSupportService {
         super(repository);
     }
 
-    public void execute(Long id, Request request) {
-        Qa qa = findById(id);
+    public void execute(Request request) {
+        Qa qa = findById(request.getId());
         qa.setEnable(request.getEnable());
         qa.setLocales(request.getLocales());
         qa.setLink(request.getLink());
@@ -26,7 +28,10 @@ public class QaUpdateService extends QaSupportService {
         repository.save(qa);
     }
 
+    @Getter
+    @Setter
     public static class Request extends QaRequestBase {
+        private Long id;
     }
 
 }

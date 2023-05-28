@@ -41,8 +41,8 @@ public class NoticeAppServiceImpl extends NoticeSupportService implements Notice
 
     @Override
     @Transactional
-    public void update(Long id, NoticeUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(NoticeUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

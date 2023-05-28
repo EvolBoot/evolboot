@@ -2,15 +2,14 @@ package org.evolboot.identity.domain.permission.service;
 
 
 import org.evolboot.core.event.EventPublisher;
-import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
-import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.shared.event.permission.PermissionDeleteEvent;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static org.evolboot.identity.IdentityI18nMessage.Permission.idNotNull;
-import static org.evolboot.identity.IdentityI18nMessage.Permission.notFound;
 
 /**
  *
@@ -28,10 +27,18 @@ public class PermissionDeleteService {
 
     public void execute(Long permissionId) {
         Assert.notNull(permissionId, idNotNull());
-        Permission permission = repository.findById(permissionId).orElseThrow(() -> new DomainNotFoundException(notFound()));
-        repository.deleteById(permissionId);
-        eventPublisher.publishEvent(new PermissionDeleteEvent(permission.id()));
+        // 查下级
+        List<Long> deleteIds = repository.findChildren(permissionId);
+        // 加自己
+        deleteIds.add(permissionId);
+        // 全删除
+        repository.deleteAllByIdInBatch(deleteIds);
+        // 通知
+        eventPublisher.publishEvent(new PermissionDeleteEvent(deleteIds));
     }
 
 
+    public void batchDelete(List<Long> ids) {
+        ids.forEach(this::execute);
+    }
 }

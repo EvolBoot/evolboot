@@ -67,14 +67,13 @@ public class AdminGroupMemberResourceV1 {
 
     @Operation(summary = "修改群成员")
     @OperationLog("修改群成员")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
                     GroupMemberUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 */

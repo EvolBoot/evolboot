@@ -1,10 +1,10 @@
 package org.evolboot.shared.pay;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +21,7 @@ public enum PayGateway {
 
     private final Integer value;
 
-    private static final Map<Integer, PayGateway> VALUES = Maps.newHashMapWithExpectedSize(PayGateway.values().length);
+    private static final Map<Integer, PayGateway> VALUES =  new HashMap<>(PayGateway.values().length);
 
     static {
         Arrays.stream(PayGateway.values()).forEach(e -> {

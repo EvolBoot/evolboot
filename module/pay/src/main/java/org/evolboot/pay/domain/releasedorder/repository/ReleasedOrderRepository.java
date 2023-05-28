@@ -13,12 +13,11 @@ import java.util.Optional;
  *
  * @author evol
  */
-public interface ReleasedOrderRepository extends BaseRepository<ReleasedOrder, Long> {
+public interface ReleasedOrderRepository extends BaseRepository<ReleasedOrder, String> {
 
     ReleasedOrder save(ReleasedOrder releasedOrder);
 
     Optional<ReleasedOrder> findById(String id);
-
 
     void deleteById(String id);
 

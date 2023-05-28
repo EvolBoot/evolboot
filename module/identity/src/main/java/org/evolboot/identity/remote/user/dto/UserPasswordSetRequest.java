@@ -7,5 +7,6 @@ import lombok.Data;
  */
 @Data
 public class UserPasswordSetRequest {
+    Long id;
     String password;
 }

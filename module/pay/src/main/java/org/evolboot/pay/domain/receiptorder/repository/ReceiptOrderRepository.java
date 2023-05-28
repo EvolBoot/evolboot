@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @author evol
  */
-public interface ReceiptOrderRepository extends BaseRepository<ReceiptOrder, Long> {
+public interface ReceiptOrderRepository  {
 
     ReceiptOrder save(ReceiptOrder receiptOrder);
 

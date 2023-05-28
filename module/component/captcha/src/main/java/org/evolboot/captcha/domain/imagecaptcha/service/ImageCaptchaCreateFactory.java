@@ -33,6 +33,8 @@ public class ImageCaptchaCreateFactory {
                 .token(imageCaptcha.getToken())
                 .expires(imageCaptcha.getExpires())
                 .intervals(ImageCaptchaConfiguration.getValue().getDefaultIntervals())
+                .width(width)
+                .height(height)
                 .build();
     }
 
@@ -58,6 +60,8 @@ public class ImageCaptchaCreateFactory {
     public static class Response {
         private String token;
         private String base64;
+        private Integer width;
+        private Integer height;
         private long expires;
         private long intervals;
     }

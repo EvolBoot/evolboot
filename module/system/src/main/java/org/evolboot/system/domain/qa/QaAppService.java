@@ -17,7 +17,7 @@ public interface QaAppService {
 
     Qa create(QaCreateFactory.Request request);
 
-    void update(Long id, QaUpdateService.Request request);
+    void update(QaUpdateService.Request request);
 
     void delete(Long id);
 

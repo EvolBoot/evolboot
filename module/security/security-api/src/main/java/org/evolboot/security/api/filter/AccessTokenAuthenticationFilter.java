@@ -1,6 +1,7 @@
 package org.evolboot.security.api.filter;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.security.api.EvolSession;
 import org.evolboot.security.api.SecurityAccessTokenAppService;
@@ -48,7 +49,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             if (securityDefaultConfigProperties.getTestMode() && tokenValue.startsWith(securityDefaultConfigProperties.getTestKey())) {
                 Long userId = Long.parseLong(tokenValue.replace(securityDefaultConfigProperties.getTestKey() + "_", ""));
                 EvolSession accessToken = new EvolSession(userId);
-                accessToken.setAuthorities(Lists.newArrayList(UserIdentity.ROLE_ADMIN.name(), UserIdentity.ROLE_MEMBER.name()));
+                accessToken.setAuthorities(Sets.newHashSet(UserIdentity.ROLE_ADMIN.name(), UserIdentity.ROLE_MEMBER.name()));
                 Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, accessToken);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 return;

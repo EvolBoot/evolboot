@@ -8,8 +8,8 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.StartupPageAppService;
+import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.service.StartupPageQuery;
 import org.evolboot.system.remote.startuppage.dto.StartupPageCreateRequest;
 import org.evolboot.system.remote.startuppage.dto.StartupPageUpdateRequest;
@@ -68,14 +68,13 @@ public class AdminStartupPageResourceV1 {
 
     @Operation(summary = "修改启动页")
     @OperationLog("修改启动页")
-    @PutMapping("/{id}")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
-            @PathVariable("id") Long id,
             @RequestBody @Valid
             StartupPageUpdateRequest request
     ) {
-        service.update(id, request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

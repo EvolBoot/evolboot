@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * @author evol
  */
-public interface EmailCaptchaRepository extends BaseRepository<EmailCaptcha, Long> {
+public interface EmailCaptchaRepository  {
 
     EmailCaptcha save(EmailCaptcha emailCaptcha);
 

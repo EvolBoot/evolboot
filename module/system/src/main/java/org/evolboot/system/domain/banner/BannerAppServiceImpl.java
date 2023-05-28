@@ -42,8 +42,8 @@ public class BannerAppServiceImpl extends BannerSupportService implements Banner
 
     @Override
     @Transactional
-    public void update(Long id, BannerUpdateService.Request request) {
-        updateService.execute(id, request);
+    public void update(BannerUpdateService.Request request) {
+        updateService.execute(request);
     }
 
 

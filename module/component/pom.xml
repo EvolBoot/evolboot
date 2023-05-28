@@ -19,5 +19,6 @@
         <module>sentinel</module>
         <module>websocket</module>
         <module>code-generator</module>
+        <module>apidoc</module>
     </modules>
 </project>

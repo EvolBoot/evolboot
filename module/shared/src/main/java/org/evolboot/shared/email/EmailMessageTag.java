@@ -1,10 +1,10 @@
 package org.evolboot.shared.email;
 
-import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,7 +19,7 @@ public enum EmailMessageTag {
 
     private final Integer value;
 
-    private static final Map<Integer, EmailMessageTag> VALUES = Maps.newHashMapWithExpectedSize(EmailMessageTag.values().length);
+    private static final Map<Integer, EmailMessageTag> VALUES = new HashMap<>(EmailMessageTag.values().length);
 
     static {
         Arrays.stream(EmailMessageTag.values()).forEach(e -> {

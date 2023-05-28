@@ -2,6 +2,8 @@ package org.evolboot.identity.domain.role.service;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.exception.DomainRepetitionException;
@@ -42,9 +44,8 @@ public class RoleUpdateService {
     }
 
 
-    @Data
-    @Builder
-    @Accessors(chain = true)
+    @Getter
+    @Setter
     public static class Request {
         private Long id;
         private String roleName;

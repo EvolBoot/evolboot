@@ -18,12 +18,17 @@ public class RoleDeletePermissionService {
         this.repository = repository;
     }
 
-    public void execute(Long permissionId) {
-        List<Role> roles = repository.findByPermission(permissionId);
+    /**
+     * 权限和角色数据不多,且操作也不多,为了方便,就全量查询和保存
+     * @param permissionIds
+     */
+    public void execute(List<Long> permissionIds) {
+        List<Role> roles = repository.findAll();
         for (Role role : roles) {
-            role.deletePermission(permissionId);
+            for (Long permissionId : permissionIds) {
+                role.deletePermission(permissionId);
+            }
         }
         repository.saveAll(roles);
-
     }
 }

@@ -5,6 +5,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.service.PermissionQuery;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,11 +18,16 @@ public interface PermissionRepository extends BaseRepository<Permission, Long> {
 
     void deleteById(Long permissionId);
 
+    @Deprecated
+    void deleteChildren(Long parentIds);
+
+    List<Long> findChildren(Long parentId);
+
     Page<Permission> page(PermissionQuery query);
 
     boolean existsById(Long permissionId);
 
-    List<Permission> findAllById(Iterable<Long> permissionIds);
+    List<Permission> findAllById(Collection<Long> permissionIds);
 
     List<Permission> findAll();
 

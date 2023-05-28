@@ -27,7 +27,7 @@ public interface GroupAppService {
      */
     Group create(GroupCreateFactory.Request request);
 
-    void update(Long id, GroupUpdateService.Request request);
+    void update(GroupUpdateService.Request request);
 
     void delete(Long id);
 

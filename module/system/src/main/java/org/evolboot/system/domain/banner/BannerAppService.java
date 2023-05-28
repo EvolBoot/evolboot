@@ -18,7 +18,7 @@ public interface BannerAppService {
 
     Banner create(BannerCreateFactory.Request request);
 
-    void update(Long id, BannerUpdateService.Request request);
+    void update(BannerUpdateService.Request request);
 
     void delete(Long id);
 

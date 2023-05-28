@@ -66,14 +66,13 @@ public class AdminFriendResourceV1 {
 //
 //    @Operation(summary = "修改好友关系")
 //    @OperationLog("修改好友关系")
-//    @PutMapping("/{id}")
+//    @PutMapping
 //    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
 //    public ResponseModel<?> update(
-//            @PathVariable("id") Long id,
 //            @RequestBody @Valid
 //                    FriendUpdateRequest request
 //    ) {
-//        service.update(id, request);
+//        service.update(request);
 //        return ResponseModel.ok();
 //    }
 

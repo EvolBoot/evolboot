@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.evolboot.identity.domain.user.service.UserRegisterService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author evol
@@ -36,6 +37,6 @@ public interface IdentityClient {
 
         private String googleAuthenticatorSecret;
 
-        private List<String> authorities;
+        private Set<String> authorities;
     }
 }

@@ -25,7 +25,7 @@ public interface ConversationAppService {
 
     Conversation reductionPeople(Long id);
 
-    void update(Long id, ConversationUpdateService.Request request);
+    void update(ConversationUpdateService.Request request);
 
     void delete(Long id);
 

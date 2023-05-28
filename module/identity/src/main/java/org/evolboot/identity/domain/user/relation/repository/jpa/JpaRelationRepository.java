@@ -25,7 +25,7 @@ import java.util.Optional;
  * @author evol
  */
 @Repository
-public interface JpaRelationRepository extends RelationRepository, ExtendedQuerydslPredicateExecutor<Relation, Long>, JpaRepository<Relation, RelationId> {
+public interface JpaRelationRepository extends RelationRepository, ExtendedQuerydslPredicateExecutor<Relation, Long>, JpaRepository<Relation, Long> {
 
     default JPQLQuery<Relation> fillQueryParameter(RelationQuery query) {
         QRelation q = QRelation.relation;

@@ -17,8 +17,6 @@ import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.shared.event.im.FriendCreateEvent;
 import org.springframework.stereotype.Service;
 
-import static org.evolboot.identity.IdentityI18nMessage.User.USER_NOT_FOUND;
-
 /**
  * 好友关系
  *
@@ -27,6 +25,7 @@ import static org.evolboot.identity.IdentityI18nMessage.User.USER_NOT_FOUND;
  */
 @Slf4j
 @Service
+//TODO 多语言
 public class FriendCreateFactory extends FriendSupportService {
 
     private final ConversationAppService conversationAppService;
@@ -45,8 +44,8 @@ public class FriendCreateFactory extends FriendSupportService {
 
     public Friend execute(Request request) {
         // 判断用户是否存在
-        Assert.isTrue(userClient.existsByUserId(request.getFriendUserId()), USER_NOT_FOUND);
-        Assert.isTrue(userClient.existsByUserId(request.getOwnerUserId()), USER_NOT_FOUND);
+        Assert.isTrue(userClient.existsByUserId(request.getFriendUserId()), "用户不存在");
+        Assert.isTrue(userClient.existsByUserId(request.getOwnerUserId()), "用户不存在");
         // 创建会话
         Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.SINGLE, buildConversationId(request.getOwnerUserId(), request.getFriendUserId())));
 
