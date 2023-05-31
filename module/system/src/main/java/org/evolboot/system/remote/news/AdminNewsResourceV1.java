@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.News.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/v1/admin/system")
 @Tag(name = "新闻", description = "新闻")
 @AdminClient
 public class AdminNewsResourceV1 {

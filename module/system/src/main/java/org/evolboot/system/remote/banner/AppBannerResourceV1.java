@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api")
+@RequestMapping("/v1/api/system/banner")
 @Tag(name = "banner", description = "banner")
 @ApiClient
 public class AppBannerResourceV1 {
@@ -35,7 +35,7 @@ public class AppBannerResourceV1 {
 
 
     @Operation(summary = "查询banner")
-    @GetMapping("/banner")
+    @GetMapping
     public ResponseModel<List<BannerLocaleResponse>> findAll(
     ) {
         List<Banner> result = service.findAll(BannerQuery.builder().show(true).build());

@@ -24,7 +24,7 @@ import static org.evolboot.system.SystemAccessAuthorities.OperationLog.HAS_SINGL
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/v1/admin/system/operation-log")
 @Tag(name = "OperationLog", description = "操作日志管理")
 @AdminClient
 public class AdminOperationLogResourceV1 {
@@ -77,7 +77,7 @@ public class AdminOperationLogResourceV1 {
     */
 
     @Operation(summary = "查询操作日志")
-    @GetMapping("/operation-logs")
+    @GetMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<OperationLog>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -95,6 +95,7 @@ public class AdminOperationLogResourceV1 {
                 .end(end)
                 .page(page)
                 .limit(limit)
+                .userId(userId)
                 .operation(operation)
                 .build();
         Page<OperationLog> response = service.page(query);
@@ -103,7 +104,7 @@ public class AdminOperationLogResourceV1 {
 
 
     @Operation(summary = "查询单个操作日志")
-    @GetMapping("/operation-logs/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<OperationLog> get(
             @PathVariable("id") Long id

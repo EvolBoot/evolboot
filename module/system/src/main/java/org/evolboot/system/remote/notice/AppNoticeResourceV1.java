@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/notice")
+@RequestMapping("/v1/api/system/notice")
 @Tag(name = "公告", description = "公告")
 @ApiClient
 public class AppNoticeResourceV1 {

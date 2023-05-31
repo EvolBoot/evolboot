@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/app-upgrade")
+@RequestMapping("/v1/api/system/app-upgrade")
 @Tag(name = "APP更新", description = "APP更新")
 @ApiClient
 public class AppAppUpgradeResourceV1 {

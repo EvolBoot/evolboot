@@ -7,6 +7,8 @@ public class Query {
 
     private Pageable pageable;
 
+    private String orderField;
+
     public void setPageable(Pageable pageable) {
         this.pageable = pageable;
     }

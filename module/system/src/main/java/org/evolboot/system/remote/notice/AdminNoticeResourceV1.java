@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.Notice.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/notice")
+@RequestMapping("/v1/admin/system/notice")
 @Tag(name = "公告", description = "公告")
 @AdminClient
 public class AdminNoticeResourceV1 {

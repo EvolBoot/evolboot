@@ -28,11 +28,14 @@ public class DictValueQuery extends Query {
 
     private Long dictKeyId;
 
+    private final String key;
+
     @Builder
-    public DictValueQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long dictKeyId) {
+    public DictValueQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long dictKeyId, String key) {
         super(page, limit);
         this.id = id;
         this.dictKeyId = dictKeyId;
+        this.key = key;
         if (ExtendObjects.nonNull(startDate)) {
             this.startDate = ExtendDateUtil.beginOfDay(startDate);
         }

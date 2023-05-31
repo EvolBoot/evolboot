@@ -34,7 +34,7 @@ public class AppDictValueResourceV1 {
     }
 
     @Operation(summary = "根据Key查询字典Value")
-    @GetMapping("/{dictKey}")
+    @GetMapping("/key/{dictKey}")
     public ResponseModel<List<DictValueAppResponse>> findByDictKey(
             @PathVariable("dictKey") String dictKey
     ) {

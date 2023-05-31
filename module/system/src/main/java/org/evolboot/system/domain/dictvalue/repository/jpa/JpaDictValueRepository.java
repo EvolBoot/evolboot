@@ -8,9 +8,9 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
-import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
 import org.evolboot.system.domain.dictvalue.entity.QDictValue;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
+import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -41,7 +41,10 @@ public interface JpaDictValueRepository extends DictValueRepository, ExtendedQue
             jpqlQuery.where(q.createAt.loe(query.getEndDate()));
         }
         if (ExtendObjects.nonNull(query.getDictKeyId())) {
-            jpqlQuery.where(q.dictKeyId.loe(query.getDictKeyId()));
+            jpqlQuery.where(q.dictKeyId.eq(query.getDictKeyId()));
+        }
+        if (ExtendObjects.nonNull(query.getKey())) {
+            jpqlQuery.where(q.displayName.like("%" + query.getKey() + "%").or(q.value.like("%" + query.getKey() + "%")));
         }
         return jpqlQuery;
     }

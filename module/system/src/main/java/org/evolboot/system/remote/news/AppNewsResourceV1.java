@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api")
+@RequestMapping("/v1/api/system")
 @Tag(name = "新闻", description = "新闻")
 @ApiClient
 public class AppNewsResourceV1 {

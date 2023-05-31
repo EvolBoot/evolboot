@@ -22,7 +22,7 @@ import static org.evolboot.system.SystemAccessAuthorities.UserLoginLog.HAS_PAGE;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/v1/admin/system/user-login-log")
 @Tag(name = "用户登录日志", description = "用户登录日志")
 @AdminClient
 public class AdminUserLoginLogResourceV1 {
@@ -35,7 +35,7 @@ public class AdminUserLoginLogResourceV1 {
 
 
     @Operation(summary = "查询用户登录日志")
-    @GetMapping("/user-login-logs")
+    @GetMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<UserLoginLog>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,

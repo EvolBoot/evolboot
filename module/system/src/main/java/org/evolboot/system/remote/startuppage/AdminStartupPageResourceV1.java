@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.StartupPage.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/startup-page")
+@RequestMapping("/v1/admin/system/startup-page")
 @Tag(name = "启动页", description = "启动页")
 @AdminClient
 public class AdminStartupPageResourceV1 {

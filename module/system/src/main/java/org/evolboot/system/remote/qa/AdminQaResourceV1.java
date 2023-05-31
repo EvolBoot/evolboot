@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.Qa.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/qa")
+@RequestMapping("/v1/admin/system/qa")
 @Tag(name = "QA", description = "QA")
 @AdminClient
 public class AdminQaResourceV1 {

@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.Banner.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/v1/admin/system/banner")
 @Tag(name = "banner", description = "banner")
 @AdminClient
 public class AdminBannerResourceV1 {
@@ -43,7 +43,7 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "创建banner")
     @OperationLog("创建banner")
-    @PostMapping("/banner")
+    @PostMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
@@ -56,7 +56,7 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "删除banner")
     @OperationLog("删除banner")
-    @DeleteMapping("/banner/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
@@ -68,7 +68,7 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "修改banner")
     @OperationLog("修改banner")
-    @PutMapping("/banner")
+    @PutMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
@@ -80,7 +80,7 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "查询banner")
     @OperationLog("查询banner")
-    @GetMapping("/banner")
+    @GetMapping
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<Banner>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -98,7 +98,7 @@ public class AdminBannerResourceV1 {
 
     @Operation(summary = "查询单个banner")
     @OperationLog("查询单个banner")
-    @GetMapping("/banner/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
     public ResponseModel<Banner> get(
             @PathVariable("id") Long id

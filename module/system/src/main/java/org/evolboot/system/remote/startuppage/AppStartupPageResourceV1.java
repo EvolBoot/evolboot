@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/startup-page")
+@RequestMapping("/v1/api/system/startup-page")
 @Tag(name = "启动页", description = "启动页")
 @ApiClient
 public class AppStartupPageResourceV1 {

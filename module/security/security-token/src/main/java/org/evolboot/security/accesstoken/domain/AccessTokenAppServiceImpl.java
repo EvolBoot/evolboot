@@ -12,6 +12,7 @@ import org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha.Mob
 import org.evolboot.security.accesstoken.domain.authentication.usernamepassword.UsernamePasswordAuthenticationToken;
 import org.evolboot.security.api.LoginService;
 import org.evolboot.security.api.SecurityAccessTokenAppService;
+import org.evolboot.shared.event.sessionuser.UserLoginEvent;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,8 +89,20 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
 
         LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
+        loginEvent(accessToken);
         return accessToken;
     }
+
+
+    private void loginEvent(AccessToken accessToken) {
+        eventPublisher.publishEvent(new UserLoginEvent(
+                        accessToken.getPrincipalId(),
+                        accessToken.getToken(),
+                        accessToken.getLoginIp()
+                )
+        );
+    }
+
 
     @Override
     @Deprecated

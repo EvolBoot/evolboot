@@ -11,6 +11,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.dictvalue.DictValueAppService;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.system.remote.dictvalue.dto.DictValueAppResponse;
 import org.evolboot.system.remote.dictvalue.dto.DictValueCreateRequest;
 import org.evolboot.system.remote.dictvalue.dto.DictValueUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.or;
@@ -88,6 +90,7 @@ public class AdminDictValueResourceV1 {
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) Long dictKeyId,
+            @RequestParam(required = false) String key,
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
@@ -98,6 +101,7 @@ public class AdminDictValueResourceV1 {
                 .endDate(endDate)
                 .page(page)
                 .dictKeyId(dictKeyId)
+                .key(key)
                 .limit(limit)
                 .build();
         Page<DictValue> response = service.page(query);
@@ -112,6 +116,14 @@ public class AdminDictValueResourceV1 {
             @PathVariable("id") Long id
     ) {
         return ResponseModel.ok(service.findById(id));
+    }
+
+    @Operation(summary = "根据Key查询字典Value")
+    @GetMapping("/key/{dictKey}")
+    public ResponseModel<List<DictValueAppResponse>> findByDictKey(
+            @PathVariable("dictKey") String dictKey
+    ) {
+        return ResponseModel.ok(DictValueAppResponse.of(service.findByDictKey(dictKey)));
     }
 
 }

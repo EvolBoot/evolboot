@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/qa")
+@RequestMapping("/v1/api/system/qa")
 @Tag(name = "QA", description = "QA")
 @ApiClient
 public class AppQaResourceV1 {

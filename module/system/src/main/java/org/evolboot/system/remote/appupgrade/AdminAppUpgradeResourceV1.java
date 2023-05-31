@@ -29,7 +29,7 @@ import static org.evolboot.system.SystemAccessAuthorities.AppUpgrade.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/app-upgrade")
+@RequestMapping("/v1/admin/system/app-upgrade")
 @Tag(name = "APP更新", description = "APP更新")
 @AdminClient
 public class AdminAppUpgradeResourceV1 {
