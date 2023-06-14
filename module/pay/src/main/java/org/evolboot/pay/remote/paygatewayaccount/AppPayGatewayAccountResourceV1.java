@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
@@ -28,12 +29,15 @@ import java.util.List;
 public class AppPayGatewayAccountResourceV1 {
 
     private final PayGatewayAccountAppService service;
+    private final PayGatewayAccountQueryService queryService;
+
 
     private final PayGatewayAccountQuery defaultQuery = PayGatewayAccountQuery.builder().enable(true).build();
 
 
-    public AppPayGatewayAccountResourceV1(PayGatewayAccountAppService service) {
+    public AppPayGatewayAccountResourceV1(PayGatewayAccountAppService service, PayGatewayAccountQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 
@@ -41,7 +45,7 @@ public class AppPayGatewayAccountResourceV1 {
     @GetMapping("")
     public ResponseModel<List<PayGatewayAccountLocaleResponse>> findAll(
     ) {
-        List<PayGatewayAccount> result = service.findAll(defaultQuery);
+        List<PayGatewayAccount> result = queryService.findAll(defaultQuery);
         return ResponseModel.ok(PayGatewayAccountLocaleResponse.of(result));
     }
 
@@ -52,7 +56,7 @@ public class AppPayGatewayAccountResourceV1 {
     @GetMapping("")
     public ResponseModel<List<PayGatewayAccountLocaleResponse>> findAll(
     ) {
-        List<PayGatewayAccount> result = service.findAll();
+        List<PayGatewayAccount> result = queryService.findAll();
         return ResponseModel.ok(PayGatewayAccountLocaleResponse.of(result));
     }
 
@@ -67,7 +71,7 @@ public class AppPayGatewayAccountResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<PayGatewayAccount> result = service.page(query);
+        Page<PayGatewayAccount> result = queryService.page(query);
         return ResponseModel.ok(PayGatewayAccountLocaleResponse.of(result));
     }
 

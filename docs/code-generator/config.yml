@@ -26,11 +26,11 @@ replace:
   tablePrefix: evol_
   author: evol
   # 上下文名 多个单线用下划线连接
-  boundContext: system
+  boundContext: pay
 
   #领域名称,多个单词用下划线连接
-  domainName: dict_value
+  domainName: pay_gateway_account
 
-  remark: 字典Value
+  remark: 支付网关账户
   # 主键类型
   pkIdClass: Long

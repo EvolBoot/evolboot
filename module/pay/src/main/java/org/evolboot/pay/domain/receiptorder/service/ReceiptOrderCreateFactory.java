@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateResponse;
@@ -36,19 +36,19 @@ public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
 
     private final Map<PayGateway, ReceiptClient> receiptClients;
 
-    private final PayGatewayAccountAppService payGatewayAccountAppService;
+    private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
 
-    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountAppService payGatewayAccountAppService) {
+    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
         super(repository);
         this.receiptClients = receiptClients;
-        this.payGatewayAccountAppService = payGatewayAccountAppService;
+        this.payGatewayAccountQueryService = payGatewayAccountQueryService;
     }
 
     public ReceiptOrder execute(Request request) {
 
         log.info("代收:创建订单:{}", JsonUtil.stringify(request));
-        PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
+        PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(request.getPayGatewayAccountId());
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
         ReceiptClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
 

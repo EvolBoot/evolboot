@@ -5,6 +5,7 @@ import org.evolboot.core.domain.DelStatus;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.PermissionAppService;
+import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.role.entity.Role;
@@ -32,7 +33,9 @@ public class IdentityAdapter implements IdentityClient {
     private final UserQueryService userQueryService;
 
     private final RoleAppService roleAppService;
-    private final PermissionAppService permissionAppService;
+
+    private final PermissionQueryService permissionQueryService;
+
     private final UserRoleAppService userRoleAppService;
 
     private final UserAppService userAppService;
@@ -40,10 +43,10 @@ public class IdentityAdapter implements IdentityClient {
     private final CaptchaClient captchaClient;
 
 
-    public IdentityAdapter(UserQueryService userQueryService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService, UserAppService userAppService, CaptchaClient captchaClient) {
+    public IdentityAdapter(UserQueryService userQueryService, RoleAppService roleAppService, PermissionQueryService permissionQueryService, UserRoleAppService userRoleAppService, UserAppService userAppService, CaptchaClient captchaClient) {
         this.userQueryService = userQueryService;
         this.roleAppService = roleAppService;
-        this.permissionAppService = permissionAppService;
+        this.permissionQueryService = permissionQueryService;
         this.userRoleAppService = userRoleAppService;
         this.userAppService = userAppService;
         this.captchaClient = captchaClient;
@@ -108,7 +111,7 @@ public class IdentityAdapter implements IdentityClient {
             return authorities;
         }
 
-        List<Permission> permissions = permissionAppService.findAllById(permissionIds);
+        List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
         permissions.forEach(
                 permission -> authorities.addAll(List.of(permission.permSplitToArray())));
         return authorities;

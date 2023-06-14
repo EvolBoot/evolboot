@@ -57,36 +57,4 @@ public class PayGatewayAccountAppServiceImpl extends PayGatewayAccountSupportSer
     }
 
 
-    @Override
-    public List<PayGatewayAccount> findAll() {
-        return repository.findAll();
-    }
-
-    @Override
-    public Optional<PayGatewayAccount> findFirstByEnableIsTrue() {
-        return repository.findFirstByEnableIsTrue();
-    }
-
-
-    @Override
-    public List<PayGatewayAccount> findAll(PayGatewayAccountQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<PayGatewayAccount> page(PayGatewayAccountQuery query) {
-        return repository.page(query);
-    }
-
-    @Override
-    public PayGatewayAccount findByAlias(String alias) {
-        return repository.findByAlias(alias).orElseThrow(() -> GATEWAY_NOT_FOUND);
-    }
-
-
-    @Override
-    public Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query) {
-        return repository.findOne(query);
-    }
-
 }

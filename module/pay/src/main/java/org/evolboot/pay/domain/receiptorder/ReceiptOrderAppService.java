@@ -25,26 +25,11 @@ public interface ReceiptOrderAppService {
      */
     ReceiptOrder create(ReceiptOrderCreateFactory.Request request);
 
-    List<ReceiptOrder> findAll();
-
-    List<ReceiptOrder> findAll(ReceiptOrderQuery query);
-
-    Page<ReceiptOrder> page(ReceiptOrderQuery query);
-
-    ReceiptOrder findById(String id);
 
     <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request);
 
     <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<ReceiptOrder> findOne(ReceiptOrderQuery query);
 
 
 }

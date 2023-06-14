@@ -9,8 +9,8 @@ import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
@@ -35,22 +35,22 @@ public class ReleasedOrderCreateFactory extends ReleasedOrderSupportService {
 
     private final Map<PayGateway, ReleasedClient> releasedClients;
 
-    private final PayGatewayAccountAppService payGatewayAccountAppService;
+    private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
 
     private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReleasedOrderCreateFactory(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountAppService payGatewayAccountAppService, MQMessagePublisher mqMessagePublisher) {
+    protected ReleasedOrderCreateFactory(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
         super(repository);
         this.releasedClients = releasedClients;
-        this.payGatewayAccountAppService = payGatewayAccountAppService;
+        this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.mqMessagePublisher = mqMessagePublisher;
     }
 
     public ReleasedOrder execute(Request request) {
 
         log.info("代付:创建订单:{}", JsonUtil.stringify(request));
-        PayGatewayAccount gatewayAccount = payGatewayAccountAppService.findById(request.getPayGatewayAccountId());
+        PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(request.getPayGatewayAccountId());
         ReleasedClient releasedClient = releasedClients.get(gatewayAccount.getPayGateway());
         // 支持该代付组织
         if (!releasedClient.supportOrgType(request.getOrgType())) {

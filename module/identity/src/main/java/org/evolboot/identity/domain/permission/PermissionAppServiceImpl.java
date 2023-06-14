@@ -66,42 +66,6 @@ public class PermissionAppServiceImpl implements PermissionAppService {
     }
 
     @Override
-    public Page<Permission> page(PermissionQuery query) {
-        return repository.page(query);
-    }
-
-    @Override
-    public List<Permission> findAllByIdConvertTree(Collection<Long> permissionIds) {
-        return PermissionUtil.convertTree(repository.findAllById(permissionIds));
-    }
-
-    @Override
-    public List<Permission> findAllById(Collection<Long> permissionIds) {
-        return repository.findAllById(permissionIds);
-    }
-
-    @Override
-    public List<Permission> findAllConvertTree() {
-        return PermissionUtil.convertTree(repository.findAll());
-    }
-
-    @Override
-    public Permission findById(Long permissionId) {
-        return repository.findById(permissionId).orElseThrow(() -> new DomainNotFoundException("该权限不存在"));
-    }
-
-    @Override
-    public List<Permission> findPermissionByUserIdConvertTree(Long userId, Type type) {
-        return findPermissionByUserIdConvertTreeService.findPermissionByUserIdConvertTree(userId, type);
-    }
-
-
-    @Override
-    public Optional<Permission> findOne(PermissionQuery query) {
-        return repository.findOne(query);
-    }
-
-    @Override
     @Transactional
     public List<Permission> importJsonData(String url) {
         importService.importJsonData(url);

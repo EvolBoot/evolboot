@@ -43,31 +43,10 @@ public class ReleasedOrderAppServiceImpl extends ReleasedOrderSupportService imp
 
 
     @Override
-    public List<ReleasedOrder> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<ReleasedOrder> findAll(ReleasedOrderQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<ReleasedOrder> page(ReleasedOrderQuery query) {
-        return repository.page(query);
-    }
-
-    @Override
     @Transactional
     public <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request) {
         return notifyService.releasedOrderNotify(request);
     }
 
-
-    @Override
-    public Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
-        return repository.findOne(query);
-    }
 
 }

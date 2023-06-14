@@ -7,8 +7,8 @@ import org.evolboot.bffadmin.domain.response.BffStaffUser;
 import org.evolboot.bffadmin.domain.response.BffUser;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
+import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
@@ -32,19 +32,25 @@ public class BffAdminService {
     private final BffAdminMapper mapper;
     private final UserRoleAppService userRoleAppService;
     private final RoleAppService roleAppService;
-    private final PermissionAppService permissionAppService;
     private final UserAppService userAppService;
     private final UserQueryService userQueryService;
     private final BffDownloadAuthoritiesService bffDownloadAuthoritiesService;
+    private final PermissionQueryService permissionQueryService;
 
-    public BffAdminService(BffAdminMapper mapper, UserRoleAppService userRoleAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserAppService userAppService, UserQueryService userQueryService, BffDownloadAuthoritiesService bffDownloadAuthoritiesService) {
+    public BffAdminService(BffAdminMapper mapper,
+                           UserRoleAppService userRoleAppService,
+                           RoleAppService roleAppService,
+                           UserAppService userAppService,
+                           UserQueryService userQueryService,
+                           BffDownloadAuthoritiesService bffDownloadAuthoritiesService,
+                           PermissionQueryService permissionQueryService) {
         this.mapper = mapper;
         this.userRoleAppService = userRoleAppService;
         this.roleAppService = roleAppService;
-        this.permissionAppService = permissionAppService;
         this.userAppService = userAppService;
         this.userQueryService = userQueryService;
         this.bffDownloadAuthoritiesService = bffDownloadAuthoritiesService;
+        this.permissionQueryService = permissionQueryService;
     }
 
     public Page<BffUser> findUser(BffAdminQuery query) {
@@ -70,14 +76,14 @@ public class BffAdminService {
     public List<Permission> findPermissionByUserIdConvertTree(Long userId) {
         User user = userQueryService.findByUserId(userId);
         if (user.hasUserIdentity(UserIdentity.ROLE_ADMIN)) {
-            return permissionAppService.findAllConvertTree();
+            return permissionQueryService.findAllConvertTree();
         }
         List<Long> roles = userRoleAppService.findAll(userId).stream().map(UserRole::getRoleId).collect(Collectors.toList());
         Set<Long> permissionIds = Sets.newHashSet();
         roleAppService
                 .findAllById(roles)
                 .forEach(role -> permissionIds.addAll(role.getPermissions()));
-        return permissionAppService.findAllByIdConvertTree(permissionIds);
+        return permissionQueryService.findAllByIdConvertTree(permissionIds);
     }
 
 }

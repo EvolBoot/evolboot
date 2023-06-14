@@ -2,8 +2,8 @@ package org.evolboot.pay.domain.releasedorder.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateRequest;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedCreateResponse;
@@ -26,15 +26,15 @@ public class ReleasedOrderSendService extends ReleasedOrderSupportService {
 
     private final Map<PayGateway, ReleasedClient> releasedClients;
 
-    private final PayGatewayAccountAppService payGatewayAccountAppService;
+    private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
     private final ReleasedOrderStatusHandleService statusHandleService;
 
 
-    protected ReleasedOrderSendService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountAppService payGatewayAccountAppService, ReleasedOrderStatusHandleService statusHandleService) {
+    protected ReleasedOrderSendService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStatusHandleService statusHandleService) {
         super(repository);
         this.releasedClients = releasedClients;
-        this.payGatewayAccountAppService = payGatewayAccountAppService;
+        this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.statusHandleService = statusHandleService;
     }
 
@@ -46,7 +46,7 @@ public class ReleasedOrderSendService extends ReleasedOrderSupportService {
             return false;
         }
         ReleasedClient releasedClient = releasedClients.get(releasedOrder.getPayGateway());
-        PayGatewayAccount account = payGatewayAccountAppService.findById(releasedOrder.getPayGatewayAccountId());
+        PayGatewayAccount account = payGatewayAccountQueryService.findById(releasedOrder.getPayGatewayAccountId());
 
         ReleasedQueryResponse releasedQueryResponse = releasedClient.queryReleasedOrder(releasedOrderId, account);
         if (releasedQueryResponse.isExist()) {

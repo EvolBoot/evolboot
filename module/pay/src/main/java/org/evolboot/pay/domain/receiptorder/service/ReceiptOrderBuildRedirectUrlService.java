@@ -4,8 +4,8 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.service.RedisClientAppService;
 import org.evolboot.core.util.JsonUtil;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyResponse;
@@ -28,20 +28,20 @@ public class ReceiptOrderBuildRedirectUrlService extends ReceiptOrderSupportServ
 
     private final Map<PayGateway, ReceiptClient> receiptClients;
 
-    private final PayGatewayAccountAppService payGatewayAccountAppService;
+    private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    protected ReceiptOrderBuildRedirectUrlService(ReceiptOrderRepository repository, RedisClientAppService redisClientAppService, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountAppService payGatewayAccountAppService) {
+    protected ReceiptOrderBuildRedirectUrlService(ReceiptOrderRepository repository, RedisClientAppService redisClientAppService, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
         super(repository);
         this.redisClientAppService = redisClientAppService;
         this.receiptClients = receiptClients;
-        this.payGatewayAccountAppService = payGatewayAccountAppService;
+        this.payGatewayAccountQueryService = payGatewayAccountQueryService;
     }
 
 
     public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
         log.info("代收:前端回调:{}", JsonUtil.stringify(request));
         ReceiptOrder receiptOrder = findById(request.getReceiptOrderId());
-        PayGatewayAccount payGatewayAccount = payGatewayAccountAppService.findById(receiptOrder.getPayGatewayAccountId());
+        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         log.info("代收:前端回调:{}", payGatewayAccount.getPayGateway());
         ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
         ReceiptRedirectNotifyResponse response = receiptClient.receiptOrderRedirectNotify(payGatewayAccount, request);

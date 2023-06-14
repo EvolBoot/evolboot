@@ -22,26 +22,7 @@ public interface PayGatewayAccountAppService {
 
     void delete(Long id);
 
-    List<PayGatewayAccount> findAll();
 
-    Optional<PayGatewayAccount> findFirstByEnableIsTrue();
-
-    List<PayGatewayAccount> findAll(PayGatewayAccountQuery query);
-
-    Page<PayGatewayAccount> page(PayGatewayAccountQuery query);
-
-    PayGatewayAccount findById(Long id);
-
-    PayGatewayAccount findByAlias(String alias);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
 
 
 }

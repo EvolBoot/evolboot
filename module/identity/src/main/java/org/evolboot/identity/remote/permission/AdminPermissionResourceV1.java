@@ -8,6 +8,7 @@ import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.permission.PermissionAppService;
+import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.service.PermissionQuery;
@@ -33,9 +34,11 @@ import static org.evolboot.security.api.access.AccessAuthorities.*;
 public class AdminPermissionResourceV1 {
 
     private final PermissionAppService service;
+    private final PermissionQueryService queryService;
 
-    public AdminPermissionResourceV1(PermissionAppService service) {
+    public AdminPermissionResourceV1(PermissionAppService service, PermissionQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
     /**
@@ -95,7 +98,7 @@ public class AdminPermissionResourceV1 {
     @OperationLog("获取权限")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 
@@ -106,7 +109,7 @@ public class AdminPermissionResourceV1 {
     @Operation(summary = "权限列表(树形)")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<List<Permission>> page() {
-        return ResponseModel.ok(service.findAllConvertTree());
+        return ResponseModel.ok(queryService.findAllConvertTree());
     }
 
 
@@ -117,7 +120,7 @@ public class AdminPermissionResourceV1 {
     @Operation(summary = "权限列表(树形)")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ROLE_STAFF)
     public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
-        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId(), Type.menu));
+        return ResponseModel.ok(queryService.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId(), Type.menu));
     }
 
 
@@ -141,7 +144,7 @@ public class AdminPermissionResourceV1 {
                 .order(order)
                 .orderField(orderField)
                 .build();
-        return ResponseModel.ok(service.page(query));
+        return ResponseModel.ok(queryService.page(query));
     }
 
     /**
@@ -159,21 +162,5 @@ public class AdminPermissionResourceV1 {
         return ResponseModel.ok(permissions);
     }
 
-
-    /**
-     * 删除批量权限
-     *
-     * @param ids
-     * @return
-     */
-    /*
-    @DeleteMapping
-    public ResponseModel deleteBatch(
-            @RequestBody List<Long> ids
-    ) {
-        appService.deleteBatch(ids);
-        return ResponseModel.ok();
-    }
-    */
 
 }

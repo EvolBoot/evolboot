@@ -18,25 +18,9 @@ public interface ReleasedOrderAppService {
 
     ReleasedOrder create(ReleasedOrderCreateFactory.Request request);
 
-    List<ReleasedOrder> findAll();
-
-    List<ReleasedOrder> findAll(ReleasedOrderQuery query);
-
-    Page<ReleasedOrder> page(ReleasedOrderQuery query);
-
-    ReleasedOrder findById(String id);
-
 
     <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request);
 
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<ReleasedOrder> findOne(ReleasedOrderQuery query);
 
 
 }

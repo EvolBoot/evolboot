@@ -9,6 +9,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountCreateRequest;
@@ -35,9 +36,11 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 public class AdminPayGatewayAccountResourceV1 {
 
     private final PayGatewayAccountAppService service;
+    private final PayGatewayAccountQueryService queryService;
 
-    public AdminPayGatewayAccountResourceV1(PayGatewayAccountAppService service) {
+    public AdminPayGatewayAccountResourceV1(PayGatewayAccountAppService service, PayGatewayAccountQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 
@@ -91,7 +94,7 @@ public class AdminPayGatewayAccountResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<PayGatewayAccount> response = service.page(query);
+        Page<PayGatewayAccount> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -103,7 +106,7 @@ public class AdminPayGatewayAccountResourceV1 {
     public ResponseModel<PayGatewayAccount> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

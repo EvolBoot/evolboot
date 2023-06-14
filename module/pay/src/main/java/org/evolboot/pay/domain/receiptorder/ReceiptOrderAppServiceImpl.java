@@ -43,23 +43,6 @@ public class ReceiptOrderAppServiceImpl extends ReceiptOrderSupportService imple
 
 
     @Override
-    public List<ReceiptOrder> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<ReceiptOrder> findAll(ReceiptOrderQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<ReceiptOrder> page(ReceiptOrderQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
     @Transactional
     public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
         return notifyService.receiptOrderNotify(request);
@@ -71,9 +54,4 @@ public class ReceiptOrderAppServiceImpl extends ReceiptOrderSupportService imple
         return redirectUrlService.getReceiptRedirectUrl(request);
     }
 
-
-    @Override
-    public Optional<ReceiptOrder> findOne(ReceiptOrderQuery query) {
-        return repository.findOne(query);
-    }
 }

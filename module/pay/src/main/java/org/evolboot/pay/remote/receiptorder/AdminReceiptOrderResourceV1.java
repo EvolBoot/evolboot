@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
+import org.evolboot.pay.domain.receiptorder.ReceiptOrderQueryService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminReceiptOrderResourceV1 {
 
     private final ReceiptOrderAppService service;
+    private final ReceiptOrderQueryService queryService;
 
-    public AdminReceiptOrderResourceV1(ReceiptOrderAppService service) {
+    public AdminReceiptOrderResourceV1(ReceiptOrderAppService service, ReceiptOrderQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 /*
 

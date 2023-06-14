@@ -6,8 +6,8 @@ import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
+import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyResponse;
@@ -30,15 +30,15 @@ public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
 
     private final Map<PayGateway, ReceiptClient> receiptClients;
 
-    private final PayGatewayAccountAppService payGatewayAccountAppService;
+    private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
     private final MQMessagePublisher mqMessagePublisher;
 
 
-    protected ReceiptOrderNotifyService(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountAppService payGatewayAccountAppService, MQMessagePublisher mqMessagePublisher) {
+    protected ReceiptOrderNotifyService(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
         super(repository);
         this.receiptClients = receiptClients;
-        this.payGatewayAccountAppService = payGatewayAccountAppService;
+        this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.mqMessagePublisher = mqMessagePublisher;
     }
 
@@ -47,7 +47,7 @@ public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
         log.info("代收:收到通知:数据:{}", JsonUtil.stringify(request));
         String receiptOrderId = request.getReceiptOrderId();
         ReceiptOrder receiptOrder = findById(receiptOrderId);
-        PayGatewayAccount payGatewayAccount = payGatewayAccountAppService.findById(receiptOrder.getPayGatewayAccountId());
+        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
         Assert.notNull(receiptClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
         boolean checkSign = request.checkSign(payGatewayAccount);

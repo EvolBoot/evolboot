@@ -25,33 +25,6 @@ public interface PermissionAppService {
 
     void deleteBatch(List<Long> ids);
 
-    Page<Permission> page(PermissionQuery query);
-
-    List<Permission> findAllByIdConvertTree(Collection<Long> permissionIds);
-
-    List<Permission> findAllById(Collection<Long> permissionIds);
-
-    List<Permission> findAllConvertTree();
-
-    Permission findById(Long permissionId);
-
-
-    /**
-     * 查指定用户的菜单
-     *
-     * @param userId
-     * @return
-     */
-    List<Permission> findPermissionByUserIdConvertTree(Long userId, Type type);
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<Permission> findOne(PermissionQuery query);
-
     List<Permission> importJsonData(String url);
 
 }
