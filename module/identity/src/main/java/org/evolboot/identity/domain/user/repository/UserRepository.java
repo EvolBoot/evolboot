@@ -40,6 +40,8 @@ public interface UserRepository extends BaseRepository<User, Long> {
      */
     String findAvatarByUserId(Long userId);
 
+    List<User> findAll();
+
     List<User> findAllById(Iterable<Long> ids);
 
     <Q extends Query> List<User> findAll(Q query);

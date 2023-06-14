@@ -37,7 +37,7 @@ public class ImageCaptcha extends AbstractEntity<String> implements AggregateRoo
     private Long expires;
 
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date createTime;
+    protected Date createAt;
 
     private String ip;
 
@@ -52,7 +52,7 @@ public class ImageCaptcha extends AbstractEntity<String> implements AggregateRoo
         this.code = code;
         this.expires = expires;
         this.ip = ip;
-        this.createTime = new Date();
+        this.createAt = new Date();
     }
 
     public boolean verify(String code) {
@@ -65,7 +65,7 @@ public class ImageCaptcha extends AbstractEntity<String> implements AggregateRoo
 
     @JsonIgnore
     public boolean isTimeout() {
-        long timeoutTime = System.currentTimeMillis() - (this.createTime.getTime() + expires);
+        long timeoutTime = System.currentTimeMillis() - (this.createAt.getTime() + expires);
         return timeoutTime >= 0;
     }
 

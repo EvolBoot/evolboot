@@ -26,7 +26,7 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
 
     default JPQLQuery<UserId> fillQueryParameter(UserIdQuery query) {
         QUserId q = QUserId.userId;
-        JPQLQuery<UserId> jpqlQuery = getJPQLQuery();
+        JPQLQuery<UserId> jpqlQuery = getJPQLQuery(query,q.id.desc());
         jpqlQuery.select(q).from(q);
         return jpqlQuery;
     }

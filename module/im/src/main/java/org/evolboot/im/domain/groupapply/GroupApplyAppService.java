@@ -17,28 +17,12 @@ import java.util.Optional;
  */
 public interface GroupApplyAppService {
 
-    GroupApply findById(Long id);
 
     GroupApply create(GroupApplyCreateFactory.Request request);
 
     void update(GroupApplyUpdateService.Request request);
 
     void delete(Long id);
-
-    List<GroupApply> findAll();
-
-    List<GroupApply> findAll(GroupApplyQuery query);
-
-    Page<GroupApply> page(GroupApplyQuery query);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<GroupApply> findOne(GroupApplyQuery query);
 
 
 }

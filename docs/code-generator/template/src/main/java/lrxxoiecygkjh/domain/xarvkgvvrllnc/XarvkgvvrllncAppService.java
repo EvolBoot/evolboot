@@ -5,6 +5,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncCreateFactory;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncUpdateService;
+
 import java.util.Optional;
 import java.util.List;
 
@@ -16,28 +17,32 @@ import java.util.List;
  */
 public interface XarvkgvvrllncAppService {
 
-    Xarvkgvvrllnc findById(Keya2Akk5iV3n id);
-
-    Xarvkgvvrllnc create(XarvkgvvrllncCreateFactory.Request request);
-
-    void update(XarvkgvvrllncUpdateService.Request request);
-
-    void delete(Keya2Akk5iV3n id);
-
-    List<Xarvkgvvrllnc> findAll();
-
-    List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query);
-
-    Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query);
-
-
     /**
-     * 根据条件查询单个
-     *
-     * @param query
+     * 创建
+     * @param request
      * @return
      */
-    Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query);
+    Xarvkgvvrllnc create(XarvkgvvrllncCreateFactory.Request request);
+
+    /**
+     * 更新
+     * @param request
+     */
+    void update(XarvkgvvrllncUpdateService.Request request);
+
+    /**
+     * 删除
+     * @param id
+     */
+    void delete(Keya2Akk5iV3n id);
+
+    /**
+     * 批量删除
+     */
+    void deleteAllByIdInBatch(Iterable<Keya2Akk5iV3n> ids);
+
+
+
 
 
 }

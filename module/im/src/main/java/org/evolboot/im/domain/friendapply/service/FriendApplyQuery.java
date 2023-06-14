@@ -3,6 +3,7 @@ package org.evolboot.im.domain.friendapply.service;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
@@ -29,8 +30,8 @@ public class FriendApplyQuery extends Query {
     private Long toUserId;
 
     @Builder
-    public FriendApplyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long toUserId) {
-        super(page, limit);
+    public FriendApplyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long toUserId, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.id = id;
         this.toUserId = toUserId;
         if (ExtendObjects.nonNull(startDate)) {

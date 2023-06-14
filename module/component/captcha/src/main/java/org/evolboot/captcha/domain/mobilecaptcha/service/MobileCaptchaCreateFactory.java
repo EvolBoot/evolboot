@@ -54,7 +54,7 @@ public class MobileCaptchaCreateFactory {
             if (!mobileCaptcha.isAllowGetNext()) {
                 throw new DomainException(I18NMessageHolder.message(INTERVAL_TIME_NOT_YET));
             }
-            repository.deleteByToken(mobileCaptcha.getToken());
+//            repository.deleteByToken(mobileCaptcha.getToken());
             code.set(mobileCaptcha.getCode());
         });
         String codeStr = code.get();

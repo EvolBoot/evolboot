@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.user.service;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.domain.DelStatus;
 import org.evolboot.identity.domain.user.entity.UserType;
@@ -37,8 +38,8 @@ public class UserQuery extends Query {
     private final String key;
 
     @Builder
-    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key) {
-        super(page, limit);
+    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.userId = userId;
         this.username = username;
         this.mobile = mobile;

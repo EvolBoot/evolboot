@@ -55,26 +55,4 @@ public class ChatRecordAppServiceImpl extends ChatRecordSupportService implement
         repository.deleteById(id);
     }
 
-
-    @Override
-    public List<ChatRecord> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<ChatRecord> findAll(ChatRecordQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<ChatRecord> page(ChatRecordQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<ChatRecord> findOne(ChatRecordQuery query) {
-        return repository.findOne(query);
-    }
 }

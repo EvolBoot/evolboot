@@ -3,6 +3,7 @@ package org.evolboot.pay.domain.releasedorder.service;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 
 /**
@@ -15,7 +16,7 @@ import org.evolboot.core.data.Query;
 public class ReleasedOrderQuery extends Query {
 
     @Builder
-    public ReleasedOrderQuery(Integer page, Integer limit) {
-        super(page, limit);
+    public ReleasedOrderQuery(Integer page, Integer limit, String orderField, Direction order) {
+        super(page, limit, orderField, order);
     }
 }

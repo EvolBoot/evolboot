@@ -3,6 +3,7 @@ package org.evolboot.system.domain.dictkey.service;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
@@ -29,8 +30,8 @@ public class DictKeyQuery extends Query {
     private final String key;
 
     @Builder
-    public DictKeyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String key) {
-        super(page, limit);
+    public DictKeyQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String key, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.id = id;
         this.key = key;
         if (ExtendObjects.nonNull(startDate)) {

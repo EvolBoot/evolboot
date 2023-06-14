@@ -3,6 +3,7 @@ package org.evolboot.im.domain.userconversation.service;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
@@ -27,8 +28,8 @@ public class UserConversationQuery extends Query {
     private Date endDate;
 
     @Builder
-    public UserConversationQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate) {
-        super(page, limit);
+    public UserConversationQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.id = id;
         if (ExtendObjects.nonNull(startDate)) {
             this.startDate = ExtendDateUtil.beginOfDay(startDate);

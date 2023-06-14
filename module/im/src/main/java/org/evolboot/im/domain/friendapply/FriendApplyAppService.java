@@ -17,28 +17,11 @@ import java.util.Optional;
  */
 public interface FriendApplyAppService {
 
-    FriendApply findById(Long id);
-
     FriendApply create(FriendApplyCreateFactory.Request request);
 
     FriendApply audit(FriendApplyAuditService.Request request);
 
     void delete(Long id);
-
-    List<FriendApply> findAll();
-
-    List<FriendApply> findAll(FriendApplyQuery query);
-
-    Page<FriendApply> page(FriendApplyQuery query);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<FriendApply> findOne(FriendApplyQuery query);
 
 
 }

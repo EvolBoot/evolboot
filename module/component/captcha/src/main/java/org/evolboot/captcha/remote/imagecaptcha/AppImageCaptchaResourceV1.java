@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/api/")
+@RequestMapping("/v1/api/captcha")
 @Tag(name = "验证码", description = "验证码")
 @ApiClient
 public class AppImageCaptchaResourceV1 {

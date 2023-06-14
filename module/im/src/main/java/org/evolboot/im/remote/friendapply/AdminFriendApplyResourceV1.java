@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.friendapply.FriendApplyQueryService;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
@@ -32,10 +33,12 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 @AdminClient
 public class AdminFriendApplyResourceV1 {
 
-    private final FriendApplyAppService service;
+    private final FriendApplyAppService appService;
+    private final FriendApplyQueryService queryService;
 
-    public AdminFriendApplyResourceV1(FriendApplyAppService service) {
-        this.service = service;
+    public AdminFriendApplyResourceV1(FriendApplyAppService appService, FriendApplyQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -86,7 +89,7 @@ public class AdminFriendApplyResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<FriendApply> response = service.page(query);
+        Page<FriendApply> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -97,7 +100,7 @@ public class AdminFriendApplyResourceV1 {
     public ResponseModel<FriendApply> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

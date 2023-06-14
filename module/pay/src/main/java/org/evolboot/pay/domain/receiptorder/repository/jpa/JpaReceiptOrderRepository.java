@@ -9,8 +9,8 @@ import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.pay.domain.receiptorder.entity.QReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
-import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderQuery;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
+import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +29,8 @@ public interface JpaReceiptOrderRepository extends ReceiptOrderRepository, Exten
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         ReceiptOrderQuery query = (ReceiptOrderQuery) _query;
         QReceiptOrder q = QReceiptOrder.receiptOrder;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }

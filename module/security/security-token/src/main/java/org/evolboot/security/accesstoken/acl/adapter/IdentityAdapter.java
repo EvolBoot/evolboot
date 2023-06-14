@@ -1,6 +1,5 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.evolboot.core.domain.DelStatus;
 import org.evolboot.core.util.Assert;
@@ -10,6 +9,7 @@ import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.user.UserAppService;
+import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserStatus;
 import org.evolboot.identity.domain.user.service.UserRegisterService;
@@ -29,25 +29,29 @@ import java.util.stream.Collectors;
 @Service
 public class IdentityAdapter implements IdentityClient {
 
-    private final UserAppService userAppService;
+    private final UserQueryService userQueryService;
 
     private final RoleAppService roleAppService;
     private final PermissionAppService permissionAppService;
     private final UserRoleAppService userRoleAppService;
+
+    private final UserAppService userAppService;
+
     private final CaptchaClient captchaClient;
 
 
-    public IdentityAdapter(UserAppService userAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService, CaptchaClient captchaClient) {
-        this.userAppService = userAppService;
+    public IdentityAdapter(UserQueryService userQueryService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserRoleAppService userRoleAppService, UserAppService userAppService, CaptchaClient captchaClient) {
+        this.userQueryService = userQueryService;
         this.roleAppService = roleAppService;
         this.permissionAppService = permissionAppService;
         this.userRoleAppService = userRoleAppService;
+        this.userAppService = userAppService;
         this.captchaClient = captchaClient;
     }
 
     @Override
     public UserInfo findByUsernameOrMobileOrEmailAndEncodePassword(String value, String encodePassword) {
-        User user = userAppService.findByUsernameOrMobileOrEmailAndEncodePassword(value, encodePassword);
+        User user = userQueryService.findByUsernameOrMobileOrEmailAndEncodePassword(value, encodePassword);
         Assert.isTrue(DelStatus.ACTIVE.equals(user.getDelStatus()), IdentityI18nMessage.User.userNotFound());
         Assert.isTrue(UserStatus.ACTIVE.equals(user.getStatus()), IdentityI18nMessage.User.statusNotActive());
         Set<String> authorities = getAuthorities(user);
@@ -56,7 +60,7 @@ public class IdentityAdapter implements IdentityClient {
 
     @Override
     public UserInfo findByMobile(String mobile) {
-        User user = userAppService.findByMobile(mobile);
+        User user = userQueryService.findByMobile(mobile);
         Assert.isTrue(DelStatus.ACTIVE.equals(user.getDelStatus()), IdentityI18nMessage.User.userNotFound());
         Assert.isTrue(UserStatus.ACTIVE.equals(user.getStatus()), IdentityI18nMessage.User.statusNotActive());
         Set<String> authorities = getAuthorities(user);
@@ -72,7 +76,7 @@ public class IdentityAdapter implements IdentityClient {
 
     @Override
     public UserInfo findByMobileAndSmsCode(UserRegisterService.Request request) {
-        if (userAppService.existsByMobile(request.getMobile())) {
+        if (userQueryService.existsByMobile(request.getMobile())) {
             captchaClient.verifyMobileCaptchaIsTrue(request.getMobilePrefix(), request.getMobile(), request.getCaptchaCode(), request.getCaptchaToken());
             return findByMobile(request.getMobile());
         }

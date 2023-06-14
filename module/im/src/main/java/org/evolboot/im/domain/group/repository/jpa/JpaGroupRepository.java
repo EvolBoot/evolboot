@@ -29,8 +29,8 @@ public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPre
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         GroupQuery query = (GroupQuery) _query;
         QGroup q = QGroup.group;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }

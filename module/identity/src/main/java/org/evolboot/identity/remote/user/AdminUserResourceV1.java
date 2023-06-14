@@ -4,11 +4,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.IdRequest;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.identity.domain.user.UserAppService;
+import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.UserQuery;
@@ -38,9 +40,11 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 public class AdminUserResourceV1 {
 
     private final UserAppService service;
+    private final UserQueryService queryService;
 
-    public AdminUserResourceV1(UserAppService service) {
+    public AdminUserResourceV1(UserAppService service, UserQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
     @Operation(summary = "当前登录用户修改资料")
@@ -59,7 +63,7 @@ public class AdminUserResourceV1 {
     @GetMapping("/me")
     @Authenticated
     public ResponseModel<User> get() {
-        User user = service.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
         return ResponseModel.ok(user);
     }
 
@@ -147,7 +151,7 @@ public class AdminUserResourceV1 {
     }
 
     @Operation(summary = "管理员查询用户(用户列表)")
-    @GetMapping("/members")
+    @GetMapping("/member")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<User>> getUsers(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -158,8 +162,10 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String email,
             @RequestParam(required = false, name = "register_ip") String registerIp,
             @RequestParam(required = false, name = "inviter_user_id") Long inviterUserId,
-            @RequestParam(required = false, name = "user_type") UserType userType
-    ) {
+            @RequestParam(required = false, name = "user_type") UserType userType,
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order
+            ) {
         UserQuery query = UserQuery
                 .builder()
                 .page(page)
@@ -172,8 +178,10 @@ public class AdminUserResourceV1 {
                 .inviterUserId(inviterUserId)
                 .userIdentity(UserIdentity.ROLE_MEMBER)
                 .userType(userType)
+                .order(order)
+                .orderField(orderField)
                 .build();
-        Page<User> userPage = service.page(query);
+        Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);
     }
 
@@ -260,8 +268,21 @@ public class AdminUserResourceV1 {
     }
 
 
+    @Operation(summary = "修改员工资料")
+    @OperationLog("修改员工资料")
+    @PutMapping("/staff")
+    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    public ResponseModel<?> updateStaff(
+            @RequestBody @Valid
+            AdminUserUpdateRequest request
+    ) {
+        service.update(request);
+        return ResponseModel.ok();
+    }
+
+
     @Operation(summary = "查询员工")
-    @GetMapping("/staffs")
+    @GetMapping("/staff")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<User>> getStaff(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -270,7 +291,9 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String key,
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String mobile,
-            @RequestParam(required = false) String email
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order
     ) {
         UserQuery query = UserQuery
                 .builder()
@@ -282,8 +305,10 @@ public class AdminUserResourceV1 {
                 .email(email)
                 .key(key)
                 .userIdentity(UserIdentity.ROLE_STAFF)
+                .order(order)
+                .orderField(orderField)
                 .build();
-        Page<User> userPage = service.page(query);
+        Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);
     }
 

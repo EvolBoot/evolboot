@@ -33,8 +33,8 @@ public interface JpaBannerRepository extends BannerRepository, ExtendedQuerydslP
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         BannerQuery query = (BannerQuery) _query;
         QBanner q = QBanner.banner;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getShow())) {
             jpqlQuery.where(q.show.eq(query.getShow()));
         }

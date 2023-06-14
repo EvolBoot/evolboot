@@ -107,11 +107,6 @@ public class UserAppServiceImpl implements UserAppService {
     }
 
 
-    @Override
-    public String findAvatarByUserId(Long userId) {
-        return repository.findAvatarByUserId(userId);
-    }
-
     @Transactional
     @Override
     public void delete(Long userId) {
@@ -145,10 +140,6 @@ public class UserAppServiceImpl implements UserAppService {
         userSecurityPasswordResetService.execute(request);
     }
 
-    @Override
-    public User findByUserId(Long userId) {
-        return repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
-    }
 
     @Transactional
     @Override
@@ -177,46 +168,12 @@ public class UserAppServiceImpl implements UserAppService {
 
 
     @Override
-    public Page<User> page(UserQuery query) {
-        return repository.page(query);
-    }
-
-    @Override
-    public Optional<User> findByUsername(String username) {
-        return repository.findByUsername(username);
-    }
-
-    @Override
-    public User findByMobile(String mobile) {
-        User user = repository.findByMobile(mobile).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
-        return user;
-    }
-
-    @Override
-    public User findByUsernameAndEncodePassword(String username, String encodePassword) {
-        User user = repository.findByUsername(username).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
-        Assert.isTrue(user.verifyPassword(userEncryptPasswordService.toReversiblePassword(encodePassword).toOriginalPassword()), IdentityI18nMessage.User.passwordWrong());
-        return user;
-    }
-
-    @Override
-    public User findByUsernameOrMobileOrEmailAndEncodePassword(String account, String encodePassword) {
-        User user = repository.findByUsernameOrMobileOrEmail(account).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
-        Assert.isTrue(user.verifyPassword(userEncryptPasswordService.toReversiblePassword(encodePassword).toOriginalPassword()), IdentityI18nMessage.User.passwordWrong());
-        return user;
-    }
-
-    @Override
     public void setUserType(Long userId, UserType userType) {
-        User user = findByUserId(userId);
+        User user = repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
         user.setUserType(userType);
         repository.save(user);
     }
 
-    @Override
-    public boolean existsByMobile(String mobile) {
-        return repository.existsByMobile(mobile);
-    }
 
     @Override
     public boolean existsByUserId(Long userId) {
@@ -238,15 +195,11 @@ public class UserAppServiceImpl implements UserAppService {
     @Override
     @Transactional
     public User updateGoogleAuthenticatorSecret(Long userId) {
-        User user = findByUserId(userId);
+        User user = repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
         String generateSecretKey = GoogleAuthenticator.generateSecretKey();
         user.setGoogleAuthSecret(generateSecretKey);
         repository.save(user);
         return user;
     }
 
-    @Override
-    public Optional<User> findOne(UserQuery query) {
-        return repository.findOne(query);
-    }
 }

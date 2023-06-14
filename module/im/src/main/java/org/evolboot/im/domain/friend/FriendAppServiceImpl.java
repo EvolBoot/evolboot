@@ -62,33 +62,12 @@ public class FriendAppServiceImpl extends FriendSupportService implements Friend
         repository.deleteById(id);
     }
 
-
-    @Override
-    public List<Friend> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<Friend> findAll(FriendQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<Friend> page(FriendQuery query) {
-        return repository.page(query);
-    }
-
     @Override
     @Transactional
     public Friend apply(FriendApplyService.Request request) {
         return applyService.execute(request);
     }
 
-    @Override
-    public Optional<Friend> findOne(FriendQuery query) {
-        return repository.findOne(query);
-    }
 
     @Override
     @Transactional

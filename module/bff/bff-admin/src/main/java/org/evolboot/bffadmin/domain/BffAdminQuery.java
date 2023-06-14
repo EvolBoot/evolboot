@@ -3,6 +3,7 @@ package org.evolboot.bffadmin.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 
 /**
@@ -14,7 +15,7 @@ public class BffAdminQuery extends Query {
 
 
     @Builder
-    public BffAdminQuery(Integer page, Integer limit) {
-        super(page, limit);
+    public BffAdminQuery(Integer page, Integer limit, String orderField, Direction order) {
+        super(page, limit, orderField, order);
     }
 }

@@ -75,6 +75,12 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
     private String params;
 
     /**
+     * 请求结果
+     */
+    @Schema(description = "请求结果")
+    private String result;
+
+    /**
      * 执行时长（毫秒）
      */
     @Schema(description = "执行时长（毫秒）")
@@ -86,8 +92,14 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
     @Schema(description = "IP地址")
     private String ip;
 
+
+    /**
+     * 状态
+     */
+    private Boolean status;
+
     @Builder
-    public OperationLog(Long id, Long userId, Long beginTime, Long endTime, String operation, String httpMethod, String classMethod, String requestUrl, String params, Long time, String ip) {
+    public OperationLog(Long id, Long userId, Long beginTime, Long endTime, String operation, String httpMethod, String classMethod, String requestUrl, String params, String result, Long time, String ip,Boolean status) {
         this.id = id;
         this.userId = userId;
         this.beginTime = beginTime;
@@ -97,8 +109,10 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
         this.classMethod = classMethod;
         this.requestUrl = requestUrl;
         this.params = params;
+        this.result = result;
         this.time = time;
         this.ip = ip;
+        this.status = status;
     }
 
     @Override

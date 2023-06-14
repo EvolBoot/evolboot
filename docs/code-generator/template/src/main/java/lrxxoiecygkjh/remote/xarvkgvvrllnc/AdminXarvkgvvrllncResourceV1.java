@@ -5,6 +5,7 @@ import projectPackage.core.annotation.OperationLog;
 import projectPackage.core.remote.DomainId;
 import projectPackage.core.remote.ResponseModel;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncAppService;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncQueryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,10 +38,12 @@ import java.util.Date;
 @AdminClient
 public class AdminXarvkgvvrllncResourceV1 {
 
-    private final XarvkgvvrllncAppService service;
+    private final XarvkgvvrllncAppService appService;
+    private final XarvkgvvrllncQueryService queryService;
 
-    public AdminXarvkgvvrllncResourceV1(XarvkgvvrllncAppService service) {
-        this.service = service;
+    public AdminXarvkgvvrllncResourceV1(XarvkgvvrllncAppService appService,XarvkgvvrllncQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -52,7 +55,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestBody @Valid
             XarvkgvvrllncCreateRequest request
     ) {
-        Xarvkgvvrllnc instantiationObjectName = service.create(request);
+        Xarvkgvvrllnc instantiationObjectName = appService.create(request);
         return ResponseModel.ok(new DomainId(instantiationObjectName.id()));
     }
 
@@ -64,7 +67,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Keya2Akk5iV3n id
     ) {
-        service.delete(id);
+        appService.delete(id);
         return ResponseModel.ok();
     }
 
@@ -77,7 +80,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestBody @Valid
             XarvkgvvrllncUpdateRequest request
     ) {
-        service.update(request);
+        appService.update(request);
         return ResponseModel.ok();
     }
 
@@ -99,7 +102,7 @@ public class AdminXarvkgvvrllncResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<Xarvkgvvrllnc> response = service.page(query);
+        Page<Xarvkgvvrllnc> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -110,7 +113,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     public ResponseModel<Xarvkgvvrllnc> get(
             @PathVariable("id") Keya2Akk5iV3n id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

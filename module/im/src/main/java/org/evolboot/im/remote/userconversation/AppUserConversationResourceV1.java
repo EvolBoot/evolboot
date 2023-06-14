@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
+import org.evolboot.im.domain.userconversation.UserConversationQueryService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppUserConversationResourceV1 {
 
     private final UserConversationAppService service;
+    private final UserConversationQueryService queryService;
 
-    public AppUserConversationResourceV1(UserConversationAppService service) {
+    public AppUserConversationResourceV1(UserConversationAppService service, UserConversationQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 
@@ -33,7 +36,7 @@ public class AppUserConversationResourceV1 {
     @GetMapping("")
     public ResponseModel<List<UserConversationLocaleResponse>> findAll(
     ) {
-        List<UserConversation> result = service.findAll();
+        List<UserConversation> result = queryService.findAll();
         return ResponseModel.ok(UserConversationLocaleResponse.of(result));
     }
 
@@ -48,7 +51,7 @@ public class AppUserConversationResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<UserConversation> result = service.page(query);
+        Page<UserConversation> result = queryService.page(query);
         return ResponseModel.ok(UserConversationLocaleResponse.of(result));
     }
 

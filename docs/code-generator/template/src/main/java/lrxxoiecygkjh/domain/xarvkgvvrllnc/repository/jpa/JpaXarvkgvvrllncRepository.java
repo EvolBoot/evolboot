@@ -30,12 +30,11 @@ import java.util.Date;
  */
 @Repository
 public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, ExtendedQuerydslPredicateExecutor<Xarvkgvvrllnc, Keya2Akk5iV3n>, JpaRepository<Xarvkgvvrllnc, Keya2Akk5iV3n> {
-
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         XarvkgvvrllncQuery query = (XarvkgvvrllncQuery) _query;
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
@@ -55,7 +54,6 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
         jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
         return this.findAll(jpqlQuery);
     }
-
 
     @Override
     default <Q extends Query> Page<Xarvkgvvrllnc> page(Q query) {

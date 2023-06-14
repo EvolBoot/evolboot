@@ -46,7 +46,7 @@ public class SmsAppServiceImpl implements SmsAppService {
      * @param params
      * @return
      */
-    private String getSmsContent(SmsConfig smsConfig, SmsMessageTag useChannel, Object... params) {
+    private String getSmsContent(SmsConfig smsConfig, SmsMessageTag useChannel, String... params) {
         String content = "Your verification code is %s";
         SmsLocale locale = smsConfig.findLocaleByCurrentLanguage(SmsLocale.class);
         switch (useChannel) {
@@ -58,7 +58,7 @@ public class SmsAppServiceImpl implements SmsAppService {
                 break;
         }
         if (!ExtendObjects.isEmpty(params)) {
-            content = String.format(content, params);
+            content = String.format(content, (Object[]) params);
         }
         return content;
     }

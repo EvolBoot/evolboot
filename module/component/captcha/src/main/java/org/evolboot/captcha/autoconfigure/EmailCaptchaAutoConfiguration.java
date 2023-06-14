@@ -17,6 +17,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.persistence.EntityManager;
 
+import static org.evolboot.captcha.autoconfigure.EmailCaptchaProperties.CONDITIONAL_ON_PROPERTY_TYPE;
+
 /**
  * @author evol
  */
@@ -25,7 +27,6 @@ import javax.persistence.EntityManager;
 @Slf4j
 public class EmailCaptchaAutoConfiguration {
 
-    private final static String CONDITIONAL_ON_PROPERTY_TYPE = "repository-type";
 
     private final EmailCaptchaProperties emailCaptchaProperties;
 
@@ -52,6 +53,7 @@ public class EmailCaptchaAutoConfiguration {
         return new RedisEmailCaptchaRepository(redisTemplate, stringRedisTemplate);
     }
 
+/*
     @Bean
     @ConditionalOnClass(JpaEmailCaptchaRepository.class)
     @ConditionalOnProperty(prefix = EmailCaptchaProperties.CONFIGURATION_PREFIX, name = CONDITIONAL_ON_PROPERTY_TYPE, havingValue = "jpa")
@@ -59,6 +61,6 @@ public class EmailCaptchaAutoConfiguration {
         log.info("配置邮件验证码: 使用 jpa 存储");
         JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(entityManager);
         return jpaRepositoryFactory.getRepository(JpaEmailCaptchaRepository.class);
-    }
+    }*/
 
 }

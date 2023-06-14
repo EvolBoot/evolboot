@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
@@ -84,12 +85,16 @@ public class AdminAppUpgradeResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<AppUpgrade>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", defaultValue = "20") Integer limit
+            @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order
     ) {
         AppUpgradeQuery query = AppUpgradeQuery
                 .builder()
                 .page(page)
                 .limit(limit)
+                .order(order)
+                .orderField(orderField)
                 .build();
         Page<AppUpgrade> response = service.page(query);
         return ResponseModel.ok(response);

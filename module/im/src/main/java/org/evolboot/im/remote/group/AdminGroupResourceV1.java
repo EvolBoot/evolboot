@@ -7,6 +7,7 @@ import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.group.GroupQueryService;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.GroupAppService;
 import org.evolboot.im.domain.group.service.GroupQuery;
@@ -35,9 +36,12 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 public class AdminGroupResourceV1 {
 
     private final GroupAppService service;
+    private final GroupQueryService queryService;
 
-    public AdminGroupResourceV1(GroupAppService service) {
+
+    public AdminGroupResourceV1(GroupAppService service, GroupQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
     /*
@@ -104,7 +108,7 @@ public class AdminGroupResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<Group> response = service.page(query);
+        Page<Group> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -115,7 +119,7 @@ public class AdminGroupResourceV1 {
     public ResponseModel<Group> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

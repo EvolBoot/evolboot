@@ -24,7 +24,7 @@ import javax.validation.Valid;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/api/email-captcha")
+@RequestMapping("/v1/api/captcha/email-captcha")
 @Tag(name = "验证码", description = "验证码")
 @ApiClient
 public class AppEmailCaptchaResourceV1 {

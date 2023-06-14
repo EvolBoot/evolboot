@@ -1,33 +1,35 @@
 package org.evolboot.im.remote.chatrecord;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
-import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.chatrecord.ChatRecordAppService;
-import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
-import org.evolboot.im.remote.chatrecord.dto.ChatRecordCreateRequest;
-import org.evolboot.im.remote.chatrecord.dto.ChatRecordUpdateRequest;
+import org.evolboot.im.domain.chatrecord.ChatRecordQueryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
+import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
+import org.evolboot.im.remote.chatrecord.dto.*;
+import org.evolboot.core.data.Page;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.util.List;
 
+import static org.evolboot.security.api.access.AccessAuthorities.*;
 import static org.evolboot.im.ImAccessAuthorities.ChatRecord.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
 
 /**
  * 聊天记录
  *
  * @author evol
- * @date 2023-05-03 00:02:35
+ * @date 2023-06-14 18:14:00
  */
 @Slf4j
 @RestController
@@ -36,10 +38,12 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 @AdminClient
 public class AdminChatRecordResourceV1 {
 
-    private final ChatRecordAppService service;
+    private final ChatRecordAppService appService;
+    private final ChatRecordQueryService queryService;
 
-    public AdminChatRecordResourceV1(ChatRecordAppService service) {
-        this.service = service;
+    public AdminChatRecordResourceV1(ChatRecordAppService appService,ChatRecordQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -51,7 +55,7 @@ public class AdminChatRecordResourceV1 {
             @RequestBody @Valid
             ChatRecordCreateRequest request
     ) {
-        ChatRecord chatRecord = service.create(request);
+        ChatRecord chatRecord = appService.create(request);
         return ResponseModel.ok(new DomainId(chatRecord.id()));
     }
 
@@ -63,7 +67,7 @@ public class AdminChatRecordResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
-        service.delete(id);
+        appService.delete(id);
         return ResponseModel.ok();
     }
 
@@ -76,7 +80,7 @@ public class AdminChatRecordResourceV1 {
             @RequestBody @Valid
             ChatRecordUpdateRequest request
     ) {
-        service.update(request);
+        appService.update(request);
         return ResponseModel.ok();
     }
 
@@ -98,7 +102,7 @@ public class AdminChatRecordResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<ChatRecord> response = service.page(query);
+        Page<ChatRecord> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -109,7 +113,7 @@ public class AdminChatRecordResourceV1 {
     public ResponseModel<ChatRecord> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

@@ -29,7 +29,7 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         DictKeyQuery query = (DictKeyQuery) _query;
         QDictKey q = QDictKey.dictKey;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
         jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
@@ -53,7 +53,6 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
         jpqlQuery.select(q).from(q).orderBy(q.sort.desc());
         return this.findAll(jpqlQuery);
     }
-
 
 
     @Override

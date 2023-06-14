@@ -8,6 +8,7 @@ import org.evolboot.core.annotation.NoRepeatSubmit;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.friendapply.FriendApplyQueryService;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
 import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
@@ -33,10 +34,13 @@ import java.util.Date;
 @ApiClient
 public class AppFriendApplyResourceV1 {
 
-    private final FriendApplyAppService service;
+    private final FriendApplyAppService appService;
+    private final FriendApplyQueryService queryService;
 
-    public AppFriendApplyResourceV1(FriendApplyAppService service) {
-        this.service = service;
+
+    public AppFriendApplyResourceV1(FriendApplyAppService appService, FriendApplyQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -59,7 +63,7 @@ public class AppFriendApplyResourceV1 {
                 .limit(limit)
                 .toUserId(SecurityAccessTokenHolder.getPrincipalId())
                 .build();
-        Page<FriendApply> response = service.page(query);
+        Page<FriendApply> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -72,7 +76,7 @@ public class AppFriendApplyResourceV1 {
             @RequestBody @Valid
             FriendApplyCreateRequest request
     ) {
-        return ResponseModel.ok(service.create(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+        return ResponseModel.ok(appService.create(request.to(SecurityAccessTokenHolder.getPrincipalId())));
     }
 
     @Operation(summary = "好友申请审核")
@@ -84,7 +88,7 @@ public class AppFriendApplyResourceV1 {
             @RequestBody @Valid
             FriendApplyAuditRequest request
     ) {
-        return ResponseModel.ok(service.audit(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+        return ResponseModel.ok(appService.audit(request.to(SecurityAccessTokenHolder.getPrincipalId())));
     }
 
 

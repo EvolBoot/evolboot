@@ -17,6 +17,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class EmailCaptchaProperties {
 
     public final static String CONFIGURATION_PREFIX = "evolpn.captcha.email";
+    public final static String CONDITIONAL_ON_PROPERTY_TYPE = "repository-type";
+
 
     private Long timeout;
 

@@ -9,11 +9,15 @@ public class Query {
 
     private String orderField;
 
+    private Direction order;
+
     public void setPageable(Pageable pageable) {
         this.pageable = pageable;
     }
 
-    public Query(Integer page, Integer limit) {
+    public Query(Integer page, Integer limit, String orderField, Direction order) {
+        this.orderField = orderField;
+        this.order = order;
         setPageable(Pageable.builder()
                 .page(page)
                 .limit(limit)
@@ -34,5 +38,13 @@ public class Query {
 
     public Pageable getPageable() {
         return pageable;
+    }
+
+    public String getOrderField() {
+        return orderField;
+    }
+
+    public Direction getOrder() {
+        return order;
     }
 }

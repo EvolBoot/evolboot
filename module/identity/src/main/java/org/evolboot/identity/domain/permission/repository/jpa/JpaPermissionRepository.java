@@ -27,21 +27,21 @@ import java.util.Optional;
 @Repository
 public interface JpaPermissionRepository extends PermissionRepository, ExtendedQuerydslPredicateExecutor<Permission, Long>, JpaRepository<Permission, Long> {
 
-    default <U> JPQLQuery<U> fillQueryParameter(PermissionQuery query, Expression<U> select) {
+    default <U> JPQLQuery<U> fillQueryParameter(PermissionQuery _query, Expression<U> select) {
         QPermission q = QPermission.permission;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
-        if (ExtendObjects.nonNull(query.getParentId())) {
-            jpqlQuery.where(q.parentId.eq(query.getParentId()));
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
+        jpqlQuery.select(select).from(q);
+        if (ExtendObjects.nonNull(_query.getParentId())) {
+            jpqlQuery.where(q.parentId.eq(_query.getParentId()));
         }
-        if (ExtendObjects.nonNull(query.getParentId())) {
-            jpqlQuery.where(q.parentId.eq(query.getParentId()));
+        if (ExtendObjects.nonNull(_query.getParentId())) {
+            jpqlQuery.where(q.parentId.eq(_query.getParentId()));
         }
-        if (ExtendObjects.nonNull(query.getType())) {
-            jpqlQuery.where(q.type.eq(query.getType()));
+        if (ExtendObjects.nonNull(_query.getType())) {
+            jpqlQuery.where(q.type.eq(_query.getType()));
         }
-        if (!ExtendObjects.isEmpty(query.getIds())) {
-            jpqlQuery.where(q.id.in(query.getIds()));
+        if (!ExtendObjects.isEmpty(_query.getIds())) {
+            jpqlQuery.where(q.id.in(_query.getIds()));
         }
         return jpqlQuery;
     }

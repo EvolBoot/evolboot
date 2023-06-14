@@ -19,9 +19,8 @@ public interface JpaUserLoginLogRepository extends UserLoginLogRepository, Exten
 
     default JPQLQuery<UserLoginLog> fillQueryParameter(UserLoginLogQuery query) {
         QUserLoginLog q = QUserLoginLog.userLoginLog;
-        JPQLQuery<UserLoginLog> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(q).from(q).orderBy(q.id.desc());
-
+        JPQLQuery<UserLoginLog> jpqlQuery = getJPQLQuery(query, q.id.desc());
+        jpqlQuery.select(q).from(q);
         if (ExtendObjects.nonNull(query.getUserId())) {
             jpqlQuery.where(q.userId.eq(query.getUserId()));
         }

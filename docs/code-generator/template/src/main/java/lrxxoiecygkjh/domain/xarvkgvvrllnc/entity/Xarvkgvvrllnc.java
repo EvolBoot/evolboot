@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import projectPackage.core.data.jpa.JpaAbstractEntity;

@@ -11,6 +11,7 @@ import org.evolboot.identity.acl.client.IdentityCaptchaClient;
 import org.evolboot.identity.acl.client.IdentityConfigClient;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserConfiguration;
+import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.service.UserQuery;
@@ -47,13 +48,16 @@ public class AppUserResourceV1 {
     private final IdentityConfigClient identityConfigClient;
     private final IdentityCaptchaClient identityCaptchaClient;
 
+    private final UserQueryService queryService;
+
     @Autowired
     private UserRepository userRepository;
 
-    public AppUserResourceV1(UserAppService service, IdentityConfigClient identityConfigClient, IdentityCaptchaClient identityCaptchaClient) {
+    public AppUserResourceV1(UserAppService service, IdentityConfigClient identityConfigClient, IdentityCaptchaClient identityCaptchaClient, UserQueryService queryService) {
         this.service = service;
         this.identityConfigClient = identityConfigClient;
         this.identityCaptchaClient = identityCaptchaClient;
+        this.queryService = queryService;
     }
 
     @Operation(summary = "当前登录用户修改资料")
@@ -71,7 +75,7 @@ public class AppUserResourceV1 {
     @GetMapping("/me")
     @Authenticated
     public ResponseModel<User> get() {
-        User user = service.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
         return ResponseModel.ok(user);
     }
 
@@ -134,7 +138,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<TokenResponse> resetTradePasswordSmsCaptcha(
             HttpServletRequest servletRequest) {
-        User user = service.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
         // 您未设置手机号
         Assert.notBlank(user.getMobile(), "您的手机号未设置");
         String token =
@@ -154,7 +158,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<TokenResponse> resetTradePasswordEmailCaptcha(
             HttpServletRequest servletRequest) {
-        User user = service.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
         // 您未设置邮箱
         Assert.notBlank(user.getEmail(), "邮箱未设置");
         String token =
@@ -170,7 +174,7 @@ public class AppUserResourceV1 {
     @Operation(summary = "查看用户头像")
     @GetMapping("/avatar/{id}")
     public void getAvatar(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String avatar = service.findAvatarByUserId(id);
+        String avatar = queryService.findAvatarByUserId(id);
         response.sendRedirect(UserConfiguration.getValue().getDefaultAvatar());
     }
 

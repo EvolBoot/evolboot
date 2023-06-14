@@ -55,25 +55,4 @@ public class FriendApplyAppServiceImpl extends FriendApplySupportService impleme
     }
 
 
-    @Override
-    public List<FriendApply> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<FriendApply> findAll(FriendApplyQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<FriendApply> page(FriendApplyQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<FriendApply> findOne(FriendApplyQuery query) {
-        return repository.findOne(query);
-    }
 }

@@ -71,26 +71,4 @@ public class ConversationAppServiceImpl extends ConversationSupportService imple
         repository.deleteById(id);
     }
 
-
-    @Override
-    public List<Conversation> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<Conversation> findAll(ConversationQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<Conversation> page(ConversationQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<Conversation> findOne(ConversationQuery query) {
-        return repository.findOne(query);
-    }
 }

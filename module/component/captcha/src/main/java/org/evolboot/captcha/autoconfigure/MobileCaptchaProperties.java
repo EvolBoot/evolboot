@@ -17,6 +17,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class MobileCaptchaProperties {
 
     public final static String CONFIGURATION_PREFIX = "evolpn.captcha.mobile";
+    public final static String CONDITIONAL_ON_PROPERTY_TYPE = "repository-type";
+
 
     private Long timeout;
 

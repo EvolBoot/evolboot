@@ -26,7 +26,7 @@ public interface JpaOperationLogRepository extends OperationLogRepository, Exten
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         OperationLogQuery query = (OperationLogQuery) _query;
         QOperationLog q = QOperationLog.operationLog;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
         jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getBegin())) {
             jpqlQuery.where(q.createAt.goe(query.getBegin()));
@@ -40,7 +40,6 @@ public interface JpaOperationLogRepository extends OperationLogRepository, Exten
         if (ExtendObjects.isNotBlank(query.getOperation())) {
             jpqlQuery.where(q.operation.eq(query.getOperation()));
         }
-        jpqlQuery.orderBy(q.id.desc());
         return jpqlQuery;
     }
 

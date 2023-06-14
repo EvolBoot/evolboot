@@ -2,6 +2,7 @@ package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
 
 import projectPackage.core.data.Query;
 import projectPackage.core.data.Sort;
+import projectPackage.core.data.Direction;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +31,8 @@ public class XarvkgvvrllncQuery extends Query {
     private Date endDate;
 
     @Builder
-    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate) {
-        super(page, limit);
+    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate,String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.id = id;
         if (ExtendObjects.nonNull(startDate)) {
             this.startDate = ExtendDateUtil.beginOfDay(startDate);

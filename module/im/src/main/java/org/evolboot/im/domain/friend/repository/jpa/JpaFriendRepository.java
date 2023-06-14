@@ -29,8 +29,8 @@ public interface JpaFriendRepository extends FriendRepository, ExtendedQuerydslP
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         FriendQuery query = (FriendQuery) _query;
         QFriend q = QFriend.friend;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }

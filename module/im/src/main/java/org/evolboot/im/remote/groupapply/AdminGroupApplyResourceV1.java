@@ -9,6 +9,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.groupapply.GroupApplyAppService;
+import org.evolboot.im.domain.groupapply.GroupApplyQueryService;
 import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
 import org.evolboot.im.remote.groupapply.dto.GroupApplyCreateRequest;
@@ -36,10 +37,13 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 @AdminClient
 public class AdminGroupApplyResourceV1 {
 
-    private final GroupApplyAppService service;
+    private final GroupApplyAppService appService;
+    private final GroupApplyQueryService queryService;
 
-    public AdminGroupApplyResourceV1(GroupApplyAppService service) {
-        this.service = service;
+
+    public AdminGroupApplyResourceV1(GroupApplyAppService appService, GroupApplyQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -51,7 +55,7 @@ public class AdminGroupApplyResourceV1 {
             @RequestBody @Valid
             GroupApplyCreateRequest request
     ) {
-        GroupApply groupApply = service.create(request);
+        GroupApply groupApply = appService.create(request);
         return ResponseModel.ok(new DomainId(groupApply.id()));
     }
 
@@ -63,7 +67,7 @@ public class AdminGroupApplyResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
-        service.delete(id);
+        appService.delete(id);
         return ResponseModel.ok();
     }
 
@@ -76,7 +80,7 @@ public class AdminGroupApplyResourceV1 {
             @RequestBody @Valid
             GroupApplyUpdateRequest request
     ) {
-        service.update(request);
+        appService.update(request);
         return ResponseModel.ok();
     }
 
@@ -98,7 +102,7 @@ public class AdminGroupApplyResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<GroupApply> response = service.page(query);
+        Page<GroupApply> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -109,7 +113,7 @@ public class AdminGroupApplyResourceV1 {
     public ResponseModel<GroupApply> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

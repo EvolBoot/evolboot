@@ -33,7 +33,7 @@ public interface JpaAppUpgradeRepository extends AppUpgradeRepository, ExtendedQ
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         AppUpgradeQuery query = (AppUpgradeQuery) _query;
         QAppUpgrade q = QAppUpgrade.appUpgrade;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
         return jpqlQuery;
     }

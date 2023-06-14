@@ -17,7 +17,9 @@ CREATE TABLE evoltb_system_operation_log
     http_method_  varchar(50) COMMENT 'HTTP方法',
     class_method_ varchar(256) COMMENT '类和方法',
     params_       text COMMENT '执行参数',
+    result_       text COMMENT '请求结果',
     ip_           varchar(256) COMMENT 'IP',
+    status_       tinyint(0) COMMENT '状态',
 
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB

@@ -17,8 +17,6 @@ import java.util.Optional;
  */
 public interface GroupAppService {
 
-    Group findById(Long id);
-
     /**
      * 创建群
      *
@@ -31,20 +29,6 @@ public interface GroupAppService {
 
     void delete(Long id);
 
-    List<Group> findAll();
-
-    List<Group> findAll(GroupQuery query);
-
-    Page<Group> page(GroupQuery query);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<Group> findOne(GroupQuery query);
 
 
     /**

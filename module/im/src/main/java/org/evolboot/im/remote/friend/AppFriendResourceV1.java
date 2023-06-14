@@ -7,6 +7,7 @@ import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.friend.FriendAppService;
+import org.evolboot.im.domain.friend.FriendQueryService;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,12 @@ public class AppFriendResourceV1 {
 
     private final FriendAppService service;
 
-    public AppFriendResourceV1(FriendAppService service) {
+    private final FriendQueryService queryService;
+
+
+    public AppFriendResourceV1(FriendAppService service, FriendQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 

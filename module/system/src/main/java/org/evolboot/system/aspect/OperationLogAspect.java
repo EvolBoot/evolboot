@@ -76,35 +76,60 @@ public class OperationLogAspect {
         if (SecurityAccessTokenHolder.isLogin()) {
             userId = SecurityAccessTokenHolder.getPrincipalId();
         }
-        //执行方法
-        log.info("请求ID:{}, 请求人:{}, 请求URL: {}, 请求方法:{},类方法: {} 参数:{} ,IP:{} ", requestId, userId, requestUrl, httpMethod, classMethod, params, ip);
-        Object result = point.proceed();
-        //执行时长(毫秒)
-        long endTime = System.currentTimeMillis();
-        long time = endTime - beginTime;
-        log.info("请求ID:{}, 执行时间:{}, 执行结果:{} ", requestId, time, result);
-        //保存日志
-        OperationLog operationLog = OperationLog.builder()
-                .id(requestId)
-                .userId(userId)
-                .beginTime(beginTime)
-                .endTime(endTime)
-                .operation(operation)
-                .httpMethod(httpMethod)
-                .classMethod(classMethod)
-                .requestUrl(requestUrl)
-                .params(params)
-                .time(time)
-                .ip(ip)
-                .build();
+
         try {
+            //执行方法
+            log.info("请求ID:{}, 请求人:{}, 请求URL: {}, 请求方法:{},类方法: {} 参数:{} ,IP:{} ", requestId, userId, requestUrl, httpMethod, classMethod, params, ip);
+            Object result = point.proceed();
+            //执行时长(毫秒)
+            long endTime = System.currentTimeMillis();
+            long time = endTime - beginTime;
+            log.info("请求ID:{}, 执行时间:{}, 执行结果:{} ", requestId, time, result);
+            //保存日志
+            OperationLog operationLog = OperationLog.builder()
+                    .id(requestId)
+                    .userId(userId)
+                    .beginTime(beginTime)
+                    .endTime(endTime)
+                    .operation(operation)
+                    .httpMethod(httpMethod)
+                    .classMethod(classMethod)
+                    .requestUrl(requestUrl)
+                    .params(params)
+                    .time(time)
+                    .ip(ip)
+                    .status(true)
+                    .build();
             service.create(
                     operationLog
             );
+            return result;
         } catch (Exception e) {
-            log.error("日志ID:{}, 日志保存失败:{},{}", requestId, operationLog, e);
+            long endTime = System.currentTimeMillis();
+            long time = endTime - beginTime;
+            //保存日志
+            OperationLog operationLog = OperationLog.builder()
+                    .id(requestId)
+                    .userId(userId)
+                    .beginTime(beginTime)
+                    .endTime(endTime)
+                    .operation(operation)
+                    .httpMethod(httpMethod)
+                    .classMethod(classMethod)
+                    .requestUrl(requestUrl)
+                    .params(params)
+                    .result(e.getMessage())
+                    .time(time)
+                    .ip(ip)
+                    .status(false)
+                    .build();
+            service.create(
+                    operationLog
+            );
+            System.out.println(e.getMessage());
+            log.error("日志ID:{}, 日志保存失败:", requestId, e);
+            throw e;
         }
-        return result;
     }
 
     // 排除掉不可雪序列化的参数

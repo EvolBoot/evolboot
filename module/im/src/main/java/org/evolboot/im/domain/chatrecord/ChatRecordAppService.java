@@ -17,7 +17,6 @@ import java.util.Optional;
  */
 public interface ChatRecordAppService {
 
-    ChatRecord findById(Long id);
 
     ChatRecord create(ChatRecordCreateFactory.Request request);
 
@@ -25,20 +24,6 @@ public interface ChatRecordAppService {
 
     void delete(Long id);
 
-    List<ChatRecord> findAll();
-
-    List<ChatRecord> findAll(ChatRecordQuery query);
-
-    Page<ChatRecord> page(ChatRecordQuery query);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<ChatRecord> findOne(ChatRecordQuery query);
 
 
 }

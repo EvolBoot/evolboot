@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.im.domain.groupapply.GroupApplyAppService;
+import org.evolboot.im.domain.groupapply.GroupApplyQueryService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppGroupApplyResourceV1 {
 
     private final GroupApplyAppService service;
+    private final GroupApplyQueryService queryService;
 
-    public AppGroupApplyResourceV1(GroupApplyAppService service) {
+    public AppGroupApplyResourceV1(GroupApplyAppService service, GroupApplyQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 
@@ -33,7 +36,7 @@ public class AppGroupApplyResourceV1 {
     @GetMapping("")
     public ResponseModel<List<GroupApplyLocaleResponse>> findAll(
     ) {
-        List<GroupApply> result = service.findAll();
+        List<GroupApply> result = queryService.findAll();
         return ResponseModel.ok(GroupApplyLocaleResponse.of(result));
     }
 
@@ -48,7 +51,7 @@ public class AppGroupApplyResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<GroupApply> result = service.page(query);
+        Page<GroupApply> result = queryService.page(query);
         return ResponseModel.ok(GroupApplyLocaleResponse.of(result));
     }
 

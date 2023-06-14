@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.user.relation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.shared.lang.SqlOperator;
 
@@ -22,8 +23,8 @@ public class RelationQuery extends Query {
 
 
     @Builder
-    public RelationQuery(Integer page, Integer limit, SqlOperator distanceOperator, Integer distance, Long descendant, Long ancestor) {
-        super(page, limit);
+    public RelationQuery(Integer page, Integer limit, SqlOperator distanceOperator, Integer distance, Long descendant, Long ancestor, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.distanceOperator = distanceOperator;
         this.distance = distance;
         this.descendant = descendant;

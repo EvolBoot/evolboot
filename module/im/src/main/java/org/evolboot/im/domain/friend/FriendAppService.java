@@ -18,19 +18,11 @@ import java.util.Optional;
  */
 public interface FriendAppService  {
 
-    Friend findById(Long id);
-
     Friend create(FriendCreateFactory.Request request);
 
     void update( FriendUpdateService.Request request);
 
     void delete(Long id);
-
-    List<Friend> findAll();
-
-    List<Friend> findAll(FriendQuery query);
-
-    Page<Friend> page(FriendQuery query);
 
 
     /**
@@ -41,20 +33,10 @@ public interface FriendAppService  {
      */
     Friend apply(FriendApplyService.Request request);
 
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<Friend> findOne(FriendQuery query);
-
     /**
      * 加入黑名单
      */
     void joinBlacklist(Long ownerUserId, Long friendUserId);
-
 
     /**
      * 移出黑名单

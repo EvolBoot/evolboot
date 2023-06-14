@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin/")
+@RequestMapping("/v1/admin/captcha")
 @Tag(name = "验证码", description = "验证码")
 @AdminClient
 public class AdminImageCaptchaResourceV1 {

@@ -1,11 +1,11 @@
 package org.evolboot.core.data.jpa.querydsl;
 
-import com.querydsl.core.types.EntityPath;
-import com.querydsl.core.types.FactoryExpression;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.*;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
+import org.evolboot.core.data.Query;
+import org.evolboot.core.util.ExtendObjects;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -89,6 +89,27 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
         return querydsl.createQuery();
     }
 
+    @Override
+    public <P, Q extends Query> JPQLQuery<P> getJPQLQuery(Q q, OrderSpecifier<?> defaultOrder) {
+        JPQLQuery<P> jpqlQuery = getJPQLQuery();
+        orderBy(q, defaultOrder, jpqlQuery);
+        return jpqlQuery;
+    }
+
+    @Override
+    public <P, Q extends Query> JPQLQuery<P> getJPQLQuery(Q q) {
+        return getJPQLQuery(q, null);
+    }
+
+    @Override
+    public <P, Q extends Query> void orderBy(Q q, OrderSpecifier<?> defaultOrder, JPQLQuery<P> jpqlQuery) {
+        if (ExtendObjects.isNotBlank(q.getOrderField()) && ExtendObjects.nonNull(q.getOrder())) {
+            Path<Object> path = Expressions.path(Object.class, q.getOrderField());
+            jpqlQuery.orderBy(new OrderSpecifier(Order.valueOf(q.getOrder().name()), path));
+        } else if (ExtendObjects.nonNull(defaultOrder)) {
+            jpqlQuery.orderBy(defaultOrder);
+        }
+    }
 
     @Override
     @NonNull

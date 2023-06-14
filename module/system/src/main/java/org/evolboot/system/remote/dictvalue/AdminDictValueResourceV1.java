@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
@@ -92,7 +93,9 @@ public class AdminDictValueResourceV1 {
             @RequestParam(required = false) Long dictKeyId,
             @RequestParam(required = false) String key,
             @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order
     ) {
         DictValueQuery query = DictValueQuery
                 .builder()
@@ -101,6 +104,8 @@ public class AdminDictValueResourceV1 {
                 .endDate(endDate)
                 .page(page)
                 .dictKeyId(dictKeyId)
+                .order(order)
+                .orderField(orderField)
                 .key(key)
                 .limit(limit)
                 .build();

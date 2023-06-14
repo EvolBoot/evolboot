@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.userconversation.UserConversationQueryService;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
 import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
@@ -33,9 +34,11 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 public class AdminUserConversationResourceV1 {
 
     private final UserConversationAppService service;
+    private final UserConversationQueryService queryService;
 
-    public AdminUserConversationResourceV1(UserConversationAppService service) {
+    public AdminUserConversationResourceV1(UserConversationAppService service, UserConversationQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 /*
@@ -96,7 +99,7 @@ public class AdminUserConversationResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<UserConversation> response = service.page(query);
+        Page<UserConversation> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -107,7 +110,7 @@ public class AdminUserConversationResourceV1 {
     public ResponseModel<UserConversation> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

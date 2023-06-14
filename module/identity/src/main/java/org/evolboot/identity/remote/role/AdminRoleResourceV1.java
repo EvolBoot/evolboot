@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.role.RoleAppService;
@@ -115,12 +116,16 @@ public class AdminRoleResourceV1 {
     public ResponseModel<Page<Role>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,
-            String  roleName
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order,
+            @RequestParam(required = false) String roleName
     ) {
         RoleQuery query = RoleQuery.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)
+                .order(order)
+                .orderField(orderField)
                 .build();
         return ResponseModel.ok(service.page(query));
     }

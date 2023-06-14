@@ -17,6 +17,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.persistence.EntityManager;
 
+import static org.evolboot.captcha.autoconfigure.MobileCaptchaProperties.CONDITIONAL_ON_PROPERTY_TYPE;
+
 /**
  * @author evol
  */
@@ -25,7 +27,6 @@ import javax.persistence.EntityManager;
 @Slf4j
 public class MobileCaptchaAutoConfiguration {
 
-    private final static String CONDITIONAL_ON_PROPERTY_TYPE = "repository-type";
 
     private final MobileCaptchaProperties mobileCaptchaProperties;
 
@@ -51,6 +52,7 @@ public class MobileCaptchaAutoConfiguration {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(redisConnectionFactory);
         return new RedisMobileCaptchaRepository(redisTemplate, stringRedisTemplate);
     }
+/*
 
     @Bean
     @ConditionalOnClass(JpaMobileCaptchaRepository.class)
@@ -60,5 +62,6 @@ public class MobileCaptchaAutoConfiguration {
         JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(entityManager);
         return jpaRepositoryFactory.getRepository(JpaMobileCaptchaRepository.class);
     }
+*/
 
 }

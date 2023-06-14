@@ -26,7 +26,7 @@ public class MqTransaction extends AbstractEntity<Long> implements AggregateRoot
     @Id
     private Long id;
 
-    protected Date createTime = new Date();
+    protected Date createAt = new Date();
 
     private String remark;
 

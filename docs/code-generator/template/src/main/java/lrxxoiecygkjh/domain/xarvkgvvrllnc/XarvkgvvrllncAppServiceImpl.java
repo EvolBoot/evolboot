@@ -33,6 +33,7 @@ public class XarvkgvvrllncAppServiceImpl extends XarvkgvvrllncSupportService imp
 
 
     private final XarvkgvvrllncCreateFactory factory;
+
     private final XarvkgvvrllncUpdateService updateService;
 
     protected XarvkgvvrllncAppServiceImpl(XarvkgvvrllncRepository repository, XarvkgvvrllncCreateFactory factory, XarvkgvvrllncUpdateService updateService) {
@@ -62,26 +63,10 @@ public class XarvkgvvrllncAppServiceImpl extends XarvkgvvrllncSupportService imp
         repository.deleteById(id);
     }
 
-
     @Override
-    public List<Xarvkgvvrllnc> findAll() {
-        return repository.findAll();
+    @Transactional
+    public void deleteAllByIdInBatch(Iterable<Keya2Akk5iV3n> ids) {
+        repository.deleteAllByIdInBatch(ids);
     }
 
-
-    @Override
-    public List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query) {
-        return repository.findOne(query);
-    }
 }

@@ -56,26 +56,4 @@ public class GroupApplyAppServiceImpl extends GroupApplySupportService implement
     }
 
 
-    @Override
-    public List<GroupApply> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<GroupApply> findAll(GroupApplyQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<GroupApply> page(GroupApplyQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<GroupApply> findOne(GroupApplyQuery query) {
-        return repository.findOne(query);
-    }
-
 }

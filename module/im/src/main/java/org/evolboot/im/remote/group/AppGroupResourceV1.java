@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.group.GroupQueryService;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.GroupAppService;
 import org.evolboot.im.remote.group.dto.GroupCreateRequest;
@@ -31,10 +32,13 @@ import javax.validation.Valid;
 @ApiClient
 public class AppGroupResourceV1 {
 
-    private final GroupAppService service;
+    private final GroupAppService appService;
+    private final GroupQueryService queryService;
 
-    public AppGroupResourceV1(GroupAppService service) {
-        this.service = service;
+
+    public AppGroupResourceV1(GroupAppService appService, GroupQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -46,7 +50,7 @@ public class AppGroupResourceV1 {
             @RequestBody @Valid
             GroupCreateRequest request
     ) {
-        Group group = service.create(request.to(SecurityAccessTokenHolder.getPrincipalId()));
+        Group group = appService.create(request.to(SecurityAccessTokenHolder.getPrincipalId()));
         return ResponseModel.ok(group);
     }
 
@@ -57,7 +61,7 @@ public class AppGroupResourceV1 {
     @GetMapping("")
     public ResponseModel<List<GroupLocaleResponse>> findAll(
     ) {
-        List<Group> result = service.findAll();
+        List<Group> result = queryService.findAll();
         return ResponseModel.ok(GroupLocaleResponse.of(result));
     }
 
@@ -72,7 +76,7 @@ public class AppGroupResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<Group> result = service.page(query);
+        Page<Group> result = queryService.page(query);
         return ResponseModel.ok(GroupLocaleResponse.of(result));
     }
 

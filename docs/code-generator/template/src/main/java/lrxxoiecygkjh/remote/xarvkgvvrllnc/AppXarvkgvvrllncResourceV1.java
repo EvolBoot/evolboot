@@ -5,6 +5,7 @@ import projectPackage.core.annotation.OperationLog;
 import projectPackage.core.remote.DomainId;
 import projectPackage.core.remote.ResponseModel;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncAppService;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.XarvkgvvrllncQueryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,10 +33,13 @@ import lombok.extern.slf4j.Slf4j;
 @ApiClient
 public class AppXarvkgvvrllncResourceV1 {
 
-    private final XarvkgvvrllncAppService service;
+    private final XarvkgvvrllncAppService appService;
+    private final XarvkgvvrllncQueryService queryService;
 
-    public AppXarvkgvvrllncResourceV1(XarvkgvvrllncAppService service) {
-        this.service = service;
+
+    public AppXarvkgvvrllncResourceV1(XarvkgvvrllncAppService appService,XarvkgvvrllncQueryService queryService) {
+        this.appService = appService;
+        this.queryService = queryService;
     }
 
 
@@ -45,7 +49,7 @@ public class AppXarvkgvvrllncResourceV1 {
     @GetMapping("")
     public ResponseModel<List<XarvkgvvrllncLocaleResponse>> findAll(
     ) {
-        List<Xarvkgvvrllnc> result = service.findAll();
+        List<Xarvkgvvrllnc> result = queryService.findAll();
         return ResponseModel.ok(XarvkgvvrllncLocaleResponse.of(result));
     }
 
@@ -60,7 +64,7 @@ public class AppXarvkgvvrllncResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<Xarvkgvvrllnc> result = service.page(query);
+        Page<Xarvkgvvrllnc> result = queryService.page(query);
         return ResponseModel.ok(XarvkgvvrllncLocaleResponse.of(result));
     }
 

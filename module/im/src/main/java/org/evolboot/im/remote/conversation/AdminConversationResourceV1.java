@@ -8,6 +8,7 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.conversation.ConversationQueryService;
 import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
 import org.evolboot.im.domain.conversation.service.ConversationQuery;
@@ -39,9 +40,11 @@ public class AdminConversationResourceV1 {
 
 
     private final ConversationAppService service;
+    private final ConversationQueryService queryService;
 
-    public AdminConversationResourceV1(ConversationAppService service) {
+    public AdminConversationResourceV1(ConversationAppService service, ConversationQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 
@@ -102,7 +105,7 @@ public class AdminConversationResourceV1 {
                 .limit(limit)
                 .type(conversationType)
                 .build();
-        Page<Conversation> response = service.page(query);
+        Page<Conversation> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -113,7 +116,7 @@ public class AdminConversationResourceV1 {
     public ResponseModel<Conversation> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

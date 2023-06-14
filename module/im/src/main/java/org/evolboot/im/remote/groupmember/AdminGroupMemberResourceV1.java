@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.im.domain.groupmember.GroupMemberQueryService;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
 import org.evolboot.im.domain.groupmember.GroupMemberAppService;
 import org.evolboot.im.domain.groupmember.service.GroupMemberQuery;
@@ -33,9 +34,11 @@ import static org.evolboot.security.api.access.AccessAuthorities.or;
 public class AdminGroupMemberResourceV1 {
 
     private final GroupMemberAppService service;
+    private final GroupMemberQueryService queryService;
 
-    public AdminGroupMemberResourceV1(GroupMemberAppService service) {
+    public AdminGroupMemberResourceV1(GroupMemberAppService service, GroupMemberQueryService queryService) {
         this.service = service;
+        this.queryService = queryService;
     }
 
 /*
@@ -96,7 +99,7 @@ public class AdminGroupMemberResourceV1 {
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<GroupMember> response = service.page(query);
+        Page<GroupMember> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -107,7 +110,7 @@ public class AdminGroupMemberResourceV1 {
     public ResponseModel<GroupMember> get(
             @PathVariable("id") Long id
     ) {
-        return ResponseModel.ok(service.findById(id));
+        return ResponseModel.ok(queryService.findById(id));
     }
 
 }

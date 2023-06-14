@@ -17,7 +17,6 @@ import java.util.Optional;
  */
 public interface UserConversationAppService {
 
-    UserConversation findById(Long id);
 
     /**
      * 创建用户会话
@@ -28,21 +27,7 @@ public interface UserConversationAppService {
     void update(UserConversationUpdateService.Request request);
 
     void delete(Long id);
-
-    List<UserConversation> findAll();
-
-    List<UserConversation> findAll(UserConversationQuery query);
-
-    Page<UserConversation> page(UserConversationQuery query);
-
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<UserConversation> findOne(UserConversationQuery query);
+    
 
 
 }

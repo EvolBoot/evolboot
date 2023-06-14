@@ -10,6 +10,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.role.RoleAppService;
+import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
@@ -33,14 +34,16 @@ public class BffAdminService {
     private final RoleAppService roleAppService;
     private final PermissionAppService permissionAppService;
     private final UserAppService userAppService;
+    private final UserQueryService userQueryService;
     private final BffDownloadAuthoritiesService bffDownloadAuthoritiesService;
 
-    public BffAdminService(BffAdminMapper mapper, UserRoleAppService userRoleAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserAppService userAppService, BffDownloadAuthoritiesService bffDownloadAuthoritiesService) {
+    public BffAdminService(BffAdminMapper mapper, UserRoleAppService userRoleAppService, RoleAppService roleAppService, PermissionAppService permissionAppService, UserAppService userAppService, UserQueryService userQueryService, BffDownloadAuthoritiesService bffDownloadAuthoritiesService) {
         this.mapper = mapper;
         this.userRoleAppService = userRoleAppService;
         this.roleAppService = roleAppService;
         this.permissionAppService = permissionAppService;
         this.userAppService = userAppService;
+        this.userQueryService = userQueryService;
         this.bffDownloadAuthoritiesService = bffDownloadAuthoritiesService;
     }
 
@@ -65,7 +68,7 @@ public class BffAdminService {
      * @return
      */
     public List<Permission> findPermissionByUserIdConvertTree(Long userId) {
-        User user = userAppService.findByUserId(userId);
+        User user = userQueryService.findByUserId(userId);
         if (user.hasUserIdentity(UserIdentity.ROLE_ADMIN)) {
             return permissionAppService.findAllConvertTree();
         }

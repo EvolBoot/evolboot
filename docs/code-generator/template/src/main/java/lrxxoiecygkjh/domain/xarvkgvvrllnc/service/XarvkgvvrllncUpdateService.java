@@ -7,6 +7,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncRequestBase;
 
 import java.util.Objects;
+
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,8 +29,8 @@ public class XarvkgvvrllncUpdateService extends XarvkgvvrllncSupportService {
         repository.save(instantiationObjectName);
     }
 
-    @Geter
-    @Seter
+    @Getter
+    @Setter
     public static class Request extends XarvkgvvrllncRequestBase {
         private Keya2Akk5iV3n id;
     }

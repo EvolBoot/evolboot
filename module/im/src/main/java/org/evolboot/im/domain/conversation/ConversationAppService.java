@@ -17,7 +17,6 @@ import java.util.Optional;
  */
 public interface ConversationAppService {
 
-    Conversation findById(Long id);
 
     Conversation create(ConversationCreateFactory.Request request);
 
@@ -28,20 +27,6 @@ public interface ConversationAppService {
     void update(ConversationUpdateService.Request request);
 
     void delete(Long id);
-
-    List<Conversation> findAll();
-
-    List<Conversation> findAll(ConversationQuery query);
-
-    Page<Conversation> page(ConversationQuery query);
-
-    /**
-     * 根据条件查询单个
-     *
-     * @param query
-     * @return
-     */
-    Optional<Conversation> findOne(ConversationQuery query);
 
 
 }

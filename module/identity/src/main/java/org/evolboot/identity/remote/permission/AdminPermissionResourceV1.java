@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.permission.PermissionAppService;
@@ -130,11 +131,15 @@ public class AdminPermissionResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
     public ResponseModel<Page<Permission>> tree(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", defaultValue = "10") Integer limit
+            @RequestParam(name = "limit", defaultValue = "10") Integer limit,
+            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) Direction order
     ) {
         PermissionQuery query = PermissionQuery.builder()
                 .page(page)
                 .limit(limit)
+                .order(order)
+                .orderField(orderField)
                 .build();
         return ResponseModel.ok(service.page(query));
     }

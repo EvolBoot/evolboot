@@ -56,25 +56,4 @@ public class GroupMemberAppServiceImpl extends GroupMemberSupportService impleme
     }
 
 
-    @Override
-    public List<GroupMember> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<GroupMember> findAll(GroupMemberQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<GroupMember> page(GroupMemberQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<GroupMember> findOne(GroupMemberQuery query) {
-        return repository.findOne(query);
-    }
 }

@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.role.service;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
@@ -23,8 +24,8 @@ public class RoleQuery extends Query {
     private final String roleName;
 
     @Builder
-    public RoleQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String roleName) {
-        super(page, limit);
+    public RoleQuery(Long id, Integer page, Integer limit, Date startDate, Date endDate, String roleName, String orderField, Direction order) {
+        super(page, limit, orderField, order);
         this.id = id;
         this.roleName = roleName;
         if (ExtendObjects.nonNull(startDate)) {

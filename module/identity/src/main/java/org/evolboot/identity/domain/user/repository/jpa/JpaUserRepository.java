@@ -26,47 +26,47 @@ import java.util.Optional;
  */
 public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredicateExecutor<User, Long>, JpaRepository<User, Long> {
 
-    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q query, Expression<U> select) {
-        UserQuery userQuery = (UserQuery) query;
+    default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
+        UserQuery query = (UserQuery) _query;
         QUser q = QUser.user;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.createAt.asc());
-        if (ExtendObjects.nonNull(userQuery.getUserId())) {
-            jpqlQuery.where(q.id.eq(userQuery.getUserId()));
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
+        jpqlQuery.select(select).from(q);
+        if (ExtendObjects.nonNull(query.getUserId())) {
+            jpqlQuery.where(q.id.eq(query.getUserId()));
         }
-        if (ExtendObjects.isNotBlank(userQuery.getEmail())) {
-            jpqlQuery.where(q.email.eq(userQuery.getEmail().trim()));
+        if (ExtendObjects.isNotBlank(query.getEmail())) {
+            jpqlQuery.where(q.email.eq(query.getEmail().trim()));
         }
-        if (ExtendObjects.isNotBlank(userQuery.getRegisterIp())) {
-            jpqlQuery.where(q.registerIp.eq(userQuery.getRegisterIp().trim()));
+        if (ExtendObjects.isNotBlank(query.getRegisterIp())) {
+            jpqlQuery.where(q.registerIp.eq(query.getRegisterIp().trim()));
         }
-        if (ExtendObjects.nonNull(userQuery.getInviterUserId())) {
-            jpqlQuery.where(q.inviterUserId.eq(userQuery.getInviterUserId()));
+        if (ExtendObjects.nonNull(query.getInviterUserId())) {
+            jpqlQuery.where(q.inviterUserId.eq(query.getInviterUserId()));
         }
-        if (ExtendObjects.isNotBlank(userQuery.getUsername())) {
-            jpqlQuery.where(q.username.eq(userQuery.getUsername().trim()));
+        if (ExtendObjects.isNotBlank(query.getUsername())) {
+            jpqlQuery.where(q.username.eq(query.getUsername().trim()));
         }
-        if (ExtendObjects.isNotBlank(userQuery.getMobile())) {
-            jpqlQuery.where(q.mobile.eq(userQuery.getMobile().trim()));
+        if (ExtendObjects.isNotBlank(query.getMobile())) {
+            jpqlQuery.where(q.mobile.eq(query.getMobile().trim()));
         }
-        if (ExtendObjects.nonNull(userQuery.getDelStatus())) {
-            jpqlQuery.where(q.delStatus.eq(userQuery.getDelStatus()));
+        if (ExtendObjects.nonNull(query.getDelStatus())) {
+            jpqlQuery.where(q.delStatus.eq(query.getDelStatus()));
         } else {
             jpqlQuery.where(q.delStatus.eq(DelStatus.ACTIVE));
         }
-        if (ExtendObjects.nonNull(userQuery.getUserType())) {
-            jpqlQuery.where(q.userType.eq(userQuery.getUserType()));
+        if (ExtendObjects.nonNull(query.getUserType())) {
+            jpqlQuery.where(q.userType.eq(query.getUserType()));
         }
-        if (ExtendObjects.nonNull(userQuery.getRoleId())) {
-            jpqlQuery.where(q.roleId.eq(((UserQuery) query).getRoleId()));
+        if (ExtendObjects.nonNull(query.getRoleId())) {
+            jpqlQuery.where(q.roleId.eq(((UserQuery) _query).getRoleId()));
         }
-        if (ExtendObjects.nonNull(userQuery.getUserIdentity())) {
-            jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, userQuery.getUserIdentity().getIdentitySymbol()).gt(0));
+        if (ExtendObjects.nonNull(query.getUserIdentity())) {
+            jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, query.getUserIdentity().getIdentitySymbol()).gt(0));
         }
-        if (ExtendObjects.isNotBlank(userQuery.getKey())) {
-            jpqlQuery.where(q.username.like("%" + ((UserQuery) query).getKey() + "%")
-                    .or(q.nickname.like("%" + ((UserQuery) query).getKey() + "%"))
-                    .or(q.email.like("%"+ ((UserQuery) query).getKey() +"%"))
+        if (ExtendObjects.isNotBlank(query.getKey())) {
+            jpqlQuery.where(q.username.like("%" + ((UserQuery) _query).getKey() + "%")
+                    .or(q.nickname.like("%" + ((UserQuery) _query).getKey() + "%"))
+                    .or(q.email.like("%"+ ((UserQuery) _query).getKey() +"%"))
             );
         }
         return jpqlQuery;
@@ -104,6 +104,14 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         return findOne(jpqlQuery).orElse(UserConfiguration.getValue().getDefaultAvatar());
     }
 
+
+    @Override
+    default List<User> findAll() {
+        QUser q = QUser.user;
+        JPQLQuery<User> jpqlQuery = getJPQLQuery();
+        jpqlQuery.select(q).from(q).orderBy(q.createAt.desc());
+        return this.findAll(jpqlQuery);
+    }
 
     @Override
     default <Q extends Query> Page<User> page(Q query) {

@@ -33,8 +33,8 @@ public interface JpaStartupPageRepository extends StartupPageRepository, Extende
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         StartupPageQuery query = (StartupPageQuery) _query;
         QStartupPage q = QStartupPage.startupPage;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
-        jpqlQuery.select(select).from(q).orderBy(q.sort.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
+        jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getEnable())) {
             jpqlQuery.where(q.enable.eq(query.getEnable()));
         }

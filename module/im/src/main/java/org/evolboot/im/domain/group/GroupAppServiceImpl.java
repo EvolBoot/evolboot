@@ -55,26 +55,4 @@ public class GroupAppServiceImpl extends GroupSupportService implements GroupApp
         repository.deleteById(id);
     }
 
-
-    @Override
-    public List<Group> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<Group> findAll(GroupQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<Group> page(GroupQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<Group> findOne(GroupQuery query) {
-        return repository.findOne(query);
-    }
 }

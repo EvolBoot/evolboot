@@ -8,8 +8,8 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.pay.domain.releasedorder.entity.QReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderQuery;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
+import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +27,7 @@ public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, Ext
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         ReleasedOrderQuery query = (ReleasedOrderQuery) _query;
         QReleasedOrder q = QReleasedOrder.releasedOrder;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery();
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
         return jpqlQuery;
     }

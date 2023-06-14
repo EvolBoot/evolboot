@@ -27,8 +27,6 @@ public interface XarvkgvvrllncRepository extends BaseRepository<Xarvkgvvrllnc, K
 
     List<Xarvkgvvrllnc> findAll();
 
-    Long count(XarvkgvvrllncQuery query);
-
     <Q extends Query> List<Xarvkgvvrllnc> findAll(Q query);
 
     <Q extends Query> Optional<Xarvkgvvrllnc> findOne(Q query);

@@ -56,26 +56,4 @@ public class UserConversationAppServiceImpl extends UserConversationSupportServi
     }
 
 
-    @Override
-    public List<UserConversation> findAll() {
-        return repository.findAll();
-    }
-
-
-    @Override
-    public List<UserConversation> findAll(UserConversationQuery query) {
-        return repository.findAll(query);
-    }
-
-    @Override
-    public Page<UserConversation> page(UserConversationQuery query) {
-        return repository.page(query);
-    }
-
-
-    @Override
-    public Optional<UserConversation> findOne(UserConversationQuery query) {
-        return repository.findOne(query);
-    }
-
 }
