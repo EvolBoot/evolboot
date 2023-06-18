@@ -24,9 +24,9 @@ public class AdminAccessTokenAuthenticateTokenRequest {
 
 
 
-    private String imageCaptchaToken;
+    private String captchaToken;
 
-    private String imageCaptchaCode;
+    private String captchaCode;
 
 
     public AccessTokenAuthenticateToken to(String ip) {
@@ -35,8 +35,8 @@ public class AdminAccessTokenAuthenticateTokenRequest {
                 .password(password)
                 .googleAuthenticatorCode(googleAuthenticatorCode)
                 .authenticationTokenType(AuthenticationTokenType.IMAGE_CAPTCHA)
-                .imageCaptchaToken(imageCaptchaToken)
-                .imageCaptchaCode(imageCaptchaCode)
+                .captchaToken(captchaToken)
+                .captchaCode(captchaCode)
                 .ip(ip)
                 .build();
     }

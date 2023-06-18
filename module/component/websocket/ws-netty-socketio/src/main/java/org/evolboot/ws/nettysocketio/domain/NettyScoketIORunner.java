@@ -76,6 +76,7 @@ public class NettyScoketIORunner implements DisposableBean {
         SessionClientManager.Device device = sessionClientManager.connect(client);
         if (device == null) {
             log.info("WS:Netty-SocketIO:连接:没有Token:断开连接:{}", client.isChannelOpen());
+            client.disconnect();
             return;
         }
         WsConnectedEvent wsConnectedEvent = new WsConnectedEvent(device.getPrincipalId(), device.getDeviceType());
@@ -101,6 +102,7 @@ public class NettyScoketIORunner implements DisposableBean {
         SessionClientManager.Device device = sessionClientManager.disconnect(client);
         if (device == null) {
             log.error("WS:Netty-SocketIO:离线监听异常,找不到对应的 principalId");
+            client.disconnect();
             return;
         }
         // 发布离线事件

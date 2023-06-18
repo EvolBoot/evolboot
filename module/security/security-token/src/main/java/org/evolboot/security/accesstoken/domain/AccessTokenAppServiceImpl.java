@@ -50,8 +50,8 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
             token = new MobileCaptchaAuthenticationToken(
                     accessTokenAuthenticateToken.getMobilePrefix(),
                     accessTokenAuthenticateToken.getUsername(),
-                    accessTokenAuthenticateToken.getMobileCaptchaToken(),
-                    accessTokenAuthenticateToken.getMobileCaptchaCode(),
+                    accessTokenAuthenticateToken.getCaptchaToken(),
+                    accessTokenAuthenticateToken.getCaptchaCode(),
                     accessTokenAuthenticateToken.getDeviceType(),
                     accessTokenAuthenticateToken.getIp()
             );

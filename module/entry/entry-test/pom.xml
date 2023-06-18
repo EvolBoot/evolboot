@@ -10,12 +10,78 @@
     <artifactId>entry-test</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.evolboot</groupId>
-            <artifactId>core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
             <artifactId>config-resource</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>storage</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>identity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>security-token</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>security-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>bff-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>captcha</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>schedule</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>bff-admin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>pay</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>mq-redis-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>ws-netty-socketio</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>im</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>apidoc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

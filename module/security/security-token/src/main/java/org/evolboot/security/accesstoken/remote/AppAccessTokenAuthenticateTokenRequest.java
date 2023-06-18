@@ -20,9 +20,9 @@ public class AppAccessTokenAuthenticateTokenRequest {
     @Schema(description = "密码", example = "2CbZMXS2fb/hC5OyMwmB9DPP+ZpvroothKsKTp2uOAqloHVqE3vbSzxvQJWKB+mCGg4x1jer+coJvsF4EJcnCeVwMiLrs3ElZlJ52vsDowDzxr0ybaua2IOL2fhmfPmdw8imDVHk1zssFQJvp2QtsH390jlHTEn9t6rpPaZIlPM=")
     private String password;
 
-    private String mobileCaptchaToken;
+    private String captchaToken;
 
-    private String mobileCaptchaCode;
+    private String captchaCode;
 
 
     private AuthenticationTokenType authenticationTokenType;
@@ -33,8 +33,8 @@ public class AppAccessTokenAuthenticateTokenRequest {
         return AccessTokenAuthenticateToken.builder()
                 .username(username)
                 .password(password)
-                .mobileCaptchaToken(mobileCaptchaToken)
-                .mobileCaptchaCode(getMobileCaptchaCode())
+                .captchaToken(captchaToken)
+                .captchaCode(captchaCode)
                 .authenticationTokenType(authenticationTokenType)
                 .deviceType(deviceType)
                 .ip(ip)

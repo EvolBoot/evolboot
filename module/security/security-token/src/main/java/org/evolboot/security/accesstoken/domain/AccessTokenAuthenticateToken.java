@@ -23,14 +23,9 @@ public class AccessTokenAuthenticateToken {
 
     String mobilePrefix;
 
+    private String captchaToken;
 
-    private String imageCaptchaToken;
-
-    private String imageCaptchaCode;
-
-    private String mobileCaptchaToken;
-
-    private String mobileCaptchaCode;
+    private String captchaCode;
 
     private String googleAuthenticatorCode;
 
