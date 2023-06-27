@@ -16,7 +16,7 @@ public class PermissionDeleteEvent implements Event<List<Long>> {
     private final List<Long> permissionIds;
 
     @Override
-    public List<Long> getSource() {
+    public List<Long> getEventSourceId() {
         return permissionIds;
     }
 }

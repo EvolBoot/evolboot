@@ -20,7 +20,7 @@ public class FriendDeleteEvent implements Event<Long> {
     private Long conversationId;
 
     @Override
-    public Long getSource() {
+    public Long getEventSourceId() {
         return id;
     }
 }

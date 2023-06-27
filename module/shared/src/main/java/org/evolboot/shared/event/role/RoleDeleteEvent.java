@@ -14,7 +14,7 @@ public class RoleDeleteEvent implements Event<Long> {
     private final Long roleId;
 
     @Override
-    public Long getSource() {
+    public Long getEventSourceId() {
         return roleId;
     }
 }

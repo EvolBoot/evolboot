@@ -58,7 +58,7 @@ public class NettyScoketIOWsMessageSender implements WsMessageSender {
      */
     @Override
     public void broadcast(String action, Object msg) {
-        server.getBroadcastOperations().sendEvent(action, JsonUtil.stringify(msg));
+        server.getBroadcastOperations().sendEvent(action, msg);
     }
 
     @Override

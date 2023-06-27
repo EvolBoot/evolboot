@@ -5,7 +5,7 @@ package org.evolboot.shared.event.mq;
  */
 public class TestTransactionMQMessage extends TransactionMQMessage {
     @Override
-    public Object getSource() {
+    public Object getEventSourceId() {
         return 1L;
     }
 }

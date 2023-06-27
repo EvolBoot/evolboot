@@ -16,7 +16,7 @@ public class DictKeyDeleteEvent implements Event<Long> {
     private Long id;
 
     @Override
-    public Long getSource() {
+    public Long getEventSourceId() {
         return id;
     }
 }

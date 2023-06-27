@@ -9,6 +9,6 @@ import java.io.Serializable;
 
 public interface Event<T> extends Serializable {
 
-    T getSource();
+    T getEventSourceId();
 
 }

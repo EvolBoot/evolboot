@@ -19,7 +19,7 @@ public class TestDelayMQMessage extends DelayMQMessage<String> {
     }
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return message;
     }
 }

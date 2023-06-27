@@ -27,7 +27,7 @@ public class ReceiptOrderStatusChangeMessage extends TransactionMQMessage<String
     private ReceiptOrderStatus receiptOrderStatus;
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return receiptOrderId;
     }
 

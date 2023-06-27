@@ -18,7 +18,7 @@ public class ReleasedOrderCreatedMessage extends TransactionMQMessage<String> {
     private String releasedOrderId;
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return releasedOrderId;
     }
 }

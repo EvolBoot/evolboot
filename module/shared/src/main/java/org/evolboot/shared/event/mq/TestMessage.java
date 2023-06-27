@@ -19,7 +19,7 @@ public class TestMessage extends RocketMQMessage<String> {
     }
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return message;
     }
 }

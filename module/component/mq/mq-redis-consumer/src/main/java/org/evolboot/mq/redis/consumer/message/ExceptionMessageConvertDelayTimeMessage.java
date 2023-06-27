@@ -23,7 +23,7 @@ public class ExceptionMessageConvertDelayTimeMessage extends DelayMQMessage<Stri
 
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return jsonContent;
     }
 

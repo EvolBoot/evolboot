@@ -31,7 +31,7 @@ public class GroupCreateEvent implements Event<Long> {
 
 
     @Override
-    public Long getSource() {
+    public Long getEventSourceId() {
         return groupId;
     }
 }

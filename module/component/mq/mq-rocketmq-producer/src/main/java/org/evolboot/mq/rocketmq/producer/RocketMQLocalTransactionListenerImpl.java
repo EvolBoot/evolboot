@@ -40,11 +40,11 @@ public class RocketMQLocalTransactionListenerImpl implements RocketMQLocalTransa
         RocketMQLocalTransactionCheck rocketMQLocalTransactionCheck = map.get(aClass);
         RocketMQMessage rocketMQMessage = JsonUtil.parse(new String((byte[]) msg.getPayload()), aClass);
         if (ExtendObjects.nonNull(rocketMQLocalTransactionCheck)) {
-            log.info("检查本地事务,调用检查器进行事务检查:arg: {}, Source: {},CheckTimes:{}", arg, rocketMQMessage.getSource(), 0);
+            log.info("检查本地事务,调用检查器进行事务检查:arg: {}, Source: {},CheckTimes:{}", arg, rocketMQMessage.getEventSourceId(), 0);
             return rocketMQLocalTransactionCheck.checkLocalTransaction(rocketMQMessage, 0);
         }
         if (rocketMQMessage instanceof TransactionMQMessage) {
-            log.info("检查本地事务,使用通用检查器进行事务检查:arg: {}, Source: {},CheckTimes:{}", arg, rocketMQMessage.getSource(), 0);
+            log.info("检查本地事务,使用通用检查器进行事务检查:arg: {}, Source: {},CheckTimes:{}", arg, rocketMQMessage.getEventSourceId(), 0);
             return commonRocketMQLocalTransactionCheck.checkLocalTransaction((TransactionMQMessage<?>) rocketMQMessage, 0);
         }
         log.info("没有处理事务的监听器,直接提交,arg: {}", arg);
@@ -63,11 +63,11 @@ public class RocketMQLocalTransactionListenerImpl implements RocketMQLocalTransa
         RocketMQMessage rocketMQMessage = JsonUtil.parse(new String((byte[]) msg.getPayload()), aClass);
         RocketMQLocalTransactionCheck rocketMQLocalTransactionCheck = map.get(aClass);
         if (ExtendObjects.nonNull(rocketMQLocalTransactionCheck)) {
-            log.info("检查本地事务,调用检查器进行事务检查:消息ID: {}, Source: {},CheckTimes:{}", id, rocketMQMessage.getSource(), transactionCheckTimes);
+            log.info("检查本地事务,调用检查器进行事务检查:消息ID: {}, Source: {},CheckTimes:{}", id, rocketMQMessage.getEventSourceId(), transactionCheckTimes);
             return rocketMQLocalTransactionCheck.checkLocalTransaction(rocketMQMessage, transactionCheckTimes);
         }
         if (rocketMQMessage instanceof TransactionMQMessage) {
-            log.info("检查本地事务,使用通用检查器进行事务检查:消息ID: {}, Source: {},CheckTimes:{}", id, rocketMQMessage.getSource(), transactionCheckTimes);
+            log.info("检查本地事务,使用通用检查器进行事务检查:消息ID: {}, Source: {},CheckTimes:{}", id, rocketMQMessage.getEventSourceId(), transactionCheckTimes);
             return commonRocketMQLocalTransactionCheck.checkLocalTransaction((TransactionMQMessage<?>) rocketMQMessage, transactionCheckTimes);
         }
         log.info("没有处理事务的监听器,直接提交,消息ID: {}", id);

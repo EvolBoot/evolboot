@@ -46,9 +46,9 @@ public class RocketMQMessagePublisher implements MQMessagePublisher {
                 .setHeader(MqConstant.TAG, tag)
                 .build();
         TransactionSendResult transactionSendResult =
-                rocketMQTemplate.sendMessageInTransaction(buildDestination(topic, tag), _message, message.getSource());
+                rocketMQTemplate.sendMessageInTransaction(buildDestination(topic, tag), _message, message.getEventSourceId());
         String msgId = transactionSendResult.getMsgId();
-        log.info("发送事务消息:消息ID: {}, Source: {}, Tag: {}", msgId, message.getSource(), tag);
+        log.info("发送事务消息:消息ID: {}, Source: {}, Tag: {}", msgId, message.getEventSourceId(), tag);
 
     }
 

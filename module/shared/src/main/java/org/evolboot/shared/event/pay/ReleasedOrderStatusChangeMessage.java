@@ -29,7 +29,7 @@ public class ReleasedOrderStatusChangeMessage extends TransactionMQMessage<Strin
 
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return releasedOrderId;
     }
 }

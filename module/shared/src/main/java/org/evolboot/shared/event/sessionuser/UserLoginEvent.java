@@ -17,7 +17,7 @@ public class UserLoginEvent implements Event<String> {
 
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return loginToken;
     }
 

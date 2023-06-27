@@ -18,7 +18,7 @@ public class UserIdentityChangeEvent implements Event<Long> {
     private final Set<UserIdentity> currentUserIdentity;
 
     @Override
-    public Long getSource() {
+    public Long getEventSourceId() {
         return userId;
     }
 }

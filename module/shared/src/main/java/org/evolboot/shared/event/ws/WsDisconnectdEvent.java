@@ -18,7 +18,7 @@ public class WsDisconnectdEvent implements Event<String> {
     private DeviceType deviceType;
 
     @Override
-    public String getSource() {
+    public String getEventSourceId() {
         return principalId;
     }
 }
