@@ -1,6 +1,7 @@
 package org.evolboot.captcha.domain.imagecaptcha.service;
 
 import com.wf.captcha.ArithmeticCaptcha;
+import com.wf.captcha.base.Captcha;
 import lombok.Builder;
 import lombok.Getter;
 import org.evolboot.captcha.domain.imagecaptcha.entity.ImageCaptcha;
@@ -21,7 +22,7 @@ public class ImageCaptchaCreateFactory {
     }
 
     public Response create(Integer width, Integer height, String ip) {
-        ArithmeticCaptcha captcha = generate(width, height);
+        Captcha captcha = generate(width, height);
         ImageCaptcha imageCaptcha = ImageCaptcha.builder()
                 .code(captcha.text())
                 .ip(ip)
@@ -38,7 +39,7 @@ public class ImageCaptchaCreateFactory {
                 .build();
     }
 
-    private ArithmeticCaptcha generate(Integer width, Integer height) {
+    private Captcha generate(Integer width, Integer height) {
         if (width > ImageCaptchaConfiguration.getValue().getDefaultWidth()) {
             width = ImageCaptchaConfiguration.getValue().getDefaultWidth();
         }
@@ -47,12 +48,12 @@ public class ImageCaptchaCreateFactory {
         }
         //获取图片验证码
         // 三个参数分别为宽、高、位数
-        ArithmeticCaptcha captcha = new ArithmeticCaptcha(width, height, ImageCaptchaConfiguration.getValue().getLen());
-        captcha.getArithmeticString();  // 获取运算的公式：3+2=?
+//        CustomSpecCaptcha captcha = new CustomSpecCaptcha(width, height, ImageCaptchaConfiguration.getValue().getLen());
+//        captcha.getArithmeticString();  // 获取运算的公式：3+2=?
         // 设置字体
 //        captcha.setFont(new Font("Verdana", Font.PLAIN, 32));  // 有默认字体，可以不用设置
         // 设置类型，纯数字、纯字母、字母数字混合
-        return captcha;
+        return new CustomSpecCaptcha(width, height, ImageCaptchaConfiguration.getValue().getLen());
     }
 
     @Builder
