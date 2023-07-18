@@ -11,11 +11,11 @@ public class HuanQiuPayForeignReceiptCreateResponse {
         if (ExtendObjects.isNull(this.getData())) {
             return false;
         }
-        return "成功".equals(this.getData().getStatus());
+        return "成功".equals(this.getData().getState());
     }
 
-    public String getStatus() {
-        return this.getData().getStatus();
+    public String getState() {
+        return this.getData().getState();
     }
 
     public String getPayUrl() {
@@ -30,7 +30,7 @@ public class HuanQiuPayForeignReceiptCreateResponse {
      * result : success
      * code : MSG_OK
      * msg : 操作成功
-     * data : {"mer_id":"xt491112216514","businessnumber":"1637217749508","status":"成功","transactiondate":"2021-11-18 14:43:04","amount":"10000.00","real_amount":"10000.00","transactiontype":"代收","inputdate":"2021-11-18 14:43:04","trade_qrcode":"https://api.stars-pay.com/api/order/jump?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmRlcm51bWJlciI6IlRQMTYzNzIxNzc1MFdaQ0pHIiwiZW50ZXJwcmlzZV9pZCI6N30.S1R5vGirZWAnooTM6QjyfbFJdtMdSoRd_F9OTVni4-o&language=th","orderinfo":"","remark":""}
+     * data : {"mer_id":"xt491112216514","businessnumber":"1637217749508","state":"成功","transactiondate":"2021-11-18 14:43:04","amount":"10000.00","real_amount":"10000.00","transactiontype":"代收","inputdate":"2021-11-18 14:43:04","trade_qrcode":"https://api.stars-pay.com/api/order/jump?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmRlcm51bWJlciI6IlRQMTYzNzIxNzc1MFdaQ0pHIiwiZW50ZXJwcmlzZV9pZCI6N30.S1R5vGirZWAnooTM6QjyfbFJdtMdSoRd_F9OTVni4-o&language=th","orderinfo":"","remark":""}
      */
 
     private String result;
@@ -74,7 +74,7 @@ public class HuanQiuPayForeignReceiptCreateResponse {
         /**
          * mer_id : xt491112216514
          * businessnumber : 1637217749508
-         * status : 成功
+         * state : 成功
          * transactiondate : 2021-11-18 14:43:04
          * amount : 10000.00
          * real_amount : 10000.00
@@ -87,7 +87,7 @@ public class HuanQiuPayForeignReceiptCreateResponse {
 
         private String mer_id;
         private String businessnumber;
-        private String status;
+        private String state;
         private String transactiondate;
         private String amount;
         private String real_amount;
@@ -113,12 +113,12 @@ public class HuanQiuPayForeignReceiptCreateResponse {
             this.businessnumber = businessnumber;
         }
 
-        public String getStatus() {
-            return status;
+        public String getState() {
+            return state;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setState(String state) {
+            this.state = state;
         }
 
         public String getTransactiondate() {

@@ -20,10 +20,11 @@ public class ConversationUpdateService extends ConversationSupportService {
         super(repository);
     }
 
-    public void execute( Request request) {
+    public void execute(Request request) {
         Conversation conversation = findById(request.getId());
         repository.save(conversation);
     }
+
     @Getter
     @Setter
     public static class Request extends ConversationRequestBase {

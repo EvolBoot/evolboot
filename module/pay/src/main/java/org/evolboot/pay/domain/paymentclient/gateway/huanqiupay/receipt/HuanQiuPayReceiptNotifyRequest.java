@@ -7,7 +7,7 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
+import org.evolboot.shared.pay.ReceiptOrderState;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -41,8 +41,8 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
 
 
     @Override
-    public String getForeignStatus() {
-        return requestParams.get("status");
+    public String getForeignState() {
+        return requestParams.get("state");
     }
 
     @Override
@@ -72,11 +72,11 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
     }
 
     @Override
-    public ReceiptOrderStatus getStatus() {
-        if ("成功".equals(requestParams.get("status"))) {
-            return ReceiptOrderStatus.SUCCESS;
+    public ReceiptOrderState getState() {
+        if ("成功".equals(requestParams.get("state"))) {
+            return ReceiptOrderState.SUCCESS;
         }
-        return ReceiptOrderStatus.FAIL;
+        return ReceiptOrderState.FAIL;
     }
 
 

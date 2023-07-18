@@ -25,5 +25,4 @@ public interface ChatRecordAppService {
     void delete(Long id);
 
 
-
 }

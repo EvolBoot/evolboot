@@ -49,7 +49,7 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
     /**
      * 状态
      */
-    private UserConversationStatus status = UserConversationStatus.NORMAL;
+    private UserConversationState state = UserConversationState.NORMAL;
 
     /**
      * 禁言原因
@@ -94,7 +94,7 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
      */
     public void addForbidTalkCauses(UserConversationForbidTalkCause forbidTalkCause) {
         this.forbidTalkCauses.add(forbidTalkCause);
-        this.status = UserConversationStatus.FORBID_TALK;
+        this.state = UserConversationState.FORBID_TALK;
     }
 
     /**
@@ -105,7 +105,7 @@ public class UserConversation extends JpaAbstractEntity<Long> implements Aggrega
     public void removeForbidTalkCauses(UserConversationForbidTalkCause forbidTalkCause) {
         this.forbidTalkCauses.remove(forbidTalkCause);
         if (this.forbidTalkCauses.isEmpty()) {
-            this.status = UserConversationStatus.NORMAL;
+            this.state = UserConversationState.NORMAL;
         }
     }
 

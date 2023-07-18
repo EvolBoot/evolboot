@@ -1,8 +1,8 @@
 package org.evolboot.im.acl.adapter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.im.acl.client.UserClient;
-import org.evolboot.shared.api.identity.user.UserServiceApi;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserAdapter implements UserClient {
 
-    private final UserServiceApi userAppService;
+    private final UserQueryService userAppService;
 
-    public UserAdapter(UserServiceApi userServiceApi) {
+    public UserAdapter(UserQueryService userServiceApi) {
         this.userAppService = userServiceApi;
     }
 

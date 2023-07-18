@@ -19,6 +19,7 @@ public interface XarvkgvvrllncAppService {
 
     /**
      * 创建
+     *
      * @param request
      * @return
      */
@@ -26,12 +27,14 @@ public interface XarvkgvvrllncAppService {
 
     /**
      * 更新
+     *
      * @param request
      */
     void update(XarvkgvvrllncUpdateService.Request request);
 
     /**
      * 删除
+     *
      * @param id
      */
     void delete(Keya2Akk5iV3n id);
@@ -40,9 +43,6 @@ public interface XarvkgvvrllncAppService {
      * 批量删除
      */
     void deleteAllByIdInBatch(Iterable<Keya2Akk5iV3n> ids);
-
-
-
 
 
 }

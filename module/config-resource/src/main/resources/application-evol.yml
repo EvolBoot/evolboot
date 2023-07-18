@@ -7,7 +7,7 @@ evolpn:
     time-zone: GMT+8
     time-zone-cst: Asia/Shanghai
     test-mode: true
-    test-key: RTig0qAdJA
+    test-key: TESTRTig0qAdJA
   # 雪花ID
   snowflake-host: 1
 
@@ -71,7 +71,7 @@ evolpn:
       secret-access-key: 1234567890@a
   socketio:
     port: 9092
-    host: localhost
+    host: 0.0.0.0
 
 spring:
   datasource:
@@ -112,6 +112,19 @@ spring:
       thread-number: 1
   jpa:
     show-sql: true
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.5.10:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: 192.168.5.10:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      topic: xxx
+      ack-s: all
 
 mybatis-plus:
   configuration:

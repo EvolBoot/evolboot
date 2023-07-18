@@ -13,9 +13,9 @@ import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyResponse;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
-import org.evolboot.shared.event.pay.ReceiptOrderStatusChangeMessage;
+import org.evolboot.shared.event.pay.ReceiptOrderStateChangeMessage;
 import org.evolboot.shared.pay.PayGateway;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
+import org.evolboot.shared.pay.ReceiptOrderState;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -56,26 +56,26 @@ public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
             throw new ExtendIllegalArgumentException("Signature error");
         }
         ReceiptNotifyResponse response = receiptClient.receiptOrderNotify(payGatewayAccount, request);
-        if (ReceiptOrderStatus.SUCCESS == response.getStatus()) {
+        if (ReceiptOrderState.SUCCESS == response.getState()) {
             log.info("代收:支付成功:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
             boolean success = receiptOrder.success(response.getNotifyResult());
             if (success) {
-                mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStatusChangeMessage(
+                mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStateChangeMessage(
                         receiptOrder.id(),
                         receiptOrder.getInternalOrderId(),
                         receiptOrder.getPayAmount(),
-                        receiptOrder.getStatus()
+                        receiptOrder.getState()
                 ));
             }
-        } else if (ReceiptOrderStatus.FAIL == response.getStatus()) {
+        } else if (ReceiptOrderState.FAIL == response.getState()) {
             log.info("代收:支付失败:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
             boolean fail = receiptOrder.fail(response.getNotifyResult());
             if (fail) {
-                mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStatusChangeMessage(
+                mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStateChangeMessage(
                         receiptOrder.id(),
                         receiptOrder.getInternalOrderId(),
                         receiptOrder.getPayAmount(),
-                        receiptOrder.getStatus()
+                        receiptOrder.getState()
                 ));
             }
         }

@@ -31,7 +31,7 @@ public class XarvkgvvrllncQuery extends Query {
     private Date endDate;
 
     @Builder
-    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate,String orderField, Direction order) {
+    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
         if (ExtendObjects.nonNull(startDate)) {

@@ -14,7 +14,7 @@ import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.UserQuery;
-import org.evolboot.identity.domain.user.service.UserStatusChangeService;
+import org.evolboot.identity.domain.user.service.UserStateChangeService;
 import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
@@ -119,7 +119,7 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "管理员冻结(锁定)用户")
     @OperationLog("管理员冻结(锁定)用户")
-    @PutMapping("/status/lock")
+    @PutMapping("/state/lock")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_LOCK)
     public ResponseModel<?> lock(
             @RequestBody IdRequest<Long> request
@@ -130,7 +130,7 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "管理员解锁用户")
     @OperationLog("管理员解锁用户")
-    @PutMapping("/status/active")
+    @PutMapping("/state/active")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ACTIVE)
     public ResponseModel<?> active(
             @RequestBody IdRequest<Long> request
@@ -165,7 +165,7 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false, name = "user_type") UserType userType,
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
-            ) {
+    ) {
         UserQuery query = UserQuery
                 .builder()
                 .page(page)
@@ -245,13 +245,13 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "用户修改状态(禁用,解封)")
     @OperationLog("用户修改状态(禁用,解封)")
-    @PutMapping("/status/change")
+    @PutMapping("/state/change")
     @PreAuthorize(HAS_ROLE_ADMIN)
-    public ResponseModel<?> changeStatus(
+    public ResponseModel<?> changeState(
             @RequestBody @Valid
-            UserStatusChangeService.Request request
+            UserStateChangeService.Request request
     ) {
-        service.changeStatus(request);
+        service.changeState(request);
         return ResponseModel.ok();
     }
 

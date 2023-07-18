@@ -9,7 +9,7 @@ import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
+import org.evolboot.shared.pay.ReceiptOrderState;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -100,7 +100,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     /**
      * 状态
      */
-    private ReceiptOrderStatus status = ReceiptOrderStatus.PENDING;
+    private ReceiptOrderState state = ReceiptOrderState.PENDING;
 
 
     private void setRedirectUrl(String redirectUrl) {
@@ -138,8 +138,8 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     }
 
 
-    private void setStatus(ReceiptOrderStatus status) {
-        this.status = status;
+    private void setState(ReceiptOrderState state) {
+        this.state = state;
 
     }
 
@@ -156,24 +156,24 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     }
 
     public boolean success(ReceiptOrderNotifyResult notifyResult) {
-        if (!ReceiptOrderStatus.PENDING.equals(this.status)) {
-            log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.status);
+        if (!ReceiptOrderState.PENDING.equals(this.state)) {
+            log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.state);
             return false;
         }
         //TODO 校验支付金额
         log.info("支付回调:更新订单状态为成功:{}", this.id);
-        setStatus(ReceiptOrderStatus.SUCCESS);
+        setState(ReceiptOrderState.SUCCESS);
         setNotifyResult(notifyResult);
         return true;
     }
 
     public boolean fail(ReceiptOrderNotifyResult notifyResult) {
-        if (!ReceiptOrderStatus.PENDING.equals(this.status)) {
-            log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.status);
+        if (!ReceiptOrderState.PENDING.equals(this.state)) {
+            log.error("支付回调:{}, 当前状态:{}  已更新过状态了，重复通知", this.id, this.state);
             return false;
         }
         log.info("支付回调:更新订单状态为失败:{}", this.id);
-        setStatus(ReceiptOrderStatus.FAIL);
+        setState(ReceiptOrderState.FAIL);
         setNotifyResult(notifyResult);
         return true;
     }

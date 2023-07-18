@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
-import org.evolboot.shared.pay.ReceiptOrderStatus;
+import org.evolboot.shared.pay.ReceiptOrderState;
 
 /**
  * @author evol
@@ -22,7 +22,7 @@ public class HuanQiuPayReceiptRedirectNotifyRequest implements ReceiptRedirectNo
     }
 
     @Override
-    public String getForeignStatus() {
+    public String getForeignState() {
         return null;
     }
 
@@ -37,7 +37,7 @@ public class HuanQiuPayReceiptRedirectNotifyRequest implements ReceiptRedirectNo
     }
 
     @Override
-    public ReceiptOrderStatus getStatus() {
-        return ReceiptOrderStatus.PENDING;
+    public ReceiptOrderState getState() {
+        return ReceiptOrderState.PENDING;
     }
 }

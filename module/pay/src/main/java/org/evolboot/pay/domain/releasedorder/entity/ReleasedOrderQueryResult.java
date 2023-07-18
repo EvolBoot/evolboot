@@ -36,7 +36,7 @@ public class ReleasedOrderQueryResult {
     /**
      * 请求时返回的代收状态
      */
-    @Column(name = "query_result_foreign_status_")
-    private String foreignStatus;
+    @Column(name = "query_result_foreign_state_")
+    private String foreignState;
 
 }

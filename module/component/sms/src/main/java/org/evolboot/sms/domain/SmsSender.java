@@ -24,7 +24,7 @@ public interface SmsSender {
     @Builder
     @Getter
     class Response {
-        boolean sendStatus;
+        boolean sendState;
         String smsContent;
     }
 

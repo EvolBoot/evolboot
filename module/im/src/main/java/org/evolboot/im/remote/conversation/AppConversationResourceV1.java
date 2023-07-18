@@ -23,6 +23,7 @@ public class AppConversationResourceV1 {
 
     private final ConversationAppService service;
     private final ConversationQueryService queryService;
+
     public AppConversationResourceV1(ConversationAppService service, ConversationQueryService queryService) {
         this.service = service;
         this.queryService = queryService;

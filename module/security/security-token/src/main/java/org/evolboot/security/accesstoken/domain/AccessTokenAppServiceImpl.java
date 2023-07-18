@@ -76,8 +76,8 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
             token = new ImageCaptchaAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(),
                     accessTokenAuthenticateToken.getPassword(),
-                    accessTokenAuthenticateToken.getImageCaptchaToken(),
-                    accessTokenAuthenticateToken.getImageCaptchaCode(),
+                    accessTokenAuthenticateToken.getCaptchaToken(),
+                    accessTokenAuthenticateToken.getCaptchaCode(),
                     accessTokenAuthenticateToken.getDeviceType(),
                     accessTokenAuthenticateToken.getIp()
             );

@@ -31,7 +31,7 @@ public interface UserIdRepository extends BaseRepository<UserId, Long> {
 
     List<Long> rand(int num);
 
-    Long countByStatus(Boolean status);
+    Long countByState(Boolean state);
 
     /**
      * 根据条件查询单个

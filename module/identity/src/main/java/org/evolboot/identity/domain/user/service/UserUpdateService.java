@@ -10,7 +10,7 @@ import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.role.service.RoleQueryService;
 import org.evolboot.identity.domain.user.entity.Gender;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.entity.UserStatus;
+import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -74,8 +74,8 @@ public class UserUpdateService extends UserSupportService {
             user.setEmail("");
         }
 
-        if (ExtendObjects.nonNull(request.getStatus())) {
-            user.setStatus(request.getStatus());
+        if (ExtendObjects.nonNull(request.getState())) {
+            user.setState(request.getState());
         }
 
         if (ExtendObjects.nonNull(request.getRoleId())) {
@@ -100,7 +100,7 @@ public class UserUpdateService extends UserSupportService {
         private String nickname;
         private String avatar;
         private Gender gender;
-        private UserStatus status;
+        private UserState state;
         private Long roleId;
         private String password;
         private String email;

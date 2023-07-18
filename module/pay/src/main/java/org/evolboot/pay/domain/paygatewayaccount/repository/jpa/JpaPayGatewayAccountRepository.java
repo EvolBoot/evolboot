@@ -28,7 +28,7 @@ public interface JpaPayGatewayAccountRepository extends PayGatewayAccountReposit
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         PayGatewayAccountQuery query = (PayGatewayAccountQuery) _query;
         QPayGatewayAccount q = QPayGatewayAccount.payGatewayAccount;
-        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query,q.createAt.desc());
+        JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
         if (ExtendObjects.nonNull(query.getEnable())) {
             jpqlQuery.where(q.enable.eq(query.getEnable()));

@@ -64,20 +64,16 @@ public class UserQueryServiceImpl extends UserSupportService implements UserQuer
     }
 
 
-
-
     @Override
     public String findAvatarByUserId(Long userId) {
         return repository.findAvatarByUserId(userId);
     }
 
 
-
     @Override
     public User findByUserId(Long userId) {
         return repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
     }
-
 
 
     @Override

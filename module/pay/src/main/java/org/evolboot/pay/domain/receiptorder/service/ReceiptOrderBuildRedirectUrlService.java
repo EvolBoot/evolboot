@@ -49,7 +49,7 @@ public class ReceiptOrderBuildRedirectUrlService extends ReceiptOrderSupportServ
         String redirectUrl = receiptOrder.getRedirectUrl();
         Map<String, String> params = Maps.newHashMap();
         params.put("internalOrderId", receiptOrder.getInternalOrderId());
-        params.put("status", response.getStatus().name());
+        params.put("state", response.getState().name());
         redisClientAppService.set(RedisCacheName.PAY_RECEIPT_REDIRECT_URL_CACHE_KEY + receiptOrder.getInternalOrderId(), params, 60);
         log.info("前端跳转链接:{},{},{}", receiptOrder.id(), receiptOrder.getPayGateway(), redirectUrl);
 

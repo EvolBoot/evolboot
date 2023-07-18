@@ -10,7 +10,7 @@ CREATE TABLE evol_im_friend
     owner_user_id_   bigint COMMENT '所有者ID',
     friend_user_id_  bigint COMMENT '好友ID',
     conversation_id_ bigint COMMENT '会话ID',
-    status_          tinyint COMMENT '状态',
+    state_           tinyint COMMENT '状态',
     nickname_remark_ varchar(50) COMMENT '昵称备注',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB

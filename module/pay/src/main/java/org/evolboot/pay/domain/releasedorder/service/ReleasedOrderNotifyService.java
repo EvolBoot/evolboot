@@ -11,7 +11,7 @@ import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyResponse;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
 import org.evolboot.shared.pay.PayGateway;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
+import org.evolboot.shared.pay.ReleasedOrderState;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -30,13 +30,13 @@ public class ReleasedOrderNotifyService extends ReleasedOrderSupportService {
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    private final ReleasedOrderStatusHandleService statusHandleService;
+    private final ReleasedOrderStateHandleService stateHaeeendleService;
 
-    protected ReleasedOrderNotifyService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStatusHandleService statusHandleService) {
+    protected ReleasedOrderNotifyService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStateHandleService stateHandleService) {
         super(repository);
         this.releasedClients = releasedClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
-        this.statusHandleService = statusHandleService;
+        this.stateHaeeendleService = stateHandleService;
     }
 
 
@@ -52,13 +52,13 @@ public class ReleasedOrderNotifyService extends ReleasedOrderSupportService {
             throw new ExtendIllegalArgumentException("Signature error");
         }
         ReleasedNotifyResponse response = releasedClient.releasedOrderNotify(gatewayAccount, request);
-        if (ReleasedOrderStatus.SUCCESS == response.getStatus()) {
+        if (ReleasedOrderState.SUCCESS == response.getState()) {
             log.info("代付:成功:{},{}", gatewayAccount.getPayGateway(), request.getReleasedOrderId());
-            statusHandleService.success(releasedOrder);
+            stateHaeeendleService.success(releasedOrder);
 
-        } else if (ReleasedOrderStatus.FAIL == response.getStatus()) {
+        } else if (ReleasedOrderState.FAIL == response.getState()) {
             log.info("代付:失败:{},{}", gatewayAccount.getPayGateway(), request.getReleasedOrderId());
-            statusHandleService.fail(releasedOrder);
+            stateHaeeendleService.fail(releasedOrder);
         }
         releasedOrder.setNotifyResult(response.getNotifyResult());
         repository.save(releasedOrder);

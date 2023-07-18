@@ -47,7 +47,7 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
     /**
      * 状态
      */
-    private FriendStatus status = FriendStatus.NORMAL;
+    private FriendState state = FriendState.NORMAL;
 
 
     /**
@@ -69,13 +69,13 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
 
 
     public void joinBlacklist() {
-        Assert.isTrue(FriendStatus.NORMAL.equals(this.getStatus()), "已经在你黑名单中了");
-        this.status = FriendStatus.BLACKLIST;
+        Assert.isTrue(FriendState.NORMAL.equals(this.getState()), "已经在你黑名单中了");
+        this.state = FriendState.BLACKLIST;
     }
 
     public void removeBlacklist() {
-        Assert.isTrue(FriendStatus.BLACKLIST.equals(this.getStatus()), "已经不在黑名单中了");
-        this.status = FriendStatus.NORMAL;
+        Assert.isTrue(FriendState.BLACKLIST.equals(this.getState()), "已经不在黑名单中了");
+        this.state = FriendState.NORMAL;
     }
 
     @Override

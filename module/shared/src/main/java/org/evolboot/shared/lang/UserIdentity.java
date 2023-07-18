@@ -2,7 +2,9 @@ package org.evolboot.shared.lang;
 
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,7 +22,9 @@ public enum UserIdentity {
     // 2的次方
     private final int identitySymbol;
 
-    private static final UserIdentity[] VALUES = values();
+    public static final UserIdentity[] VALUES = values();
+
+    public static final Set<UserIdentity> VALUES_SET = new HashSet<>(Arrays.asList(VALUES));
 
 
     UserIdentity(int identitySymbol) {

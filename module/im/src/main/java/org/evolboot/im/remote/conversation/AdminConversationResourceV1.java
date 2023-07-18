@@ -81,7 +81,7 @@ public class AdminConversationResourceV1 {
             @RequestBody @Valid
             ConversationUpdateRequest request
     ) {
-        service.update( request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

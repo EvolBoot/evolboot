@@ -23,7 +23,6 @@ public class AdminAccessTokenAuthenticateTokenRequest {
     private String googleAuthenticatorCode;
 
 
-
     private String captchaToken;
 
     private String captchaCode;

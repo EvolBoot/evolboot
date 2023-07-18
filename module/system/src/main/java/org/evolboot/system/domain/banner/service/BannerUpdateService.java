@@ -19,7 +19,7 @@ public class BannerUpdateService extends BannerSupportService {
         super(repository);
     }
 
-    public void execute( Request request) {
+    public void execute(Request request) {
         Banner banner = findById(request.getId());
         banner.setSort(request.getSort());
         banner.setShow(request.getShow());

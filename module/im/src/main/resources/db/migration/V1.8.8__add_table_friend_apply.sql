@@ -11,7 +11,7 @@ CREATE TABLE evol_im_friend_apply
     from_user_id_    bigint COMMENT '申请人',
     conversation_id_ bigint COMMENT '会话ID',
     apply_reason_    json COMMENT '申请原因',
-    status_          tinyint COMMENT '状态',
+    state_           tinyint COMMENT '状态',
     expire_at_       timestamp COMMENT '过期时间',
     handle_at_       timestamp COMMENT '处理时间',
     PRIMARY KEY (id_)
@@ -19,4 +19,4 @@ CREATE TABLE evol_im_friend_apply
   DEFAULT CHARSET = utf8mb4 COMMENT ='好友申请';
 
 create index evol_im_friend_apply__index
-    on evol_im_friend_apply (to_user_id_, from_user_id_, status_);
+    on evol_im_friend_apply (to_user_id_, from_user_id_, state_);

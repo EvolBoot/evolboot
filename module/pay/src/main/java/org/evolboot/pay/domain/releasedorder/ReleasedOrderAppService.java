@@ -22,5 +22,4 @@ public interface ReleasedOrderAppService {
     <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request);
 
 
-
 }

@@ -96,10 +96,10 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 状态
      */
-    private Boolean status;
+    private Boolean state;
 
     @Builder
-    public OperationLog(Long id, Long userId, Long beginTime, Long endTime, String operation, String httpMethod, String classMethod, String requestUrl, String params, String result, Long time, String ip,Boolean status) {
+    public OperationLog(Long id, Long userId, Long beginTime, Long endTime, String operation, String httpMethod, String classMethod, String requestUrl, String params, String result, Long time, String ip, Boolean state) {
         this.id = id;
         this.userId = userId;
         this.beginTime = beginTime;
@@ -112,7 +112,7 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
         this.result = result;
         this.time = time;
         this.ip = ip;
-        this.status = status;
+        this.state = state;
     }
 
     @Override

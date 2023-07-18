@@ -24,7 +24,7 @@ public class RestErrorController implements ErrorController {
     @GetMapping(path = Constant.ERROR_PATH)
     public ResponseModel<?> handleError(HttpServletRequest request, HttpServletResponse response, Throwable exception) {
         //获取statusCode:401,404,500
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.state_code");
         String msg = "unknown error";
         if (statusCode == null) {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();

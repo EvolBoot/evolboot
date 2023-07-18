@@ -28,6 +28,7 @@ public class NewsUpdateService extends NewsSupportService {
         news.setReleasedTime(request.getReleasedTime());
         repository.save(news);
     }
+
     @Getter
     @Setter
     public static class Request extends NewsRequestBase {

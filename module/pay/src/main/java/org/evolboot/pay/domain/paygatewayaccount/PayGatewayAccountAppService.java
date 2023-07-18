@@ -23,6 +23,4 @@ public interface PayGatewayAccountAppService {
     void delete(Long id);
 
 
-
-
 }

@@ -16,18 +16,18 @@ CREATE TABLE evoltb_pay_receipt_order
     pay_gateway_account_id_          bigint COMMENT '支付网关的账户ID',
     pay_gateway_                     tinyint COMMENT '支付网关',
     pay_amount_                      decimal(20, 3) COMMENT '支付金额',
-    status_                          tinyint COMMENT '支付状态',
+    state_                           tinyint COMMENT '支付状态',
     currency_                        smallint    null comment '货币',
 
     request_result_foreign_order_id_ varchar(100) COMMENT '请求返回时的第三方订单ID',
     request_result_pay_url_          varchar(256) COMMENT '请求返回的URL',
     request_result_request_text_     text COMMENT '请求返回的全文信息',
-    request_result_foreign_status_   varchar(100) COMMENT '请求返回的状态',
+    request_result_foreign_state_    varchar(100) COMMENT '请求返回的状态',
 
 
     notify_result_foreign_order_id_  varchar(50) COMMENT '通知返回的第三方订单ID',
     notify_result_receipt_order_id_  varchar(50) COMMENT '通知返回的我方订单ID',
-    notify_result_foreign_status_    varchar(50) COMMENT '通知返回的状态',
+    notify_result_foreign_state_     varchar(50) COMMENT '通知返回的状态',
     notify_result_notify_text_       text COMMENT '通知返回的全文信息',
     notify_result_pay_amount_        decimal(20, 3) COMMENT '通知返回的支付金额',
     notify_result_arrival_amount_    decimal(20, 3) COMMENT '通知返回的到账金额',

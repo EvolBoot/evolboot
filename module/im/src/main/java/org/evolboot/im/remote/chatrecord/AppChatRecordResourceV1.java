@@ -37,7 +37,7 @@ public class AppChatRecordResourceV1 {
     private final ChatRecordQueryService queryService;
 
 
-    public AppChatRecordResourceV1(ChatRecordAppService appService,ChatRecordQueryService queryService) {
+    public AppChatRecordResourceV1(ChatRecordAppService appService, ChatRecordQueryService queryService) {
         this.appService = appService;
         this.queryService = queryService;
     }

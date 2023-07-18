@@ -15,7 +15,7 @@
         from (select *
               from evoltb_identity_user
               where user_identity_ <![CDATA[ & ]]> 4 > 0
-                and del_status_ = 'ACTIVE') as t1
+                and del_state_ = 'ACTIVE') as t1
                  left join (select iur.user_id_,
                                    group_concat(ir.role_name_) as role_name_,
                                    group_concat(ir.id_)        as role_id_

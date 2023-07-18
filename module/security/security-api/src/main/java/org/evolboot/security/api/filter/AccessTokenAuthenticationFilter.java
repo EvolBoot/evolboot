@@ -17,6 +17,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * @author evol
@@ -26,6 +31,8 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final SecurityAccessTokenAppService securityAccessTokenAppService;
     private final SecurityDefaultConfigProperties securityDefaultConfigProperties;
+
+    private final HashSet<String> ALL_USER_IDENTITY = new HashSet<>(Arrays.stream(UserIdentity.VALUES).map(UserIdentity::name).collect(Collectors.toList()));
 
     public AccessTokenAuthenticationFilter(SecurityAccessTokenAppService securityAccessTokenAppService, SecurityDefaultConfigProperties securityDefaultConfigProperties) {
         this.securityAccessTokenAppService = securityAccessTokenAppService;
@@ -49,7 +56,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             if (securityDefaultConfigProperties.getTestMode() && tokenValue.startsWith(securityDefaultConfigProperties.getTestKey())) {
                 Long userId = Long.parseLong(tokenValue.replace(securityDefaultConfigProperties.getTestKey() + "_", ""));
                 EvolSession accessToken = new EvolSession(userId);
-                accessToken.setAuthorities(Sets.newHashSet(UserIdentity.ROLE_ADMIN.name(), UserIdentity.ROLE_MEMBER.name()));
+                accessToken.setAuthorities(ALL_USER_IDENTITY);
                 Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, accessToken);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 return;

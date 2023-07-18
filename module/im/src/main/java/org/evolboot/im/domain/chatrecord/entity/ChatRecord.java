@@ -9,7 +9,7 @@ import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.im.domain.chatrecord.message.MessageContent;
-import org.evolboot.im.domain.chatrecord.message.MessageStatus;
+import org.evolboot.im.domain.chatrecord.message.MessageState;
 import org.evolboot.im.domain.chatrecord.message.MessageType;
 import org.evolboot.im.domain.chatrecord.message.convert.MessageContentConvert;
 import org.evolboot.im.domain.shared.ConversationType;
@@ -76,7 +76,7 @@ public class ChatRecord extends JpaAbstractEntity<Long> implements AggregateRoot
     /**
      * 消息状态
      */
-    private MessageStatus status = MessageStatus.NORMAL;
+    private MessageState state = MessageState.NORMAL;
 
     /**
      * 撤回的消息存档

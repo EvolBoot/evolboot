@@ -15,7 +15,7 @@ CREATE TABLE evol_im_chat_record
     conversation_id_              bigint COMMENT '会话ID',
     message_content_              varchar(3000) COMMENT '聊天内容',
     message_type_                 tinyint COMMENT '消息类型',
-    status_                       tinyint COMMENT '状态',
+    state_                        tinyint COMMENT '状态',
     revoke_message_content_value_ varchar(3000) COMMENT '撤回的消息备注',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB

@@ -15,6 +15,6 @@ public interface EmailCodeClient {
     @Builder
     @Getter
     class Response {
-        boolean sendStatus;
+        boolean sendState;
     }
 }

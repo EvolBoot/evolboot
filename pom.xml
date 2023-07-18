@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.9</version>
+        <version>2.7.13</version>
     </parent>
     <packaging>pom</packaging>
     <groupId>org.evolboot</groupId>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>${project.default.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.default.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${project.default.encoding}</maven.compiler.encoding>
-        <spring-boot.version>2.5.9</spring-boot.version>
+        <spring-boot.version>2.7.13</spring-boot.version>
         <alibaba-cloud.version>2.2.8.RELEASE</alibaba-cloud.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <springdoc.version>1.6.15</springdoc.version>
@@ -41,7 +41,7 @@
         <minio.version>8.5.2</minio.version>
         <okhttp3.version>4.8.1</okhttp3.version>
         <poi.version>5.2.2</poi.version>
-        <querydsl.version>4.4.0</querydsl.version>
+        <querydsl.version>5.0.0</querydsl.version>
         <hikaricp.version>5.0.0</hikaricp.version>
         <netty-socketio.version>1.7.23</netty-socketio.version>
         <swagger-core.version>2.2.8</swagger-core.version>
@@ -179,6 +179,18 @@
             <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>mq-redis-consumer</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>mq-kafka-producer</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.evolboot</groupId>
+                <artifactId>mq-kafka-consumer</artifactId>
                 <version>${revision}</version>
             </dependency>
 

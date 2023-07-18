@@ -43,7 +43,7 @@ public class StartupPageAppServiceImpl extends StartupPageSupportService impleme
     @Override
     @Transactional
     public void update(StartupPageUpdateService.Request request) {
-        updateService.execute( request);
+        updateService.execute(request);
     }
 
 

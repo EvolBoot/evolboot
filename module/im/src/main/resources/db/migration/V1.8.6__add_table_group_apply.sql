@@ -11,7 +11,7 @@ CREATE TABLE evol_im_group_apply
     apply_user_id_   bigint COMMENT '申请人ID',
     conversation_id_ bigint COMMENT '会话ID',
     apply_reason_    json COMMENT '申请加群原因',
-    status_          tinyint COMMENT '状态',
+    state_           tinyint COMMENT '状态',
     expire_at_       timestamp COMMENT '时间时间',
     handle_user_id_  bigint COMMENT '处理人ID',
     handle_at_       timestamp COMMENT '处理时间',

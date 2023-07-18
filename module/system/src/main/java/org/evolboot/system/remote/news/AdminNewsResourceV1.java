@@ -75,7 +75,7 @@ public class AdminNewsResourceV1 {
             @RequestBody @Valid
             NewsUpdateRequest request
     ) {
-        service.update( request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

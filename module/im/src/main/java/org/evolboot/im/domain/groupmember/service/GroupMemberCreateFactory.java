@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
 import org.evolboot.im.domain.groupmember.entity.GroupMemberRole;
-import org.evolboot.im.domain.groupmember.entity.GroupMemberStatus;
+import org.evolboot.im.domain.groupmember.entity.GroupMemberState;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
 import org.evolboot.shared.event.im.GroupMemberCreateEvent;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class GroupMemberCreateFactory extends GroupMemberSupportService {
                 request.getMemberUserId(),
                 request.getConversationId(),
                 request.getRole(),
-                request.getStatus(),
+                request.getState(),
                 request.getForbidTalkDeadline()
         );
         eventPublisher.publishEvent(
@@ -58,7 +58,7 @@ public class GroupMemberCreateFactory extends GroupMemberSupportService {
         private Long memberUserId;
         private Long conversationId;
         private GroupMemberRole role;
-        private GroupMemberStatus status;
+        private GroupMemberState state;
         private Date forbidTalkDeadline;
     }
 

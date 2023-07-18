@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
-import org.evolboot.core.domain.DelStatus;
+import org.evolboot.core.domain.DelState;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.shared.lang.UserIdentity;
 
@@ -25,7 +25,7 @@ public class UserQuery extends Query {
 
     private final String registerIp;
 
-    private final DelStatus delStatus;
+    private final DelState delState;
 
     private final Long inviterUserId;
 
@@ -38,14 +38,14 @@ public class UserQuery extends Query {
     private final String key;
 
     @Builder
-    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelStatus delStatus, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String orderField, Direction order) {
+    public UserQuery(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.userId = userId;
         this.username = username;
         this.mobile = mobile;
         this.email = email;
         this.registerIp = registerIp;
-        this.delStatus = delStatus;
+        this.delState = delState;
         this.inviterUserId = inviterUserId;
         this.userType = userType;
         this.userIdentity = userIdentity;

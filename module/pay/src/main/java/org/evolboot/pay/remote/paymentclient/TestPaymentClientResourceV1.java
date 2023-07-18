@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.mq.MQMessagePublisher;
-import org.evolboot.shared.event.pay.ReceiptOrderStatusChangeMessage;
-import org.evolboot.shared.event.pay.ReleasedOrderStatusChangeMessage;
+import org.evolboot.shared.event.pay.ReceiptOrderStateChangeMessage;
+import org.evolboot.shared.event.pay.ReleasedOrderStateChangeMessage;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,18 +35,18 @@ public class TestPaymentClientResourceV1 {
 
 
     @Operation(summary = "发送代收订单状态消息")
-    @PostMapping("/send-receipt-order-status-change-message")
+    @PostMapping("/send-receipt-order-state-change-message")
     @Transactional
-    public String sendMessageInTransactionReceiptOrderStatusChangeMessage(ReceiptOrderStatusChangeMessage request) {
+    public String sendMessageInTransactionReceiptOrderStateChangeMessage(ReceiptOrderStateChangeMessage request) {
         mqMessagePublisher.sendMessageInTransaction(request);
         return "success";
     }
 
 
     @Operation(summary = "发送代付订单状态消息")
-    @PostMapping("/send-released-order-status-change-message")
+    @PostMapping("/send-released-order-state-change-message")
     @Transactional
-    public String sendMessageInTransactionReleasedOrderStatusChangeMessage(ReleasedOrderStatusChangeMessage request) {
+    public String sendMessageInTransactionReleasedOrderStateChangeMessage(ReleasedOrderStateChangeMessage request) {
         mqMessagePublisher.sendMessageInTransaction(request);
         return "success";
     }

@@ -10,7 +10,7 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.acl.client.UserClient;
 import org.evolboot.im.domain.friend.entity.Friend;
-import org.evolboot.im.domain.friend.entity.FriendStatus;
+import org.evolboot.im.domain.friend.entity.FriendState;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
 import org.springframework.stereotype.Service;
@@ -54,15 +54,15 @@ public class FriendApplyService extends FriendSupportService {
         Friend owner = repository.findByOwnerUserIdAndFriendUserId(request.getOwnerUserId(), request.getFriendUserId()).orElse(null);
         Friend friend = repository.findByOwnerUserIdAndFriendUserId(request.getFriendUserId(), request.getOwnerUserId()).orElse(null);
         // 1.判断已经是正常好友，是，则返回提示信息
-        if (ExtendObjects.nonNull(owner) && ExtendObjects.nonNull(friend) && FriendStatus.NORMAL.equals(owner.getStatus()) && FriendStatus.NORMAL.equals(friend.getStatus())) {
+        if (ExtendObjects.nonNull(owner) && ExtendObjects.nonNull(friend) && FriendState.NORMAL.equals(owner.getState()) && FriendState.NORMAL.equals(friend.getState())) {
             throw ErrorCodeException.of(ImI18nMessage.Friend.haveBeenFriends());
         }
         // 2.判断已被我拉黑，是，发出提示
-        if (ExtendObjects.nonNull(owner) && FriendStatus.BLACKLIST.equals(owner.getStatus())) {
+        if (ExtendObjects.nonNull(owner) && FriendState.BLACKLIST.equals(owner.getState())) {
             throw ErrorCodeException.of(ImI18nMessage.Friend.alreadyOnYourBlacklist());
         }
         // 3.判断已被对方拉黑，是，发出提示
-        if (ExtendObjects.nonNull(friend) && FriendStatus.BLACKLIST.equals(friend.getStatus())) {
+        if (ExtendObjects.nonNull(friend) && FriendState.BLACKLIST.equals(friend.getState())) {
             throw ErrorCodeException.of(ImI18nMessage.Friend.hasBeenBlockedByFriends());
         }
         // 4.判断是否单方面删除过对方（对方有我的好友关系，但我没有），则直接添加（启用会话）

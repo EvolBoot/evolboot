@@ -15,15 +15,15 @@ import lombok.Setter;
 @Getter
 public class HuanQiuPayForeignReleasedCreateResponse {
 
-    //{"result":"success","code":"MSG_OK","msg":"操作成功","data":{"mer_id":"xt171219211449","businessnumber":"1639130417302","status":"处理中","transactiondate":"2021-12-10 18:00:33","amount":2000000,"transactiontype":"代付","inputdate":"2021-12-10 18:00:33","remark":"处理中","cash_type":1,"sign":"818E053870355BA630D104E18890DF16","sign_type":"md5"}}
+    //{"result":"success","code":"MSG_OK","msg":"操作成功","data":{"mer_id":"xt171219211449","businessnumber":"1639130417302","state":"处理中","transactiondate":"2021-12-10 18:00:33","amount":2000000,"transactiontype":"代付","inputdate":"2021-12-10 18:00:33","remark":"处理中","cash_type":1,"sign":"818E053870355BA630D104E18890DF16","sign_type":"md5"}}
 
     public boolean isOk() {
         return "MSG_OK".equalsIgnoreCase(code)
                 && "success".equalsIgnoreCase(result)
-                && "处理中".equals(data.getStatus());
+                && "处理中".equals(data.getState());
     }
 
-    public String getStatus() {
+    public String getState() {
         return code;
     }
 
@@ -47,8 +47,8 @@ public class HuanQiuPayForeignReleasedCreateResponse {
         private String merId;
         @JsonProperty("businessnumber")
         private String businessnumber;
-        @JsonProperty("status")
-        private String status;
+        @JsonProperty("state")
+        private String state;
         @JsonProperty("transactiondate")
         private String transactiondate;
         @JsonProperty("amount")

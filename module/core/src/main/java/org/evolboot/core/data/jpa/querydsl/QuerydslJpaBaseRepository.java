@@ -4,6 +4,7 @@ import com.querydsl.core.types.*;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.AbstractJPAQuery;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendObjects;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.*;
 import org.springframework.data.querydsl.EntityPathResolver;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.lang.NonNull;
 
@@ -19,6 +21,7 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * QueryDSL 实现，但同时也兼容了JPA实现
@@ -158,6 +161,11 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
         return querydslPredicateExecutor.exists(predicate);
     }
 
+    @Override
+    public <S extends T, R> R findBy(Predicate predicate, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+        return querydslPredicateExecutor.findBy(predicate, queryFunction);
+    }
+
     private <P> JPQLQuery<P> createQuery(FactoryExpression<P> factoryExpression, Predicate predicate) {
         return querydslPredicateExecutor
                 .createQuery(predicate)
@@ -182,7 +190,7 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
 
         @Override
         @NonNull
-        public JPQLQuery<?> createQuery(Predicate... predicate) {
+        public AbstractJPAQuery<?, ?> createQuery(Predicate... predicate) {
             return super.createQuery(predicate);
         }
     }

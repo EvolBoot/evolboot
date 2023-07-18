@@ -13,7 +13,7 @@ import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.FriendAppService;
 import org.evolboot.im.domain.friend.service.FriendCreateFactory;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
-import org.evolboot.im.domain.friendapply.entity.FriendApplyStatus;
+import org.evolboot.im.domain.friendapply.entity.FriendApplyState;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.evolboot.im.domain.shared.ApplyAuditOperation;
 import org.springframework.stereotype.Service;
@@ -39,10 +39,10 @@ public class FriendApplyAuditService extends FriendApplySupportService {
     public FriendApply execute(Request request) {
         FriendApply friendApply = findById(request.getId());
         Assert.isTrue(friendApply.getToUserId().equals(request.getToUserId()), I18NMessageHolder.message(ImI18nMessage.FriendApply.NOT_FOUND));
-        if (FriendApplyStatus.EXPIRE.equals(friendApply.getStatus())) {
+        if (FriendApplyState.EXPIRE.equals(friendApply.getState())) {
             throw new ExtendIllegalArgumentException("该申请已经过期");
         }
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(friendApply.getStatus()), "已经处理过这个申请");
+        Assert.isTrue(FriendApplyState.PENDING.equals(friendApply.getState()), "已经处理过这个申请");
         if (ApplyAuditOperation.AGREE.equals(request.getOperation())) {
             // 创建好友关系
             Friend friend = friendAppService.create(new FriendCreateFactory.Request(friendApply.getToUserId(), friendApply.getFromUserId()));

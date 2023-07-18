@@ -14,7 +14,4 @@ import java.util.Set;
 public class UpdateRoleRequest extends RoleUpdateService.Request {
 
 
-
-
-
 }

@@ -8,7 +8,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.BitwiseExpressions;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
-import org.evolboot.core.domain.DelStatus;
+import org.evolboot.core.domain.DelState;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.entity.QUser;
@@ -49,10 +49,10 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         if (ExtendObjects.isNotBlank(query.getMobile())) {
             jpqlQuery.where(q.mobile.eq(query.getMobile().trim()));
         }
-        if (ExtendObjects.nonNull(query.getDelStatus())) {
-            jpqlQuery.where(q.delStatus.eq(query.getDelStatus()));
+        if (ExtendObjects.nonNull(query.getDelState())) {
+            jpqlQuery.where(q.delState.eq(query.getDelState()));
         } else {
-            jpqlQuery.where(q.delStatus.eq(DelStatus.ACTIVE));
+            jpqlQuery.where(q.delState.eq(DelState.ACTIVE));
         }
         if (ExtendObjects.nonNull(query.getUserType())) {
             jpqlQuery.where(q.userType.eq(query.getUserType()));
@@ -66,7 +66,7 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         if (ExtendObjects.isNotBlank(query.getKey())) {
             jpqlQuery.where(q.username.like("%" + ((UserQuery) _query).getKey() + "%")
                     .or(q.nickname.like("%" + ((UserQuery) _query).getKey() + "%"))
-                    .or(q.email.like("%"+ ((UserQuery) _query).getKey() +"%"))
+                    .or(q.email.like("%" + ((UserQuery) _query).getKey() + "%"))
             );
         }
         return jpqlQuery;

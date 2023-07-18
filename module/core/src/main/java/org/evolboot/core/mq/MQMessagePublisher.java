@@ -1,5 +1,6 @@
 package org.evolboot.core.mq;
 
+import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.shared.event.mq.MQMessage;
 import org.evolboot.shared.event.mq.TransactionMQMessage;
 
@@ -19,7 +20,9 @@ public interface MQMessagePublisher {
      * @param <T>
      * @return
      */
-    <T extends TransactionMQMessage> void sendMessageInTransaction(T message);
+    default <T extends TransactionMQMessage> void sendMessageInTransaction(T message) {
+        throw new ExtendRuntimeException("暂不支持事务消息");
+    }
 
     /**
      * 实时消息
@@ -27,7 +30,9 @@ public interface MQMessagePublisher {
      * @param message
      * @param <T>
      */
-    <T extends MQMessage> void send(T message);
+    default <T extends MQMessage> void send(T message) {
+        throw new ExtendRuntimeException("暂不支持发送消息");
+    }
 
     /**
      * 延时消息
@@ -36,7 +41,9 @@ public interface MQMessagePublisher {
      * @param delayLevel 延时级别
      * @param <T>
      */
-    <T extends MQMessage> void send(T message, DelayLevel delayLevel);
+    default <T extends MQMessage> void send(T message, DelayLevel delayLevel) {
+        throw new ExtendRuntimeException("暂不支持延迟消息");
+    }
 
     /**
      * 延时消息
@@ -45,7 +52,9 @@ public interface MQMessagePublisher {
      * @param delayTime 延时级别
      * @param <T>
      */
-    <T extends MQMessage> void sendDelayTimeSeconds(T message, long delayTime);
+    default <T extends MQMessage> void sendDelayTimeSeconds(T message, long delayTime) {
+        throw new ExtendRuntimeException("暂不支持延时消息");
+    }
 
 
 }

@@ -13,7 +13,7 @@ spring:
     time-zone: GMT+8
     default-property-inclusion: ALWAYS
     # 下划线变量
-#    property-naming-strategy: SNAKE_CASE
+  #    property-naming-strategy: SNAKE_CASE
   profiles:
     active: evol,evol-admin
   messages:

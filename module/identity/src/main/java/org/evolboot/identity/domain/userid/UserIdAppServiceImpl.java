@@ -85,7 +85,7 @@ public class UserIdAppServiceImpl extends UserIdSupportService implements UserId
     @Override
     @Transactional
     public void checkAndAdd() {
-        Long count = repository.countByStatus(false);
+        Long count = repository.countByState(false);
         if (count < step / 2) {
             log.info("用户ID:往数据库里面增加用户ID");
             factory.execute(step);

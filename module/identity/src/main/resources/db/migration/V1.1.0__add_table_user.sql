@@ -6,7 +6,7 @@ CREATE TABLE evoltb_identity_user
     create_at_          timestamp NOT NULL COMMENT '创建时间',
     update_at_          timestamp NOT NULL COMMENT '最后修改时间',
     version_            bigint    NOT NULL DEFAULT 0 COMMENT '乐观锁的版本号',
-    del_status_         tinyint            DEFAULT 0 COMMENT '删除状态，0 正常 , 1 删除',
+    del_state_          tinyint            DEFAULT 0 COMMENT '删除状态，0 正常 , 1 删除',
 
     username_           varchar(128) COMMENT '用户名',
     nickname_           varchar(128)       default '' comment '昵称',
@@ -17,7 +17,7 @@ CREATE TABLE evoltb_identity_user
     password_           varchar(256) COMMENT '密码',
     gender_             tinyint            default 2 COMMENT '性别,0女，1男，2 未知',
     user_identity_      smallint COMMENT '身份',
-    status_             tinyint            default 0 comment '用户状态,0 正常,1 锁定',
+    state_              tinyint            default 0 comment '用户状态,0 正常,1 锁定',
     user_type_          tinyint            default 0 comment '用户类型, 0 正常, 1 测试',
     inviter_user_id_    bigint comment '上级ID(邀请人ID)',
     register_ip_        varchar(128) comment '注册IP',

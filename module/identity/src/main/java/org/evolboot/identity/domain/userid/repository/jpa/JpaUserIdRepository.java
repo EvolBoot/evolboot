@@ -26,7 +26,7 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
 
     default JPQLQuery<UserId> fillQueryParameter(UserIdQuery query) {
         QUserId q = QUserId.userId;
-        JPQLQuery<UserId> jpqlQuery = getJPQLQuery(query,q.id.desc());
+        JPQLQuery<UserId> jpqlQuery = getJPQLQuery(query, q.id.desc());
         jpqlQuery.select(q).from(q);
         return jpqlQuery;
     }
@@ -53,7 +53,7 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
     }
 
     @Override
-    @Query(nativeQuery = true, value = "select id_ from evoltb_identity_user_id where  status_ = 0  ORDER BY (37*(UNIX_TIMESTAMP() ^ id_)) & 0xffff   limit :num")
+    @Query(nativeQuery = true, value = "select id_ from evoltb_identity_user_id where  state_ = 0  ORDER BY (37*(UNIX_TIMESTAMP() ^ id_)) & 0xffff   limit :num")
     List<Long> rand(@Param("num") int num);
 
     @Override

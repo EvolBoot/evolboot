@@ -20,10 +20,11 @@ public class GroupMemberUpdateService extends GroupMemberSupportService {
         super(repository);
     }
 
-    public void execute( Request request) {
+    public void execute(Request request) {
         GroupMember groupMember = findById(request.getId());
         repository.save(groupMember);
     }
+
     @Getter
     @Setter
     public static class Request extends GroupMemberRequestBase {

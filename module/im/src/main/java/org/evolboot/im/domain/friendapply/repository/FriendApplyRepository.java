@@ -4,7 +4,7 @@ import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
-import org.evolboot.im.domain.friendapply.entity.FriendApplyStatus;
+import org.evolboot.im.domain.friendapply.entity.FriendApplyState;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +27,7 @@ public interface FriendApplyRepository extends BaseRepository<FriendApply, Long>
     List<FriendApply> findAll();
 
 
-    Optional<FriendApply> findByToUserIdAndFromUserIdAndStatus(Long toUserId, Long fromUserId, FriendApplyStatus status);
+    Optional<FriendApply> findByToUserIdAndFromUserIdAndState(Long toUserId, Long fromUserId, FriendApplyState state);
 
 
     <Q extends Query> List<FriendApply> findAll(Q query);

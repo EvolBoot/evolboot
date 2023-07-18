@@ -26,12 +26,12 @@ public class UserId extends AbstractEntity<Long> implements AggregateRoot<UserId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Boolean status = false;
+    private Boolean state = false;
 
     public void use() {
         // 该用户ID已使用
-        Assert.isTrue(!status, IdentityI18nMessage.UserId.hasBeenUsed());
-        this.status = true;
+        Assert.isTrue(!state, IdentityI18nMessage.UserId.hasBeenUsed());
+        this.state = true;
     }
 
     @Override

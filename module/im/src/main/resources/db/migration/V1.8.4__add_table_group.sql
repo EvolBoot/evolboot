@@ -12,7 +12,7 @@ CREATE TABLE evol_im_group
     avatar_               varchar(128) COMMENT '群头像',
     description_          varchar(512) COMMENT '群描述',
     conversation_id_      bigint COMMENT '群对应的会话ID',
-    apply_status_         tinyint COMMENT '群申请状态:0 可自由加入,1 需要申请加入, 2 禁止申请加入',
+    apply_state_          tinyint COMMENT '群申请状态:0 可自由加入,1 需要申请加入, 2 禁止申请加入',
     type_                 tinyint COMMENT '群类型:0 普通群',
     forbid_talk_scope_    tinyint COMMENT '禁言范围:0 不禁言,1 全员禁言,2 仅普通会员',
     notification_         varchar(512) COMMENT '群通知',

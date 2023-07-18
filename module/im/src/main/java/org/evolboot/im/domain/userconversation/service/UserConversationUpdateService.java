@@ -20,7 +20,7 @@ public class UserConversationUpdateService extends UserConversationSupportServic
         super(repository);
     }
 
-    public void execute( Request request) {
+    public void execute(Request request) {
         UserConversation userConversation = findById(request.getId());
         repository.save(userConversation);
     }

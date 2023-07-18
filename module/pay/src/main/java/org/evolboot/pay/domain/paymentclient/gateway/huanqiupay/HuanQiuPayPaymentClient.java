@@ -94,10 +94,10 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
             return new ReceiptCreateResponse(response.isOk(), receiptOrderId, payUrl, new ReceiptOrderRequestResult(
                     response.getForeignOrderId(),
                     payUrl,
-                    response.getStatus(),
+                    response.getState(),
                     postData));
         }
-        log.info("代收失败,返回信息:{},{}", response.getStatus(), postData);
+        log.info("代收失败,返回信息:{},{}", response.getState(), postData);
         throw PayException.RECEIPT_ORDER_ERROR;
 
     }
@@ -115,12 +115,12 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     public <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T request) {
         String requestParamsText = request.getNotifyParamsText();
         log.info("HuanQiu:代收:回调通知:{}", requestParamsText);
-        return new ReceiptNotifyResponse(request.getStatus(),
+        return new ReceiptNotifyResponse(request.getState(),
                 "success",
                 new ReceiptOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReceiptOrderId(),
-                        request.getForeignStatus(),
+                        request.getForeignState(),
                         requestParamsText,
                         request.getPayAmount(),
                         request.getRealPayAmount(),
@@ -131,7 +131,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     @Override
     public <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request) {
         //TODO 验证
-        return new ReceiptRedirectNotifyResponse(request.getStatus());
+        return new ReceiptRedirectNotifyResponse(request.getState());
     }
 
 
@@ -169,7 +169,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
                     result.getForeignOrderId(),
                     releasedOrderId,
                     new ReleasedOrderCreateResult(
-                            requestText, post, result.getForeignOrderId(), result.getStatus()
+                            requestText, post, result.getForeignOrderId(), result.getState()
                     )
             );
         }
@@ -179,12 +179,12 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
     @Override
     public <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request) {
-        return new ReleasedNotifyResponse(request.getStatus(),
+        return new ReleasedNotifyResponse(request.getState(),
                 "success",
                 new ReleasedOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReleasedOrderId(),
-                        request.getForeignStatus(),
+                        request.getForeignState(),
                         request.getNotifyParamsText(),
                         request.getAmount(),
                         request.getPoundage()

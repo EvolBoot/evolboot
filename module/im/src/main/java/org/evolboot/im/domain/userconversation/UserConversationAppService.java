@@ -27,7 +27,6 @@ public interface UserConversationAppService {
     void update(UserConversationUpdateService.Request request);
 
     void delete(Long id);
-    
 
 
 }

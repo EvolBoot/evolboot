@@ -44,7 +44,7 @@ public class ChatRecordAppServiceImpl extends ChatRecordSupportService implement
     @Override
     @Transactional
     public void update(ChatRecordUpdateService.Request request) {
-        updateService.execute( request);
+        updateService.execute(request);
     }
 
 

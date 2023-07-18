@@ -1,17 +1,13 @@
 package org.evolboot.identity.domain.user;
 
-import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.*;
-import org.evolboot.shared.api.identity.user.UserServiceApi;
-
-import java.util.Optional;
 
 /**
  * @author evol
  */
-public interface UserAppService  extends UserServiceApi {
+public interface UserAppService {
 
     /**
      * 管理员帮用户重置密码
@@ -37,6 +33,7 @@ public interface UserAppService  extends UserServiceApi {
      * 创建一个用户
      */
     User create(UserCreateFactory.Request request);
+
     /**
      * 删除过户
      *
@@ -95,9 +92,10 @@ public interface UserAppService  extends UserServiceApi {
 
     /**
      * 更改用户状态
+     *
      * @param request
      */
-    void changeStatus(UserStatusChangeService.Request request);
+    void changeState(UserStateChangeService.Request request);
 
     /**
      * 设置用户类型

@@ -35,8 +35,8 @@ public class ReleasedOrderNotifyResult {
     /**
      * 第三方 支付状态
      */
-    @Column(name = "notify_result_foreign_status_")
-    private String foreignStatus;
+    @Column(name = "notify_result_foreign_state_")
+    private String foreignState;
 
     /**
      * 通知的整个Json

@@ -11,7 +11,7 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderOrgType;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
+import org.evolboot.shared.pay.ReleasedOrderState;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -19,8 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
-import static org.evolboot.shared.pay.ReleasedOrderStatus.PENDING;
-import static org.evolboot.shared.pay.ReleasedOrderStatus.WAIT;
+import static org.evolboot.shared.pay.ReleasedOrderState.PENDING;
+import static org.evolboot.shared.pay.ReleasedOrderState.WAIT;
 
 
 /**
@@ -136,7 +136,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     /**
      * 状态
      */
-    private ReleasedOrderStatus status = WAIT;
+    private ReleasedOrderState state = WAIT;
 
     public ReleasedOrder(
             String internalOrderId,
@@ -177,7 +177,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      */
     public boolean pending(BigDecimal poundage,
                            String foreignOrderId) {
-        if (!WAIT.equals(this.status)) {
+        if (!WAIT.equals(this.state)) {
             log.info("代付:{},当前订单不在WAIT状态,不需要重复PENDING", id);
             return false;
         }
@@ -188,8 +188,8 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
 
     public boolean success() {
         log.info("代付:成功通知:{}", id);
-        if (PENDING.equals(this.status)) {
-            this.status = ReleasedOrderStatus.SUCCESS;
+        if (PENDING.equals(this.state)) {
+            this.state = ReleasedOrderState.SUCCESS;
             return true;
         }
         log.info("代付成功通知:重复通知,已经通过的代付订单:{}", id);
@@ -199,9 +199,9 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
 
     public boolean fail() {
         log.info("代付:失败通知:{}", id);
-        if (PENDING.equals(this.status) || WAIT.equals(this.status)) {
+        if (PENDING.equals(this.state) || WAIT.equals(this.state)) {
 
-            this.status = ReleasedOrderStatus.FAIL;
+            this.state = ReleasedOrderState.FAIL;
             return true;
         }
         log.info("代付:失败通知:重复通知,已经通过的代付订单:{}", id);

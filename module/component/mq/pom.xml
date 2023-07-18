@@ -22,5 +22,7 @@
         <module>mq-core</module>
         <module>mq-redis-producer</module>
         <module>mq-redis-consumer</module>
+        <module>mq-kafka-producer</module>
+        <module>mq-kafka-consumer</module>
     </modules>
 </project>

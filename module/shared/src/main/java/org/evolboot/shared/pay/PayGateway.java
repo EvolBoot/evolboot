@@ -21,7 +21,7 @@ public enum PayGateway {
 
     private final Integer value;
 
-    private static final Map<Integer, PayGateway> VALUES =  new HashMap<>(PayGateway.values().length);
+    private static final Map<Integer, PayGateway> VALUES = new HashMap<>(PayGateway.values().length);
 
     static {
         Arrays.stream(PayGateway.values()).forEach(e -> {

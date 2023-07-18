@@ -30,7 +30,6 @@ public interface GroupAppService {
     void delete(Long id);
 
 
-
     /**
      * TODO
      * 修改群资料

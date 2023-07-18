@@ -43,7 +43,7 @@ public class GroupAppServiceImpl extends GroupSupportService implements GroupApp
 
     @Override
     @Transactional
-    public void update( GroupUpdateService.Request request) {
+    public void update(GroupUpdateService.Request request) {
         updateService.execute(request);
     }
 

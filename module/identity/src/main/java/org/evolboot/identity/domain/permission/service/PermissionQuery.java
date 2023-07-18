@@ -15,12 +15,11 @@ import java.util.Collection;
 public class PermissionQuery extends Query {
 
 
-
     private final String title;
     private final String name;
     private final Long parentId;
 
-    private final Type type ;
+    private final Type type;
     private final Collection<Long> ids;
 
     @Builder

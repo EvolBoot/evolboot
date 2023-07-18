@@ -20,6 +20,7 @@ public class RoleDeletePermissionService {
 
     /**
      * 权限和角色数据不多,且操作也不多,为了方便,就全量查询和保存
+     *
      * @param permissionIds
      */
     public void execute(List<Long> permissionIds) {

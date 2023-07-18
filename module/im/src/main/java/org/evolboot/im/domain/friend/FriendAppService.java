@@ -16,11 +16,11 @@ import java.util.Optional;
  * @author evol
  * @date 2023-05-03 17:40:14
  */
-public interface FriendAppService  {
+public interface FriendAppService {
 
     Friend create(FriendCreateFactory.Request request);
 
-    void update( FriendUpdateService.Request request);
+    void update(FriendUpdateService.Request request);
 
     void delete(Long id);
 

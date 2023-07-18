@@ -29,8 +29,8 @@ public interface IdentityAccessAuthorities {
         String HAS_UPDATE = AUTHORITY_PREFIX + "user_update" + AUTHORITY_SUFFIX;
         String HAS_ROLE_UPDATE = AUTHORITY_PREFIX + "user_role_update" + AUTHORITY_SUFFIX;
         String HAS_PASSWORD_RESET = AUTHORITY_PREFIX + "user_password_reset" + AUTHORITY_SUFFIX;
-        String HAS_LOCK = AUTHORITY_PREFIX + "user_status_lock" + AUTHORITY_SUFFIX;
-        String HAS_ACTIVE = AUTHORITY_PREFIX + "user_status_active" + AUTHORITY_SUFFIX;
+        String HAS_LOCK = AUTHORITY_PREFIX + "user_state_lock" + AUTHORITY_SUFFIX;
+        String HAS_ACTIVE = AUTHORITY_PREFIX + "user_state_active" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "user_page" + AUTHORITY_SUFFIX;
     }
 

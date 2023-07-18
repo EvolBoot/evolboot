@@ -25,20 +25,20 @@ CREATE TABLE evoltb_pay_released_order
     request_text_                    text COMMENT '请求出去',
     request_result_text_             text COMMENT '请求返回',
     request_result_foreign_order_id_ varchar(100) COMMENT '请求返回第三方ID',
-    request_result_foreign_status_   varchar(100) COMMENT '请求返回状态',
+    request_result_foreign_state_    varchar(100) COMMENT '请求返回状态',
 
     notify_result_foreign_order_id_  varchar(100) COMMENT '通知返回第三方ID',
     notify_result_released_order_id_ varchar(100) COMMENT '通知返回下发ID',
-    notify_result_foreign_status_    varchar(100) COMMENT '通知返回状态',
+    notify_result_foreign_state_     varchar(100) COMMENT '通知返回状态',
     notify_result_text_              text COMMENT '通知返回',
     notify_result_amount_            decimal(20, 3) COMMENT '通知返回金额',
     notify_result_poundage_          varchar(100) COMMENT '通知返回手续费',
-    status_                          tinyint COMMENT '状态',
+    state_                           tinyint COMMENT '状态',
 
     query_request_text_              text COMMENT '查询请求',
     query_result_text_               text COMMENT '查询返回',
     query_result_foreign_order_id_   varchar(100) COMMENT '查询返回的订单ID',
-    query_result_foreign_status_     varchar(100) COMMENT '查询返回的订单状态',
+    query_result_foreign_state_      varchar(100) COMMENT '查询返回的订单状态',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='代付订单';

@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paymentclient.released;
 
 import lombok.Getter;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderQueryResult;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
+import org.evolboot.shared.pay.ReleasedOrderState;
 
 import java.math.BigDecimal;
 
@@ -26,16 +26,16 @@ public class ReleasedQueryResponse {
 
     private ReleasedOrderQueryResult requestResult;
 
-    private ReleasedOrderStatus status;
+    private ReleasedOrderState state;
 
-    public ReleasedQueryResponse(boolean exist, BigDecimal amount, BigDecimal poundageAmount, String foreignOrderId, String releasedOrderId, ReleasedOrderQueryResult requestResult, ReleasedOrderStatus status) {
+    public ReleasedQueryResponse(boolean exist, BigDecimal amount, BigDecimal poundageAmount, String foreignOrderId, String releasedOrderId, ReleasedOrderQueryResult requestResult, ReleasedOrderState state) {
         this.exist = exist;
         this.amount = amount;
         this.poundageAmount = poundageAmount;
         this.foreignOrderId = foreignOrderId;
         this.releasedOrderId = releasedOrderId;
         this.requestResult = requestResult;
-        this.status = status;
+        this.state = state;
     }
 
     public ReleasedQueryResponse(boolean exist) {

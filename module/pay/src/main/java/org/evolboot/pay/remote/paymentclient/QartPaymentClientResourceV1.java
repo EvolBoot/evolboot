@@ -72,16 +72,16 @@ public class QartPaymentClientResourceV1 {
 
 
     @Operation(summary = "前台回调")
-    @GetMapping("/redirect/{id}/{status}")
+    @GetMapping("/redirect/{id}/{state}")
     public void redirect(
             @PathVariable("id") String id,
-            @PathVariable("status") String status,
+            @PathVariable("state") String state,
             HttpServletRequest request,
             HttpServletResponse response) throws IOException {
         TreeMap<String, Object> requestParams = new TreeMap<>();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("代付:前台回调:Qart:{}", JsonUtil.stringify(requestParams));
-        response.sendRedirect(receiptOrderAppService.getReceiptRedirectUrl(new QartReceiptRedirectNotifyRequest(id, status)));
+        response.sendRedirect(receiptOrderAppService.getReceiptRedirectUrl(new QartReceiptRedirectNotifyRequest(id, state)));
     }
 
 

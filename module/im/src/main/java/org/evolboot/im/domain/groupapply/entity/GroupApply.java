@@ -47,7 +47,7 @@ public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot
     /**
      * 状态
      */
-    private GroupApplyStatus status;
+    private GroupApplyState state;
 
     /**
      * 未处理到期时间

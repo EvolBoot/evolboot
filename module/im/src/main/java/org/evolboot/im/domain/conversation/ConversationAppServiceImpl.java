@@ -59,7 +59,7 @@ public class ConversationAppServiceImpl extends ConversationSupportService imple
 
     @Override
     @Transactional
-    public void update( ConversationUpdateService.Request request) {
+    public void update(ConversationUpdateService.Request request) {
         updateService.execute(request);
     }
 

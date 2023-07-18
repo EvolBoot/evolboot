@@ -19,7 +19,7 @@ CREATE TABLE evoltb_system_operation_log
     params_       text COMMENT '执行参数',
     result_       text COMMENT '请求结果',
     ip_           varchar(256) COMMENT 'IP',
-    status_       tinyint(0) COMMENT '状态',
+    state_        tinyint(0) COMMENT '状态',
 
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB

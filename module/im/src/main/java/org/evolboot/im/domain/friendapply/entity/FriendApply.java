@@ -55,7 +55,7 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 状态
      */
-    private FriendApplyStatus status = FriendApplyStatus.PENDING;
+    private FriendApplyState state = FriendApplyState.PENDING;
 
     /**
      * 未处理到期时间
@@ -88,26 +88,26 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
         this.expireAt = expireAt;
     }
 
-    private void setStatus(FriendApplyStatus status) {
-        this.status = status;
+    private void setState(FriendApplyState state) {
+        this.state = state;
     }
 
     public void agree(Long conversationId) {
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
-        setStatus(FriendApplyStatus.AGREE);
+        Assert.isTrue(FriendApplyState.PENDING.equals(getState()), "已经处理过这个申请");
+        setState(FriendApplyState.AGREE);
         this.handleAt = new Date();
         this.conversationId = conversationId;
     }
 
     public void refuse() {
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
-        setStatus(FriendApplyStatus.REFUSE);
+        Assert.isTrue(FriendApplyState.PENDING.equals(getState()), "已经处理过这个申请");
+        setState(FriendApplyState.REFUSE);
         this.handleAt = new Date();
     }
 
     public void autoAgree(Long conversationId) {
-        Assert.isTrue(FriendApplyStatus.PENDING.equals(getStatus()), "已经处理过这个申请");
-        setStatus(FriendApplyStatus.AUTO_AGREE);
+        Assert.isTrue(FriendApplyState.PENDING.equals(getState()), "已经处理过这个申请");
+        setState(FriendApplyState.AUTO_AGREE);
         this.handleAt = new Date();
         this.conversationId = conversationId;
     }

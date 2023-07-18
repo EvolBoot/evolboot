@@ -24,8 +24,8 @@ public interface RoleAppService {
     Page<Role> page(RoleQuery query);
 
     List<Role> findAllById(Iterable<Long> roleIds);
-    Role findById(Long id);
 
+    Role findById(Long id);
 
 
 }

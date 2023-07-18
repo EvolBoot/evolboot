@@ -64,7 +64,7 @@ public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Grou
     /**
      * 群状态
      */
-    private GroupApplyStatus applyStatus = GroupApplyStatus.NEED_APPLY;
+    private GroupApplyState applyState = GroupApplyState.NEED_APPLY;
 
     /**
      * 群类型

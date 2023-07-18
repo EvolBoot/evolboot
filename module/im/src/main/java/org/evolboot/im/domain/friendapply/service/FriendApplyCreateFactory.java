@@ -12,7 +12,7 @@ import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.FriendAppService;
 import org.evolboot.im.domain.friend.service.FriendApplyService;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
-import org.evolboot.im.domain.friendapply.entity.FriendApplyStatus;
+import org.evolboot.im.domain.friendapply.entity.FriendApplyState;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +46,7 @@ public class FriendApplyCreateFactory extends FriendApplySupportService {
 
     public FriendApply execute(Request request) {
         Friend ownerFriend = friendAppService.apply(new FriendApplyService.Request(request.getFromUserId(), request.getToUserId()));
-        FriendApply friendApply = repository.findByToUserIdAndFromUserIdAndStatus(request.getToUserId(), request.getFromUserId(), FriendApplyStatus.PENDING).
+        FriendApply friendApply = repository.findByToUserIdAndFromUserIdAndState(request.getToUserId(), request.getFromUserId(), FriendApplyState.PENDING).
                 orElseGet(() -> new FriendApply(request.getToUserId(), request.getFromUserId()));
         if (ExtendObjects.isNull(ownerFriend)) {
             Assert.isTrue(friendApply.getApplyReason().size() <= MAXIMUM_OF_APPLY, "已经发出申请了,请等待对方审核");

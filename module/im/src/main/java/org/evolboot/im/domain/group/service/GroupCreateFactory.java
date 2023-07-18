@@ -13,7 +13,7 @@ import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.groupmember.GroupMemberAppService;
 import org.evolboot.im.domain.groupmember.entity.GroupMemberRole;
-import org.evolboot.im.domain.groupmember.entity.GroupMemberStatus;
+import org.evolboot.im.domain.groupmember.entity.GroupMemberState;
 import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.shared.event.im.GroupCreateEvent;
@@ -60,7 +60,7 @@ public class GroupCreateFactory extends GroupSupportService {
                 group.getOwnerUserId(),
                 group.getConversationId(),
                 GroupMemberRole.OWNER,
-                GroupMemberStatus.NORMAL,
+                GroupMemberState.NORMAL,
                 null
         ));
         eventPublisher.publishEvent(new GroupCreateEvent(groupId, group.getOwnerUserId(), group.getName(), group.getConversationId()));

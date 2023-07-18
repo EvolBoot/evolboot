@@ -31,5 +31,4 @@ public interface ReceiptOrderAppService {
     <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 
 
-
 }

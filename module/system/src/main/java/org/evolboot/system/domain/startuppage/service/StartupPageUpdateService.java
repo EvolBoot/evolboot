@@ -19,7 +19,7 @@ public class StartupPageUpdateService extends StartupPageSupportService {
         super(repository);
     }
 
-    public void execute( Request request) {
+    public void execute(Request request) {
         StartupPage startupPage = findById(request.getId());
         startupPage.setSort(request.getSort());
         startupPage.setEnable(request.getEnable());

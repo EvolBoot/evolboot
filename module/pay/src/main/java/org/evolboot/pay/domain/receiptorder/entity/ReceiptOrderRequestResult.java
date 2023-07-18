@@ -31,8 +31,8 @@ public class ReceiptOrderRequestResult {
     /**
      * 请求时返回的代收状态
      */
-    @Column(name = "request_result_foreign_status_")
-    private String foreignStatus;
+    @Column(name = "request_result_foreign_state_")
+    private String foreignState;
 
     /**
      * 请求返回的全部文本信息

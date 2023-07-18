@@ -9,7 +9,7 @@ public interface ReleasedRequestResult {
 
     boolean isOk();
 
-    String getStatus();
+    String getState();
 
     String getForeignOrderId();
 

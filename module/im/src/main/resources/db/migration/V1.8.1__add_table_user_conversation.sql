@@ -10,7 +10,7 @@ CREATE TABLE evol_im_user_conversation
     owner_user_id_      bigint COMMENT '拥有者',
     conversation_id_    bigint COMMENT '会话ID',
     conversation_type_  tinyint COMMENT '类型:0 群聊,1 私聊',
-    status_             tinyint COMMENT '状态',
+    state_              tinyint COMMENT '状态',
     forbid_talk_causes_ smallint COMMENT '禁言原因',
     group_id_           bigint COMMENT '群ID,类型为0时有值',
     friend_user_id_     bigint COMMENT '朋友ID,用户为1时有',

@@ -15,7 +15,7 @@ public interface MobileCodeSender {
     @Builder
     @Getter
     class Response {
-        boolean sendStatus;
+        boolean sendState;
         String smsContent;
     }
 }

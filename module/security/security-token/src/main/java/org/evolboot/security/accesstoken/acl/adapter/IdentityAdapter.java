@@ -1,10 +1,9 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
 import com.google.common.collect.Sets;
-import org.evolboot.core.domain.DelStatus;
+import org.evolboot.core.domain.DelState;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
-import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.role.RoleAppService;
@@ -12,7 +11,7 @@ import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.entity.UserStatus;
+import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.service.UserRegisterService;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.security.accesstoken.acl.client.CaptchaClient;
@@ -55,8 +54,8 @@ public class IdentityAdapter implements IdentityClient {
     @Override
     public UserInfo findByUsernameOrMobileOrEmailAndEncodePassword(String value, String encodePassword) {
         User user = userQueryService.findByUsernameOrMobileOrEmailAndEncodePassword(value, encodePassword);
-        Assert.isTrue(DelStatus.ACTIVE.equals(user.getDelStatus()), IdentityI18nMessage.User.userNotFound());
-        Assert.isTrue(UserStatus.ACTIVE.equals(user.getStatus()), IdentityI18nMessage.User.statusNotActive());
+        Assert.isTrue(DelState.ACTIVE.equals(user.getDelState()), IdentityI18nMessage.User.userNotFound());
+        Assert.isTrue(UserState.ACTIVE.equals(user.getState()), IdentityI18nMessage.User.stateNotActive());
         Set<String> authorities = getAuthorities(user);
         return new UserInfo(user.id(), user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
     }
@@ -64,8 +63,8 @@ public class IdentityAdapter implements IdentityClient {
     @Override
     public UserInfo findByMobile(String mobile) {
         User user = userQueryService.findByMobile(mobile);
-        Assert.isTrue(DelStatus.ACTIVE.equals(user.getDelStatus()), IdentityI18nMessage.User.userNotFound());
-        Assert.isTrue(UserStatus.ACTIVE.equals(user.getStatus()), IdentityI18nMessage.User.statusNotActive());
+        Assert.isTrue(DelState.ACTIVE.equals(user.getDelState()), IdentityI18nMessage.User.userNotFound());
+        Assert.isTrue(UserState.ACTIVE.equals(user.getState()), IdentityI18nMessage.User.stateNotActive());
         Set<String> authorities = getAuthorities(user);
         return new UserInfo(user.id(), user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
     }

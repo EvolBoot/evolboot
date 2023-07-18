@@ -89,7 +89,6 @@ public class AdminGroupResourceV1 {
     }
 
 
-
     @Operation(summary = "查询群组")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)

@@ -3,7 +3,6 @@ package org.evolboot.identity.domain.user;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.service.UserQuery;
-import org.evolboot.shared.api.identity.user.UserServiceApi;
 
 import java.util.Optional;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author evol
  * @date 2023-06-14 15:03:11
  */
-public interface UserQueryService extends UserServiceApi {
+public interface UserQueryService {
 
     User findById(Long id);
 
@@ -32,7 +31,6 @@ public interface UserQueryService extends UserServiceApi {
      * @return
      */
     Optional<User> findOne(UserQuery query);
-
 
 
     /**
@@ -90,7 +88,6 @@ public interface UserQueryService extends UserServiceApi {
     User findByUserId(Long userId);
 
 
-
     /**
      * 根据用户ID显示头像
      *
@@ -98,4 +95,6 @@ public interface UserQueryService extends UserServiceApi {
      * @return
      */
     String findAvatarByUserId(Long userId);
+
+    boolean existsByUserId(Long userId);
 }

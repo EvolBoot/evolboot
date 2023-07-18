@@ -26,6 +26,7 @@ public class RoleQueryService {
     public List<Role> findAllById(Iterable<Long> ids) {
         return repository.findAllById(ids);
     }
+
     public Optional<Role> findById(Long id) {
         return repository.findById(id);
     }

@@ -41,7 +41,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     private final XarvkgvvrllncAppService appService;
     private final XarvkgvvrllncQueryService queryService;
 
-    public AdminXarvkgvvrllncResourceV1(XarvkgvvrllncAppService appService,XarvkgvvrllncQueryService queryService) {
+    public AdminXarvkgvvrllncResourceV1(XarvkgvvrllncAppService appService, XarvkgvvrllncQueryService queryService) {
         this.appService = appService;
         this.queryService = queryService;
     }

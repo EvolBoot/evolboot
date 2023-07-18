@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
+import org.evolboot.shared.pay.ReleasedOrderState;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -25,8 +25,8 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
         return true;
     }
 
-    public String getForeignStatus() {
-        return notifyParams.get("status");
+    public String getForeignState() {
+        return notifyParams.get("state");
     }
 
     @Override
@@ -58,13 +58,13 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
     }
 
     @Override
-    public ReleasedOrderStatus getStatus() {
-        if ("成功".equals(getForeignStatus())) {
-            return ReleasedOrderStatus.SUCCESS;
-        } else if ("失败".equals(getForeignStatus())) {
-            return ReleasedOrderStatus.FAIL;
+    public ReleasedOrderState getState() {
+        if ("成功".equals(getForeignState())) {
+            return ReleasedOrderState.SUCCESS;
+        } else if ("失败".equals(getForeignState())) {
+            return ReleasedOrderState.FAIL;
         }
-        return ReleasedOrderStatus.PENDING;
+        return ReleasedOrderState.PENDING;
     }
 
 }

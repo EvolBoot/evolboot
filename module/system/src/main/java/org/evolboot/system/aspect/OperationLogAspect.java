@@ -96,9 +96,10 @@ public class OperationLogAspect {
                     .classMethod(classMethod)
                     .requestUrl(requestUrl)
                     .params(params)
+                    .result(JsonUtil.stringify(result))
                     .time(time)
                     .ip(ip)
-                    .status(true)
+                    .state(true)
                     .build();
             service.create(
                     operationLog
@@ -121,7 +122,7 @@ public class OperationLogAspect {
                     .result(e.getMessage())
                     .time(time)
                     .ip(ip)
-                    .status(false)
+                    .state(false)
                     .build();
             service.create(
                     operationLog
@@ -132,7 +133,7 @@ public class OperationLogAspect {
         }
     }
 
-    // 排除掉不可雪序列化的参数
+    // 排除掉不可序列化的参数
     private Object[] filter(Object[] args) {
         return Arrays.stream(args).filter(arg -> (
                 !(

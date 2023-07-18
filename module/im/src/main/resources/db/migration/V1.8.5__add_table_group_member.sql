@@ -11,7 +11,7 @@ CREATE TABLE evol_im_group_member
     member_user_id_       bigint COMMENT '成员用户ID',
     conversation_id_      bigint COMMENT '会话ID',
     role_                 tinyint COMMENT '角色',
-    status_               tinyint COMMENT '状态',
+    state_                tinyint COMMENT '状态',
     forbid_talk_deadline_ timestamp COMMENT '禁言截止时间',
     PRIMARY KEY (id_)
 ) ENGINE = InnoDB

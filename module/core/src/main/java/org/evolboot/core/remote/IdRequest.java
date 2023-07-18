@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class IdRequest<T>  {
+public class IdRequest<T> {
 
     private T id;
 

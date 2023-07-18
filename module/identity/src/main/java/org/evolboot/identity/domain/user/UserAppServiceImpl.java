@@ -2,15 +2,13 @@ package org.evolboot.identity.domain.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.NoRepeatSubmit;
-import org.evolboot.core.data.Page;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.GoogleAuthenticator;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.entity.UserStatus;
+import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.relation.RelationAppService;
@@ -19,8 +17,6 @@ import org.evolboot.identity.domain.user.service.*;
 import org.evolboot.shared.event.user.UserDeleteEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 /**
  * @author evol
@@ -57,11 +53,11 @@ public class UserAppServiceImpl implements UserAppService {
 
     private final UserSecurityPasswordResetService userSecurityPasswordResetService;
 
-    private final UserStatusChangeService userStatusChangeService;
+    private final UserStateChangeService userStateChangeService;
 
     private final SecurityAccessTokenClient securityAccessTokenClient;
 
-    public UserAppServiceImpl(UserRegisterService userRegisterService, UserPasswordUpdateService userPasswordUpdateService, UserRepository repository, UserUpdateService userUpdateService, UserPasswordSetService userPasswordSetService, UserCreateFactory userCreateFactory, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationAppService relationAppService, UserRelationRefactorService userRelationRefactorService, UserChangeInviterUserIdService userChangeInviterUserIdService, UserResetPasswordService userResetPasswordService, UserSecurityPasswordUpdateService userSecurityPasswordUpdateService, UserSecurityPasswordResetService userSecurityPasswordResetService, UserStatusChangeService userStatusChangeService, SecurityAccessTokenClient securityAccessTokenClient) {
+    public UserAppServiceImpl(UserRegisterService userRegisterService, UserPasswordUpdateService userPasswordUpdateService, UserRepository repository, UserUpdateService userUpdateService, UserPasswordSetService userPasswordSetService, UserCreateFactory userCreateFactory, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationAppService relationAppService, UserRelationRefactorService userRelationRefactorService, UserChangeInviterUserIdService userChangeInviterUserIdService, UserResetPasswordService userResetPasswordService, UserSecurityPasswordUpdateService userSecurityPasswordUpdateService, UserSecurityPasswordResetService userSecurityPasswordResetService, UserStateChangeService userStateChangeService, SecurityAccessTokenClient securityAccessTokenClient) {
         this.userRegisterService = userRegisterService;
         this.repository = repository;
         this.userPasswordUpdateService = userPasswordUpdateService;
@@ -76,7 +72,7 @@ public class UserAppServiceImpl implements UserAppService {
         this.userResetPasswordService = userResetPasswordService;
         this.userSecurityPasswordUpdateService = userSecurityPasswordUpdateService;
         this.userSecurityPasswordResetService = userSecurityPasswordResetService;
-        this.userStatusChangeService = userStatusChangeService;
+        this.userStateChangeService = userStateChangeService;
         this.securityAccessTokenClient = securityAccessTokenClient;
     }
 
@@ -150,20 +146,20 @@ public class UserAppServiceImpl implements UserAppService {
     @Transactional
     @Override
     public void lock(Long userId) {
-        userStatusChangeService.execute(new UserStatusChangeService.Request(userId, UserStatus.LOCK));
+        userStateChangeService.execute(new UserStateChangeService.Request(userId, UserState.LOCK));
     }
 
 
     @Transactional
     @Override
     public void active(Long userId) {
-        userStatusChangeService.execute(new UserStatusChangeService.Request(userId, UserStatus.ACTIVE));
+        userStateChangeService.execute(new UserStateChangeService.Request(userId, UserState.ACTIVE));
     }
 
     @Override
     @Transactional
-    public void changeStatus(UserStatusChangeService.Request request) {
-        userStatusChangeService.execute(request);
+    public void changeState(UserStateChangeService.Request request) {
+        userStateChangeService.execute(request);
     }
 
 
@@ -174,11 +170,6 @@ public class UserAppServiceImpl implements UserAppService {
         repository.save(user);
     }
 
-
-    @Override
-    public boolean existsByUserId(Long userId) {
-        return repository.findById(userId).isPresent();
-    }
 
     @Override
     @Transactional

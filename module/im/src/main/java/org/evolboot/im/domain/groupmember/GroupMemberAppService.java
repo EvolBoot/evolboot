@@ -18,7 +18,6 @@ import java.util.Optional;
 public interface GroupMemberAppService {
 
 
-
     GroupMember create(GroupMemberCreateFactory.Request request);
 
     /**
@@ -38,7 +37,6 @@ public interface GroupMemberAppService {
     void update(GroupMemberUpdateService.Request request);
 
     void delete(Long id);
-
 
 
 }

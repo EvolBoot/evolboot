@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * @author evol
  */
-public interface MobileCaptchaRepository  {
+public interface MobileCaptchaRepository {
 
     MobileCaptcha save(MobileCaptcha mobileCaptcha);
 

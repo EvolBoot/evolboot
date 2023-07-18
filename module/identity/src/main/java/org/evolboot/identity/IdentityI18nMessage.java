@@ -91,7 +91,7 @@ public abstract class IdentityI18nMessage {
 
         public static final String IMG_VERIFY_CODE_NOT_EMPTY = NAMESPACE + ".imgVerifyCodeNotEmpty";
         public static final String ROLES_NOT_FOUND = NAMESPACE + ".roles.notFound";
-        public static final String STATUS_NOT_ACTIVE = NAMESPACE + ".status.notActive";
+        public static final String STATE_NOT_ACTIVE = NAMESPACE + ".state.notActive";
 
         public static final String INVITER_DOES_NOT_EXIST = NAMESPACE + ".inviterDoesNotExist";
 
@@ -193,8 +193,8 @@ public abstract class IdentityI18nMessage {
             return I18NMessageHolder.message(IMG_VERIFY_TOKEN_NOT_EMPTY);
         }
 
-        public static String statusNotActive() {
-            return I18NMessageHolder.message(STATUS_NOT_ACTIVE);
+        public static String stateNotActive() {
+            return I18NMessageHolder.message(STATE_NOT_ACTIVE);
         }
 
         public static String inviterDoesNotExist() {

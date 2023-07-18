@@ -19,7 +19,7 @@ public class EmailCodeAdapter implements EmailCodeClient {
         String res = emailSender.sendText(email, "你的验证码", "您的验证为:" + code);
         log.info("邮件验证码，回执:{}", res);
         return EmailCodeClient.Response.builder()
-                .sendStatus(true)
+                .sendState(true)
                 .build();
     }
 

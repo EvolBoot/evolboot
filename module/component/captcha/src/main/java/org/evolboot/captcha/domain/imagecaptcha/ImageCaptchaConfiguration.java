@@ -38,7 +38,7 @@ public class ImageCaptchaConfiguration {
         @Builder.Default
         private int defaultHeight = 200;
         @Builder.Default
-        private int len = 3;
+        private int len = 4;
         // 两分钟有效期
         @Builder.Default
         private long defaultExpires = 2 * 60 * 1000;

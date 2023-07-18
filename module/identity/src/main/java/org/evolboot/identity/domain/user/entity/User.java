@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.DelStatus;
+import org.evolboot.core.domain.DelState;
 import org.evolboot.core.i18n.I18NMessageAssert;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
@@ -36,7 +36,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Id
     private Long id;
 
-    private DelStatus delStatus = DelStatus.ACTIVE;
+    private DelState delState = DelState.ACTIVE;
 
     @Schema(description = "用户名")
     private String username;
@@ -66,7 +66,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     /**
      * 用户状态
      */
-    private UserStatus status = UserStatus.ACTIVE;
+    private UserState state = UserState.ACTIVE;
 
     /**
      * 用户类比（测试用户，正常用户）
@@ -122,7 +122,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
             String avatar,
             UserIdentity userIdentity,
             Gender gender,
-            UserStatus status,
+            UserState state,
             Long inviterUserId,
             UserType userType,
             String registerIp,
@@ -134,7 +134,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setUsername(username);
         setPassword(ImmutablePassword.of(password));
         setAvatar(avatar);
-        setStatus(status);
+        setState(state);
         setGender(gender);
         addUserIdentity(userIdentity);
         setNickname(username);
@@ -172,7 +172,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
 
 
     public void delete() {
-        this.delStatus = DelStatus.ARCHIVE;
+        this.delState = DelState.ARCHIVE;
     }
 
     public void setUserType(UserType userType) {
@@ -340,16 +340,16 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         }
     }
 
-    public void setStatus(UserStatus status) {
-        this.status = status;
+    public void setState(UserState state) {
+        this.state = state;
     }
 
     public void active() {
-        setStatus(UserStatus.ACTIVE);
+        setState(UserState.ACTIVE);
     }
 
     public void lock() {
-        setStatus(UserStatus.LOCK);
+        setState(UserState.LOCK);
     }
 
     public void removeRoleId() {

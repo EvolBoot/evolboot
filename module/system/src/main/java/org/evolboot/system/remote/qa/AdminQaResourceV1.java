@@ -75,7 +75,7 @@ public class AdminQaResourceV1 {
             @RequestBody @Valid
             QaUpdateRequest request
     ) {
-        service.update( request);
+        service.update(request);
         return ResponseModel.ok();
     }
 

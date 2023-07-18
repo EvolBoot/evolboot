@@ -14,14 +14,13 @@ import org.evolboot.identity.domain.role.service.RoleQueryService;
 import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.entity.Gender;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.entity.UserStatus;
+import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
-import org.evolboot.identity.domain.userrole.service.UserRoleUpdateService;
 import org.evolboot.shared.event.user.UserCreatedEvent;
 import org.evolboot.shared.lang.DeviceType;
 import org.evolboot.shared.lang.UserIdentity;
@@ -102,7 +101,7 @@ public class UserCreateFactory extends UserSupportService {
                 .registerIp(request.getRegisterIp())
                 .remark(request.getRemark())
                 .gender(request.getGender())
-                .status(request.getStatus())
+                .state(request.getState())
                 .build();
 
         // 如果是员工，且存在角色信息,则更新
@@ -179,7 +178,7 @@ public class UserCreateFactory extends UserSupportService {
         private UserIdentity userIdentity;
         private Long inviterUserId;
         private UserType userType;
-        private UserStatus status;
+        private UserState state;
         private String registerIp;
         private String remark;
         private String nickname;

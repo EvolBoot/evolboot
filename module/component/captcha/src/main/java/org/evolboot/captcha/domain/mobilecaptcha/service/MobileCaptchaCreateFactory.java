@@ -66,9 +66,9 @@ public class MobileCaptchaCreateFactory {
         //TODO 测试
         codeStr = "10086";
 
-        SmsSender.Response response = SmsSender.Response.builder().sendStatus(true).smsContent(codeStr).build();
+        SmsSender.Response response = SmsSender.Response.builder().sendState(true).smsContent(codeStr).build();
 
-        if (response.isSendStatus()) {
+        if (response.isSendState()) {
             MobileCaptcha captcha = MobileCaptcha.builder()
                     .mobilePrefix(request.getMobilePrefix())
                     .mobile(request.getMobile())

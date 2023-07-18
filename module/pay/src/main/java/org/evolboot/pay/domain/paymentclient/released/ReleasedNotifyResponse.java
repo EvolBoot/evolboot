@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.paymentclient.released;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderNotifyResult;
-import org.evolboot.shared.pay.ReleasedOrderStatus;
+import org.evolboot.shared.pay.ReleasedOrderState;
 
 /**
  * 代付通知 回复
@@ -14,7 +14,7 @@ import org.evolboot.shared.pay.ReleasedOrderStatus;
 @AllArgsConstructor
 public class ReleasedNotifyResponse {
 
-    private ReleasedOrderStatus status;
+    private ReleasedOrderState state;
 
     private String returnText;
 
