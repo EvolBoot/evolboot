@@ -26,6 +26,8 @@ import org.evolboot.shared.lang.DeviceType;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -105,12 +107,12 @@ public class UserCreateFactory extends UserSupportService {
                 .build();
 
         // 如果是员工，且存在角色信息,则更新
-        if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && ExtendObjects.nonNull(request.getRoleId())) {
-            Assert.isTrue(roleQueryService.exist(request.getRoleId()), "不存在的角色信息");
+        if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleId())) {
+            roleQueryService.mustExist(request.getRoleId());
 //            List<Role> roles = roleQueryService.findAllById(request.getRoles());
 //            Assert.isTrue(roles.size() == request.getRoles().size(), "不存在的角色信息");
 //            userRoleUpdateService.execute(id, request.getRoles());
-            user.setRoleId(request.getRoleId());
+            user.addRoleId(request.getRoleId());
         }
 
         repository.save(user);
@@ -184,7 +186,7 @@ public class UserCreateFactory extends UserSupportService {
         private String nickname;
         private DeviceType deviceType;
         private Gender gender;
-        private Long roleId;
+        private Set<Long> roleId;
 
         public String getUsername() {
             return ExtendObjects.trimToNull(username);

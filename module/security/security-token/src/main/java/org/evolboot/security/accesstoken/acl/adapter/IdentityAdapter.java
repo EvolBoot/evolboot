@@ -3,6 +3,7 @@ package org.evolboot.security.accesstoken.acl.adapter;
 import com.google.common.collect.Sets;
 import org.evolboot.core.domain.DelState;
 import org.evolboot.core.util.Assert;
+import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
@@ -97,22 +98,21 @@ public class IdentityAdapter implements IdentityClient {
         // 只有员工需要加载权限信息
         Set<String> authorities = Sets.newHashSet();
         authorities.addAll(userIdentitys);
-        Long roleId = user.getRoleId();
-        if (roleId == null) {
+        Set<Long> roleId = user.getRoleId();
+        if (ExtendObjects.isEmpty(roleId)) {
             return authorities;
         }
-        Role role = roleAppService.findById(roleId);
-        if (role == null) {
+        List<Role> roles = roleAppService.findAllById(roleId);
+        if (ExtendObjects.isEmpty(roles)) {
             return authorities;
         }
-        Set<Long> permissionIds = role.getPermissions();
-        if (permissionIds == null) {
+        Set<Long> permissionIds = roles.stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toSet());
+        if (ExtendObjects.isEmpty(permissionIds)) {
             return authorities;
         }
 
         List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
-        permissions.forEach(
-                permission -> authorities.addAll(List.of(permission.permSplitToArray())));
+        permissions.forEach(permission -> authorities.addAll(List.of(permission.permSplitToArray())));
         return authorities;
     }
 

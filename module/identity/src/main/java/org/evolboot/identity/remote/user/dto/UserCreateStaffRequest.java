@@ -9,6 +9,7 @@ import org.evolboot.identity.domain.user.service.UserCreateFactory;
 import org.evolboot.shared.lang.UserIdentity;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 /**
  * @author evol
@@ -34,7 +35,7 @@ public class UserCreateStaffRequest {
 
     private String remark;
 
-    private Long roleId;
+    private Set<Long> roleId;
 
 
     public UserCreateFactory.Request to(String ip) {

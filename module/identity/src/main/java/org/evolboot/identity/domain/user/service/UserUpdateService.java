@@ -14,6 +14,9 @@ import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author evol
  */
@@ -78,11 +81,11 @@ public class UserUpdateService extends UserSupportService {
             user.setState(request.getState());
         }
 
-        if (ExtendObjects.nonNull(request.getRoleId())) {
-            Assert.isTrue(roleQueryService.exist(request.getRoleId()), "角色不存在");
-            user.setRoleId(request.getRoleId());
+        if (!ExtendObjects.isEmpty(request.getRoleId())) {
+            roleQueryService.mustExist(request.getRoleId());
+            user.addRoleId(request.getRoleId());
         } else {
-            user.setRoleId(null);
+            user.addRoleId(null);
         }
 
         repository.save(user);
@@ -101,7 +104,7 @@ public class UserUpdateService extends UserSupportService {
         private String avatar;
         private Gender gender;
         private UserState state;
-        private Long roleId;
+        private Set<Long> roleId;
         private String password;
         private String email;
         private String mobile;

@@ -33,7 +33,7 @@ public class JsonSearchExpressions {
     }
 
     private static String formatParam(String arg) {
-        return "\"" + arg + "\"";
+        return arg;
     }
 
 }

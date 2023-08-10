@@ -1,6 +1,7 @@
 package org.evolboot.identity.domain.permission.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author evol
@@ -52,16 +55,17 @@ public class FindPermissionByUserIdConvertTreeService {
                     PermissionQuery.builder().type(type).build()
             ));
         }
-        Long roleId = user.getRoleId();
-        if (roleId == null) {
+        Set<Long> roleId = user.getRoleId();
+        if (ExtendObjects.isEmpty(roleId)) {
             return Collections.emptyList();
         }
-        Optional<Role> role = roleQueryService.findById(roleId);
-        if (role.isEmpty()) {
+        List<Role> roles = roleQueryService.findAllById(roleId);
+        if (roles.isEmpty()) {
             return Collections.emptyList();
         }
+        Set<Long> collect = roles.stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toSet());
         return PermissionUtil.convertTree(repository.findAll(
-                PermissionQuery.builder().type(type).ids(role.get().getPermissions()).build()
+                PermissionQuery.builder().type(type).ids(collect).build()
         ));
     }
 

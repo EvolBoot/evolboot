@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.user.repository.jpa;
 
+import com.google.common.collect.Sets;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
@@ -8,6 +9,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.BitwiseExpressions;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.core.data.jpa.querydsl.JsonSearchExpressions;
 import org.evolboot.core.domain.DelState;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.user.UserConfiguration;
@@ -58,7 +60,7 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
             jpqlQuery.where(q.userType.eq(query.getUserType()));
         }
         if (ExtendObjects.nonNull(query.getRoleId())) {
-            jpqlQuery.where(q.roleId.eq(((UserQuery) _query).getRoleId()));
+            jpqlQuery.where(JsonSearchExpressions.jsonContains(q.roleId, query.getRoleId().toString()));
         }
         if (ExtendObjects.nonNull(query.getUserIdentity())) {
             jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, query.getUserIdentity().getIdentitySymbol()).gt(0));

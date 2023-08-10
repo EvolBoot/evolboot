@@ -292,6 +292,7 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String mobile,
             @RequestParam(required = false) String email,
+            @RequestParam(required = false) Long roleId,
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
@@ -307,6 +308,7 @@ public class AdminUserResourceV1 {
                 .userIdentity(UserIdentity.ROLE_STAFF)
                 .order(order)
                 .orderField(orderField)
+                .roleId(roleId)
                 .build();
         Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);

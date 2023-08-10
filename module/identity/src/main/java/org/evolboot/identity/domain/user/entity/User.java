@@ -1,6 +1,7 @@
 package org.evolboot.identity.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
+import org.evolboot.core.data.jpa.convert.LongListConverter;
+import org.evolboot.core.data.jpa.convert.LongSetConverter;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.DelState;
 import org.evolboot.core.i18n.I18NMessageAssert;
@@ -19,9 +22,7 @@ import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetC
 import org.evolboot.shared.lang.UserIdentity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author evol
@@ -85,7 +86,6 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Convert(converter = UserIdentitySetConverter.class)
     private Set<UserIdentity> userIdentity = Sets.newHashSet();
 
-
     /**
      * 上级ID
      * 邀请人ID
@@ -109,7 +109,8 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Embedded
     private ImmutableSecurityPassword securityPassword;
 
-    private Long roleId;
+    @Convert(converter = LongSetConverter.class)
+    private Set<Long> roleId = Sets.newHashSet();
 
     @Builder
     public User(
@@ -127,7 +128,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
             UserType userType,
             String registerIp,
             String remark,
-            Long roleId
+            List<Long> roleId
     ) {
         this.id = id;
         setEmail(email);
@@ -142,12 +143,14 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setUserType(userType);
         setInviterUserId(inviterUserId);
         setRegisterIp(registerIp);
-        setRoleId(roleId);
+        addRoleId(roleId);
         setRemark(remark);
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void addRoleId(Collection<Long> roleId) {
+        if (!ExtendObjects.isEmpty(roleId)) {
+            this.roleId.addAll(roleId);
+        }
     }
 
     public void setRemark(String remark) {
