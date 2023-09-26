@@ -57,4 +57,9 @@ public class ChatRecordCreateFactory extends ChatRecordSupportService {
         M messageContent;
     }
 
+
+    public static class Response {
+
+    }
+
 }

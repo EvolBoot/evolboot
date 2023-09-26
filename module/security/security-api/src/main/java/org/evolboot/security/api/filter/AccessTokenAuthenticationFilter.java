@@ -1,9 +1,8 @@
 package org.evolboot.security.api.filter;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.security.api.EvolSession;
+import org.evolboot.shared.security.CurrentSessionHolder;
+import org.evolboot.shared.security.EvolSession;
 import org.evolboot.security.api.SecurityAccessTokenAppService;
 import org.evolboot.security.api.autoconfigure.SecurityDefaultConfigProperties;
 import org.evolboot.shared.lang.UserIdentity;
@@ -20,8 +19,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toCollection;
 
 /**
  * @author evol
@@ -44,7 +41,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
         final boolean debug = this.logger.isDebugEnabled();
-
+        EvolSession evolSession;
         try {
             String tokenValue = SecurityAccessTokenConverter.convert(request);
 
@@ -55,15 +52,13 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             // 测试模式下
             if (securityDefaultConfigProperties.getTestMode() && tokenValue.startsWith(securityDefaultConfigProperties.getTestKey())) {
                 Long userId = Long.parseLong(tokenValue.replace(securityDefaultConfigProperties.getTestKey() + "_", ""));
-                EvolSession accessToken = new EvolSession(userId);
-                accessToken.setAuthorities(ALL_USER_IDENTITY);
-                Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, accessToken);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                evolSession = new EvolSession(userId);
+                evolSession.setAuthorities(ALL_USER_IDENTITY);
+                setAuthentication(tokenValue, evolSession);
                 return;
             }
 
-
-            EvolSession evolSession = securityAccessTokenAppService.findByToken(tokenValue);
+            evolSession = securityAccessTokenAppService.findByToken(tokenValue);
 
             if (evolSession == null) {
                 return;
@@ -74,19 +69,40 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
                         .debug("Token Authentication Authorization header found for token '"
                                 + evolSession.getPrincipalId() + "'");
             }
-
-            Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, evolSession);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            setAuthentication(tokenValue, evolSession);
 
         } catch (AuthenticationException failed) {
-            SecurityContextHolder.clearContext();
+            clearContext();
             if (debug) {
                 this.logger.debug("Authentication request for failed: " + failed);
             }
             failed.printStackTrace();
         } finally {
             chain.doFilter(request, response);
+            // 清除
+            log.info("清除 SecurityContextHolder.clearContext();");
+            clearContext();
         }
+    }
+
+    /**
+     * 设置授权上下文
+     *
+     * @param tokenValue
+     * @param evolSession
+     */
+    private static void setAuthentication(String tokenValue, EvolSession evolSession) {
+        Authentication authentication = SecurityAccessTokenConverter.convert(tokenValue, evolSession);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        CurrentSessionHolder.setContextHolder(evolSession);
+    }
+
+    /**
+     * 清理上下文
+     */
+    private static void clearContext() {
+        SecurityContextHolder.clearContext();
+        CurrentSessionHolder.clearContext();
     }
 
 

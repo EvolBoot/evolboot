@@ -1,6 +1,7 @@
 package org.evolboot.security.api;
 
 import org.evolboot.security.api.repository.EvolSessionRepository;
+import org.evolboot.shared.security.EvolSession;
 import org.springframework.stereotype.Service;
 
 /**

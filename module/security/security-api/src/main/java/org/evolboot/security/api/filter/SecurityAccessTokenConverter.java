@@ -1,7 +1,7 @@
 package org.evolboot.security.api.filter;
 
 import org.apache.commons.lang3.StringUtils;
-import org.evolboot.security.api.EvolSession;
+import org.evolboot.shared.security.EvolSession;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

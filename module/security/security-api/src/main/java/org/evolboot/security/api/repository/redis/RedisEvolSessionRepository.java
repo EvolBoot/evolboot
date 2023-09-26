@@ -1,6 +1,6 @@
 package org.evolboot.security.api.repository.redis;
 
-import org.evolboot.security.api.EvolSession;
+import org.evolboot.shared.security.EvolSession;
 import org.evolboot.security.api.repository.EvolSessionRepository;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.data.redis.core.StringRedisTemplate;

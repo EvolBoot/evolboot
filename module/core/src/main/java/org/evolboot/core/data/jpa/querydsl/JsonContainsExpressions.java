@@ -8,7 +8,7 @@ import com.querydsl.core.types.dsl.Expressions;
  *
  * @author evol
  */
-public class JsonSearchExpressions {
+public class JsonContainsExpressions {
 
     private final static String jsonContainsExpression = "json_contains({0}, {1}) = true";
 

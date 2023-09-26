@@ -1,5 +1,7 @@
 package org.evolboot.security.api;
 
+import org.evolboot.shared.security.EvolSession;
+
 /**
  * @author evol
  */

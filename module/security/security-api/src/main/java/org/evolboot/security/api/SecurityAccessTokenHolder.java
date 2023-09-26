@@ -2,6 +2,7 @@ package org.evolboot.security.api;
 
 import org.evolboot.security.api.access.AccessAuthorities;
 import org.evolboot.security.api.exception.AccessTokenExpiredException;
+import org.evolboot.shared.security.EvolSession;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;

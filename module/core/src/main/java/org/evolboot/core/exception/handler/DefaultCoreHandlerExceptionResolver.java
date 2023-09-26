@@ -285,8 +285,12 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
 
 
     protected ModelAndView handleDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
-
-        handlerJsonMessage(response, CoreI18nMessage.dataIntegrityViolationException(), ex);
+        String msg = CoreI18nMessage.dataIntegrityViolationException();
+        String message = ex.getMostSpecificCause().getMessage();
+        if (message.contains(".PRIMARY")) {
+            msg = CoreI18nMessage.alreadyExistException();
+        }
+        handlerJsonMessage(response, msg, ex);
         return DEFAULT_MODEL_AND_VIEW;
     }
 

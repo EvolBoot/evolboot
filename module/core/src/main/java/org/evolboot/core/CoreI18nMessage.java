@@ -20,6 +20,9 @@ public abstract class CoreI18nMessage {
     public static final String CONFIGURATION_REPEAT_SETTING_EXCEPTION = NAMESPACE + ".configurationRepeatSettingException";
     public static final String OBJECT_OPTIMISTIC_LOCKING_FAILURE_EXCEPTION = NAMESPACE + ".objectOptimisticLockingFailureException";
     public static final String DATA_INTEGRITY_VIOLATION_EXCEPTION = NAMESPACE + ".dataIntegrityViolationException";
+
+    public static final String ALREADY_EXIST = NAMESPACE + ".alreadyExist";
+
     public static final String REPEAT_SUBMIT = NAMESPACE + ".repeatSubmit";
 
 
@@ -47,6 +50,10 @@ public abstract class CoreI18nMessage {
         return I18NMessageHolder.message(DATA_INTEGRITY_VIOLATION_EXCEPTION);
     }
 
+
+    public static String alreadyExistException() {
+        return I18NMessageHolder.message(ALREADY_EXIST);
+    }
     public static String repeatSubmit() {
         return I18NMessageHolder.message(REPEAT_SUBMIT);
     }

@@ -7,9 +7,10 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.security.api.repository.EvolSessionRepository;
+import org.evolboot.shared.security.EvolSession;
+import org.evolboot.shared.security.EvolSessionDevice;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -1,12 +1,11 @@
-package org.evolboot.security.api;
+package org.evolboot.shared.security;
 
-import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ public class EvolSession implements Serializable {
     /**
      * 设备信息
      */
-    private Map<String, EvolSessionDevice> devices = Maps.newHashMap();
+    private Map<String, EvolSessionDevice> devices = new HashMap<>();
 
 
     /**

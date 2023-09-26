@@ -25,12 +25,14 @@ replace:
   projectPackage: org.evolboot
   tablePrefix: evol_
   author: evol
-  # 上下文名 多个单线用下划线连接
+  # 上下文名 多个单词用下划线连接
   boundContext: pay
 
   #领域名称,多个单词用下划线连接
-  domainName: pay_gateway_account
+  domainName: test_product
 
   remark: 支付网关账户
   # 主键类型
   pkIdClass: Long
+  # 如果是内部类型（比如订单和订单项，订单项就是内部类型） , 多个单词用下划线连接
+  parentDomain: test_tset

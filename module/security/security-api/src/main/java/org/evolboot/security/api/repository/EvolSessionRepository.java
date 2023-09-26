@@ -1,6 +1,6 @@
 package org.evolboot.security.api.repository;
 
-import org.evolboot.security.api.EvolSession;
+import org.evolboot.shared.security.EvolSession;
 
 /**
  * @author evol

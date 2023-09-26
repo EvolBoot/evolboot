@@ -30,6 +30,6 @@ public class GenConfig {
         private String remark;
         private String datePlaceholder;
         private String pkIdClass;
-
+        private String parentDomain;
     }
 }

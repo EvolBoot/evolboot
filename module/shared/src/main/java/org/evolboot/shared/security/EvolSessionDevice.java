@@ -1,4 +1,4 @@
-package org.evolboot.security.api;
+package org.evolboot.shared.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

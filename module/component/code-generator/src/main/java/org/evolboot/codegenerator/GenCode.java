@@ -41,6 +41,8 @@ public class GenCode {
 
     private final static String TARGET_PATH = CODE_GENERATOR_PATH + "/target";
 
+    private final static String CODE_PATH = "/src/main/java";
+
 
     public static void main(String[] args) throws IOException {
         Yaml yaml = new Yaml();
@@ -67,13 +69,37 @@ public class GenCode {
         String boundContextUrl = replace.getBoundContext().replaceAll("_", "-").toLowerCase();
 
         // 领域名称
-        String module = replace.getDomainName().replaceAll("_", "").toLowerCase();
+        String domainPackageName = replace.getDomainName().replaceAll("_", "").toLowerCase();
         // 类名前缀,驼峰
         String getClassNamePrefix = toCamelCase(replace.getDomainName());
         // 变量名,首字母小写
         String getInstantiationObjectName = firstToLower(toCamelCase(replace.getDomainName()));
         // URL,将_ 转为 - 转小写
-        String getClassNameUrl = replace.getDomainName().replaceAll("_", "-").toLowerCase();
+        String classNameUrl = replace.getDomainName().replaceAll("_", "-").toLowerCase();
+
+        String classPath = domainPackageName;
+
+        if (ExtendObjects.isNotBlank(replace.getParentDomain())) {
+
+            String parentDomain = replace.getParentDomain().replaceAll("_", "").toLowerCase();
+            classNameUrl = replace.getParentDomain().replaceAll("_", "-").toLowerCase() + "/" + classNameUrl;
+
+            // 如果包含父领域，则需要改下import 的 路径
+            classPath = parentDomain + "." + classPath;
+
+            // 上下文的代码路径
+            String fullParentPath = TARGET_PATH + CODE_PATH + "/" + placeholder.getBoundContext();
+
+            File oldDomain = new File(fullParentPath + "/domain/" + placeholder.getDomainName());
+            File newDomain = new File(fullParentPath + "/domain/" + parentDomain + "/" + placeholder.getDomainName());
+
+            File oldRemote = new File(fullParentPath + "/remote/" + placeholder.getDomainName());
+            File newDRemote = new File(fullParentPath + "/remote/" + parentDomain + "/" + placeholder.getDomainName());
+
+
+            FileUtil.move(oldDomain, newDomain, true);
+            FileUtil.move(oldRemote, newDRemote, true);
+        }
 
 
         // 替换文件内容
@@ -82,13 +108,13 @@ public class GenCode {
         replaceInFiles(target, placeholder.getBoundContextUrl(), boundContextUrl);
 
 
-        replaceInFiles(target, placeholder.getDomainName(), module);
+        replaceInFiles(target, placeholder.getDomainName(), classPath);
         replaceInFiles(target, placeholder.getClassNamePrefix(), getClassNamePrefix);
         replaceInFiles(target, placeholder.getProjectPackage(), replace.getProjectPackage());
         replaceInFiles(target, placeholder.getRemark(), replace.getRemark());
         replaceInFiles(target, placeholder.getAuthor(), replace.getAuthor());
         replaceInFiles(target, placeholder.getInstantiationObjectName(), getInstantiationObjectName);
-        replaceInFiles(target, placeholder.getClassNameUrl(), getClassNameUrl);
+        replaceInFiles(target, placeholder.getClassNameUrl(), classNameUrl);
         replaceInFiles(target, placeholder.getTablePrefix(), replace.getTablePrefix());
         replaceInFiles(target, placeholder.getDatePlaceholder(), ExtendDateUtil.now());
         replaceInFiles(target, placeholder.getPkIdClass(), replace.getPkIdClass());
@@ -97,7 +123,7 @@ public class GenCode {
         renameFilesAndDirs(target, placeholder.getBoundContext(), boundContext);
         renameFilesAndDirs(target, placeholder.getBoundContextClass(), boundContextClass);
         renameFilesAndDirs(target, placeholder.getClassNamePrefix(), getClassNamePrefix);
-        renameFilesAndDirs(target, placeholder.getDomainName(), module);
+        renameFilesAndDirs(target, placeholder.getDomainName(), domainPackageName);
 
         System.out.println(genConfig);
 
