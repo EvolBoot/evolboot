@@ -9,7 +9,6 @@ public class CurrentSessionHolder {
 
     private static final ThreadLocal<EvolSession> contextHolder = new ThreadLocal<>();
 
-
     public static void setContextHolder(EvolSession evolSession) {
         contextHolder.set(evolSession);
     }
@@ -25,8 +24,15 @@ public class CurrentSessionHolder {
      * @return
      */
     public static Long getPrincipalId() {
-        return contextHolder.get().getPrincipalId();
+        return getSession().getPrincipalId();
     }
 
+    private static EvolSession getSession() {
+        EvolSession evolSession = contextHolder.get();
+        if (evolSession == null) {
+            throw new RuntimeException("请先设置EvolSession会话信息(CurrentSessionHolder.setContextHolder(evolSession)");
+        }
+        return evolSession;
+    }
 
 }
