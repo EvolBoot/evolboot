@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1")
-@Tag(name = "OperationLog", description = "操作日志管理")
+@Tag(name = "操作日志管理", description = "操作日志管理")
 @ApiClient
 public class AppOperationLogResourceV1 {
 

@@ -19,6 +19,8 @@ public interface XarvkgvvrllncQueryService {
 
     List<Xarvkgvvrllnc> findAll();
 
+    boolean existsById(Keya2Akk5iV3n id);
+
     List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query);
 
     Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query);

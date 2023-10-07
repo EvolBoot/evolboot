@@ -23,6 +23,9 @@ public interface XarvkgvvrllncRepository extends BaseRepository<Xarvkgvvrllnc, K
 
     Optional<Xarvkgvvrllnc> findById(Keya2Akk5iV3n id);
 
+
+    boolean existsById(Keya2Akk5iV3n id);
+
     void deleteById(Keya2Akk5iV3n id);
 
     List<Xarvkgvvrllnc> findAll();

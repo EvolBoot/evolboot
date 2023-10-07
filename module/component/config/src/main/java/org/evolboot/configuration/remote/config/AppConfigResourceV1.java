@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/api")
-@Tag(name = "Configuration", description = "全局配置管理")
+@Tag(name = "全局配置", description = "全局配置")
 @ApiClient
 public class AppConfigResourceV1 {
 

@@ -27,4 +27,8 @@ public abstract class XarvkgvvrllncSupportService {
         return repository.findById(id).orElseThrow(() -> new DomainNotFoundException(I18NMessageHolder.message(LrxxoiecygkjhI18nMessage.Xarvkgvvrllnc.NOT_FOUND)));
     }
 
+    public boolean existsById(Keya2Akk5iV3n id) {
+        return repository.existsById(id);
+    }
+
 }
