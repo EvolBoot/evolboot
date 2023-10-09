@@ -50,7 +50,7 @@ public class AdminPermissionResourceV1 {
     @PostMapping
     @Operation(summary = "创建权限")
     @OperationLog("创建权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<Permission> create(@Valid @RequestBody CreatePermissionRequest request) {
         Permission permission = service.create(request);
         return ResponseModel.ok(permission);
@@ -65,7 +65,7 @@ public class AdminPermissionResourceV1 {
     @PutMapping()
     @Operation(summary = "修改权限")
     @OperationLog("修改权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<Permission> update(@Valid @RequestBody UpdatePermissionRequest request) {
         Permission permission = service.update(request);
         return ResponseModel.ok(permission);
@@ -80,7 +80,7 @@ public class AdminPermissionResourceV1 {
     @DeleteMapping("/{id}")
     @Operation(summary = "删除权限")
     @OperationLog("删除权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseModel.ok();
@@ -96,7 +96,7 @@ public class AdminPermissionResourceV1 {
     @GetMapping("/{id}")
     @Operation(summary = "获取权限")
     @OperationLog("获取权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
         return ResponseModel.ok(queryService.findById(id));
     }
@@ -107,7 +107,7 @@ public class AdminPermissionResourceV1 {
      */
     @GetMapping("/tree")
     @Operation(summary = "权限列表(树形)")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<List<Permission>> page() {
         return ResponseModel.ok(queryService.findAllConvertTree());
     }
@@ -118,7 +118,7 @@ public class AdminPermissionResourceV1 {
      */
     @GetMapping("/current-user/tree")
     @Operation(summary = "权限列表(树形)")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ROLE_STAFF)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_ROLE_STAFF)
     public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
         return ResponseModel.ok(queryService.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId(), Type.menu));
     }
@@ -131,7 +131,7 @@ public class AdminPermissionResourceV1 {
      */
     @GetMapping
     @Operation(summary = "权限列表")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Permission>> tree(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,

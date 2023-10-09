@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.system.SystemAccessAuthorities.AppUpgrade.*;
 
 /**
@@ -45,7 +45,7 @@ public class AdminAppUpgradeResourceV1 {
     @Operation(summary = "创建APP更新")
     @OperationLog("创建APP更新")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             AppUpgradeCreateRequest request
@@ -58,7 +58,7 @@ public class AdminAppUpgradeResourceV1 {
     @Operation(summary = "删除APP更新")
     @OperationLog("删除APP更新")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -70,7 +70,7 @@ public class AdminAppUpgradeResourceV1 {
     @Operation(summary = "修改APP更新")
     @OperationLog("修改APP更新")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             AppUpgradeUpdateRequest request
@@ -82,7 +82,7 @@ public class AdminAppUpgradeResourceV1 {
     @Operation(summary = "查询APP更新")
     @OperationLog("查询APP更新")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<AppUpgrade>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -104,7 +104,7 @@ public class AdminAppUpgradeResourceV1 {
     @Operation(summary = "查询单个APP更新")
     @OperationLog("查询单个APP更新")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<AppUpgrade> get(
             @PathVariable("id") Long id
     ) {

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.system.SystemAccessAuthorities.News.*;
 
 /**
@@ -45,7 +45,7 @@ public class AdminNewsResourceV1 {
     @Operation(summary = "创建新闻")
     @OperationLog("创建新闻")
     @PostMapping("/news")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             NewsCreateRequest request
@@ -58,7 +58,7 @@ public class AdminNewsResourceV1 {
     @Operation(summary = "删除新闻")
     @OperationLog("删除新闻")
     @DeleteMapping("/news/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -70,7 +70,7 @@ public class AdminNewsResourceV1 {
     @Operation(summary = "修改新闻")
     @OperationLog("修改新闻")
     @PutMapping("/news")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             NewsUpdateRequest request
@@ -82,7 +82,7 @@ public class AdminNewsResourceV1 {
     @Operation(summary = "查询新闻")
     @OperationLog("查询新闻")
     @GetMapping("/news")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<News>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -104,7 +104,7 @@ public class AdminNewsResourceV1 {
     @Operation(summary = "查询单个新闻")
     @OperationLog("查询单个新闻")
     @GetMapping("/news/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<News> get(
             @PathVariable("id") Long id
     ) {

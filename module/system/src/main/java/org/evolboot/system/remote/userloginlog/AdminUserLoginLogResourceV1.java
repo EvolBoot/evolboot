@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.system.SystemAccessAuthorities.UserLoginLog.HAS_PAGE;
 
 /**
@@ -36,7 +36,7 @@ public class AdminUserLoginLogResourceV1 {
 
     @Operation(summary = "查询用户登录日志")
     @GetMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<UserLoginLog>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,

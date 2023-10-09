@@ -18,7 +18,7 @@ import java.util.Date;
 import static org.evolboot.im.ImAccessAuthorities.Friend.HAS_PAGE;
 import static org.evolboot.im.ImAccessAuthorities.Friend.HAS_SINGLE;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
  * 好友关系
@@ -81,7 +81,7 @@ public class AdminFriendResourceV1 {
 
     @Operation(summary = "查询好友关系")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Friend>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -103,7 +103,7 @@ public class AdminFriendResourceV1 {
 
     @Operation(summary = "查询单个好友关系")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<Friend> get(
             @PathVariable("id") Long id
     ) {

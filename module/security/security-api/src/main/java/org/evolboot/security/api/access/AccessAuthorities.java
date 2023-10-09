@@ -5,8 +5,8 @@ package org.evolboot.security.api.access;
  */
 public interface AccessAuthorities {
 
-    String or = "  or  ";
-    String and = "  and  ";
+    String OR = "  or  ";
+    String AND = "  and  ";
 
     String ROLE_PREFIX = "hasRole('";
     String ROLE_SUFFIX = "')";

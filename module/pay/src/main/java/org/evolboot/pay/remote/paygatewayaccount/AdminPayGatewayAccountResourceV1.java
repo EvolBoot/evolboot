@@ -21,7 +21,7 @@ import javax.validation.Valid;
 
 import static org.evolboot.pay.PayAccessAuthorities.PayGatewayAccount.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
  * 支付网关账户
@@ -47,7 +47,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @Operation(summary = "创建支付网关账户")
     @OperationLog("创建支付网关账户")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             PayGatewayAccountCreateRequest request
@@ -60,7 +60,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @Operation(summary = "删除支付网关账户")
     @OperationLog("删除支付网关账户")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -72,7 +72,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @Operation(summary = "修改支付网关账户")
     @OperationLog("修改支付网关账户")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             PayGatewayAccountUpdateRequest request
@@ -84,7 +84,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @Operation(summary = "查询支付网关账户")
     @OperationLog("查询支付网关账户")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<PayGatewayAccount>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
@@ -102,7 +102,7 @@ public class AdminPayGatewayAccountResourceV1 {
     @Operation(summary = "查询单个支付网关账户")
     @OperationLog("查询单个支付网关账户")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<PayGatewayAccount> get(
             @PathVariable("id") Long id
     ) {

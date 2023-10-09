@@ -27,7 +27,7 @@ import javax.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
-import static org.evolboot.security.api.access.AccessAuthorities.or;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
  * @author evol
@@ -71,7 +71,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "创建用户")
     @OperationLog("创建用户")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<User> create(
             @RequestBody @Valid
             UserCreateRequest request,
@@ -96,7 +96,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "管理员重置用户密码")
     @OperationLog("管理员重置用户密码")
     @PutMapping("/password/reset")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PASSWORD_RESET)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PASSWORD_RESET)
     public ResponseModel<?> resetPassword(
             @RequestBody @Valid
             UserPasswordSetRequest request
@@ -108,7 +108,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "管理员修改用户资料")
     @OperationLog("管理员修改用户资料")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             AdminUserUpdateRequest request
@@ -120,7 +120,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "管理员冻结(锁定)用户")
     @OperationLog("管理员冻结(锁定)用户")
     @PutMapping("/state/lock")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_LOCK)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_LOCK)
     public ResponseModel<?> lock(
             @RequestBody IdRequest<Long> request
     ) {
@@ -131,7 +131,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "管理员解锁用户")
     @OperationLog("管理员解锁用户")
     @PutMapping("/state/active")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_ACTIVE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_ACTIVE)
     public ResponseModel<?> active(
             @RequestBody IdRequest<Long> request
     ) {
@@ -142,7 +142,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "管理员删除用户")
     @OperationLog("管理员删除用户")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -152,7 +152,7 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "管理员查询用户(用户列表)")
     @GetMapping("/member")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<User>> getUsers(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -258,7 +258,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "创建员工")
     @OperationLog(value = "创建员工", serializable = false)
     @PostMapping("/staff")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<User> createStaff(
             @RequestBody @Valid UserCreateStaffRequest request,
             HttpServletRequest httpServletRequest
@@ -271,7 +271,7 @@ public class AdminUserResourceV1 {
     @Operation(summary = "修改员工资料")
     @OperationLog("修改员工资料")
     @PutMapping("/staff")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> updateStaff(
             @RequestBody @Valid
             AdminUserUpdateRequest request
@@ -283,7 +283,7 @@ public class AdminUserResourceV1 {
 
     @Operation(summary = "查询员工")
     @GetMapping("/staff")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<User>> getStaff(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,

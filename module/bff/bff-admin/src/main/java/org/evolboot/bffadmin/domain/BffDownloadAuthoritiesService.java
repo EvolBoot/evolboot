@@ -55,7 +55,7 @@ public class BffDownloadAuthoritiesService {
                     authorities.setPerm(preAuthorize.value()
                             .replace(HAS_ROLE_ADMIN, "")
                             .replace(HAS_ROLE_STAFF, "")
-                            .replace(or, "")
+                            .replace(OR, "")
                             .replace(AUTHORITY_PREFIX, "")
                             .replace(AUTHORITY_SUFFIX, ""));
                     authorities.setUrl(url);
