@@ -109,9 +109,6 @@ public class UserCreateFactory extends UserSupportService {
         // 如果是员工，且存在角色信息,则更新
         if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleId())) {
             roleQueryService.mustExist(request.getRoleId());
-//            List<Role> roles = roleQueryService.findAllById(request.getRoles());
-//            Assert.isTrue(roles.size() == request.getRoles().size(), "不存在的角色信息");
-//            userRoleUpdateService.execute(id, request.getRoles());
             user.addRoleId(request.getRoleId());
         }
 
