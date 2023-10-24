@@ -50,7 +50,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     @Operation(summary = "创建模板")
     @OperationLog("创建模板")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             XarvkgvvrllncCreateRequest request
@@ -63,7 +63,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     @Operation(summary = "删除模板")
     @OperationLog("删除模板")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Keya2Akk5iV3n id
     ) {
@@ -75,7 +75,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     @Operation(summary = "修改模板")
     @OperationLog("修改模板")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             XarvkgvvrllncUpdateRequest request
@@ -86,7 +86,7 @@ public class AdminXarvkgvvrllncResourceV1 {
 
     @Operation(summary = "查询模板")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Xarvkgvvrllnc>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -106,10 +106,26 @@ public class AdminXarvkgvvrllncResourceV1 {
         return ResponseModel.ok(response);
     }
 
+    @Operation(summary = "查询模板(全部)")
+    @GetMapping("/all")
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<List<Xarvkgvvrllnc>> findAll(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date endDate
+    ) {
+        XarvkgvvrllncQuery query = XarvkgvvrllncQuery
+                .builder()
+                .id(id)
+                .startDate(startDate)
+                .endDate(endDate)
+                .build();
+        return ResponseModel.ok(queryService.findAll(query));
+    }
 
     @Operation(summary = "查询单个模板")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<Xarvkgvvrllnc> get(
             @PathVariable("id") Keya2Akk5iV3n id
     ) {

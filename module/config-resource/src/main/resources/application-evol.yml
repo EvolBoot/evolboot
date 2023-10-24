@@ -101,7 +101,7 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    password:
+    password: root
     timeout: 30000
     database: 0
     # 自定义

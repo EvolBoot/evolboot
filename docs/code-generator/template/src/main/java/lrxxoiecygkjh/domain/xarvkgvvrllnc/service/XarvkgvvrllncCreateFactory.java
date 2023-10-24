@@ -6,6 +6,8 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.Xarvkgvvrlln
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncRequestBase;
 import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 模板
@@ -26,6 +28,8 @@ public class XarvkgvvrllncCreateFactory extends XarvkgvvrllncSupportService {
         return instantiationObjectName;
     }
 
+    @Setter
+    @Getter
     public static class Request extends XarvkgvvrllncRequestBase {
 
     }
