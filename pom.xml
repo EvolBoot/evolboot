@@ -70,6 +70,11 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.18.0</version>
+            </dependency>
+            <dependency>
                 <groupId>org.evolboot</groupId>
                 <artifactId>core</artifactId>
                 <version>${revision}</version>
