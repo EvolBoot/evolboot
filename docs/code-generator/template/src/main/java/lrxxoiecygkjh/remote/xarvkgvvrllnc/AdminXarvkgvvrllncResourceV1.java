@@ -92,7 +92,8 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Keya2Akk5iV3n id,
             @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) String keyword
     ) {
         XarvkgvvrllncQuery query = XarvkgvvrllncQuery
                 .builder()
@@ -101,10 +102,12 @@ public class AdminXarvkgvvrllncResourceV1 {
                 .endDate(endDate)
                 .page(page)
                 .limit(limit)
+                .keyword(keyword)
                 .build();
         Page<Xarvkgvvrllnc> response = queryService.page(query);
         return ResponseModel.ok(response);
     }
+
 
     @Operation(summary = "查询模板(全部)")
     @GetMapping("/all")
@@ -112,16 +115,19 @@ public class AdminXarvkgvvrllncResourceV1 {
     public ResponseModel<List<Xarvkgvvrllnc>> findAll(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) String keyword
     ) {
         XarvkgvvrllncQuery query = XarvkgvvrllncQuery
                 .builder()
                 .id(id)
                 .startDate(startDate)
                 .endDate(endDate)
+                .keyword(keyword)
                 .build();
         return ResponseModel.ok(queryService.findAll(query));
     }
+
 
     @Operation(summary = "查询单个模板")
     @GetMapping("/{id}")

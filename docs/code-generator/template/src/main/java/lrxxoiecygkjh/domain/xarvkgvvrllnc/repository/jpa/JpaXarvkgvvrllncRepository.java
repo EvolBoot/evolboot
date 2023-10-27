@@ -44,6 +44,9 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
         if (ExtendObjects.nonNull(query.getEndDate())) {
             jpqlQuery.where(q.createAt.loe(query.getEndDate()));
         }
+        if (ExtendObjects.isNotBlank(query.getKeyword())) {
+//            jpqlQuery.where(q.name.eq(query.getKeyword()));
+        }
         return jpqlQuery;
     }
 

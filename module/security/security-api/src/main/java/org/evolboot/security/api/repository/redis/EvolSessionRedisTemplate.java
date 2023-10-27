@@ -25,6 +25,7 @@ public class EvolSessionRedisTemplate extends RedisTemplate<String, EvolSession>
         setHashValueSerializer(RedisSerializer.string());
         setConnectionFactory(connectionFactory);
         afterPropertiesSet();
+        
     }
 
     @Override

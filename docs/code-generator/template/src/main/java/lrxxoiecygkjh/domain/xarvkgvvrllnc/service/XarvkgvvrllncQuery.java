@@ -30,10 +30,13 @@ public class XarvkgvvrllncQuery extends Query {
 
     private Date endDate;
 
+    private String keyword;
+
     @Builder
-    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate, String orderField, Direction order) {
+    public XarvkgvvrllncQuery(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate, String keyword, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
+        this.keyword = keyword;
         if (ExtendObjects.nonNull(startDate)) {
             this.startDate = ExtendDateUtil.beginOfDay(startDate);
         }
