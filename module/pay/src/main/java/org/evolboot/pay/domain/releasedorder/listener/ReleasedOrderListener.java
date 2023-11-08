@@ -16,13 +16,18 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Slf4j
-public class ReleasedOrderListener extends ReleasedOrderSupportService {
+public class ReleasedOrderListener  {
+
+    private final ReleasedOrderSupportService supportService;
+
+    private final ReleasedOrderRepository repository;
 
     private final ReleasedOrderSendService releasedOrderSendService;
 
 
-    protected ReleasedOrderListener(ReleasedOrderRepository repository, ReleasedOrderSendService releasedOrderSendService) {
-        super(repository);
+    protected ReleasedOrderListener(ReleasedOrderRepository repository, ReleasedOrderSupportService supportService, ReleasedOrderSendService releasedOrderSendService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.releasedOrderSendService = releasedOrderSendService;
     }
 

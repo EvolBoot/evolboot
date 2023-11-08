@@ -15,14 +15,20 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UserRoleDeleteService extends UserSupportService {
+public class UserRoleDeleteService {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
+
     private final SecurityAccessTokenClient securityAccessTokenClient;
 
 
-    public UserRoleDeleteService(UserRepository repository, SecurityAccessTokenClient securityAccessTokenClient) {
+    public UserRoleDeleteService(UserRepository repository, UserSupportService supportService, SecurityAccessTokenClient securityAccessTokenClient) {
 
 
-        super(repository);
+        this.repository = repository;
+        this.supportService = supportService;
         this.securityAccessTokenClient = securityAccessTokenClient;
     }
 

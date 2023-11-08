@@ -12,9 +12,14 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class AppUpgradeCreateFactory extends AppUpgradeSupportService {
-    protected AppUpgradeCreateFactory(AppUpgradeRepository repository) {
-        super(repository);
+public class AppUpgradeCreateFactory {
+
+    private final AppUpgradeRepository repository;
+    private final AppUpgradeSupportService supportService;
+
+    protected AppUpgradeCreateFactory(AppUpgradeRepository repository, AppUpgradeSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public AppUpgrade execute(Request request) {

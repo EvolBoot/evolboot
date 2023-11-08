@@ -1,21 +1,17 @@
 package org.evolboot.system.domain.dictkey;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
 import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.system.SystemAccessAuthorities;
+import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
-import org.evolboot.system.domain.dictkey.service.DictKeyCreateFactory;
 import org.evolboot.system.domain.dictkey.service.DictKeySupportService;
-import org.evolboot.system.domain.dictkey.service.DictKeyUpdateService;
 
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -29,12 +25,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class DictKeyQueryServiceImpl extends DictKeySupportService implements DictKeyQueryService {
+public class DictKeyQueryServiceImpl  implements DictKeyQueryService {
 
-    protected DictKeyQueryServiceImpl(DictKeyRepository repository) {
-        super(repository);
+    private final DictKeyRepository repository;
+    private final DictKeySupportService supportService;
+
+    protected DictKeyQueryServiceImpl(DictKeyRepository repository, DictKeySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public DictKey findById(Long id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<DictKey> findAll() {
@@ -50,6 +54,11 @@ public class DictKeyQueryServiceImpl extends DictKeySupportService implements Di
     @Override
     public Page<DictKey> page(DictKeyQuery query) {
         return repository.page(query);
+    }
+
+    @Override
+    public DictKey findByKey(String key) {
+        return repository.findByKey(key).orElseThrow(() -> new DomainNotFoundException(I18NMessageHolder.message(SystemI18nMessage.DictKey.NOT_FOUND)));
     }
 
 

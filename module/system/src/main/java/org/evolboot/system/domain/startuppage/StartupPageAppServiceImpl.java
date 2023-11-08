@@ -21,16 +21,26 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class StartupPageAppServiceImpl extends StartupPageSupportService implements StartupPageAppService {
+public class StartupPageAppServiceImpl  implements StartupPageAppService {
 
 
     private final StartupPageCreateFactory factory;
     private final StartupPageUpdateService updateService;
 
-    protected StartupPageAppServiceImpl(StartupPageRepository repository, StartupPageCreateFactory factory, StartupPageUpdateService updateService) {
-        super(repository);
+    private final StartupPageRepository repository;
+
+    private final StartupPageSupportService supportService;
+
+    protected StartupPageAppServiceImpl(StartupPageRepository repository, StartupPageCreateFactory factory, StartupPageUpdateService updateService, StartupPageSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public StartupPage findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override

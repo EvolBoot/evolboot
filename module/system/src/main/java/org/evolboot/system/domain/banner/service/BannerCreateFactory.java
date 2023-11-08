@@ -12,9 +12,14 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class BannerCreateFactory extends BannerSupportService {
-    protected BannerCreateFactory(BannerRepository repository) {
-        super(repository);
+public class BannerCreateFactory {
+
+    private final BannerRepository repository;
+    private final BannerSupportService supportService;
+
+    protected BannerCreateFactory(BannerRepository repository, BannerSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public Banner execute(Request request) {

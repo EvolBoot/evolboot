@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 字典Value
@@ -14,7 +15,8 @@ import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
  * @date 2023-05-07 12:55:06
  */
 @Slf4j
-public abstract class DictValueSupportService {
+@Service
+public class DictValueSupportService {
 
     protected final DictValueRepository repository;
 

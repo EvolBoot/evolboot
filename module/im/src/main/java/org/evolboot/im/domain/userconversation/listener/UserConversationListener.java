@@ -20,18 +20,25 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserConversationListener extends UserConversationSupportService {
+public class UserConversationListener  {
 
+    
     private final UserConversationCreateFactory factory;
     private final UserConversationForbidTalkCausesChangeService forbidTalkCausesChangeService;
 
     private final UserConversationDeleteService deleteService;
+    
+    private final UserConversationSupportService supportService;
+    
+    private final UserConversationRepository repository;
+    
 
-    protected UserConversationListener(UserConversationRepository repository, UserConversationCreateFactory factory, UserConversationForbidTalkCausesChangeService forbidTalkCausesChangeService, UserConversationDeleteService deleteService) {
-        super(repository);
+    protected UserConversationListener(UserConversationRepository repository, UserConversationCreateFactory factory, UserConversationForbidTalkCausesChangeService forbidTalkCausesChangeService, UserConversationDeleteService deleteService, UserConversationSupportService supportService) {
+        this.repository = repository;
         this.factory = factory;
         this.forbidTalkCausesChangeService = forbidTalkCausesChangeService;
         this.deleteService = deleteService;
+        this.supportService = supportService;
     }
 
 

@@ -29,10 +29,19 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class PayGatewayAccountQueryServiceImpl extends PayGatewayAccountSupportService implements PayGatewayAccountQueryService {
+public class PayGatewayAccountQueryServiceImpl  implements PayGatewayAccountQueryService {
 
-    protected PayGatewayAccountQueryServiceImpl(PayGatewayAccountRepository repository) {
-        super(repository);
+    private final PayGatewayAccountRepository repository;
+    private final PayGatewayAccountSupportService supportService;
+
+    protected PayGatewayAccountQueryServiceImpl(PayGatewayAccountRepository repository, PayGatewayAccountSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public PayGatewayAccount findById(Long id) {
+        return supportService.findById(id);
     }
 
 

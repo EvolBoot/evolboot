@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.news.entity.News;
 import org.evolboot.system.domain.news.repository.NewsRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 新闻
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.news.repository.NewsRepository;
  * @author evol
  */
 @Slf4j
-public abstract class NewsSupportService {
+@Service
+public class NewsSupportService {
 
     protected final NewsRepository repository;
 

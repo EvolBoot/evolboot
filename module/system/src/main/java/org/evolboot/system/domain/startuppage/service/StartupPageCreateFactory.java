@@ -12,10 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class StartupPageCreateFactory extends StartupPageSupportService {
-    protected StartupPageCreateFactory(StartupPageRepository repository) {
-        super(repository);
+public class StartupPageCreateFactory {
+
+    private final StartupPageRepository repository;
+    private final StartupPageSupportService supportService;
+
+    protected StartupPageCreateFactory(StartupPageRepository repository, StartupPageSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public StartupPage execute(Request request) {
         StartupPage startupPage = new StartupPage(

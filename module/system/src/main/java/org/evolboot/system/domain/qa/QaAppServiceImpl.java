@@ -20,18 +20,27 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class QaAppServiceImpl extends QaSupportService implements QaAppService {
+public class QaAppServiceImpl  implements QaAppService {
 
 
     private final QaCreateFactory factory;
     private final QaUpdateService updateService;
 
-    protected QaAppServiceImpl(QaRepository repository, QaCreateFactory factory, QaUpdateService updateService) {
-        super(repository);
+    private final QaRepository repository;
+
+    private final QaSupportService supportService;
+
+    protected QaAppServiceImpl(QaRepository repository, QaCreateFactory factory, QaUpdateService updateService, QaSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public Qa findById(Long id) {
+        return supportService.findById(id);
+    }
     @Override
     @Transactional
     public Qa create(QaCreateFactory.Request request) {

@@ -15,15 +15,20 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class DictKeyUpdateService extends DictKeySupportService {
-    protected DictKeyUpdateService(DictKeyRepository repository) {
-        super(repository);
+public class DictKeyUpdateService {
+
+    private final DictKeyRepository repository;
+    private final DictKeySupportService supportService;
+
+    protected DictKeyUpdateService(DictKeyRepository repository, DictKeySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        DictKey dictKey = findById(request.getId());
+        DictKey dictKey = supportService.findById(request.getId());
         if (!request.getKey().equals(dictKey.getKey())) {
-            keyMustNotFound(request.getKey());
+            supportService.keyMustNotFound(request.getKey());
         }
         dictKey.setKey(request.getKey());
         dictKey.setSort(request.getSort());

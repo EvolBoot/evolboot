@@ -19,14 +19,18 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class MqTransactionAppServiceImpl extends MqTransactionSupportService implements MqTransactionAppService {
+public class MqTransactionAppServiceImpl implements MqTransactionAppService {
 
+    private final MqTransactionRepository repository;
+
+    private final MqTransactionSupportService supportService;
 
     private final MqTransactionCreateFactory factory;
 
 
-    protected MqTransactionAppServiceImpl(MqTransactionRepository repository, MqTransactionCreateFactory factory) {
-        super(repository);
+    protected MqTransactionAppServiceImpl(MqTransactionRepository repository, MqTransactionSupportService supportService, MqTransactionCreateFactory factory) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.factory = factory;
     }
 

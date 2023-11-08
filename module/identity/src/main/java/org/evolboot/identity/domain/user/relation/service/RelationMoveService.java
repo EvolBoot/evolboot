@@ -25,10 +25,15 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class RelationMoveService extends RelationSupportService {
+public class RelationMoveService {
 
-    protected RelationMoveService(RelationRepository repository) {
-        super(repository);
+    private final RelationRepository repository;
+    private final RelationSupportService supportService;
+
+
+    protected RelationMoveService(RelationRepository repository, RelationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Long id, Long target) {
@@ -36,7 +41,7 @@ public class RelationMoveService extends RelationSupportService {
             throw new IllegalArgumentException("不能移动到自己下面");
         }
         Optional<Long> ancestor = repository.queryAncestorByDescendantAndDistance(id, 1);
-        moveSubTree(id, ancestor.get());
-        moveNode(id, target);
+        supportService.moveSubTree(id, ancestor.get());
+        supportService.moveNode(id, target);
     }
 }

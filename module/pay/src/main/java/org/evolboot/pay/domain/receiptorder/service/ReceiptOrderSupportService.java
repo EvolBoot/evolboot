@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
 import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 第三方代收订单
@@ -12,7 +13,8 @@ import org.evolboot.pay.domain.receiptorder.repository.ReceiptOrderRepository;
  * @author evol
  */
 @Slf4j
-public abstract class ReceiptOrderSupportService {
+@Service
+public class ReceiptOrderSupportService {
 
     protected final ReceiptOrderRepository repository;
 

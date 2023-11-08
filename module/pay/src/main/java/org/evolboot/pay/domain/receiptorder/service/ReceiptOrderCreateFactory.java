@@ -31,18 +31,21 @@ import static org.evolboot.pay.PayI18nMessage.PaymentClient.thePaymentGatewayDoe
  */
 @Slf4j
 @Service
-public class ReceiptOrderCreateFactory extends ReceiptOrderSupportService {
+public class ReceiptOrderCreateFactory {
 
-
-    private final Map<PayGateway, ReceiptClient> receiptClients;
+    private final ReceiptOrderRepository repository;
+    private final ReceiptOrderSupportService supportService;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
+    private final Map<PayGateway, ReceiptClient> receiptClients;
 
-    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
-        super(repository);
-        this.receiptClients = receiptClients;
+
+    protected ReceiptOrderCreateFactory(ReceiptOrderRepository repository, ReceiptOrderSupportService supportService, PayGatewayAccountQueryService payGatewayAccountQueryService, Map<PayGateway, ReceiptClient> receiptClients) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
+        this.receiptClients = receiptClients;
     }
 
     public ReceiptOrder execute(Request request) {

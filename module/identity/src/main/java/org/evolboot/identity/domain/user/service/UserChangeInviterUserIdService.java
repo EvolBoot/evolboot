@@ -15,17 +15,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserChangeInviterUserIdService extends UserSupportService {
+public class UserChangeInviterUserIdService {
 
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
     private final RelationAppService relationAppService;
 
-    public UserChangeInviterUserIdService(UserRepository repository, RelationAppService relationAppService) {
-        super(repository);
+    public UserChangeInviterUserIdService(UserRepository repository, UserSupportService supportService, RelationAppService relationAppService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.relationAppService = relationAppService;
     }
 
     public void execute(Long userId, Long newInviterUserId) {
-        User user = findById(userId);
+        User user = supportService.findById(userId);
         repository.findById(newInviterUserId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.inviterDoesNotExist()));
         user.changeInviterUserId(newInviterUserId);
         repository.save(user);

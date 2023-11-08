@@ -29,13 +29,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class GroupMemberQueryServiceImpl extends GroupMemberSupportService implements GroupMemberQueryService {
+public class GroupMemberQueryServiceImpl  implements GroupMemberQueryService {
 
-    protected GroupMemberQueryServiceImpl(GroupMemberRepository repository) {
-        super(repository);
+    private final GroupMemberRepository repository;
+    private final GroupMemberSupportService supportService;
+
+    protected GroupMemberQueryServiceImpl(GroupMemberRepository repository, GroupMemberSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
-
+    @Override
+    public GroupMember findById(Long id) {
+        return supportService.findById(id);
+    }
     @Override
     public List<GroupMember> findAll() {
         return repository.findAll();

@@ -28,25 +28,32 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class DictKeyAppServiceImpl extends DictKeySupportService implements DictKeyAppService {
+public class DictKeyAppServiceImpl  implements DictKeyAppService {
 
 
     private final DictKeyCreateFactory factory;
     private final DictKeyUpdateService updateService;
 
+    private final DictKeyRepository repository;
+
+    private final DictKeySupportService supportService;
+
     private final EventPublisher eventPublisher;
 
-    protected DictKeyAppServiceImpl(DictKeyRepository repository, DictKeyCreateFactory factory, DictKeyUpdateService updateService, EventPublisher eventPublisher) {
-        super(repository);
+    protected DictKeyAppServiceImpl(DictKeyRepository repository, DictKeyCreateFactory factory, DictKeyUpdateService updateService, DictKeySupportService supportService, EventPublisher eventPublisher) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
         this.eventPublisher = eventPublisher;
     }
 
     @Override
-    public DictKey findByKey(String key) {
-        return repository.findByKey(key).orElseThrow(() -> new DomainNotFoundException(I18NMessageHolder.message(SystemI18nMessage.DictKey.NOT_FOUND)));
+    public DictKey findById(Long id) {
+        return supportService.findById(id);
     }
+
+
 
     @Override
     @Transactional

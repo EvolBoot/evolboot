@@ -12,11 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class NewsCreateFactory extends NewsSupportService {
+public class  NewsCreateFactory {
 
-    protected NewsCreateFactory(NewsRepository repository) {
-        super(repository);
+    private final  NewsRepository repository;
+    private final  NewsSupportService supportService;
+
+    protected  NewsCreateFactory( NewsRepository repository,  NewsSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public News execute(Request request) {
         News news = new News(

@@ -12,10 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class QaCreateFactory extends QaSupportService {
-    protected QaCreateFactory(QaRepository repository) {
-        super(repository);
+public class QaCreateFactory {
+
+    private final QaRepository repository;
+    private final QaSupportService supportService;
+
+    protected QaCreateFactory(QaRepository repository, QaSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public Qa execute(Request request) {
         Qa qa = new Qa(

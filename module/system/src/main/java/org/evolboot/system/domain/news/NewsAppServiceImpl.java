@@ -21,18 +21,27 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class NewsAppServiceImpl extends NewsSupportService implements NewsAppService {
+public class NewsAppServiceImpl  implements NewsAppService {
 
 
     private final NewsCreateFactory factory;
     private final NewsUpdateService updateService;
 
-    protected NewsAppServiceImpl(NewsRepository repository, NewsCreateFactory factory, NewsUpdateService updateService) {
-        super(repository);
+    private final NewsRepository repository;
+
+    private final NewsSupportService supportService;
+
+    protected NewsAppServiceImpl(NewsRepository repository, NewsCreateFactory factory, NewsUpdateService updateService, NewsSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public News findById(Long id) {
+        return supportService.findById(id);
+    }
     @Override
     @Transactional
     public News create(NewsCreateFactory.Request request) {

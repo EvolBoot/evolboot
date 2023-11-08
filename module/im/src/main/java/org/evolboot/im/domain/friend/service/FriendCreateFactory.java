@@ -26,7 +26,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 //TODO 多语言
-public class FriendCreateFactory extends FriendSupportService {
+public class FriendCreateFactory {
+
+    private final FriendSupportService supportService;
+
+    private final FriendRepository repository;
 
     private final ConversationAppService conversationAppService;
 
@@ -35,8 +39,9 @@ public class FriendCreateFactory extends FriendSupportService {
     private final EventPublisher eventPublisher;
 
 
-    protected FriendCreateFactory(FriendRepository repository, ConversationAppService conversationAppService, UserClient userClient, EventPublisher eventPublisher) {
-        super(repository);
+    protected FriendCreateFactory(FriendRepository repository, FriendSupportService supportService, ConversationAppService conversationAppService, UserClient userClient, EventPublisher eventPublisher) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.conversationAppService = conversationAppService;
         this.userClient = userClient;
         this.eventPublisher = eventPublisher;
@@ -47,7 +52,7 @@ public class FriendCreateFactory extends FriendSupportService {
         Assert.isTrue(userClient.existsByUserId(request.getFriendUserId()), "用户不存在");
         Assert.isTrue(userClient.existsByUserId(request.getOwnerUserId()), "用户不存在");
         // 创建会话
-        Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.SINGLE, buildConversationId(request.getOwnerUserId(), request.getFriendUserId())));
+        Conversation conversation = conversationAppService.create(new ConversationCreateFactory.Request(ConversationType.SINGLE, supportService.buildConversationId(request.getOwnerUserId(), request.getFriendUserId())));
 
         Friend owner = repository.findByOwnerUserIdAndFriendUserId(request.getOwnerUserId(), request.getFriendUserId()).orElseGet(() -> new Friend(
                 request.getOwnerUserId(),

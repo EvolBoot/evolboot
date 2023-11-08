@@ -22,12 +22,18 @@ import java.util.Date;
  */
 @Slf4j
 @Service
-public class GroupMemberCreateFactory extends GroupMemberSupportService {
+public class GroupMemberCreateFactory {
+
+    private final GroupMemberSupportService supportService;
+
+    private final GroupMemberRepository repository;
+
 
     private final EventPublisher eventPublisher;
 
-    protected GroupMemberCreateFactory(GroupMemberRepository repository, EventPublisher eventPublisher) {
-        super(repository);
+    protected GroupMemberCreateFactory(GroupMemberRepository repository, EventPublisher eventPublisher, GroupMemberSupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.eventPublisher = eventPublisher;
     }
 

@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class StartupPageUpdateService extends StartupPageSupportService {
-    protected StartupPageUpdateService(StartupPageRepository repository) {
-        super(repository);
+public class StartupPageUpdateService {
+
+    private final StartupPageRepository repository;
+    private final StartupPageSupportService supportService;
+
+    protected StartupPageUpdateService(StartupPageRepository repository, StartupPageSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        StartupPage startupPage = findById(request.getId());
+        StartupPage startupPage = supportService.findById(request.getId());
         startupPage.setSort(request.getSort());
         startupPage.setEnable(request.getEnable());
         startupPage.setLocales(request.getLocales());

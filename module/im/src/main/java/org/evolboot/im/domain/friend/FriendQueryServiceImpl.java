@@ -29,12 +29,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class FriendQueryServiceImpl extends FriendSupportService implements FriendQueryService {
+public class FriendQueryServiceImpl  implements FriendQueryService {
 
-    protected FriendQueryServiceImpl(FriendRepository repository) {
-        super(repository);
+    private final FriendRepository repository;
+    private final FriendSupportService supportService;
+
+    protected FriendQueryServiceImpl(FriendRepository repository, FriendSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public Friend findById(Long id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<Friend> findAll() {

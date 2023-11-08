@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.user.relation.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.domain.user.relation.Relation;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ import java.util.List;
  * @author evol
  */
 @Slf4j
-public abstract class RelationSupportService {
+@Service
+public class RelationSupportService {
 
     protected final RelationRepository repository;
 

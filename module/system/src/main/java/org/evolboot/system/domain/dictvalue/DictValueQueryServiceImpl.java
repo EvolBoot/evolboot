@@ -29,12 +29,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class DictValueQueryServiceImpl extends DictValueSupportService implements DictValueQueryService {
+public class DictValueQueryServiceImpl  implements DictValueQueryService {
 
-    protected DictValueQueryServiceImpl(DictValueRepository repository) {
-        super(repository);
+    private final DictValueRepository repository;
+    private final DictValueSupportService supportService;
+
+    protected DictValueQueryServiceImpl(DictValueRepository repository, DictValueSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public DictValue findById(Long id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<DictValue> findAll() {

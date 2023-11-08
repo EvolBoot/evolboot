@@ -19,13 +19,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class XarvkgvvrllncUpdateService extends XarvkgvvrllncSupportService {
-    protected XarvkgvvrllncUpdateService(XarvkgvvrllncRepository repository) {
-        super(repository);
+public class XarvkgvvrllncUpdateService {
+
+    private final XarvkgvvrllncRepository repository;
+    private final XarvkgvvrllncSupportService supportService;
+
+    protected XarvkgvvrllncUpdateService(XarvkgvvrllncRepository repository, XarvkgvvrllncSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        Xarvkgvvrllnc instantiationObjectName = findById(request.getId());
+        Xarvkgvvrllnc instantiationObjectName = supportService.findById(request.getId());
         repository.save(instantiationObjectName);
     }
 

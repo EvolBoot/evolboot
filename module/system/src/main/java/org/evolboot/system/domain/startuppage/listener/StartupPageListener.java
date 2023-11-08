@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class StartupPageListener extends StartupPageSupportService {
+public class StartupPageListener {
 
-    protected StartupPageListener(StartupPageRepository repository) {
-        super(repository);
+    private final StartupPageRepository repository;
+
+    private final StartupPageSupportService supportService;
+
+    protected StartupPageListener(StartupPageRepository repository, StartupPageSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

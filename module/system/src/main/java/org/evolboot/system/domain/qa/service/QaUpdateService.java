@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class QaUpdateService extends QaSupportService {
-    protected QaUpdateService(QaRepository repository) {
-        super(repository);
+public class QaUpdateService {
+
+    private final QaRepository repository;
+    private final QaSupportService supportService;
+
+    protected QaUpdateService(QaRepository repository, QaSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        Qa qa = findById(request.getId());
+        Qa qa = supportService.findById(request.getId());
         qa.setEnable(request.getEnable());
         qa.setLocales(request.getLocales());
         qa.setLink(request.getLink());

@@ -14,10 +14,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class GroupApplyCreateFactory extends GroupApplySupportService {
-    protected GroupApplyCreateFactory(GroupApplyRepository repository) {
-        super(repository);
+public class GroupApplyCreateFactory {
+
+    private final GroupApplyRepository repository;
+    private final GroupApplySupportService supportService;
+
+    protected GroupApplyCreateFactory(GroupApplyRepository repository, GroupApplySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public GroupApply execute(Request request) {
         GroupApply groupApply = new GroupApply("test");

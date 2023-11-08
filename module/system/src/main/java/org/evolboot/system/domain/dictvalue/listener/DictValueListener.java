@@ -16,13 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Slf4j
-public class DictValueListener extends DictValueSupportService {
+public class DictValueListener {
 
+    private final DictValueRepository repository;
 
-    protected DictValueListener(DictValueRepository repository) {
-        super(repository);
+    private final DictValueSupportService supportService;
+
+    protected DictValueListener(DictValueRepository repository, DictValueSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
-
 
     @EventListener
     @Transactional

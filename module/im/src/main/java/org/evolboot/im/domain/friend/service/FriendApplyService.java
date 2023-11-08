@@ -32,15 +32,21 @@ import static org.evolboot.im.ImI18nMessage.Friend.YOU_CANNOT_ADD_YOURSELF_AS_A_
  */
 @Service
 @Slf4j
-public class FriendApplyService extends FriendSupportService {
+public class FriendApplyService {
+
+
+    private final FriendSupportService supportService;
+
+    private final FriendRepository repository;
 
     private final FriendCreateFactory factory;
     private final UserClient userClient;
 
     private final UserConversationAppService userConversationAppService;
 
-    protected FriendApplyService(FriendRepository repository, FriendCreateFactory factory, UserClient userClient, UserConversationAppService userConversationAppService) {
-        super(repository);
+    protected FriendApplyService(FriendRepository repository, FriendSupportService supportService, FriendCreateFactory factory, UserClient userClient, UserConversationAppService userConversationAppService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.factory = factory;
         this.userClient = userClient;
         this.userConversationAppService = userConversationAppService;

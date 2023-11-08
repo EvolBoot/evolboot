@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class NewsUpdateService extends NewsSupportService {
-    protected NewsUpdateService(NewsRepository repository) {
-        super(repository);
+public class NewsUpdateService {
+
+    private final NewsRepository repository;
+    private final NewsSupportService supportService;
+
+    protected NewsUpdateService(NewsRepository repository, NewsSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        News news = findById(request.getId());
+        News news = supportService.findById(request.getId());
         news.setSort(request.getSort());
         news.setSource(request.getSource());
         news.setShow(request.getShow());

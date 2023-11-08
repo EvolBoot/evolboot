@@ -19,10 +19,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ConversationCreateFactory extends ConversationSupportService {
-    protected ConversationCreateFactory(ConversationRepository repository) {
-        super(repository);
+public class ConversationCreateFactory {
+
+    private final ConversationRepository repository;
+    private final ConversationSupportService supportService;
+
+    protected ConversationCreateFactory(ConversationRepository repository, ConversationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public Conversation execute(Request request) {
         Conversation conversation = repository.findByRelationId(request.getRelationId()).orElseGet(() -> new Conversation(

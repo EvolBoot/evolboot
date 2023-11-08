@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ChatRecordListener extends ChatRecordSupportService {
+public class ChatRecordListener {
 
-    protected ChatRecordListener(ChatRecordRepository repository) {
-        super(repository);
+    private final ChatRecordRepository repository;
+
+    private final ChatRecordSupportService supportService;
+
+    protected ChatRecordListener(ChatRecordRepository repository, ChatRecordSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

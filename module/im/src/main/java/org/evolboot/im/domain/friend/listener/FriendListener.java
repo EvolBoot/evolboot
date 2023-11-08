@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class FriendListener extends FriendSupportService {
+public class FriendListener {
 
-    protected FriendListener(FriendRepository repository) {
-        super(repository);
+    private final FriendRepository repository;
+
+    private final FriendSupportService supportService;
+
+    protected FriendListener(FriendRepository repository, FriendSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

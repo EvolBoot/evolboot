@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.notice.entity.Notice;
 import org.evolboot.system.domain.notice.repository.NoticeRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 公告
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.notice.repository.NoticeRepository;
  * @author evol
  */
 @Slf4j
-public abstract class NoticeSupportService {
+@Service
+public class NoticeSupportService {
 
     protected final NoticeRepository repository;
 

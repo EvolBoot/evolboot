@@ -12,10 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class NoticeCreateFactory extends NoticeSupportService {
-    protected NoticeCreateFactory(NoticeRepository repository) {
-        super(repository);
+public class  NoticeCreateFactory {
+
+    private final  NoticeRepository repository;
+    private final  NoticeSupportService supportService;
+
+    protected  NoticeCreateFactory( NoticeRepository repository,  NoticeSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public Notice execute(Request request) {
         Notice notice = new Notice(

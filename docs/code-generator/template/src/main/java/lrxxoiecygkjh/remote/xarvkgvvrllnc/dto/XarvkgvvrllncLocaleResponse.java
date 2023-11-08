@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class XarvkgvvrllncLocaleResponse {
 
 
-    private Long id;
+    private Keya2Akk5iV3n id;
 
     public static XarvkgvvrllncLocaleResponse of(Xarvkgvvrllnc row) {
 //        XarvkgvvrllncLocale locale = row.findLocaleByCurrentLanguage(XarvkgvvrllncLocale.class);

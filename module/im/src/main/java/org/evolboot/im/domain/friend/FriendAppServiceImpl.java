@@ -1,15 +1,11 @@
 package org.evolboot.im.domain.friend;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.evolboot.im.domain.friend.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 好友关系
@@ -19,8 +15,12 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class FriendAppServiceImpl extends FriendSupportService implements FriendAppService {
+public class FriendAppServiceImpl implements FriendAppService {
 
+
+    private final FriendSupportService supportService;
+
+    private final FriendRepository repository;
 
     private final FriendCreateFactory factory;
     private final FriendUpdateService updateService;
@@ -32,8 +32,9 @@ public class FriendAppServiceImpl extends FriendSupportService implements Friend
     private final FriendBlacklistService blacklistService;
 
 
-    protected FriendAppServiceImpl(FriendRepository repository, FriendCreateFactory factory, FriendUpdateService updateService, FriendApplyService applyService, FriendDeleteService deleteService, FriendBlacklistService blacklistService) {
-        super(repository);
+    protected FriendAppServiceImpl(FriendRepository repository, FriendSupportService supportService, FriendCreateFactory factory, FriendUpdateService updateService, FriendApplyService applyService, FriendDeleteService deleteService, FriendBlacklistService blacklistService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.factory = factory;
         this.updateService = updateService;
         this.applyService = applyService;
@@ -58,7 +59,7 @@ public class FriendAppServiceImpl extends FriendSupportService implements Friend
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 

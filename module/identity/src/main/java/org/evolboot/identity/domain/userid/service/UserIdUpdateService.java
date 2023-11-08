@@ -12,13 +12,19 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class UserIdUpdateService extends UserIdSupportService {
-    protected UserIdUpdateService(UserIdRepository repository) {
-        super(repository);
+public class UserIdUpdateService {
+
+    private final UserIdRepository repository;
+    private final UserIdSupportService supportService;
+
+    protected UserIdUpdateService(UserIdRepository repository, UserIdSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+
     public void execute(Long id, Request request) {
-        UserId userId = findById(id);
+        UserId userId = supportService.findById(id);
         repository.save(userId);
     }
 

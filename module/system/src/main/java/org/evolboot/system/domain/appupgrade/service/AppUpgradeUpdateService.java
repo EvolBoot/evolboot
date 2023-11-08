@@ -15,13 +15,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class AppUpgradeUpdateService extends AppUpgradeSupportService {
-    protected AppUpgradeUpdateService(AppUpgradeRepository repository) {
-        super(repository);
+public class AppUpgradeUpdateService {
+
+    private final AppUpgradeRepository repository;
+    private final AppUpgradeSupportService supportService;
+
+    protected AppUpgradeUpdateService(AppUpgradeRepository repository, AppUpgradeSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        AppUpgrade upgrade = findById(request.getId());
+        AppUpgrade upgrade = supportService.findById(request.getId());
         if (ExtendObjects.isNotBlank(request.getAppVersion())) {
             upgrade.setAppVersion(request.getAppVersion());
         }

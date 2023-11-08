@@ -14,7 +14,6 @@ import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,13 +22,18 @@ import java.util.Set;
 @Service
 @Slf4j
 //TODO 多语言
-public class UserUpdateService extends UserSupportService {
+public class UserUpdateService  {
 
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
     private final RsaService rsaService;
     private final RoleQueryService roleQueryService;
 
-    public UserUpdateService(UserRepository repository, RsaService rsaService, RoleQueryService roleQueryService) {
-        super(repository);
+    public UserUpdateService(UserRepository repository, UserSupportService supportService, RsaService rsaService, RoleQueryService roleQueryService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.rsaService = rsaService;
         this.roleQueryService = roleQueryService;
     }

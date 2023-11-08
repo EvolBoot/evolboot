@@ -2,8 +2,8 @@ package org.evolboot.system.domain.dictvalue.service;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.system.domain.dictkey.DictKeyQueryService;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
-import org.evolboot.system.domain.dictkey.DictKeyAppService;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,21 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class DictValueCreateFactory extends DictValueSupportService {
+public class DictValueCreateFactory {
 
-    private final DictKeyAppService dictKeyAppService;
+    private final DictValueRepository repository;
+    private final DictValueSupportService supportService;
 
-    protected DictValueCreateFactory(DictValueRepository repository, DictKeyAppService dictKeyAppService) {
-        super(repository);
-        this.dictKeyAppService = dictKeyAppService;
+    private final DictKeyQueryService dictKeyQueryService;
+
+    protected DictValueCreateFactory(DictValueRepository repository, DictValueSupportService supportService, DictKeyQueryService dictKeyQueryService) {
+        this.repository = repository;
+        this.supportService = supportService;
+        this.dictKeyQueryService = dictKeyQueryService;
     }
 
     public DictValue execute(Request request) {
-        DictKey dictKey = dictKeyAppService.findById(request.getDictKeyId());
+        DictKey dictKey = dictKeyQueryService.findById(request.getDictKeyId());
         DictValue dictValue = new DictValue(
                 dictKey.id(),
                 request.getDisplayName(),

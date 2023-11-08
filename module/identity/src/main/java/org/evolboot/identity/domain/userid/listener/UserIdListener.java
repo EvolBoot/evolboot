@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserIdListener extends UserIdSupportService {
+public class UserIdListener {
 
-    protected UserIdListener(UserIdRepository repository) {
-        super(repository);
+    private final UserIdRepository repository;
+
+    private final UserIdSupportService supportService;
+
+    protected UserIdListener(UserIdRepository repository, UserIdSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

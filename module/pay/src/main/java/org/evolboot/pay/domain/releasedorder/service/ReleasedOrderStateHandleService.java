@@ -15,12 +15,17 @@ import java.math.BigDecimal;
  */
 @Service
 @Slf4j
-public class ReleasedOrderStateHandleService extends ReleasedOrderSupportService {
+public class ReleasedOrderStateHandleService {
+
+    private final ReleasedOrderSupportService supportService;
+
+    private final ReleasedOrderRepository repository;
 
     private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReleasedOrderStateHandleService(ReleasedOrderRepository repository, MQMessagePublisher mqMessagePublisher) {
-        super(repository);
+    protected ReleasedOrderStateHandleService(ReleasedOrderRepository repository, ReleasedOrderSupportService supportService, MQMessagePublisher mqMessagePublisher) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.mqMessagePublisher = mqMessagePublisher;
     }
 

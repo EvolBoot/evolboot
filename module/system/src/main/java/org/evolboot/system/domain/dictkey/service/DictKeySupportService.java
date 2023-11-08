@@ -7,6 +7,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 字典key
@@ -15,7 +16,8 @@ import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
  * @date 2023-05-07 12:29:33
  */
 @Slf4j
-public abstract class DictKeySupportService {
+@Service
+public class DictKeySupportService {
 
     protected final DictKeyRepository repository;
 

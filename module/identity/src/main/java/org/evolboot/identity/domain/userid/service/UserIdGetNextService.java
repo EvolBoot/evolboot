@@ -14,14 +14,19 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UserIdGetNextService extends UserIdSupportService {
+public class UserIdGetNextService  {
 
     private final List<Long> userIds = Lists.newArrayList();
     private int warnNum = 500;
     private int step = 1000;
 
-    protected UserIdGetNextService(UserIdRepository repository) {
-        super(repository);
+    private final UserIdRepository repository;
+
+    private final UserIdSupportService supportService;
+
+    protected UserIdGetNextService(UserIdRepository repository, UserIdSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void checkAndAddCache() {

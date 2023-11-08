@@ -22,16 +22,25 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class GroupApplyAppServiceImpl extends GroupApplySupportService implements GroupApplyAppService {
+public class GroupApplyAppServiceImpl  implements GroupApplyAppService {
 
 
     private final GroupApplyCreateFactory factory;
     private final GroupApplyUpdateService updateService;
 
-    protected GroupApplyAppServiceImpl(GroupApplyRepository repository, GroupApplyCreateFactory factory, GroupApplyUpdateService updateService) {
-        super(repository);
+    private final GroupApplyRepository repository;
+
+    private final GroupApplySupportService supportService;
+
+    protected GroupApplyAppServiceImpl(GroupApplyRepository repository, GroupApplyCreateFactory factory, GroupApplyUpdateService updateService, GroupApplySupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    public GroupApply findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override

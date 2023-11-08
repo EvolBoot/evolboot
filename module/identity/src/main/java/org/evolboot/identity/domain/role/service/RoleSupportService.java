@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.role.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.permission.entity.Permission;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 /**
  * @author evol
  */
+@Slf4j
 @Service
 public class RoleSupportService {
     protected final RoleRepository roleRepository;

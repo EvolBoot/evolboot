@@ -19,12 +19,18 @@ import java.util.stream.Collectors;
  * @author evol
  */
 @Service
-public class UserRoleUpdateService extends UserRoleSupportService {
+public class UserRoleUpdateService {
+
+    private final UserRoleRepository repository;
+
+    private final UserRoleSupportService supportService;
+
 
     private final RoleQueryService roleQueryService;
 
-    protected UserRoleUpdateService(UserRoleRepository repository, RoleQueryService roleQueryService) {
-        super(repository);
+    protected UserRoleUpdateService(UserRoleRepository repository, UserRoleSupportService supportService, RoleQueryService roleQueryService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.roleQueryService = roleQueryService;
     }
 

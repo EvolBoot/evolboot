@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class NewsListener extends NewsSupportService {
+public class NewsListener {
 
-    protected NewsListener(NewsRepository repository) {
-        super(repository);
+    private final NewsRepository repository;
+
+    private final NewsSupportService supportService;
+
+    protected NewsListener(NewsRepository repository, NewsSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

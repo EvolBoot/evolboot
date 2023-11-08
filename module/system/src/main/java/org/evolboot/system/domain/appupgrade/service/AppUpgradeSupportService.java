@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.appupgrade.entity.AppUpgrade;
 import org.evolboot.system.domain.appupgrade.repository.AppUpgradeRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * APP更新
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.appupgrade.repository.AppUpgradeRepository;
  * @author evol
  */
 @Slf4j
-public abstract class AppUpgradeSupportService {
+@Service
+public class AppUpgradeSupportService {
 
     protected final AppUpgradeRepository repository;
 

@@ -1,7 +1,7 @@
 package org.evolboot.configuration.domain.config.repository.jpa;
 
 import org.evolboot.configuration.domain.config.entity.Config;
-import org.evolboot.configuration.domain.config.repository.ConfigurationRepository;
+import org.evolboot.configuration.domain.config.repository.ConfigRepository;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author evol
  */
 @Repository
-public interface JpaConfigurationRepository extends ConfigurationRepository, QuerydslPredicateExecutor<Config>, JpaRepository<Config, String> {
+public interface JpaConfigRepository extends ConfigRepository, QuerydslPredicateExecutor<Config>, JpaRepository<Config, String> {
 
     String CACHE_NAME = RedisCacheName.CONFIGURATION_CACHE_NAME;
 

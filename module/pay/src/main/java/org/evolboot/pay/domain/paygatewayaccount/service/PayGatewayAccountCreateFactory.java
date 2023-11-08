@@ -12,10 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class PayGatewayAccountCreateFactory extends PayGatewayAccountSupportService {
-    protected PayGatewayAccountCreateFactory(PayGatewayAccountRepository repository) {
-        super(repository);
+public class PayGatewayAccountCreateFactory {
+
+    private final PayGatewayAccountRepository repository;
+    private final PayGatewayAccountSupportService supportService;
+
+    protected PayGatewayAccountCreateFactory(PayGatewayAccountRepository repository, PayGatewayAccountSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     public PayGatewayAccount execute(Request request) {
         PayGatewayAccount payGatewayAccount = new PayGatewayAccount(

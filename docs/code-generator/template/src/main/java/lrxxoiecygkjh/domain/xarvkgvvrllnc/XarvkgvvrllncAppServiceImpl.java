@@ -29,17 +29,25 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class XarvkgvvrllncAppServiceImpl extends XarvkgvvrllncSupportService implements XarvkgvvrllncAppService {
+public class XarvkgvvrllncAppServiceImpl  implements XarvkgvvrllncAppService {
 
 
     private final XarvkgvvrllncCreateFactory factory;
-
     private final XarvkgvvrllncUpdateService updateService;
 
-    protected XarvkgvvrllncAppServiceImpl(XarvkgvvrllncRepository repository, XarvkgvvrllncCreateFactory factory, XarvkgvvrllncUpdateService updateService) {
-        super(repository);
+    private final XarvkgvvrllncRepository repository;
+
+    private final XarvkgvvrllncSupportService supportService;
+
+    protected XarvkgvvrllncAppServiceImpl(XarvkgvvrllncRepository repository, XarvkgvvrllncCreateFactory factory, XarvkgvvrllncUpdateService updateService, XarvkgvvrllncSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    public Xarvkgvvrllnc findById(Keya2Akk5iV3n id) {
+        return supportService.findById(id);
     }
 
     @Override

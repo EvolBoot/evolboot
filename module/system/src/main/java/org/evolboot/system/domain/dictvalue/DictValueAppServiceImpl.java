@@ -2,7 +2,7 @@ package org.evolboot.system.domain.dictvalue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
-import org.evolboot.system.domain.dictkey.DictKeyAppService;
+import org.evolboot.system.domain.dictkey.DictKeyQueryService;
 import org.evolboot.system.domain.dictvalue.entity.DictValue;
 import org.evolboot.system.domain.dictvalue.repository.DictValueRepository;
 import org.evolboot.system.domain.dictvalue.service.DictValueCreateFactory;
@@ -23,21 +23,30 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class DictValueAppServiceImpl extends DictValueSupportService implements DictValueAppService {
+public class DictValueAppServiceImpl  implements DictValueAppService {
 
 
     private final DictValueCreateFactory factory;
     private final DictValueUpdateService updateService;
 
-    private final DictKeyAppService dictKeyAppService;
+    private final DictValueRepository repository;
 
-    protected DictValueAppServiceImpl(DictValueRepository repository, DictValueCreateFactory factory, DictValueUpdateService updateService, DictKeyAppService dictKeyAppService) {
-        super(repository);
+    private final DictValueSupportService supportService;
+
+    private final DictKeyQueryService dictKeyQueryService;
+
+    protected DictValueAppServiceImpl(DictValueRepository repository, DictValueCreateFactory factory, DictValueUpdateService updateService, DictValueSupportService supportService, DictKeyQueryService dictKeyQueryService) {
         this.factory = factory;
         this.updateService = updateService;
-        this.dictKeyAppService = dictKeyAppService;
+        this.repository = repository;
+        this.supportService = supportService;
+        this.dictKeyQueryService = dictKeyQueryService;
     }
 
+    @Override
+    public DictValue findById(Long id) {
+        return supportService.findById(id);
+    }
     @Override
     @Transactional
     public DictValue create(DictValueCreateFactory.Request request) {
@@ -66,7 +75,7 @@ public class DictValueAppServiceImpl extends DictValueSupportService implements 
     }
 
     public List<DictValue> findByDictKey(String dictKey) {
-        return repository.findByDictKeyId(dictKeyAppService.findByKey(dictKey).id());
+        return repository.findByDictKeyId(dictKeyQueryService.findByKey(dictKey).id());
     }
 
 

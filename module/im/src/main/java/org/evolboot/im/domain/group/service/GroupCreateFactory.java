@@ -27,7 +27,11 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class GroupCreateFactory extends GroupSupportService {
+public class GroupCreateFactory {
+
+    private final GroupSupportService supportService;
+
+    private final GroupRepository repository;
 
     private final ConversationAppService conversationAppService;
 
@@ -36,8 +40,9 @@ public class GroupCreateFactory extends GroupSupportService {
     private final GroupMemberAppService groupMemberAppService;
 
 
-    protected GroupCreateFactory(GroupRepository repository, ConversationAppService conversationAppService, EventPublisher eventPublisher, GroupMemberAppService groupMemberAppService) {
-        super(repository);
+    protected GroupCreateFactory(GroupRepository repository, ConversationAppService conversationAppService, EventPublisher eventPublisher, GroupMemberAppService groupMemberAppService, GroupSupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.conversationAppService = conversationAppService;
         this.eventPublisher = eventPublisher;
         this.groupMemberAppService = groupMemberAppService;

@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class DictKeyListener extends DictKeySupportService {
+public class DictKeyListener {
 
-    protected DictKeyListener(DictKeyRepository repository) {
-        super(repository);
+    private final DictKeyRepository repository;
+
+    private final DictKeySupportService supportService;
+
+    protected DictKeyListener(DictKeyRepository repository, DictKeySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

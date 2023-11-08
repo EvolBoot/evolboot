@@ -28,10 +28,15 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class RelationMoveTreeService extends RelationSupportService {
+public class RelationMoveTreeService {
 
-    protected RelationMoveTreeService(RelationRepository repository) {
-        super(repository);
+    private final RelationRepository repository;
+    private final RelationSupportService supportService;
+
+
+    protected RelationMoveTreeService(RelationRepository repository, RelationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Long id, Long target) {
@@ -47,12 +52,12 @@ public class RelationMoveTreeService extends RelationSupportService {
             // 查他的祖先
             Optional<Long> parent = repository.queryAncestorByDescendantAndDistance(id, 1);
             // 目标类是其子类，需要把目标类移动到当前类的父类下
-            moveNode(target, parent.get());
+            supportService.moveNode(target, parent.get());
 
             // 把目标类的树也移动过来
-            moveSubTree(target, target);
+            supportService.moveSubTree(target, target);
         }
-        moveNode(id, target);
-        moveSubTree(id, id);
+        supportService.moveNode(id, target);
+        supportService.moveSubTree(id, id);
     }
 }

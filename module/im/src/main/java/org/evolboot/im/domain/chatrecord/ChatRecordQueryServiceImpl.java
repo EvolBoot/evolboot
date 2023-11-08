@@ -29,12 +29,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class ChatRecordQueryServiceImpl extends ChatRecordSupportService implements ChatRecordQueryService {
+public class ChatRecordQueryServiceImpl  implements ChatRecordQueryService {
 
-    protected ChatRecordQueryServiceImpl(ChatRecordRepository repository) {
-        super(repository);
+    private final ChatRecordRepository repository;
+    private final ChatRecordSupportService supportService;
+
+    protected ChatRecordQueryServiceImpl(ChatRecordRepository repository, ChatRecordSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public ChatRecord findById(Long id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<ChatRecord> findAll() {

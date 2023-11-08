@@ -17,19 +17,29 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserIdAppServiceImpl extends UserIdSupportService implements UserIdAppService {
+public class UserIdAppServiceImpl implements UserIdAppService {
 
 
     private final int step = 10000;
+    private final UserIdRepository repository;
+
+    private final UserIdSupportService supportService;
+
     private final UserIdCreateFactory factory;
     private final UserIdUpdateService updateService;
     private final UserIdGetNextService userIdGetNextService;
 
-    protected UserIdAppServiceImpl(UserIdRepository repository, UserIdCreateFactory factory, UserIdUpdateService updateService, UserIdGetNextService userIdGetNextService) {
-        super(repository);
+    protected UserIdAppServiceImpl(UserIdRepository repository, UserIdSupportService supportService, UserIdCreateFactory factory, UserIdUpdateService updateService, UserIdGetNextService userIdGetNextService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.factory = factory;
         this.updateService = updateService;
         this.userIdGetNextService = userIdGetNextService;
+    }
+
+    @Override
+    public UserId findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override

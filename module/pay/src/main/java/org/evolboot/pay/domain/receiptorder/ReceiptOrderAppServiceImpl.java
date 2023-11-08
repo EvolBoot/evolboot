@@ -1,7 +1,6 @@
 package org.evolboot.pay.domain.receiptorder;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
@@ -10,9 +9,6 @@ import org.evolboot.pay.domain.receiptorder.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
  * 第三方代收订单
  *
@@ -20,19 +16,24 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class ReceiptOrderAppServiceImpl extends ReceiptOrderSupportService implements ReceiptOrderAppService {
+public class ReceiptOrderAppServiceImpl implements ReceiptOrderAppService {
 
 
     private final ReceiptOrderCreateFactory factory;
     private final ReceiptOrderBuildRedirectUrlService redirectUrlService;
     private final ReceiptOrderNotifyService notifyService;
 
+    private final ReceiptOrderSupportService supportService;
 
-    protected ReceiptOrderAppServiceImpl(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderBuildRedirectUrlService redirectUrlService, ReceiptOrderNotifyService notifyService) {
-        super(repository);
+    private final ReceiptOrderRepository repository;
+
+
+    protected ReceiptOrderAppServiceImpl(ReceiptOrderRepository repository, ReceiptOrderCreateFactory factory, ReceiptOrderBuildRedirectUrlService redirectUrlService, ReceiptOrderNotifyService notifyService, ReceiptOrderSupportService supportService) {
+        this.repository = repository;
         this.factory = factory;
         this.redirectUrlService = redirectUrlService;
         this.notifyService = notifyService;
+        this.supportService = supportService;
     }
 
     @Override

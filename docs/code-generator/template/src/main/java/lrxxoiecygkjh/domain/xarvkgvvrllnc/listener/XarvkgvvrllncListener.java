@@ -14,10 +14,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class XarvkgvvrllncListener extends XarvkgvvrllncSupportService {
+public class XarvkgvvrllncListener {
 
-    protected XarvkgvvrllncListener(XarvkgvvrllncRepository repository) {
-        super(repository);
+    private final XarvkgvvrllncRepository repository;
+
+    private final XarvkgvvrllncSupportService supportService;
+
+    protected XarvkgvvrllncListener(XarvkgvvrllncRepository repository, XarvkgvvrllncSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

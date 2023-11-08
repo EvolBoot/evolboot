@@ -29,12 +29,20 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class ReleasedOrderQueryServiceImpl extends ReleasedOrderSupportService implements ReleasedOrderQueryService {
+public class ReleasedOrderQueryServiceImpl implements ReleasedOrderQueryService {
 
-    protected ReleasedOrderQueryServiceImpl(ReleasedOrderRepository repository) {
-        super(repository);
+    private final ReleasedOrderRepository repository;
+    private final ReleasedOrderSupportService supportService;
+
+    protected ReleasedOrderQueryServiceImpl(ReleasedOrderRepository repository, ReleasedOrderSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public ReleasedOrder findById(String id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<ReleasedOrder> findAll() {

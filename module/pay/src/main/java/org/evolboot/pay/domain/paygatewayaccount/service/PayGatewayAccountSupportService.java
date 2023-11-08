@@ -3,6 +3,7 @@ package org.evolboot.pay.domain.paygatewayaccount.service;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
+import org.springframework.stereotype.Service;
 
 import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
 
@@ -12,7 +13,8 @@ import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
  * @author evol
  */
 @Slf4j
-public abstract class PayGatewayAccountSupportService {
+@Service
+public class PayGatewayAccountSupportService {
 
     protected final PayGatewayAccountRepository repository;
 

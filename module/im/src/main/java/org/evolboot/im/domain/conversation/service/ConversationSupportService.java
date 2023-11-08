@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 会话
@@ -14,7 +15,8 @@ import org.evolboot.im.domain.conversation.repository.ConversationRepository;
  * @date 2023-05-02 21:43:03
  */
 @Slf4j
-public abstract class ConversationSupportService {
+@Service
+public class ConversationSupportService {
 
     protected final ConversationRepository repository;
 

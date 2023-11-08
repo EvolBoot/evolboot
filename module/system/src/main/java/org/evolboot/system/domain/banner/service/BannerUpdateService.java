@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class BannerUpdateService extends BannerSupportService {
-    protected BannerUpdateService(BannerRepository repository) {
-        super(repository);
+public class BannerUpdateService {
+
+    private final BannerRepository repository;
+    private final BannerSupportService supportService;
+
+    protected BannerUpdateService(BannerRepository repository, BannerSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        Banner banner = findById(request.getId());
+        Banner banner = supportService.findById(request.getId());
         banner.setSort(request.getSort());
         banner.setShow(request.getShow());
         banner.setLocales(request.getLocales());

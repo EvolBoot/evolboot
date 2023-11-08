@@ -21,16 +21,26 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class BannerAppServiceImpl extends BannerSupportService implements BannerAppService {
+public class BannerAppServiceImpl implements BannerAppService {
 
 
     private final BannerCreateFactory factory;
     private final BannerUpdateService updateService;
 
-    protected BannerAppServiceImpl(BannerRepository repository, BannerCreateFactory factory, BannerUpdateService updateService) {
-        super(repository);
+    private final BannerRepository repository;
+
+    private final BannerSupportService supportService;
+
+    protected BannerAppServiceImpl(BannerRepository repository, BannerCreateFactory factory, BannerUpdateService updateService, BannerSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public Banner findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override
@@ -50,7 +60,7 @@ public class BannerAppServiceImpl extends BannerSupportService implements Banner
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 

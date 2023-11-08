@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class QaListener extends QaSupportService {
+public class QaListener {
 
-    protected QaListener(QaRepository repository) {
-        super(repository);
+    private final QaRepository repository;
+
+    private final QaSupportService supportService;
+
+    protected QaListener(QaRepository repository, QaSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

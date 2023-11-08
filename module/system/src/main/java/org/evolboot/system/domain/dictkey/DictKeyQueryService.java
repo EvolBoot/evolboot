@@ -23,6 +23,7 @@ public interface DictKeyQueryService {
 
     Page<DictKey> page(DictKeyQuery query);
 
+    DictKey findByKey(String key);
 
     /**
      * 根据条件查询单个

@@ -29,19 +29,30 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class XarvkgvvrllncQueryServiceImpl extends XarvkgvvrllncSupportService implements XarvkgvvrllncQueryService {
+public class XarvkgvvrllncQueryServiceImpl  implements XarvkgvvrllncQueryService {
 
-    protected XarvkgvvrllncQueryServiceImpl(XarvkgvvrllncRepository repository) {
-        super(repository);
+    private final XarvkgvvrllncRepository repository;
+    private final XarvkgvvrllncSupportService supportService;
+
+    protected XarvkgvvrllncQueryServiceImpl(XarvkgvvrllncRepository repository, XarvkgvvrllncSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public Xarvkgvvrllnc findById(Keya2Akk5iV3n id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<Xarvkgvvrllnc> findAll() {
         return repository.findAll();
     }
 
-
+    @Override
+    public boolean existsById(Keya2Akk5iV3n id) {
+        return repository.existsById(id);
+    }
     @Override
     public List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query) {
         return repository.findAll(query);

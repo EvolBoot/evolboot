@@ -15,13 +15,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class GroupMemberUpdateService extends GroupMemberSupportService {
-    protected GroupMemberUpdateService(GroupMemberRepository repository) {
-        super(repository);
+public class GroupMemberUpdateService {
+
+    private final GroupMemberRepository repository;
+    private final GroupMemberSupportService supportService;
+
+    protected GroupMemberUpdateService(GroupMemberRepository repository, GroupMemberSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        GroupMember groupMember = findById(request.getId());
+        GroupMember groupMember = supportService.findById(request.getId());
         repository.save(groupMember);
     }
 

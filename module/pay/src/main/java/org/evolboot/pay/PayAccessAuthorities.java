@@ -45,6 +45,15 @@ public interface PayAccessAuthorities {
         String HAS_PAGE = AUTHORITY_PREFIX + "pay_releasedorder_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "pay_releasedorder_single" + AUTHORITY_SUFFIX;
     }
-
+    /**
+     * 支付网关账户
+     */
+    interface TestProduct {
+        String HAS_CREATE = AUTHORITY_PREFIX + "pay_testproduct_create" + AUTHORITY_SUFFIX;
+        String HAS_DELETE = AUTHORITY_PREFIX + "pay_testproduct_delete" + AUTHORITY_SUFFIX;
+        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_testproduct_update" + AUTHORITY_SUFFIX;
+        String HAS_PAGE = AUTHORITY_PREFIX + "pay_testproduct_page" + AUTHORITY_SUFFIX;
+        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_testproduct_single" + AUTHORITY_SUFFIX;
+    }
 
 }

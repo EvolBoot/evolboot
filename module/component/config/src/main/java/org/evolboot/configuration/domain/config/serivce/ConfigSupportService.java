@@ -1,18 +1,22 @@
 package org.evolboot.configuration.domain.config.serivce;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.configuration.ConfigI18nMessage;
 import org.evolboot.configuration.domain.config.entity.Config;
-import org.evolboot.configuration.domain.config.repository.ConfigurationRepository;
+import org.evolboot.configuration.domain.config.repository.ConfigRepository;
 import org.evolboot.core.exception.DomainNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * @author evol
  */
-public abstract class ConfigSupportService {
+@Slf4j
+@Service
+public class ConfigSupportService {
 
-    protected final ConfigurationRepository repository;
+    protected final ConfigRepository repository;
 
-    protected ConfigSupportService(ConfigurationRepository repository) {
+    protected ConfigSupportService(ConfigRepository repository) {
         this.repository = repository;
     }
 

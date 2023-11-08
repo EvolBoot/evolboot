@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class DictKeyCreateFactory extends DictKeySupportService {
-    protected DictKeyCreateFactory(DictKeyRepository repository) {
-        super(repository);
+public class DictKeyCreateFactory {
+
+    private final DictKeyRepository repository;
+    private final DictKeySupportService supportService;
+
+    protected DictKeyCreateFactory(DictKeyRepository repository, DictKeySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public DictKey execute(Request request) {
-        keyMustNotFound(request.getKey());
+        supportService.keyMustNotFound(request.getKey());
         DictKey dictKey = new DictKey(
                 request.getDisplayName(),
                 request.getKey(),

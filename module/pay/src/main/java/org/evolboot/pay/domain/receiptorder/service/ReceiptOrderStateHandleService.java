@@ -13,17 +13,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ReceiptOrderStateHandleService extends ReceiptOrderSupportService {
+public class ReceiptOrderStateHandleService {
+
+    private final ReceiptOrderRepository repository;
+
+    private final ReceiptOrderSupportService supportService;
+
 
     private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReceiptOrderStateHandleService(ReceiptOrderRepository repository, MQMessagePublisher mqMessagePublisher) {
-        super(repository);
+    protected ReceiptOrderStateHandleService(ReceiptOrderRepository repository, ReceiptOrderSupportService supportService, MQMessagePublisher mqMessagePublisher) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.mqMessagePublisher = mqMessagePublisher;
     }
 
     public void success(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
-        ReceiptOrder receiptOrder = findById(id);
+        ReceiptOrder receiptOrder = supportService.findById(id);
         boolean success = receiptOrder.success(receiptOrderNotifyResult);
         if (success) {
             mqMessagePublisher.sendMessageInTransaction(new ReceiptOrderStateChangeMessage(
@@ -37,7 +43,7 @@ public class ReceiptOrderStateHandleService extends ReceiptOrderSupportService {
     }
 
     public void fail(String id, ReceiptOrderNotifyResult receiptOrderNotifyResult) {
-        ReceiptOrder receiptOrder = findById(id);
+        ReceiptOrder receiptOrder = supportService.findById(id);
         boolean fail = receiptOrder.fail(receiptOrderNotifyResult);
         repository.save(receiptOrder);
         if (fail) {

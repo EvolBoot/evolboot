@@ -22,16 +22,25 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class ConversationAppServiceImpl extends ConversationSupportService implements ConversationAppService {
+public class ConversationAppServiceImpl  implements ConversationAppService {
 
 
     private final ConversationCreateFactory factory;
     private final ConversationUpdateService updateService;
 
-    protected ConversationAppServiceImpl(ConversationRepository repository, ConversationCreateFactory factory, ConversationUpdateService updateService) {
-        super(repository);
+    private final ConversationRepository repository;
+
+    private final ConversationSupportService supportService;
+
+    protected ConversationAppServiceImpl(ConversationRepository repository, ConversationCreateFactory factory, ConversationUpdateService updateService, ConversationSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    public Conversation findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override

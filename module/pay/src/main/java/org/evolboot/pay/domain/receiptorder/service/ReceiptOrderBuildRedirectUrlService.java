@@ -22,7 +22,11 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-public class ReceiptOrderBuildRedirectUrlService extends ReceiptOrderSupportService {
+public class ReceiptOrderBuildRedirectUrlService {
+
+    private final ReceiptOrderSupportService supportService;
+
+    private final ReceiptOrderRepository repository;
 
     private final RedisClientAppService redisClientAppService;
 
@@ -30,8 +34,9 @@ public class ReceiptOrderBuildRedirectUrlService extends ReceiptOrderSupportServ
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    protected ReceiptOrderBuildRedirectUrlService(ReceiptOrderRepository repository, RedisClientAppService redisClientAppService, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
-        super(repository);
+    protected ReceiptOrderBuildRedirectUrlService(ReceiptOrderRepository repository, ReceiptOrderSupportService supportService, RedisClientAppService redisClientAppService, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.redisClientAppService = redisClientAppService;
         this.receiptClients = receiptClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
@@ -40,7 +45,7 @@ public class ReceiptOrderBuildRedirectUrlService extends ReceiptOrderSupportServ
 
     public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
         log.info("代收:前端回调:{}", JsonUtil.stringify(request));
-        ReceiptOrder receiptOrder = findById(request.getReceiptOrderId());
+        ReceiptOrder receiptOrder = supportService.findById(request.getReceiptOrderId());
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         log.info("代收:前端回调:{}", payGatewayAccount.getPayGateway());
         ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());

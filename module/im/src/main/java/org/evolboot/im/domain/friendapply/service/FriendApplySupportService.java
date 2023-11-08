@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 好友申请
@@ -14,7 +15,8 @@ import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
  * @date 2023-05-03 17:57:08
  */
 @Slf4j
-public abstract class FriendApplySupportService {
+@Service
+public class FriendApplySupportService {
 
     protected final FriendApplyRepository repository;
 

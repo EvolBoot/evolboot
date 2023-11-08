@@ -15,18 +15,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class FriendBlacklistService extends FriendSupportService {
+public class FriendBlacklistService {
+
+
+    private final FriendSupportService supportService;
+
+    private final FriendRepository repository;
 
     private final EventPublisher eventPublisher;
 
-    protected FriendBlacklistService(FriendRepository repository, EventPublisher eventPublisher) {
-        super(repository);
+    protected FriendBlacklistService(FriendRepository repository, FriendSupportService supportService, EventPublisher eventPublisher) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.eventPublisher = eventPublisher;
     }
 
     public void joinBlacklist(Long ownerUserId, Long friendUserId) {
         //TODO 国际化
-        Friend friend = findByOwnerUserIdAndFriendUserId(ownerUserId, friendUserId);
+        Friend friend = supportService.findByOwnerUserIdAndFriendUserId(ownerUserId, friendUserId);
         friend.joinBlacklist();
         repository.save(friend);
         eventPublisher.publishEvent(new FriendJoinBlacklistEvent(friend.id(), friend.getOwnerUserId(), friend.getFriendUserId(), friend.getConversationId()));
@@ -34,7 +40,7 @@ public class FriendBlacklistService extends FriendSupportService {
 
     public void removeBlacklist(Long ownerUserId, Long friendUserId) {
         //TODO 国际化
-        Friend friend = findByOwnerUserIdAndFriendUserId(ownerUserId, friendUserId);
+        Friend friend = supportService.findByOwnerUserIdAndFriendUserId(ownerUserId, friendUserId);
         friend.removeBlacklist();
         repository.save(friend);
         eventPublisher.publishEvent(new FriendRemoveBlacklistEvent(friend.id(), friend.getOwnerUserId(), friend.getFriendUserId(), friend.getConversationId()));

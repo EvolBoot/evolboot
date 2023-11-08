@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.startuppage.entity.StartupPage;
 import org.evolboot.system.domain.startuppage.repository.StartupPageRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 启动页
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.startuppage.repository.StartupPageRepository;
  * @author evol
  */
 @Slf4j
-public abstract class StartupPageSupportService {
+@Service
+public class StartupPageSupportService {
 
     protected final StartupPageRepository repository;
 

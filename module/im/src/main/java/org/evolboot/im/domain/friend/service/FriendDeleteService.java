@@ -15,12 +15,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class FriendDeleteService extends FriendSupportService {
+public class FriendDeleteService  {
+
+
+    private final FriendSupportService supportService;
+
+    private final FriendRepository repository;
 
     private final EventPublisher eventPublisher;
 
-    protected FriendDeleteService(FriendRepository repository, EventPublisher eventPublisher) {
-        super(repository);
+    protected FriendDeleteService(FriendRepository repository, FriendSupportService supportService, EventPublisher eventPublisher) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.eventPublisher = eventPublisher;
     }
 

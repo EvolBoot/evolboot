@@ -16,17 +16,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserStateChangeService extends UserSupportService {
+public class UserStateChangeService {
+
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final SecurityAccessTokenClient securityAccessTokenClient;
 
-    public UserStateChangeService(UserRepository repository, SecurityAccessTokenClient securityAccessTokenClient) {
-        super(repository);
+    public UserStateChangeService(UserRepository repository, UserSupportService supportService, SecurityAccessTokenClient securityAccessTokenClient) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.securityAccessTokenClient = securityAccessTokenClient;
     }
 
     public void execute(Request request) {
-        User user = findById(request.getId());
+        User user = supportService.findById(request.getId());
         user.setState(request.getState());
         if (UserState.LOCK.equals(request.getState())) {
             securityAccessTokenClient.kickOut(request.getId());

@@ -13,24 +13,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserIdentityChangeService extends UserSupportService {
+public class UserIdentityChangeService {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final EventPublisher eventPublisher;
 
-    public UserIdentityChangeService(UserRepository repository, EventPublisher eventPublisher) {
-        super(repository);
+    public UserIdentityChangeService(UserRepository repository, UserSupportService supportService, EventPublisher eventPublisher) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.eventPublisher = eventPublisher;
     }
 
     void addUserIdentity(Long userId, UserIdentity userIdentity) {
-        User user = findById(userId);
+        User user = supportService.findById(userId);
         user.addUserIdentity(userIdentity);
         repository.save(user);
         eventPublisher.publishEvent(new UserIdentityChangeEvent(userId, user.getUserIdentity()));
     }
 
     void removeUserIdentity(Long userId, UserIdentity userIdentity) {
-        User user = findById(userId);
+        User user = supportService.findById(userId);
         user.removeUserIdentity(userIdentity);
         repository.save(user);
         eventPublisher.publishEvent(new UserIdentityChangeEvent(userId, user.getUserIdentity()));

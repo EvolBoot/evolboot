@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class NoticeUpdateService extends NoticeSupportService {
-    protected NoticeUpdateService(NoticeRepository repository) {
-        super(repository);
+public class NoticeUpdateService {
+
+    private final NoticeRepository repository;
+    private final NoticeSupportService supportService;
+
+    protected NoticeUpdateService(NoticeRepository repository, NoticeSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        Notice notice = findById(request.getId());
+        Notice notice = supportService.findById(request.getId());
         notice.setSort(request.getSort());
         notice.setEnable(request.getEnable());
         notice.setReleasedTime(request.getReleasedTime());

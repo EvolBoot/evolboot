@@ -22,16 +22,26 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class AppUpgradeAppServiceImpl extends AppUpgradeSupportService implements AppUpgradeAppService {
+public class AppUpgradeAppServiceImpl  implements AppUpgradeAppService {
 
 
     private final AppUpgradeCreateFactory factory;
     private final AppUpgradeUpdateService updateService;
 
-    protected AppUpgradeAppServiceImpl(AppUpgradeRepository repository, AppUpgradeCreateFactory factory, AppUpgradeUpdateService updateService) {
-        super(repository);
+    private final AppUpgradeRepository repository;
+
+    private final AppUpgradeSupportService supportService;
+
+    protected AppUpgradeAppServiceImpl(AppUpgradeRepository repository, AppUpgradeCreateFactory factory, AppUpgradeUpdateService updateService, AppUpgradeSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public AppUpgrade findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override
@@ -51,7 +61,7 @@ public class AppUpgradeAppServiceImpl extends AppUpgradeSupportService implement
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 
@@ -71,6 +81,8 @@ public class AppUpgradeAppServiceImpl extends AppUpgradeSupportService implement
     public Page<AppUpgrade> page(AppUpgradeQuery query) {
         return repository.page(query);
     }
+
+
 
     @Override
     public AppUpgrade check(ClientType clientType) {

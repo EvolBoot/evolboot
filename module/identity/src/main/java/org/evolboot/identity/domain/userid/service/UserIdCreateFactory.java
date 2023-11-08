@@ -15,9 +15,14 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserIdCreateFactory extends UserIdSupportService {
-    protected UserIdCreateFactory(UserIdRepository repository) {
-        super(repository);
+public class UserIdCreateFactory {
+
+    private final UserIdRepository repository;
+    private final UserIdSupportService supportService;
+
+    protected UserIdCreateFactory(UserIdRepository repository, UserIdSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(int generateNum) {

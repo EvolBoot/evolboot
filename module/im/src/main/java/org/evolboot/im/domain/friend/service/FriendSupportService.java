@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 好友关系
@@ -14,7 +15,8 @@ import org.evolboot.im.domain.friend.repository.FriendRepository;
  * @date 2023-05-03 17:40:14
  */
 @Slf4j
-public abstract class FriendSupportService {
+@Service
+public class FriendSupportService {
 
     protected final FriendRepository repository;
 

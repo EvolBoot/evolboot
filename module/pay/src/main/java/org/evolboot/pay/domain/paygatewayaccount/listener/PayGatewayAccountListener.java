@@ -12,12 +12,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class PayGatewayAccountListener extends PayGatewayAccountSupportService {
+public class PayGatewayAccountListener {
 
-    protected PayGatewayAccountListener(PayGatewayAccountRepository repository) {
-        super(repository);
+    private final PayGatewayAccountRepository repository;
+
+    private final PayGatewayAccountSupportService supportService;
+
+    protected PayGatewayAccountListener(PayGatewayAccountRepository repository, PayGatewayAccountSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
-/*
+    /*
 
     @EventListener
     public void on(DomainEvent event) {

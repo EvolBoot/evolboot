@@ -21,13 +21,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserResetPasswordService extends UserSupportService {
+public class UserResetPasswordService {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final IdentityCaptchaClient identityCaptchaClient;
     private final UserEncryptPasswordService userEncryptPasswordService;
 
-    public UserResetPasswordService(UserRepository repository, IdentityCaptchaClient identityCaptchaClient, UserEncryptPasswordService userEncryptPasswordService) {
-        super(repository);
+    public UserResetPasswordService(UserRepository repository, UserSupportService supportService, IdentityCaptchaClient identityCaptchaClient, UserEncryptPasswordService userEncryptPasswordService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.identityCaptchaClient = identityCaptchaClient;
         this.userEncryptPasswordService = userEncryptPasswordService;
     }

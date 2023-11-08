@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 群成员
@@ -14,7 +15,8 @@ import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
  * @date 2023-05-03 16:20:09
  */
 @Slf4j
-public abstract class GroupMemberSupportService {
+@Service
+public class GroupMemberSupportService {
 
     protected final GroupMemberRepository repository;
 

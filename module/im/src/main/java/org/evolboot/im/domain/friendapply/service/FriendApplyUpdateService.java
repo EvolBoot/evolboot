@@ -13,13 +13,19 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class FriendApplyUpdateService extends FriendApplySupportService {
-    protected FriendApplyUpdateService(FriendApplyRepository repository) {
-        super(repository);
+public class FriendApplyUpdateService {
+
+    private final FriendApplySupportService supportService;
+
+    private final FriendApplyRepository repository;
+
+    protected FriendApplyUpdateService(FriendApplyRepository repository, FriendApplySupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
     }
 
     public void execute(Long id, Request request) {
-        FriendApply friendApply = findById(id);
+        FriendApply friendApply = supportService.findById(id);
         repository.save(friendApply);
     }
 

@@ -26,7 +26,6 @@ import org.evolboot.shared.lang.DeviceType;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -35,9 +34,14 @@ import java.util.UUID;
  */
 @Service
 @Slf4j
-public class UserCreateFactory extends UserSupportService {
+public class UserCreateFactory {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final EventPublisher eventPublisher;
+
     private final UserEncryptPasswordService userEncryptPasswordService;
     /**
      * 用户上下级关联
@@ -54,8 +58,9 @@ public class UserCreateFactory extends UserSupportService {
     private final RoleQueryService roleQueryService;
 
 
-    public UserCreateFactory(UserRepository repository, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationCreateService relationCreateService, UserIdGetNextService userIdGetNextService, RoleQueryService roleQueryService) {
-        super(repository);
+    public UserCreateFactory(UserRepository repository, UserSupportService supportService, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationCreateService relationCreateService, UserIdGetNextService userIdGetNextService, RoleQueryService roleQueryService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.eventPublisher = eventPublisher;
         this.userEncryptPasswordService = userEncryptPasswordService;
         this.relationCreateService = relationCreateService;
@@ -147,15 +152,15 @@ public class UserCreateFactory extends UserSupportService {
         );
 
         if (ExtendObjects.isNotBlank(request.getEmail())) {
-            requireEmailIsNoExist(request.getEmail());
+            supportService.requireEmailIsNoExist(request.getEmail());
         }
 
         if (ExtendObjects.isNotBlank(request.getUsername())) {
-            requireUsernameIsNoExist(request.getUsername());
+            supportService.requireUsernameIsNoExist(request.getUsername());
         }
 
         if (ExtendObjects.isNotBlank(request.getMobile())) {
-            requireMobileIsNoExist(request.getMobile());
+            supportService.requireMobileIsNoExist(request.getMobile());
         }
     }
 

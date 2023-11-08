@@ -12,9 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class MqTransactionCreateFactory extends MqTransactionSupportService {
-    protected MqTransactionCreateFactory(MqTransactionRepository repository) {
-        super(repository);
+public class MqTransactionCreateFactory {
+
+    private final MqTransactionRepository repository;
+
+    private final MqTransactionSupportService supportService;
+
+    protected MqTransactionCreateFactory(MqTransactionRepository repository, MqTransactionSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
 

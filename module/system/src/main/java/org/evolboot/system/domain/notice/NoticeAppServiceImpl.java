@@ -20,18 +20,27 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class NoticeAppServiceImpl extends NoticeSupportService implements NoticeAppService {
+public class NoticeAppServiceImpl  implements NoticeAppService {
 
 
     private final NoticeCreateFactory factory;
     private final NoticeUpdateService updateService;
 
-    protected NoticeAppServiceImpl(NoticeRepository repository, NoticeCreateFactory factory, NoticeUpdateService updateService) {
-        super(repository);
+    private final NoticeRepository repository;
+
+    private final NoticeSupportService supportService;
+
+    protected NoticeAppServiceImpl(NoticeRepository repository, NoticeCreateFactory factory, NoticeUpdateService updateService, NoticeSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
+    @Override
+    public Notice findById(Long id) {
+        return supportService.findById(id);
+    }
     @Override
     @Transactional
     public Notice create(NoticeCreateFactory.Request request) {

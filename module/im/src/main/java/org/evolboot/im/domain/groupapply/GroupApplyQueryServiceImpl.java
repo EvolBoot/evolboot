@@ -29,10 +29,19 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class GroupApplyQueryServiceImpl extends GroupApplySupportService implements GroupApplyQueryService {
+public class GroupApplyQueryServiceImpl implements GroupApplyQueryService {
 
-    protected GroupApplyQueryServiceImpl(GroupApplyRepository repository) {
-        super(repository);
+    private final GroupApplyRepository repository;
+    private final GroupApplySupportService supportService;
+
+    protected GroupApplyQueryServiceImpl(GroupApplyRepository repository, GroupApplySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public GroupApply findById(Long id) {
+        return supportService.findById(id);
     }
 
 

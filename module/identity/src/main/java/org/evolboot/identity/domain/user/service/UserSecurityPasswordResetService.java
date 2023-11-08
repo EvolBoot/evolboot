@@ -19,13 +19,17 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class UserSecurityPasswordResetService extends UserSupportService {
+public class UserSecurityPasswordResetService {
 
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
     private final RsaService rsaService;
     private final IdentityCaptchaClient identityCaptchaClient;
 
-    public UserSecurityPasswordResetService(UserRepository repository, RsaService rsaService, IdentityCaptchaClient identityCaptchaClient) {
-        super(repository);
+    public UserSecurityPasswordResetService(UserRepository repository, UserSupportService supportService, RsaService rsaService, IdentityCaptchaClient identityCaptchaClient) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.rsaService = rsaService;
         this.identityCaptchaClient = identityCaptchaClient;
     }
@@ -37,7 +41,7 @@ public class UserSecurityPasswordResetService extends UserSupportService {
      * @return
      */
     public User execute(Request request) {
-        User user = findById(request.getUserId());
+        User user = supportService.findById(request.getUserId());
         if (ValidationType.EMAIL_CAPTCHA.equals(request.getValidationType())) {
             identityCaptchaClient.verifyEmailCaptchaIsTrue(user.getEmail(), request.getCaptchaCode(), request.getCaptchaToken(), request.getInternalCode());
         } else {

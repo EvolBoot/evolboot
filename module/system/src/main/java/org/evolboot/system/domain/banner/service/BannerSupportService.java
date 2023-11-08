@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.banner.entity.Banner;
 import org.evolboot.system.domain.banner.repository.BannerRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * banner
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.banner.repository.BannerRepository;
  * @author evol
  */
 @Slf4j
-public abstract class BannerSupportService {
+@Service
+public class BannerSupportService {
 
     protected final BannerRepository repository;
 

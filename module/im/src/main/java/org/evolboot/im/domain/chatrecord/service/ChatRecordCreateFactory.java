@@ -22,9 +22,14 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ChatRecordCreateFactory extends ChatRecordSupportService {
-    protected ChatRecordCreateFactory(ChatRecordRepository repository) {
-        super(repository);
+public class ChatRecordCreateFactory {
+
+    private final ChatRecordRepository repository;
+    private final ChatRecordSupportService supportService;
+
+    protected ChatRecordCreateFactory(ChatRecordRepository repository, ChatRecordSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public ChatRecord execute(Request request) {

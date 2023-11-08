@@ -80,4 +80,13 @@ public abstract class PayI18nMessage {
         }
     }
 
+    /**
+     * 支付网关账户
+     */
+    public static class TestProduct {
+        public static final String NAMESPACE = PayI18nMessage.NAMESPACE + ".testproduct";
+
+        public static final String NOT_FOUND = NAMESPACE + ".notFound";
+
+    }
 }

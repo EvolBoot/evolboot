@@ -113,7 +113,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     @GetMapping("/all")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<List<Xarvkgvvrllnc>> findAll(
-            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Keya2Akk5iV3n id,
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate,
             @RequestParam(required = false) String keyword

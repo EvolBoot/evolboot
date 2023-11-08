@@ -25,8 +25,12 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
+public class ReceiptOrderNotifyService {
 
+
+    private final ReceiptOrderSupportService supportService;
+
+    private final ReceiptOrderRepository repository;
 
     private final Map<PayGateway, ReceiptClient> receiptClients;
 
@@ -35,8 +39,9 @@ public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
     private final MQMessagePublisher mqMessagePublisher;
 
 
-    protected ReceiptOrderNotifyService(ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
-        super(repository);
+    protected ReceiptOrderNotifyService(ReceiptOrderSupportService supportService, ReceiptOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.receiptClients = receiptClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.mqMessagePublisher = mqMessagePublisher;
@@ -46,7 +51,7 @@ public class ReceiptOrderNotifyService extends ReceiptOrderSupportService {
     public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
         log.info("代收:收到通知:数据:{}", JsonUtil.stringify(request));
         String receiptOrderId = request.getReceiptOrderId();
-        ReceiptOrder receiptOrder = findById(receiptOrderId);
+        ReceiptOrder receiptOrder = supportService.findById(receiptOrderId);
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
         Assert.notNull(receiptClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());

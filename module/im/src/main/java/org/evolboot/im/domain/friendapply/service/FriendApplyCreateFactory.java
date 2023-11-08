@@ -25,7 +25,11 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class FriendApplyCreateFactory extends FriendApplySupportService {
+public class FriendApplyCreateFactory {
+
+    private final FriendApplySupportService supportService;
+
+    private final FriendApplyRepository repository;
 
     /**
      * 7天处理时间
@@ -39,8 +43,9 @@ public class FriendApplyCreateFactory extends FriendApplySupportService {
 
     private final FriendAppService friendAppService;
 
-    protected FriendApplyCreateFactory(FriendApplyRepository repository, FriendAppService friendAppService) {
-        super(repository);
+    protected FriendApplyCreateFactory(FriendApplyRepository repository, FriendAppService friendAppService, FriendApplySupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.friendAppService = friendAppService;
     }
 

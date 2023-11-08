@@ -10,9 +10,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserConversationForbidTalkCausesChangeService extends UserConversationSupportService {
-    protected UserConversationForbidTalkCausesChangeService(UserConversationRepository repository) {
-        super(repository);
+public class UserConversationForbidTalkCausesChangeService {
+
+    private final UserConversationRepository repository;
+    private final UserConversationSupportService supportService;
+
+    protected UserConversationForbidTalkCausesChangeService(UserConversationRepository repository, UserConversationSupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
     }
 
     /**

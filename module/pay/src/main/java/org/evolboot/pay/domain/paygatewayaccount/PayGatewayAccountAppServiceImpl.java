@@ -23,17 +23,23 @@ import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
  */
 @Slf4j
 @Service
-public class PayGatewayAccountAppServiceImpl extends PayGatewayAccountSupportService implements PayGatewayAccountAppService {
+public class PayGatewayAccountAppServiceImpl implements PayGatewayAccountAppService {
 
 
     private final PayGatewayAccountCreateFactory factory;
     private final PayGatewayAccountUpdateService updateService;
 
-    protected PayGatewayAccountAppServiceImpl(PayGatewayAccountRepository repository, PayGatewayAccountCreateFactory factory, PayGatewayAccountUpdateService updateService) {
-        super(repository);
+    private final PayGatewayAccountRepository repository;
+
+    private final PayGatewayAccountSupportService supportService;
+
+    protected PayGatewayAccountAppServiceImpl(PayGatewayAccountRepository repository, PayGatewayAccountCreateFactory factory, PayGatewayAccountUpdateService updateService, PayGatewayAccountSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     @Override
     @Transactional
@@ -52,7 +58,7 @@ public class PayGatewayAccountAppServiceImpl extends PayGatewayAccountSupportSer
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 

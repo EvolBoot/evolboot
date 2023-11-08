@@ -14,13 +14,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class PayGatewayAccountUpdateService extends PayGatewayAccountSupportService {
-    protected PayGatewayAccountUpdateService(PayGatewayAccountRepository repository) {
-        super(repository);
+public class PayGatewayAccountUpdateService {
+
+    private final PayGatewayAccountRepository repository;
+    private final PayGatewayAccountSupportService supportService;
+
+    protected PayGatewayAccountUpdateService(PayGatewayAccountRepository repository, PayGatewayAccountSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        PayGatewayAccount payGatewayAccount = findById(request.getId());
+        PayGatewayAccount payGatewayAccount = supportService.findById(request.getId());
         payGatewayAccount.setLogo(request.getLogo());
         payGatewayAccount.setMerchantId(request.getMerchantId());
         payGatewayAccount.setAppid(request.getAppid());

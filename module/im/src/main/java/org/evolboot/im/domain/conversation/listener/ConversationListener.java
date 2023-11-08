@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ConversationListener extends ConversationSupportService {
+public class ConversationListener {
 
-    protected ConversationListener(ConversationRepository repository) {
-        super(repository);
+    private final ConversationRepository repository;
+
+    private final ConversationSupportService supportService;
+
+    protected ConversationListener(ConversationRepository repository, ConversationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

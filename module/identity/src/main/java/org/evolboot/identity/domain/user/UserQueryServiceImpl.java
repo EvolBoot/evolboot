@@ -25,16 +25,26 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserQueryServiceImpl extends UserSupportService implements UserQueryService {
+public class UserQueryServiceImpl implements UserQueryService {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final UserEncryptPasswordService userEncryptPasswordService;
 
 
-    protected UserQueryServiceImpl(UserRepository repository, UserEncryptPasswordService userEncryptPasswordService) {
-        super(repository);
+    protected UserQueryServiceImpl(UserRepository repository, UserSupportService supportService, UserEncryptPasswordService userEncryptPasswordService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.userEncryptPasswordService = userEncryptPasswordService;
     }
 
+
+    @Override
+    public User findById(Long id) {
+        return supportService.findById(id);
+    }
 
     @Override
     public List<User> findAll() {

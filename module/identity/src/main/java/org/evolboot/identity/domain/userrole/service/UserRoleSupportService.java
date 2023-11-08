@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 用户角色
@@ -12,7 +13,8 @@ import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
  * @author evol
  */
 @Slf4j
-public abstract class UserRoleSupportService {
+@Service
+public class UserRoleSupportService {
 
     protected final UserRoleRepository repository;
 

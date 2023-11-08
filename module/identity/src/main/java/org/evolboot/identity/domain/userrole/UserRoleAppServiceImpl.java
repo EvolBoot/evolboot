@@ -22,13 +22,18 @@ import java.util.Set;
 @Slf4j
 @Service
 @Deprecated
-public class UserRoleAppServiceImpl extends UserRoleSupportService implements UserRoleAppService {
+public class UserRoleAppServiceImpl implements UserRoleAppService {
+
+    private final UserRoleRepository repository;
+
+    private final UserRoleSupportService supportService;
 
 
     private final UserRoleUpdateService updateService;
 
-    protected UserRoleAppServiceImpl(UserRoleRepository repository, UserRoleUpdateService updateService) {
-        super(repository);
+    protected UserRoleAppServiceImpl(UserRoleRepository repository, UserRoleSupportService supportService, UserRoleUpdateService updateService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.updateService = updateService;
     }
 
@@ -40,6 +45,11 @@ public class UserRoleAppServiceImpl extends UserRoleSupportService implements Us
     @Override
     public Page<UserRole> page(UserRoleQuery query) {
         return repository.page(query);
+    }
+
+    @Override
+    public UserRole findById(Long id) {
+        return supportService.findById(id);
     }
 
     @Override

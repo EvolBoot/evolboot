@@ -1,15 +1,11 @@
 package org.evolboot.im.domain.friendapply;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.evolboot.im.domain.friendapply.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 好友申请
@@ -19,7 +15,11 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class FriendApplyAppServiceImpl extends FriendApplySupportService implements FriendApplyAppService {
+public class FriendApplyAppServiceImpl implements FriendApplyAppService {
+
+    private final FriendApplySupportService supportService;
+
+    private final FriendApplyRepository repository;
 
 
     private final FriendApplyCreateFactory factory;
@@ -27,8 +27,9 @@ public class FriendApplyAppServiceImpl extends FriendApplySupportService impleme
 
     private final FriendApplyAuditService applyAuditService;
 
-    protected FriendApplyAppServiceImpl(FriendApplyRepository repository, FriendApplyCreateFactory factory, FriendApplyUpdateService updateService, FriendApplyAuditService applyAuditService) {
-        super(repository);
+    protected FriendApplyAppServiceImpl(FriendApplyRepository repository, FriendApplyCreateFactory factory, FriendApplyUpdateService updateService, FriendApplyAuditService applyAuditService, FriendApplySupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.factory = factory;
         this.updateService = updateService;
         this.applyAuditService = applyAuditService;
@@ -50,7 +51,7 @@ public class FriendApplyAppServiceImpl extends FriendApplySupportService impleme
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 

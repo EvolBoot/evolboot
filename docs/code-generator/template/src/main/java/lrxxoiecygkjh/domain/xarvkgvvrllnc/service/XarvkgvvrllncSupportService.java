@@ -5,6 +5,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.Xarvkgvvrlln
 import projectPackage.core.exception.DomainNotFoundException;
 import projectPackage.core.i18n.I18NMessageHolder;
 import projectPackage.lrxxoiecygkjh.LrxxoiecygkjhI18nMessage;
+import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -15,7 +16,8 @@ import lombok.extern.slf4j.Slf4j;
  * @date datePlaceholder
  */
 @Slf4j
-public abstract class XarvkgvvrllncSupportService {
+@Service
+public class XarvkgvvrllncSupportService {
 
     protected final XarvkgvvrllncRepository repository;
 

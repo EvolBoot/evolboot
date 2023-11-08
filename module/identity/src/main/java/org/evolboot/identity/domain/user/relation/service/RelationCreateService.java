@@ -10,20 +10,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class RelationCreateService extends RelationSupportService {
-
+public class RelationCreateService {
     private final RelationRepository repository;
+    private final RelationSupportService supportService;
 
-    public RelationCreateService(RelationRepository repository) {
-        super(repository);
+
+    public RelationCreateService(RelationRepository repository, RelationSupportService supportService) {
         this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Long ancestor, Long descendant) {
         if (ExtendObjects.nonNull(ancestor) && ancestor != 0) {
             repository.insertPath(descendant, ancestor);
         }
-        saveSelf(descendant);
+        supportService.saveSelf(descendant);
     }
 
 

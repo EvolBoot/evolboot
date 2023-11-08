@@ -9,9 +9,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserRoleDeleteService extends UserRoleSupportService {
-    protected UserRoleDeleteService(UserRoleRepository repository) {
-        super(repository);
+public class UserRoleDeleteService  {
+    
+    private final UserRoleRepository repository;
+    
+    private final UserRoleSupportService supportService;
+    
+    protected UserRoleDeleteService(UserRoleRepository repository, UserRoleSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     void execute(Long userId) {

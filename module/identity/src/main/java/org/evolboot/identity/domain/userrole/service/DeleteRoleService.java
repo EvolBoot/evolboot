@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
  * @author evol
  */
 @Service
-public class DeleteRoleService extends UserRoleSupportService {
+public class DeleteRoleService  {
+
+    protected final UserRoleRepository repository;
 
 
     protected DeleteRoleService(UserRoleRepository repository) {
-        super(repository);
+        this.repository = repository;
     }
 
     public void execute(Long roleId) {

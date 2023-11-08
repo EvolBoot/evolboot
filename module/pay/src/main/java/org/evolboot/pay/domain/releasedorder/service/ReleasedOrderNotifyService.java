@@ -23,7 +23,7 @@ import static org.evolboot.pay.PayI18nMessage.PaymentClient.thePaymentGatewayDoe
  */
 @Service
 @Slf4j
-public class ReleasedOrderNotifyService extends ReleasedOrderSupportService {
+public class ReleasedOrderNotifyService {
 
 
     private final Map<PayGateway, ReleasedClient> releasedClients;
@@ -32,17 +32,22 @@ public class ReleasedOrderNotifyService extends ReleasedOrderSupportService {
 
     private final ReleasedOrderStateHandleService stateHaeeendleService;
 
-    protected ReleasedOrderNotifyService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStateHandleService stateHandleService) {
-        super(repository);
+    private final ReleasedOrderSupportService supportService;
+
+    private final ReleasedOrderRepository repository;
+
+    protected ReleasedOrderNotifyService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStateHandleService stateHandleService, ReleasedOrderSupportService supportService) {
+        this.repository = repository;
         this.releasedClients = releasedClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.stateHaeeendleService = stateHandleService;
+        this.supportService = supportService;
     }
 
 
     public <T extends ReleasedNotifyRequest> Object releasedOrderNotify(T request) {
         log.info("代付:收到回调通知:{}", request.getNotifyParamsText());
-        ReleasedOrder releasedOrder = findById(request.getReleasedOrderId());
+        ReleasedOrder releasedOrder = supportService.findById(request.getReleasedOrderId());
         PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(releasedOrder.getPayGatewayAccountId());
         ReleasedClient releasedClient = releasedClients.get(gatewayAccount.getPayGateway());
         Assert.notNull(releasedClient, thePaymentGatewayDoesNotExist());

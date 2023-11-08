@@ -15,13 +15,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class UserConversationUpdateService extends UserConversationSupportService {
-    protected UserConversationUpdateService(UserConversationRepository repository) {
-        super(repository);
+public class UserConversationUpdateService {
+
+    private final UserConversationRepository repository;
+    private final UserConversationSupportService supportService;
+
+    protected UserConversationUpdateService(UserConversationRepository repository, UserConversationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        UserConversation userConversation = findById(request.getId());
+        UserConversation userConversation = supportService.findById(request.getId());
         repository.save(userConversation);
     }
 

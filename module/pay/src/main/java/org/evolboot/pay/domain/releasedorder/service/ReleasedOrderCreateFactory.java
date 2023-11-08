@@ -31,19 +31,24 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class ReleasedOrderCreateFactory extends ReleasedOrderSupportService {
+public class ReleasedOrderCreateFactory  {
 
     private final Map<PayGateway, ReleasedClient> releasedClients;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
+    private final ReleasedOrderSupportService supportService;
+
+    private final ReleasedOrderRepository repository;
+
 
     private final MQMessagePublisher mqMessagePublisher;
 
-    protected ReleasedOrderCreateFactory(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
-        super(repository);
+    protected ReleasedOrderCreateFactory(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderSupportService supportService, MQMessagePublisher mqMessagePublisher) {
         this.releasedClients = releasedClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
+        this.supportService = supportService;
+        this.repository = repository;
         this.mqMessagePublisher = mqMessagePublisher;
     }
 

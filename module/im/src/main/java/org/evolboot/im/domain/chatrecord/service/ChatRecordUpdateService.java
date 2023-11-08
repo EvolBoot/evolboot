@@ -15,13 +15,18 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ChatRecordUpdateService extends ChatRecordSupportService {
-    protected ChatRecordUpdateService(ChatRecordRepository repository) {
-        super(repository);
+public class ChatRecordUpdateService {
+
+    private final ChatRecordRepository repository;
+    private final ChatRecordSupportService supportService;
+
+    protected ChatRecordUpdateService(ChatRecordRepository repository, ChatRecordSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(Request request) {
-        ChatRecord chatRecord = findById(request.getId());
+        ChatRecord chatRecord = supportService.findById(request.getId());
         repository.save(chatRecord);
     }
 

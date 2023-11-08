@@ -12,13 +12,19 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ReceiptOrderUpdateService extends ReceiptOrderSupportService {
-    protected ReceiptOrderUpdateService(ReceiptOrderRepository repository) {
-        super(repository);
+public class ReceiptOrderUpdateService {
+
+    private final ReceiptOrderSupportService supportService;
+
+    private final ReceiptOrderRepository repository;
+
+    protected ReceiptOrderUpdateService(ReceiptOrderRepository repository, ReceiptOrderSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public void execute(String id, Request request) {
-        ReceiptOrder receiptOrder = findById(id);
+        ReceiptOrder receiptOrder = supportService.findById(id);
         repository.save(receiptOrder);
     }
 

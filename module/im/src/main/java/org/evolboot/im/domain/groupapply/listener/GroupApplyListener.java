@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class GroupApplyListener extends GroupApplySupportService {
+public class GroupApplyListener {
 
-    protected GroupApplyListener(GroupApplyRepository repository) {
-        super(repository);
+    private final GroupApplyRepository repository;
+
+    private final GroupApplySupportService supportService;
+
+    protected GroupApplyListener(GroupApplyRepository repository, GroupApplySupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

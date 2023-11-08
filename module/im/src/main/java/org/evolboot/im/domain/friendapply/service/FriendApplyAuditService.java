@@ -27,17 +27,22 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class FriendApplyAuditService extends FriendApplySupportService {
+public class FriendApplyAuditService {
+
+    private final FriendApplySupportService supportService;
+
+    private final FriendApplyRepository repository;
 
     private final FriendAppService friendAppService;
 
-    protected FriendApplyAuditService(FriendApplyRepository repository, FriendAppService friendAppService) {
-        super(repository);
+    protected FriendApplyAuditService(FriendApplyRepository repository, FriendAppService friendAppService, FriendApplySupportService supportService) {
+        this.supportService = supportService;
+        this.repository = repository;
         this.friendAppService = friendAppService;
     }
 
     public FriendApply execute(Request request) {
-        FriendApply friendApply = findById(request.getId());
+        FriendApply friendApply = supportService.findById(request.getId());
         Assert.isTrue(friendApply.getToUserId().equals(request.getToUserId()), I18NMessageHolder.message(ImI18nMessage.FriendApply.NOT_FOUND));
         if (FriendApplyState.EXPIRE.equals(friendApply.getState())) {
             throw new ExtendIllegalArgumentException("该申请已经过期");

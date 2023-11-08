@@ -6,6 +6,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * 聊天记录
@@ -14,7 +15,8 @@ import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
  * @date 2023-05-03 00:02:35
  */
 @Slf4j
-public abstract class ChatRecordSupportService {
+@Service
+public class ChatRecordSupportService {
 
     protected final ChatRecordRepository repository;
 

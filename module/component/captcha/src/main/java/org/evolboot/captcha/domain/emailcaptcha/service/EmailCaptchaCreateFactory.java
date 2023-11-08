@@ -54,7 +54,7 @@ public class EmailCaptchaCreateFactory {
         });
         String codeStr = code.get();
         codeStr = "10086";
-//        sender.send(email, codeStr);
+//        sender.send(request.getEmail(), codeStr);
         EmailCaptcha captcha = EmailCaptcha.builder()
                 .email(request.getEmail())
                 .code(codeStr)

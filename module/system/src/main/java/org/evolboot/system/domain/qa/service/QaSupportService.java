@@ -5,6 +5,7 @@ import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.system.SystemI18nMessage;
 import org.evolboot.system.domain.qa.entity.Qa;
 import org.evolboot.system.domain.qa.repository.QaRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * QA
@@ -12,7 +13,8 @@ import org.evolboot.system.domain.qa.repository.QaRepository;
  * @author evol
  */
 @Slf4j
-public abstract class QaSupportService {
+@Service
+public class QaSupportService {
 
     protected final QaRepository repository;
 

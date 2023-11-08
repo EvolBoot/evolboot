@@ -29,10 +29,19 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserConversationQueryServiceImpl extends UserConversationSupportService implements UserConversationQueryService {
+public class UserConversationQueryServiceImpl implements UserConversationQueryService {
 
-    protected UserConversationQueryServiceImpl(UserConversationRepository repository) {
-        super(repository);
+    private final UserConversationRepository repository;
+    private final UserConversationSupportService supportService;
+
+    protected UserConversationQueryServiceImpl(UserConversationRepository repository, UserConversationSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
+    }
+
+    @Override
+    public UserConversation findById(Long id) {
+        return supportService.findById(id);
     }
 
 

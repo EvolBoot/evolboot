@@ -17,9 +17,14 @@ import lombok.Setter;
  */
 @Slf4j
 @Service
-public class XarvkgvvrllncCreateFactory extends XarvkgvvrllncSupportService {
-    protected XarvkgvvrllncCreateFactory(XarvkgvvrllncRepository repository) {
-        super(repository);
+public class XarvkgvvrllncCreateFactory {
+
+    private final XarvkgvvrllncRepository repository;
+    private final XarvkgvvrllncSupportService supportService;
+
+    protected XarvkgvvrllncCreateFactory(XarvkgvvrllncRepository repository, XarvkgvvrllncSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 
     public Xarvkgvvrllnc execute(Request request) {

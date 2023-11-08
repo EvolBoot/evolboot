@@ -22,17 +22,23 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
-public class ChatRecordAppServiceImpl extends ChatRecordSupportService implements ChatRecordAppService {
+public class ChatRecordAppServiceImpl implements ChatRecordAppService {
 
 
     private final ChatRecordCreateFactory factory;
     private final ChatRecordUpdateService updateService;
 
-    protected ChatRecordAppServiceImpl(ChatRecordRepository repository, ChatRecordCreateFactory factory, ChatRecordUpdateService updateService) {
-        super(repository);
+    private final ChatRecordRepository repository;
+
+    private final ChatRecordSupportService supportService;
+
+    protected ChatRecordAppServiceImpl(ChatRecordRepository repository, ChatRecordCreateFactory factory, ChatRecordUpdateService updateService, ChatRecordSupportService supportService) {
         this.factory = factory;
         this.updateService = updateService;
+        this.repository = repository;
+        this.supportService = supportService;
     }
+
 
     @Override
     @Transactional
@@ -51,7 +57,7 @@ public class ChatRecordAppServiceImpl extends ChatRecordSupportService implement
     @Override
     @Transactional
     public void delete(Long id) {
-        findById(id);
+        supportService.findById(id);
         repository.deleteById(id);
     }
 

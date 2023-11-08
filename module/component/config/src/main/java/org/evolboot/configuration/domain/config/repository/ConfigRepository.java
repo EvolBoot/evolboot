@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * @author evol
  */
-public interface ConfigurationRepository {
+public interface ConfigRepository {
 
     Optional<Config> findByKey(String key);
 

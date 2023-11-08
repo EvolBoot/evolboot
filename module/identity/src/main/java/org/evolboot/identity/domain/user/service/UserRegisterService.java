@@ -19,15 +19,20 @@ import org.springframework.stereotype.Service;
  * @author evol
  */
 @Service
-public class UserRegisterService extends UserSupportService {
+public class UserRegisterService {
+
+    private final UserRepository repository;
+
+    private final UserSupportService supportService;
 
     private final UserCreateFactory factory;
     private final IdentityCaptchaClient identityCaptchaClient;
     private final IdentityConfigClient identityConfigClient;
 
 
-    public UserRegisterService(UserRepository repository, UserCreateFactory factory, IdentityCaptchaClient identityCaptchaClient, IdentityConfigClient identityConfigClient) {
-        super(repository);
+    public UserRegisterService(UserRepository repository, UserSupportService supportService, UserCreateFactory factory, IdentityCaptchaClient identityCaptchaClient, IdentityConfigClient identityConfigClient) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.factory = factory;
         this.identityCaptchaClient = identityCaptchaClient;
         this.identityConfigClient = identityConfigClient;

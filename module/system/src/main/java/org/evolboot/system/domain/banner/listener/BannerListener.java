@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class BannerListener extends BannerSupportService {
+public class BannerListener {
 
-    protected BannerListener(BannerRepository repository) {
-        super(repository);
+    private final BannerRepository repository;
+
+    private final BannerSupportService supportService;
+
+    protected BannerListener(BannerRepository repository, BannerSupportService supportService) {
+        this.repository = repository;
+        this.supportService = supportService;
     }
 /*
 

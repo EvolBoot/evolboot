@@ -20,7 +20,7 @@ public interface DictKeyAppService {
 
     DictKey findById(Long id);
 
-    DictKey findByKey(String key);
+
 
     DictKey create(DictKeyCreateFactory.Request request);
 

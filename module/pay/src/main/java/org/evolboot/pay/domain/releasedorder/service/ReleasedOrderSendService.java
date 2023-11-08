@@ -21,8 +21,11 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-public class ReleasedOrderSendService extends ReleasedOrderSupportService {
+public class ReleasedOrderSendService {
 
+    private final ReleasedOrderSupportService supportService;
+
+    private final ReleasedOrderRepository repository;
 
     private final Map<PayGateway, ReleasedClient> releasedClients;
 
@@ -31,15 +34,16 @@ public class ReleasedOrderSendService extends ReleasedOrderSupportService {
     private final ReleasedOrderStateHandleService stateHandleService;
 
 
-    protected ReleasedOrderSendService(ReleasedOrderRepository repository, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStateHandleService stateHandleService) {
-        super(repository);
+    protected ReleasedOrderSendService(ReleasedOrderRepository repository, ReleasedOrderSupportService supportService, Map<PayGateway, ReleasedClient> releasedClients, PayGatewayAccountQueryService payGatewayAccountQueryService, ReleasedOrderStateHandleService stateHandleService) {
+        this.repository = repository;
+        this.supportService = supportService;
         this.releasedClients = releasedClients;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.stateHandleService = stateHandleService;
     }
 
     public boolean send(String releasedOrderId) {
-        ReleasedOrder releasedOrder = findById(releasedOrderId);
+        ReleasedOrder releasedOrder = supportService.findById(releasedOrderId);
         log.info("代付:发送请求到第三方:{},开始:{}", releasedOrder.getPayGateway(), releasedOrder.id());
         if (ReleasedOrderState.WAIT.equals(releasedOrder.getState())) {
             log.info("代付:发送请求到第三方:{}:状态不对:{}", releasedOrder.getPayGateway(), releasedOrder.getState());
