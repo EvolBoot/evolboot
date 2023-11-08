@@ -56,51 +56,51 @@ private BigDecimal availableBalance
 这个就跟我们平时三层架构类似，但又用点不太一样，比如，之前的开发可能是，伪代码如下：
 ```java  
 public class OrderService {
-private ProductDao productDao;
-private InventoryInfoDao inventoryInfoDao;
-private AccountDao accountDao;
-private OrderDao orderDao;  
+   private ProductDao productDao;
+   private InventoryInfoDao inventoryInfoDao;
+   private AccountDao accountDao;
+   private OrderDao orderDao;
 
-public void createOrder(Long userId, Long productId, int quantity) {
-Product product = productDao.selectById(productId);
-if (product == null) {
-throw new RuntimeException("商品不存在");
-}
-if (product.getStatus() == 0) {
-throw new RuntimeException("商品不允许购买");
-}
+   public void createOrder(Long userId, Long productId, int quantity) {
+      Product product = productDao.selectById(productId);
+      if (product == null) {
+         throw new RuntimeException("商品不存在");
+      }
+      if (product.getStatus() == 0) {
+         throw new RuntimeException("商品不允许购买");
+      }
 // 其他商品的判断  
 
-Inventory inventoryInfo = inventoryInfoDao.selectByProductId(product);
-if (inventoryInfo == null) {
-throw new RuntimeException("库存不足");
-}
-if (inventoryInfo.getQuantity() < quantity) {
-throw new RuntimeException("库存不足");
-}
+      Inventory inventoryInfo = inventoryInfoDao.selectByProductId(product);
+      if (inventoryInfo == null) {
+         throw new RuntimeException("库存不足");
+      }
+      if (inventoryInfo.getQuantity() < quantity) {
+         throw new RuntimeException("库存不足");
+      }
 // 其他库存的判断  
 // 扣减库存
-inventoryInfo.setQuantity(inventoryInfo.getQuantity() - quantity);
-inventoryInfoDao.save(inventoryInfo);  
-BigDecimal amount = product.getPrice() * quantity;  
-Account account = accountDao.selectByUserId(userId);
-if (account.getAvailableBalance() < amount) {
-throw new RuntimeException("余额不足");
-}
+      inventoryInfo.setQuantity(inventoryInfo.getQuantity() - quantity);
+      inventoryInfoDao.save(inventoryInfo);
+      BigDecimal amount = product.getPrice() * quantity;
+      Account account = accountDao.selectByUserId(userId);
+      if (account.getAvailableBalance() < amount) {
+         throw new RuntimeException("余额不足");
+      }
 // 一些列的检查
 // 然后扣除
-account.setAvailableBalance(account.getAvailableBalance() - amount);
+      account.setAvailableBalance(account.getAvailableBalance() - amount);
 // 这种还算好的，如果通过直接执行(update 语句,那就更难排查了)
-accountDao.save(account);  
+      accountDao.save(account);
 // 最后
-Order order = new Order();
-order.setProductId(productId);
-order.setUserId(userId);
-order.setTotalPrice(amount);
+      Order order = new Order();
+      order.setProductId(productId);
+      order.setUserId(userId);
+      order.setTotalPrice(amount);
 // 然后一堆的set  
 // 保存order
-orderDao.save(order);  
-}
+      orderDao.save(order);
+   }
 }  
 ```  
 以上就是传统的思路，也不是不能用，而且开发时，这种方式还很自由，想到哪写到哪，简单直接，这也是这种风格的优势，凡是有点基础的都可以看的懂，且改起来也不麻烦，这种风格一般称之为"过程式"或者"面条式"代码。
@@ -116,95 +116,100 @@ orderDao.save(order);
 3. 有需要第三方领域协调的，必须通过第三方领域开放的服务进行  
    简单的三点，好了，用以上规范重构下上面的代码，伪代码可能如下：
 ```java  
-import java.math.BigDecimal;  
-public class ProductService {  
-private ProductDao productDao;  
-public void check(Long productId) {
-Product product = productDao.selectById(productId);
-if (product == null) {
-throw new RuntimeException("商品不存在");
-}
-if (product.getStatus() == 0) {
-throw new RuntimeException("商品不允许购买");
-}
+import java.math.BigDecimal;
+
+public class ProductService {
+   private ProductDao productDao;
+
+   public void check(Long productId) {
+      Product product = productDao.selectById(productId);
+      if (product == null) {
+         throw new RuntimeException("商品不存在");
+      }
+      if (product.getStatus() == 0) {
+         throw new RuntimeException("商品不允许购买");
+      }
 // 其他检查
-}  
-// 获取单价
-public BigDecimal getUnitPrice(Long productId) {
-Product product = productDao.selectById(productId);
-return product.getUnitPrice();
-}  
-}  
+   }
+
+   // 获取单价
+   public BigDecimal getUnitPrice(Long productId) {
+      Product product = productDao.selectById(productId);
+      return product.getUnitPrice();
+   }
+}
+
 // 库存对象
-public class InventoryInfo {  
-private int quantity;  
-// 领域自己可以做的，就自己做
-public void deduction(int _quantity) {
-if (quantity < _quantity) {
-throw new RuntimeException("库存不足");
+public class InventoryInfo {
+   private int quantity;
+
+   // 领域自己可以做的，就自己做
+   public void deduction(int _quantity) {
+      if (quantity < _quantity) {
+         throw new RuntimeException("库存不足");
+      }
+      quantity = quantity - _quantity;
+   }
 }
-quantity = quantity - _quantity;
-}  
-}  
-public class InventoryService {  
-private InventoryDao inventoryDao;  
-public void deductionQuantity(Long productId, int quantity) {
-Inventory inventoryInfo = inventoryDao.selectByProductId(product);
-if (inventoryInfo == null) {
-throw new RuntimeException("库存不足");
-}  
+
+public class InventoryService {
+   private InventoryDao inventoryDao;
+
+   public void deductionQuantity(Long productId, int quantity) {
+      Inventory inventoryInfo = inventoryDao.selectByProductId(product);
+      if (inventoryInfo == null) {
+         throw new RuntimeException("库存不足");
+      }
 // 扣减库存,注意这边使用的是领域的方法，而不是直接set,库存足不足它自己判断
-inventoryInfo.deduction(quantity);
-inventoryDao.save(inventoryInfo);
-}  
-}  
-public class Account {  
-private BigDecimal balance;  
-public void subtract(BigDecimal amount) {
-if (balance < amount) {
-throw new RuntimeException("余额不足");
+      inventoryInfo.deduction(quantity);
+      inventoryDao.save(inventoryInfo);
+   }
 }
-this.balance = balance - amount;
-}  
-}  
+
+public class Account {
+   private BigDecimal balance;
+
+   public void subtract(BigDecimal amount) {
+      if (balance < amount) {
+         throw new RuntimeException("余额不足");
+      }
+      this.balance = balance - amount;
+   }
+}
 
 public class AccountService {
-private AccountDao accountDao;  
-public void subtract(Long userId, BigDecimal amount) {
-Account account = accountDao.selectByUserId(userId);
+   private AccountDao accountDao;
+
+   public void subtract(Long userId, BigDecimal amount) {
+      Account account = accountDao.selectByUserId(userId);
 // 注意,这边也是聚合根自身去检查它余额足不足
-account.subtract(amount);
+      account.subtract(amount);
 // 然后这边进行记录日志或者抛出事件
-accountDao.save(account);
-}  
-}  
+      accountDao.save(account);
+   }
+}
 
 public class OrderService {
-private ProductService productService;
-private InventoryInfoService inventoryInfoService;
-private AccountService accountService;
-private OrderDao orderDao;  
+   private ProductService productService;
+   private InventoryInfoService inventoryInfoService;
+   private AccountService accountService;
+   private OrderDao orderDao;
 
-public void createOrder(Long userId, Long productId, int quantity) {  
+   public void createOrder(Long userId, Long productId, int quantity) {
 // 检查商品
-productService.check(productId);
+      productService.check(productId);
 // 扣减库存
-inventoryInfoService.deductionQuantity(productId,quantity);
+      inventoryInfoService.deductionQuantity(productId, quantity);
 // 计算价格
-BigDecimal unitPrice = productService.getUnitPrice(productId);
-BigDecimal totalPrice = unitPrice * quantity;
+      BigDecimal unitPrice = productService.getUnitPrice(productId);
+      BigDecimal totalPrice = unitPrice * quantity;
 // 扣除余额
-accountService.subtract(userId,totalPrice);  
+      accountService.subtract(userId, totalPrice);
 // 最后构建一个订单信息
-Order order = new Order(
-productId,
-userId,
-totalPrice,
-....
-);
+      Order order = new Order(productId, userId, totalPrice);
 // 保存order
-orderDao.save(order);
-}
+      orderDao.save(order);
+   }
 }  
 ```
 好了，这是改造完成的，第一眼看上去很麻烦，这是必须的代价，也是Java被嘲讽的地方（啰嗦），但好处也很明显，但项目越复杂，开发人员也越多时，每个人只需要负责自己的模块，
