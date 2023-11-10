@@ -55,24 +55,6 @@ public class BffAdminResourceV1 {
         return ResponseModel.ok((bffUsers));
     }
 
-    /**
-     * @param page
-     * @param limit
-     * @return
-     */
-    @GetMapping("/user-staff")
-    @Operation(summary = "员工列表(带角色信息)")
-    @PreAuthorize(HAS_ROLE_ADMIN)
-    public ResponseModel<Page<BffStaffUser>> findStaffUser(
-            @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", defaultValue = "10") Integer limit
-    ) {
-        BffAdminQuery query = BffAdminQuery.builder()
-                .page(page)
-                .limit(limit)
-                .build();
-        return ResponseModel.ok(service.findStaffUser(query));
-    }
 
 
     @Operation(summary = "当前服务器时间")
@@ -82,26 +64,6 @@ public class BffAdminResourceV1 {
         return ResponseModel.ok((new Date()));
     }
 
-    /**
-     * @return
-     */
-    @GetMapping("/download-auth-file")
-    @Operation(summary = "下载权限表格")
-    @PreAuthorize(HAS_ROLE_ADMIN)
-    public ResponseModel<String> download() {
-        String s = service.downloadAuthorities();
-        return ResponseModel.ok(s);
-    }
-
-    /**
-     * @return
-     */
-    @GetMapping("/current-user-permission")
-    @Operation(summary = "当前登录用户权限(树形)")
-    @Authenticated
-    public ResponseModel<List<Permission>> currentStaffPermission() {
-        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId()));
-    }
 
 
 }

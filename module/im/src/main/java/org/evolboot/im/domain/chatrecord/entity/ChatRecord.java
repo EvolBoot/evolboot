@@ -24,7 +24,7 @@ import javax.persistence.*;
  * @author evol
  * @date 2023-05-03 00:02:35
  */
-@Table(name = "evol_im_chat_record")
+@Table(name = "evoltb_im_chat_record")
 @Getter
 @Slf4j
 @NoArgsConstructor

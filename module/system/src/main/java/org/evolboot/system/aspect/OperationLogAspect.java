@@ -24,7 +24,6 @@ import java.util.Arrays;
 /**
  * @author evol
  */
-
 @Component
 @Aspect
 @Slf4j
@@ -128,7 +127,7 @@ public class OperationLogAspect {
                     operationLog
             );
             System.out.println(e.getMessage());
-            log.error("日志ID:{}, 日志保存失败:", requestId, e);
+            log.error("日志ID:{}, 执行失败:", requestId, e);
             throw e;
         }
     }

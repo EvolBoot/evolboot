@@ -1,6 +1,6 @@
 -- 好友关系
-DROP TABLE IF EXISTS evol_im_friend;
-CREATE TABLE evol_im_friend
+DROP TABLE IF EXISTS evoltb_im_friend;
+CREATE TABLE evoltb_im_friend
 (
     id_              bigint    NOT NULL COMMENT '主键',
     create_at_       timestamp NOT NULL COMMENT '创建时间',
@@ -16,8 +16,8 @@ CREATE TABLE evol_im_friend
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='好友关系';
 
-create unique index evol_im_friend__uindex
-    on evol_im_friend (owner_user_id_, friend_user_id_);
+create unique index evoltb_im_friend__uindex
+    on evoltb_im_friend (owner_user_id_, friend_user_id_);
 
 
 

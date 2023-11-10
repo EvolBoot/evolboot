@@ -1,6 +1,6 @@
 -- 群成员
-DROP TABLE IF EXISTS evol_im_group_member;
-CREATE TABLE evol_im_group_member
+DROP TABLE IF EXISTS evoltb_im_group_member;
+CREATE TABLE evoltb_im_group_member
 (
     id_                   bigint    NOT NULL COMMENT '主键',
     create_at_            timestamp NOT NULL COMMENT '创建时间',

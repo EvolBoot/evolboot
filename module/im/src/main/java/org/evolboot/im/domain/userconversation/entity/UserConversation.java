@@ -23,7 +23,7 @@ import java.util.Set;
  * @author evol
  * @date 2023-05-02 23:36:54
  */
-@Table(name = "evol_im_user_conversation")
+@Table(name = "evoltb_im_user_conversation")
 @Getter
 @Slf4j
 @NoArgsConstructor

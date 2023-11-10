@@ -1,6 +1,6 @@
 -- 好友申请
-DROP TABLE IF EXISTS evol_im_friend_apply;
-CREATE TABLE evol_im_friend_apply
+DROP TABLE IF EXISTS evoltb_im_friend_apply;
+CREATE TABLE evoltb_im_friend_apply
 (
     id_              bigint    NOT NULL COMMENT '主键',
     create_at_       timestamp NOT NULL COMMENT '创建时间',
@@ -18,5 +18,5 @@ CREATE TABLE evol_im_friend_apply
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='好友申请';
 
-create index evol_im_friend_apply__index
-    on evol_im_friend_apply (to_user_id_, from_user_id_, state_);
+create index evoltb_im_friend_apply__index
+    on evoltb_im_friend_apply (to_user_id_, from_user_id_, state_);

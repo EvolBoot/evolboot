@@ -24,7 +24,7 @@ import java.util.List;
  * @author evol
  * @date 2023-05-03 17:57:08
  */
-@Table(name = "evol_im_friend_apply")
+@Table(name = "evoltb_im_friend_apply")
 @Getter
 @Slf4j
 @NoArgsConstructor

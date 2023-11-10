@@ -1,6 +1,6 @@
 -- 用户会话
-DROP TABLE IF EXISTS evol_im_user_conversation;
-CREATE TABLE evol_im_user_conversation
+DROP TABLE IF EXISTS evoltb_im_user_conversation;
+CREATE TABLE evoltb_im_user_conversation
 (
     id_                 bigint    NOT NULL COMMENT '主键',
     create_at_          timestamp NOT NULL COMMENT '创建时间',
@@ -20,6 +20,6 @@ CREATE TABLE evol_im_user_conversation
   DEFAULT CHARSET = utf8mb4 COMMENT ='用户会话';
 
 -- 唯一索引
-create unique index evol_im_user_conversation_owner_user_id__conversation_id__uindex
-    on evol_im_user_conversation (owner_user_id_, conversation_id_);
+create unique index evoltb_im_user_conversation__uindex
+    on evoltb_im_user_conversation (owner_user_id_, conversation_id_);
 

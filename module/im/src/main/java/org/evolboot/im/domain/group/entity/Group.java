@@ -21,7 +21,7 @@ import java.util.Date;
  * @author evol
  * @date 2023-05-03 15:52:47
  */
-@Table(name = "evol_im_group")
+@Table(name = "evoltb_im_group")
 @Getter
 @Slf4j
 @NoArgsConstructor

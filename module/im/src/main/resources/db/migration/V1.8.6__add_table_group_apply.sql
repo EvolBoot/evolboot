@@ -1,6 +1,6 @@
 -- 群申请
-DROP TABLE IF EXISTS evol_im_group_apply;
-CREATE TABLE evol_im_group_apply
+DROP TABLE IF EXISTS evoltb_im_group_apply;
+CREATE TABLE evoltb_im_group_apply
 (
     id_              bigint    NOT NULL COMMENT '主键',
     create_at_       timestamp NOT NULL COMMENT '创建时间',

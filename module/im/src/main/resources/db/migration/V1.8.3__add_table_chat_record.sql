@@ -1,6 +1,6 @@
 -- 聊天记录
-DROP TABLE IF EXISTS evol_im_chat_record;
-CREATE TABLE evol_im_chat_record
+DROP TABLE IF EXISTS evoltb_im_chat_record;
+CREATE TABLE evoltb_im_chat_record
 (
     id_                           bigint    NOT NULL COMMENT '主键',
     create_at_                    timestamp NOT NULL COMMENT '创建时间',

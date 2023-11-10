@@ -7,10 +7,12 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.system.domain.dictkey.entity.DictKey;
 import org.evolboot.system.domain.dictkey.entity.QDictKey;
 import org.evolboot.system.domain.dictkey.repository.DictKeyRepository;
 import org.evolboot.system.domain.dictkey.service.DictKeyQuery;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +27,21 @@ import java.util.Optional;
  */
 @Repository
 public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQuerydslPredicateExecutor<DictKey, Long>, JpaRepository<DictKey, Long> {
+
+    String CACHE_KEY = RedisCacheName.DICT_CACHE_KEY;
+
+
+    @Override
+    @CacheEvict(cacheNames = CACHE_KEY, allEntries = true)
+    DictKey save(DictKey dictKey);
+
+    @Override
+    @CacheEvict(cacheNames = CACHE_KEY, allEntries = true)
+    void deleteAllByIdInBatch(Iterable<Long> ids);
+
+    @Override
+    @CacheEvict(cacheNames = CACHE_KEY, allEntries = true)
+    void deleteById(Long id);
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
         DictKeyQuery query = (DictKeyQuery) _query;

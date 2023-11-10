@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author evol
  * @date 2023-05-03 17:40:14
  */
-@Table(name = "evol_im_friend")
+@Table(name = "evoltb_im_friend")
 @Getter
 @Slf4j
 @NoArgsConstructor

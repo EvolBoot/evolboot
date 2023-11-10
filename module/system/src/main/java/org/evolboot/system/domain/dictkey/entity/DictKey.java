@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * @author evol
  * @date 2023-05-07 12:29:33
  */
-@Table(name = "evol_system_dict_key")
+@Table(name = "evoltb_system_dict_key")
 @Getter
 @Slf4j
 @NoArgsConstructor

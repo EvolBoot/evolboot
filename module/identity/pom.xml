@@ -32,5 +32,9 @@
             <groupId>org.evolboot</groupId>
             <artifactId>config</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>storage</artifactId>
+        </dependency>
     </dependencies>
 </project>

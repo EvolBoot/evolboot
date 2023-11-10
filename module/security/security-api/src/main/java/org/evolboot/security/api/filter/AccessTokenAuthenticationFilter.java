@@ -80,7 +80,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
         } finally {
             chain.doFilter(request, response);
             // 清除
-            log.info("清除 SecurityContextHolder.clearContext();");
+            log.debug("清除 SecurityContextHolder.clearContext();");
             clearContext();
         }
     }

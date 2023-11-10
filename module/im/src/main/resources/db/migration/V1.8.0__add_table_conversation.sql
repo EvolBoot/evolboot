@@ -1,6 +1,6 @@
 -- 会话
-DROP TABLE IF EXISTS evol_im_conversation;
-CREATE TABLE evol_im_conversation
+DROP TABLE IF EXISTS evoltb_im_conversation;
+CREATE TABLE evoltb_im_conversation
 (
     id_                 bigint    NOT NULL COMMENT '主键',
     create_at_          timestamp NOT NULL COMMENT '创建时间',
@@ -14,7 +14,7 @@ CREATE TABLE evol_im_conversation
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='会话';
 
-create unique index evol_im_conversation_relation_id__uindex
-    on evol_im_conversation (relation_id_);
+create unique index evoltb_im_conversation_relation_id__uindex
+    on evoltb_im_conversation (relation_id_);
 
 
