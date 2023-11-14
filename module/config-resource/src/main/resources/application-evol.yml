@@ -98,18 +98,19 @@ spring:
     placeholders:
       storage-base-url: http://localhost:8090
       default-avatar: ${evolpn.identity.user.avatar}
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    password: root
-    timeout: 30000
-    database: 0
-    # 自定义
-    mq-stream:
-      key: evolpn-stream
-      group: evolpn-group
-      consumer: evolpn-consumer
-      thread-number: 1
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: root
+      timeout: 30000
+      database: 0
+      # 自定义
+      mq-stream:
+        key: evolpn-stream
+        group: evolpn-group
+        consumer: evolpn-consumer
+        thread-number: 1
   jpa:
     show-sql: true
     open-in-view: false

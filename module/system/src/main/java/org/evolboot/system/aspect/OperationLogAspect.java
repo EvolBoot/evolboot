@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -107,6 +108,10 @@ public class OperationLogAspect {
         } catch (Exception e) {
             long endTime = System.currentTimeMillis();
             long time = endTime - beginTime;
+            boolean state = false;
+            if (e instanceof ExtendRuntimeException) {
+                state = true;
+            }
             //保存日志
             OperationLog operationLog = OperationLog.builder()
                     .id(requestId)
@@ -121,13 +126,13 @@ public class OperationLogAspect {
                     .result(e.getMessage())
                     .time(time)
                     .ip(ip)
-                    .state(false)
+                    .state(state)
                     .build();
             service.create(
                     operationLog
             );
-            System.out.println(e.getMessage());
-            log.error("日志ID:{}, 执行失败:", requestId, e);
+
+            log.error("日志ID:{}:", requestId, e);
             throw e;
         }
     }

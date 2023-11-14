@@ -13,10 +13,10 @@ import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import org.evolboot.shared.pay.ReleasedOrderState;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 import static org.evolboot.shared.pay.ReleasedOrderState.PENDING;

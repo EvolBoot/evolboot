@@ -12,8 +12,8 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 /**
  * @author evol
@@ -61,7 +61,7 @@ public class AppSessionUserResourceV1 {
     }
 
     @Operation(summary = "注册并登录")
-    @OperationLog("注册并登录")
+    @OperationLog(value = "注册并登录", serializable = false)
     @PostMapping("/register")
     public ResponseModel<?> register(
             @RequestBody @Valid

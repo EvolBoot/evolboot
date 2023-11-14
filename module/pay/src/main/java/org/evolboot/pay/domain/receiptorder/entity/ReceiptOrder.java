@@ -11,10 +11,10 @@ import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderState;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 

@@ -12,7 +12,7 @@ import org.evolboot.core.i18n.I18NMessageAssert;
 import org.evolboot.core.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 /**

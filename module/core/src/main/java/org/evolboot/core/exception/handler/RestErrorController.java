@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author evol
@@ -24,7 +24,7 @@ public class RestErrorController implements ErrorController {
     @GetMapping(path = Constant.ERROR_PATH)
     public ResponseModel<?> handleError(HttpServletRequest request, HttpServletResponse response, Throwable exception) {
         //获取statusCode:401,404,500
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.state_code");
+        Integer statusCode = (Integer) request.getAttribute("jakarta.servlet.error.state_code");
         String msg = "unknown error";
         if (statusCode == null) {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();

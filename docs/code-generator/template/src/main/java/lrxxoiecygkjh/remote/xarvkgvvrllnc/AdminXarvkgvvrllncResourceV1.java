@@ -15,7 +15,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQu
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 import projectPackage.core.data.Page;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static projectPackage.security.api.access.AccessAuthorities.*;

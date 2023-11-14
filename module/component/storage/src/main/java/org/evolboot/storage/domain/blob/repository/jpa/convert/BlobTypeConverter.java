@@ -3,8 +3,8 @@ package org.evolboot.storage.domain.blob.repository.jpa.convert;
 
 import org.evolboot.storage.domain.blob.entity.BlobType;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

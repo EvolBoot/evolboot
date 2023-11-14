@@ -3,8 +3,8 @@ package org.evolboot.identity.domain.permission.repository.jpa;
 
 import org.evolboot.identity.domain.permission.entity.Type;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

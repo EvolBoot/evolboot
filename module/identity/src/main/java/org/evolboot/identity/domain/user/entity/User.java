@@ -21,7 +21,7 @@ import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverter;
 import org.evolboot.shared.lang.UserIdentity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.*;
 
 /**

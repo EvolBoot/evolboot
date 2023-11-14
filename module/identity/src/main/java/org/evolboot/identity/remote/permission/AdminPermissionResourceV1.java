@@ -18,7 +18,7 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.Permission.*;

@@ -10,7 +10,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author evol

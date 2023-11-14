@@ -2,6 +2,7 @@ package org.evolboot.configuration.remote.config;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.evolboot.configuration.ConfigAccessAuthorities;
 import org.evolboot.configuration.domain.config.ConfigAppService;
 import org.evolboot.configuration.domain.config.about.AboutConfig;
@@ -13,7 +14,6 @@ import org.evolboot.core.remote.ResponseModel;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;

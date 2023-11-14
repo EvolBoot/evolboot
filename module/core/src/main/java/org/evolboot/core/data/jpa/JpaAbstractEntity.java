@@ -5,9 +5,9 @@ import org.evolboot.core.domain.AbstractEntity;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.context.annotation.Scope;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.util.Date;
 

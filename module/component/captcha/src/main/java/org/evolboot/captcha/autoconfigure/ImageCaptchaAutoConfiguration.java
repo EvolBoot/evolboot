@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 /**
  * @author evol

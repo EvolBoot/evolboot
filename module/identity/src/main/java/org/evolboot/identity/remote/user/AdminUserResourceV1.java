@@ -22,8 +22,8 @@ import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;

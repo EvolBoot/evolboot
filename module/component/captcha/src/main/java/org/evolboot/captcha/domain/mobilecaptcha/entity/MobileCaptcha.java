@@ -14,10 +14,10 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.shared.sms.SmsMessageTag;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.util.Date;
 
 /**

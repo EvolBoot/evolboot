@@ -17,7 +17,7 @@ import org.evolboot.im.remote.groupapply.dto.GroupApplyUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.GroupApply.*;

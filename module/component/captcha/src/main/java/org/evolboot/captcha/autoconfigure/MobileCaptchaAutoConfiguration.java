@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import static org.evolboot.captcha.autoconfigure.MobileCaptchaProperties.CONDITIONAL_ON_PROPERTY_TYPE;
 

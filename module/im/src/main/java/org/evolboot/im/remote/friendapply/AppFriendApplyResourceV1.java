@@ -18,7 +18,7 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 
 /**

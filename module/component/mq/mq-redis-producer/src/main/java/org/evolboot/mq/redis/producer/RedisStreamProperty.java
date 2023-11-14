@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class RedisStreamProperty {
 
-    @Value("${spring.redis.mq-stream.key}")
+    @Value("${spring.data.redis.mq-stream.key}")
     private String key;
 
     private String keyForRealTime;
@@ -22,13 +22,13 @@ public class RedisStreamProperty {
 
     private String keyForDelayTime;
 
-    @Value("${spring.redis.mq-stream.group}")
+    @Value("${spring.data.redis.mq-stream.group}")
     private String group;
 
-    @Value("${spring.redis.mq-stream.consumer}")
+    @Value("${spring.data.redis.mq-stream.consumer}")
     private String consumer;
 
-    @Value("${spring.redis.mq-stream.thread-number}")
+    @Value("${spring.data.redis.mq-stream.thread-number}")
     private int threadNumber = 1;
 
     public int getThreadNumber() {

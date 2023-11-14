@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.13</version>
+        <version>3.0.2</version>
     </parent>
     <packaging>pom</packaging>
     <groupId>org.evolboot</groupId>
@@ -14,18 +14,18 @@
     <description>evolpn</description>
     <properties>
         <main.basedir>${basedir}</main.basedir>
-        <revision>0.0.1</revision>
-        <java.version>11</java.version>
+        <revision>eb-0.0.1</revision>
+        <java.version>17</java.version>
         <project.default.encoding>UTF-8</project.default.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>${project.default.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.default.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${project.default.encoding}</maven.compiler.encoding>
-        <spring-boot.version>2.7.13</spring-boot.version>
-        <alibaba-cloud.version>2.2.8.RELEASE</alibaba-cloud.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-        <springdoc.version>1.6.15</springdoc.version>
+        <spring-boot.version>3.0.2</spring-boot.version>
+        <alibaba-cloud.version>2022.0.0.0</alibaba-cloud.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <springdoc.version>2.2.0</springdoc.version>
         <hutool.version>5.8.16</hutool.version>
         <commons-io.version>2.11.0</commons-io.version>
         <captcha.version>1.6.2</captcha.version>
@@ -34,7 +34,7 @@
         <qiniu-sdk.version>7.2.29</qiniu-sdk.version>
         <qcloud-sdk-cos.version>5.6.24</qcloud-sdk-cos.version>
         <perf4j.version>0.9.16</perf4j.version>
-        <mybatis-plus.version>3.3.1</mybatis-plus.version>
+        <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
         <google-guava.version>28.0-jre</google-guava.version>
         <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
         <rocketmq-logappender.version>4.9.1</rocketmq-logappender.version>
@@ -45,6 +45,7 @@
         <hikaricp.version>5.0.0</hikaricp.version>
         <netty-socketio.version>1.7.23</netty-socketio.version>
         <swagger-core.version>2.2.8</swagger-core.version>
+        <redisson.version>3.24.3</redisson.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -72,7 +73,7 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>3.18.0</version>
+                <version>${redisson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
@@ -262,7 +263,7 @@
             <!-- springdoc ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
             <dependency>
@@ -351,6 +352,14 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-core.version}</version>
             </dependency>
+            <!--query dsl-->
+            <dependency>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-jpa</artifactId>
+                <classifier>jakarta</classifier>
+                <version>${querydsl.version}</version>
+            </dependency>
+            <!--query dsl end-->
         </dependencies>
     </dependencyManagement>
     <!-- 阿里云maven仓库 -->
@@ -395,6 +404,7 @@
                         <groupId>com.querydsl</groupId>
                         <artifactId>querydsl-apt</artifactId>
                         <version>${querydsl.version}</version>
+                        <classifier>jakarta</classifier>
                     </dependency>
                 </dependencies>
             </plugin>

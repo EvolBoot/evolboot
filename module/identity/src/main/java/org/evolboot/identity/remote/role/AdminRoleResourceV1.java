@@ -15,7 +15,7 @@ import org.evolboot.identity.remote.role.dto.UpdateRoleRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.Role.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;

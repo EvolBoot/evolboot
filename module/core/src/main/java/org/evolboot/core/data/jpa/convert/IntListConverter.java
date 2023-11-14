@@ -19,7 +19,7 @@ package org.evolboot.core.data.jpa.convert;
 import org.evolboot.core.util.JsonUtil;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

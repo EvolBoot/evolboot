@@ -13,7 +13,7 @@ import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 /**

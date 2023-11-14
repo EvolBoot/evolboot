@@ -6,7 +6,7 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.im.domain.group.entity.GroupLocale;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.util.List;
 
 /**

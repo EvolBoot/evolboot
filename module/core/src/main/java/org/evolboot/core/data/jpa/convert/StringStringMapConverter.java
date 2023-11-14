@@ -2,7 +2,7 @@ package org.evolboot.core.data.jpa.convert;
 
 import org.evolboot.core.util.JsonUtil;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.util.Map;
 import java.util.Objects;
 

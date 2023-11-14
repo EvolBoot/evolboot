@@ -6,7 +6,7 @@ import projectPackage.core.util.JsonUtil;
 import com.google.common.collect.Lists;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.util.List;
 
 /**

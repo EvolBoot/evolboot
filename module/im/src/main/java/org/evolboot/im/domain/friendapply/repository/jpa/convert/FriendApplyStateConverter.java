@@ -3,8 +3,8 @@ package org.evolboot.im.domain.friendapply.repository.jpa.convert;
 
 import org.evolboot.im.domain.friendapply.entity.FriendApplyState;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

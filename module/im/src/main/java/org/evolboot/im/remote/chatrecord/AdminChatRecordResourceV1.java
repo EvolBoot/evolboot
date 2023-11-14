@@ -15,7 +15,7 @@ import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
 import org.evolboot.im.remote.chatrecord.dto.*;
 import org.evolboot.core.data.Page;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import static org.evolboot.security.api.access.AccessAuthorities.*;
 import static org.evolboot.im.ImAccessAuthorities.ChatRecord.*;

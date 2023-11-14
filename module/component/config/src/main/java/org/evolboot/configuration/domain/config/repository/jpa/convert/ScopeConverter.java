@@ -3,8 +3,8 @@ package org.evolboot.configuration.domain.config.repository.jpa.convert;
 
 import org.evolboot.configuration.domain.config.entity.Scope;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

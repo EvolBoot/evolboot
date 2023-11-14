@@ -3,8 +3,8 @@ package org.evolboot.im.domain.conversation.repository.jpa.convert;
 
 import org.evolboot.im.domain.userconversation.entity.UserConversationState;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

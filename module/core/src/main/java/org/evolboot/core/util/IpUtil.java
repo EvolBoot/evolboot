@@ -3,7 +3,7 @@ package org.evolboot.core.util;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author evol

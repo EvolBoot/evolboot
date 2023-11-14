@@ -14,10 +14,10 @@ import org.springframework.data.jpa.repository.support.*;
 import org.springframework.data.querydsl.EntityPathResolver;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
 import org.springframework.data.repository.query.FluentQuery;
-import org.springframework.data.repository.support.PageableExecutionUtils;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;

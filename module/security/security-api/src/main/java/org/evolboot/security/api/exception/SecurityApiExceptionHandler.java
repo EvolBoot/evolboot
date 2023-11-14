@@ -11,8 +11,8 @@ import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static org.evolboot.core.Constant.ErrorStatusCode.ACCESS_DENIED_CODE;
 import static org.evolboot.core.Constant.ErrorStatusCode.NOT_FOUND_CODE;

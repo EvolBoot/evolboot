@@ -12,7 +12,7 @@ import org.evolboot.core.domain.IdGenerate;
 import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;

@@ -2,7 +2,7 @@ package org.evolboot.core.domain;
 
 import org.springframework.context.annotation.Scope;
 
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**

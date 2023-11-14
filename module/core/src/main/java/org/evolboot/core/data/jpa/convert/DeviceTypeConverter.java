@@ -3,8 +3,8 @@ package org.evolboot.core.data.jpa.convert;
 
 import org.evolboot.shared.lang.DeviceType;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author evol

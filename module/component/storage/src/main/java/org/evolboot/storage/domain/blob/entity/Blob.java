@@ -15,7 +15,7 @@ import org.evolboot.storage.domain.blob.impl.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.springframework.util.DigestUtils;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

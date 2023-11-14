@@ -5,7 +5,7 @@ import org.evolboot.captcha.domain.emailcaptcha.repository.EmailCaptchaRepositor
 import org.evolboot.shared.cache.RedisCacheName;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 

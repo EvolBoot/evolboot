@@ -15,7 +15,7 @@ import org.evolboot.im.domain.chatrecord.message.convert.MessageContentConvert;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.shared.lang.DeviceType;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 /**

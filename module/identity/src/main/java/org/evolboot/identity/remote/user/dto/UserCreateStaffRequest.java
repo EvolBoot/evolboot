@@ -8,7 +8,7 @@ import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.service.UserCreateFactory;
 import org.evolboot.shared.lang.UserIdentity;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.Set;
 
 /**

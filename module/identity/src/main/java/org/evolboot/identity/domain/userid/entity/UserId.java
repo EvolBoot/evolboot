@@ -8,7 +8,7 @@ import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * UserId

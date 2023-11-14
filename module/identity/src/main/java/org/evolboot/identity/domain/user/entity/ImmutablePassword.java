@@ -6,8 +6,8 @@ import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.util.UserPasswordUtil;
 import org.evolboot.identity.domain.user.util.UserValidUtil;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 /**
  * @author evol

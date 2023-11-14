@@ -15,7 +15,7 @@ import org.evolboot.identity.remote.user.dto.UserRoleUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.HAS_ROLE_UPDATE;
 import static org.evolboot.identity.IdentityAccessAuthorities.UserRole.HAS_PAGE;

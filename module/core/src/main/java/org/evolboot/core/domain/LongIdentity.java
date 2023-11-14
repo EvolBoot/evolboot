@@ -3,8 +3,8 @@ package org.evolboot.core.domain;
 import lombok.Getter;
 import org.evolboot.core.util.IdUtil;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
