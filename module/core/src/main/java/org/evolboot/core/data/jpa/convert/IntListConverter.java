@@ -16,6 +16,7 @@
 
 package org.evolboot.core.data.jpa.convert;
 
+import jakarta.persistence.Converter;
 import org.evolboot.core.util.JsonUtil;
 import org.springframework.util.StringUtils;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Converter(autoApply = true)
 public class IntListConverter implements AttributeConverter<List<Integer>, String> {
     @Override
     public String convertToDatabaseColumn(List<Integer> attribute) {

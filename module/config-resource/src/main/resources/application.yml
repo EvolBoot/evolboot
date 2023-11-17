@@ -40,7 +40,7 @@ spring:
     hibernate:
       naming:
         implicit-strategy: org.evolboot.core.data.jpa.naming.SpringImplicitNamingStrategyImpl
-#    database-platform: org.evolboot.core.data.jpa.dialect.CustomMysql5Dialect
+#    database-platform: org.evolboot.core.data.jpa.dialect.CustomMysqlDialect
 
   servlet:
     multipart:

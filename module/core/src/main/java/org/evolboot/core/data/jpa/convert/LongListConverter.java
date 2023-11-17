@@ -1,5 +1,6 @@
 package org.evolboot.core.data.jpa.convert;
 
+import jakarta.persistence.Converter;
 import org.evolboot.core.util.JsonUtil;
 import org.springframework.util.StringUtils;
 
@@ -7,7 +8,7 @@ import jakarta.persistence.AttributeConverter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Converter(autoApply = true)
 public class LongListConverter implements AttributeConverter<List<Long>, String> {
 
     @Override

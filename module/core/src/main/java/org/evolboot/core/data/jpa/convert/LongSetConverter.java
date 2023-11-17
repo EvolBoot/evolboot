@@ -1,5 +1,6 @@
 package org.evolboot.core.data.jpa.convert;
 
+import jakarta.persistence.Converter;
 import org.evolboot.core.util.JsonUtil;
 import org.springframework.util.StringUtils;
 
@@ -7,7 +8,7 @@ import jakarta.persistence.AttributeConverter;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+@Converter(autoApply = true)
 public class LongSetConverter implements AttributeConverter<Set<Long>, String> {
 
     @Override

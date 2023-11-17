@@ -1,5 +1,6 @@
 package org.evolboot.core.data.jpa.convert;
 
+import jakarta.persistence.Converter;
 import org.evolboot.core.util.JsonUtil;
 import org.springframework.util.StringUtils;
 
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Converter(autoApply = true)
 public class StringSetConverter implements AttributeConverter<Set<String>, String> {
     @Override
     public String convertToDatabaseColumn(Set<String> attribute) {

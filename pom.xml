@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.1.5</version>
     </parent>
     <packaging>pom</packaging>
     <groupId>org.evolboot</groupId>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>${project.default.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.default.encoding}</project.reporting.outputEncoding>
         <maven.compiler.encoding>${project.default.encoding}</maven.compiler.encoding>
-        <spring-boot.version>3.0.2</spring-boot.version>
+        <spring-boot.version>3.1.5</spring-boot.version>
         <alibaba-cloud.version>2022.0.0.0</alibaba-cloud.version>
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <springdoc.version>2.2.0</springdoc.version>
@@ -367,14 +367,14 @@
         <repository>
             <id>public</id>
             <name>aliyun nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>public</id>
             <name>aliyun nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

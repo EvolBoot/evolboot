@@ -1,5 +1,6 @@
 package org.evolboot.core.data.jpa.querydsl;
 
+import com.querydsl.core.types.dsl.BooleanTemplate;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberTemplate;
 

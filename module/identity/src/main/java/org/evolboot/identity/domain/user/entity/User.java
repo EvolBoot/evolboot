@@ -1,15 +1,14 @@
 package org.evolboot.identity.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.data.jpa.convert.LongListConverter;
 import org.evolboot.core.data.jpa.convert.LongSetConverter;
 import org.evolboot.core.domain.AggregateRoot;
 import org.evolboot.core.domain.DelState;
@@ -18,10 +17,12 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.domain.user.UserConfiguration;
-import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverter;
+import org.evolboot.identity.domain.user.repository.jpa.convert.UserIdentitySetConverterForUserType;
 import org.evolboot.shared.lang.UserIdentity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+
 import java.util.*;
 
 /**
@@ -83,7 +84,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     /**
      * 身份
      */
-    @Convert(converter = UserIdentitySetConverter.class)
+    @Type(UserIdentitySetConverterForUserType.class)
     private Set<UserIdentity> userIdentity = Sets.newHashSet();
 
     /**

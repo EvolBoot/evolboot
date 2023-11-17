@@ -113,7 +113,7 @@ spring:
         thread-number: 1
   jpa:
     show-sql: true
-    open-in-view: false
+    open-in-view: true
   kafka:
     consumer:
       bootstrap-servers: 192.168.5.10:9092
