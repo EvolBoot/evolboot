@@ -1,4 +1,4 @@
-package org.evolboot.core.data.jpa.convert;
+package org.evolboot.captcha.domain.shared.jpa;
 
 
 import org.evolboot.shared.sms.SmsMessageTag;

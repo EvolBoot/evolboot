@@ -1,4 +1,4 @@
-package org.evolboot.core.data.jpa.convert;
+package org.evolboot.pay.domain.shared.jpa;
 
 
 import org.evolboot.shared.pay.ReleasedOrderState;
