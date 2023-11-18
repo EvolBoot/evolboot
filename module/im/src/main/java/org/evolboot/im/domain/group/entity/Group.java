@@ -26,6 +26,7 @@ import java.util.Date;
 @Getter
 @Slf4j
 @NoArgsConstructor
+@Entity
 @Schema(description = "群组")
 public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Group> {
 
