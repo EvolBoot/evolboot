@@ -1,6 +1,6 @@
 package org.evolboot.core.data.jpa.convert;
 
-import org.evolboot.core.domain.DelState;
+import org.evolboot.core.entity.DelState;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

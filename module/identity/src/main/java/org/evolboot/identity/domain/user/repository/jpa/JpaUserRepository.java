@@ -2,7 +2,6 @@ package org.evolboot.identity.domain.user.repository.jpa;
 
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
@@ -10,7 +9,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.BitwiseExpressions;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.data.jpa.querydsl.JsonContainsExpressions;
-import org.evolboot.core.domain.DelState;
+import org.evolboot.core.entity.DelState;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.entity.QUser;

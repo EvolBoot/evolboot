@@ -3,7 +3,7 @@ package org.evolboot.sentinel;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.google.common.collect.Lists;
 import lombok.*;
-import org.evolboot.configuration.domain.config.serivce.PropertyValue;
+import org.evolboot.common.domain.config.serivce.PropertyValue;
 import org.evolboot.core.util.ExtendObjects;
 
 import java.util.List;

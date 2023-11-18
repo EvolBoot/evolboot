@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.core.lang.Snowflake;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

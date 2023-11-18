@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>bff-admin</artifactId>
+            <artifactId>bff</artifactId>
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>

@@ -14,11 +14,11 @@
         <module>captcha</module>
         <module>sms</module>
         <module>storage</module>
-        <module>config</module>
         <module>mq</module>
         <module>sentinel</module>
         <module>websocket</module>
         <module>code-generator</module>
         <module>apidoc</module>
+        <module>common</module>
     </modules>
 </project>

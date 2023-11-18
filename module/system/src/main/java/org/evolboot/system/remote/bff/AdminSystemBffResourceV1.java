@@ -34,19 +34,6 @@ public class AdminSystemBffResourceV1 {
         this.service = service;
     }
 
-    /**
-     * @return
-     */
-    @GetMapping("/dict/all")
-    @Operation(summary = "字典数据(所有)")
-    @PreAuthorize(HAS_ROLE_ADMIN)
-    public ResponseModel<List<BffDict>> findBffDict(
-    ) {
-        List<BffDict> bffDict = service.findBffDict();
-        return ResponseModel.ok(bffDict);
-    }
-
-
 
 
 }

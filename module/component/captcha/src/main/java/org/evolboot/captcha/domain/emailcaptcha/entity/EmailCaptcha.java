@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.captcha.domain.emailcaptcha.EmailCaptchaConfiguration;
-import org.evolboot.core.domain.AbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.entity.AbstractEntity;
+import org.evolboot.core.entity.AggregateRoot;
+import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.shared.email.EmailMessageTag;
 

@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.core.util.IpUtil;
 import org.evolboot.core.util.JsonUtil;

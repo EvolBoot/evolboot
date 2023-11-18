@@ -54,10 +54,6 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>bff-app</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.evolboot</groupId>
             <artifactId>captcha</artifactId>
         </dependency>
         <dependency>
@@ -66,7 +62,7 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>bff-admin</artifactId>
+            <artifactId>bff</artifactId>
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>

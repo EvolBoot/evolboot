@@ -2,9 +2,9 @@ package org.evolboot.mq.core.domain.mqtransaction.entity;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.domain.AbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.entity.AbstractEntity;
+import org.evolboot.core.entity.AggregateRoot;
+import org.evolboot.core.entity.IdGenerate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

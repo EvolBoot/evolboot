@@ -1,7 +1,7 @@
 package org.evolboot.identity.acl.client;
 
 
-import org.evolboot.configuration.domain.config.system.SystemConfig;
+import org.evolboot.common.domain.config.model.system.SystemConfig;
 
 /**
  * @author evol

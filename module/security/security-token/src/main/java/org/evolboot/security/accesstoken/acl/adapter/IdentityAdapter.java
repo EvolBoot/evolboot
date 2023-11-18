@@ -1,7 +1,7 @@
 package org.evolboot.security.accesstoken.acl.adapter;
 
 import com.google.common.collect.Sets;
-import org.evolboot.core.domain.DelState;
+import org.evolboot.core.entity.DelState;
 import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.IdentityI18nMessage;

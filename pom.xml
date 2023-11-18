@@ -122,7 +122,7 @@
             </dependency>
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>config</artifactId>
+                <artifactId>common</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -199,16 +199,9 @@
                 <artifactId>mq-kafka-consumer</artifactId>
                 <version>${revision}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.evolboot</groupId>
-                <artifactId>bff-app</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.evolboot</groupId>
-                <artifactId>bff-admin</artifactId>
+                <artifactId>bff</artifactId>
                 <version>${revision}</version>
             </dependency>
 

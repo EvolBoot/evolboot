@@ -23,6 +23,7 @@ spring:
     basename:
       messages,
       org.evolboot.core.messages,
+      org.evolboot.common.messages,
       org.evolboot.identity.messages,
       org.evolboot.captcha.messages,
       org.evolboot.storage.messages,

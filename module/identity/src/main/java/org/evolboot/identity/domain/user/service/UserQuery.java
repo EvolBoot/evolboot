@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
-import org.evolboot.core.domain.DelState;
+import org.evolboot.core.entity.DelState;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.shared.lang.UserIdentity;
 

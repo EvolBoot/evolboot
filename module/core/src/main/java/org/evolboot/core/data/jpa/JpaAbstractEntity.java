@@ -1,7 +1,7 @@
 package org.evolboot.core.data.jpa;
 
 import lombok.Getter;
-import org.evolboot.core.domain.AbstractEntity;
+import org.evolboot.core.entity.AbstractEntity;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.context.annotation.Scope;
 

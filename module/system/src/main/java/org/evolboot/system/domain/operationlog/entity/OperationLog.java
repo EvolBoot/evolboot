@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
+import org.evolboot.core.entity.AggregateRoot;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

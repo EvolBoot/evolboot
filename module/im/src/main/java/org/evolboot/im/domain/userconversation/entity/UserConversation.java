@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.JpaAbstractEntity;
-import org.evolboot.core.domain.AggregateRoot;
-import org.evolboot.core.domain.IdGenerate;
+import org.evolboot.core.entity.AggregateRoot;
+import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.im.domain.userconversation.repository.jpa.convert.UserConversationForbidTalkCauseSetConverter;
 

@@ -15,7 +15,7 @@
         </dependency>
         <dependency>
             <groupId>org.evolboot</groupId>
-            <artifactId>config</artifactId>
+            <artifactId>common</artifactId>
         </dependency>
     </dependencies>
 </project>
