@@ -1,5 +1,6 @@
 package org.evolboot.common.domain.dictkey.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -23,6 +24,7 @@ import org.evolboot.core.util.Assert;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "字典Key")
 public class DictKey extends JpaAbstractEntity<Long> implements AggregateRoot<DictKey> {
 
     @Id
@@ -32,12 +34,16 @@ public class DictKey extends JpaAbstractEntity<Long> implements AggregateRoot<Di
         this.id = IdGenerate.longId();
     }
 
+    @Schema(description = "显示名称")
     private String displayName;
 
+    @Schema(description = "Key值")
     private String key;
 
+    @Schema(description = "排序")
     private Integer sort;
 
+    @Schema(description = "备注")
     private String remark;
 
 

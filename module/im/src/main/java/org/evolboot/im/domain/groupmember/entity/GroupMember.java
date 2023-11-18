@@ -1,5 +1,6 @@
 package org.evolboot.im.domain.groupmember.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "群成员")
 public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoot<GroupMember> {
 
     @Id
@@ -32,31 +34,37 @@ public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 群ID
      */
+    @Schema(description = "群ID")
     private Long groupId;
 
     /**
      * 用户ID
      */
+    @Schema(description = "用户ID")
     private Long memberUserId;
 
     /**
      * 群角色
      */
+    @Schema(description = "群角色")
     private GroupMemberRole role;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private GroupMemberState state = GroupMemberState.NORMAL;
 
     /**
-     *
+     * 会话ID
      */
+    @Schema(description = "会话ID")
     private Long conversationId;
 
     /**
      * 禁言截止时间
      */
+    @Schema(description = "禁言截止时间")
     private Date forbidTalkDeadline;
 
 

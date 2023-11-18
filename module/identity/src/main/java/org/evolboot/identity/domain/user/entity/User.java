@@ -38,6 +38,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Id
     private Long id;
 
+    @Schema(description = "删除状态")
     private DelState delState = DelState.ACTIVE;
 
     @Schema(description = "用户名")
@@ -63,16 +64,19 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     /**
      * 用户性别
      */
+    @Schema(description = "性别")
     private Gender gender = Gender.UNKNOWN;
 
     /**
      * 用户状态
      */
+    @Schema(description = "用户状态")
     private UserState state = UserState.ACTIVE;
 
     /**
      * 用户类比（测试用户，正常用户）
      */
+    @Schema(description = "用户类型(测试用户、正常用户）")
     private UserType userType = UserType.NORMAL;
 
     /**
@@ -85,24 +89,32 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
      * 身份
      */
     @Type(UserIdentitySetConverterForUserType.class)
+    @Schema(description = "用户身份")
     private Set<UserIdentity> userIdentity = Sets.newHashSet();
 
     /**
      * 上级ID
      * 邀请人ID
      */
+    @Schema(description = "上级邀请人")
     private Long inviterUserId;
 
+    @Schema(description = "注册IP")
     private String registerIp;
 
+    @Schema(description = "最后一次登录IP")
     private String loginIp;
 
+    @Schema(description = "最后一次登录时间")
     private Date lastLoginTime;
 
+    @Schema(description = "二次验证秘钥")
     private String googleAuthSecret;
 
+    @Schema(description = "是否启用二次验证")
     private Boolean enableGoogleAuth = false;
 
+    @Schema(description = "备注")
     private String remark;
 
     @JsonIgnore
@@ -110,6 +122,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Embedded
     private ImmutableSecurityPassword securityPassword;
 
+    @Schema(description = "角色ID")
     @Convert(converter = LongSetConverter.class)
     private Set<Long> roleId = Sets.newHashSet();
 

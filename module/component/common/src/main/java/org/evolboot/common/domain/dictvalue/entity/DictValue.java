@@ -1,5 +1,6 @@
 package org.evolboot.common.domain.dictvalue.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -23,19 +24,25 @@ import org.evolboot.core.util.Assert;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "字典值")
 public class DictValue extends JpaAbstractEntity<Long> implements AggregateRoot<DictValue> {
 
     @Id
     private Long id;
 
+    @Schema(description = "字典Key类型")
     private Long dictKeyId;
 
+    @Schema(description = "显示名称")
     private String displayName;
 
+    @Schema(description = "字典值")
     private String value;
 
+    @Schema(description = "排序")
     private Integer sort;
 
+    @Schema(description = "备注")
     private String remark;
 
     private void generateId() {

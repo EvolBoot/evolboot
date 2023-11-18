@@ -1,6 +1,7 @@
 package org.evolboot.im.domain.userconversation.entity;
 
 import com.google.common.collect.Sets;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,49 +29,61 @@ import java.util.Set;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "用户会话")
 public class UserConversation extends JpaAbstractEntity<Long> implements AggregateRoot<UserConversation> {
 
     @Id
     private Long id;
 
 
+    /**
+     *
+     */
+    @Schema(description = "拥有者")
     private Long ownerUserId;
 
     /**
      * 会话ID
      */
+    @Schema(description = "会话ID")
     private Long conversationId;
 
     /**
      * 会话类型
      */
+    @Schema(description = "会话类型")
     private ConversationType conversationType;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private UserConversationState state = UserConversationState.NORMAL;
 
     /**
      * 禁言原因
      */
+    @Schema(description = "禁言原因")
     @Convert(converter = UserConversationForbidTalkCauseSetConverter.class)
     private Set<UserConversationForbidTalkCause> forbidTalkCauses = Sets.newHashSet();
 
     /**
      * 群ID，如果会话类型为 GROUP，则此ID不为空
      */
+    @Schema(description = "群ID")
     private Long groupId;
 
     /**
      * 朋友会话ID，如果类型为 SINGLE ，则此ID不为空
      */
+    @Schema(description = "朋友会话ID，如果类型为 SINGLE ，则此ID不为空")
     private Long friendUserId;
 
 
     /**
      * 备注
      */
+    @Schema(description = "备注")
     private String remark;
 
     private void generateId() {

@@ -1,5 +1,6 @@
 package org.evolboot.im.domain.conversation.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import jakarta.persistence.Table;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "会话")
 public class Conversation extends JpaAbstractEntity<Long> implements AggregateRoot<Conversation> {
 
     /**
@@ -36,16 +38,19 @@ public class Conversation extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 会话类型
      */
+    @Schema(description = "会话类型")
     private ConversationType type;
 
     /**
      * 关联的ID
      */
+    @Schema(description = "关联的ID")
     private String relationId;
 
     /**
      * 人数
      */
+    @Schema(description = "人数")
     private Integer quantityOfPeople = 0;
 
 

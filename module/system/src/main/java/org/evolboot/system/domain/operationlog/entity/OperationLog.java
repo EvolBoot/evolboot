@@ -24,6 +24,7 @@ import jakarta.persistence.Table;
 @Slf4j
 @NoArgsConstructor
 @ToString
+@Schema(description = "操作日志")
 public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRoot<OperationLog> {
 
     @Id
@@ -32,16 +33,19 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 操作用户
      */
+    @Schema(description = "操作用户")
     private Long userId;
 
     /**
      * 请求开始时间
      */
+    @Schema(description = "请求开始时间")
     protected Long beginTime;
 
     /**
      * 请求结束时间
      */
+    @Schema(description = "请求结束时间")
     protected Long endTime;
 
     /**

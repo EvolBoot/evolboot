@@ -1,5 +1,6 @@
 package org.evolboot.im.domain.friend.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import jakarta.persistence.Table;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "好友关系")
 public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Friend> {
 
     @Id
@@ -32,27 +34,32 @@ public class Friend extends JpaAbstractEntity<Long> implements AggregateRoot<Fri
     /**
      * 所有者ID
      */
+    @Schema(description = "所有者ID")
     private Long ownerUserId;
 
     /**
      * 好友ID
      */
+    @Schema(description = "好友ID")
     private Long friendUserId;
 
     /**
      * 会话ID
      */
+    @Schema(description = "会话ID")
     private Long conversationId;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private FriendState state = FriendState.NORMAL;
 
 
     /**
      * 昵称备注
      */
+    @Schema(description = "昵称备注")
     private String nicknameRemark;
 
     private void generateId() {

@@ -1,5 +1,6 @@
 package org.evolboot.im.domain.groupapply.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "群申请")
 public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot<GroupApply> {
 
     @Id
@@ -32,36 +34,43 @@ public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot
     /**
      * 申请的群
      */
+    @Schema(description = "申请的群")
     private Long groupId;
 
     /**
      * 申请用户
      */
+    @Schema(description = "申请用户")
     private Long applyUserId;
 
     /**
      * 申请原因
      */
+    @Schema(description = "申请原因")
     private String applyReason;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private GroupApplyState state;
 
     /**
      * 未处理到期时间
      */
+    @Schema(description = "未处理到期时间")
     private Date expireAt;
 
     /**
      * 处理人
      */
+    @Schema(description = "处理人")
     private Long handleUserId;
 
     /**
      * 处理时间
      */
+    @Schema(description = "处理时间")
     private Date handleAt;
 
 
