@@ -6,7 +6,8 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;
 
-@Converter(autoApply = true)
+//@Converter(autoApply = true)
+@Deprecated
 public class UserStateConverter implements AttributeConverter<UserState, Integer> {
 
 

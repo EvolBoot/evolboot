@@ -39,6 +39,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     private Long id;
 
     @Schema(description = "删除状态")
+    @Enumerated(EnumType.STRING)
     private DelState delState = DelState.ACTIVE;
 
     @Schema(description = "用户名")
@@ -65,18 +66,21 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
      * 用户性别
      */
     @Schema(description = "性别")
+    @Enumerated(EnumType.STRING)
     private Gender gender = Gender.UNKNOWN;
 
     /**
      * 用户状态
      */
     @Schema(description = "用户状态")
+    @Enumerated(EnumType.STRING)
     private UserState state = UserState.ACTIVE;
 
     /**
      * 用户类比（测试用户，正常用户）
      */
     @Schema(description = "用户类型(测试用户、正常用户）")
+    @Enumerated(EnumType.STRING)
     private UserType userType = UserType.NORMAL;
 
     /**
