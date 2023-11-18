@@ -1,5 +1,6 @@
 package org.evolboot.pay.domain.receiptorder.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ import java.math.BigDecimal;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "第三方代收订单")
 public class ReceiptOrder extends JpaAbstractEntity<String> implements AggregateRoot<ReceiptOrder> {
 
     private final static String ID_PREFIX = "PAYIN";
@@ -38,68 +40,81 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
     /**
      * 代收订单ID
      */
+    @Schema(description = "代收订单ID")
     private String internalOrderId;
 
     /**
      * 商品信息
      */
+    @Schema(description = "商品信息")
     private String productName;
 
     /**
      * 支付人姓名
      */
+    @Schema(description = "支付人姓名")
     private String payeeName;
 
     /**
      * 支付人手机号
      */
+    @Schema(description = "支付人手机号")
     private String payeePhone;
 
     /**
      * 支付人邮箱
      */
+    @Schema(description = "支付人邮箱")
     private String payeeEmail;
 
     /**
      * 回调地址
      */
+    @Schema(description = "回调地址")
     private String redirectUrl;
 
 
     /**
      * 货币
      */
+    @Schema(description = "货币")
     private Currency currency;
     /**
      * 请求第三方返回的结果信息
      */
+    @Schema(description = "请求第三方返回的结果信息")
     @Embedded
     private ReceiptOrderRequestResult requestResult;
 
     /**
      * 第三方通知返回的结果信息
      */
+    @Schema(description = "第三方通知返回的结果信息")
     @Embedded
     private ReceiptOrderNotifyResult notifyResult;
 
     /**
      * 第三方账户ID
      */
+    @Schema(description = "第三方账户ID")
     private Long payGatewayAccountId;
 
     /**
      * 第三方支付网关
      */
+    @Schema(description = "第三方支付网关")
     private PayGateway payGateway;
 
     /**
      * 支付金额
      */
+    @Schema(description = "支付金额")
     private BigDecimal payAmount;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private ReceiptOrderState state = ReceiptOrderState.PENDING;
 
 

@@ -1,5 +1,6 @@
 package org.evolboot.pay.domain.releasedorder.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ import static org.evolboot.shared.pay.ReleasedOrderState.WAIT;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(description = "代付订单")
 public class ReleasedOrder extends JpaAbstractEntity<String> implements AggregateRoot<ReleasedOrder> {
 
     private final static String ID_PREFIX = "PAYOUT";
@@ -43,99 +45,118 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
     /**
      * 内部订单号
      */
+    @Schema(description = "内部订单号")
     private String internalOrderId;
 
     /**
      * 货币
      */
+    @Schema(description = "货币")
     private Currency currency;
 
     /**
      * 金额
      */
+    @Schema(description = "金额")
     private BigDecimal amount;
 
     /**
      * 客户姓名
      */
+    @Schema(description = "客户姓名")
     private String payeeName;
 
     /**
      * 客户电话
      */
+    @Schema(description = "客户电话")
     private String payeePhone;
 
     /**
      * 客户邮箱
      */
+    @Schema(description = "客户邮箱")
     private String payeeEmail;
 
 
     /**
      * 银行编号
      */
+    @Schema(description = "银行编号")
     private String bankCode;
 
     /**
      * 银行卡卡号
      */
+    @Schema(description = "银行卡卡号")
     private String bankNo;
 
 
     /**
      * ifsc 代码
      */
+    @Schema(description = "ifsc 代码")
     private String ifscCode;
 
     /**
      * IFSC 卡号
      */
+    @Schema(description = "IFSC 卡号")
     private String ifscCardNo;
 
 
+    @Schema(description = "下发类型")
     private ReleasedOrderOrgType orgType;
     /**
      * 网关账户ID
      */
+    @Schema(description = "网关账户ID")
     private Long payGatewayAccountId;
 
     /**
      * 网关
      */
+    @Schema(description = "网关")
     private PayGateway payGateway;
 
 
     /**
      * 手续费
      */
+    @Schema(description = "手续费")
     private BigDecimal poundage;
 
     /**
      * 外部订单号
      */
+    @Schema(description = "外部订单号")
     private String foreignOrderId;
 
     /**
      * 请求参数
      */
+    @Schema(description = "请求参数")
     @Embedded
     private ReleasedOrderCreateResult createResult;
 
     /**
      * 通知参数
      */
+    @Schema(description = "通知参数")
     @Embedded
     private ReleasedOrderNotifyResult notifyResult;
 
     /**
      * 查询参数
      */
+    @Schema(description = "查询参数")
     @Embedded
     private ReleasedOrderQueryResult queryResult;
 
     /**
      * 状态
      */
+    @Schema(description = "状态")
     private ReleasedOrderState state = WAIT;
 
     public ReleasedOrder(
