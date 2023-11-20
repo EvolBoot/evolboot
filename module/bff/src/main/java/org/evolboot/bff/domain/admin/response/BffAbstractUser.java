@@ -10,7 +10,7 @@ import org.evolboot.identity.domain.user.entity.UserType;
  */
 @Setter
 @Getter
-public abstract class BffAbstractUser {
+public class BffAbstractUser {
 
 
     private Long userId;
