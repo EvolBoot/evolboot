@@ -11,7 +11,8 @@ import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
-import org.evolboot.identity.domain.permission.service.PermissionQuery;
+import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
 import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -138,7 +139,7 @@ public class AdminPermissionResourceV1 {
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
-        PermissionQuery query = PermissionQuery.builder()
+        PermissionQueryRequest query = PermissionQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .order(order)

@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.user.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class UserRoleDeleteService {
     }
 
     public void deleteRoleId(Long roleId) {
-        List<User> users = repository.findAll(UserQuery.builder().roleId(roleId).build());
+        List<User> users = repository.findAll(UserQueryRequest.builder().roleId(roleId).build());
         if (users.isEmpty()) {
             return;
         }

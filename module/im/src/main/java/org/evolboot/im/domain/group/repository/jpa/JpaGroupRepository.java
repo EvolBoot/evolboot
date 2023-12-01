@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.group.entity.Group;
-import org.evolboot.im.domain.group.service.GroupQuery;
+import org.evolboot.im.domain.group.dto.GroupQueryRequest;
 import org.evolboot.im.domain.group.entity.QGroup;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public interface JpaGroupRepository extends GroupRepository, ExtendedQuerydslPredicateExecutor<Group, Long>, JpaRepository<Group, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        GroupQuery query = (GroupQuery) _query;
+        GroupQueryRequest query = (GroupQueryRequest) _query;
         QGroup q = QGroup.group;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);

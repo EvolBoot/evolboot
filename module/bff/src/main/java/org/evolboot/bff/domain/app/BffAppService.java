@@ -1,6 +1,7 @@
 package org.evolboot.bff.domain.app;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.bff.domain.app.dto.BffAppQueryRequest;
 import org.evolboot.bff.domain.app.dto.BffUser;
 import org.evolboot.bff.domain.app.repository.BffAppMapper;
 import org.evolboot.core.data.Page;
@@ -20,7 +21,7 @@ public class BffAppService {
         this.mapper = mapper;
     }
 
-    public Page<BffUser> findUser(BffAppQuery query) {
+    public Page<BffUser> findUser(BffAppQueryRequest query) {
         return PageImpl.of(mapper.findUser(query.toMybatisPage(), query));
     }
 

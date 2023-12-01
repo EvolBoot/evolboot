@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.user.relation;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.user.relation.dto.RelationQueryRequest;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
 import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
 import org.evolboot.identity.domain.user.relation.service.RelationMoveService;
@@ -32,7 +33,7 @@ public class RelationAppServiceImpl implements RelationAppService {
 
 
     @Override
-    public Page<Relation> page(RelationQuery query) {
+    public Page<Relation> page(RelationQueryRequest query) {
         return repository.page(query);
     }
 

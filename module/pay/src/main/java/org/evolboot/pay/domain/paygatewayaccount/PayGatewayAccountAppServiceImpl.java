@@ -1,20 +1,13 @@
 package org.evolboot.pay.domain.paygatewayaccount;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountCreateFactory;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountSupportService;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.evolboot.pay.exception.PayException.GATEWAY_NOT_FOUND;
 
 /**
  * 支付网关账户

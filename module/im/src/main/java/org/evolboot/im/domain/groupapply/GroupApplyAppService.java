@@ -1,13 +1,8 @@
 package org.evolboot.im.domain.groupapply;
 
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.groupapply.entity.GroupApply;
 import org.evolboot.im.domain.groupapply.service.GroupApplyCreateFactory;
-import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
 import org.evolboot.im.domain.groupapply.service.GroupApplyUpdateService;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 群申请

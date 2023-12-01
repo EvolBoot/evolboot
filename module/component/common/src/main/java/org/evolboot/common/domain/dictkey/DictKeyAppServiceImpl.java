@@ -7,7 +7,7 @@ import org.evolboot.shared.event.dict.DictKeyDeleteEvent;
 import org.evolboot.common.domain.dictkey.entity.DictKey;
 import org.evolboot.common.domain.dictkey.repository.DictKeyRepository;
 import org.evolboot.common.domain.dictkey.service.DictKeyCreateFactory;
-import org.evolboot.common.domain.dictkey.service.DictKeyQuery;
+import org.evolboot.common.domain.dictkey.dto.DictKeyQueryRequest;
 import org.evolboot.common.domain.dictkey.service.DictKeySupportService;
 import org.evolboot.common.domain.dictkey.service.DictKeyUpdateService;
 import org.springframework.stereotype.Service;
@@ -88,18 +88,18 @@ public class DictKeyAppServiceImpl  implements DictKeyAppService {
 
 
     @Override
-    public List<DictKey> findAll(DictKeyQuery query) {
+    public List<DictKey> findAll(DictKeyQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<DictKey> page(DictKeyQuery query) {
+    public Page<DictKey> page(DictKeyQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<DictKey> findOne(DictKeyQuery query) {
+    public Optional<DictKey> findOne(DictKeyQueryRequest query) {
         return repository.findOne(query);
     }
 

@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.userrole.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
-import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
+import org.evolboot.identity.domain.userrole.dto.UserRoleQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +19,7 @@ public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
 
     Optional<UserRole> findById(Long id);
 
-    Page<UserRole> page(UserRoleQuery query);
+    Page<UserRole> page(UserRoleQueryRequest query);
 
     void deleteById(Long id);
 
@@ -40,6 +40,6 @@ public interface UserRoleRepository extends BaseRepository<UserRole, Long> {
      * @param query
      * @return
      */
-    Optional<UserRole> findOne(UserRoleQuery query);
+    Optional<UserRole> findOne(UserRoleQueryRequest query);
 
 }

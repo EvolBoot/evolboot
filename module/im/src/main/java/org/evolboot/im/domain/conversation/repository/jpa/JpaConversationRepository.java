@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.conversation.entity.Conversation;
-import org.evolboot.im.domain.conversation.service.ConversationQuery;
+import org.evolboot.im.domain.conversation.dto.ConversationQueryRequest;
 import org.evolboot.im.domain.conversation.entity.QConversation;
 import org.evolboot.im.domain.conversation.repository.ConversationRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,7 +28,7 @@ public interface JpaConversationRepository extends ConversationRepository, Exten
 
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        ConversationQuery query = (ConversationQuery) _query;
+        ConversationQueryRequest query = (ConversationQueryRequest) _query;
         QConversation q = QConversation.conversation;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
         jpqlQuery.select(select).from(q);

@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.dto.PayGatewayAccountQueryRequest;
 import org.evolboot.pay.domain.paygatewayaccount.entity.QPayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,7 +26,7 @@ import java.util.Optional;
 public interface JpaPayGatewayAccountRepository extends PayGatewayAccountRepository, ExtendedQuerydslPredicateExecutor<PayGatewayAccount, Long>, JpaRepository<PayGatewayAccount, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        PayGatewayAccountQuery query = (PayGatewayAccountQuery) _query;
+        PayGatewayAccountQueryRequest query = (PayGatewayAccountQueryRequest) _query;
         QPayGatewayAccount q = QPayGatewayAccount.payGatewayAccount;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);

@@ -8,7 +8,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.dto.PayGatewayAccountQueryRequest;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountLocaleResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +32,7 @@ public class AppPayGatewayAccountResourceV1 {
     private final PayGatewayAccountQueryService queryService;
 
 
-    private final PayGatewayAccountQuery defaultQuery = PayGatewayAccountQuery.builder().enable(true).build();
+    private final PayGatewayAccountQueryRequest defaultQuery = PayGatewayAccountQueryRequest.builder().enable(true).build();
 
 
     public AppPayGatewayAccountResourceV1(PayGatewayAccountAppService service, PayGatewayAccountQueryService queryService) {

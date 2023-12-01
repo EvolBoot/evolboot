@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.permission.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.identity.domain.permission.service.PermissionQuery;
+import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +23,7 @@ public interface PermissionRepository extends BaseRepository<Permission, Long> {
 
     List<Long> findChildren(Long parentId);
 
-    Page<Permission> page(PermissionQuery query);
+    Page<Permission> page(PermissionQueryRequest query);
 
     boolean existsById(Long permissionId);
 
@@ -31,7 +31,7 @@ public interface PermissionRepository extends BaseRepository<Permission, Long> {
 
     List<Permission> findAll();
 
-    List<Permission> findAll(PermissionQuery query);
+    List<Permission> findAll(PermissionQueryRequest query);
 
     /**
      * 根据条件查询单个
@@ -39,9 +39,9 @@ public interface PermissionRepository extends BaseRepository<Permission, Long> {
      * @param query
      * @return
      */
-    Optional<Permission> findOne(PermissionQuery query);
+    Optional<Permission> findOne(PermissionQueryRequest query);
 
-    Long count(PermissionQuery query);
+    Long count(PermissionQueryRequest query);
 
 
 }

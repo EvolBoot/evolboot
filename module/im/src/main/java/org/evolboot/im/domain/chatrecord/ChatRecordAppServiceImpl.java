@@ -1,18 +1,13 @@
 package org.evolboot.im.domain.chatrecord;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
 import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordCreateFactory;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordSupportService;
 import org.evolboot.im.domain.chatrecord.service.ChatRecordUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 聊天记录

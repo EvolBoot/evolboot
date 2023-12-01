@@ -27,7 +27,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "群组")
+@Schema(title = "群组")
 public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Group> {
 
     @Id
@@ -36,79 +36,79 @@ public class Group extends JpaAbstractEntity<Long> implements AggregateRoot<Grou
     /**
      * 群主
      */
-    @Schema(description = "群主")
+    @Schema(title = "群主")
     private Long ownerUserId;
 
     /**
      * 群名称
      */
-    @Schema(description = "群名称")
+    @Schema(title = "群名称")
     private String name;
 
     /**
      * 群头像
      */
-    @Schema(description = "群头像")
+    @Schema(title = "群头像")
     private String avatar;
 
     /**
      * 群描述
      */
-    @Schema(description = "群描述")
+    @Schema(title = "群描述")
     private String description;
 
     /**
      * 会话ID
      */
-    @Schema(description = "会话ID")
+    @Schema(title = "会话ID")
     private Long conversationId;
 
     /**
      * 群通知
      */
-    @Schema(description = "群通知")
+    @Schema(title = "群通知")
     private String notification;
 
     /**
      * 群状态
      */
-    @Schema(description = "群状态")
+    @Schema(title = "群状态")
     private GroupApplyState applyState = GroupApplyState.NEED_APPLY;
 
     /**
      * 群类型
      */
-    @Schema(description = "群类型")
+    @Schema(title = "群类型")
     private GroupType type = GroupType.NORMAL;
 
     /**
      * 禁言范围
      */
-    @Schema(description = "禁言范围")
+    @Schema(title = "禁言范围")
     private GroupForbidTalkScope forbidTalkScope = GroupForbidTalkScope.NONE;
 
     /**
      * 禁言截止时间
      */
-    @Schema(description = "禁言截止时间")
+    @Schema(title = "禁言截止时间")
     private Date forbidTalkDeadline;
 
     /**
      * 群成员数量
      */
-    @Schema(description = "群成员数量")
+    @Schema(title = "群成员数量")
     private Short quantityOfMember = 0;
 
     /**
      * 限制人数
      */
-    @Schema(description = "限制人数")
+    @Schema(title = "限制人数")
     private Short limit = 500;
 
     /**
      * 群备注
      */
-    @Schema(description = "群备注")
+    @Schema(title = "群备注")
     private String remark;
 
 

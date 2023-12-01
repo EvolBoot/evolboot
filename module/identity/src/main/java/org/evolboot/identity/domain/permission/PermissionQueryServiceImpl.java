@@ -6,7 +6,7 @@ import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.permission.service.FindPermissionByUserIdConvertTreeService;
 import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.identity.domain.permission.service.PermissionQuery;
+import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 
 
 import org.evolboot.identity.domain.permission.util.PermissionUtil;
@@ -43,18 +43,18 @@ public class PermissionQueryServiceImpl implements PermissionQueryService {
 
 
     @Override
-    public List<Permission> findAll(PermissionQuery query) {
+    public List<Permission> findAll(PermissionQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<Permission> page(PermissionQuery query) {
+    public Page<Permission> page(PermissionQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<Permission> findOne(PermissionQuery query) {
+    public Optional<Permission> findOne(PermissionQueryRequest query) {
         return repository.findOne(query);
     }
 

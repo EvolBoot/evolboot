@@ -24,10 +24,10 @@ public class Config extends AbstractEntity<String> implements AggregateRoot<Conf
     @Id
     private String key;
 
-    @Schema(description = "范围")
+    @Schema(title = "范围")
     private Scope scope;
 
-    @Schema(description = "配置值")
+    @Schema(title = "配置值")
     private String propertyValue;
 
 

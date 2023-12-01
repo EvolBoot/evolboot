@@ -17,19 +17,19 @@ public class UserRegisterAndGetAccessTokenRequest {
                     "ZX1Oqhh/Sjnlv7oa5U8mj7ubt5YXcThTAeOcQI0BfI6+bg4goxBQjakLbLbI6u2OnEkbsOkv4YGgOOi+1gnRNMgdYwdUqWfL99mmwhHAksSlQNR3Byu7a5GJeS3G2abyf4Gu2TayRX8xFkSwv1ze+PioM+fvITC6Zmm38g7ClLw=")
     private String password;
 
-    @Schema(description = "手机号前缀", example = "+86")
+    @Schema(title = "手机号前缀", example = "+86")
     private String mobilePrefix;
 
-    @Schema(description = "邮箱", example = "aaa2@gmail.com")
+    @Schema(title = "邮箱", example = "aaa2@gmail.com")
     private String email;
 
-    @Schema(description = "手机号", example = "17777777777")
+    @Schema(title = "手机号", example = "17777777777")
     private String mobile;
 
-    @Schema(description = "验证码Token", example = "85710ea2303141fd91d32147a1411075")
+    @Schema(title = "验证码Token", example = "85710ea2303141fd91d32147a1411075")
     private String captchaToken;
 
-    @Schema(description = "验证码Code", example = "10086")
+    @Schema(title = "验证码Code", example = "10086")
     private String captchaCode;
 
     private Long inviterUserId;

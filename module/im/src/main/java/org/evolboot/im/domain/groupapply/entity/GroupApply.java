@@ -25,7 +25,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "群申请")
+@Schema(title = "群申请")
 public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot<GroupApply> {
 
     @Id
@@ -34,43 +34,43 @@ public class GroupApply extends JpaAbstractEntity<Long> implements AggregateRoot
     /**
      * 申请的群
      */
-    @Schema(description = "申请的群")
+    @Schema(title = "申请的群")
     private Long groupId;
 
     /**
      * 申请用户
      */
-    @Schema(description = "申请用户")
+    @Schema(title = "申请用户")
     private Long applyUserId;
 
     /**
      * 申请原因
      */
-    @Schema(description = "申请原因")
+    @Schema(title = "申请原因")
     private String applyReason;
 
     /**
      * 状态
      */
-    @Schema(description = "状态")
+    @Schema(title = "状态")
     private GroupApplyState state;
 
     /**
      * 未处理到期时间
      */
-    @Schema(description = "未处理到期时间")
+    @Schema(title = "未处理到期时间")
     private Date expireAt;
 
     /**
      * 处理人
      */
-    @Schema(description = "处理人")
+    @Schema(title = "处理人")
     private Long handleUserId;
 
     /**
      * 处理时间
      */
-    @Schema(description = "处理时间")
+    @Schema(title = "处理时间")
     private Date handleAt;
 
 

@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.userid;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.userid.dto.UserIdQueryRequest;
 import org.evolboot.identity.domain.userid.entity.UserId;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 import org.evolboot.identity.domain.userid.service.*;
@@ -64,12 +65,12 @@ public class UserIdAppServiceImpl implements UserIdAppService {
 
 
     @Override
-    public List<UserId> findAll(UserIdQuery query) {
+    public List<UserId> findAll(UserIdQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<UserId> page(UserIdQuery query) {
+    public Page<UserId> page(UserIdQueryRequest query) {
         return repository.page(query);
     }
 

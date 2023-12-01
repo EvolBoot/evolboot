@@ -1,22 +1,11 @@
 package org.evolboot.im.remote.chatrecord;
 
 import org.evolboot.core.annotation.ApiClient;
-import org.evolboot.core.annotation.OperationLog;
-import org.evolboot.core.remote.DomainId;
-import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.chatrecord.ChatRecordAppService;
 import org.evolboot.im.domain.chatrecord.ChatRecordQueryService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.evolboot.core.data.Page;
-import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
-import org.evolboot.im.remote.chatrecord.dto.*;
 
-
-import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 

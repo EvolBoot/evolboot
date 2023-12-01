@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.role;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.exception.DomainNotFoundException;
+import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.evolboot.identity.domain.role.service.*;
@@ -60,7 +61,7 @@ public class RoleAppServiceImpl implements RoleAppService {
     }
 
     @Override
-    public Page<Role> page(RoleQuery query) {
+    public Page<Role> page(RoleQueryRequest query) {
         return repository.page(query);
     }
 

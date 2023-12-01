@@ -1,18 +1,13 @@
 package org.evolboot.im.domain.group;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.evolboot.im.domain.group.service.GroupCreateFactory;
-import org.evolboot.im.domain.group.service.GroupQuery;
 import org.evolboot.im.domain.group.service.GroupSupportService;
 import org.evolboot.im.domain.group.service.GroupUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 群组

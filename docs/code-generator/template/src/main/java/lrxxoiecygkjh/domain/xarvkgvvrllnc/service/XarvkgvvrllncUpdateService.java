@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncRequestBase;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
@@ -33,10 +34,12 @@ public class XarvkgvvrllncUpdateService {
         Xarvkgvvrllnc instantiationObjectName = supportService.findById(request.getId());
         repository.save(instantiationObjectName);
     }
-
     @Getter
     @Setter
+    @Schema(title = "更新模板请求")
     public static class Request extends XarvkgvvrllncRequestBase {
+
+        @Schema(title = "模板唯一ID")
         private Keya2Akk5iV3n id;
     }
 

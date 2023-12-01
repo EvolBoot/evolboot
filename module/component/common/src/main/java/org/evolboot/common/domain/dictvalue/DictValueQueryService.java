@@ -2,7 +2,7 @@ package org.evolboot.common.domain.dictvalue;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
-import org.evolboot.common.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.common.domain.dictvalue.dto.DictValueQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,9 @@ public interface DictValueQueryService {
 
     List<DictValue> findAll();
 
-    List<DictValue> findAll(DictValueQuery query);
+    List<DictValue> findAll(DictValueQueryRequest query);
 
-    Page<DictValue> page(DictValueQuery query);
+    Page<DictValue> page(DictValueQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface DictValueQueryService {
      * @param query
      * @return
      */
-    Optional<DictValue> findOne(DictValueQuery query);
+    Optional<DictValue> findOne(DictValueQueryRequest query);
 
 
 }

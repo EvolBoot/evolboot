@@ -9,7 +9,7 @@ import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.pay.domain.releasedorder.entity.QReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderQuery;
+import org.evolboot.pay.domain.releasedorder.dto.ReleasedOrderQueryRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +25,7 @@ import java.util.Optional;
 public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, ExtendedQuerydslPredicateExecutor<ReleasedOrder, Long>, JpaRepository<ReleasedOrder, String> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        ReleasedOrderQuery query = (ReleasedOrderQuery) _query;
+        ReleasedOrderQueryRequest query = (ReleasedOrderQueryRequest) _query;
         QReleasedOrder q = QReleasedOrder.releasedOrder;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
@@ -41,7 +41,7 @@ public interface JpaReleasedOrderRepository extends ReleasedOrderRepository, Ext
     }
 
 
-    default Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
+    default Optional<ReleasedOrder> findOne(ReleasedOrderQueryRequest query) {
         return findOne(fillQueryParameter(query, QReleasedOrder.releasedOrder));
     }
 

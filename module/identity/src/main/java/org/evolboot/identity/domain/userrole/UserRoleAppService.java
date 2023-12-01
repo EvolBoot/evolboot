@@ -2,7 +2,7 @@ package org.evolboot.identity.domain.userrole;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
-import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
+import org.evolboot.identity.domain.userrole.dto.UserRoleQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public interface UserRoleAppService {
 
     List<UserRole> findAll();
 
-    Page<UserRole> page(UserRoleQuery query);
+    Page<UserRole> page(UserRoleQueryRequest query);
 
     UserRole findById(Long id);
 
@@ -33,7 +33,7 @@ public interface UserRoleAppService {
      * @param query
      * @return
      */
-    Optional<UserRole> findOne(UserRoleQuery query);
+    Optional<UserRole> findOne(UserRoleQueryRequest query);
 
 
 }

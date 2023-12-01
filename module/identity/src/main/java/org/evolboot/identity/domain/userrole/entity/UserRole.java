@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.userrole.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import jakarta.persistence.Table;
 @Slf4j
 @NoArgsConstructor
 @Entity
+@Schema(title = "用户角色")
 public class UserRole extends AbstractEntity<Long> implements AggregateRoot<UserRole> {
 
     @Id

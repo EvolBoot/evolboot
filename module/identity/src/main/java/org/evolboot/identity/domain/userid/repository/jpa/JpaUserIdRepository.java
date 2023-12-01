@@ -4,9 +4,10 @@ import com.querydsl.jpa.JPQLQuery;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
+import org.evolboot.identity.domain.userid.dto.UserIdQueryRequest;
 import org.evolboot.identity.domain.userid.entity.QUserId;
 import org.evolboot.identity.domain.userid.entity.UserId;
-import org.evolboot.identity.domain.userid.service.UserIdQuery;
+import org.evolboot.identity.domain.userid.dto.UserIdQueryRequest;
 import org.evolboot.identity.domain.userid.repository.UserIdRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +25,7 @@ import java.util.Optional;
 @Repository
 public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslPredicateExecutor<UserId, Long>, JpaRepository<UserId, Long> {
 
-    default JPQLQuery<UserId> fillQueryParameter(UserIdQuery query) {
+    default JPQLQuery<UserId> fillQueryParameter(UserIdQueryRequest query) {
         QUserId q = QUserId.userId;
         JPQLQuery<UserId> jpqlQuery = getJPQLQuery(query, q.id.desc());
         jpqlQuery.select(q).from(q);
@@ -40,14 +41,14 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
     }
 
     @Override
-    default List<UserId> findAll(UserIdQuery query) {
+    default List<UserId> findAll(UserIdQueryRequest query) {
         JPQLQuery<UserId> jpqlQuery = fillQueryParameter(query);
         return findAll(jpqlQuery);
     }
 
 
     @Override
-    default Page<UserId> page(UserIdQuery query) {
+    default Page<UserId> page(UserIdQueryRequest query) {
         JPQLQuery<UserId> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }
@@ -57,7 +58,7 @@ public interface JpaUserIdRepository extends UserIdRepository, ExtendedQuerydslP
     List<Long> rand(@Param("num") int num);
 
     @Override
-    default Optional<UserId> findOne(UserIdQuery query) {
+    default Optional<UserId> findOne(UserIdQueryRequest query) {
         return findOne(fillQueryParameter(query));
     }
 

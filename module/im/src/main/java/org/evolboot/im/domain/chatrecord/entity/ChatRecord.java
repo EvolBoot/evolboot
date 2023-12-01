@@ -30,49 +30,49 @@ import jakarta.persistence.*;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "聊天记录")
+@Schema(title = "聊天记录")
 public class ChatRecord extends JpaAbstractEntity<Long> implements AggregateRoot<ChatRecord> {
 
     @Id
     private Long id;
 
-    @Schema(description = "客户端消息ID")
+    @Schema(title = "客户端消息ID")
     private String clientMsgId;
 
     /**
      * 发送者
      */
-    @Schema(description = "发送者")
+    @Schema(title = "发送者")
     private Long senderId;
 
     /**
      * 发送者角色
      */
-    @Schema(description = "发送者角色")
+    @Schema(title = "发送者角色")
     private SenderRole senderRole;
 
     /**
      * 发送设备
      */
-    @Schema(description = "发送设备")
+    @Schema(title = "发送设备")
     private DeviceType deviceType;
 
     /**
      * 会话类型
      */
-    @Schema(description = "会话类型")
+    @Schema(title = "会话类型")
     private ConversationType conversationType;
 
     /**
      * 会话ID
      */
-    @Schema(description = "会话ID")
+    @Schema(title = "会话ID")
     private Long conversationId;
 
     /**
      * 消息内容（不会返回给前端）
      */
-    @Schema(description = "消息内容")
+    @Schema(title = "消息内容")
     @JsonIgnore
     @Column(name = "message_content_")
     private String messageContentValue;
@@ -80,13 +80,13 @@ public class ChatRecord extends JpaAbstractEntity<Long> implements AggregateRoot
     /**
      * 消息类型
      */
-    @Schema(description = "消息类型")
+    @Schema(title = "消息类型")
     private MessageType messageType;
 
     /**
      * 消息状态
      */
-    @Schema(description = "消息状态")
+    @Schema(title = "消息状态")
     private MessageState state = MessageState.NORMAL;
 
     /**
@@ -99,7 +99,7 @@ public class ChatRecord extends JpaAbstractEntity<Long> implements AggregateRoot
      * 消息内容，返回给前端
      */
     @Transient
-    @Schema(description = "消息内容")
+    @Schema(title = "消息内容")
     private MessageContent messageContent;
 
 

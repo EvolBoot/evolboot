@@ -9,7 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.BlobAppService;
-import org.evolboot.storage.domain.blob.service.BlobQuery;
+import org.evolboot.storage.domain.blob.dto.BlobQueryRequest;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.remote.dto.BlobResponse;
 import org.springframework.http.MediaType;
@@ -42,7 +42,7 @@ public class AdminBlobResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-        BlobQuery query = BlobQuery
+        BlobQueryRequest query = BlobQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)

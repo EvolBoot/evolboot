@@ -7,7 +7,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.operationlog.entity.OperationLog;
 import org.evolboot.system.domain.operationlog.OperationLogAppService;
-import org.evolboot.system.domain.operationlog.service.OperationLogQuery;
+import org.evolboot.system.domain.operationlog.dto.OperationLogQueryRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -89,7 +89,7 @@ public class AdminOperationLogResourceV1 {
             @RequestParam(required = false) Long userId,
             @RequestParam(required = false) String operation
     ) {
-        OperationLogQuery query = OperationLogQuery
+        OperationLogQueryRequest query = OperationLogQueryRequest
                 .builder()
                 .begin(begin)
                 .end(end)

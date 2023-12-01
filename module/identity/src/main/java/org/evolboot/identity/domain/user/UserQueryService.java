@@ -2,7 +2,7 @@ package org.evolboot.identity.domain.user;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.entity.User;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface UserQueryService {
 
     List<User> findAll();
 
-    List<User> findAll(UserQuery query);
+    List<User> findAll(UserQueryRequest query);
 
-    Page<User> page(UserQuery query);
+    Page<User> page(UserQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface UserQueryService {
      * @param query
      * @return
      */
-    Optional<User> findOne(UserQuery query);
+    Optional<User> findOne(UserQueryRequest query);
 
 
     /**

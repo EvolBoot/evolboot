@@ -14,10 +14,10 @@ import org.evolboot.shared.lang.DeviceType;
 @Getter
 public class AppAccessTokenAuthenticateTokenRequest {
 
-    @Schema(description = "用户名/邮箱/手机号", example = "evol")
+    @Schema(title = "用户名/邮箱/手机号", example = "evol")
     private String username;
 
-    @Schema(description = "密码", example = "2CbZMXS2fb/hC5OyMwmB9DPP+ZpvroothKsKTp2uOAqloHVqE3vbSzxvQJWKB+mCGg4x1jer+coJvsF4EJcnCeVwMiLrs3ElZlJ52vsDowDzxr0ybaua2IOL2fhmfPmdw8imDVHk1zssFQJvp2QtsH390jlHTEn9t6rpPaZIlPM=")
+    @Schema(title = "密码", example = "2CbZMXS2fb/hC5OyMwmB9DPP+ZpvroothKsKTp2uOAqloHVqE3vbSzxvQJWKB+mCGg4x1jer+coJvsF4EJcnCeVwMiLrs3ElZlJ52vsDowDzxr0ybaua2IOL2fhmfPmdw8imDVHk1zssFQJvp2QtsH390jlHTEn9t6rpPaZIlPM=")
     private String password;
 
     private String captchaToken;

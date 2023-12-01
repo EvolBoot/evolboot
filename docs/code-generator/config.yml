@@ -26,7 +26,7 @@ replace:
   tablePrefix: evol_
   author: evol
   # 上下文名 多个单词用下划线连接
-  boundContext: pay
+  boundContext: system
 
   #领域名称,多个单词用下划线连接
   domainName: test_product

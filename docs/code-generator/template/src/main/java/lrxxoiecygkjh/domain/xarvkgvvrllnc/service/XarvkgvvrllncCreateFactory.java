@@ -8,7 +8,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncRe
 import lombok.extern.slf4j.Slf4j;
 import lombok.Getter;
 import lombok.Setter;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * 模板
  *
@@ -35,6 +35,7 @@ public class XarvkgvvrllncCreateFactory {
 
     @Setter
     @Getter
+    @Schema(title = "创建模板请求")
     public static class Request extends XarvkgvvrllncRequestBase {
 
     }

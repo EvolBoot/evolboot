@@ -9,7 +9,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.bff.IdentityBffAppService;
 import org.evolboot.identity.domain.bff.dto.BffStaffUser;
-import org.evolboot.identity.domain.bff.service.IdentityBffQuery;
+import org.evolboot.identity.domain.bff.dto.IdentityBffQueryRequest;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
@@ -52,7 +52,7 @@ public class AdminIdentityBffResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit
     ) {
-        IdentityBffQuery query = IdentityBffQuery.builder()
+        IdentityBffQueryRequest query = IdentityBffQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .build();

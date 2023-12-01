@@ -7,8 +7,7 @@ import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.user.relation.QRelation;
 import org.evolboot.identity.domain.user.relation.Relation;
-import org.evolboot.identity.domain.user.relation.RelationId;
-import org.evolboot.identity.domain.user.relation.RelationQuery;
+import org.evolboot.identity.domain.user.relation.dto.RelationQueryRequest;
 import org.evolboot.identity.domain.user.relation.repository.RelationRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,7 +26,7 @@ import java.util.Optional;
 @Repository
 public interface JpaRelationRepository extends RelationRepository, ExtendedQuerydslPredicateExecutor<Relation, Long>, JpaRepository<Relation, Long> {
 
-    default JPQLQuery<Relation> fillQueryParameter(RelationQuery query) {
+    default JPQLQuery<Relation> fillQueryParameter(RelationQueryRequest query) {
         QRelation q = QRelation.relation;
         JPQLQuery<Relation> jpqlQuery = getJPQLQuery();
         jpqlQuery.select(q).from(q);
@@ -127,7 +126,7 @@ public interface JpaRelationRepository extends RelationRepository, ExtendedQuery
     }
 
     @Override
-    default Page<Relation> page(RelationQuery query) {
+    default Page<Relation> page(RelationQueryRequest query) {
         JPQLQuery<Relation> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }

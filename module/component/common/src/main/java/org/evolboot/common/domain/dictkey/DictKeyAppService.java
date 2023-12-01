@@ -3,7 +3,7 @@ package org.evolboot.common.domain.dictkey;
 import org.evolboot.core.data.Page;
 import org.evolboot.common.domain.dictkey.entity.DictKey;
 import org.evolboot.common.domain.dictkey.service.DictKeyCreateFactory;
-import org.evolboot.common.domain.dictkey.service.DictKeyQuery;
+import org.evolboot.common.domain.dictkey.dto.DictKeyQueryRequest;
 import org.evolboot.common.domain.dictkey.service.DictKeyUpdateService;
 
 import java.util.Collection;
@@ -32,9 +32,9 @@ public interface DictKeyAppService {
 
     List<DictKey> findAll();
 
-    List<DictKey> findAll(DictKeyQuery query);
+    List<DictKey> findAll(DictKeyQueryRequest query);
 
-    Page<DictKey> page(DictKeyQuery query);
+    Page<DictKey> page(DictKeyQueryRequest query);
 
 
     /**
@@ -43,6 +43,6 @@ public interface DictKeyAppService {
      * @param query
      * @return
      */
-    Optional<DictKey> findOne(DictKeyQuery query);
+    Optional<DictKey> findOne(DictKeyQueryRequest query);
 
 }

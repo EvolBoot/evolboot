@@ -5,7 +5,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.operationlog.entity.OperationLog;
 import org.evolboot.system.domain.operationlog.repository.OperationLogRepository;
 import org.evolboot.system.domain.operationlog.service.OperationLogCreateFactory;
-import org.evolboot.system.domain.operationlog.service.OperationLogQuery;
+import org.evolboot.system.domain.operationlog.dto.OperationLogQueryRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +41,7 @@ public class OperationLogAppServiceImpl implements OperationLogAppService {
     }
 
     @Override
-    public Page<OperationLog> page(OperationLogQuery query) {
+    public Page<OperationLog> page(OperationLogQueryRequest query) {
         return repository.page(query);
     }
 
@@ -52,7 +52,7 @@ public class OperationLogAppServiceImpl implements OperationLogAppService {
 
 
     @Override
-    public Optional<OperationLog> findOne(OperationLogQuery query) {
+    public Optional<OperationLog> findOne(OperationLogQueryRequest query) {
         return repository.findOne(query);
     }
 }

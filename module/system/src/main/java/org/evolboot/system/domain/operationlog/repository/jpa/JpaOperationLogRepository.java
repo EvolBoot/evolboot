@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.operationlog.entity.OperationLog;
-import org.evolboot.system.domain.operationlog.service.OperationLogQuery;
+import org.evolboot.system.domain.operationlog.dto.OperationLogQueryRequest;
 import org.evolboot.system.domain.operationlog.entity.QOperationLog;
 import org.evolboot.system.domain.operationlog.repository.OperationLogRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public interface JpaOperationLogRepository extends OperationLogRepository, ExtendedQuerydslPredicateExecutor<OperationLog, Long>, JpaRepository<OperationLog, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        OperationLogQuery query = (OperationLogQuery) _query;
+        OperationLogQueryRequest query = (OperationLogQueryRequest) _query;
         QOperationLog q = QOperationLog.operationLog;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
         jpqlQuery.select(select).from(q);

@@ -7,7 +7,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.system.domain.userloginlog.entity.UserLoginLog;
 import org.evolboot.system.domain.userloginlog.UserLoginLogAppService;
-import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
+import org.evolboot.system.domain.userloginlog.dto.UserLoginLogQueryRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +43,7 @@ public class AdminUserLoginLogResourceV1 {
             @RequestParam(required = false) String loginIp,
             @RequestParam(required = false) Long userId
     ) {
-        UserLoginLogQuery query = UserLoginLogQuery.builder()
+        UserLoginLogQueryRequest query = UserLoginLogQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .userId(userId)

@@ -1,18 +1,13 @@
 package org.evolboot.im.domain.userconversation;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.evolboot.im.domain.userconversation.service.UserConversationCreateFactory;
-import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
 import org.evolboot.im.domain.userconversation.service.UserConversationSupportService;
 import org.evolboot.im.domain.userconversation.service.UserConversationUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 用户会话

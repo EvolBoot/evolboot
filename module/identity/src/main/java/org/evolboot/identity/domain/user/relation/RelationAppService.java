@@ -1,6 +1,7 @@
 package org.evolboot.identity.domain.user.relation;
 
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.user.relation.dto.RelationQueryRequest;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public interface RelationAppService {
 
 
-    Page<Relation> page(RelationQuery query);
+    Page<Relation> page(RelationQueryRequest query);
 
     void create(Long ancestor, Long descendant);
 

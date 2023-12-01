@@ -11,7 +11,7 @@ import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
 import org.evolboot.common.domain.dictvalue.entity.QDictValue;
 import org.evolboot.common.domain.dictvalue.repository.DictValueRepository;
-import org.evolboot.common.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.common.domain.dictvalue.dto.DictValueQueryRequest;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -43,7 +43,7 @@ public interface JpaDictValueRepository extends DictValueRepository, ExtendedQue
     void deleteByDictKeyId(Long dictKeyId);
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        DictValueQuery query = (DictValueQuery) _query;
+        DictValueQueryRequest query = (DictValueQueryRequest) _query;
         QDictValue q = QDictValue.dictValue;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
         jpqlQuery.select(select).from(q);

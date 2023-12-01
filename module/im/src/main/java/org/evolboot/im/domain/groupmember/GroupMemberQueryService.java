@@ -2,7 +2,7 @@ package org.evolboot.im.domain.groupmember;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
-import org.evolboot.im.domain.groupmember.service.GroupMemberQuery;
+import org.evolboot.im.domain.groupmember.dto.GroupMemberQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface GroupMemberQueryService {
 
     List<GroupMember> findAll();
 
-    List<GroupMember> findAll(GroupMemberQuery query);
+    List<GroupMember> findAll(GroupMemberQueryRequest query);
 
-    Page<GroupMember> page(GroupMemberQuery query);
+    Page<GroupMember> page(GroupMemberQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface GroupMemberQueryService {
      * @param query
      * @return
      */
-    Optional<GroupMember> findOne(GroupMemberQuery query);
+    Optional<GroupMember> findOne(GroupMemberQueryRequest query);
 
 
 }

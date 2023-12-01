@@ -3,15 +3,12 @@ package org.evolboot.bff.remote;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.bff.domain.admin.BffAdminQuery;
+import org.evolboot.bff.domain.admin.dto.BffAdminQueryRequest;
 import org.evolboot.bff.domain.admin.BffAdminService;
-import org.evolboot.bff.domain.admin.response.BffUser;
+import org.evolboot.bff.domain.admin.dto.response.BffUser;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
-import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.security.api.SecurityAccessTokenHolder;
-import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +43,7 @@ public class BffAdminResourceV1 {
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
 
     ) {
-        Page<BffUser> bffUsers = service.findUser(BffAdminQuery.builder()
+        Page<BffUser> bffUsers = service.findUser(BffAdminQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .build());

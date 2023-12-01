@@ -6,7 +6,7 @@ import org.evolboot.common.domain.dictkey.DictKeyQueryService;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
 import org.evolboot.common.domain.dictvalue.repository.DictValueRepository;
 import org.evolboot.common.domain.dictvalue.service.DictValueCreateFactory;
-import org.evolboot.common.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.common.domain.dictvalue.dto.DictValueQueryRequest;
 import org.evolboot.common.domain.dictvalue.service.DictValueSupportService;
 import org.evolboot.common.domain.dictvalue.service.DictValueUpdateService;
 import org.springframework.stereotype.Service;
@@ -86,18 +86,18 @@ public class DictValueAppServiceImpl  implements DictValueAppService {
 
 
     @Override
-    public List<DictValue> findAll(DictValueQuery query) {
+    public List<DictValue> findAll(DictValueQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<DictValue> page(DictValueQuery query) {
+    public Page<DictValue> page(DictValueQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<DictValue> findOne(DictValueQuery query) {
+    public Optional<DictValue> findOne(DictValueQueryRequest query) {
         return repository.findOne(query);
     }
 }

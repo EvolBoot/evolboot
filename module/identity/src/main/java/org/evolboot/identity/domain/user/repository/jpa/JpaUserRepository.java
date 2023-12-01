@@ -16,7 +16,7 @@ import org.evolboot.identity.domain.user.entity.QUser;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserIdAndInviterUserId;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.Optional;
 public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredicateExecutor<User, Long>, JpaRepository<User, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        UserQuery query = (UserQuery) _query;
+        UserQueryRequest query = (UserQueryRequest) _query;
         QUser q = QUser.user;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
@@ -65,9 +65,9 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
             jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, query.getUserIdentity().getIdentitySymbol()).gt(0));
         }
         if (ExtendObjects.isNotBlank(query.getKey())) {
-            jpqlQuery.where(q.username.like("%" + ((UserQuery) _query).getKey() + "%")
-                    .or(q.nickname.like("%" + ((UserQuery) _query).getKey() + "%"))
-                    .or(q.email.like("%" + ((UserQuery) _query).getKey() + "%"))
+            jpqlQuery.where(q.username.like("%" + ((UserQueryRequest) _query).getKey() + "%")
+                    .or(q.nickname.like("%" + ((UserQueryRequest) _query).getKey() + "%"))
+                    .or(q.email.like("%" + ((UserQueryRequest) _query).getKey() + "%"))
             );
         }
         return jpqlQuery;

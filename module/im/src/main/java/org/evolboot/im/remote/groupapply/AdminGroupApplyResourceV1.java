@@ -11,7 +11,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.groupapply.GroupApplyAppService;
 import org.evolboot.im.domain.groupapply.GroupApplyQueryService;
 import org.evolboot.im.domain.groupapply.entity.GroupApply;
-import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
+import org.evolboot.im.domain.groupapply.dto.GroupApplyQueryRequest;
 import org.evolboot.im.remote.groupapply.dto.GroupApplyCreateRequest;
 import org.evolboot.im.remote.groupapply.dto.GroupApplyUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -94,7 +94,7 @@ public class AdminGroupApplyResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        GroupApplyQuery query = GroupApplyQuery
+        GroupApplyQueryRequest query = GroupApplyQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

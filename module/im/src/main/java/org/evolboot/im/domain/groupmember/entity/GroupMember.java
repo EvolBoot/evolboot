@@ -25,7 +25,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "群成员")
+@Schema(title = "群成员")
 public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoot<GroupMember> {
 
     @Id
@@ -34,37 +34,37 @@ public class GroupMember extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 群ID
      */
-    @Schema(description = "群ID")
+    @Schema(title = "群ID")
     private Long groupId;
 
     /**
      * 用户ID
      */
-    @Schema(description = "用户ID")
+    @Schema(title = "用户ID")
     private Long memberUserId;
 
     /**
      * 群角色
      */
-    @Schema(description = "群角色")
+    @Schema(title = "群角色")
     private GroupMemberRole role;
 
     /**
      * 状态
      */
-    @Schema(description = "状态")
+    @Schema(title = "状态")
     private GroupMemberState state = GroupMemberState.NORMAL;
 
     /**
      * 会话ID
      */
-    @Schema(description = "会话ID")
+    @Schema(title = "会话ID")
     private Long conversationId;
 
     /**
      * 禁言截止时间
      */
-    @Schema(description = "禁言截止时间")
+    @Schema(title = "禁言截止时间")
     private Date forbidTalkDeadline;
 
 

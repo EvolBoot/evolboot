@@ -29,56 +29,56 @@ import java.util.List;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "支付网关账户")
+@Schema(title = "支付网关账户")
 public class PayGatewayAccount extends JpaAbstractEntity<Long> implements AggregateRoot<PayGatewayAccount>, LocaleDomainPart<PayGatewayAccountLocale> {
 
     @Id
     private Long id;
 
     // Logo
-    @Schema(description = "Logo")
+    @Schema(title = "Logo")
     private String logo;
 
     // 多语言(账号名称）
-    @Schema(description = "多语言(账号名称）")
+    @Schema(title = "多语言(账号名称）")
     @Convert(converter = PayGatewayAccountLocaleListConverter.class)
     private List<PayGatewayAccountLocale> locales;
 
     // 商户ID
-    @Schema(description = "商户ID")
+    @Schema(title = "商户ID")
     private String merchantId;
 
     // APP ID
-    @Schema(description = "APP ID")
+    @Schema(title = "APP ID")
     private String appid;
 
     // 秘钥
-    @Schema(description = "秘钥")
+    @Schema(title = "秘钥")
     private String secretKey;
 
     // 最少支付
-    @Schema(description = "最少支付")
+    @Schema(title = "最少支付")
     private BigDecimal minimumReceipt;
 
     // 最多支付
-    @Schema(description = "最多支付")
+    @Schema(title = "最多支付")
     private BigDecimal maximumReceipt;
 
     //启用状态
-    @Schema(description = "启用状态")
+    @Schema(title = "启用状态")
     private Boolean enable = true;
 
-    @Schema(description = "钱包ID")
+    @Schema(title = "钱包ID")
     private String walletId;
 
-    @Schema(description = "排序")
+    @Schema(title = "排序")
     private Integer sort = 0;
 
     // 网关
-    @Schema(description = "网关")
+    @Schema(title = "网关")
     private PayGateway payGateway;
 
-    @Schema(description = "别名")
+    @Schema(title = "别名")
     private String alias;
 
     private void generateId() {

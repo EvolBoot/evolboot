@@ -1,21 +1,14 @@
 package org.evolboot.im.domain.groupmember;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.ImAccessAuthorities;
-import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
-import org.evolboot.im.domain.groupmember.service.GroupMemberCreateFactory;
 import org.evolboot.im.domain.groupmember.service.GroupMemberSupportService;
-import org.evolboot.im.domain.groupmember.service.GroupMemberUpdateService;
 
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
-import org.evolboot.im.domain.groupmember.service.GroupMemberQuery;
+import org.evolboot.im.domain.groupmember.dto.GroupMemberQueryRequest;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -50,18 +43,18 @@ public class GroupMemberQueryServiceImpl  implements GroupMemberQueryService {
 
 
     @Override
-    public List<GroupMember> findAll(GroupMemberQuery query) {
+    public List<GroupMember> findAll(GroupMemberQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<GroupMember> page(GroupMemberQuery query) {
+    public Page<GroupMember> page(GroupMemberQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<GroupMember> findOne(GroupMemberQuery query) {
+    public Optional<GroupMember> findOne(GroupMemberQueryRequest query) {
         return repository.findOne(query);
     }
 }

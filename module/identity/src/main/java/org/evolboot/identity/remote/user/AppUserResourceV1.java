@@ -14,7 +14,7 @@ import org.evolboot.identity.domain.user.UserConfiguration;
 import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserRepository;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.domain.user.service.UserSecurityPasswordUpdateService;
 import org.evolboot.identity.remote.user.dto.TokenResponse;
 import org.evolboot.identity.remote.user.dto.UserPasswordUpdateRequest;
@@ -183,6 +183,6 @@ public class AppUserResourceV1 {
     @OperationLog(value = "count")
     @PostMapping("/count")
     public ResponseModel<?> resetLoginPassword() {
-        return ResponseModel.ok(userRepository.count(UserQuery.builder().userIdentity(UserIdentity.ROLE_MEMBER).build()));
+        return ResponseModel.ok(userRepository.count(UserQueryRequest.builder().userIdentity(UserIdentity.ROLE_MEMBER).build()));
     }
 }

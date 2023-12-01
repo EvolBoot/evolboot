@@ -11,7 +11,7 @@ import org.evolboot.shared.cache.RedisCacheName;
 import org.evolboot.common.domain.dictkey.entity.DictKey;
 import org.evolboot.common.domain.dictkey.entity.QDictKey;
 import org.evolboot.common.domain.dictkey.repository.DictKeyRepository;
-import org.evolboot.common.domain.dictkey.service.DictKeyQuery;
+import org.evolboot.common.domain.dictkey.dto.DictKeyQueryRequest;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -44,7 +44,7 @@ public interface JpaDictKeyRepository extends DictKeyRepository, ExtendedQueryds
     void deleteById(Long id);
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        DictKeyQuery query = (DictKeyQuery) _query;
+        DictKeyQueryRequest query = (DictKeyQueryRequest) _query;
         QDictKey q = QDictKey.dictKey;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.sort.desc());
         jpqlQuery.select(select).from(q).orderBy(q.sort.desc());

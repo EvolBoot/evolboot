@@ -2,7 +2,7 @@ package org.evolboot.im.domain.friendapply;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
-import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.dto.FriendApplyQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface FriendApplyQueryService {
 
     List<FriendApply> findAll();
 
-    List<FriendApply> findAll(FriendApplyQuery query);
+    List<FriendApply> findAll(FriendApplyQueryRequest query);
 
-    Page<FriendApply> page(FriendApplyQuery query);
+    Page<FriendApply> page(FriendApplyQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface FriendApplyQueryService {
      * @param query
      * @return
      */
-    Optional<FriendApply> findOne(FriendApplyQuery query);
+    Optional<FriendApply> findOne(FriendApplyQueryRequest query);
 
 
 }

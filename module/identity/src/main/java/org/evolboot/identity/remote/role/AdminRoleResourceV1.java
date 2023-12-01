@@ -9,7 +9,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.role.entity.Role;
-import org.evolboot.identity.domain.role.service.RoleQuery;
+import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.evolboot.identity.remote.role.dto.CreateRoleRequest;
 import org.evolboot.identity.remote.role.dto.UpdateRoleRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -120,7 +120,7 @@ public class AdminRoleResourceV1 {
             @RequestParam(required = false) Direction order,
             @RequestParam(required = false) String roleName
     ) {
-        RoleQuery query = RoleQuery.builder()
+        RoleQueryRequest query = RoleQueryRequest.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)

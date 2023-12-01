@@ -16,25 +16,25 @@ import java.util.List;
 @Getter
 public class PermissionRequestBase {
 
-    @Schema(description = "上级", example = "[1]")
+    @Schema(title = "上级", example = "[1]")
     private List<Long> parentIds;
 
-    @Schema(description = "name", example = "name")
+    @Schema(title = "name", example = "name")
     private String name;
 
-    @Schema(description = "对应的PATH", example = "123456")
+    @Schema(title = "对应的PATH", example = "123456")
     private String path;
 
-    @Schema(description = "类型", example = "menu")
+    @Schema(title = "类型", example = "menu")
     private Type type;
 
-    @Schema(description = "排序", example = "1")
+    @Schema(title = "排序", example = "1")
     private Integer sort;
 
-    @Schema(description = "是否链接", example = "false")
+    @Schema(title = "是否链接", example = "false")
     private Boolean isLink;
 
-    @Schema(description = "组件", example = "/home")
+    @Schema(title = "组件", example = "/home")
     private String component;
 
     private Meta meta;

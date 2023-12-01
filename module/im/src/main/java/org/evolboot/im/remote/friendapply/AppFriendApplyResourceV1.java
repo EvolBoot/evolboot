@@ -11,7 +11,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.friendapply.FriendApplyQueryService;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
-import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.dto.FriendApplyQueryRequest;
 import org.evolboot.im.remote.friendapply.dto.FriendApplyAuditRequest;
 import org.evolboot.im.remote.friendapply.dto.FriendApplyCreateRequest;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -54,7 +54,7 @@ public class AppFriendApplyResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        FriendApplyQuery query = FriendApplyQuery
+        FriendApplyQueryRequest query = FriendApplyQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

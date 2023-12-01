@@ -11,7 +11,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountAppService;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.dto.PayGatewayAccountQueryRequest;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountCreateRequest;
 import org.evolboot.pay.remote.paygatewayaccount.dto.PayGatewayAccountUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -89,7 +89,7 @@ public class AdminPayGatewayAccountResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-        PayGatewayAccountQuery query = PayGatewayAccountQuery
+        PayGatewayAccountQueryRequest query = PayGatewayAccountQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)

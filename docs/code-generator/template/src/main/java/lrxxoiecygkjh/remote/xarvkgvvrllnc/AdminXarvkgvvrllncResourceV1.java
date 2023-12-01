@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 import projectPackage.core.data.Page;
 
@@ -95,7 +95,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestParam(required = false) Date endDate,
             @RequestParam(required = false) String keyword
     ) {
-        XarvkgvvrllncQuery query = XarvkgvvrllncQuery
+        XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)
@@ -118,7 +118,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestParam(required = false) Date endDate,
             @RequestParam(required = false) String keyword
     ) {
-        XarvkgvvrllncQuery query = XarvkgvvrllncQuery
+        XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

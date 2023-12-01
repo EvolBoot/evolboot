@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.permission;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
-import org.evolboot.identity.domain.permission.service.PermissionQuery;
+import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -21,9 +21,9 @@ public interface PermissionQueryService {
 
     List<Permission> findAll();
 
-    List<Permission> findAll(PermissionQuery query);
+    List<Permission> findAll(PermissionQueryRequest query);
 
-    Page<Permission> page(PermissionQuery query);
+    Page<Permission> page(PermissionQueryRequest query);
 
 
     List<Permission> findAllByIdConvertTree(Collection<Long> permissionIds);
@@ -47,6 +47,6 @@ public interface PermissionQueryService {
      * @param query
      * @return
      */
-    Optional<Permission> findOne(PermissionQuery query);
+    Optional<Permission> findOne(PermissionQueryRequest query);
 
 }

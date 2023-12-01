@@ -4,6 +4,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.service.*;
@@ -53,18 +54,18 @@ public class UserQueryServiceImpl implements UserQueryService {
 
 
     @Override
-    public List<User> findAll(UserQuery query) {
+    public List<User> findAll(UserQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<User> page(UserQuery query) {
+    public Page<User> page(UserQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<User> findOne(UserQuery query) {
+    public Optional<User> findOne(UserQueryRequest query) {
         return repository.findOne(query);
     }
 

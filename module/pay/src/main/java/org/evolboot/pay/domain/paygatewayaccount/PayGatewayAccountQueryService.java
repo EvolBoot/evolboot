@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paygatewayaccount;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.dto.PayGatewayAccountQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface PayGatewayAccountQueryService {
 
     List<PayGatewayAccount> findAll();
 
-    List<PayGatewayAccount> findAll(PayGatewayAccountQuery query);
+    List<PayGatewayAccount> findAll(PayGatewayAccountQueryRequest query);
 
-    Page<PayGatewayAccount> page(PayGatewayAccountQuery query);
+    Page<PayGatewayAccount> page(PayGatewayAccountQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface PayGatewayAccountQueryService {
      * @param query
      * @return
      */
-    Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query);
+    Optional<PayGatewayAccount> findOne(PayGatewayAccountQueryRequest query);
 
 
 }

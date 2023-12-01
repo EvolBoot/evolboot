@@ -9,7 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.friend.FriendQueryService;
 import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.FriendAppService;
-import org.evolboot.im.domain.friend.service.FriendQuery;
+import org.evolboot.im.domain.friend.dto.FriendQueryRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,7 +89,7 @@ public class AdminFriendResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        FriendQuery query = FriendQuery
+        FriendQueryRequest query = FriendQueryRequest
                 .builder()
                 .id(id)
                 .endDate(endDate)

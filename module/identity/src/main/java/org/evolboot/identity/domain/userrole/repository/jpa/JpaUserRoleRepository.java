@@ -6,7 +6,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.identity.domain.userrole.entity.QUserRole;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
-import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
+import org.evolboot.identity.domain.userrole.dto.UserRoleQueryRequest;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,7 +24,7 @@ import java.util.Optional;
 @Repository
 public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuerydslPredicateExecutor<UserRole, Long>, JpaRepository<UserRole, Long> {
 
-    default JPQLQuery<UserRole> fillQueryParameter(UserRoleQuery query) {
+    default JPQLQuery<UserRole> fillQueryParameter(UserRoleQueryRequest query) {
         QUserRole q = QUserRole.userRole;
         JPQLQuery<UserRole> jpqlQuery = getJPQLQuery();
         jpqlQuery.select(q).from(q);
@@ -40,7 +40,7 @@ public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuery
     }
 
     @Override
-    default Page<UserRole> page(UserRoleQuery query) {
+    default Page<UserRole> page(UserRoleQueryRequest query) {
         return PageImpl.of(this.findAll(fillQueryParameter(query), query.toJpaPageRequest()));
     }
 
@@ -52,7 +52,7 @@ public interface JpaUserRoleRepository extends UserRoleRepository, ExtendedQuery
 
 
     @Override
-    default Optional<UserRole> findOne(UserRoleQuery query) {
+    default Optional<UserRole> findOne(UserRoleQueryRequest query) {
         return findOne(fillQueryParameter(query));
     }
 

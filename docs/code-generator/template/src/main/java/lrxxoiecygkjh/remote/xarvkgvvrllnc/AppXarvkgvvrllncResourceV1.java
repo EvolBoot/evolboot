@@ -12,7 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import projectPackage.core.data.Page;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 
 
@@ -59,7 +59,7 @@ public class AppXarvkgvvrllncResourceV1 {
        @RequestParam(name = "page", defaultValue = "1") Integer page,
        @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-       XarvkgvvrllncQuery query = XarvkgvvrllncQuery
+       XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)

@@ -9,7 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.friendapply.FriendApplyQueryService;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
 import org.evolboot.im.domain.friendapply.FriendApplyAppService;
-import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.dto.FriendApplyQueryRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,7 +81,7 @@ public class AdminFriendApplyResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        FriendApplyQuery query = FriendApplyQuery
+        FriendApplyQueryRequest query = FriendApplyQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

@@ -10,13 +10,13 @@ public abstract class PermissionRequestSupport {
 
     @Data
     public static class UIComponentRequest {
-        @Schema(description = "菜单上显示的名称-好像没啥用", example = "名称")
+        @Schema(title = "菜单上显示的名称-好像没啥用", example = "名称")
         String uiName;
 
-        @Schema(description = "菜单上的路由", example = "/test")
+        @Schema(title = "菜单上的路由", example = "/test")
         String uiRoute;
 
-        @Schema(description = "菜单上的Icon", example = "eye")
+        @Schema(title = "菜单上的Icon", example = "eye")
         String uiIcon;
     }
 }

@@ -3,7 +3,7 @@ package org.evolboot.storage.domain.blob;
 import org.evolboot.core.data.Page;
 import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
-import org.evolboot.storage.domain.blob.service.BlobQuery;
+import org.evolboot.storage.domain.blob.dto.BlobQueryRequest;
 
 import java.io.InputStream;
 
@@ -18,6 +18,6 @@ public interface BlobAppService {
 
     String createFile(InputStream is, String filename, long fileSize, Long ownerUserId);
 
-    Page<Blob> page(BlobQuery query);
+    Page<Blob> page(BlobQueryRequest query);
 
 }

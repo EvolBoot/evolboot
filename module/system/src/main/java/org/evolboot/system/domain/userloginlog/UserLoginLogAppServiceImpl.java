@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.userloginlog.entity.UserLoginLog;
 import org.evolboot.system.domain.userloginlog.repository.UserLoginLogRepository;
-import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
+import org.evolboot.system.domain.userloginlog.dto.UserLoginLogQueryRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +21,7 @@ public class UserLoginLogAppServiceImpl implements UserLoginLogAppService {
     }
 
     @Override
-    public Page<UserLoginLog> page(UserLoginLogQuery query) {
+    public Page<UserLoginLog> page(UserLoginLogQueryRequest query) {
         return repository.page(query);
     }
 

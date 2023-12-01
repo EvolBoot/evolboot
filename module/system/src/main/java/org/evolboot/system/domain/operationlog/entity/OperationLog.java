@@ -24,7 +24,7 @@ import jakarta.persistence.Table;
 @Slf4j
 @NoArgsConstructor
 @ToString
-@Schema(description = "操作日志")
+@Schema(title = "操作日志")
 public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRoot<OperationLog> {
 
     @Id
@@ -33,67 +33,67 @@ public class OperationLog extends JpaAbstractEntity<Long> implements AggregateRo
     /**
      * 操作用户
      */
-    @Schema(description = "操作用户")
+    @Schema(title = "操作用户")
     private Long userId;
 
     /**
      * 请求开始时间
      */
-    @Schema(description = "请求开始时间")
+    @Schema(title = "请求开始时间")
     protected Long beginTime;
 
     /**
      * 请求结束时间
      */
-    @Schema(description = "请求结束时间")
+    @Schema(title = "请求结束时间")
     protected Long endTime;
 
     /**
      * 用户操作
      */
-    @Schema(description = "用户操作")
+    @Schema(title = "用户操作")
     private String operation;
 
     /**
      * Http方法
      */
-    @Schema(description = "Http方法")
+    @Schema(title = "Http方法")
     private String httpMethod;
 
     /**
      * 类方法
      */
-    @Schema(description = "类方法")
+    @Schema(title = "类方法")
     private String classMethod;
 
     /**
      * 请求方法
      */
-    @Schema(description = "请求URL")
+    @Schema(title = "请求URL")
     private String requestUrl;
 
     /**
      * 请求参数
      */
-    @Schema(description = "请求参数")
+    @Schema(title = "请求参数")
     private String params;
 
     /**
      * 请求结果
      */
-    @Schema(description = "请求结果")
+    @Schema(title = "请求结果")
     private String result;
 
     /**
      * 执行时长（毫秒）
      */
-    @Schema(description = "执行时长（毫秒）")
+    @Schema(title = "执行时长（毫秒）")
     private Long time;
 
     /**
      * IP地址
      */
-    @Schema(description = "IP地址")
+    @Schema(title = "IP地址")
     private String ip;
 
 

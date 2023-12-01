@@ -2,8 +2,9 @@ package org.evolboot.identity.domain.userid.repository;
 
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
+import org.evolboot.identity.domain.userid.dto.UserIdQueryRequest;
 import org.evolboot.identity.domain.userid.entity.UserId;
-import org.evolboot.identity.domain.userid.service.UserIdQuery;
+import org.evolboot.identity.domain.userid.dto.UserIdQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +20,13 @@ public interface UserIdRepository extends BaseRepository<UserId, Long> {
 
     Optional<UserId> findById(Long id);
 
-    Page<UserId> page(UserIdQuery query);
+    Page<UserId> page(UserIdQueryRequest query);
 
     void deleteById(Long id);
 
     List<UserId> findAll();
 
-    List<UserId> findAll(UserIdQuery query);
+    List<UserId> findAll(UserIdQueryRequest query);
 
     <S extends UserId> List<S> saveAll(Iterable<S> userIds);
 
@@ -39,7 +40,7 @@ public interface UserIdRepository extends BaseRepository<UserId, Long> {
      * @param query
      * @return
      */
-    Optional<UserId> findOne(UserIdQuery query);
+    Optional<UserId> findOne(UserIdQueryRequest query);
 
 
 }

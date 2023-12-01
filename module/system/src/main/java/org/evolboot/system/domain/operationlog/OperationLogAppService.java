@@ -2,7 +2,7 @@ package org.evolboot.system.domain.operationlog;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.operationlog.entity.OperationLog;
-import org.evolboot.system.domain.operationlog.service.OperationLogQuery;
+import org.evolboot.system.domain.operationlog.dto.OperationLogQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ public interface OperationLogAppService {
 
     List<OperationLog> findAll();
 
-    Page<OperationLog> page(OperationLogQuery query);
+    Page<OperationLog> page(OperationLogQueryRequest query);
 
     OperationLog findById(Long id);
 
@@ -27,7 +27,7 @@ public interface OperationLogAppService {
      * @param query
      * @return
      */
-    Optional<OperationLog> findOne(OperationLogQuery query);
+    Optional<OperationLog> findOne(OperationLogQueryRequest query);
 
 
 }

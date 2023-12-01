@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderQuery;
+import org.evolboot.pay.domain.releasedorder.dto.ReleasedOrderQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface ReleasedOrderQueryService {
 
     List<ReleasedOrder> findAll();
 
-    List<ReleasedOrder> findAll(ReleasedOrderQuery query);
+    List<ReleasedOrder> findAll(ReleasedOrderQueryRequest query);
 
-    Page<ReleasedOrder> page(ReleasedOrderQuery query);
+    Page<ReleasedOrder> page(ReleasedOrderQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface ReleasedOrderQueryService {
      * @param query
      * @return
      */
-    Optional<ReleasedOrder> findOne(ReleasedOrderQuery query);
+    Optional<ReleasedOrder> findOne(ReleasedOrderQueryRequest query);
 
 
 }

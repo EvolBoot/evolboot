@@ -9,7 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.userconversation.UserConversationQueryService;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.UserConversationAppService;
-import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
+import org.evolboot.im.domain.userconversation.dto.UserConversationQuery;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

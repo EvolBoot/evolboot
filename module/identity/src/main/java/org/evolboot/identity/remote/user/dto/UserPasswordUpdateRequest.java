@@ -13,15 +13,15 @@ import jakarta.validation.constraints.NotEmpty;
 public class UserPasswordUpdateRequest {
 
     @NotEmpty(message = IdentityI18nMessage.User.OLD_PASSWORD_NOT_EMPTY)
-    @Schema(description = "原密码", example = "123456")
+    @Schema(title = "原密码", example = "123456")
     String oldPassword;
 
     @NotEmpty(message = IdentityI18nMessage.User.NEW_PASSWORD_NOT_EMPTY)
-    @Schema(description = "密码", example = "123456")
+    @Schema(title = "密码", example = "123456")
     String newPassword;
 
     @NotEmpty(message = IdentityI18nMessage.User.CONFIRM_PASSWORD_NOT_EMPTY)
-    @Schema(description = "确认密码", example = "123456")
+    @Schema(title = "确认密码", example = "123456")
     String confirmPassword;
 
 }

@@ -7,7 +7,7 @@ import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.system.domain.userloginlog.entity.QUserLoginLog;
 import org.evolboot.system.domain.userloginlog.entity.UserLoginLog;
-import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
+import org.evolboot.system.domain.userloginlog.dto.UserLoginLogQueryRequest;
 import org.evolboot.system.domain.userloginlog.repository.UserLoginLogRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface JpaUserLoginLogRepository extends UserLoginLogRepository, ExtendedQuerydslPredicateExecutor<UserLoginLog, Long>, JpaRepository<UserLoginLog, Long> {
 
 
-    default JPQLQuery<UserLoginLog> fillQueryParameter(UserLoginLogQuery query) {
+    default JPQLQuery<UserLoginLog> fillQueryParameter(UserLoginLogQueryRequest query) {
         QUserLoginLog q = QUserLoginLog.userLoginLog;
         JPQLQuery<UserLoginLog> jpqlQuery = getJPQLQuery(query, q.id.desc());
         jpqlQuery.select(q).from(q);
@@ -32,7 +32,7 @@ public interface JpaUserLoginLogRepository extends UserLoginLogRepository, Exten
 
 
     @Override
-    default Page<UserLoginLog> page(UserLoginLogQuery query) {
+    default Page<UserLoginLog> page(UserLoginLogQueryRequest query) {
         JPQLQuery<UserLoginLog> jpqlQuery = fillQueryParameter(query);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));
     }

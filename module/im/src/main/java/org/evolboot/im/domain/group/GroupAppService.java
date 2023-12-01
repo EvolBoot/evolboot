@@ -1,13 +1,8 @@
 package org.evolboot.im.domain.group;
 
-import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.service.GroupCreateFactory;
-import org.evolboot.im.domain.group.service.GroupQuery;
 import org.evolboot.im.domain.group.service.GroupUpdateService;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 群组

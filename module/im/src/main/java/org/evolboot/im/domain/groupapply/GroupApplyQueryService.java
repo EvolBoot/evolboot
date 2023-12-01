@@ -2,7 +2,7 @@ package org.evolboot.im.domain.groupapply;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.groupapply.entity.GroupApply;
-import org.evolboot.im.domain.groupapply.service.GroupApplyQuery;
+import org.evolboot.im.domain.groupapply.dto.GroupApplyQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface GroupApplyQueryService {
 
     List<GroupApply> findAll();
 
-    List<GroupApply> findAll(GroupApplyQuery query);
+    List<GroupApply> findAll(GroupApplyQueryRequest query);
 
-    Page<GroupApply> page(GroupApplyQuery query);
+    Page<GroupApply> page(GroupApplyQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface GroupApplyQueryService {
      * @param query
      * @return
      */
-    Optional<GroupApply> findOne(GroupApplyQuery query);
+    Optional<GroupApply> findOne(GroupApplyQueryRequest query);
 
 
 }

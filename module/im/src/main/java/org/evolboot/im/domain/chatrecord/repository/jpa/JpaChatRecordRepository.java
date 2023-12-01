@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
+import org.evolboot.im.domain.chatrecord.dto.ChatRecordQueryRequest;
 import org.evolboot.im.domain.chatrecord.entity.QChatRecord;
 import org.evolboot.im.domain.chatrecord.repository.ChatRecordRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public interface JpaChatRecordRepository extends ChatRecordRepository, ExtendedQuerydslPredicateExecutor<ChatRecord, Long>, JpaRepository<ChatRecord, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        ChatRecordQuery query = (ChatRecordQuery) _query;
+        ChatRecordQueryRequest query = (ChatRecordQueryRequest) _query;
         QChatRecord q = QChatRecord.chatRecord;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
         jpqlQuery.select(select).from(q);

@@ -10,7 +10,7 @@ import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.role.entity.QRole;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
-import org.evolboot.identity.domain.role.service.RoleQuery;
+import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +25,7 @@ public interface JpaRoleRepository extends RoleRepository, ExtendedQuerydslPredi
 
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        RoleQuery query = (RoleQuery) _query;
+        RoleQueryRequest query = (RoleQueryRequest) _query;
         QRole q = QRole.role;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);

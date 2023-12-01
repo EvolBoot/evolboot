@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.userrole.entity.UserRole;
 import org.evolboot.identity.domain.userrole.repository.UserRoleRepository;
-import org.evolboot.identity.domain.userrole.service.UserRoleQuery;
+import org.evolboot.identity.domain.userrole.dto.UserRoleQueryRequest;
 import org.evolboot.identity.domain.userrole.service.UserRoleSupportService;
 import org.evolboot.identity.domain.userrole.service.UserRoleUpdateService;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class UserRoleAppServiceImpl implements UserRoleAppService {
     }
 
     @Override
-    public Page<UserRole> page(UserRoleQuery query) {
+    public Page<UserRole> page(UserRoleQueryRequest query) {
         return repository.page(query);
     }
 
@@ -66,7 +66,7 @@ public class UserRoleAppServiceImpl implements UserRoleAppService {
 
 
     @Override
-    public Optional<UserRole> findOne(UserRoleQuery query) {
+    public Optional<UserRole> findOne(UserRoleQueryRequest query) {
         return repository.findOne(query);
     }
 }

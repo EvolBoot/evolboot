@@ -2,7 +2,7 @@ package org.evolboot.im.domain.friend;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.friend.entity.Friend;
-import org.evolboot.im.domain.friend.service.FriendQuery;
+import org.evolboot.im.domain.friend.dto.FriendQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface FriendQueryService {
 
     List<Friend> findAll();
 
-    List<Friend> findAll(FriendQuery query);
+    List<Friend> findAll(FriendQueryRequest query);
 
-    Page<Friend> page(FriendQuery query);
+    Page<Friend> page(FriendQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface FriendQueryService {
      * @param query
      * @return
      */
-    Optional<Friend> findOne(FriendQuery query);
+    Optional<Friend> findOne(FriendQueryRequest query);
 
 
 }

@@ -9,7 +9,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.groupmember.GroupMemberQueryService;
 import org.evolboot.im.domain.groupmember.entity.GroupMember;
 import org.evolboot.im.domain.groupmember.GroupMemberAppService;
-import org.evolboot.im.domain.groupmember.service.GroupMemberQuery;
+import org.evolboot.im.domain.groupmember.dto.GroupMemberQueryRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,7 +91,7 @@ public class AdminGroupMemberResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        GroupMemberQuery query = GroupMemberQuery
+        GroupMemberQueryRequest query = GroupMemberQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

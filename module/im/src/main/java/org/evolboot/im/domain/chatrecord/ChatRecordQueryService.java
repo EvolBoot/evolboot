@@ -2,7 +2,7 @@ package org.evolboot.im.domain.chatrecord;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
+import org.evolboot.im.domain.chatrecord.dto.ChatRecordQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface ChatRecordQueryService {
 
     List<ChatRecord> findAll();
 
-    List<ChatRecord> findAll(ChatRecordQuery query);
+    List<ChatRecord> findAll(ChatRecordQueryRequest query);
 
-    Page<ChatRecord> page(ChatRecordQuery query);
+    Page<ChatRecord> page(ChatRecordQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface ChatRecordQueryService {
      * @param query
      * @return
      */
-    Optional<ChatRecord> findOne(ChatRecordQuery query);
+    Optional<ChatRecord> findOne(ChatRecordQueryRequest query);
 
 
 }

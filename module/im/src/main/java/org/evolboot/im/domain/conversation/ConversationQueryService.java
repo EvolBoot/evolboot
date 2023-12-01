@@ -2,7 +2,7 @@ package org.evolboot.im.domain.conversation;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.conversation.entity.Conversation;
-import org.evolboot.im.domain.conversation.service.ConversationQuery;
+import org.evolboot.im.domain.conversation.dto.ConversationQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface ConversationQueryService {
 
     List<Conversation> findAll();
 
-    List<Conversation> findAll(ConversationQuery query);
+    List<Conversation> findAll(ConversationQueryRequest query);
 
-    Page<Conversation> page(ConversationQuery query);
+    Page<Conversation> page(ConversationQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface ConversationQueryService {
      * @param query
      * @return
      */
-    Optional<Conversation> findOne(ConversationQuery query);
+    Optional<Conversation> findOne(ConversationQueryRequest query);
 
 
 }

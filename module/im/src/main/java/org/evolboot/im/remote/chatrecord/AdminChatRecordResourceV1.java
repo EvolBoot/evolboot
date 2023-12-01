@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.evolboot.im.domain.chatrecord.entity.ChatRecord;
-import org.evolboot.im.domain.chatrecord.service.ChatRecordQuery;
+import org.evolboot.im.domain.chatrecord.dto.ChatRecordQueryRequest;
 import org.evolboot.im.remote.chatrecord.dto.*;
 import org.evolboot.core.data.Page;
 
@@ -93,7 +93,7 @@ public class AdminChatRecordResourceV1 {
             @RequestParam(required = false) Date startDate,
             @RequestParam(required = false) Date endDate
     ) {
-        ChatRecordQuery query = ChatRecordQuery
+        ChatRecordQueryRequest query = ChatRecordQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

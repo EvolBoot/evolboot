@@ -1,21 +1,14 @@
 package org.evolboot.pay.domain.releasedorder;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.pay.PayAccessAuthorities;
-import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.releasedorder.repository.ReleasedOrderRepository;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderCreateFactory;
 import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderSupportService;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderUpdateService;
 
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrder;
-import org.evolboot.pay.domain.releasedorder.service.ReleasedOrderQuery;
+import org.evolboot.pay.domain.releasedorder.dto.ReleasedOrderQueryRequest;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -51,18 +44,18 @@ public class ReleasedOrderQueryServiceImpl implements ReleasedOrderQueryService 
 
 
     @Override
-    public List<ReleasedOrder> findAll(ReleasedOrderQuery query) {
+    public List<ReleasedOrder> findAll(ReleasedOrderQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<ReleasedOrder> page(ReleasedOrderQuery query) {
+    public Page<ReleasedOrder> page(ReleasedOrderQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<ReleasedOrder> findOne(ReleasedOrderQuery query) {
+    public Optional<ReleasedOrder> findOne(ReleasedOrderQueryRequest query) {
         return repository.findOne(query);
     }
 }

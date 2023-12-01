@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 好友申请
- * TODO 多语言
+ * spriTODO 多语言
  *
  * @author evol
  * @date 2023-05-03 17:57:08

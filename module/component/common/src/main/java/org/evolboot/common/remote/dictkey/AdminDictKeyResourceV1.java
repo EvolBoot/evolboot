@@ -12,7 +12,7 @@ import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.common.domain.dictkey.DictKeyAppService;
 import org.evolboot.common.domain.dictkey.entity.DictKey;
-import org.evolboot.common.domain.dictkey.service.DictKeyQuery;
+import org.evolboot.common.domain.dictkey.dto.DictKeyQueryRequest;
 import org.evolboot.common.remote.dictkey.dto.DictKeyCreateRequest;
 import org.evolboot.common.remote.dictkey.dto.DictKeyUpdateRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -106,7 +106,7 @@ public class AdminDictKeyResourceV1 {
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
-        DictKeyQuery query = DictKeyQuery
+        DictKeyQueryRequest query = DictKeyQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

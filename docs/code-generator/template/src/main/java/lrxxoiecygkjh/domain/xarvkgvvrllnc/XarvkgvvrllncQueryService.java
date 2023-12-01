@@ -2,7 +2,7 @@ package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
 
 import projectPackage.core.data.Page;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -21,9 +21,9 @@ public interface XarvkgvvrllncQueryService {
 
     boolean existsById(Keya2Akk5iV3n id);
 
-    List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query);
+    List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQueryRequest query);
 
-    Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query);
+    Page<Xarvkgvvrllnc> page(XarvkgvvrllncQueryRequest query);
 
 
     /**
@@ -32,7 +32,7 @@ public interface XarvkgvvrllncQueryService {
      * @param query
      * @return
      */
-    Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query);
+    Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQueryRequest query);
 
 
 }

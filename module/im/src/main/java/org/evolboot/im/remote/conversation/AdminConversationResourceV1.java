@@ -11,7 +11,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.im.domain.conversation.ConversationQueryService;
 import org.evolboot.im.domain.conversation.entity.Conversation;
 import org.evolboot.im.domain.conversation.ConversationAppService;
-import org.evolboot.im.domain.conversation.service.ConversationQuery;
+import org.evolboot.im.domain.conversation.dto.ConversationQueryRequest;
 import org.evolboot.im.domain.shared.ConversationType;
 import org.evolboot.im.remote.conversation.dto.ConversationCreateRequest;
 import org.evolboot.im.remote.conversation.dto.ConversationUpdateRequest;
@@ -96,7 +96,7 @@ public class AdminConversationResourceV1 {
             @RequestParam(required = false) Date endDate,
             @RequestParam(required = false) ConversationType conversationType
     ) {
-        ConversationQuery query = ConversationQuery
+        ConversationQueryRequest query = ConversationQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

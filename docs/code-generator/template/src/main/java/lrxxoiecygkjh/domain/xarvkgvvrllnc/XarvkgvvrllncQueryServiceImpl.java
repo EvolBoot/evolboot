@@ -11,7 +11,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncSu
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncUpdateService;
 
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 
 
 import org.springframework.stereotype.Service;
@@ -54,18 +54,18 @@ public class XarvkgvvrllncQueryServiceImpl  implements XarvkgvvrllncQueryService
         return repository.existsById(id);
     }
     @Override
-    public List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQuery query) {
+    public List<Xarvkgvvrllnc> findAll(XarvkgvvrllncQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<Xarvkgvvrllnc> page(XarvkgvvrllncQuery query) {
+    public Page<Xarvkgvvrllnc> page(XarvkgvvrllncQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQuery query) {
+    public Optional<Xarvkgvvrllnc> findOne(XarvkgvvrllncQueryRequest query) {
         return repository.findOne(query);
     }
 }

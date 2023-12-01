@@ -2,6 +2,7 @@
 package org.evolboot.identity.domain.user.entity;
 
 import com.google.common.collect.Maps;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @Getter
 @AllArgsConstructor
+@Schema(title = "性别")
 public enum Gender {
     MALE(1),
     FEMALE(0),

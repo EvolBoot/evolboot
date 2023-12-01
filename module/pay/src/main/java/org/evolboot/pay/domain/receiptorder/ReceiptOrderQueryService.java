@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.receiptorder;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
-import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderQuery;
+import org.evolboot.pay.domain.receiptorder.dto.ReceiptOrderQueryRequest;
 
 import java.util.Optional;
 import java.util.List;
@@ -19,9 +19,9 @@ public interface ReceiptOrderQueryService {
 
     List<ReceiptOrder> findAll();
 
-    List<ReceiptOrder> findAll(ReceiptOrderQuery query);
+    List<ReceiptOrder> findAll(ReceiptOrderQueryRequest query);
 
-    Page<ReceiptOrder> page(ReceiptOrderQuery query);
+    Page<ReceiptOrder> page(ReceiptOrderQueryRequest query);
 
 
     /**
@@ -30,7 +30,7 @@ public interface ReceiptOrderQueryService {
      * @param query
      * @return
      */
-    Optional<ReceiptOrder> findOne(ReceiptOrderQuery query);
+    Optional<ReceiptOrder> findOne(ReceiptOrderQueryRequest query);
 
 
 }

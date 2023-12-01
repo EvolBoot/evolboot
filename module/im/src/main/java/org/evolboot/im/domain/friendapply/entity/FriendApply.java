@@ -30,7 +30,7 @@ import java.util.List;
 @Slf4j
 @NoArgsConstructor
 @Entity
-@Schema(description = "好友申请")
+@Schema(title = "好友申请")
 public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoot<FriendApply> {
 
     @Id
@@ -39,20 +39,20 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 被申请的用户
      */
-    @Schema(description = "被申请的用户")
+    @Schema(title = "被申请的用户")
     private Long toUserId;
 
     /**
      * 申请用户
      */
-    @Schema(description = "申请用户")
+    @Schema(title = "申请用户")
     private Long fromUserId;
 
 
     /**
      * 申请原因
      */
-    @Schema(description = "申请原因")
+    @Schema(title = "申请原因")
     @Convert(converter = StringListConverter.class)
     private List<String> applyReason = Lists.newArrayList();
 
@@ -60,25 +60,25 @@ public class FriendApply extends JpaAbstractEntity<Long> implements AggregateRoo
     /**
      * 状态
      */
-    @Schema(description = "状态")
+    @Schema(title = "状态")
     private FriendApplyState state = FriendApplyState.PENDING;
 
     /**
      * 未处理到期时间
      */
-    @Schema(description = "未处理到期时间")
+    @Schema(title = "未处理到期时间")
     private Date expireAt;
 
     /**
      * 处理时间
      */
-    @Schema(description = "处理时间")
+    @Schema(title = "处理时间")
     private Date handleAt;
 
     /**
      * 会话ID
      */
-    @Schema(description = "会话ID")
+    @Schema(title = "会话ID")
     private Long conversationId;
 
 

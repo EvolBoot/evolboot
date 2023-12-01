@@ -5,7 +5,7 @@ import projectPackage.core.data.Query;
 import projectPackage.core.data.Sort;
 import projectPackage.core.data.BaseRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 
 
 import java.util.List;

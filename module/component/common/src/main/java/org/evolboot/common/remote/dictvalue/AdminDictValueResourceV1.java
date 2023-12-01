@@ -12,7 +12,7 @@ import org.evolboot.core.remote.DomainId;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.common.domain.dictvalue.DictValueAppService;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
-import org.evolboot.common.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.common.domain.dictvalue.dto.DictValueQueryRequest;
 import org.evolboot.common.remote.dictvalue.dto.DictValueAppResponse;
 import org.evolboot.common.remote.dictvalue.dto.DictValueCreateRequest;
 import org.evolboot.common.remote.dictvalue.dto.DictValueUpdateRequest;
@@ -97,7 +97,7 @@ public class AdminDictValueResourceV1 {
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
-        DictValueQuery query = DictValueQuery
+        DictValueQueryRequest query = DictValueQueryRequest
                 .builder()
                 .id(id)
                 .startDate(startDate)

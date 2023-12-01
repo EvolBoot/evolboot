@@ -26,6 +26,7 @@ import org.hibernate.annotations.Type;
 import java.util.*;
 
 /**
+ * 用户
  * @author evol
  */
 @Entity
@@ -33,100 +34,101 @@ import java.util.*;
 @Getter
 @Slf4j
 @NoArgsConstructor
+@Schema(title = "用户")
 public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User> {
 
     @Id
     private Long id;
 
-    @Schema(description = "删除状态")
+    @Schema(title = "删除状态")
     @Enumerated(EnumType.STRING)
     private DelState delState = DelState.ACTIVE;
 
-    @Schema(description = "用户名")
+    @Schema(title = "用户名")
     private String username;
 
-    @Schema(description = "邮箱")
+    @Schema(title = "邮箱")
     private String email;
 
-    @Schema(description = "手机号")
+    @Schema(title = "手机号")
     private String mobile;
 
-    @Schema(description = "手机号前缀")
+    @Schema(title = "手机号前缀")
     private String mobilePrefix;
 
-    @Schema(description = "头像")
+    @Schema(title = "头像")
     private String avatar;
 
     @JsonIgnore
-    @Schema(description = "密码")
+    @Schema(title = "密码")
     @Embedded
     private ImmutablePassword password;
 
     /**
      * 用户性别
      */
-    @Schema(description = "性别")
+    @Schema(title = "性别")
     @Enumerated(EnumType.STRING)
     private Gender gender = Gender.UNKNOWN;
 
     /**
      * 用户状态
      */
-    @Schema(description = "用户状态")
+    @Schema(title = "用户状态")
     @Enumerated(EnumType.STRING)
     private UserState state = UserState.ACTIVE;
 
     /**
      * 用户类比（测试用户，正常用户）
      */
-    @Schema(description = "用户类型(测试用户、正常用户）")
+    @Schema(title = "用户类型(测试用户、正常用户）")
     @Enumerated(EnumType.STRING)
     private UserType userType = UserType.NORMAL;
 
     /**
      * 昵称
      */
-    @Schema(description = "昵称")
+    @Schema(title = "昵称")
     private String nickname;
 
     /**
      * 身份
      */
     @Type(UserIdentitySetConverterForUserType.class)
-    @Schema(description = "用户身份")
+    @Schema(title = "用户身份")
     private Set<UserIdentity> userIdentity = Sets.newHashSet();
 
     /**
      * 上级ID
      * 邀请人ID
      */
-    @Schema(description = "上级邀请人")
+    @Schema(title = "上级邀请人")
     private Long inviterUserId;
 
-    @Schema(description = "注册IP")
+    @Schema(title = "注册IP")
     private String registerIp;
 
-    @Schema(description = "最后一次登录IP")
+    @Schema(title = "最后一次登录IP")
     private String loginIp;
 
-    @Schema(description = "最后一次登录时间")
+    @Schema(title = "最后一次登录时间")
     private Date lastLoginTime;
 
-    @Schema(description = "二次验证秘钥")
+    @Schema(title = "二次验证秘钥")
     private String googleAuthSecret;
 
-    @Schema(description = "是否启用二次验证")
+    @Schema(title = "是否启用二次验证")
     private Boolean enableGoogleAuth = false;
 
-    @Schema(description = "备注")
+    @Schema(title = "备注")
     private String remark;
 
     @JsonIgnore
-    @Schema(description = "安全密码")
+    @Schema(title = "安全密码")
     @Embedded
     private ImmutableSecurityPassword securityPassword;
 
-    @Schema(description = "角色ID")
+    @Schema(title = "角色ID")
     @Convert(converter = LongSetConverter.class)
     private Set<Long> roleId = Sets.newHashSet();
 

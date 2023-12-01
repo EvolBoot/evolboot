@@ -23,22 +23,22 @@ import jakarta.persistence.Table;
 @Getter
 @NoArgsConstructor
 @ToString
-@Schema(description = "用户登录日志")
+@Schema(title = "用户登录日志")
 public class UserLoginLog extends JpaAbstractEntity<Long> implements AggregateRoot<UserLoginLog> {
 
     @Id
     private Long id;
 
-    @Schema(description = "用户ID")
+    @Schema(title = "用户ID")
     private Long userId;
 
     @JsonIgnore
     private String login_token;
 
-    @Schema(description = "登录IP")
+    @Schema(title = "登录IP")
     private String loginIp;
 
-    @Schema(description = "位置")
+    @Schema(title = "位置")
     private String physicalLocation;
 
     private void generateId() {

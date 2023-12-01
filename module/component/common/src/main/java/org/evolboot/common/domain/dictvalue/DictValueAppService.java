@@ -3,7 +3,7 @@ package org.evolboot.common.domain.dictvalue;
 import org.evolboot.core.data.Page;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
 import org.evolboot.common.domain.dictvalue.service.DictValueCreateFactory;
-import org.evolboot.common.domain.dictvalue.service.DictValueQuery;
+import org.evolboot.common.domain.dictvalue.dto.DictValueQueryRequest;
 import org.evolboot.common.domain.dictvalue.service.DictValueUpdateService;
 
 import java.util.List;
@@ -31,9 +31,9 @@ public interface DictValueAppService {
 
     List<DictValue> findAll();
 
-    List<DictValue> findAll(DictValueQuery query);
+    List<DictValue> findAll(DictValueQueryRequest query);
 
-    Page<DictValue> page(DictValueQuery query);
+    Page<DictValue> page(DictValueQueryRequest query);
 
 
     /**
@@ -42,7 +42,7 @@ public interface DictValueAppService {
      * @param query
      * @return
      */
-    Optional<DictValue> findOne(DictValueQuery query);
+    Optional<DictValue> findOne(DictValueQueryRequest query);
 
 
 }

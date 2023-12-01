@@ -5,7 +5,7 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.storage.domain.blob.entity.Blob;
-import org.evolboot.storage.domain.blob.service.BlobQuery;
+import org.evolboot.storage.domain.blob.dto.BlobQueryRequest;
 import org.evolboot.storage.domain.blob.entity.QBlob;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface JpaBlobRepository extends BlobRepository, ExtendedQuerydslPredicateExecutor<Blob, Long>, JpaRepository<Blob, Long> {
 
     @Override
-    default Page<Blob> page(BlobQuery query) {
+    default Page<Blob> page(BlobQueryRequest query) {
 
         QBlob q = QBlob.blob;
         JPQLQuery<Blob> jpqlQuery = getJPQLQuery();

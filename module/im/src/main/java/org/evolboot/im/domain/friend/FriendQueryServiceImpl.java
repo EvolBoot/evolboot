@@ -1,21 +1,14 @@
 package org.evolboot.im.domain.friend;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.im.ImAccessAuthorities;
-import org.evolboot.im.ImI18nMessage;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
-import org.evolboot.im.domain.friend.service.FriendCreateFactory;
 import org.evolboot.im.domain.friend.service.FriendSupportService;
-import org.evolboot.im.domain.friend.service.FriendUpdateService;
 
 import org.evolboot.im.domain.friend.entity.Friend;
-import org.evolboot.im.domain.friend.service.FriendQuery;
+import org.evolboot.im.domain.friend.dto.FriendQueryRequest;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -51,18 +44,18 @@ public class FriendQueryServiceImpl  implements FriendQueryService {
 
 
     @Override
-    public List<Friend> findAll(FriendQuery query) {
+    public List<Friend> findAll(FriendQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<Friend> page(FriendQuery query) {
+    public Page<Friend> page(FriendQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<Friend> findOne(FriendQuery query) {
+    public Optional<Friend> findOne(FriendQueryRequest query) {
         return repository.findOne(query);
     }
 }

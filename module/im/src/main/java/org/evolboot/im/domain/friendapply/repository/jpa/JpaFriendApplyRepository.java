@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.friendapply.entity.FriendApply;
-import org.evolboot.im.domain.friendapply.service.FriendApplyQuery;
+import org.evolboot.im.domain.friendapply.dto.FriendApplyQueryRequest;
 import org.evolboot.im.domain.friendapply.entity.QFriendApply;
 import org.evolboot.im.domain.friendapply.repository.FriendApplyRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public interface JpaFriendApplyRepository extends FriendApplyRepository, ExtendedQuerydslPredicateExecutor<FriendApply, Long>, JpaRepository<FriendApply, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        FriendApplyQuery query = (FriendApplyQuery) _query;
+        FriendApplyQueryRequest query = (FriendApplyQueryRequest) _query;
         QFriendApply q = QFriendApply.friendApply;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);

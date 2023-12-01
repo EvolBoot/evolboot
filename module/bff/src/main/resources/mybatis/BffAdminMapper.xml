@@ -3,13 +3,13 @@
 <mapper namespace="org.evolboot.bff.domain.admin.repository.BffAdminMapper">
 
     <select id="findUser"
-            resultType="org.evolboot.bff.domain.admin.response.BffUser">
+            resultType="org.evolboot.bff.domain.admin.dto.response.BffUser">
         select *
         from evoltb_identity_user
     </select>
 
     <select id="findStaffUser"
-            resultType="org.evolboot.bff.domain.admin.response.BffStaffUser">
+            resultType="org.evolboot.bff.domain.admin.dto.response.BffStaffUser">
 
         select *
         from (select *

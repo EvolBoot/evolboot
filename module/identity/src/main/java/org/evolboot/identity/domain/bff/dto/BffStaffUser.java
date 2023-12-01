@@ -1,5 +1,6 @@
 package org.evolboot.identity.domain.bff.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.identity.domain.user.entity.Gender;
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@Schema(title = "员工信息")
 public class BffStaffUser {
 
     private Long id;

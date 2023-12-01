@@ -2,7 +2,7 @@ package org.evolboot.im.domain.userconversation;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
-import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
+import org.evolboot.im.domain.userconversation.dto.UserConversationQuery;
 
 import java.util.Optional;
 import java.util.List;

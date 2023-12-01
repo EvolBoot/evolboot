@@ -1,21 +1,14 @@
 package org.evolboot.pay.domain.paygatewayaccount;
 
 import org.evolboot.core.data.Page;
-import org.evolboot.core.data.Sort;
-import org.evolboot.core.exception.DomainNotFoundException;
-import org.evolboot.pay.PayAccessAuthorities;
-import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.repository.PayGatewayAccountRepository;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountCreateFactory;
 import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountSupportService;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountUpdateService;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paygatewayaccount.service.PayGatewayAccountQuery;
+import org.evolboot.pay.domain.paygatewayaccount.dto.PayGatewayAccountQueryRequest;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -52,18 +45,18 @@ public class PayGatewayAccountQueryServiceImpl  implements PayGatewayAccountQuer
 
 
     @Override
-    public List<PayGatewayAccount> findAll(PayGatewayAccountQuery query) {
+    public List<PayGatewayAccount> findAll(PayGatewayAccountQueryRequest query) {
         return repository.findAll(query);
     }
 
     @Override
-    public Page<PayGatewayAccount> page(PayGatewayAccountQuery query) {
+    public Page<PayGatewayAccount> page(PayGatewayAccountQueryRequest query) {
         return repository.page(query);
     }
 
 
     @Override
-    public Optional<PayGatewayAccount> findOne(PayGatewayAccountQuery query) {
+    public Optional<PayGatewayAccount> findOne(PayGatewayAccountQueryRequest query) {
         return repository.findOne(query);
     }
 }

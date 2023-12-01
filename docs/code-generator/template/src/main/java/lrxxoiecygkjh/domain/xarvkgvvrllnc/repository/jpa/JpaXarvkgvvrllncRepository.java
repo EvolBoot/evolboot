@@ -5,7 +5,7 @@ import projectPackage.core.data.Query;
 import projectPackage.core.data.PageImpl;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.QXarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
-import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncQuery;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -31,7 +31,7 @@ import java.util.Date;
 @Repository
 public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, ExtendedQuerydslPredicateExecutor<Xarvkgvvrllnc, Keya2Akk5iV3n>, JpaRepository<Xarvkgvvrllnc, Keya2Akk5iV3n> {
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        XarvkgvvrllncQuery query = (XarvkgvvrllncQuery) _query;
+        XarvkgvvrllncQueryRequest query = (XarvkgvvrllncQueryRequest) _query;
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);

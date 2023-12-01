@@ -7,7 +7,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.identity.domain.bff.dto.BffStaffUser;
 import org.evolboot.identity.domain.bff.repository.IdentityBffMapper;
 import org.evolboot.identity.domain.bff.service.IdentityBffDownloadAuthoritiesService;
-import org.evolboot.identity.domain.bff.service.IdentityBffQuery;
+import org.evolboot.identity.domain.bff.dto.IdentityBffQueryRequest;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.role.RoleAppService;
@@ -50,7 +50,7 @@ public class IdentityBffAppServiceImpl implements IdentityBffAppService {
         this.roleAppService = roleAppService;
     }
 
-    public Page<BffStaffUser> findStaffUser(IdentityBffQuery query) {
+    public Page<BffStaffUser> findStaffUser(IdentityBffQueryRequest query) {
         return PageImpl.of(mapper.findStaffUser(query.toMybatisPage(), query));
     }
 

@@ -9,7 +9,7 @@ import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.userconversation.entity.QUserConversation;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
-import org.evolboot.im.domain.userconversation.service.UserConversationQuery;
+import org.evolboot.im.domain.userconversation.dto.UserConversationQuery;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

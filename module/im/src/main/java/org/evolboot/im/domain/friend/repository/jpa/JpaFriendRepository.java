@@ -8,7 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.friend.entity.Friend;
-import org.evolboot.im.domain.friend.service.FriendQuery;
+import org.evolboot.im.domain.friend.dto.FriendQueryRequest;
 import org.evolboot.im.domain.friend.entity.QFriend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public interface JpaFriendRepository extends FriendRepository, ExtendedQuerydslPredicateExecutor<Friend, Long>, JpaRepository<Friend, Long> {
 
     default <U, Q extends Query> JPQLQuery<U> fillQueryParameter(Q _query, Expression<U> select) {
-        FriendQuery query = (FriendQuery) _query;
+        FriendQueryRequest query = (FriendQueryRequest) _query;
         QFriend q = QFriend.friend;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.id.desc());
         jpqlQuery.select(select).from(q);

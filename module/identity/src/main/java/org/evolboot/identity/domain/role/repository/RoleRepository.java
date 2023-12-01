@@ -4,7 +4,7 @@ import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
 import org.evolboot.identity.domain.role.entity.Role;
-import org.evolboot.identity.domain.role.service.RoleQuery;
+import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 
 import java.util.List;
 import java.util.Optional;

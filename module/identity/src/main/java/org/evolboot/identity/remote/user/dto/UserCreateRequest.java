@@ -15,11 +15,11 @@ import jakarta.validation.constraints.NotEmpty;
 @Data
 public class UserCreateRequest {
     @NotEmpty(message = IdentityI18nMessage.User.USERNAME_NOT_EMPTY)
-    @Schema(description = "用户名", example = "evol")
+    @Schema(title = "用户名", example = "evol")
     private String username;
 
     @NotEmpty(message = IdentityI18nMessage.User.PASSWORD_NOT_EMPTY)
-    @Schema(description = "密码", example = "ZX1Oqhh/Sjnlv7oa5U8mj7ubt5YXcThTAeOcQI0BfI6+bg4goxBQjakLbLbI6u2OnEkbsOkv4YGgOOi+1gnRNMgdYwdUqWfL99mmwhHAksSlQNR3Byu7a5GJeS3G2abyf4Gu2TayRX8xFkSwv1ze+PioM+fvITC6Zmm38g7ClLw=")
+    @Schema(title = "密码", example = "ZX1Oqhh/Sjnlv7oa5U8mj7ubt5YXcThTAeOcQI0BfI6+bg4goxBQjakLbLbI6u2OnEkbsOkv4YGgOOi+1gnRNMgdYwdUqWfL99mmwhHAksSlQNR3Byu7a5GJeS3G2abyf4Gu2TayRX8xFkSwv1ze+PioM+fvITC6Zmm38g7ClLw=")
     private String password;
 
     private UserIdentity userIdentity;

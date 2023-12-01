@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.permission.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
@@ -52,7 +53,7 @@ public class FindPermissionByUserIdConvertTreeService {
         User user = userAppService.findById(userId);
         if (user.hasUserIdentity(UserIdentity.ROLE_ADMIN)) {
             return PermissionUtil.convertTree(repository.findAll(
-                    PermissionQuery.builder().type(type).build()
+                    PermissionQueryRequest.builder().type(type).build()
             ));
         }
         Set<Long> roleId = user.getRoleId();
@@ -65,7 +66,7 @@ public class FindPermissionByUserIdConvertTreeService {
         }
         Set<Long> collect = roles.stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toSet());
         return PermissionUtil.convertTree(repository.findAll(
-                PermissionQuery.builder().type(type).ids(collect).build()
+                PermissionQueryRequest.builder().type(type).ids(collect).build()
         ));
     }
 

@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.bff.domain.app.BffAppQuery;
+import org.evolboot.bff.domain.app.dto.BffAppQueryRequest;
 import org.evolboot.bff.domain.app.BffAppService;
 import org.evolboot.bff.domain.app.dto.BffUser;
 import org.evolboot.bff.remote.response.AppConfigResponse;
@@ -101,7 +101,7 @@ public class BffAppResourceV1 {
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
 
     ) {
-        Page<BffUser> bffUsers = service.findUser(BffAppQuery.builder()
+        Page<BffUser> bffUsers = service.findUser(BffAppQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .build());

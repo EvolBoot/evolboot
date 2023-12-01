@@ -3,7 +3,7 @@ package org.evolboot.identity.domain.user.relation.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.user.relation.Relation;
-import org.evolboot.identity.domain.user.relation.RelationQuery;
+import org.evolboot.identity.domain.user.relation.dto.RelationQueryRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +91,7 @@ public interface RelationRepository extends BaseRepository<Relation, Long> {
     List<Long> findAllAncestorIdAndOrderByDistance(Long descendant, Integer goeDistance, Integer limit);
 
 
-    Page<Relation> page(RelationQuery query);
+    Page<Relation> page(RelationQueryRequest query);
 
 
 }

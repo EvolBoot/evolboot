@@ -6,7 +6,7 @@ import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;
 import org.evolboot.storage.domain.blob.service.BlobCreateFactory;
-import org.evolboot.storage.domain.blob.service.BlobQuery;
+import org.evolboot.storage.domain.blob.dto.BlobQueryRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +46,7 @@ public class BlobAppServiceImpl implements BlobAppService {
     }
 
     @Override
-    public Page<Blob> page(BlobQuery query) {
+    public Page<Blob> page(BlobQueryRequest query) {
         return repository.page(query);
     }
 

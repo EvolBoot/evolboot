@@ -2,7 +2,7 @@ package org.evolboot.system.domain.userloginlog;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.system.domain.userloginlog.entity.UserLoginLog;
-import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
+import org.evolboot.system.domain.userloginlog.dto.UserLoginLogQueryRequest;
 
 /**
  * @author evol
@@ -10,7 +10,7 @@ import org.evolboot.system.domain.userloginlog.service.UserLoginLogQuery;
 public interface UserLoginLogAppService {
 
 
-    Page<UserLoginLog> page(UserLoginLogQuery query);
+    Page<UserLoginLog> page(UserLoginLogQueryRequest query);
 
 
 }

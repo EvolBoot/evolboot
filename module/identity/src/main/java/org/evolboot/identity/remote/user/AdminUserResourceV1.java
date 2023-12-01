@@ -13,7 +13,7 @@ import org.evolboot.identity.domain.user.UserAppService;
 import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
-import org.evolboot.identity.domain.user.service.UserQuery;
+import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.domain.user.service.UserStateChangeService;
 import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
@@ -166,7 +166,7 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
-        UserQuery query = UserQuery
+        UserQueryRequest query = UserQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)
@@ -296,7 +296,7 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
-        UserQuery query = UserQuery
+        UserQueryRequest query = UserQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)
