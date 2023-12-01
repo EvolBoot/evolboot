@@ -3,6 +3,7 @@ package org.evolboot.im.domain.friend.service;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.friend.dto.FriendRequestBase;
 import org.evolboot.im.domain.friend.entity.Friend;
 import org.evolboot.im.domain.friend.repository.FriendRepository;
 import org.springframework.stereotype.Service;

@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.common.domain.dictkey.DictKeyQueryService;
 import org.evolboot.common.domain.dictkey.entity.DictKey;
+import org.evolboot.common.domain.dictvalue.dto.DictValueRequestBase;
 import org.evolboot.common.domain.dictvalue.entity.DictValue;
 import org.evolboot.common.domain.dictvalue.repository.DictValueRepository;
 import org.springframework.stereotype.Service;

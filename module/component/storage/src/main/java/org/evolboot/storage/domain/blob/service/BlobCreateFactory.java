@@ -2,7 +2,7 @@ package org.evolboot.storage.domain.blob.service;
 
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.evolboot.storage.domain.blob.entity.Blob;
-import org.evolboot.storage.domain.blob.impl.StorageSystem;
+import org.evolboot.storage.domain.blob.adapter.StorageSystem;
 import org.evolboot.storage.domain.blob.intercept.FileLimitInterceptManager;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;

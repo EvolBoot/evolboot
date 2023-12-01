@@ -3,6 +3,7 @@ package org.evolboot.im.domain.userconversation.service;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.userconversation.dto.UserConversationRequestBase;
 import org.evolboot.im.domain.userconversation.entity.UserConversation;
 import org.evolboot.im.domain.userconversation.repository.UserConversationRepository;
 import org.springframework.stereotype.Service;

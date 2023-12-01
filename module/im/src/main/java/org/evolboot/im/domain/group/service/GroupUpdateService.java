@@ -3,6 +3,7 @@ package org.evolboot.im.domain.group.service;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.im.domain.group.dto.GroupRequestBase;
 import org.evolboot.im.domain.group.entity.Group;
 import org.evolboot.im.domain.group.repository.GroupRepository;
 import org.springframework.stereotype.Service;

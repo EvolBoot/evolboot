@@ -11,7 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.evolboot.core.entity.AbstractEntity;
 import org.evolboot.core.entity.AggregateRoot;
 import org.evolboot.core.entity.IdGenerate;
-import org.evolboot.storage.domain.blob.impl.StorageBlob;
+import org.evolboot.storage.domain.blob.adapter.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.springframework.util.DigestUtils;
 

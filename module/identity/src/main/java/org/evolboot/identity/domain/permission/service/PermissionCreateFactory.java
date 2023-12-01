@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.permission.service;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.identity.domain.permission.dto.PermissionRequestBase;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.springframework.stereotype.Service;

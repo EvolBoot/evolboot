@@ -22,7 +22,6 @@ public interface ConversationRepository extends BaseRepository<Conversation, Lon
 
     Optional<Conversation> findByRelationId(String relationId);
 
-
     void deleteById(Long id);
 
     List<Conversation> findAll();

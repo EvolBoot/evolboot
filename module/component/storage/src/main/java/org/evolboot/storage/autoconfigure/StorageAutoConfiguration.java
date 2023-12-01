@@ -1,13 +1,13 @@
 package org.evolboot.storage.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.storage.domain.blob.impl.StorageSystem;
-import org.evolboot.storage.domain.blob.impl.aliyun.AliyunStorageSystem;
-import org.evolboot.storage.domain.blob.impl.local.LocalStorageSystem;
-import org.evolboot.storage.domain.blob.impl.minio.MinioStorageSystem;
-import org.evolboot.storage.domain.blob.impl.qcloud.QCloudStorageSystem;
-import org.evolboot.storage.domain.blob.impl.qiniu.QiniuStorageSystem;
-import org.evolboot.storage.domain.blob.impl.staticserver.StaticServerStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.StorageSystem;
+import org.evolboot.storage.domain.blob.adapter.aliyun.AliyunStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.local.LocalStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.minio.MinioStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.qcloud.QCloudStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.qiniu.QiniuStorageSystem;
+import org.evolboot.storage.domain.blob.adapter.staticserver.StaticServerStorageSystem;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
