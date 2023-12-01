@@ -1,5 +1,6 @@
 package org.evolboot.im.remote.chatrecord;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.DomainId;
@@ -87,11 +88,23 @@ public class AdminChatRecordResourceV1 {
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<ChatRecord>> page(
+            @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
+
+            @Parameter(description = "每页数量")
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+
+            @Parameter(description = "聊天记录ID")
             @RequestParam(required = false) Long id,
+
+            @Parameter(description = "起始时间")
             @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+
+            @Parameter(description = "结束时间")
+            @RequestParam(required = false) Date endDate,
+
+            @Parameter(description = "搜索关键字")
+            @RequestParam(required = false) String keyword
     ) {
         ChatRecordQueryRequest query = ChatRecordQueryRequest
                 .builder()

@@ -88,11 +88,22 @@ public class AdminXarvkgvvrllncResourceV1 {
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Xarvkgvvrllnc>> page(
+            @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
+
+            @Parameter(description = "每页数量")
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+
+            @Parameter(description = "模板ID")
             @RequestParam(required = false) Keya2Akk5iV3n id,
+
+            @Parameter(description = "起始时间")
             @RequestParam(required = false) Date startDate,
+
+            @Parameter(description = "结束时间")
             @RequestParam(required = false) Date endDate,
+
+            @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
     ) {
         XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
@@ -113,9 +124,16 @@ public class AdminXarvkgvvrllncResourceV1 {
     @GetMapping("/all")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<List<Xarvkgvvrllnc>> findAll(
+            @Parameter(description = "模板ID")
             @RequestParam(required = false) Keya2Akk5iV3n id,
+
+            @Parameter(description = "起始时间")
             @RequestParam(required = false) Date startDate,
+
+            @Parameter(description = "结束时间")
             @RequestParam(required = false) Date endDate,
+
+            @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
     ) {
         XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest

@@ -1,6 +1,7 @@
 package org.evolboot.identity.remote.user;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
@@ -20,6 +21,7 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -156,14 +158,18 @@ public class AdminUserResourceV1 {
     public ResponseModel<Page<User>> getUsers(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
-            @RequestParam(required = false, name = "user_id") Long userId,
+            @RequestParam(required = false) Long userId,
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String mobile,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false, name = "register_ip") String registerIp,
-            @RequestParam(required = false, name = "inviter_user_id") Long inviterUserId,
-            @RequestParam(required = false, name = "user_type") UserType userType,
+            @RequestParam(required = false) String registerIp,
+            @RequestParam(required = false) Long inviterUserId,
+            @RequestParam(required = false) UserType userType,
+
+            @Parameter(description = "排序字段")
             @RequestParam(required = false) String orderField,
+
+            @Parameter(description = "排序方向")
             @RequestParam(required = false) Direction order
     ) {
         UserQueryRequest query = UserQueryRequest
@@ -287,7 +293,7 @@ public class AdminUserResourceV1 {
     public ResponseModel<Page<User>> getStaff(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
-            @RequestParam(required = false, name = "user_id") Long userId,
+            @RequestParam(required = false) Long userId,
             @RequestParam(required = false) String key,
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String mobile,

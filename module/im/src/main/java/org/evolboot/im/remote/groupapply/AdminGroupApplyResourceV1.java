@@ -1,6 +1,7 @@
 package org.evolboot.im.remote.groupapply;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
@@ -88,11 +89,23 @@ public class AdminGroupApplyResourceV1 {
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<GroupApply>> page(
+            @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
+
+            @Parameter(description = "每页数量")
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
+
+            @Parameter(description = "群申请ID")
             @RequestParam(required = false) Long id,
+
+            @Parameter(description = "起始时间")
             @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+
+            @Parameter(description = "结束时间")
+            @RequestParam(required = false) Date endDate,
+
+            @Parameter(description = "搜索关键字")
+            @RequestParam(required = false) String keyword
     ) {
         GroupApplyQueryRequest query = GroupApplyQueryRequest
                 .builder()
