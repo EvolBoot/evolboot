@@ -112,9 +112,9 @@ public class UserCreateFactory {
                 .build();
 
         // 如果是员工，且存在角色信息,则更新
-        if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleId())) {
-            roleQueryService.mustExist(request.getRoleId());
-            user.addRoleId(request.getRoleId());
+        if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleIds())) {
+            roleQueryService.mustExist(request.getRoleIds());
+            user.addRoleId(request.getRoleIds());
         }
 
         repository.save(user);
@@ -188,7 +188,7 @@ public class UserCreateFactory {
         private String nickname;
         private DeviceType deviceType;
         private Gender gender;
-        private Set<Long> roleId;
+        private Set<Long> roleIds;
 
         public String getUsername() {
             return ExtendObjects.trimToNull(username);

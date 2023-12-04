@@ -50,7 +50,7 @@ public class UserCreateStaffRequest {
                 .gender(gender)
                 .state(state)
                 .remark(remark)
-                .roleId(roleId)
+                .roleIds(roleId)
                 .userIdentity(UserIdentity.ROLE_STAFF)
                 .registerIp(ip)
                 .build();
