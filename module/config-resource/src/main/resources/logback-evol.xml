@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <springProperty scope="context" name="logging.filename" source="logging.filename"/>
-
+    <!-- 日志目录 -->
+    <property name="LOG_PATH" value="/opt/logs/evol"/>
 
     <!-- 控制台日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -13,7 +14,7 @@
     <!-- 默认日志文件 -->
     <appender name="DEFAULT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/opt/logs/evol/${logging.filename}/default_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${logging.filename}/default_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
             <maxHistory>30</maxHistory>
             <maxFileSize>1GB</maxFileSize>
@@ -38,7 +39,7 @@
     <!-- 错误日志文件 -->
     <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/opt/logs/evol/${logging.filename}/error_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${logging.filename}/error_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
             <maxHistory>30</maxHistory>
             <maxFileSize>1GB</maxFileSize>
@@ -69,7 +70,7 @@
     <!-- 短信日志 -->
     <appender name="SMS_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/opt/logs/evol/${logging.filename}/sms_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${logging.filename}/sms_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
             <maxHistory>30</maxHistory>
             <maxFileSize>1GB</maxFileSize>
@@ -94,7 +95,7 @@
     <!-- 支付日志 -->
     <appender name="PAYMENT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/opt/logs/evol/${logging.filename}/payment_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${logging.filename}/payment_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
             <maxHistory>30</maxHistory>
             <maxFileSize>1GB</maxFileSize>
@@ -119,7 +120,7 @@
     <!-- 注册IP日志 -->
     <appender name="REGISTER_IP_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/opt/logs/evol/${logging.filename}/register_ip_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${logging.filename}/register_ip_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
             <maxHistory>30</maxHistory>
             <maxFileSize>1GB</maxFileSize>
@@ -135,8 +136,6 @@
     <logger name="org.springframework.orm.jpa" level="INFO"/>
     <logger name="org.evolboot" level="INFO"/>
     <logger name="org.springframework.web" level="INFO"/>
-    <!--    <logger name="org.hibernate.SQL" level="INFO"/>-->
-    <!--    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>-->
 
 
     <!--  短信日志  -->
