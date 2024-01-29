@@ -44,7 +44,7 @@
         <querydsl.version>5.0.0</querydsl.version>
         <hikaricp.version>5.0.0</hikaricp.version>
         <netty-socketio.version>1.7.23</netty-socketio.version>
-        <swagger-core.version>2.2.8</swagger-core.version>
+        <swagger-core.version>2.2.19</swagger-core.version>
         <redisson.version>3.24.3</redisson.version>
     </properties>
     <dependencyManagement>
