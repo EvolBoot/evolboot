@@ -32,7 +32,7 @@ public class GoogleAuthenticatorAuthenticationProvider implements Authentication
             Boolean authcode = GoogleAuthenticator.authcode(token.getGoogleAuthenticatorCode(), googleAuthenticatorSecret);
             Assert.isTrue(authcode, "谷歌验证码错误");
         }
-        return new AccessToken(userInfo.getUserId(), userInfo.getAuthorities());
+        return new AccessToken(userInfo.getUserId(), userInfo.getNickname(), userInfo.getAuthorities());
 
     }
 

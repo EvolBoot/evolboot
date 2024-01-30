@@ -26,14 +26,17 @@ public class AccessToken {
 
     private Long principalId;
 
+    private String principalName;
+
     private String loginIp;
 
     private Set<String> authorities = new HashSet<>();
 
     @Builder
-    public AccessToken(Long principalId, Set<String> authorities) {
+    public AccessToken(Long principalId, String principalName, Set<String> authorities) {
         Assert.notNull(principalId, IdentityI18nMessage.User.userIdNotNull());
         this.principalId = principalId;
+        this.principalName = principalName;
         this.authorities = authorities.stream().filter(authorization -> !authorization.isBlank()).collect(Collectors.toSet());
     }
 

@@ -19,6 +19,8 @@ public class EvolSession implements Serializable {
 
     private Long principalId;
 
+    private String principalName;
+
     /**
      * 设备信息
      */
@@ -30,7 +32,8 @@ public class EvolSession implements Serializable {
      */
     private Set<String> authorities;
 
-    public EvolSession(Long principalId) {
+    public EvolSession(Long principalId, String principalName) {
         this.principalId = principalId;
+        this.principalName = principalName;
     }
 }

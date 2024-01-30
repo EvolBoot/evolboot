@@ -29,7 +29,7 @@ public class LoginService {
     public Response execute(Request request) {
         EvolSession evolSession = repository.findByUserId(request.getUserId());
         if (evolSession == null) {
-            evolSession = new EvolSession(request.getUserId());
+            evolSession = new EvolSession(request.getUserId(), request.getNickname());
         }
         String token = IdGenerate.stringId();
         evolSession.getDevices().put(token, new EvolSessionDevice(request.getLoginIp(), token));
@@ -53,6 +53,8 @@ public class LoginService {
     public static class Request {
 
         private Long userId;
+
+        private String nickname;
 
         private String loginIp;
 

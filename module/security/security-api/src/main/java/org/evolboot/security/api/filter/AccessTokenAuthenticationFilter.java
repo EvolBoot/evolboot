@@ -52,7 +52,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             // 测试模式下
             if (securityDefaultConfigProperties.getTestMode() && tokenValue.startsWith(securityDefaultConfigProperties.getTestKey())) {
                 Long userId = Long.parseLong(tokenValue.replace(securityDefaultConfigProperties.getTestKey() + "_", ""));
-                evolSession = new EvolSession(userId);
+                evolSession = new EvolSession(userId, "Test");
                 evolSession.setAuthorities(ALL_USER_IDENTITY);
                 setAuthentication(tokenValue, evolSession);
                 return;

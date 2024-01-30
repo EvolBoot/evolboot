@@ -29,7 +29,7 @@ public class ImageCaptchaAuthenticationProvider implements AuthenticationProvide
         ImageCaptchaAuthenticationToken token = (ImageCaptchaAuthenticationToken) authenticationToken;
         captchaClient.verifyImageCaptchaIsTrue(token.getImageCaptchaToken(), token.getImageCaptchaCode());
         IdentityClient.UserInfo userInfo = identityClient.findByUsernameOrMobileOrEmailAndEncodePassword(token.getUsername(), token.getPassword());
-        return new AccessToken(userInfo.getUserId(), userInfo.getAuthorities());
+        return new AccessToken(userInfo.getUserId(), userInfo.getNickname(), userInfo.getAuthorities());
     }
 
 

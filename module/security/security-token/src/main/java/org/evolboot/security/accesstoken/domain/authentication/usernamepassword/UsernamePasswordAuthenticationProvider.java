@@ -29,7 +29,7 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authenticationToken;
         try {
             IdentityClient.UserInfo userInfo = identityClient.findByUsernameOrMobileOrEmailAndEncodePassword(token.getUsername(), token.getEncodePassword());
-            return new AccessToken(userInfo.getUserId(), userInfo.getAuthorities());
+            return new AccessToken(userInfo.getUserId(), userInfo.getNickname(), userInfo.getAuthorities());
         } catch (Exception e) {
             throw new AccessTokenException(AccessTokenI18nMessage.authenticationError());
         }

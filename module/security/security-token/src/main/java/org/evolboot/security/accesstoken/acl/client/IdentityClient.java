@@ -33,6 +33,8 @@ public interface IdentityClient {
 
         private Long userId;
 
+        private String nickname;
+
         private Boolean enableGoogleAuthenticator;
 
         private String googleAuthenticatorSecret;

@@ -87,7 +87,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
 
 //        kickOutUser(accessToken);// 踢除其他用户下线
 
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessToken.getPrincipalName(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         loginEvent(accessToken);
         return accessToken;
@@ -108,7 +108,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
     @Deprecated
     public AccessToken registerAndGetAccessToken(UserRegisterService.Request request) {
         AccessToken accessToken = registerUserAndGetAccessToken.execute(request);
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), request.getRegisterIp(), accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessToken.getPrincipalName(), request.getRegisterIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         return accessToken;
     }

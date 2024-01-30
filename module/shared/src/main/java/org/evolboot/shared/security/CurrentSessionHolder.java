@@ -27,6 +27,14 @@ public class CurrentSessionHolder {
         return getSession().getPrincipalId();
     }
 
+    /**
+     * 主体昵称
+     * @return
+     */
+    public static String getPrincipalName() {
+        return getSession().getPrincipalName();
+    }
+
     private static EvolSession getSession() {
         EvolSession evolSession = contextHolder.get();
         if (evolSession == null) {
