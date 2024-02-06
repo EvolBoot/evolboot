@@ -141,10 +141,6 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
 
                 return handleMissingServletRequestPartException((MissingServletRequestPartException) ex, request, response, handler);
 
-            } else if (ex instanceof BindException) {
-
-                return handleBindException((BindException) ex, request, response, handler);
-
             } else if (ex instanceof InvalidDataAccessApiUsageException) {
 
                 return handleInvalidDataAccessApiUsageException((InvalidDataAccessApiUsageException) ex, request, response, handler);
@@ -287,7 +283,7 @@ public abstract class DefaultCoreHandlerExceptionResolver extends org.springfram
     protected ModelAndView handleDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request, HttpServletResponse response, Object handler) {
         String msg = CoreI18nMessage.dataIntegrityViolationException();
         String message = ex.getMostSpecificCause().getMessage();
-        if (message.contains(".PRIMARY")) {
+        if (message.contains(".PRIMARY") || message.contains("Duplicate")) {
             msg = CoreI18nMessage.alreadyExistException();
         }
         handlerJsonMessage(response, msg, ex);

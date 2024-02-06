@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 自定义实现的回查
+ *
  * @author evol
  */
 @Slf4j
@@ -33,6 +35,10 @@ public class RedisMQMessageHandle implements Runnable {
     private final static long TRANSACTION_TIMEOUT = 30 * 60;
     // 延时消息超时时间
     private final static long DELAY_TIME_TIMEOUT = 24 * 60 * 60;
+
+
+    // 默认每次读取消息的数量
+    private final int GET_MESSAGE_COUNT = 100;
 
     private final String key;
     private final String group;
@@ -69,17 +75,16 @@ public class RedisMQMessageHandle implements Runnable {
         log.info("消息队列:Redis:{},{}，一共有{}条pending消息，最大ID={}，最小ID={}", key, groupName, totalPendingMessages, minMessageId, maxMessageId);
         //每个消费者的pending消息数量
         Map<String, Long> pendingMessagesPerConsumer = pendingMessagesSummary.getPendingMessagesPerConsumer();
-        pendingMessagesPerConsumer.entrySet().forEach(entry -> {
+        pendingMessagesPerConsumer.forEach((consumer, value) -> {
             // 消费者
-            String consumer = entry.getKey();
             // 消费者的pending消息数量
-            long consumerTotalPendingMessages = entry.getValue();
+            long consumerTotalPendingMessages = value;
 
             log.info("消息队列:Redis:消费者:{}，一共有{}条pending消息", consumer, consumerTotalPendingMessages);
 
             if (consumerTotalPendingMessages > 0) {
                 // 读取消费者pending队列的记录，
-                PendingMessages pendingMessages = streamOperations.pending(key, Consumer.from(group, consumer));
+                PendingMessages pendingMessages = streamOperations.pending(key, Consumer.from(group, consumer), Range.unbounded(), GET_MESSAGE_COUNT);
                 // 遍历所有pending消息的详情
                 pendingMessages.forEach(pendingMessage -> {
                     // 消息的ID
@@ -95,7 +100,6 @@ public class RedisMQMessageHandle implements Runnable {
                     } else {
                         MapRecord<String, String, String> message = mapRecords.get(0);
                         String key = message.getValue().keySet().stream().findFirst().get();
-                        System.out.println(message.getValue().get(key));
                         MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), MqMessageUtil.getMessageClass(key));
                         if (mqMessage instanceof TransactionMQMessage) {
                             handleTransactionMessage((TransactionMQMessage) mqMessage, recordId);
@@ -128,7 +132,6 @@ public class RedisMQMessageHandle implements Runnable {
             // 确认后会自动删除
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
         }
-
     }
 
     private void handleDelayTimeMessage(DelayMQMessage mqMessage, RecordId recordId) {

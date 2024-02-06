@@ -21,6 +21,13 @@ import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 import java.time.Duration;
 
 /**
+ * Redis MQ 里面有两种定时器（线程）
+ * 一种是 StreamMessageListenerContainer 自带的，配置 pollTimeout(Duration.ofSeconds(1)) 拉取信息，
+ * 一种是自己实现的，用来简单处理 延时消息和事务消息。
+ * 每个消息（实时消息，延时消息，事务消息）都有自己的队列
+ * 当收到实时消息时，处理，如果抛出了异常，则转为延时消息，通过自定义的线程去定时拉取，然后转为实时消息继续处理。
+ * 当收到事务消息时，判断是否事务是否结束（通过数据库中的事务ID），如果结束，则转为实时消息
+ * 当收到延时消息时，判断时间是否到了，如果到了转为实时消息，如果没到，则不管。
  * @author evol
  */
 @Configuration
