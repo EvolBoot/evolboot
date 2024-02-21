@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author evol
  */
-@Table(name = "gh_pay_gateway_account")
+@Table(name = "evoltb_pay_gateway_account")
 @Getter
 @Slf4j
 @NoArgsConstructor

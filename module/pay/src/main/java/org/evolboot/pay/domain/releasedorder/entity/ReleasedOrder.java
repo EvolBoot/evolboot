@@ -29,7 +29,7 @@ import static org.evolboot.shared.pay.ReleasedOrderState.WAIT;
  *
  * @author evol
  */
-@Table(name = "gh_pay_released_order")
+@Table(name = "evoltb_pay_released_order")
 @Getter
 @Slf4j
 @NoArgsConstructor
