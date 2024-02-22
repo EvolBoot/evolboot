@@ -16,7 +16,7 @@ public class RedisDelayTimeListenerMessage implements StreamListener<String, Map
     @Override
     public void onMessage(MapRecord<String, String, String> message) {
         String key = message.getValue().keySet().stream().findFirst().get();
-        log.info("消息队列:Redis:延时消息:{},{},不用管,等待定时处理", message.getId(), key);
+        log.debug("消息队列:Redis:延时消息:{},{},不用管,等待定时处理", message.getId(), key);
     }
 
 

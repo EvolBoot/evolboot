@@ -19,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -43,7 +44,6 @@ public class OperationLogAspect {
     @Around("logPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         long requestId = IdGenerate.longId();
-        log.info("请求ID:{}", requestId);
         long beginTime = System.currentTimeMillis();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         MethodSignature signature = (MethodSignature) point.getSignature();
@@ -79,12 +79,12 @@ public class OperationLogAspect {
 
         try {
             //执行方法
-            log.info("请求ID:{}, 请求人:{}, 请求URL: {}, 请求方法:{},类方法: {} 参数:{} ,IP:{} ", requestId, userId, requestUrl, httpMethod, classMethod, params, ip);
+            log.info("日志记录：请求ID:{}, 请求人:{}, 请求URL: {}, 请求方法:{},类方法: {} 参数:{} ,IP:{} ", requestId, userId, requestUrl, httpMethod, classMethod, params, ip);
             Object result = point.proceed();
             //执行时长(毫秒)
             long endTime = System.currentTimeMillis();
             long time = endTime - beginTime;
-            log.info("请求ID:{}, 执行时间:{}, 执行结果:{} ", requestId, time, result);
+            log.debug("日志记录:请求ID:{}, 执行时间:{}, 执行结果:{} ", requestId, time, result);
             //保存日志
             OperationLog operationLog = OperationLog.builder()
                     .id(requestId)

@@ -39,7 +39,7 @@ public class RedisRealTimeListenerMessage implements StreamListener<String, MapR
 
         try {
             String key = message.getValue().keySet().stream().findFirst().get();
-            log.info("消息队列:Redis:收到消息:{},{},{},{},线程ID:{}", message.getStream(), message.getId(), key, message.getValue().get(key), Thread.currentThread().getId());
+            log.debug("消息队列:Redis:收到消息:{},{},{},{},线程ID:{}", message.getStream(), message.getId(), key, message.getValue().get(key), Thread.currentThread().getId());
             MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), MqMessageUtil.getMessageClass(key));
             eventPublisher.publishEvent(mqMessage);
             mqMessageRedisTemplate.opsForStream().acknowledge(redisStreamProperty.getKeyForRealTime(), redisStreamProperty.getGroup(), message.getId());

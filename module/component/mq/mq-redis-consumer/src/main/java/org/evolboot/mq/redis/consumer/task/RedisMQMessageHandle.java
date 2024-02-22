@@ -96,7 +96,7 @@ public class RedisMQMessageHandle implements Runnable {
                     log.info("消息队列:Redis:消息，id={}, elapsedTimeSinceLastDelivery={}, deliveryCount={}", recordId, elapsedTimeSinceLastDelivery, deliveryCount);
                     List<MapRecord<String, String, String>> mapRecords = streamOperations.range(key, Range.closed(recordId.getValue(), recordId.getValue()));
                     if (ExtendObjects.isEmpty(mapRecords)) {
-                        log.info("消息队列:Redis:这个消息取不到:{}", recordId.getValue());
+                        log.debug("消息队列:Redis:这个消息取不到:{}", recordId.getValue());
                     } else {
                         MapRecord<String, String, String> message = mapRecords.get(0);
                         String key = message.getValue().keySet().stream().findFirst().get();
@@ -112,7 +112,7 @@ public class RedisMQMessageHandle implements Runnable {
                 });
             }
         });
-        log.info("消息队列:Redis:结束");
+        log.debug("消息队列:Redis:结束");
     }
 
 
@@ -121,14 +121,14 @@ public class RedisMQMessageHandle implements Runnable {
         long elapsedTimeSinceLastDeliverySeconds = (System.currentTimeMillis() - messageCreateTimestamp) / 1000;
 
         if (mqTransactionAppService.existsById(mqMessage.getMqTransactionId())) {
-            log.info("消息队列:Redis:事务消息:{},{},消息回查,已查到,转为普通消息处理", mqMessage.getMqTransactionId(), recordId.getValue());
+            log.debug("消息队列:Redis:事务消息:{},{},消息回查,已查到,转为普通消息处理", mqMessage.getMqTransactionId(), recordId.getValue());
             // 转为普通消息
             redisMQMessagePublisher.send(mqMessage);
             // 确认后会自动删除
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
 
         } else if (elapsedTimeSinceLastDeliverySeconds >= TRANSACTION_TIMEOUT) {
-            log.info("消息队列:Redis:事务消息:超过时间:{}, 删除", elapsedTimeSinceLastDeliverySeconds);
+            log.debug("消息队列:Redis:事务消息:超过时间:{}, 删除", elapsedTimeSinceLastDeliverySeconds);
             // 确认后会自动删除
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
         }
@@ -155,13 +155,13 @@ public class RedisMQMessageHandle implements Runnable {
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
 
         } else if (elapsedTimeSinceLastDeliverySeconds >= DELAY_TIME_TIMEOUT) {
-            log.info("消息队列:Redis:延迟消息:{}, 超过时间:{}, 删除", recordId.getValue(), elapsedTimeSinceLastDeliverySeconds);
+            log.debug("消息队列:Redis:延迟消息:{}, 超过时间:{}, 删除", recordId.getValue(), elapsedTimeSinceLastDeliverySeconds);
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
         }
     }
 
     private void handleRealTimeMessage(MQMessage mqMessage, RecordId recordId) {
-        log.info("消息队列:Redis:实时消息,重发:{}", recordId.getValue());
+        log.debug("消息队列:Redis:实时消息,重发:{}", recordId.getValue());
         // 转为普通消息
         redisMQMessagePublisher.send(mqMessage);
         // 确认消息

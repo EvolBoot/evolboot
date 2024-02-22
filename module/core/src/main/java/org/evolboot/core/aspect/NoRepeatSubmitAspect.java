@@ -40,7 +40,7 @@ public class NoRepeatSubmitAspect {
         String crypt = DigestUtils.md5DigestAsHex(params.getBytes());
         String path = pjp.getSignature().getDeclaringTypeName() + "." + pjp.getSignature().getName();
         String key = REDIS_KEY + path + crypt;
-        log.info("验证是否重复提交:{}", key);
+        log.debug("验证是否重复提交:{}", key);
         try {
             if (redisClientAppService.setIfAbsent(key, "true", nrs.timeout(), nrs.timeUnit())) {
                 return pjp.proceed();

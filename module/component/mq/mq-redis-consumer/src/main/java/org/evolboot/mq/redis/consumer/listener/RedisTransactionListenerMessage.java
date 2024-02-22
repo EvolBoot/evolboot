@@ -16,7 +16,7 @@ public class RedisTransactionListenerMessage implements StreamListener<String, M
     @Override
     public void onMessage(MapRecord<String, String, String> message) {
         String key = message.getValue().keySet().stream().findFirst().get();
-        log.info("消息队列:Redis:事务消息:{},{},不用管,等待回查", message.getId(), key);
+        log.debug("消息队列:Redis:事务消息:{},{},不用管,等待回查", message.getId(), key);
     }
 
 }
