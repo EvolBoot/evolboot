@@ -50,7 +50,6 @@ public class RedisMQMessagePublisher implements MQMessagePublisher {
         if (message.getMessageCreateTimestamp() == null) {
             message.setMessageCreateTimestamp(System.currentTimeMillis());
         }
-        message.setMessageCreateTimestamp(System.currentTimeMillis());
         mqMessageRedisTemplate.addMessage(redisStreamProperty.getKeyForRealTime(), message);
     }
 

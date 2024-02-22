@@ -154,8 +154,6 @@ public class RedisMQMessageHandle implements Runnable {
             // 确认后会自动删除
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
 
-        } else if (elapsedTimeSinceLastDeliverySeconds < mqMessage.getDelayTimeSeconds()) {
-            log.debug("消息队列:Redis:延迟消息:{}, 时间不足:返回", recordId.getValue());
         } else if (elapsedTimeSinceLastDeliverySeconds >= DELAY_TIME_TIMEOUT) {
             log.info("消息队列:Redis:延迟消息:{}, 超过时间:{}, 删除", recordId.getValue(), elapsedTimeSinceLastDeliverySeconds);
             mqMessageRedisTemplate.opsForStream().acknowledge(key, group, recordId);
