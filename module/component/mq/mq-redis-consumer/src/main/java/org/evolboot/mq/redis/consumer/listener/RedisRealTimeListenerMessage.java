@@ -34,7 +34,6 @@ public class RedisRealTimeListenerMessage implements StreamListener<String, MapR
     }
 
     @Override
-    @Transactional
     public void onMessage(MapRecord<String, String, String> message) {
 
         try {
