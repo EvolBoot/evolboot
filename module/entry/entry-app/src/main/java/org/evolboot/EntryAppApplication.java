@@ -3,7 +3,9 @@ package org.evolboot;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.jpa.querydsl.QuerydslJpaRepositoryFactoryBean;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -17,6 +19,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class,
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {})})
 @EnableJpaRepositories(repositoryFactoryBeanClass = QuerydslJpaRepositoryFactoryBean.class)
+@EnableAutoConfiguration(exclude = { UserDetailsServiceAutoConfiguration.class }) // 禁用 Spring Security 默认生成的用户密码
 public class EntryAppApplication {
 
     public static void main(String[] args) {
