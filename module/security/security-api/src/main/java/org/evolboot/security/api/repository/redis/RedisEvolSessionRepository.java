@@ -82,8 +82,8 @@ public class RedisEvolSessionRepository implements EvolSessionRepository {
         if (evolSession == null) {
             return;
         }
-        evolSession.getDevices().forEach((key, value) -> {
-            stringRedisTemplate.delete(key);
+        evolSession.getDevices().forEach((token, value) -> {
+            stringRedisTemplate.delete(getTokenRedisKey(token));
         });
         redisTemplate.delete(userIdRedisKey);
     }
