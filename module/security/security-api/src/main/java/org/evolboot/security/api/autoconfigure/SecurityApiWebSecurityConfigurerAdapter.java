@@ -45,6 +45,7 @@ public class SecurityApiWebSecurityConfigurerAdapter {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
                 .csrf(CsrfConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .addFilterAfter(new AccessTokenAuthenticationFilter(securityAccessTokenAppService, securityDefaultConfigProperties), BasicAuthenticationFilter.class)
                 .build();
     }
