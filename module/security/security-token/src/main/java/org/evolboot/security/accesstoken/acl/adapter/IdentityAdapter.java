@@ -79,8 +79,8 @@ public class IdentityAdapter implements IdentityClient {
 
     @Override
     public UserInfo findByMobileAndSmsCode(UserRegisterService.Request request) {
+        captchaClient.verifyMobileCaptchaIsTrue(request.getMobilePrefix(), request.getMobile(), request.getCaptchaCode(), request.getCaptchaToken());
         if (userQueryService.existsByMobile(request.getMobile())) {
-            captchaClient.verifyMobileCaptchaIsTrue(request.getMobilePrefix(), request.getMobile(), request.getCaptchaCode(), request.getCaptchaToken());
             return findByMobile(request.getMobile());
         }
         return register(request);
