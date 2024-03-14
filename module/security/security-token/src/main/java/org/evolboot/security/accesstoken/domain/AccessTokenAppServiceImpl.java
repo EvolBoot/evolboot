@@ -43,10 +43,11 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
     public AccessToken authenticate(AccessTokenAuthenticateToken accessTokenAuthenticateToken) {
 
         AuthenticationToken token;
-        /**
-         * 手机验证码登录
-         */
+
         if (AuthenticationTokenType.MOBILE_CAPTCHA.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
+            /**
+             * 手机验证码登录
+             */
             token = new MobileCaptchaAuthenticationToken(
                     accessTokenAuthenticateToken.getMobilePrefix(),
                     accessTokenAuthenticateToken.getUsername(),
@@ -55,24 +56,27 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
                     accessTokenAuthenticateToken.getDeviceType(),
                     accessTokenAuthenticateToken.getIp()
             );
+
+        } else if (AuthenticationTokenType.GOOGLE_AUTHENTICATOR.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             /**
              * 谷歌验证码登录
              */
-        } else if (AuthenticationTokenType.GOOGLE_AUTHENTICATOR.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new GoogleAuthenticatorAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword(), accessTokenAuthenticateToken.getGoogleAuthenticatorCode()
             );
+
+        } else if (AuthenticationTokenType.USERNAME_EMAIL_MOBILE.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             /**
              * 普通账户密码登录
              */
-        } else if (AuthenticationTokenType.USERNAME_EMAIL_MOBILE.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             token = new UsernamePasswordAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword()
             );
+
+        } else {
             /**
              * 图片校验码+账号密码登录
              */
-        } else {
             token = new ImageCaptchaAuthenticationToken(
                     accessTokenAuthenticateToken.getUsername(),
                     accessTokenAuthenticateToken.getPassword(),
