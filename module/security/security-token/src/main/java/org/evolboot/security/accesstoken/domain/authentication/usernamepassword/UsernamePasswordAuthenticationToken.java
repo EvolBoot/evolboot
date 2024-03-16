@@ -15,9 +15,14 @@ public class UsernamePasswordAuthenticationToken implements AuthenticationToken 
     private String username;
     private String encodePassword;
 
+    private String imageCaptchaToken;
+
+    private String imageCaptchaCode;
+
+
 
     @Override
     public AuthenticationTokenType getAuthenticationTokenType() {
-        return AuthenticationTokenType.USERNAME_EMAIL_MOBILE;
+        return AuthenticationTokenType.PASSWORD;
     }
 }

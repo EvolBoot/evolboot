@@ -366,6 +366,9 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     }
 
     public void setState(UserState state) {
+        if (state == null) {
+            state = UserState.ACTIVE;
+        }
         this.state = state;
     }
 

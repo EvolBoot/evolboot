@@ -8,7 +8,7 @@ public enum AuthenticationTokenType {
     /**
      *
      */
-    USERNAME_EMAIL_MOBILE,
+    PASSWORD,
 
     /**
      * 短信验证
@@ -18,10 +18,5 @@ public enum AuthenticationTokenType {
     /**
      * 谷歌验证
      */
-    GOOGLE_AUTHENTICATOR,
-
-    /**
-     * 图片验证
-     */
-    IMAGE_CAPTCHA;
+    GOOGLE_AUTHENTICATOR;
 }

@@ -1,13 +1,13 @@
 package org.evolboot.security.accesstoken.domain;
 
 import org.evolboot.core.event.EventPublisher;
+import org.evolboot.core.exception.ExtendRuntimeException;
 import org.evolboot.identity.domain.user.service.UserRegisterService;
 import org.evolboot.security.accesstoken.acl.client.AccessTokenConfigClient;
 import org.evolboot.security.accesstoken.domain.authentication.AccessTokenAuthenticationManager;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.AuthenticationTokenType;
 import org.evolboot.security.accesstoken.domain.authentication.googleauthenticator.GoogleAuthenticatorAuthenticationToken;
-import org.evolboot.security.accesstoken.domain.authentication.imagecaptcha.ImageCaptchaAuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.mobilecaptcha.MobileCaptchaAuthenticationToken;
 import org.evolboot.security.accesstoken.domain.authentication.usernamepassword.UsernamePasswordAuthenticationToken;
 import org.evolboot.security.api.LoginService;
@@ -65,26 +65,16 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
                     accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword(), accessTokenAuthenticateToken.getGoogleAuthenticatorCode()
             );
 
-        } else if (AuthenticationTokenType.USERNAME_EMAIL_MOBILE.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
+        } else if (AuthenticationTokenType.PASSWORD.equals(accessTokenAuthenticateToken.getAuthenticationTokenType())) {
             /**
              * 普通账户密码登录
              */
             token = new UsernamePasswordAuthenticationToken(
-                    accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword()
+                    accessTokenAuthenticateToken.getUsername(), accessTokenAuthenticateToken.getPassword(), accessTokenAuthenticateToken.getCaptchaToken(), accessTokenAuthenticateToken.getCaptchaCode()
             );
 
         } else {
-            /**
-             * 图片校验码+账号密码登录
-             */
-            token = new ImageCaptchaAuthenticationToken(
-                    accessTokenAuthenticateToken.getUsername(),
-                    accessTokenAuthenticateToken.getPassword(),
-                    accessTokenAuthenticateToken.getCaptchaToken(),
-                    accessTokenAuthenticateToken.getCaptchaCode(),
-                    accessTokenAuthenticateToken.getDeviceType(),
-                    accessTokenAuthenticateToken.getIp()
-            );
+            throw new ExtendRuntimeException("认证方式不能为空");
         }
         AccessToken accessToken = accessTokenAuthenticationManager.authenticate(token);
         accessToken.setLoginIp(accessTokenAuthenticateToken.getIp());

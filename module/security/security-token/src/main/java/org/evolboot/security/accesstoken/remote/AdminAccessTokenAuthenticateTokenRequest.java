@@ -33,7 +33,7 @@ public class AdminAccessTokenAuthenticateTokenRequest {
                 .username(username)
                 .password(password)
                 .googleAuthenticatorCode(googleAuthenticatorCode)
-                .authenticationTokenType(AuthenticationTokenType.IMAGE_CAPTCHA)
+                .authenticationTokenType(AuthenticationTokenType.PASSWORD)
                 .captchaToken(captchaToken)
                 .captchaCode(captchaCode)
                 .ip(ip)
