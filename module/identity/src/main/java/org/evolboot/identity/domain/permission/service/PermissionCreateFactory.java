@@ -2,10 +2,13 @@ package org.evolboot.identity.domain.permission.service;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.evolboot.core.util.Assert;
 import org.evolboot.identity.domain.permission.dto.PermissionRequestBase;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  *
@@ -17,15 +20,18 @@ public class PermissionCreateFactory {
 
     private final PermissionRepository repository;
 
+
     public PermissionCreateFactory(CheckParentIdsService checkParentIdsService, PermissionRepository repository) {
         this.checkParentIdsService = checkParentIdsService;
         this.repository = repository;
     }
 
     public Permission create(Request request) {
-        checkParentIdsService.parentIdExist(request.getParentIds());
+        Optional<Permission> parent = repository.findById(request.getParentId());
+        Assert.isTrue(parent.isPresent(), "上级权限不存在");
+
         Permission permission = Permission.builder()
-                .parentIds(request.getParentIds())
+                .parentIds(parent.get().convertToParentIds())
                 .component(request.getComponent())
                 .name(request.getName())
                 .type(request.getType())

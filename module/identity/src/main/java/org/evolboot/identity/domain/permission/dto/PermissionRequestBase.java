@@ -15,9 +15,12 @@ import java.util.List;
 @Setter
 @Getter
 public class PermissionRequestBase {
+//
+//    @Schema(title = "上级", example = "[1]")
+//    private List<Long> parentIds;
 
-    @Schema(title = "上级", example = "[1]")
-    private List<Long> parentIds;
+    @Schema(title = "上级", example = "1")
+    private Long parentId;
 
     @Schema(title = "name", example = "name")
     private String name;

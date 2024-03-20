@@ -14,6 +14,8 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.ExtendObjects;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,6 +114,12 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
             sort = 0;
         }
         this.sort = sort;
+    }
+
+    public List<Long> convertToParentIds() {
+        List<Long> copy = new ArrayList<>(List.copyOf(parentIds));
+        copy.add(this.id);
+        return copy;
     }
 
     public void setComponent(String component) {
