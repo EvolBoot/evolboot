@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity;
 
 import projectPackage.core.lang.LocaleLanguage;
 import lombok.EqualsAndHashCode;

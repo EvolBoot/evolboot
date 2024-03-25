@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto;
 
 import lombok.Getter;
 import lombok.Setter;

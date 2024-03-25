@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto;
 
 
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncUpdateService;
