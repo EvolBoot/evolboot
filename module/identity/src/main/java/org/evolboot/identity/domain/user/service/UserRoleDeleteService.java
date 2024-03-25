@@ -40,7 +40,7 @@ public class UserRoleDeleteService {
         }
         users.forEach(user -> {
             // 移除角色
-            user.removeRoleId();
+            user.removeRoleId(roleId);
             // 踢下线
             securityAccessTokenClient.kickOut(user.getId());
         });

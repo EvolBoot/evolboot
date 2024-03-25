@@ -380,8 +380,8 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setState(UserState.LOCK);
     }
 
-    public void removeRoleId() {
-        this.roleId = null;
+    public void removeRoleId(Long roleId) {
+        this.roleId.remove(roleId);
     }
 
     @Override
