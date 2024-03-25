@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.listener;
 
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncSupportService;

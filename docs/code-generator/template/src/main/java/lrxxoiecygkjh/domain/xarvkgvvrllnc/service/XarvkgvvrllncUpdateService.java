@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.service.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service;
 
 
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package projectPackage.lrxxoiecygkjh.domain.service.xarvkgvvrllnc;
+package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service;
 
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
