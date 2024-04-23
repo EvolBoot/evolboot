@@ -5,6 +5,7 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendObjects;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,9 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
     private final QuerydslPredicateExecutor<T> querydslPredicateExecutor;
     private final Querydsl querydsl;
 
+    private JPAQueryFactory queryFactory;
+
+
     public QuerydslJpaBaseRepository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         this(entityInformation, entityManager, SimpleEntityPathResolver.INSTANCE);
     }
@@ -45,6 +49,8 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
         EntityPath<T> path = resolver.createPath(entityInformation.getJavaType());
         PathBuilder<T> builder = new PathBuilder<>(path.getType(), path.getMetadata());
         this.querydsl = new Querydsl(entityManager, builder);
+        this.queryFactory = new JPAQueryFactory(entityManager);
+
     }
 
     @Override
@@ -112,6 +118,11 @@ public class QuerydslJpaBaseRepository<T, ID extends Serializable> extends Simpl
         } else if (ExtendObjects.nonNull(defaultOrder)) {
             jpqlQuery.orderBy(defaultOrder);
         }
+    }
+
+    @Override
+    public JPAQueryFactory getQueryFactory() {
+        return queryFactory;
     }
 
     @Override

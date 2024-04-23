@@ -4,6 +4,7 @@ import com.querydsl.core.types.FactoryExpression;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.evolboot.core.data.Query;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,5 +35,8 @@ public interface ExtendedQuerydslPredicateExecutor<T, ID> extends QuerydslPredic
     <P, Q extends Query> JPQLQuery<P> getJPQLQuery(Q q);
 
     <P, Q extends Query> void orderBy(Q q, OrderSpecifier<?> defaultOrder, JPQLQuery<P> jpqlQuery);
+
+    JPAQueryFactory getQueryFactory();
+
 
 }
