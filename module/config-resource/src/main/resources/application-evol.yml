@@ -114,6 +114,14 @@ spring:
   jpa:
     show-sql: true
     open-in-view: true
+    properties:
+      hibernate:
+        generate_statistics: false
+        order_inserts: true
+        order_updates: true
+        jdbc:
+          batch_size: 500
+          batch_versioned_data: true
   kafka:
     consumer:
       bootstrap-servers: 192.168.5.10:9092
