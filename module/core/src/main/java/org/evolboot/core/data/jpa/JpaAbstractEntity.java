@@ -3,6 +3,8 @@ package org.evolboot.core.data.jpa;
 import lombok.Getter;
 import org.evolboot.core.entity.AbstractEntity;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
+
 import org.springframework.context.annotation.Scope;
 
 import jakarta.persistence.Column;
@@ -22,7 +24,8 @@ public abstract class JpaAbstractEntity<ID extends Serializable> extends Abstrac
     protected Long version;
 
     @Getter
-    protected Date createAt = new Date();
+    @CreationTimestamp
+    protected Date createAt;
 
     @UpdateTimestamp
     @Column(nullable = false)
