@@ -20,6 +20,7 @@ import org.evolboot.identity.domain.user.password.ReversiblePassword;
 import org.evolboot.identity.domain.user.password.UserEncryptPasswordService;
 import org.evolboot.identity.domain.user.relation.service.RelationCreateService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
+import org.evolboot.identity.domain.userid.UserIdAppService;
 import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
 import org.evolboot.shared.event.user.UserCreatedEvent;
 import org.evolboot.shared.lang.DeviceType;
@@ -52,19 +53,22 @@ public class UserCreateFactory {
      */
     private final UserIdGetNextService userIdGetNextService;
 
+    private final UserIdAppService userIdAppService;
+
     /**
      * 角色查询
      */
     private final RoleQueryService roleQueryService;
 
 
-    public UserCreateFactory(UserRepository repository, UserSupportService supportService, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationCreateService relationCreateService, UserIdGetNextService userIdGetNextService, RoleQueryService roleQueryService) {
+    public UserCreateFactory(UserRepository repository, UserSupportService supportService, EventPublisher eventPublisher, UserEncryptPasswordService userEncryptPasswordService, RelationCreateService relationCreateService, UserIdGetNextService userIdGetNextService, UserIdAppService userIdAppService, RoleQueryService roleQueryService) {
         this.repository = repository;
         this.supportService = supportService;
         this.eventPublisher = eventPublisher;
         this.userEncryptPasswordService = userEncryptPasswordService;
         this.relationCreateService = relationCreateService;
         this.userIdGetNextService = userIdGetNextService;
+        this.userIdAppService = userIdAppService;
         this.roleQueryService = roleQueryService;
     }
 
@@ -83,7 +87,7 @@ public class UserCreateFactory {
         // 检查邮箱，手机号，用户名等唯一性
         checkEmailOrMobileOrUsername(request);
 
-        Long id = userIdGetNextService.next();
+        Long id = userIdAppService.getNextUserId();
 
         String originalPassword;
         //TODO 如果密码为空,则产生一个随机密码,需要改
@@ -120,6 +124,7 @@ public class UserCreateFactory {
         repository.save(user);
         relationCreateService.execute(request.getInviterUserId(), user.id());
         eventPublisher.publishEvent(new UserCreatedEvent(user.id(), user.getUserIdentity()));
+        userIdAppService.use(id);
         return user;
     }
 
