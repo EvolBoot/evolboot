@@ -13,6 +13,8 @@
 
     <!-- 默认日志文件 -->
     <appender name="DEFAULT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 正在记录的日志文件的路径及文件名 -->
+        <file>${LOG_PATH}/${logging.filename}/default.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${logging.filename}/default_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
@@ -38,6 +40,7 @@
 
     <!-- 错误日志文件 -->
     <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${logging.filename}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${logging.filename}/error_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
@@ -69,6 +72,7 @@
 
     <!-- 短信日志 -->
     <appender name="SMS_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${logging.filename}/sms.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${logging.filename}/sms_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
@@ -94,6 +98,7 @@
 
     <!-- 支付日志 -->
     <appender name="PAYMENT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${logging.filename}/payment.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${logging.filename}/payment_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
@@ -119,6 +124,7 @@
 
     <!-- 注册IP日志 -->
     <appender name="REGISTER_IP_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${logging.filename}/register_ip.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${logging.filename}/register_ip_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <!-- 日志的保存时间，以天为单位 -->
