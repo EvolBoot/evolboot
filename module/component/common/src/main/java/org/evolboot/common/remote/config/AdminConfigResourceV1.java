@@ -47,7 +47,6 @@ public class AdminConfigResourceV1 {
 
 
     @Operation(summary = "获取系统配置")
-    @OperationLog("获取系统配置")
     @GetMapping("/config/system")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<SystemConfig> getSystem() {
@@ -70,7 +69,6 @@ public class AdminConfigResourceV1 {
 
 
     @Operation(summary = "获取关于配置")
-    @OperationLog("获取关于配置")
     @GetMapping("/config/about")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<AboutConfig> getAbout() {
@@ -92,7 +90,6 @@ public class AdminConfigResourceV1 {
 
 
     @Operation(summary = "获取短信配置")
-    @OperationLog("获取短信配置")
     @GetMapping("/config/sms")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<SmsConfig> getSms() {
