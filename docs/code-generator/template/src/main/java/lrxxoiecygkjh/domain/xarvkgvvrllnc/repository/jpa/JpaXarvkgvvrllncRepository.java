@@ -35,6 +35,12 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
         JPQLQuery<U> jpqlQuery = getJPQLQuery(_query, q.createAt.desc());
         jpqlQuery.select(select).from(q);
+        _fillQueryParameter(query, jpqlQuery);
+        return jpqlQuery;
+    }
+
+    default void _fillQueryParameter(XarvkgvvrllncQueryRequest query, JPQLQuery<?> jpqlQuery) {
+        QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
@@ -47,9 +53,7 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
         if (ExtendObjects.isNotBlank(query.getKeyword())) {
 //            jpqlQuery.where(q.name.eq(query.getKeyword()));
         }
-        return jpqlQuery;
     }
-
     @Override
     default List<Xarvkgvvrllnc> findAll() {
         QXarvkgvvrllnc q = QXarvkgvvrllnc.instantiationObjectName;
