@@ -30,4 +30,6 @@ public @interface NoRepeatSubmit {
      */
     TimeUnit timeUnit() default TimeUnit.SECONDS;
 
+    boolean useUserId() default true;
+
 }

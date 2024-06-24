@@ -35,6 +35,11 @@ public class CurrentSessionHolder {
         return getSession().getPrincipalName();
     }
 
+    public static boolean haveLoggedIn(){
+        return contextHolder.get() != null;
+    }
+
+
     private static EvolSession getSession() {
         EvolSession evolSession = contextHolder.get();
         if (evolSession == null) {
