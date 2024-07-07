@@ -61,7 +61,7 @@ public class AppSessionUserResourceV1 {
     }
 
     @Operation(summary = "注册并登录")
-    @OperationLog(value = "注册并登录", serializable = false)
+    @OperationLog(value = "注册并登录", excludeUnserializable = false)
     @PostMapping("/register")
     public ResponseModel<?> register(
             @RequestBody @Valid

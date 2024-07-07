@@ -21,7 +21,6 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -262,7 +261,7 @@ public class AdminUserResourceV1 {
     }
 
     @Operation(summary = "创建员工")
-    @OperationLog(value = "创建员工", serializable = false)
+    @OperationLog(value = "创建员工", excludeUnserializable = false)
     @PostMapping("/staff")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
     public ResponseModel<User> createStaff(

@@ -12,5 +12,5 @@ public @interface OperationLog {
 
     String value() default "";
 
-    boolean serializable() default true;
+    boolean excludeUnserializable() default true;
 }

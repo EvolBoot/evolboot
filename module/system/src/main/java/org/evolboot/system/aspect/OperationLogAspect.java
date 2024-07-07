@@ -49,7 +49,7 @@ public class OperationLogAspect {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         org.evolboot.core.annotation.OperationLog syslog = method.getAnnotation(org.evolboot.core.annotation.OperationLog.class);
-        boolean serializable = syslog.serializable();
+        boolean serializable = syslog.excludeUnserializable();
         String operation = syslog.value();
         //请求的方法名
         String classMethod = point.getTarget().getClass().getName() + "." + signature.getName();
