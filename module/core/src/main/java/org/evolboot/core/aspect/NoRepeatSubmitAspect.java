@@ -1,5 +1,7 @@
 package org.evolboot.core.aspect;
 
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -10,6 +12,7 @@ import org.evolboot.core.exception.RepeatSubmitException;
 import org.evolboot.core.service.RedisClientAppService;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.shared.security.CurrentSessionHolder;
+import org.springframework.core.io.InputStreamSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
@@ -58,13 +61,16 @@ public class NoRepeatSubmitAspect {
         }
     }
 
-    // 排除掉不可雪序列化的参数
+    /**
+     * 过滤掉不可序列化的参数
+     * @param args 方法参数
+     * @return 过滤后的参数
+     */
     private Object[] filter(Object[] args) {
-        return Arrays.stream(args).filter(arg -> (
-                !(
-                        arg instanceof HttpServletRequest
-                                || arg instanceof HttpServletResponse
-                )
-        )).toArray();
+        return Arrays.stream(args)
+                .filter(arg -> !(arg instanceof ServletRequest
+                        || arg instanceof ServletResponse
+                        || arg instanceof InputStreamSource))
+                .toArray();
     }
 }
