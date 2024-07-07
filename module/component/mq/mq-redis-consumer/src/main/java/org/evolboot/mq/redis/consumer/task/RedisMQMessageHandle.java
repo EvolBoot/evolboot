@@ -101,7 +101,7 @@ public class RedisMQMessageHandle implements Runnable {
                         MapRecord<String, String, String> message = mapRecords.get(0);
                         String key = message.getValue().keySet().stream().findFirst().get();
                         MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), MqMessageUtil.getMessageClass(key));
-                        if (mqMessage instanceof TransactionMQMessage) {
+                        if (mqMessage instanceof TransactionMQMessage transactionMQMessage && transactionMQMessage.getMqTransactionId() != null) {
                             handleTransactionMessage((TransactionMQMessage) mqMessage, recordId);
                         } else if (mqMessage instanceof DelayMQMessage) {
                             handleDelayTimeMessage((DelayMQMessage) mqMessage, recordId);
