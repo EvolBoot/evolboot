@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.evolboot.core.CoreI18nMessage;
 import org.evolboot.core.annotation.NoRepeatSubmit;
+import org.evolboot.core.exception.ErrorCode;
 import org.evolboot.core.exception.RepeatSubmitException;
 import org.evolboot.core.service.RedisClientAppService;
 import org.evolboot.core.util.JsonUtil;
@@ -49,15 +50,13 @@ public class NoRepeatSubmitAspect {
         }
         String key = REDIS_KEY + principalId + path + crypt;
         log.debug("验证是否重复提交:{}", key);
-        try {
-            if (redisClientAppService.setIfAbsent(key, "true", nrs.timeout(), nrs.timeUnit())) {
-                return pjp.proceed();
-            } else {
-                // 抛出重复异常
-                throw new RepeatSubmitException(CoreI18nMessage.repeatSubmit());
-            }
-        } finally {
+        if (redisClientAppService.setIfAbsent(key, "true", nrs.timeout(), nrs.timeUnit())) {
+            Object result = pjp.proceed();
             redisClientAppService.del(key);
+            return result;
+        } else {
+            // 抛出重复异常
+            throw ErrorCode.REPEAT_SUBMIT_EXCEPTION;
         }
     }
 
