@@ -134,13 +134,13 @@ public class ExtendDateUtil {
      * </pre>
      *
      * @param beginDate 起始日期
-     * @param endDate   结束日期
+     * @param endAt   结束日期
      * @param isReset   是否重置时间为起始时间
      * @return 日期差
      * @since 3.0.1
      */
-    public static long betweenDay(Date beginDate, Date endDate, boolean isReset) {
-        return DateUtil.betweenDay(beginDate, endDate, isReset);
+    public static long betweenDay(Date beginDate, Date endAt, boolean isReset) {
+        return DateUtil.betweenDay(beginDate, endAt, isReset);
     }
 
 

@@ -26,22 +26,22 @@ public class XarvkgvvrllncQueryRequest extends Query {
 
     private Keya2Akk5iV3n id;
 
-    private Date startDate;
+    private Date beginAt;
 
-    private Date endDate;
+    private Date endAt;
 
     private String keyword;
 
     @Builder
-    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, Integer page, Integer limit, Date startDate, Date endDate, String keyword, String orderField, Direction order) {
+    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, Integer page, Integer limit, Date beginAt, Date endAt, String keyword, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
         this.keyword = keyword;
-        if (ExtendObjects.nonNull(startDate)) {
-            this.startDate = ExtendDateUtil.beginOfDay(startDate);
+        if (ExtendObjects.nonNull(beginAt)) {
+            this.beginAt = ExtendDateUtil.beginOfDay(beginAt);
         }
-        if (ExtendObjects.nonNull(endDate)) {
-            this.endDate = ExtendDateUtil.endOfDay(endDate);
+        if (ExtendObjects.nonNull(endAt)) {
+            this.endAt = ExtendDateUtil.endOfDay(endAt);
         }
     }
 }

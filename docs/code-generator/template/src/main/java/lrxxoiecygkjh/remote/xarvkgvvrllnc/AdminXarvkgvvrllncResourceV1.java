@@ -99,10 +99,10 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestParam(required = false) Keya2Akk5iV3n id,
 
             @Parameter(description = "起始时间")
-            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date beginAt,
 
             @Parameter(description = "结束时间")
-            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) Date endAt,
 
             @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
@@ -110,8 +110,8 @@ public class AdminXarvkgvvrllncResourceV1 {
         XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
                 .builder()
                 .id(id)
-                .startDate(startDate)
-                .endDate(endDate)
+                .beginAt(beginAt)
+                .endAt(endAt)
                 .page(page)
                 .limit(limit)
                 .keyword(keyword)
@@ -129,10 +129,10 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestParam(required = false) Keya2Akk5iV3n id,
 
             @Parameter(description = "起始时间")
-            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date beginAt,
 
             @Parameter(description = "结束时间")
-            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) Date endAt,
 
             @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
@@ -140,8 +140,8 @@ public class AdminXarvkgvvrllncResourceV1 {
         XarvkgvvrllncQueryRequest query = XarvkgvvrllncQueryRequest
                 .builder()
                 .id(id)
-                .startDate(startDate)
-                .endDate(endDate)
+                .beginAt(beginAt)
+                .endAt(endAt)
                 .keyword(keyword)
                 .build();
         return ResponseModel.ok(queryService.findAll(query));

@@ -23,25 +23,25 @@ public class DictValueQueryRequest extends Query {
 
     private Long id;
 
-    private Date startDate;
+    private Date beginAt;
 
-    private Date endDate;
+    private Date endAt;
 
     private Long dictKeyId;
 
     private final String key;
 
     @Builder
-    public DictValueQueryRequest(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long dictKeyId, String key, String orderField, Direction order) {
+    public DictValueQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long dictKeyId, String key, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
         this.dictKeyId = dictKeyId;
         this.key = key;
-        if (ExtendObjects.nonNull(startDate)) {
-            this.startDate = ExtendDateUtil.beginOfDay(startDate);
+        if (ExtendObjects.nonNull(beginAt)) {
+            this.beginAt = ExtendDateUtil.beginOfDay(beginAt);
         }
-        if (ExtendObjects.nonNull(endDate)) {
-            this.endDate = ExtendDateUtil.endOfDay(endDate);
+        if (ExtendObjects.nonNull(endAt)) {
+            this.endAt = ExtendDateUtil.endOfDay(endAt);
         }
     }
 }

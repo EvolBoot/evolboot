@@ -104,10 +104,10 @@ public class AdminGroupResourceV1 {
             @RequestParam(required = false) Long id,
 
             @Parameter(description = "起始时间")
-            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date beginAt,
 
             @Parameter(description = "结束时间")
-            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) Date endAt,
 
             @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
@@ -115,8 +115,8 @@ public class AdminGroupResourceV1 {
         GroupQueryRequest query = GroupQueryRequest
                 .builder()
                 .id(id)
-                .startDate(startDate)
-                .endDate(endDate)
+                .beginAt(beginAt)
+                .endAt(endAt)
                 .page(page)
                 .limit(limit)
                 .build();

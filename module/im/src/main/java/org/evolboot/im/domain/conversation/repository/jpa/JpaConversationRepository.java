@@ -35,11 +35,11 @@ public interface JpaConversationRepository extends ConversationRepository, Exten
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
-        if (ExtendObjects.nonNull(query.getStartDate())) {
-            jpqlQuery.where(q.createAt.goe(query.getStartDate()));
+        if (ExtendObjects.nonNull(query.getBeginAt())) {
+            jpqlQuery.where(q.createAt.goe(query.getBeginAt()));
         }
-        if (ExtendObjects.nonNull(query.getEndDate())) {
-            jpqlQuery.where(q.createAt.loe(query.getEndDate()));
+        if (ExtendObjects.nonNull(query.getEndAt())) {
+            jpqlQuery.where(q.createAt.loe(query.getEndAt()));
         }
         if (ExtendObjects.nonNull(query.getType())) {
             jpqlQuery.where(q.type.eq(query.getType()));

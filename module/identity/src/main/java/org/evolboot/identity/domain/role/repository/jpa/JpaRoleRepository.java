@@ -32,11 +32,11 @@ public interface JpaRoleRepository extends RoleRepository, ExtendedQuerydslPredi
         if (ExtendObjects.nonNull(query.getId())) {
             jpqlQuery.where(q.id.eq(query.getId()));
         }
-        if (ExtendObjects.nonNull(query.getStartDate())) {
-            jpqlQuery.where(q.createAt.goe(query.getStartDate()));
+        if (ExtendObjects.nonNull(query.getBeginAt())) {
+            jpqlQuery.where(q.createAt.goe(query.getBeginAt()));
         }
-        if (ExtendObjects.nonNull(query.getEndDate())) {
-            jpqlQuery.where(q.createAt.loe(query.getEndDate()));
+        if (ExtendObjects.nonNull(query.getEndAt())) {
+            jpqlQuery.where(q.createAt.loe(query.getEndAt()));
         }
         if (ExtendObjects.isNotBlank(query.getRoleName())) {
             jpqlQuery.where(q.roleName.like("%" + query.getRoleName() + "%"));

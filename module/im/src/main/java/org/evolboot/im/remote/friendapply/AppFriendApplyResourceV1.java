@@ -51,14 +51,14 @@ public class AppFriendApplyResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
-            @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate
+            @RequestParam(required = false) Date beginAt,
+            @RequestParam(required = false) Date endAt
     ) {
         FriendApplyQueryRequest query = FriendApplyQueryRequest
                 .builder()
                 .id(id)
-                .startDate(startDate)
-                .endDate(endDate)
+                .beginAt(beginAt)
+                .endAt(endAt)
                 .page(page)
                 .limit(limit)
                 .toUserId(SecurityAccessTokenHolder.getPrincipalId())

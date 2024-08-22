@@ -101,16 +101,16 @@ public class AdminDictKeyResourceV1 {
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String key,
-            @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate,
+            @RequestParam(required = false) Date beginAt,
+            @RequestParam(required = false) Date endAt,
             @RequestParam(required = false) String orderField,
             @RequestParam(required = false) Direction order
     ) {
         DictKeyQueryRequest query = DictKeyQueryRequest
                 .builder()
                 .id(id)
-                .startDate(startDate)
-                .endDate(endDate)
+                .beginAt(beginAt)
+                .endAt(endAt)
                 .key(key)
                 .page(page)
                 .limit(limit)

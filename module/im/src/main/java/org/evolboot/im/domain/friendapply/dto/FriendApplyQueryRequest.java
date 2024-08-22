@@ -23,22 +23,22 @@ public class FriendApplyQueryRequest extends Query {
 
     private Long id;
 
-    private Date startDate;
+    private Date beginAt;
 
-    private Date endDate;
+    private Date endAt;
 
     private Long toUserId;
 
     @Builder
-    public FriendApplyQueryRequest(Long id, Integer page, Integer limit, Date startDate, Date endDate, Long toUserId, String orderField, Direction order) {
+    public FriendApplyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long toUserId, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
         this.toUserId = toUserId;
-        if (ExtendObjects.nonNull(startDate)) {
-            this.startDate = ExtendDateUtil.beginOfDay(startDate);
+        if (ExtendObjects.nonNull(beginAt)) {
+            this.beginAt = ExtendDateUtil.beginOfDay(beginAt);
         }
-        if (ExtendObjects.nonNull(endDate)) {
-            this.endDate = ExtendDateUtil.endOfDay(endDate);
+        if (ExtendObjects.nonNull(endAt)) {
+            this.endAt = ExtendDateUtil.endOfDay(endAt);
         }
     }
 }

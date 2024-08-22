@@ -24,22 +24,22 @@ public class ConversationQueryRequest extends Query {
 
     private Long id;
 
-    private Date startDate;
+    private Date beginAt;
 
-    private Date endDate;
+    private Date endAt;
 
     private ConversationType type;
 
     @Builder
-    public ConversationQueryRequest(Long id, Integer page, Integer limit, Date startDate, Date endDate, ConversationType type, String orderField, Direction order) {
+    public ConversationQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, ConversationType type, String orderField, Direction order) {
         super(page, limit, orderField, order);
         this.id = id;
         this.type = type;
-        if (ExtendObjects.nonNull(startDate)) {
-            this.startDate = ExtendDateUtil.beginOfDay(startDate);
+        if (ExtendObjects.nonNull(beginAt)) {
+            this.beginAt = ExtendDateUtil.beginOfDay(beginAt);
         }
-        if (ExtendObjects.nonNull(endDate)) {
-            this.endDate = ExtendDateUtil.endOfDay(endDate);
+        if (ExtendObjects.nonNull(endAt)) {
+            this.endAt = ExtendDateUtil.endOfDay(endAt);
         }
     }
 }
