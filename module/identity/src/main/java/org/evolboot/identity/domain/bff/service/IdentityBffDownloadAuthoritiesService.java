@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.IdUtil;
+import org.evolboot.storage.StorageConstant;
 import org.evolboot.storage.domain.blob.BlobAppService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -74,7 +75,7 @@ public class IdentityBffDownloadAuthoritiesService {
         writer.write(rows, true);
         // 关闭writer，释放内存
         writer.close();
-        String authorities = blobAppService.createFile(new FileInputStream(file), filename, 1024L, 1L);
+        String authorities = blobAppService.createFile(new FileInputStream(file), filename, 1024L, StorageConstant.DEFAULT_OWNER_USER_ID).getUrl();
         return authorities;
 
     }

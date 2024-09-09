@@ -1,5 +1,10 @@
 package org.evolboot.storage.domain.blob.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.adapter.StorageSystem;
@@ -15,6 +20,7 @@ import java.io.InputStream;
  * @author evol
  */
 @Service
+@Slf4j
 public class BlobCreateFactory {
 
     private final StorageSystem storageSystem;
@@ -27,13 +33,13 @@ public class BlobCreateFactory {
         this.fileLimitInterceptManager = fileLimitInterceptManager;
     }
 
-    public Blob create(InputStream is, String originalName, long fileSize, FileLimitType type, Long ownerUserId) {
-        fileLimitInterceptManager.allow(originalName, fileSize, type);
+    public Blob create(Request request) {
+        fileLimitInterceptManager.allow(request.originalName, request.fileSize, request.type);
         try (
                 Blob blob = Blob.builder()
-                        .originalName(originalName)
-                        .inputStream(is)
-                        .ownerUserId(ownerUserId)
+                        .originalName(request.originalName)
+                        .inputStream(request.is)
+                        .ownerUserId(request.ownerUserId)
                         .build()
         ) {
             StorageSystem.Response response = storageSystem.storeBlob(blob);
@@ -50,4 +56,16 @@ public class BlobCreateFactory {
         }
     }
 
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Request {
+        private InputStream is;
+        private String originalName;
+        private long fileSize;
+        private FileLimitType type;
+        private Long ownerUserId;
+    }
 }

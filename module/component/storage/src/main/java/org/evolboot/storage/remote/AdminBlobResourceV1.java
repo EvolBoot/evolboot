@@ -62,7 +62,7 @@ public class AdminBlobResourceV1 {
         String fileUrl = "";
         try {
             long size = uploadFile.getSize();
-            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.IMAGE, SecurityAccessTokenHolder.getPrincipalId());
+            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.IMAGE, SecurityAccessTokenHolder.getPrincipalId()).getUrl();
         } catch (IOException e) {
             log.error("上传图片异常", e);
         }
@@ -80,7 +80,7 @@ public class AdminBlobResourceV1 {
         String fileUrl = "";
         try {
             long size = uploadFile.getSize();
-            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.VIDEO, SecurityAccessTokenHolder.getPrincipalId());
+            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.VIDEO, SecurityAccessTokenHolder.getPrincipalId()).getUrl();
         } catch (IOException e) {
             log.error("上传视频异常", e);
         }
@@ -97,7 +97,7 @@ public class AdminBlobResourceV1 {
         String fileUrl = "";
         try {
             long size = uploadFile.getSize();
-            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.DOCUMENT, SecurityAccessTokenHolder.getPrincipalId());
+            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.DOCUMENT, SecurityAccessTokenHolder.getPrincipalId()).getUrl();
         } catch (IOException e) {
             log.error("上传文档异常", e);
         }
@@ -114,7 +114,7 @@ public class AdminBlobResourceV1 {
         String fileUrl = "";
         try {
             long size = uploadFile.getSize();
-            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.APP, SecurityAccessTokenHolder.getPrincipalId());
+            fileUrl = service.create(uploadFile.getInputStream(), uploadFile.getOriginalFilename(), size, FileLimitType.APP, SecurityAccessTokenHolder.getPrincipalId()).getUrl();
         } catch (IOException e) {
             log.error("上传APP异常", e);
         }

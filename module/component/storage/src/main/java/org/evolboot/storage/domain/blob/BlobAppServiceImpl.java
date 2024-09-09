@@ -29,22 +29,32 @@ public class BlobAppServiceImpl implements BlobAppService {
 
     @Transactional
     @Override
-    public String create(InputStream is, String filename, long fileSize, FileLimitType type, Long ownerUserId) {
-        return factory.create(is, filename, fileSize, type, ownerUserId).getUrl();
+    public Blob create(InputStream is, String filename, long fileSize, FileLimitType type, Long ownerUserId) {
+        return factory.create(new BlobCreateFactory.Request(
+                is, filename, fileSize, type, ownerUserId
+        ));
     }
 
     @Transactional
     @Override
-    public String createImage(InputStream is, String filename, long fileSize, Long ownerUserId) {
-        return factory.create(is, filename, fileSize, FileLimitType.IMAGE, ownerUserId).getUrl();
+    public Blob createImage(InputStream is, String filename, long fileSize, Long ownerUserId) {
+        return factory.create(new BlobCreateFactory.Request(
+                is, filename, fileSize, FileLimitType.IMAGE, ownerUserId
+        ));
     }
 
     @Transactional
     @Override
-    public String createFile(InputStream is, String filename, long fileSize, Long ownerUserId) {
-        return factory.create(is, filename, fileSize, FileLimitType.FILE, ownerUserId).getUrl();
+    public Blob createFile(InputStream is, String filename, long fileSize, Long ownerUserId) {
+        return factory.create(new BlobCreateFactory.Request(
+                is, filename, fileSize, FileLimitType.FILE, ownerUserId
+        ));
     }
 
+    @Override
+    public Blob create(BlobCreateFactory.Request request) {
+        return factory.create(request);
+    }
     @Override
     public Page<Blob> page(BlobQueryRequest query) {
         return repository.page(query);
