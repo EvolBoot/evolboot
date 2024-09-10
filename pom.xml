@@ -45,7 +45,7 @@
         <hikaricp.version>5.0.0</hikaricp.version>
         <netty-socketio.version>1.7.23</netty-socketio.version>
         <swagger-core.version>2.2.19</swagger-core.version>
-        <redisson.version>3.24.3</redisson.version>
+        <redisson.version>3.36.0</redisson.version>
     </properties>
     <dependencyManagement>
         <dependencies>

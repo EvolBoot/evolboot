@@ -19,6 +19,12 @@ public interface RedisCacheName {
 
 
     /**
+     * 用户ID
+     */
+    String IDENTITY_USER_ID_PREFIX = "evoltb_user_id_";
+
+
+    /**
      * 本地化(城市)
      */
     String LOCALE_COUNTRY_CACHE_KEY = "evoltb_locale_country_";

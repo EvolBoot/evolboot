@@ -214,5 +214,26 @@ public class RedissonTemplate {
     public <V> RDelayedQueue<V> getDelayedQueue(String name) {
         return redissonClient.getDelayedQueue(getBlockingQueue(name));
     }
+
+
+    /**
+     * 获取队列名称
+     *
+     * @param name
+     * @return
+     */
+    public <V> RDeque<V> getDeque(String name) {
+        return redissonClient.getDeque(name);
+    }
+
+    /**
+     * 获取队列名称
+     *
+     * @param name
+     * @return
+     */
+    public <V> RSet<V> getSet(String name) {
+        return redissonClient.getSet(name);
+    }
 }
 
