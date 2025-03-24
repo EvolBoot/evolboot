@@ -16,7 +16,7 @@ import org.evolboot.core.data.Query;
 public class UserRoleQueryRequest extends Query {
 
     @Builder
-    public UserRoleQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public UserRoleQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

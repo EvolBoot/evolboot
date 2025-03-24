@@ -21,8 +21,8 @@ public class OperationLogQueryRequest extends Query {
     private final String operation;
 
     @Builder
-    public OperationLogQueryRequest(Integer page, Integer limit, Date end, Date begin, Long userId, String operation, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public OperationLogQueryRequest(Integer page, Integer limit, Date end, Date begin, Long userId, String operation, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.end = end;
         this.begin = begin;
         this.userId = userId;

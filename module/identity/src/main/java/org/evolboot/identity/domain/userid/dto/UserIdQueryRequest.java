@@ -16,7 +16,7 @@ import org.evolboot.core.data.Query;
 public class UserIdQueryRequest extends Query {
 
     @Builder
-    public UserIdQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public UserIdQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

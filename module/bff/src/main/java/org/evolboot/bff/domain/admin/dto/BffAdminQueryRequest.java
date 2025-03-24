@@ -15,7 +15,7 @@ public class BffAdminQueryRequest extends Query {
 
 
     @Builder
-    public BffAdminQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public BffAdminQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

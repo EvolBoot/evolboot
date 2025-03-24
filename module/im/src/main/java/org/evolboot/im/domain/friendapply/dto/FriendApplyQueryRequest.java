@@ -30,8 +30,8 @@ public class FriendApplyQueryRequest extends Query {
     private Long toUserId;
 
     @Builder
-    public FriendApplyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long toUserId, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public FriendApplyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long toUserId, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         this.toUserId = toUserId;
         if (ExtendObjects.nonNull(beginAt)) {

@@ -15,8 +15,8 @@ public class UserLoginLogQueryRequest extends Query {
     private final Long userId;
 
     @Builder
-    public UserLoginLogQueryRequest(Integer page, Integer limit, String loginIp, Long userId, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public UserLoginLogQueryRequest(Integer page, Integer limit, String loginIp, Long userId, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.loginIp = loginIp;
         this.userId = userId;
     }

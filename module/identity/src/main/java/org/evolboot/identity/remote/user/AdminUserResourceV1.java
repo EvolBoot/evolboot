@@ -166,10 +166,10 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) UserType userType,
 
             @Parameter(description = "排序字段")
-            @RequestParam(required = false) String orderField,
+            @RequestParam(required = false) String sortField,
 
             @Parameter(description = "排序方向")
-            @RequestParam(required = false) Direction order
+            @RequestParam(required = false) Direction direction
     ) {
         UserQueryRequest query = UserQueryRequest
                 .builder()
@@ -183,8 +183,8 @@ public class AdminUserResourceV1 {
                 .inviterUserId(inviterUserId)
                 .userIdentity(UserIdentity.ROLE_MEMBER)
                 .userType(userType)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .build();
         Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);
@@ -298,8 +298,8 @@ public class AdminUserResourceV1 {
             @RequestParam(required = false) String mobile,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) Long roleId,
-            @RequestParam(required = false) String orderField,
-            @RequestParam(required = false) Direction order
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Direction direction
     ) {
         UserQueryRequest query = UserQueryRequest
                 .builder()
@@ -311,8 +311,8 @@ public class AdminUserResourceV1 {
                 .email(email)
                 .key(key)
                 .userIdentity(UserIdentity.ROLE_STAFF)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .roleId(roleId)
                 .build();
         Page<User> userPage = queryService.page(query);

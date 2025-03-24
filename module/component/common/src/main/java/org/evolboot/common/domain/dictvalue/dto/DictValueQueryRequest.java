@@ -32,8 +32,8 @@ public class DictValueQueryRequest extends Query {
     private final String key;
 
     @Builder
-    public DictValueQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long dictKeyId, String key, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public DictValueQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long dictKeyId, String key, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         this.dictKeyId = dictKeyId;
         this.key = key;

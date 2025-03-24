@@ -24,8 +24,8 @@ public class RoleQueryRequest extends Query {
     private final String roleName;
 
     @Builder
-    public RoleQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String roleName, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public RoleQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String roleName, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         this.roleName = roleName;
         if (ExtendObjects.nonNull(beginAt)) {

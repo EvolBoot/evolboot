@@ -16,7 +16,7 @@ import org.evolboot.core.data.Query;
 public class ReleasedOrderQueryRequest extends Query {
 
     @Builder
-    public ReleasedOrderQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public ReleasedOrderQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

@@ -28,8 +28,8 @@ public class GroupApplyQueryRequest extends Query {
     private Date endAt;
 
     @Builder
-    public GroupApplyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public GroupApplyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         if (ExtendObjects.nonNull(beginAt)) {
             this.beginAt = ExtendDateUtil.beginOfDay(beginAt);

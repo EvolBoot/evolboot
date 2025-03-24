@@ -23,8 +23,8 @@ public class RelationQueryRequest extends Query {
 
 
     @Builder
-    public RelationQueryRequest(Integer page, Integer limit, SqlOperator distanceOperator, Integer distance, Long descendant, Long ancestor, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public RelationQueryRequest(Integer page, Integer limit, SqlOperator distanceOperator, Integer distance, Long descendant, Long ancestor, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.distanceOperator = distanceOperator;
         this.distance = distance;
         this.descendant = descendant;

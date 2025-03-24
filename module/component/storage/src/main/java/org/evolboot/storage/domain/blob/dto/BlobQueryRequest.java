@@ -14,7 +14,7 @@ import org.evolboot.core.data.Query;
 public class BlobQueryRequest extends Query {
 
     @Builder
-    public BlobQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public BlobQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

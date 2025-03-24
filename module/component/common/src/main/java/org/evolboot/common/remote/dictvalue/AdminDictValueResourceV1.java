@@ -94,8 +94,8 @@ public class AdminDictValueResourceV1 {
             @RequestParam(required = false) String key,
             @RequestParam(required = false) Date beginAt,
             @RequestParam(required = false) Date endAt,
-            @RequestParam(required = false) String orderField,
-            @RequestParam(required = false) Direction order
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Direction direction
     ) {
         DictValueQueryRequest query = DictValueQueryRequest
                 .builder()
@@ -104,8 +104,8 @@ public class AdminDictValueResourceV1 {
                 .endAt(endAt)
                 .page(page)
                 .dictKeyId(dictKeyId)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .key(key)
                 .limit(limit)
                 .build();

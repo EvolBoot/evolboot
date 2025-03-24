@@ -136,14 +136,14 @@ public class AdminPermissionResourceV1 {
     public ResponseModel<Page<Permission>> tree(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,
-            @RequestParam(required = false) String orderField,
-            @RequestParam(required = false) Direction order
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Direction direction
     ) {
         PermissionQueryRequest query = PermissionQueryRequest.builder()
                 .page(page)
                 .limit(limit)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .build();
         return ResponseModel.ok(queryService.page(query));
     }

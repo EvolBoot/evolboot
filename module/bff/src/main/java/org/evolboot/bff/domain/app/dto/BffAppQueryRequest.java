@@ -14,7 +14,7 @@ import org.evolboot.core.data.Query;
 public class BffAppQueryRequest extends Query {
 
     @Builder
-    public BffAppQueryRequest(Integer page, Integer limit, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public BffAppQueryRequest(Integer page, Integer limit, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
     }
 }

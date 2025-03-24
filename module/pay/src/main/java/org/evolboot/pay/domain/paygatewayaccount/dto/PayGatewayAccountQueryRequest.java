@@ -18,8 +18,8 @@ public class PayGatewayAccountQueryRequest extends Query {
     private final Boolean enable;
 
     @Builder
-    public PayGatewayAccountQueryRequest(Integer page, Integer limit, Boolean enable, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public PayGatewayAccountQueryRequest(Integer page, Integer limit, Boolean enable, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.enable = enable;
     }
 }

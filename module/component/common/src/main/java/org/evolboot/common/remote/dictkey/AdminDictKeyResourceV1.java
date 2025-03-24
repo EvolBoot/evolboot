@@ -103,8 +103,8 @@ public class AdminDictKeyResourceV1 {
             @RequestParam(required = false) String key,
             @RequestParam(required = false) Date beginAt,
             @RequestParam(required = false) Date endAt,
-            @RequestParam(required = false) String orderField,
-            @RequestParam(required = false) Direction order
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Direction direction
     ) {
         DictKeyQueryRequest query = DictKeyQueryRequest
                 .builder()
@@ -114,8 +114,8 @@ public class AdminDictKeyResourceV1 {
                 .key(key)
                 .page(page)
                 .limit(limit)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .build();
         Page<DictKey> response = service.page(query);
         return ResponseModel.ok(response);

@@ -38,8 +38,8 @@ public class UserQueryRequest extends Query {
     private final String key;
 
     @Builder
-    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.userId = userId;
         this.username = username;
         this.mobile = mobile;

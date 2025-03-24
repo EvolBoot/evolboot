@@ -7,17 +7,17 @@ public class Query {
 
     private Pageable pageable;
 
-    private String orderField;
+    private String sortField;
 
-    private Direction order;
+    private Direction direction;
 
     public void setPageable(Pageable pageable) {
         this.pageable = pageable;
     }
 
-    public Query(Integer page, Integer limit, String orderField, Direction order) {
-        this.orderField = orderField;
-        this.order = order;
+    public Query(Integer page, Integer limit, String sortField, Direction direction) {
+        this.sortField = sortField;
+        this.direction = direction;
         setPageable(Pageable.builder()
                 .page(page)
                 .limit(limit)
@@ -40,11 +40,11 @@ public class Query {
         return pageable;
     }
 
-    public String getOrderField() {
-        return orderField;
+    public String getSortField() {
+        return sortField;
     }
 
-    public Direction getOrder() {
-        return order;
+    public Direction getDirection() {
+        return direction;
     }
 }

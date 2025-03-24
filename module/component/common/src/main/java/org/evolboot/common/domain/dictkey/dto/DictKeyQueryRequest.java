@@ -30,8 +30,8 @@ public class DictKeyQueryRequest extends Query {
     private final String key;
 
     @Builder
-    public DictKeyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String key, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public DictKeyQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String key, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         this.key = key;
         if (ExtendObjects.nonNull(beginAt)) {

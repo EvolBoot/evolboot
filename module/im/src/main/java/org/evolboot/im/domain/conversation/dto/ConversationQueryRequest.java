@@ -31,8 +31,8 @@ public class ConversationQueryRequest extends Query {
     private ConversationType type;
 
     @Builder
-    public ConversationQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, ConversationType type, String orderField, Direction order) {
-        super(page, limit, orderField, order);
+    public ConversationQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, ConversationType type, String sortField, Direction direction) {
+        super(page, limit, sortField, direction);
         this.id = id;
         this.type = type;
         if (ExtendObjects.nonNull(beginAt)) {

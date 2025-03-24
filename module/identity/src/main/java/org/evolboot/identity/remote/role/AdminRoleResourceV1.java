@@ -116,16 +116,16 @@ public class AdminRoleResourceV1 {
     public ResponseModel<Page<Role>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,
-            @RequestParam(required = false) String orderField,
-            @RequestParam(required = false) Direction order,
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Direction direction,
             @RequestParam(required = false) String roleName
     ) {
         RoleQueryRequest query = RoleQueryRequest.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)
-                .order(order)
-                .orderField(orderField)
+                .direction(direction)
+                .sortField(sortField)
                 .build();
         return ResponseModel.ok(service.page(query));
     }
