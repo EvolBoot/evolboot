@@ -17,6 +17,7 @@ import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.time.Duration;
 
@@ -28,6 +29,7 @@ import java.time.Duration;
  * 当收到实时消息时，处理，如果抛出了异常，则转为延时消息，通过自定义的线程去定时拉取，然后转为实时消息继续处理。
  * 当收到事务消息时，判断是否事务是否结束（通过数据库中的事务ID），如果结束，则转为实时消息
  * 当收到延时消息时，判断时间是否到了，如果到了转为实时消息，如果没到，则不管。
+ *
  * @author evol
  */
 @Configuration
@@ -45,6 +47,13 @@ public class RedisConsumerMqConfiguration implements DisposableBean {
 
     @Bean
     public StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ?> streamMessageListenerContainerOptions() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);  // 核心线程数
+        executor.setMaxPoolSize(10);   // 最大线程数
+        executor.setQueueCapacity(50); // 任务队列容量
+        executor.setThreadNamePrefix("stream-listener-");
+        executor.initialize();
+
         return StreamMessageListenerContainer
                 .StreamMessageListenerContainerOptions
                 .builder()
@@ -52,7 +61,8 @@ public class RedisConsumerMqConfiguration implements DisposableBean {
                 // 可以理解为 Stream Key 的序列化方式
                 .keySerializer(RedisSerializer.string())
                 // 一次最多获取多少条消息
-                .batchSize(50)
+                .batchSize(5)
+                .executor(executor)
                 .build();
     }
 

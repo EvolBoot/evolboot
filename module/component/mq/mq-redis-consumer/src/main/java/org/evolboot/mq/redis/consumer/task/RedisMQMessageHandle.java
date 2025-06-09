@@ -38,7 +38,7 @@ public class RedisMQMessageHandle implements Runnable {
 
 
     // 默认每次读取消息的数量
-    private final int GET_MESSAGE_COUNT = 100;
+    private final int GET_MESSAGE_COUNT = 50;
 
     private final String key;
     private final String group;

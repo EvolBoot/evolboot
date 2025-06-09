@@ -51,8 +51,8 @@ public class RedisMQMessageScheduledTask {
         RedisMQMessageHandle redisMQRealMessageHandle = new RedisMQMessageHandle(
                 mqMessageRedisTemplate, mqTransactionAppService, redisMQMessagePublisher, redisStreamProperty.getKeyForRealTime(), redisStreamProperty.getGroup()
         );
-        executorService.scheduleAtFixedRate(redisMQTransactionMessageHandle, 5, 5, TimeUnit.SECONDS);
-        executorService.scheduleAtFixedRate(redisMQDelayMessageHandle, 5, 5, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(redisMQTransactionMessageHandle, 5, 1, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(redisMQDelayMessageHandle, 5, 1, TimeUnit.SECONDS);
 
         // 实时消息只需要启动时处理一次
         log.info("消息队列:Redis:实时消息:处理未完成的消息");
