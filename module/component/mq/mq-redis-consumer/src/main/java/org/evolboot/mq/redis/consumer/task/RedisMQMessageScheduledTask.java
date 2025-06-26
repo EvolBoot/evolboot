@@ -5,6 +5,7 @@ import org.evolboot.mq.core.domain.mqtransaction.MqTransactionAppService;
 import org.evolboot.mq.redis.producer.MqMessageRedisTemplate;
 import org.evolboot.mq.redis.producer.RedisMQMessagePublisher;
 import org.evolboot.mq.redis.producer.RedisStreamProperty;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Executors;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class RedisMQMessageScheduledTask {
+public class RedisMQMessageScheduledTask implements CommandLineRunner {
 
     private final RedisStreamProperty redisStreamProperty;
     private final MqMessageRedisTemplate mqMessageRedisTemplate;
@@ -35,7 +36,9 @@ public class RedisMQMessageScheduledTask {
         this.redisMQMessagePublisher = redisMQMessagePublisher;
     }
 
-    public void init() {
+
+    @Override
+    public void run(String... args) throws Exception {
         this.executorService = Executors.newScheduledThreadPool(2);
 
         // 事务消息处理器
@@ -58,5 +61,4 @@ public class RedisMQMessageScheduledTask {
         log.info("消息队列:Redis:实时消息:处理未完成的消息");
         redisMQRealMessageHandle.handlePendingMessage();
     }
-
 }

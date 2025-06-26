@@ -35,15 +35,22 @@ public class RedisRealTimeListenerMessage implements StreamListener<String, MapR
 
     @Override
     public void onMessage(MapRecord<String, String, String> message) {
-
         try {
+            long startTime = System.currentTimeMillis();
             String key = message.getValue().keySet().stream().findFirst().get();
-            log.info("消息队列:Redis:收到消息:{},{},{},{},线程ID:{}", message.getStream(), message.getId(), key, message.getValue().get(key), Thread.currentThread().getId());
-            MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), MqMessageUtil.getMessageClass(key));
+            Class<?> messageClass = MqMessageUtil.getMessageClass(key);
+            log.info("消息队列:实时消息:收到消息:{},{}", message.getId(), messageClass);
+            MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), messageClass);
             eventPublisher.publishEvent(mqMessage);
+            long processTime = System.currentTimeMillis() - startTime;
+            log.info("消息队列:实时消息:处理时长:{},时长:{} ms,{}", message.getId(), processTime, messageClass);
+            if (processTime > 60000) {
+                log.error("消息队列:实时消息:处理时长超过一分钟的:{}", messageClass);
+            }
             mqMessageRedisTemplate.opsForStream().acknowledge(redisStreamProperty.getKeyForRealTime(), redisStreamProperty.getGroup(), message.getId());
+            mqMessageRedisTemplate.opsForStream().delete(redisStreamProperty.getKeyForRealTime(), message.getId());
         } catch (Exception e) {
-            log.error("消息队列:Redis:出现异常:改为延时消息" + message.getId(), e);
+            log.error("消息队列:实时消息:出现异常:改为延时消息:" + message.getId(), e);
             String key = message.getValue().keySet().stream().findFirst().get();
             MQMessage mqMessage = (MQMessage) JsonUtil.parse(message.getValue().get(key), MqMessageUtil.getMessageClass(key));
 
@@ -52,7 +59,7 @@ public class RedisRealTimeListenerMessage implements StreamListener<String, MapR
             redisMQMessagePublisher.sendDelayTimeSeconds(exceptionMessageConvertDelayTimeMessage, 60);
 
             mqMessageRedisTemplate.opsForStream().acknowledge(redisStreamProperty.getKeyForRealTime(), redisStreamProperty.getGroup(), message.getId());
-
+            mqMessageRedisTemplate.opsForStream().delete(redisStreamProperty.getKeyForRealTime(), message.getId());
 
         }
     }

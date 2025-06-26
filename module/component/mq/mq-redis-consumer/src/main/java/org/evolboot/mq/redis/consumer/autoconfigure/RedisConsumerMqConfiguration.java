@@ -127,9 +127,6 @@ public class RedisConsumerMqConfiguration implements DisposableBean {
 
         listenerContainer.start();
 
-        // 定时任务
-        redisMQMessageScheduledTask.init();
-
         this.streamMessageListenerContainer = listenerContainer;
         return listenerContainer;
     }
