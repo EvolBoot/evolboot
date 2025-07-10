@@ -32,11 +32,14 @@ public class XarvkgvvrllncQueryRequest extends Query {
 
     private String keyword;
 
+    private Long userId;
+
     @Builder
-    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, Integer page, Integer limit, Date beginAt, Date endAt, String keyword, String orderField, Direction order) {
+    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, Integer page, Integer limit, Date beginAt, Date endAt, String keyword, String orderField, Direction order,Long userId) {
         super(page, limit, orderField, order);
         this.id = id;
         this.keyword = keyword;
+        this.userId = userId;
         if (ExtendObjects.nonNull(beginAt)) {
             this.beginAt = ExtendDateUtil.beginOfDay(beginAt);
         }

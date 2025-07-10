@@ -52,21 +52,21 @@ public class XarvkgvvrllncAppServiceImpl  implements XarvkgvvrllncAppService {
 
     @Override
     @Transactional
-    public Xarvkgvvrllnc create(XarvkgvvrllncCreateFactory.Request request) {
-        return factory.execute(request);
+    public Xarvkgvvrllnc create(Long userId, XarvkgvvrllncCreateFactory.Request request) {
+        return factory.execute(userId, request);
     }
 
 
     @Override
     @Transactional
-    public void update(XarvkgvvrllncUpdateService.Request request) {
-        updateService.execute(request);
+    public void update(Long userId, XarvkgvvrllncUpdateService.Request request) {
+        updateService.execute(userId, request);
     }
 
 
     @Override
     @Transactional
-    public void delete(Keya2Akk5iV3n id) {
+    public void delete(Long userId, Keya2Akk5iV3n id) {
         findById(id);
         repository.deleteById(id);
     }

@@ -15,6 +15,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 import projectPackage.core.data.Page;
+import projectPackage.shared.security.CurrentSessionHolder;
 
 import jakarta.validation.Valid;
 import java.util.List;
@@ -56,7 +57,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestBody @Valid
             XarvkgvvrllncCreateRequest request
     ) {
-        Xarvkgvvrllnc instantiationObjectName = appService.create(request);
+        Xarvkgvvrllnc instantiationObjectName = appService.create(CurrentSessionHolder.getPrincipalId(), request);
         return ResponseModel.ok(new DomainId(instantiationObjectName.id()));
     }
 
@@ -68,7 +69,7 @@ public class AdminXarvkgvvrllncResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Keya2Akk5iV3n id
     ) {
-        appService.delete(id);
+        appService.delete(CurrentSessionHolder.getPrincipalId(), id);
         return ResponseModel.ok();
     }
 
@@ -81,7 +82,7 @@ public class AdminXarvkgvvrllncResourceV1 {
             @RequestBody @Valid
             XarvkgvvrllncUpdateRequest request
     ) {
-        appService.update(request);
+        appService.update(CurrentSessionHolder.getPrincipalId(), request);
         return ResponseModel.ok();
     }
 
@@ -115,6 +116,7 @@ public class AdminXarvkgvvrllncResourceV1 {
                 .page(page)
                 .limit(limit)
                 .keyword(keyword)
+                .userId(CurrentSessionHolder.getPrincipalId())
                 .build();
         Page<Xarvkgvvrllnc> response = queryService.page(query);
         return ResponseModel.ok(response);
@@ -143,6 +145,7 @@ public class AdminXarvkgvvrllncResourceV1 {
                 .beginAt(beginAt)
                 .endAt(endAt)
                 .keyword(keyword)
+                .userId(CurrentSessionHolder.getPrincipalId())
                 .build();
         return ResponseModel.ok(queryService.findAll(query));
     }

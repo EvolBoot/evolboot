@@ -23,21 +23,21 @@ public interface XarvkgvvrllncAppService {
      * @param request
      * @return
      */
-    Xarvkgvvrllnc create(XarvkgvvrllncCreateFactory.Request request);
+    Xarvkgvvrllnc create(Long userId, XarvkgvvrllncCreateFactory.Request request);
 
     /**
      * 更新
      *
      * @param request
      */
-    void update(XarvkgvvrllncUpdateService.Request request);
+    void update(Long userId, XarvkgvvrllncUpdateService.Request request);
 
     /**
      * 删除
      *
      * @param id
      */
-    void delete(Keya2Akk5iV3n id);
+    void delete(Long userId, Keya2Akk5iV3n id);
 
     /**
      * 批量删除
