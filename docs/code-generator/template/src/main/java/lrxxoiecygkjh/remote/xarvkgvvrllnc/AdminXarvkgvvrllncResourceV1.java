@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
+import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequestByMember;
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 import projectPackage.core.data.Page;
 import projectPackage.shared.security.CurrentSessionHolder;
@@ -160,4 +161,15 @@ public class AdminXarvkgvvrllncResourceV1 {
         return ResponseModel.ok(queryService.findById(id));
     }
 
+
+    @Operation(summary = "批量删除模板")
+    @OperationLog("批量删除模板")
+    @DeleteMapping("/batch")
+    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    public ResponseModel<?> delete(
+            @RequestBody XarvkgvvrllncQueryRequestByMember request
+    ) {
+        appService.delete(request.convert(CurrentSessionHolder.getPrincipalId()));
+        return ResponseModel.ok();
+    }
 }

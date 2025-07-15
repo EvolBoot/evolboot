@@ -73,6 +73,13 @@ public class XarvkgvvrllncAppServiceImpl  implements XarvkgvvrllncAppService {
 
     @Override
     @Transactional
+    public void delete(XarvkgvvrllncQueryRequest request) {
+        List<Long> allId = repository.findAllId(request);
+        repository.deleteAllByIdInBatch(allId);
+    }
+
+    @Override
+    @Transactional
     public void deleteAllByIdInBatch(Iterable<Keya2Akk5iV3n> ids) {
         repository.deleteAllByIdInBatch(ids);
     }

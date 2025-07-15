@@ -44,5 +44,10 @@ public interface XarvkgvvrllncAppService {
      */
     void deleteAllByIdInBatch(Iterable<Keya2Akk5iV3n> ids);
 
+    /**
+     * 批量删除
+     * @param request
+     */
+    void delete(XarvkgvvrllncQueryRequest request);
 
 }

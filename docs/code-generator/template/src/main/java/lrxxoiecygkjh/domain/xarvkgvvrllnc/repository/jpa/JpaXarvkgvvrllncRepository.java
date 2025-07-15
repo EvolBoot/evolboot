@@ -66,6 +66,11 @@ public interface JpaXarvkgvvrllncRepository extends XarvkgvvrllncRepository, Ext
     }
 
     @Override
+    default List<Keya2Akk5iV3n> findAllId(XarvkgvvrllncQueryRequest query) {
+        return findAll(fillQueryParameter(query, QXarvkgvvrllnc.instantiationObjectName.id));
+    }
+
+    @Override
     default <Q extends Query> Page<Xarvkgvvrllnc> page(Q query) {
         JPQLQuery<Xarvkgvvrllnc> jpqlQuery = fillQueryParameter(query, QXarvkgvvrllnc.instantiationObjectName);
         return PageImpl.of(this.findAll(jpqlQuery, query.toJpaPageRequest()));

@@ -12,6 +12,8 @@ import projectPackage.core.util.ExtendDateUtil;
 import projectPackage.core.util.ExtendObjects;
 
 import java.util.Date;
+import java.util.List;
+
 
 
 /**
@@ -26,6 +28,9 @@ public class XarvkgvvrllncQueryRequest extends Query {
 
     private Keya2Akk5iV3n id;
 
+
+    private List<Keya2Akk5iV3n> ids;
+
     private Date beginAt;
 
     private Date endAt;
@@ -34,10 +39,12 @@ public class XarvkgvvrllncQueryRequest extends Query {
 
     private Long userId;
 
+
     @Builder
-    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, Integer page, Integer limit, Date beginAt, Date endAt, String keyword, String orderField, Direction order,Long userId) {
+    public XarvkgvvrllncQueryRequest(Keya2Akk5iV3n id, List<Keya2Akk5iV3n> ids, Integer page, Integer limit, Date beginAt, Date endAt, String keyword, String orderField, Direction order,Long userId) {
         super(page, limit, orderField, order);
         this.id = id;
+        this.ids = ids;
         this.keyword = keyword;
         this.userId = userId;
         if (ExtendObjects.nonNull(beginAt)) {
