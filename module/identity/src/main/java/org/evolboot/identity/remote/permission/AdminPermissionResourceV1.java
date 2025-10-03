@@ -109,7 +109,7 @@ public class AdminPermissionResourceV1 {
     @GetMapping("/tree")
     @Operation(summary = "权限列表(树形)")
     @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
-    public ResponseModel<List<Permission>> page() {
+    public ResponseModel<List<Permission>> tree() {
         return ResponseModel.ok(queryService.findAllConvertTree());
     }
 

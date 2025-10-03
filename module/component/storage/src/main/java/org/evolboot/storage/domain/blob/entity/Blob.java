@@ -13,9 +13,11 @@ import org.evolboot.core.entity.AggregateRoot;
 import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.storage.domain.blob.adapter.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageBoldException;
+import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.springframework.util.DigestUtils;
 
 import jakarta.persistence.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -87,10 +89,18 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
      * 文件类型（预留）
      */
     private BlobType type;
+
+
+    /**
+     * 文件类型
+     */
+    private FileLimitType fileType;
+
     /**
      * 文件类型（预留）
      */
     private StorageType storageType = StorageType.LOCAL;
+
 
     private Long ownerUserId;
 
@@ -213,11 +223,15 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
         return extension;
     }
 
+    public void setFileType(FileLimitType fileType) {
+        this.fileType = fileType;
+    }
 
-    public void update(String url, String path, String name, StorageType storageType) {
+    public void update(String url, String path, String name, StorageType storageType, FileLimitType fileType) {
         setUrl(url);
         setPath(path);
         setName(name);
+        setFileType(fileType);
         this.storageType = storageType;
     }
 

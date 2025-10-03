@@ -47,7 +47,8 @@ public class BlobCreateFactory {
                     response.getUrl(),
                     response.getPath(),
                     response.getName(),
-                    response.getStorageType()
+                    response.getStorageType(),
+                    request.getType()
             );
             blobRepository.save(blob);
             return blob;

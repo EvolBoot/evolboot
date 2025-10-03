@@ -1,4 +1,4 @@
-package org.evolboot.identity.remote.user;
+package org.evolboot.identity.remote.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;

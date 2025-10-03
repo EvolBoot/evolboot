@@ -22,7 +22,7 @@ import java.util.Set;
 @Service
 @Slf4j
 //TODO 多语言
-public class UserUpdateService  {
+public class UserUpdateService {
 
 
     private final UserRepository repository;
@@ -84,12 +84,10 @@ public class UserUpdateService  {
         if (ExtendObjects.nonNull(request.getState())) {
             user.setState(request.getState());
         }
-
-        if (!ExtendObjects.isEmpty(request.getRoleId())) {
+        // [] 也是值，如果没这个都没有，说明不改
+        if (request.getRoleId() != null) {
             roleQueryService.mustExist(request.getRoleId());
-            user.addRoleId(request.getRoleId());
-        } else {
-            user.addRoleId(null);
+            user.updateRoleId(request.getRoleId());
         }
 
         repository.save(user);

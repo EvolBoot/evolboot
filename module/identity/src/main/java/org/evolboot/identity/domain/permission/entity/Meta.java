@@ -24,6 +24,7 @@ public class Meta {
     private String link;
     private Boolean isIframe = false;
     private String perm;
+    private String layout;
 
     public void setTitle(String title) {
         Assert.notBlank(title, "菜单名称不能为空");

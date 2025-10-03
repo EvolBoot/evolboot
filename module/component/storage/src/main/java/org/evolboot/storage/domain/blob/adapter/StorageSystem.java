@@ -11,6 +11,12 @@ public interface StorageSystem {
 
     Response storeBlob(StorageBlob blob);
 
+    default boolean delete(StorageBlob blob) {
+
+        return false;
+    }
+
+
     @Builder
     @Getter
     class Response {

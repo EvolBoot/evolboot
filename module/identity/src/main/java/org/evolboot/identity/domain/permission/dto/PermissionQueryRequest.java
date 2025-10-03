@@ -16,17 +16,17 @@ public class PermissionQueryRequest extends Query {
 
 
     private final String title;
-    private final String name;
+    private final String code;
     private final Long parentId;
 
     private final Type type;
     private final Collection<Long> ids;
 
     @Builder
-    public PermissionQueryRequest(Integer page, Integer limit, String title, String name, Long parentId, Type type, Collection<Long> ids, String sortField, Direction direction) {
+    public PermissionQueryRequest(Integer page, Integer limit, String title, String code, Long parentId, Type type, Collection<Long> ids, String sortField, Direction direction) {
         super(page, limit, sortField, direction);
         this.title = title;
-        this.name = name;
+        this.code = code;
         this.parentId = parentId;
         this.type = type;
         this.ids = ids;

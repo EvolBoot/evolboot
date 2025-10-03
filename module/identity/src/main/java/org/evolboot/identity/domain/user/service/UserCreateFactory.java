@@ -118,7 +118,7 @@ public class UserCreateFactory {
         // 如果是员工，且存在角色信息,则更新
         if (UserIdentity.ROLE_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleIds())) {
             roleQueryService.mustExist(request.getRoleIds());
-            user.addRoleId(request.getRoleIds());
+            user.updateRoleId(request.getRoleIds());
         }
 
         repository.save(user);

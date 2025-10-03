@@ -27,6 +27,7 @@ import java.util.*;
 
 /**
  * 用户
+ *
  * @author evol
  */
 @Entity
@@ -163,11 +164,12 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setUserType(userType);
         setInviterUserId(inviterUserId);
         setRegisterIp(registerIp);
-        addRoleId(roleId);
+        updateRoleId(roleId);
         setRemark(remark);
     }
 
-    public void addRoleId(Collection<Long> roleId) {
+    public void updateRoleId(Collection<Long> roleId) {
+        this.roleId.clear();
         if (!ExtendObjects.isEmpty(roleId)) {
             this.roleId.addAll(roleId);
         }

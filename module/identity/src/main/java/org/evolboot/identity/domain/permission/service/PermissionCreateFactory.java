@@ -33,7 +33,7 @@ public class PermissionCreateFactory {
         Permission permission = Permission.builder()
                 .parentIds(parent.get().convertToParentIds())
                 .component(request.getComponent())
-                .name(request.getName())
+                .code(request.getCode())
                 .type(request.getType())
                 .sort(request.getSort())
                 .path(request.getPath())

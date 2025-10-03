@@ -1,14 +1,19 @@
 package org.evolboot.identity;
 
+import org.evolboot.core.annotation.AuthorityModule;
+import org.evolboot.core.annotation.AuthorityResource;
+
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_PREFIX;
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFIX;
 
 /**
  * @author evol
  */
+@AuthorityModule(value = "identity", label = "身份管理")
 public interface IdentityAccessAuthorities {
 
 
+    @AuthorityResource(value = "permission", label = "权限")
     interface Permission {
         String HAS_CREATE = AUTHORITY_PREFIX + "permission_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "permission_delete" + AUTHORITY_SUFFIX;
@@ -16,6 +21,7 @@ public interface IdentityAccessAuthorities {
         String HAS_PAGE = AUTHORITY_PREFIX + "permission_page" + AUTHORITY_SUFFIX;
     }
 
+    @AuthorityResource(value = "role", label = "角色")
     interface Role {
         String HAS_CREATE = AUTHORITY_PREFIX + "role_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "role_delete" + AUTHORITY_SUFFIX;
@@ -23,6 +29,7 @@ public interface IdentityAccessAuthorities {
         String HAS_PAGE = AUTHORITY_PREFIX + "role_page" + AUTHORITY_SUFFIX;
     }
 
+    @AuthorityResource(value = "user", label = "用户")
     interface User {
         String HAS_CREATE = AUTHORITY_PREFIX + "user_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "user_delete" + AUTHORITY_SUFFIX;
@@ -35,6 +42,7 @@ public interface IdentityAccessAuthorities {
     }
 
 
+    @AuthorityResource(value = "userrole", label = "用户角色")
     interface UserRole {
         String HAS_CREATE = AUTHORITY_PREFIX + "identity_userrole_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "identity_userrole_delete" + AUTHORITY_SUFFIX;
@@ -46,6 +54,7 @@ public interface IdentityAccessAuthorities {
     /**
      * UserId
      */
+    @AuthorityResource(value = "userid", label = "用户ID")
     interface UserId {
         String HAS_CREATE = AUTHORITY_PREFIX + "identity_userid_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "identity_userid_delete" + AUTHORITY_SUFFIX;

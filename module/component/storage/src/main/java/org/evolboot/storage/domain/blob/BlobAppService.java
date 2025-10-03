@@ -22,4 +22,6 @@ public interface BlobAppService {
 
     Page<Blob> page(BlobQueryRequest query);
 
+    void delete(Long id);
+
 }

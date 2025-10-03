@@ -4,10 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.identity.domain.permission.entity.Meta;
-import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.Type;
-
-import java.util.List;
 
 /**
  * @author evol
@@ -22,8 +19,8 @@ public class PermissionRequestBase {
     @Schema(title = "上级", example = "1")
     private Long parentId;
 
-    @Schema(title = "name", example = "name")
-    private String name;
+    @Schema(title = "code", example = "code")
+    private String code;
 
     @Schema(title = "对应的PATH", example = "123456")
     private String path;

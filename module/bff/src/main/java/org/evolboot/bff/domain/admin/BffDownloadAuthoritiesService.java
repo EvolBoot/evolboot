@@ -6,11 +6,17 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.bff.domain.admin.dto.AuthorityOption;
+import org.evolboot.bff.domain.admin.dto.AuthorityTree;
 import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.AuthorityModule;
+import org.evolboot.core.annotation.AuthorityResource;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.IdUtil;
 import org.evolboot.storage.StorageConstant;
@@ -21,9 +27,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.evolboot.security.api.access.AccessAuthorities.*;
 
@@ -126,6 +134,251 @@ public class BffDownloadAuthoritiesService {
             return path[0];
         }
         return null;
+    }
+
+    /**
+     * 获取所有可用权限列表
+     */
+    public List<AuthorityOption> getAvailableAuthorities() {
+        // 1. 从 *AccessAuthorities 扫描，获取元数据
+        Map<String, AuthorityMeta> metaMap = scanFromAccessAuthorities();
+
+        // 2. 从 Controller 扫描，获取 URL 和标题
+        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", AdminClient.class);
+        List<AuthorityOption> authorities = new ArrayList<>();
+
+        classes.forEach(clazz -> {
+            Method[] methods = ReflectUtil.getMethods(clazz);
+            for (Method method : methods) {
+                Operation operation = method.getAnnotation(Operation.class);
+                PreAuthorize preAuthorize = method.getAnnotation(PreAuthorize.class);
+
+                if (preAuthorize != null && operation != null) {
+                    String perm = extractPerm(preAuthorize.value());
+                    if (perm == null || perm.isEmpty()) {
+                        continue;
+                    }
+
+                    // 从元数据映射中查找
+                    AuthorityMeta meta = metaMap.get(perm);
+
+                    authorities.add(AuthorityOption.builder()
+                            .perm(perm)
+                            .title(operation.summary())
+                            .url(getUrl(clazz, method))
+                            .module(meta != null ? meta.getModule() : null)
+                            .moduleLabel(meta != null ? meta.getModuleLabel() : null)
+                            .resource(meta != null ? meta.getResource() : null)
+                            .resourceLabel(meta != null ? meta.getResourceLabel() : null)
+                            .action(meta != null ? meta.getAction() : null)
+                            .build());
+                }
+            }
+        });
+
+        return authorities;
+    }
+
+    /**
+     * 构建权限树形结构
+     */
+    public List<AuthorityTree> getAuthoritiesTree() {
+        List<AuthorityOption> authorities = getAvailableAuthorities();
+
+        // 按 module -> resource -> action 分组
+        Map<String, Map<String, List<AuthorityOption>>> grouped = authorities.stream()
+                .filter(auth -> auth.getModule() != null && auth.getResource() != null)
+                .collect(Collectors.groupingBy(
+                        AuthorityOption::getModule,
+                        Collectors.groupingBy(AuthorityOption::getResource)
+                ));
+
+        return buildTree(grouped);
+    }
+
+    /**
+     * 搜索权限
+     */
+    public List<AuthorityOption> searchAuthorities(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return getAvailableAuthorities();
+        }
+
+        String lowerKeyword = keyword.toLowerCase();
+        return getAvailableAuthorities().stream()
+                .filter(auth ->
+                        (auth.getPerm() != null && auth.getPerm().toLowerCase().contains(lowerKeyword)) ||
+                        (auth.getTitle() != null && auth.getTitle().toLowerCase().contains(lowerKeyword)) ||
+                        (auth.getUrl() != null && auth.getUrl().toLowerCase().contains(lowerKeyword))
+                )
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 提取权限字符串
+     */
+    private String extractPerm(String preAuthorizeValue) {
+        if (preAuthorizeValue == null) {
+            return null;
+        }
+
+        return preAuthorizeValue
+                .replace(HAS_ROLE_ADMIN, "")
+                .replace(HAS_ROLE_STAFF, "")
+                .replace(OR, "")
+                .replace(AUTHORITY_PREFIX, "")
+                .replace(AUTHORITY_SUFFIX, "")
+                .trim();
+    }
+
+    /**
+     * 从 *AccessAuthorities 接口扫描元数据
+     * @return 权限码 -> 元数据的映射
+     */
+    private Map<String, AuthorityMeta> scanFromAccessAuthorities() {
+        Map<String, AuthorityMeta> metaMap = new HashMap<>();
+
+        // 扫描所有 *AccessAuthorities 接口
+        Set<Class<?>> allClasses = ClassUtil.scanPackage("org.evolboot", null);
+        Set<Class<?>> authorityClasses = allClasses.stream()
+                .filter(Class::isInterface)
+                .filter(clazz -> clazz.getSimpleName().endsWith("AccessAuthorities"))
+                .collect(Collectors.toSet());
+
+        authorityClasses.forEach(moduleClass -> {
+            AuthorityModule moduleAnnotation = moduleClass.getAnnotation(AuthorityModule.class);
+            if (moduleAnnotation == null) {
+                return; // 跳过没有注解的接口
+            }
+
+            String module = moduleAnnotation.value();
+            String moduleLabel = moduleAnnotation.label().isEmpty() ? module : moduleAnnotation.label();
+
+            // 遍历嵌套接口（资源）
+            Class<?>[] innerClasses = moduleClass.getDeclaredClasses();
+            for (Class<?> resourceClass : innerClasses) {
+                AuthorityResource resourceAnnotation = resourceClass.getAnnotation(AuthorityResource.class);
+                if (resourceAnnotation == null) {
+                    continue; // 跳过没有注解的嵌套接口
+                }
+
+                String resource = resourceAnnotation.value();
+                String resourceLabel = resourceAnnotation.label().isEmpty() ? resource : resourceAnnotation.label();
+
+                // 扫描权限常量字段
+                Field[] fields = resourceClass.getDeclaredFields();
+                for (Field field : fields) {
+                    if (!Modifier.isStatic(field.getModifiers()) || !Modifier.isFinal(field.getModifiers())) {
+                        continue;
+                    }
+
+                    try {
+                        String constantValue = (String) field.get(null);
+                        String perm = extractPerm(constantValue);
+                        String action = extractActionFromFieldName(field.getName());
+
+                        if (perm != null && !perm.isEmpty()) {
+                            metaMap.put(perm, new AuthorityMeta(
+                                    module,
+                                    moduleLabel,
+                                    resource,
+                                    resourceLabel,
+                                    action
+                            ));
+                        }
+                    } catch (IllegalAccessException e) {
+                        log.warn("无法访问字段: {}.{}", resourceClass.getName(), field.getName(), e);
+                    }
+                }
+            }
+        });
+
+        return metaMap;
+    }
+
+    /**
+     * 从字段名提取操作
+     * HAS_CREATE -> create
+     * HAS_PASSWORD_RESET -> password_reset
+     */
+    private String extractActionFromFieldName(String fieldName) {
+        if (fieldName.startsWith("HAS_")) {
+            return fieldName.substring(4).toLowerCase();
+        }
+        return fieldName.toLowerCase();
+    }
+
+    /**
+     * 权限元数据
+     */
+    @Data
+    @AllArgsConstructor
+    private static class AuthorityMeta {
+        private String module;
+        private String moduleLabel;
+        private String resource;
+        private String resourceLabel;
+        private String action;
+    }
+
+    /**
+     * 构建树形结构
+     */
+    private List<AuthorityTree> buildTree(Map<String, Map<String, List<AuthorityOption>>> grouped) {
+        List<AuthorityTree> tree = new ArrayList<>();
+
+        grouped.forEach((module, resourceMap) -> {
+            // 获取第一个权限的 moduleLabel（同一模块下所有权限的 moduleLabel 都相同）
+            String moduleLabel = resourceMap.values().stream()
+                    .flatMap(List::stream)
+                    .map(AuthorityOption::getModuleLabel)
+                    .filter(label -> label != null && !label.isEmpty())
+                    .findFirst()
+                    .orElse(module);
+
+            // 模块级节点
+            AuthorityTree moduleNode = AuthorityTree.builder()
+                    .label(moduleLabel)
+                    .value(module)
+                    .isLeaf(false)
+                    .children(new ArrayList<>())
+                    .build();
+
+            resourceMap.forEach((resource, authList) -> {
+                // 获取第一个权限的 resourceLabel
+                String resourceLabel = authList.stream()
+                        .map(AuthorityOption::getResourceLabel)
+                        .filter(label -> label != null && !label.isEmpty())
+                        .findFirst()
+                        .orElse(resource);
+
+                // 资源级节点
+                AuthorityTree resourceNode = AuthorityTree.builder()
+                        .label(resourceLabel)
+                        .value(resource)
+                        .isLeaf(false)
+                        .children(new ArrayList<>())
+                        .build();
+
+                // 操作级节点（叶子节点）
+                authList.forEach(auth -> {
+                    AuthorityTree actionNode = AuthorityTree.builder()
+                            .label(auth.getTitle())
+                            .value(auth.getPerm())
+                            .perm(auth.getPerm())
+                            .url(auth.getUrl())
+                            .isLeaf(true)
+                            .build();
+                    resourceNode.getChildren().add(actionNode);
+                });
+
+                moduleNode.getChildren().add(resourceNode);
+            });
+
+            tree.add(moduleNode);
+        });
+
+        return tree;
     }
 
 }

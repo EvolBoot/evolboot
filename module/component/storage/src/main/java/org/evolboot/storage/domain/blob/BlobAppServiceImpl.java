@@ -7,6 +7,7 @@ import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;
 import org.evolboot.storage.domain.blob.service.BlobCreateFactory;
 import org.evolboot.storage.domain.blob.dto.BlobQueryRequest;
+import org.evolboot.storage.domain.blob.service.BolbDeleteService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +23,12 @@ public class BlobAppServiceImpl implements BlobAppService {
     private final BlobCreateFactory factory;
     private final BlobRepository repository;
 
-    public BlobAppServiceImpl(BlobCreateFactory factory, BlobRepository repository) {
+    private final BolbDeleteService deleteService;
+
+    public BlobAppServiceImpl(BlobCreateFactory factory, BlobRepository repository, BolbDeleteService deleteService) {
         this.factory = factory;
         this.repository = repository;
+        this.deleteService = deleteService;
     }
 
     @Transactional
@@ -58,6 +62,13 @@ public class BlobAppServiceImpl implements BlobAppService {
     @Override
     public Page<Blob> page(BlobQueryRequest query) {
         return repository.page(query);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        deleteService.execute(id);
+
     }
 
 

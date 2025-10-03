@@ -1,6 +1,9 @@
 package org.evolboot.storage;
 
 
+import org.evolboot.core.annotation.AuthorityModule;
+import org.evolboot.core.annotation.AuthorityResource;
+
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_PREFIX;
 import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFIX;
 
@@ -9,12 +12,14 @@ import static org.evolboot.security.api.access.AccessAuthorities.AUTHORITY_SUFFI
  *
  * @author evol
  */
-public interface StorageAuthorities {
+@AuthorityModule(value = "storage", label = "存储")
+public interface StorageAccessAuthorities {
 
 
     /**
-     * 第三方代收订单
+     *
      */
+    @AuthorityResource(value = "bolb", label = "文件")
     interface Bolb {
         String HAS_CREATE = AUTHORITY_PREFIX + "storage_bolb_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "storage_bolb_delete" + AUTHORITY_SUFFIX;

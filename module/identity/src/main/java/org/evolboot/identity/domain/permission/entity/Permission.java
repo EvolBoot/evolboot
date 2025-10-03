@@ -48,7 +48,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
     @Convert(converter = LongListConverter.class)
     private List<Long> parentIds;
 
-    private String name;
+    private String code;
 
     private String component;
 
@@ -69,7 +69,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
     @Builder
     public Permission(
             List<Long> parentIds,
-            String name,
+            String code,
             String component,
             String path,
             Type type,
@@ -78,7 +78,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
             Meta meta) {
         generateId();
         setParentIds(parentIds);
-        setName(name);
+        setCode(code);
         setComponent(component);
         setPath(path);
         setType(type);
@@ -131,7 +131,6 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
             path = IdGenerate.stringId();
         }
         this.path = path;
-        this.name = path.replace("/", "-");
     }
 
     public void setMeta(Meta meta) {
