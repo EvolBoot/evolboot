@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+
 import java.io.IOException;
 
 
@@ -36,7 +37,7 @@ import java.io.IOException;
  */
 
 @RestController
-@RequestMapping("/v1/api/users")
+@RequestMapping("/api/v1/users")
 @Tag(name = "用户账号", description = "用户账号")
 @ApiClient
 public class AppUserResourceV1 {
@@ -64,7 +65,7 @@ public class AppUserResourceV1 {
             @RequestBody @Valid
             UserUpdateRequest request
     ) {
-        service.update(request.to(SecurityAccessTokenHolder.getUserId()));
+        service.update(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(SecurityAccessTokenHolder.getUserId()));
         return ResponseModel.ok();
     }
 

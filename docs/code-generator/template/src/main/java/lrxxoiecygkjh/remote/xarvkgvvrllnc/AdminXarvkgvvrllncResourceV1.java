@@ -37,7 +37,7 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/lh6wf4pd9y/irkdf3nfva")
+@RequestMapping("/admin/v1/lh6wf4pd9y/irkdf3nfva")
 @Tag(name = "模板", description = "模板")
 @AdminClient
 public class AdminXarvkgvvrllncResourceV1 {

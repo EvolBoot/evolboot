@@ -17,6 +17,7 @@ import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.repository.UserIdAndInviterUserId;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.dto.UserQueryRequest;
+import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -63,6 +64,10 @@ public interface JpaUserRepository extends UserRepository, ExtendedQuerydslPredi
         }
         if (ExtendObjects.nonNull(query.getUserIdentity())) {
             jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, query.getUserIdentity().getIdentitySymbol()).gt(0));
+        }
+        if (!ExtendObjects.isEmpty(query.getUserIdentitys())) {
+            int sum = query.getUserIdentitys().stream().mapToInt(UserIdentity::getIdentitySymbol).sum();
+            jpqlQuery.where(BitwiseExpressions.bitand(q.userIdentity, sum).gt(0));
         }
         if (ExtendObjects.isNotBlank(query.getKey())) {
             jpqlQuery.where(q.username.like("%" + ((UserQueryRequest) _query).getKey() + "%")

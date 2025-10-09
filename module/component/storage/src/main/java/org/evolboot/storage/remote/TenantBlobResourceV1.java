@@ -37,7 +37,7 @@ import static org.evolboot.storage.StorageAccessAuthorities.Bolb.*;
  * 只能管理本租户的文件，数据自动隔离
  */
 @RestController
-@RequestMapping("/v1/tenant/storage/blob")
+@RequestMapping("/tenant/v1/storage/blob")
 @Tag(name = "租户文件管理", description = "租户文件管理")
 @Slf4j
 @AdminClient

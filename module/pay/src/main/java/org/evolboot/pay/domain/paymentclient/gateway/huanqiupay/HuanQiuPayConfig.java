@@ -14,13 +14,13 @@ public class HuanQiuPayConfig {
 
     private final String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
 
-    private final String receiptNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/receipt/notify";
+    private final String receiptNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/receipt/notify";
 
-    private final String successUrl = "/v1/api/pay/payment/huan-qiu-pay/success";
+    private final String successUrl = "/api/v1/pay/payment/huan-qiu-pay/success";
 
-    private final String failUrl = "/v1/api/pay/payment/huan-qiu-pay/fail";
+    private final String failUrl = "/api/v1/pay/payment/huan-qiu-pay/fail";
 
-    private final String releasedNotifyUrl = "/v1/api/pay/payment/huan-qiu-pay/released/notify";
+    private final String releasedNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/released/notify";
 
     public HuanQiuPayConfig(String domain) {
         this.domain = domain;

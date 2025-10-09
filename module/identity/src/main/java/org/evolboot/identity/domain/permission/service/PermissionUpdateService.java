@@ -48,6 +48,7 @@ public class PermissionUpdateService {
         permission.setIsLink(request.getIsLink());
         permission.setParentIds(parentIds);
         permission.setComponent(request.getComponent());
+        permission.setScope(request.getScope());
         repository.save(permission);
         return permission;
     }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/group-member")
+@RequestMapping("/api/v1/im/group-member")
 @Tag(name = "群成员", description = "群成员")
 @ApiClient
 public class AppGroupMemberResourceV1 {

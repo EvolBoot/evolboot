@@ -2,6 +2,7 @@ package org.evolboot.security.api;
 
 import org.evolboot.security.api.access.AccessAuthorities;
 import org.evolboot.security.api.exception.AccessTokenExpiredException;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.evolboot.shared.lang.UserIdentity;
 import org.evolboot.shared.resource.ResourceOwner;
 import org.evolboot.shared.security.EvolSession;
@@ -53,6 +54,10 @@ public abstract class SecurityAccessTokenHolder {
 
     public static Long getUserId() {
         return getPrincipal().getUserId();
+    }
+
+    public static CurrentPrincipal getCurrentPrincipal() {
+        return new CurrentPrincipal(getUserId(), getTenantId());
     }
 
     /**

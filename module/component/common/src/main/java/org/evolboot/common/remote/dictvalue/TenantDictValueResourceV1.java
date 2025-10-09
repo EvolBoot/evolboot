@@ -34,7 +34,7 @@ import static org.evolboot.common.CommonAccessAuthorities.DictValue.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/tenant/common/dict-value")
+@RequestMapping("/tenant/v1/common/dict-value")
 @Tag(name = "租户字典Value", description = "租户字典Value")
 @AdminClient
 public class TenantDictValueResourceV1 {

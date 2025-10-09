@@ -30,7 +30,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/pay-gateway-account")
+@RequestMapping("/admin/v1/pay-gateway-account")
 @Tag(name = "支付网关账户", description = "支付网关账户")
 @AdminClient
 public class AdminPayGatewayAccountResourceV1 {

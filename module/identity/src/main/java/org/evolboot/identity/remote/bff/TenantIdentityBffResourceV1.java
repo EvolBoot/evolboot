@@ -29,14 +29,14 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
  */
 @Slf4j
 @RestController
-@RequestMapping("/admin/v1/identity/bff")
+@RequestMapping("/tenant/v1/identity/bff")
 @Tag(name = "IdentityBff", description = "IdentityBff")
 @AdminClient
-public class AdminIdentityBffResourceV1 {
+public class TenantIdentityBffResourceV1 {
 
     private final IdentityBffAppService service;
 
-    public AdminIdentityBffResourceV1(IdentityBffAppService service) {
+    public TenantIdentityBffResourceV1(IdentityBffAppService service) {
         this.service = service;
     }
 
@@ -59,17 +59,6 @@ public class AdminIdentityBffResourceV1 {
         return ResponseModel.ok(service.findStaffUser(query));
     }
 
-
-    /**
-     * @return
-     */
-    @GetMapping("/download-auth-file")
-    @Operation(summary = "下载权限表格")
-    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
-    public ResponseModel<String> download() {
-        String s = service.downloadAuthorities();
-        return ResponseModel.ok(s);
-    }
 
     /**
      * @return

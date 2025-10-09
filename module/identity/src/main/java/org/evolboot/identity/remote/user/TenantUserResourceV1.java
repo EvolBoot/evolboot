@@ -16,6 +16,8 @@ import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
+import org.evolboot.security.api.annotation.Authenticated;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +35,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  * 只能管理本租户的员工，数据自动隔离
  */
 @RestController
-@RequestMapping("/v1/tenant/users")
+@RequestMapping("/tenant/v1/users")
 @Tag(name = "租户用户管理", description = "租户用户管理")
 @AdminClient
 public class TenantUserResourceV1 {
@@ -45,6 +47,42 @@ public class TenantUserResourceV1 {
         this.service = service;
         this.queryService = queryService;
     }
+
+    @Operation(summary = "获取当前登录用户资料")
+    @GetMapping("/me")
+    @Authenticated
+    public ResponseModel<User> get() {
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getUserId());
+        return ResponseModel.ok(user);
+    }
+
+
+    @Operation(summary = "当前登录用户修改资料")
+    @OperationLog("当前登录用户修改资料")
+    @PutMapping("/me")
+    @Authenticated
+    public ResponseModel<?> update(
+            @RequestBody @Valid
+            UserUpdateRequest request
+    ) {
+        // 自动设置为租户员工并关联当前租户
+        service.update(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(SecurityAccessTokenHolder.getUserId()));
+        return ResponseModel.ok();
+    }
+
+
+    @Operation(summary = "当前用户修改密码")
+    @OperationLog("当前用户修改密码")
+    @PutMapping("/me/password/update")
+    @Authenticated
+    public ResponseModel<?> updatePassword(
+            @RequestBody @Valid
+            UserPasswordUpdateRequest request
+    ) {
+        service.updatePassword(SecurityAccessTokenHolder.getUserId(), request.getOldPassword(), request.getNewPassword(), request.getConfirmPassword());
+        return ResponseModel.ok();
+    }
+
 
     /**
      * 创建租户员工
@@ -58,7 +96,7 @@ public class TenantUserResourceV1 {
             HttpServletRequest httpServletRequest
     ) {
         // 自动设置为租户员工并关联当前租户
-        User user = service.create(request.to(IpUtil.getClientIP(httpServletRequest)));
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(user);
     }
 
@@ -72,7 +110,7 @@ public class TenantUserResourceV1 {
     public ResponseModel<?> updateStaff(
             @RequestBody @Valid AdminUserUpdateRequest request
     ) {
-        service.update(request);
+        service.update(SecurityAccessTokenHolder.getCurrentPrincipal(), request);
         return ResponseModel.ok();
     }
 
@@ -127,7 +165,7 @@ public class TenantUserResourceV1 {
     public ResponseModel<?> lock(
             @RequestBody IdRequest<Long> request
     ) {
-        service.lock(request.getId());
+        service.lock(SecurityAccessTokenHolder.getCurrentPrincipal(), request.getId());
         return ResponseModel.ok();
     }
 
@@ -141,7 +179,7 @@ public class TenantUserResourceV1 {
     public ResponseModel<?> active(
             @RequestBody IdRequest<Long> request
     ) {
-        service.active(request.getId());
+        service.active(SecurityAccessTokenHolder.getCurrentPrincipal(), request.getId());
         return ResponseModel.ok();
     }
 
@@ -155,7 +193,7 @@ public class TenantUserResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
-        service.delete(id);
+        service.delete(SecurityAccessTokenHolder.getCurrentPrincipal(), id);
         return ResponseModel.ok();
     }
 
@@ -169,7 +207,7 @@ public class TenantUserResourceV1 {
     public ResponseModel<?> resetPassword(
             @RequestBody @Valid UserPasswordSetRequest request
     ) {
-        service.resetPassword(request.getId(), request.getPassword());
+        service.resetPassword(SecurityAccessTokenHolder.getCurrentPrincipal(), request.getId(), request.getPassword());
         return ResponseModel.ok();
     }
 

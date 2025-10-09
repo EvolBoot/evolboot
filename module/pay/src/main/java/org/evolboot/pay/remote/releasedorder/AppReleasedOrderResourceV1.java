@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/released-order")
+@RequestMapping("/api/v1/released-order")
 @Tag(name = "代付订单", description = "代付订单")
 @ApiClient
 public class AppReleasedOrderResourceV1 {

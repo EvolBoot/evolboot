@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/pay-gateway-account")
+@RequestMapping("/api/v1/pay-gateway-account")
 @Tag(name = "支付网关账户", description = "支付网关账户")
 @ApiClient
 public class AppPayGatewayAccountResourceV1 {

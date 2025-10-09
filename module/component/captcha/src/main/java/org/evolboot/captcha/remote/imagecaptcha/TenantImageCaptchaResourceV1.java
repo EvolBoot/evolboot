@@ -2,28 +2,26 @@ package org.evolboot.captcha.remote.imagecaptcha;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.evolboot.captcha.domain.imagecaptcha.ImageCaptchaAppService;
 import org.evolboot.captcha.domain.imagecaptcha.service.ImageCaptchaCreateFactory;
 import org.evolboot.core.annotation.AdminClient;
-import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.core.util.IpUtil;
 import org.springframework.web.bind.annotation.*;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author evol
  */
 @RestController
-@RequestMapping("/admin/v1/captcha")
+@RequestMapping("/tenant/v1/captcha")
 @Tag(name = "验证码", description = "验证码")
 @AdminClient
-public class AdminImageCaptchaResourceV1 {
+public class TenantImageCaptchaResourceV1 {
 
     private final ImageCaptchaAppService appService;
 
-    public AdminImageCaptchaResourceV1(ImageCaptchaAppService appService) {
+    public TenantImageCaptchaResourceV1(ImageCaptchaAppService appService) {
         this.appService = appService;
     }
 

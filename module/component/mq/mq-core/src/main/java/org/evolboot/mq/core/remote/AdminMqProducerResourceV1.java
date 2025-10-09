@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/mq-producer")
+@RequestMapping("/admin/v1/mq-producer")
 @Tag(name = "消息队列生产商", description = "消息队列生产商")
 @AdminClient
 public class AdminMqProducerResourceV1 {

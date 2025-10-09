@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/api/captcha/mobile-captcha")
+@RequestMapping("/api/v1/captcha/mobile-captcha")
 @Tag(name = "验证码", description = "验证码")
 @ApiClient
 public class AppMobileCaptchaResourceV1 {

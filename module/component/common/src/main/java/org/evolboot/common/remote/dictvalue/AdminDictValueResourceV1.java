@@ -34,7 +34,7 @@ import static org.evolboot.common.CommonAccessAuthorities.DictValue.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/common/dict-value")
+@RequestMapping("/admin/v1/common/dict-value")
 @Tag(name = "字典Value", description = "字典Value")
 @AdminClient
 public class AdminDictValueResourceV1 {

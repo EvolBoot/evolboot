@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/user-conversation")
+@RequestMapping("/api/v1/im/user-conversation")
 @Tag(name = "用户会话", description = "用户会话")
 @ApiClient
 public class AppUserConversationResourceV1 {

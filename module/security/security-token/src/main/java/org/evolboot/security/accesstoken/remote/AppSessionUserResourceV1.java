@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/v1/api/security")
+@RequestMapping("/api/v1/security")
 @Tag(name = "访问令牌", description = "访问令牌")
 @ApiClient
 public class AppSessionUserResourceV1 {

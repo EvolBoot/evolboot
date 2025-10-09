@@ -72,10 +72,13 @@ springdoc:
   group-configs:
     - group: admin
       packages-to-scan: org.evolboot
-      paths-to-match: /v*/admin/**
+      paths-to-match: /admin/**
     - group: api
       packages-to-scan: org.evolboot
-      paths-to-match: /v*/api/**
+      paths-to-match: /api/**
+    - group: tenant
+      packages-to-scan: org.evolboot
+      paths-to-match: /tenant/**
   packages-to-scan: org.evolboot
   use-fqn: true
   model-and-view-allowed: true

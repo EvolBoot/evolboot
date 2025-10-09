@@ -24,7 +24,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/tenant")
+@RequestMapping("/tenant/v1")
 @Tag(name = "租户用户角色管理", description = "租户用户角色管理")
 @AdminClient
 public class TenantUserRoleResourceV1 {

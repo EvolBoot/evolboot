@@ -12,6 +12,7 @@ import org.evolboot.identity.domain.user.entity.Gender;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.repository.UserRepository;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -39,10 +40,16 @@ public class UserUpdateService {
     }
 
 
-    public void execute(Request request) {
+    public void execute(CurrentPrincipal currentPrincipal, Request request) {
         User user = repository.findById(request.getId()).orElseThrow(() -> new DomainNotFoundException(
                 IdentityI18nMessage.User.userNotFound()
         ));
+
+        // 如果 currentPrincipal 存在且有 tenantId，则验证用户必须属于同一租户
+        if (ExtendObjects.nonNull(currentPrincipal) && ExtendObjects.nonNull(currentPrincipal.getTenantId())) {
+            Assert.isTrue(currentPrincipal.getTenantId().equals(user.getTenantId()), "无权修改其他租户的用户");
+        }
+
         user.setAvatar(request.getAvatar());
         user.setNickname(request.getNickname());
         user.setRemark(request.getRemark());

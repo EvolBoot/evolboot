@@ -22,7 +22,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/admin/v1")
 @Tag(name = "全局配置", description = "全局配置")
 @AdminClient
 public class AdminConfigResourceV1 {

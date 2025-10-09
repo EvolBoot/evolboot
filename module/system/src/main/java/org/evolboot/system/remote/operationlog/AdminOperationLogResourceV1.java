@@ -24,7 +24,7 @@ import static org.evolboot.system.SystemAccessAuthorities.OperationLog.HAS_SINGL
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin/system/operation-log")
+@RequestMapping("/admin/v1/system/operation-log")
 @Tag(name = "操作日志管理", description = "操作日志管理")
 @AdminClient
 public class AdminOperationLogResourceV1 {

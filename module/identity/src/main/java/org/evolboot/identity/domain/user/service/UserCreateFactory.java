@@ -23,6 +23,7 @@ import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.userid.UserIdAppService;
 import org.evolboot.identity.domain.userid.service.UserIdGetNextService;
 import org.evolboot.shared.event.user.UserCreatedEvent;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.evolboot.shared.lang.DeviceType;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.stereotype.Service;
@@ -76,10 +77,11 @@ public class UserCreateFactory {
     /**
      * 注册主流程
      *
+     * @param currentPrincipal 当前操作者身份信息，可以为空
      * @param request
      * @return
      */
-    public User create(Request request) {
+    public User create(CurrentPrincipal currentPrincipal, Request request) {
 
         // 检查邀请人是否存在
         checkInviterUserId(request.getInviterUserId());
@@ -97,6 +99,19 @@ public class UserCreateFactory {
             ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
             originalPassword = reversiblePassword.toOriginalPassword();
         }
+
+        // 处理 tenantId
+        Long tenantId = request.getTenantId();
+        if (ExtendObjects.nonNull(currentPrincipal) && ExtendObjects.nonNull(currentPrincipal.getTenantId())) {
+            // 如果创建者有 tenantId，则默认创建的用户都属于当前这个 tenantId 下
+            tenantId = currentPrincipal.getTenantId();
+        }
+
+        // 如果创建的是租户所有者，则这个用户的 ID 就是 tenantId
+        if (UserIdentity.ROLE_TENANT_OWNER.equals(request.getUserIdentity())) {
+            tenantId = id;
+        }
+
         // 创建用户
         User user = User.builder()
                 .id(id)
@@ -113,6 +128,7 @@ public class UserCreateFactory {
                 .remark(request.getRemark())
                 .gender(request.getGender())
                 .state(request.getState())
+                .tenantId(tenantId)
                 .build();
 
         // 如果是员工，且存在角色信息,则更新
@@ -194,6 +210,7 @@ public class UserCreateFactory {
         private DeviceType deviceType;
         private Gender gender;
         private Set<Long> roleIds;
+        private Long tenantId;
 
         public String getUsername() {
             return ExtendObjects.trimToNull(username);

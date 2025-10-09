@@ -21,7 +21,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  * 管理租户自定义配置
  */
 @RestController
-@RequestMapping("/v1/tenant")
+@RequestMapping("/tenant/v1")
 @Tag(name = "租户配置", description = "租户配置")
 @AdminClient
 public class TenantConfigResourceV1 {

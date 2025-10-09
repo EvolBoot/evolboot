@@ -38,7 +38,7 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/tenant/lh6wf4pd9y/irkdf3nfva")
+@RequestMapping("/tenant/v1/lh6wf4pd9y/irkdf3nfva")
 @Tag(name = "租户模板管理", description = "租户模板管理")
 @AdminClient
 public class TenantXarvkgvvrllncResourceV1 {

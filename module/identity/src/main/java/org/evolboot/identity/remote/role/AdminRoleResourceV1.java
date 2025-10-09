@@ -28,7 +28,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Deprecated
 @RestController
-@RequestMapping("/v1/admin/roles")
+@RequestMapping("/admin/v1/roles")
 @Tag(name = "角色", description = "角色")
 @AdminClient
 public class AdminRoleResourceV1 {

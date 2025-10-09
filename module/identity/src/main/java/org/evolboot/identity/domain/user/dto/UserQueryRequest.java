@@ -8,6 +8,8 @@ import org.evolboot.core.entity.DelState;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.shared.lang.UserIdentity;
 
+import java.util.List;
+
 /**
  * @author evol
  */
@@ -33,6 +35,8 @@ public class UserQueryRequest extends Query {
 
     private UserIdentity userIdentity;
 
+    private List<UserIdentity> userIdentitys;
+
     private final Long roleId;
 
     private final String key;
@@ -40,7 +44,7 @@ public class UserQueryRequest extends Query {
     private final Long tenantId;
 
     @Builder
-    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String sortField, Direction direction, Long tenantId) {
+    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, List<UserIdentity> userIdentitys, Long roleId, String key, String sortField, Direction direction, Long tenantId) {
         super(page, limit, sortField, direction);
         this.userId = userId;
         this.username = username;
@@ -51,6 +55,7 @@ public class UserQueryRequest extends Query {
         this.inviterUserId = inviterUserId;
         this.userType = userType;
         this.userIdentity = userIdentity;
+        this.userIdentitys = userIdentitys;
 //        if (ExtendObjects.nonNull(userIdentity)) {
 //            this.identitySymbol = userIdentity.getIdentitySymbol();
 //        }

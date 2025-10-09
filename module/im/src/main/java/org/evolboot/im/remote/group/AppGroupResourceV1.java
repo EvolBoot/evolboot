@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/group")
+@RequestMapping("/api/v1/im/group")
 @Tag(name = "群组", description = "群组")
 @ApiClient
 public class AppGroupResourceV1 {

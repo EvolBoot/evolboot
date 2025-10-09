@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutionException;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/bff")
+@RequestMapping("/api/v1/bff")
 @Tag(name = "APP专用", description = "APP专用")
 @ApiClient
 public class BffAppResourceV1 {

@@ -33,7 +33,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/im/group-apply")
+@RequestMapping("/admin/v1/im/group-apply")
 @Tag(name = "群申请", description = "群申请")
 @AdminClient
 public class AdminGroupApplyResourceV1 {

@@ -12,6 +12,7 @@ import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
+import org.evolboot.identity.domain.permission.dto.PermissionBatchQueryRequest;
 import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
 import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +29,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.*;
  * 平台权限管理 - 超管和员工可访问
  */
 @RestController
-@RequestMapping("/v1/admin/permissions")
+@RequestMapping("/admin/v1/permissions")
 @Tag(name = "平台权限管理", description = "平台权限管理")
 @AdminClient
 public class AdminPermissionResourceV1 {
@@ -42,35 +43,63 @@ public class AdminPermissionResourceV1 {
     }
 
     /**
-     * 创建权限
+     * 创建平台权限
      */
     @PostMapping
-    @Operation(summary = "创建权限")
-    @OperationLog("创建权限")
+    @Operation(summary = "创建平台权限")
+    @OperationLog("创建平台权限")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<Permission> create(@Valid @RequestBody CreatePermissionRequest request) {
+        request.setScope(PermissionScope.PLATFORM);
         Permission permission = service.create(request);
         return ResponseModel.ok(permission);
     }
 
     /**
-     * 修改权限
+     * 创建租户权限
+     */
+    @PostMapping("/tenant")
+    @Operation(summary = "创建租户权限")
+    @OperationLog("创建租户权限")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
+    public ResponseModel<Permission> createTenant(@Valid @RequestBody CreatePermissionRequest request) {
+        request.setScope(PermissionScope.TENANT);
+        Permission permission = service.create(request);
+        return ResponseModel.ok(permission);
+    }
+
+    /**
+     * 修改平台权限
      */
     @PutMapping()
-    @Operation(summary = "修改权限")
-    @OperationLog("修改权限")
+    @Operation(summary = "修改平台权限")
+    @OperationLog("修改平台权限")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<Permission> update(@Valid @RequestBody UpdatePermissionRequest request) {
+        request.setScope(PermissionScope.PLATFORM);
         Permission permission = service.update(request);
         return ResponseModel.ok(permission);
     }
 
     /**
-     * 删除权限
+     * 修改租户权限
+     */
+    @PutMapping("/tenant")
+    @Operation(summary = "修改租户权限")
+    @OperationLog("修改租户权限")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
+    public ResponseModel<Permission> updateTenant(@Valid @RequestBody UpdatePermissionRequest request) {
+        request.setScope(PermissionScope.TENANT);
+        Permission permission = service.update(request);
+        return ResponseModel.ok(permission);
+    }
+
+    /**
+     * 删除平台权限
      */
     @DeleteMapping("/{id}")
-    @Operation(summary = "删除权限")
-    @OperationLog("删除权限")
+    @Operation(summary = "删除平台权限")
+    @OperationLog("删除平台权限")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
@@ -78,19 +107,42 @@ public class AdminPermissionResourceV1 {
     }
 
     /**
-     * 获取权限
+     * 删除租户权限
+     */
+    @DeleteMapping("/tenant/{id}")
+    @Operation(summary = "删除租户权限")
+    @OperationLog("删除租户权限")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
+    public ResponseModel<?> deleteTenant(@PathVariable("id") Long id) {
+        service.delete(id);
+        return ResponseModel.ok();
+    }
+
+    /**
+     * 获取平台权限
      */
     @GetMapping("/{id}")
-    @Operation(summary = "获取权限")
-    @OperationLog("获取权限")
+    @Operation(summary = "获取平台权限")
+    @OperationLog("获取平台权限")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
         return ResponseModel.ok(queryService.findById(id));
     }
 
     /**
+     * 获取租户权限
+     */
+    @GetMapping("/tenant/{id}")
+    @Operation(summary = "获取租户权限")
+    @OperationLog("获取租户权限")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<?> getTenant(@PathVariable("id") Long id) {
+        return ResponseModel.ok(queryService.findById(id));
+    }
+
+    /**
      * 权限列表(树形)
-     * 支持通过 scope 参数查询 PLATFORM 或 TENANT 权限
+     * 平台
      */
     @GetMapping("/tree")
     @Operation(summary = "权限列表(树形)")
@@ -98,33 +150,46 @@ public class AdminPermissionResourceV1 {
     public ResponseModel<List<Permission>> tree(
             @RequestParam(required = false) PermissionScope scope
     ) {
-        if (scope == null) {
-            // 默认返回所有权限
-            return ResponseModel.ok(queryService.findAllConvertTree());
-        }
-        return ResponseModel.ok(queryService.findAllConvertTree(scope));
+        return ResponseModel.ok(queryService.findAllConvertTree(PermissionScope.PLATFORM));
+    }
+
+
+    /**
+     * 权限列表(树形)
+     * 租户
+     */
+    @GetMapping("/tree/tenant")
+    @Operation(summary = "权限列表(树形)")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<List<Permission>> treeTenant(
+            @RequestParam(required = false) PermissionScope scope
+    ) {
+        return ResponseModel.ok(queryService.findAllConvertTree(PermissionScope.TENANT));
+    }
+
+
+
+    /**
+     * 权限列表(分页)
+     * 平台权限
+     */
+    @GetMapping
+    @Operation(summary = "权限列表(平台)")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<Page<Permission>> page(PermissionBatchQueryRequest request) {
+        PermissionQueryRequest query = request.convert(PermissionScope.PLATFORM);
+        return ResponseModel.ok(queryService.page(query));
     }
 
     /**
      * 权限列表(分页)
+     * 租户权限
      */
-    @GetMapping
-    @Operation(summary = "权限列表")
+    @GetMapping("/tenant")
+    @Operation(summary = "权限列表(租户)")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
-    public ResponseModel<Page<Permission>> page(
-            @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", defaultValue = "10") Integer limit,
-            @RequestParam(required = false) String sortField,
-            @RequestParam(required = false) Direction direction,
-            @RequestParam(required = false) PermissionScope scope
-    ) {
-        PermissionQueryRequest query = PermissionQueryRequest.builder()
-                .page(page)
-                .limit(limit)
-                .direction(direction)
-                .sortField(sortField)
-                .scope(scope)
-                .build();
+    public ResponseModel<Page<Permission>> pageTenant(PermissionBatchQueryRequest request) {
+        PermissionQueryRequest query = request.convert(PermissionScope.TENANT);
         return ResponseModel.ok(queryService.page(query));
     }
 

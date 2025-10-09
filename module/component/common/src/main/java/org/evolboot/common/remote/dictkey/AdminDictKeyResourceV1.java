@@ -33,7 +33,7 @@ import static org.evolboot.common.CommonAccessAuthorities.DictKey.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/common/dict-key")
+@RequestMapping("/admin/v1/common/dict-key")
 @Tag(name = "字典key", description = "字典key")
 @AdminClient
 public class AdminDictKeyResourceV1 {

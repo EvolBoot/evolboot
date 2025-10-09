@@ -48,7 +48,7 @@ public class MysqlSentinelDataSource implements ReadableDataSource<String, List<
     @Override
     public String readSource() {
         log.info("读取数据");
-//        String source = "[{\"resource\":\"/v1/api/content/notice/lasest\",\"limitApp\":\"default\",\"grade\":1,\"count\":3.0,\"strategy\":0,\"refResource\":null,\"controlBehavior\":0,\"warmUpPeriodSec\":10,\"maxQueueingTimeMs\":500,\"clusterMode\":false,\"clusterConfig\":{\"flowId\":null,\"thresholdType\":0,\"fallbackToLocalWhenFail\":true,\"strategy\":0,\"sampleCount\":10,\"windowIntervalMs\":1000}}]";
+//        String source = "[{\"resource\":\"/api/v1/content/notice/lasest\",\"limitApp\":\"default\",\"grade\":1,\"count\":3.0,\"strategy\":0,\"refResource\":null,\"controlBehavior\":0,\"warmUpPeriodSec\":10,\"maxQueueingTimeMs\":500,\"clusterMode\":false,\"clusterConfig\":{\"flowId\":null,\"thresholdType\":0,\"fallbackToLocalWhenFail\":true,\"strategy\":0,\"sampleCount\":10,\"windowIntervalMs\":1000}}]";
         List<FlowRule> sentinelRole = _readSource();
         return JsonUtil.stringify(sentinelRole);
     }

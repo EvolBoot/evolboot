@@ -63,6 +63,7 @@ public class UserRegisterService {
         Assert.isTrue(ExtendObjects.isNotBlank(request.getEmail()) ||
                 ExtendObjects.isNotBlank(request.getMobile()), "邮箱或者手机号必填一个");
         return factory.create(
+                null,
                 UserCreateFactory.Request.builder()
                         .email(request.getEmail())
                         .mobilePrefix(request.getMobilePrefix())

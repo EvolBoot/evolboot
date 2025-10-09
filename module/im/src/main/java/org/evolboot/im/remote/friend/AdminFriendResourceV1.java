@@ -29,7 +29,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/im/friend")
+@RequestMapping("/admin/v1/im/friend")
 @Tag(name = "好友关系", description = "好友关系")
 @AdminClient
 public class AdminFriendResourceV1 {

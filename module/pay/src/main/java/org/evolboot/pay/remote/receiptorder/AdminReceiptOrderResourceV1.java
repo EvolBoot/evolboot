@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/receipt-order")
+@RequestMapping("/admin/v1/receipt-order")
 @Tag(name = "第三方代收订单", description = "第三方代收订单")
 @AdminClient
 public class AdminReceiptOrderResourceV1 {

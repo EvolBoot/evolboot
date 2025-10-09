@@ -29,7 +29,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/im/group-member")
+@RequestMapping("/admin/v1/im/group-member")
 @Tag(name = "群成员", description = "群成员")
 @AdminClient
 public class AdminGroupMemberResourceV1 {

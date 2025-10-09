@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.NoRepeatSubmit;
 import org.evolboot.core.event.EventPublisher;
 import org.evolboot.core.exception.DomainNotFoundException;
+import org.evolboot.core.util.Assert;
+import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.GoogleAuthenticator;
 import org.evolboot.identity.IdentityI18nMessage;
 import org.evolboot.identity.acl.client.SecurityAccessTokenClient;
@@ -15,6 +17,7 @@ import org.evolboot.identity.domain.user.relation.RelationAppService;
 import org.evolboot.identity.domain.user.repository.UserRepository;
 import org.evolboot.identity.domain.user.service.*;
 import org.evolboot.shared.event.user.UserDeleteEvent;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,8 +82,8 @@ public class UserAppServiceImpl implements UserAppService {
 
     @Transactional
     @Override
-    public void resetPassword(Long userId, String encodePassword) {
-        userPasswordSetService.execute(userId, userEncryptPasswordService.toReversiblePassword(encodePassword));
+    public void resetPassword(CurrentPrincipal currentPrincipal, Long userId, String encodePassword) {
+        userPasswordSetService.execute(currentPrincipal, userId, userEncryptPasswordService.toReversiblePassword(encodePassword));
     }
 
     @Override
@@ -98,15 +101,21 @@ public class UserAppServiceImpl implements UserAppService {
 
     @Transactional
     @Override
-    public User create(UserCreateFactory.Request request) {
-        return userCreateFactory.create(request);
+    public User create(CurrentPrincipal currentPrincipal, UserCreateFactory.Request request) {
+        return userCreateFactory.create(currentPrincipal, request);
     }
 
 
     @Transactional
     @Override
-    public void delete(Long userId) {
+    public void delete(CurrentPrincipal currentPrincipal, Long userId) {
         User user = repository.findById(userId).orElseThrow(() -> new DomainNotFoundException(IdentityI18nMessage.User.userNotFound()));
+
+        // 如果 currentPrincipal 存在且有 tenantId，则验证用户必须属于同一租户
+        if (ExtendObjects.nonNull(currentPrincipal) && ExtendObjects.nonNull(currentPrincipal.getTenantId())) {
+            Assert.isTrue(currentPrincipal.getTenantId().equals(user.getTenantId()), "无权删除其他租户的用户");
+        }
+
         user.delete();
         repository.save(user);
         eventPublisher.publishEvent(new UserDeleteEvent(user.id()));
@@ -139,27 +148,27 @@ public class UserAppServiceImpl implements UserAppService {
 
     @Transactional
     @Override
-    public void update(UserUpdateService.Request request) {
-        userUpdateService.execute(request);
+    public void update(CurrentPrincipal currentPrincipal, UserUpdateService.Request request) {
+        userUpdateService.execute(currentPrincipal, request);
     }
 
     @Transactional
     @Override
-    public void lock(Long userId) {
-        userStateChangeService.execute(new UserStateChangeService.Request(userId, UserState.LOCK));
+    public void lock(CurrentPrincipal currentPrincipal, Long userId) {
+        userStateChangeService.execute(currentPrincipal, new UserStateChangeService.Request(userId, UserState.LOCK));
     }
 
 
     @Transactional
     @Override
-    public void active(Long userId) {
-        userStateChangeService.execute(new UserStateChangeService.Request(userId, UserState.ACTIVE));
+    public void active(CurrentPrincipal currentPrincipal, Long userId) {
+        userStateChangeService.execute(currentPrincipal, new UserStateChangeService.Request(userId, UserState.ACTIVE));
     }
 
     @Override
     @Transactional
-    public void changeState(UserStateChangeService.Request request) {
-        userStateChangeService.execute(request);
+    public void changeState(CurrentPrincipal currentPrincipal, UserStateChangeService.Request request) {
+        userStateChangeService.execute(currentPrincipal, request);
     }
 
 

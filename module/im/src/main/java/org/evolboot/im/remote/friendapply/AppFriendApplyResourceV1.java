@@ -29,7 +29,7 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/friend/apply")
+@RequestMapping("/api/v1/im/friend/apply")
 @Tag(name = "好友关系", description = "好友关系")
 @ApiClient
 public class AppFriendApplyResourceV1 {

@@ -10,6 +10,7 @@ import org.evolboot.identity.domain.bff.service.IdentityBffDownloadAuthoritiesSe
 import org.evolboot.identity.domain.bff.dto.IdentityBffQueryRequest;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.user.UserQueryService;
 import org.evolboot.identity.domain.user.entity.User;
@@ -63,7 +64,10 @@ public class IdentityBffAppServiceImpl implements IdentityBffAppService {
     public List<Permission> findPermissionByUserIdConvertTree(Long userId) {
         User user = userQueryService.findByUserId(userId);
         if (user.hasUserIdentity(UserIdentity.ROLE_SUPER_ADMIN)) {
-            return permissionQueryService.findAllConvertTree();
+            return permissionQueryService.findAllConvertTree(PermissionScope.PLATFORM);
+        }
+        if (user.hasUserIdentity(UserIdentity.ROLE_TENANT_OWNER)) {
+            return permissionQueryService.findAllConvertTree(PermissionScope.TENANT);
         }
         List<Long> roles = userRoleAppService.findAll(userId).stream().map(UserRole::getRoleId).collect(Collectors.toList());
         Set<Long> permissionIds = Sets.newHashSet();

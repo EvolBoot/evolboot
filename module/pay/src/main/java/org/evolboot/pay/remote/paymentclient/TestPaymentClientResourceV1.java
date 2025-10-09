@@ -21,7 +21,7 @@ import java.util.Iterator;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/payment/test")
+@RequestMapping("/api/v1/payment/test")
 @Tag(name = "测试", description = "测试")
 @ApiClient
 public class TestPaymentClientResourceV1 {

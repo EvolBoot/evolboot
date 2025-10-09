@@ -10,6 +10,8 @@ import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.shared.lang.CurrentPrincipal;
 import org.evolboot.shared.lang.UserIdentity;
 
+import java.util.List;
+
 /**
  * 用户批量查询请求
  *
@@ -52,6 +54,9 @@ public class UserBatchQueryRequest {
     @Schema(title = "用户身份")
     private UserIdentity userIdentity;
 
+    @Schema(title = "用户身份")
+    private List<UserIdentity> userIdentitys;
+
     @Schema(title = "角色ID")
     private Long roleId;
 
@@ -83,6 +88,7 @@ public class UserBatchQueryRequest {
                 .inviterUserId(inviterUserId)
                 .userType(userType)
                 .userIdentity(userIdentity)
+                .userIdentitys(userIdentitys)
                 .roleId(roleId)
                 .key(key)
                 .sortField(sortField)

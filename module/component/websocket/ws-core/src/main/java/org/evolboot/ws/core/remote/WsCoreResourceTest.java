@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin/ws")
+@RequestMapping("/admin/v1/ws")
 @Tag(name = "ws", description = "ws")
 @AdminClient
 public class WsCoreResourceTest {

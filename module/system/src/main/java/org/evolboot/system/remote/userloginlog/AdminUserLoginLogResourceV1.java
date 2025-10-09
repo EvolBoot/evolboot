@@ -22,7 +22,7 @@ import static org.evolboot.system.SystemAccessAuthorities.UserLoginLog.HAS_PAGE;
  * @author evol
  */
 @RestController
-@RequestMapping("/v1/admin/system/user-login-log")
+@RequestMapping("/admin/v1/system/user-login-log")
 @Tag(name = "用户登录日志", description = "用户登录日志")
 @AdminClient
 public class AdminUserLoginLogResourceV1 {

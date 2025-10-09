@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/friend")
+@RequestMapping("/api/v1/im/friend")
 @Tag(name = "好友关系", description = "好友关系")
 @ApiClient
 public class AppFriendResourceV1 {

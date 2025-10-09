@@ -30,7 +30,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_TENANT
  * 只能管理本租户的角色，数据自动隔离
  */
 @RestController
-@RequestMapping("/v1/tenant/roles")
+@RequestMapping("/tenant/v1/roles")
 @Tag(name = "租户角色管理", description = "租户角色管理")
 @AdminClient
 public class TenantRoleResourceV1 {

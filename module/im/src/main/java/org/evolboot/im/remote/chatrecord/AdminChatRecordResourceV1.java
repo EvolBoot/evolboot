@@ -33,7 +33,7 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/im/chat-record")
+@RequestMapping("/admin/v1/im/chat-record")
 @Tag(name = "聊天记录", description = "聊天记录")
 @AdminClient
 public class AdminChatRecordResourceV1 {

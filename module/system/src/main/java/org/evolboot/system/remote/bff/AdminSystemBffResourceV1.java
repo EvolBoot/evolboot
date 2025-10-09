@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/system/bff")
+@RequestMapping("/admin/v1/system/bff")
 @Tag(name = "SystemBFF", description = "SystemBFF")
 @AdminClient
 public class AdminSystemBffResourceV1 {

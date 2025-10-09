@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/mq-producer")
+@RequestMapping("/api/v1/mq-producer")
 @Tag(name = "消息队列生产商", description = "消息队列生产商")
 @ApiClient
 public class AppMqProducerResourceV1 {

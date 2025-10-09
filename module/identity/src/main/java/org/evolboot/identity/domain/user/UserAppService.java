@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.user;
 import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.service.*;
+import org.evolboot.shared.lang.CurrentPrincipal;
 
 /**
  * @author evol
@@ -12,10 +13,11 @@ public interface UserAppService {
     /**
      * 管理员帮用户重置密码
      *
+     * @param currentPrincipal 当前操作者，可以为空
      * @param userId
      * @param encodePassword
      */
-    void resetPassword(Long userId, String encodePassword);
+    void resetPassword(CurrentPrincipal currentPrincipal, Long userId, String encodePassword);
 
     /**
      * 用户自己重置密码
@@ -32,14 +34,15 @@ public interface UserAppService {
     /**
      * 创建一个用户
      */
-    User create(UserCreateFactory.Request request);
+    User create(CurrentPrincipal currentPrincipal, UserCreateFactory.Request request);
 
     /**
      * 删除过户
      *
+     * @param currentPrincipal 当前操作者，可以为空
      * @param userId
      */
-    void delete(Long userId);
+    void delete(CurrentPrincipal currentPrincipal, Long userId);
 
     /**
      * 更新密码
@@ -72,30 +75,33 @@ public interface UserAppService {
     /**
      * 更新
      *
+     * @param currentPrincipal 当前操作者，可以为空
      * @param request
      */
-    void update(UserUpdateService.Request request);
+    void update(CurrentPrincipal currentPrincipal, UserUpdateService.Request request);
 
     /**
      * 锁定
      *
+     * @param currentPrincipal 当前操作者，可以为空
      * @param userId
      */
-    void lock(Long userId);
+    void lock(CurrentPrincipal currentPrincipal, Long userId);
 
     /**
      * 激活
      *
+     * @param currentPrincipal 当前操作者，可以为空
      * @param userId
      */
-    void active(Long userId);
+    void active(CurrentPrincipal currentPrincipal, Long userId);
 
     /**
      * 更改用户状态
      *
      * @param request
      */
-    void changeState(UserStateChangeService.Request request);
+    void changeState(CurrentPrincipal currentPrincipal, UserStateChangeService.Request request);
 
     /**
      * 设置用户类型

@@ -29,7 +29,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/im/user-conversation")
+@RequestMapping("/admin/v1/im/user-conversation")
 @Tag(name = "用户会话", description = "用户会话")
 @AdminClient
 public class AdminUserConversationResourceV1 {

@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/im/chat-record")
+@RequestMapping("/api/v1/im/chat-record")
 @Tag(name = "聊天记录", description = "聊天记录")
 @ApiClient
 public class AppChatRecordResourceV1 {

@@ -2,6 +2,8 @@ package org.evolboot.security.accesstoken.remote;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
@@ -12,23 +14,20 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-
 /**
  * @author evol
  */
 
 @RestController
-@RequestMapping("/admin/v1/security")
+@RequestMapping("/tenant/v1/security")
 @Tag(name = "访问令牌", description = "访问令牌")
 @AdminClient
-public class AdminSessionUserResourceV1 {
+public class TenantSessionUserResourceV1 {
 
     private final AccessTokenAppService service;
 
 
-    public AdminSessionUserResourceV1(AccessTokenAppService service) {
+    public TenantSessionUserResourceV1(AccessTokenAppService service) {
         this.service = service;
     }
 

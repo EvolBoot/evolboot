@@ -30,7 +30,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin")
+@RequestMapping("/admin/v1")
 @Tag(name = "用户角色管理", description = "用户角色管理")
 @AdminClient
 @Hidden

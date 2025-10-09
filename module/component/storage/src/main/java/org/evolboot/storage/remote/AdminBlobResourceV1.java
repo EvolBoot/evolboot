@@ -36,7 +36,7 @@ import static org.evolboot.storage.StorageAccessAuthorities.Bolb.*;
  */
 @Deprecated
 @RestController
-@RequestMapping("/v1/admin/storage/blob")
+@RequestMapping("/admin/v1/storage/blob")
 @Tag(name = "文件服务", description = "文件服务")
 @Slf4j
 @AdminClient

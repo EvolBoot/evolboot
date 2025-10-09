@@ -25,7 +25,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.*;
  * 注意：租户只能查看权限，不能创建/修改/删除权限定义
  */
 @RestController
-@RequestMapping("/v1/tenant/permissions")
+@RequestMapping("/tenant/v1/permissions")
 @Tag(name = "租户权限管理", description = "租户权限管理(只读)")
 @AdminClient
 public class TenantPermissionResourceV1 {

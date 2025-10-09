@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/payment/huan-qiu-pay")
+@RequestMapping("/api/v1/payment/huan-qiu-pay")
 @Tag(name = "第三方支付管理", description = "第三方支付管理")
 @ApiClient
 public class AppHuanQiuPaymentClientResourceV1 {

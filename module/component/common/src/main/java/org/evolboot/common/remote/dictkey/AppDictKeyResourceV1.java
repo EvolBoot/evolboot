@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/common/dict-key")
+@RequestMapping("/api/v1/common/dict-key")
 @Tag(name = "字典key", description = "字典key")
 @ApiClient
 public class AppDictKeyResourceV1 {

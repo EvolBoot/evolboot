@@ -23,7 +23,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/admin/common/bff")
+@RequestMapping("/admin/v1/common/bff")
 @Tag(name = "CommonBff", description = "CommonBff")
 @AdminClient
 public class AdminCommonBffResourceV1 {

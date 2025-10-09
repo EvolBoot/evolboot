@@ -16,16 +16,20 @@ import org.evolboot.identity.domain.user.entity.User;
 import org.evolboot.identity.domain.user.entity.UserType;
 import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.domain.user.dto.UserBatchQueryRequest;
+import org.evolboot.identity.domain.user.service.UserCreateFactory;
 import org.evolboot.identity.domain.user.service.UserStateChangeService;
 import org.evolboot.identity.remote.user.dto.*;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.evolboot.security.api.annotation.Authenticated;
+import org.evolboot.shared.lang.CurrentPrincipal;
 import org.evolboot.shared.lang.UserIdentity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+
+import java.util.List;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
@@ -36,7 +40,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
  */
 
 @RestController
-@RequestMapping("/v1/admin/users")
+@RequestMapping("/admin/v1/users")
 @Tag(name = "用户账号", description = "用户账号")
 @AdminClient
 public class AdminUserResourceV1 {
@@ -57,7 +61,8 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             UserUpdateRequest request
     ) {
-        service.update(request.to(SecurityAccessTokenHolder.getUserId()));
+        // 用户修改自己的资料，不需要 tenantId 验证
+        service.update(null, request.to(SecurityAccessTokenHolder.getUserId()));
         return ResponseModel.ok();
     }
 
@@ -79,7 +84,7 @@ public class AdminUserResourceV1 {
             UserCreateRequest request,
             HttpServletRequest httpServletRequest
     ) {
-        User user = service.create(request.to(IpUtil.getClientIP(httpServletRequest)));
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(user);
     }
 
@@ -103,7 +108,8 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             UserPasswordSetRequest request
     ) {
-        service.resetPassword(request.getId(), request.getPassword());
+        // 超级管理员操作，不需要 tenantId 限制
+        service.resetPassword(null, request.getId(), request.getPassword());
         return ResponseModel.ok();
     }
 
@@ -115,7 +121,8 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             AdminUserUpdateRequest request
     ) {
-        service.update(request);
+        // 超级管理员操作，不需要 tenantId 限制
+        service.update(null, request);
         return ResponseModel.ok();
     }
 
@@ -126,7 +133,8 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> lock(
             @RequestBody IdRequest<Long> request
     ) {
-        service.lock(request.getId());
+        // 超级管理员操作，不需要 tenantId 限制
+        service.lock(null, request.getId());
         return ResponseModel.ok();
     }
 
@@ -137,7 +145,8 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> active(
             @RequestBody IdRequest<Long> request
     ) {
-        service.active(request.getId());
+        // 超级管理员操作，不需要 tenantId 限制
+        service.active(null, request.getId());
         return ResponseModel.ok();
     }
 
@@ -148,7 +157,8 @@ public class AdminUserResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
-        service.delete(id);
+        // 超级管理员操作，不需要 tenantId 限制
+        service.delete(null, id);
         return ResponseModel.ok();
     }
 
@@ -228,7 +238,7 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             UserStateChangeService.Request request
     ) {
-        service.changeState(request);
+        service.changeState(SecurityAccessTokenHolder.getCurrentPrincipal(), request);
         return ResponseModel.ok();
     }
 
@@ -240,10 +250,9 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid UserCreateStaffRequest request,
             HttpServletRequest httpServletRequest
     ) {
-        User user = service.create(request.to(IpUtil.getClientIP(httpServletRequest)));
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
         return ResponseModel.ok(user);
     }
-
 
     @Operation(summary = "修改员工资料")
     @OperationLog("修改员工资料")
@@ -253,7 +262,8 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid
             AdminUserUpdateRequest request
     ) {
-        service.update(request);
+        // 超级管理员操作，不需要 tenantId 限制
+        service.update(null, request);
         return ResponseModel.ok();
     }
 
@@ -263,9 +273,81 @@ public class AdminUserResourceV1 {
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<User>> getStaff(UserBatchQueryRequest request) {
         request.setUserIdentity(UserIdentity.ROLE_STAFF);
-        UserQueryRequest query = request.convert(SecurityAccessTokenHolder.getTenantId());
+        UserQueryRequest query = request.convert((Long) null);
         Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);
+    }
+
+
+    // ==================== 租户管理接口 ====================
+
+    @Operation(summary = "查询租户列表")
+    @GetMapping("/tenant")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<Page<User>> getTenants(UserBatchQueryRequest request) {
+        request.setUserIdentitys(List.of(UserIdentity.ROLE_TENANT_OWNER, UserIdentity.ROLE_TENANT_STAFF));
+        UserQueryRequest query = request.convert((Long) null);
+        Page<User> userPage = queryService.page(query);
+        return ResponseModel.ok(userPage);
+    }
+
+    @Operation(summary = "查询单个租户详情")
+    @GetMapping("/tenant/{id}")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<User> getTenant(@PathVariable("id") Long id) {
+        User user = queryService.findByUserId(id);
+        return ResponseModel.ok(user);
+    }
+
+    @Operation(summary = "创建租户")
+    @OperationLog("创建租户")
+    @PostMapping("/tenant")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
+    public ResponseModel<User> createTenant(
+            @RequestBody @Valid UserCreateTenantRequest request,
+            HttpServletRequest httpServletRequest
+    ) {
+        UserCreateFactory.Request createRequest = request.to(IpUtil.getClientIP(httpServletRequest));
+        createRequest.setUserIdentity(UserIdentity.ROLE_TENANT_OWNER);
+        // 创建租户时不需要 currentPrincipal，因为是超级管理员创建的，传 null
+        User user = service.create(null, createRequest);
+        return ResponseModel.ok(user);
+    }
+
+    @Operation(summary = "更新租户信息")
+    @OperationLog("更新租户信息")
+    @PutMapping("/tenant")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
+    public ResponseModel<?> updateTenant(
+            @RequestBody @Valid AdminUserUpdateRequest request
+    ) {
+        // 超级管理员操作，不需要 tenantId 限制
+        service.update(null, request);
+        return ResponseModel.ok();
+    }
+
+    @Operation(summary = "禁用租户")
+    @OperationLog("禁用租户")
+    @PutMapping("/tenant/lock")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_LOCK)
+    public ResponseModel<?> lockTenant(
+            @RequestBody IdRequest<Long> request
+    ) {
+        // 超级管理员操作，不需要 tenantId 限制
+        service.lock(null, request.getId());
+        return ResponseModel.ok();
+    }
+
+    @Operation(summary = "启用租户")
+    @OperationLog("启用租户")
+    @PutMapping("/tenant/active")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_ACTIVE)
+    public ResponseModel<?> activeTenant(
+            @RequestBody IdRequest<Long> request
+    ) {
+        // 超级管理员操作，不需要 tenantId 限制
+        service.active(null, request.getId());
+        return ResponseModel.ok();
     }
 
 }

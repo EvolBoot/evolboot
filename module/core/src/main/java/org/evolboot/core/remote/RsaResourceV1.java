@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Hidden
 @Slf4j
 //@RestController
-//@RequestMapping("/v1/api/rsa")
+//@RequestMapping("/api/v1/rsa")
 @Tag(name = "RSA", description = "RSA")
 public class RsaResourceV1 {
 

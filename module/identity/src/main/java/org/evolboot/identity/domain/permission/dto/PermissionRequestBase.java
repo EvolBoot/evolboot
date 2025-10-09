@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.identity.domain.permission.entity.Meta;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.entity.Type;
 
 /**
@@ -36,6 +37,9 @@ public class PermissionRequestBase {
 
     @Schema(title = "组件", example = "/home")
     private String component;
+
+    @Schema(title = "权限范围", example = "PLATFORM")
+    private PermissionScope scope;
 
     private Meta meta;
 

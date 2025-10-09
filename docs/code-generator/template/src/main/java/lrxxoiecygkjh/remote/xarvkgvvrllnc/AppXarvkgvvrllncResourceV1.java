@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping("/v1/api/lh6wf4pd9y/irkdf3nfva")
+@RequestMapping("/api/v1/lh6wf4pd9y/irkdf3nfva")
 @Tag(name = "模板", description = "模板")
 @ApiClient
 public class AppXarvkgvvrllncResourceV1 {
