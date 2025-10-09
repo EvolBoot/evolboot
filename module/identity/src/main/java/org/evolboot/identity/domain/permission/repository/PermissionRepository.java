@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.permission.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 
 import java.util.Collection;
@@ -42,6 +43,11 @@ public interface PermissionRepository extends BaseRepository<Permission, Long> {
     Optional<Permission> findOne(PermissionQueryRequest query);
 
     Long count(PermissionQueryRequest query);
+
+    /**
+     * 根据 scope 查询权限列表
+     */
+    List<Permission> findByScope(PermissionScope scope);
 
 
 }

@@ -1,7 +1,11 @@
 package projectPackage.lrxxoiecygkjh;
 
 
-import static projectPackage.security.api.access.AccessAuthorities.*;
+import projectPackage.core.annotation.AuthorityModule;
+import projectPackage.core.annotation.AuthorityResource;
+
+import static projectPackage.security.api.access.AccessAuthorities.AUTHORITY_PREFIX;
+import static projectPackage.security.api.access.AccessAuthorities.AUTHORITY_SUFFIX;
 
 /**
  * 权限控制标识符
@@ -9,12 +13,14 @@ import static projectPackage.security.api.access.AccessAuthorities.*;
  * @author authorxRQXP
  * @date datePlaceholder
  */
+@AuthorityModule(value = "lrxxoiecygkjh", label = "需修改")
 public interface LrxxoiecygkjhAccessAuthorities {
 
 
     /**
      * 模板
      */
+    @AuthorityResource(value = "xarvkgvvrllnc", label = "模板")
     interface Xarvkgvvrllnc {
         String HAS_CREATE = AUTHORITY_PREFIX + "lrxxoiecygkjh_xarvkgvvrllnc_create" + AUTHORITY_SUFFIX;
         String HAS_DELETE = AUTHORITY_PREFIX + "lrxxoiecygkjh_xarvkgvvrllnc_delete" + AUTHORITY_SUFFIX;

@@ -50,7 +50,7 @@ public class AdminChatRecordResourceV1 {
     @Operation(summary = "创建聊天记录")
     @OperationLog("创建聊天记录")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             ChatRecordCreateRequest request
@@ -63,7 +63,7 @@ public class AdminChatRecordResourceV1 {
     @Operation(summary = "删除聊天记录")
     @OperationLog("删除聊天记录")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -75,7 +75,7 @@ public class AdminChatRecordResourceV1 {
     @Operation(summary = "修改聊天记录")
     @OperationLog("修改聊天记录")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             ChatRecordUpdateRequest request
@@ -86,7 +86,7 @@ public class AdminChatRecordResourceV1 {
 
     @Operation(summary = "查询聊天记录")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<ChatRecord>> page(
             @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -121,7 +121,7 @@ public class AdminChatRecordResourceV1 {
 
     @Operation(summary = "查询单个聊天记录")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<ChatRecord> get(
             @PathVariable("id") Long id
     ) {

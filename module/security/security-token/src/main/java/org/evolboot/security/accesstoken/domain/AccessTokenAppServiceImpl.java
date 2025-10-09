@@ -112,7 +112,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
         if (!accessTokenConfigClient.enableSingleLogin()) {
             return;
         }
-        if (accessToken.getAuthorities().contains(UserIdentity.ROLE_STAFF.name()) || accessToken.getAuthorities().contains(UserIdentity.ROLE_ADMIN.name())) {
+        if (accessToken.getAuthorities().contains(UserIdentity.ROLE_STAFF.name()) || accessToken.getAuthorities().contains(UserIdentity.ROLE_SUPER_ADMIN.name())) {
             return;
         }
         securityAccessTokenAppService.kickOut(accessToken.getPrincipalId());

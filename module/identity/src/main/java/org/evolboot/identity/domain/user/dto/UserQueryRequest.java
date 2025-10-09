@@ -37,8 +37,10 @@ public class UserQueryRequest extends Query {
 
     private final String key;
 
+    private final Long tenantId;
+
     @Builder
-    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String sortField, Direction direction) {
+    public UserQueryRequest(Integer page, Integer limit, Long userId, String username, String mobile, String email, String registerIp, DelState delState, Long inviterUserId, UserType userType, UserIdentity userIdentity, Long roleId, String key, String sortField, Direction direction, Long tenantId) {
         super(page, limit, sortField, direction);
         this.userId = userId;
         this.username = username;
@@ -54,5 +56,6 @@ public class UserQueryRequest extends Query {
 //        }
         this.roleId = roleId;
         this.key = key;
+        this.tenantId = tenantId;
     }
 }

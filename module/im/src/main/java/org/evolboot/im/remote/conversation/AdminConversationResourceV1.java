@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.Conversation.HAS_SINGLE;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -126,7 +126,7 @@ public class AdminConversationResourceV1 {
 
     @Operation(summary = "查询单个会话")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<Conversation> get(
             @PathVariable("id") Long id
     ) {

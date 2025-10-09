@@ -7,23 +7,26 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.RoleAppService;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.evolboot.identity.remote.role.dto.CreateRoleRequest;
 import org.evolboot.identity.remote.role.dto.UpdateRoleRequest;
+import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.Role.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
- *
+ * @deprecated 请使用 PlatformRoleResourceV1 或 TenantRoleResourceV1
  */
+@Deprecated
 @RestController
 @RequestMapping("/v1/admin/roles")
 @Tag(name = "角色", description = "角色")
@@ -44,7 +47,7 @@ public class AdminRoleResourceV1 {
      */
     @PostMapping
     @Operation(summary = "创建角色")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel create(@Valid @RequestBody CreateRoleRequest request) {
         service.create(request.toRequest());
         return ResponseModel.ok();
@@ -60,7 +63,7 @@ public class AdminRoleResourceV1 {
     @PutMapping("")
     @Operation(summary = "修改角色")
     @OperationLog("修改角色")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(@Valid @RequestBody UpdateRoleRequest request) {
         service.update(request);
         return ResponseModel.ok();
@@ -75,7 +78,7 @@ public class AdminRoleResourceV1 {
     @DeleteMapping("/{id}")
     @Operation(summary = "删除角色")
     @OperationLog("删除角色")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseModel.ok();
@@ -90,7 +93,7 @@ public class AdminRoleResourceV1 {
     @GetMapping("/{id}")
     @Operation(summary = "获取单个角色")
     @OperationLog("获取单个角色")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
         return ResponseModel.ok(service);
     }
@@ -112,7 +115,7 @@ public class AdminRoleResourceV1 {
 */
     @GetMapping
     @Operation(summary = "角色列表")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Role>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,
@@ -120,12 +123,20 @@ public class AdminRoleResourceV1 {
             @RequestParam(required = false) Direction direction,
             @RequestParam(required = false) String roleName
     ) {
+        // 根据用户身份自动设置 scope 和 tenantId
+        PermissionScope scope = SecurityAccessTokenHolder.isTenantUser()
+            ? PermissionScope.TENANT
+            : PermissionScope.PLATFORM;
+        Long tenantId = SecurityAccessTokenHolder.getTenantId();
+
         RoleQueryRequest query = RoleQueryRequest.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)
                 .direction(direction)
                 .sortField(sortField)
+                .scope(scope)
+                .tenantId(tenantId)
                 .build();
         return ResponseModel.ok(service.page(query));
     }

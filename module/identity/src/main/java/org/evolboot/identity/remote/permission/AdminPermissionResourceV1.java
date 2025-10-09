@@ -10,12 +10,10 @@ import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.permission.PermissionAppService;
 import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
-import org.evolboot.identity.domain.permission.entity.Type;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
-import org.evolboot.identity.domain.user.dto.UserQueryRequest;
 import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
 import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
-import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,11 +24,12 @@ import static org.evolboot.identity.IdentityAccessAuthorities.Permission.*;
 import static org.evolboot.security.api.access.AccessAuthorities.*;
 
 /**
- * 15:41:42
+ * Platform Permission Resource
+ * 平台权限管理 - 超管和员工可访问
  */
 @RestController
 @RequestMapping("/v1/admin/permissions")
-@Tag(name = "权限", description = "权限")
+@Tag(name = "平台权限管理", description = "平台权限管理")
 @AdminClient
 public class AdminPermissionResourceV1 {
 
@@ -44,14 +43,11 @@ public class AdminPermissionResourceV1 {
 
     /**
      * 创建权限
-     *
-     * @param request
-     * @return
      */
     @PostMapping
     @Operation(summary = "创建权限")
     @OperationLog("创建权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<Permission> create(@Valid @RequestBody CreatePermissionRequest request) {
         Permission permission = service.create(request);
         return ResponseModel.ok(permission);
@@ -59,14 +55,11 @@ public class AdminPermissionResourceV1 {
 
     /**
      * 修改权限
-     *
-     * @param request
-     * @return
      */
     @PutMapping()
     @Operation(summary = "修改权限")
     @OperationLog("修改权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<Permission> update(@Valid @RequestBody UpdatePermissionRequest request) {
         Permission permission = service.update(request);
         return ResponseModel.ok(permission);
@@ -74,94 +67,78 @@ public class AdminPermissionResourceV1 {
 
     /**
      * 删除权限
-     *
-     * @param
-     * @return
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "删除权限")
     @OperationLog("删除权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseModel.ok();
     }
 
-
     /**
-     * 删除权限
-     *
-     * @param
-     * @return
+     * 获取权限
      */
     @GetMapping("/{id}")
     @Operation(summary = "获取权限")
     @OperationLog("获取权限")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
         return ResponseModel.ok(queryService.findById(id));
     }
 
-
     /**
-     * @return
+     * 权限列表(树形)
+     * 支持通过 scope 参数查询 PLATFORM 或 TENANT 权限
      */
     @GetMapping("/tree")
     @Operation(summary = "权限列表(树形)")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
-    public ResponseModel<List<Permission>> tree() {
-        return ResponseModel.ok(queryService.findAllConvertTree());
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<List<Permission>> tree(
+            @RequestParam(required = false) PermissionScope scope
+    ) {
+        if (scope == null) {
+            // 默认返回所有权限
+            return ResponseModel.ok(queryService.findAllConvertTree());
+        }
+        return ResponseModel.ok(queryService.findAllConvertTree(scope));
     }
 
-
     /**
-     * @return
-     */
-    @GetMapping("/current-user/tree")
-    @Operation(summary = "权限列表(树形)")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_ROLE_STAFF)
-    public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
-        return ResponseModel.ok(queryService.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId(), Type.menu));
-    }
-
-
-    /**
-     * @param page
-     * @param limit
-     * @return
+     * 权限列表(分页)
      */
     @GetMapping
     @Operation(summary = "权限列表")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
-    public ResponseModel<Page<Permission>> tree(
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
+    public ResponseModel<Page<Permission>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,
             @RequestParam(required = false) String sortField,
-            @RequestParam(required = false) Direction direction
+            @RequestParam(required = false) Direction direction,
+            @RequestParam(required = false) PermissionScope scope
     ) {
         PermissionQueryRequest query = PermissionQueryRequest.builder()
                 .page(page)
                 .limit(limit)
                 .direction(direction)
                 .sortField(sortField)
+                .scope(scope)
                 .build();
         return ResponseModel.ok(queryService.page(query));
     }
 
     /**
-     * 创建权限
-     *
-     * @param url
-     * @return
+     * 导入权限数据
+     * 仅超管可用
      */
     @PostMapping("/import")
     @Operation(summary = "导入权限数据")
     @OperationLog("导入权限数据")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<List<Permission>> importData(String url) {
         List<Permission> permissions = service.importJsonData(url);
         return ResponseModel.ok(permissions);
     }
-
 
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 
 
 /**
@@ -39,7 +39,7 @@ public class AdminCommonBffResourceV1 {
      */
     @GetMapping("/dict/all")
     @Operation(summary = "字典数据(所有)")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<List<BffDict>> findBffDict(
     ) {
         List<BffDict> bffDict = service.findBffDict();

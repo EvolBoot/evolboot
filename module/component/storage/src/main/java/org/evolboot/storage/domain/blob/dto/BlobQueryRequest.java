@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Query;
+import org.evolboot.shared.lang.OwnerType;
 import org.evolboot.storage.domain.blob.entity.BlobType;
 import org.evolboot.storage.domain.blob.entity.StorageType;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
@@ -51,7 +52,7 @@ public class BlobQueryRequest extends Query {
     /**
      * 所有者用户ID
      */
-    private Long ownerUserId;
+    private Long ownerId;
 
     /**
      * 创建时间起始
@@ -78,12 +79,14 @@ public class BlobQueryRequest extends Query {
      */
     private FileLimitType fileType;
 
+    private OwnerType ownerType;
+
 
     @Builder
     public BlobQueryRequest(Integer page, Integer limit, String sortField, Direction direction,
                             Long id, String name, String originalName, String extension,
-                            BlobType type, StorageType storageType, Long ownerUserId,
-                            Date createAtStart, Date createAtEnd, Long minSize, Long maxSize, FileLimitType fileType) {
+                            BlobType type, StorageType storageType, Long ownerId,
+                            Date createAtStart, Date createAtEnd, Long minSize, Long maxSize, FileLimitType fileType, OwnerType ownerType) {
         super(page, limit, sortField, direction);
         this.id = id;
         this.name = name;
@@ -91,11 +94,12 @@ public class BlobQueryRequest extends Query {
         this.extension = extension;
         this.type = type;
         this.storageType = storageType;
-        this.ownerUserId = ownerUserId;
+        this.ownerId = ownerId;
         this.createAtStart = createAtStart;
         this.createAtEnd = createAtEnd;
         this.minSize = minSize;
         this.maxSize = maxSize;
         this.fileType = fileType;
+        this.ownerType = ownerType;
     }
 }

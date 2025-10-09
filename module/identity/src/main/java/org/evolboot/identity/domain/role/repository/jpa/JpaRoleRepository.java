@@ -7,6 +7,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.Query;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.entity.QRole;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
@@ -41,6 +42,13 @@ public interface JpaRoleRepository extends RoleRepository, ExtendedQuerydslPredi
         if (ExtendObjects.isNotBlank(query.getRoleName())) {
             jpqlQuery.where(q.roleName.like("%" + query.getRoleName() + "%"));
         }
+        // 增加 scope 和 tenantId 过滤
+        if (ExtendObjects.nonNull(query.getScope())) {
+            jpqlQuery.where(q.scope.eq(query.getScope()));
+        }
+        if (ExtendObjects.nonNull(query.getTenantId())) {
+            jpqlQuery.where(q.tenantId.eq(query.getTenantId()));
+        }
         return jpqlQuery;
     }
 
@@ -74,5 +82,21 @@ public interface JpaRoleRepository extends RoleRepository, ExtendedQuerydslPredi
     default <Q extends Query> long count(Q query) {
         JPQLQuery<Long> jpqlQuery = fillQueryParameter(query, QRole.role.id.count());
         return findOne(jpqlQuery).orElse(0L);
+    }
+
+    @Override
+    default List<Role> findByScopeAndTenantId(PermissionScope scope, Long tenantId) {
+        QRole q = QRole.role;
+        JPQLQuery<Role> jpqlQuery = getJPQLQuery()
+                .select(q)
+                .from(q)
+                .where(q.scope.eq(scope))
+                .orderBy(q.createAt.desc());
+
+        if (tenantId != null) {
+            jpqlQuery.where(q.tenantId.eq(tenantId));
+        }
+
+        return findAll(jpqlQuery);
     }
 }

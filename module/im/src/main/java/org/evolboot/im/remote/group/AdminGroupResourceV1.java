@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.Group.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -80,7 +80,7 @@ public class AdminGroupResourceV1 {
     @Operation(summary = "修改群组")
     @OperationLog("修改群组")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             GroupUpdateRequest request
@@ -92,7 +92,7 @@ public class AdminGroupResourceV1 {
 
     @Operation(summary = "查询群组")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<Group>> page(
             @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -127,7 +127,7 @@ public class AdminGroupResourceV1 {
 
     @Operation(summary = "查询单个群组")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<Group> get(
             @PathVariable("id") Long id
     ) {

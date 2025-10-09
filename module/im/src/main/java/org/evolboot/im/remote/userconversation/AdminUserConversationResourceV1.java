@@ -18,7 +18,7 @@ import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.UserConversation.HAS_PAGE;
 import static org.evolboot.im.ImAccessAuthorities.UserConversation.HAS_SINGLE;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -84,7 +84,7 @@ public class AdminUserConversationResourceV1 {
 
     @Operation(summary = "查询用户会话")
     @GetMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<UserConversation>> page(
             @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -119,7 +119,7 @@ public class AdminUserConversationResourceV1 {
 
     @Operation(summary = "查询单个用户会话")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<UserConversation> get(
             @PathVariable("id") Long id
     ) {

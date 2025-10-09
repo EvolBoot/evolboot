@@ -13,10 +13,11 @@ import java.util.Set;
 @Getter
 public enum UserIdentity {
 
-    ROLE_ADMIN(1), // 管理员
-    ROLE_MEMBER(2),
-    ROLE_STAFF(4), // 员工
-    ROLE_MERCHANT(8); // 商户
+    ROLE_SUPER_ADMIN(1),   // 超级管理员
+    ROLE_STAFF(2),         // 平台员工
+    ROLE_MEMBER(4),        // 会员
+    ROLE_TENANT_OWNER(8),  // 租户所有者
+    ROLE_TENANT_STAFF(16); // 租户员工
 
 
     // 2的次方
@@ -47,6 +48,20 @@ public enum UserIdentity {
             }
         }
         return userIdentities;
+    }
+
+    /**
+     * 判断是否为租户身份
+     */
+    public boolean isTenantIdentity() {
+        return this == ROLE_TENANT_OWNER || this == ROLE_TENANT_STAFF;
+    }
+
+    /**
+     * 判断是否为平台身份
+     */
+    public boolean isPlatformIdentity() {
+        return this == ROLE_SUPER_ADMIN || this == ROLE_STAFF;
     }
 
 

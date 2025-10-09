@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.common.CommonAccessAuthorities.DictValue.*;
 
@@ -49,7 +49,7 @@ public class AdminDictValueResourceV1 {
     @Operation(summary = "创建字典Value")
     @OperationLog("创建字典Value")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             DictValueCreateRequest request
@@ -62,7 +62,7 @@ public class AdminDictValueResourceV1 {
     @Operation(summary = "删除字典Value")
     @OperationLog("删除字典Value")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -74,7 +74,7 @@ public class AdminDictValueResourceV1 {
     @Operation(summary = "修改字典Value")
     @OperationLog("修改字典Value")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             DictValueUpdateRequest request
@@ -85,7 +85,7 @@ public class AdminDictValueResourceV1 {
 
     @Operation(summary = "查询字典Value")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<DictValue>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -116,7 +116,7 @@ public class AdminDictValueResourceV1 {
 
     @Operation(summary = "查询单个字典Value")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<DictValue> get(
             @PathVariable("id") Long id
     ) {

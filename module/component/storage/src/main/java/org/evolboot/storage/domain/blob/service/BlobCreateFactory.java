@@ -39,7 +39,9 @@ public class BlobCreateFactory {
                 Blob blob = Blob.builder()
                         .originalName(request.originalName)
                         .inputStream(request.is)
-                        .ownerUserId(request.ownerUserId)
+                        .ownerType(request.resourceOwner.getOwnerType())
+                        .ownerId(request.resourceOwner.getOwnerId())
+                        .creatorUserId(request.creatorUserId)
                         .build()
         ) {
             StorageSystem.Response response = storageSystem.storeBlob(blob);
@@ -67,6 +69,7 @@ public class BlobCreateFactory {
         private String originalName;
         private long fileSize;
         private FileLimitType type;
-        private Long ownerUserId;
+        private org.evolboot.shared.resource.ResourceOwner resourceOwner;
+        private Long creatorUserId;
     }
 }

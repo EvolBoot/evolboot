@@ -64,7 +64,7 @@ public class AppUserResourceV1 {
             @RequestBody @Valid
             UserUpdateRequest request
     ) {
-        service.update(request.to(SecurityAccessTokenHolder.getPrincipalId()));
+        service.update(request.to(SecurityAccessTokenHolder.getUserId()));
         return ResponseModel.ok();
     }
 
@@ -72,7 +72,7 @@ public class AppUserResourceV1 {
     @GetMapping("/me")
     @Authenticated
     public ResponseModel<User> get() {
-        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getUserId());
         return ResponseModel.ok(user);
     }
 
@@ -97,7 +97,7 @@ public class AppUserResourceV1 {
             UserPasswordUpdateRequest request
     ) {
         service.updatePassword(
-                SecurityAccessTokenHolder.getPrincipalId(),
+                SecurityAccessTokenHolder.getUserId(),
                 request.getOldPassword(),
                 request.getNewPassword(),
                 request.getConfirmPassword()
@@ -111,7 +111,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<?> resetPassword(
             @RequestBody @Valid UserSecurityPasswordUpdateService.Request request) {
-        service.updateSecurityPassword(SecurityAccessTokenHolder.getPrincipalId(), request);
+        service.updateSecurityPassword(SecurityAccessTokenHolder.getUserId(), request);
         return ResponseModel.ok();
     }
 
@@ -122,7 +122,7 @@ public class AppUserResourceV1 {
     public ResponseModel<?> update(@RequestBody @Valid AppSecurityPasswordResetRequest request) {
         service.resetSecurityPassword(
                 request.to(
-                        SecurityAccessTokenHolder.getPrincipalId(),
+                        SecurityAccessTokenHolder.getUserId(),
                         SecurityAccessTokenHolder.getToken()
                 )
         );
@@ -135,7 +135,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<TokenResponse> resetTradePasswordSmsCaptcha(
             HttpServletRequest servletRequest) {
-        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getUserId());
         // 您未设置手机号
         Assert.notBlank(user.getMobile(), "您的手机号未设置");
         String token =
@@ -155,7 +155,7 @@ public class AppUserResourceV1 {
     @Authenticated
     public ResponseModel<TokenResponse> resetTradePasswordEmailCaptcha(
             HttpServletRequest servletRequest) {
-        User user = queryService.findByUserId(SecurityAccessTokenHolder.getPrincipalId());
+        User user = queryService.findByUserId(SecurityAccessTokenHolder.getUserId());
         // 您未设置邮箱
         Assert.notBlank(user.getEmail(), "邮箱未设置");
         String token =

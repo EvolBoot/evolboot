@@ -62,7 +62,7 @@ public class IdentityBffAppServiceImpl implements IdentityBffAppService {
     @Override
     public List<Permission> findPermissionByUserIdConvertTree(Long userId) {
         User user = userQueryService.findByUserId(userId);
-        if (user.hasUserIdentity(UserIdentity.ROLE_ADMIN)) {
+        if (user.hasUserIdentity(UserIdentity.ROLE_SUPER_ADMIN)) {
             return permissionQueryService.findAllConvertTree();
         }
         List<Long> roles = userRoleAppService.findAll(userId).stream().map(UserRole::getRoleId).collect(Collectors.toList());

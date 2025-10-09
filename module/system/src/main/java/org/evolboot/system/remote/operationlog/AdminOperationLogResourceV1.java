@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.system.SystemAccessAuthorities.OperationLog.HAS_PAGE;
 import static org.evolboot.system.SystemAccessAuthorities.OperationLog.HAS_SINGLE;
@@ -78,7 +78,7 @@ public class AdminOperationLogResourceV1 {
 
     @Operation(summary = "查询操作日志")
     @GetMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<OperationLog>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -105,7 +105,7 @@ public class AdminOperationLogResourceV1 {
 
     @Operation(summary = "查询单个操作日志")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<OperationLog> get(
             @PathVariable("id") Long id
     ) {

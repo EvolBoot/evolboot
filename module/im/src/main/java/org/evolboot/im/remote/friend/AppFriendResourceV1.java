@@ -43,7 +43,7 @@ public class AppFriendResourceV1 {
     public ResponseModel<?> delete(
             @PathVariable("friendUserId") Long friendUserId
     ) {
-        service.deleteByFriendUserId(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        service.deleteByFriendUserId(SecurityAccessTokenHolder.getUserId(), friendUserId);
         return ResponseModel.ok();
     }
 
@@ -55,7 +55,7 @@ public class AppFriendResourceV1 {
     public ResponseModel<?> joinBlacklist(
             @PathVariable("friendUserId") Long friendUserId
     ) {
-        service.joinBlacklist(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        service.joinBlacklist(SecurityAccessTokenHolder.getUserId(), friendUserId);
         return ResponseModel.ok();
     }
 
@@ -67,7 +67,7 @@ public class AppFriendResourceV1 {
     public ResponseModel<?> removeBlacklist(
             @PathVariable("friendUserId") Long friendUserId
     ) {
-        service.removeBlacklist(SecurityAccessTokenHolder.getPrincipalId(), friendUserId);
+        service.removeBlacklist(SecurityAccessTokenHolder.getUserId(), friendUserId);
         return ResponseModel.ok();
     }
 

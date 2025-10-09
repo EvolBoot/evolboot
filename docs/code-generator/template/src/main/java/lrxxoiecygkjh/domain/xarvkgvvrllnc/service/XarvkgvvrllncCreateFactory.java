@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncRequestBase;
+import projectPackage.shared.lang.CurrentPrincipal;
 import lombok.extern.slf4j.Slf4j;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,7 @@ public class XarvkgvvrllncCreateFactory {
         this.supportService = supportService;
     }
 
-    public Xarvkgvvrllnc execute(Long userId, Request request) {
+    public Xarvkgvvrllnc execute(CurrentPrincipal currentPrincipal, Request request) {
         Xarvkgvvrllnc instantiationObjectName = new Xarvkgvvrllnc("test");
         repository.save(instantiationObjectName);
         return instantiationObjectName;

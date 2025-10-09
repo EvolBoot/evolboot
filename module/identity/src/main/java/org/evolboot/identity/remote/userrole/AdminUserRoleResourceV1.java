@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import static org.evolboot.identity.IdentityAccessAuthorities.User.HAS_ROLE_UPDATE;
 import static org.evolboot.identity.IdentityAccessAuthorities.UserRole.HAS_PAGE;
 import static org.evolboot.identity.IdentityAccessAuthorities.UserRole.HAS_SINGLE;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -48,7 +48,7 @@ public class AdminUserRoleResourceV1 {
     @Operation(summary = "查询用户角色")
     @OperationLog("查询用户角色")
     @GetMapping("/user-roles")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<UserRole>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
@@ -67,7 +67,7 @@ public class AdminUserRoleResourceV1 {
     @Operation(summary = "查询单个用户角色")
     @OperationLog("查询单个用户角色")
     @GetMapping("/user-roles/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<UserRole> get(
             @PathVariable("id") Long id
     ) {
@@ -79,7 +79,7 @@ public class AdminUserRoleResourceV1 {
     @Operation(summary = "管理员修改员工角色")
     @OperationLog("管理员修改员工角色")
     @PutMapping("/users/{id}/role/update")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_ROLE_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_ROLE_UPDATE)
     public ResponseModel<?> updateRole(
             @PathVariable("id") Long id,
             @RequestBody @Valid

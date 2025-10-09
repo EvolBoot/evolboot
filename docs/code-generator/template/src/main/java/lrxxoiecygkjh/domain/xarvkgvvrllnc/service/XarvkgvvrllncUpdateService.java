@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.repository.XarvkgvvrllncRepository;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncRequestBase;
+import projectPackage.shared.lang.CurrentPrincipal;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class XarvkgvvrllncUpdateService {
         this.supportService = supportService;
     }
 
-    public void execute(Long userId, Request request) {
+    public void execute(CurrentPrincipal currentPrincipal, Request request) {
         Xarvkgvvrllnc instantiationObjectName = supportService.findById(request.getId());
         repository.save(instantiationObjectName);
     }

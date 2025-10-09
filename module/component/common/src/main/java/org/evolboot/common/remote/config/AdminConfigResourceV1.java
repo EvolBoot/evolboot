@@ -14,7 +14,7 @@ import org.evolboot.core.remote.ResponseModel;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -36,7 +36,7 @@ public class AdminConfigResourceV1 {
     @Operation(summary = "修改系统配置")
     @OperationLog("修改系统配置")
     @PutMapping("/config/system")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
     public ResponseModel<SystemConfig> setSystem(
             @RequestBody @Valid
             SystemConfig request
@@ -48,7 +48,7 @@ public class AdminConfigResourceV1 {
 
     @Operation(summary = "获取系统配置")
     @GetMapping("/config/system")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<SystemConfig> getSystem() {
         SystemConfig config = service.getByKey(SystemConfig.KEY, SystemConfig.class);
         return ResponseModel.ok(config);
@@ -58,7 +58,7 @@ public class AdminConfigResourceV1 {
     @Operation(summary = "修改关于配置")
     @OperationLog("修改关于配置")
     @PutMapping("/config/about")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
     public ResponseModel<AboutConfig> setAbout(
             @RequestBody @Valid
             AboutConfig request
@@ -70,7 +70,7 @@ public class AdminConfigResourceV1 {
 
     @Operation(summary = "获取关于配置")
     @GetMapping("/config/about")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<AboutConfig> getAbout() {
         AboutConfig config = service.getByKey(AboutConfig.KEY, AboutConfig.class);
         return ResponseModel.ok(config);
@@ -79,7 +79,7 @@ public class AdminConfigResourceV1 {
     @Operation(summary = "修改短信配置")
     @OperationLog("修改短信配置")
     @PutMapping("/config/sms")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_UPDATE)
     public ResponseModel<SmsConfig> setSms(
             @RequestBody @Valid
             SmsConfig request
@@ -91,7 +91,7 @@ public class AdminConfigResourceV1 {
 
     @Operation(summary = "获取短信配置")
     @GetMapping("/config/sms")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + CommonAccessAuthorities.Config.HAS_SINGLE)
     public ResponseModel<SmsConfig> getSms() {
         SmsConfig config = service.getByKey(SmsConfig.KEY, SmsConfig.class);
         return ResponseModel.ok(config);

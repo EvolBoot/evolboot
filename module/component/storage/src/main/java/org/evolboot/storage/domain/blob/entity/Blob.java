@@ -11,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.evolboot.core.entity.AbstractEntity;
 import org.evolboot.core.entity.AggregateRoot;
 import org.evolboot.core.entity.IdGenerate;
+import org.evolboot.shared.lang.OwnerType;
 import org.evolboot.storage.domain.blob.adapter.StorageBlob;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
@@ -101,8 +102,21 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
      */
     private StorageType storageType = StorageType.LOCAL;
 
+    /**
+     * 资源归属类型
+     */
+    @Enumerated(EnumType.STRING)
+    private OwnerType ownerType = OwnerType.USER;
 
-    private Long ownerUserId;
+    /**
+     * 资源归属ID（根据ownerType可能是用户ID或租户ID）
+     */
+    private Long ownerId;
+
+    /**
+     * 创建者用户ID（用于审计）
+     */
+    private Long creatorUserId;
 
     /**
      * 上传时的文件
@@ -123,16 +137,29 @@ public class Blob extends AbstractEntity<Long> implements AggregateRoot<Blob>, S
     }
 
     @Builder
-    public Blob(String originalName, InputStream inputStream, Long ownerUserId) {
+    public Blob(String originalName, InputStream inputStream, OwnerType ownerType, Long ownerId, Long creatorUserId) {
         generateId();
         setOriginalName(originalName);
         setInputStream(inputStream);
         setFile(inputStream);
-        setOwnerUserId(ownerUserId);
+        setOwnerType(ownerType);
+        setOwnerId(ownerId);
+        setCreatorUserId(creatorUserId);
     }
 
-    void setOwnerUserId(Long ownerUserId) {
-        this.ownerUserId = ownerUserId;
+    void setOwnerType(OwnerType ownerType) {
+        if (ownerType == null) {
+            ownerType = OwnerType.USER;
+        }
+        this.ownerType = ownerType;
+    }
+
+    void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    void setCreatorUserId(Long creatorUserId) {
+        this.creatorUserId = creatorUserId;
     }
 
     @JsonIgnore

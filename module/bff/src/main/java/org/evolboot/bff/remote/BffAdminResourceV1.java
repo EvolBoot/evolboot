@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 
 /**
  * @author evol
@@ -37,7 +37,7 @@ public class BffAdminResourceV1 {
 
     @Operation(summary = "查找用户")
     @GetMapping("/user")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<Page<BffUser>> findUser(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit

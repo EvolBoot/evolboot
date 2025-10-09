@@ -50,7 +50,7 @@ public class AppGroupResourceV1 {
             @RequestBody @Valid
             GroupCreateRequest request
     ) {
-        Group group = appService.create(request.to(SecurityAccessTokenHolder.getPrincipalId()));
+        Group group = appService.create(request.to(SecurityAccessTokenHolder.getUserId()));
         return ResponseModel.ok(group);
     }
 

@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.permission;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.core.exception.DomainNotFoundException;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.permission.service.FindPermissionByUserIdConvertTreeService;
@@ -72,6 +73,11 @@ public class PermissionQueryServiceImpl implements PermissionQueryService {
     @Override
     public List<Permission> findAllConvertTree() {
         return PermissionUtil.convertTree(repository.findAll());
+    }
+
+    @Override
+    public List<Permission> findAllConvertTree(PermissionScope scope) {
+        return PermissionUtil.convertTree(repository.findByScope(scope));
     }
 
     @Override

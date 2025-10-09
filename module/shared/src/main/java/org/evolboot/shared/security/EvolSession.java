@@ -3,6 +3,7 @@ package org.evolboot.shared.security;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.evolboot.shared.lang.UserIdentity;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class EvolSession implements Serializable {
 
-    private Long principalId;
+    private Long userId;
 
     private String principalName;
 
@@ -32,8 +33,27 @@ public class EvolSession implements Serializable {
      */
     private Set<String> authorities;
 
-    public EvolSession(Long principalId, String principalName) {
-        this.principalId = principalId;
+    /**
+     * 租户ID（租户用户有值，平台用户为null）
+     */
+    private Long tenantId;
+
+    /**
+     * 用户身份集合
+     */
+    private Set<UserIdentity> userIdentities;
+
+    public EvolSession(Long userId, String principalName) {
+        this.userId = userId;
         this.principalName = principalName;
+    }
+
+
+    /**
+     * 判断是否拥有租户身份
+     */
+    public boolean hasTenantIdentity() {
+        return userIdentities != null && userIdentities.stream()
+                .anyMatch(UserIdentity::isTenantIdentity);
     }
 }

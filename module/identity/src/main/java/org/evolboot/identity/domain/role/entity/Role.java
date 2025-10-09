@@ -9,6 +9,7 @@ import org.evolboot.core.data.jpa.JpaAbstractEntity;
 import org.evolboot.core.entity.AggregateRoot;
 import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.core.util.Assert;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.springframework.util.CollectionUtils;
 
 import jakarta.persistence.*;
@@ -39,6 +40,11 @@ public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role>
 
 
     private String remark;
+
+    @Enumerated(EnumType.STRING)
+    private PermissionScope scope = PermissionScope.PLATFORM;
+
+    private Long tenantId;
 
     @Override
     public Long id() {
@@ -84,17 +90,35 @@ public class Role extends JpaAbstractEntity<Long> implements AggregateRoot<Role>
         this.remark = remark;
     }
 
+    private void setScope(PermissionScope scope) {
+        if (scope == null) {
+            scope = PermissionScope.PLATFORM;
+        }
+        this.scope = scope;
+    }
+
+    private void setTenantId(Long tenantId) {
+        // 租户角色必须有 tenantId
+        if (scope == PermissionScope.TENANT) {
+            Assert.notNull(tenantId, "租户角色必须指定租户ID");
+        }
+        this.tenantId = tenantId;
+    }
+
     @Builder
-    public Role(String roleName, Set<Long> permissions, String remark) {
+    public Role(String roleName, Set<Long> permissions, String remark, PermissionScope scope, Long tenantId) {
         generateId();
         setRoleName(roleName);
         setRemark(remark);
         setPermissions(permissions);
+        setScope(scope);
+        setTenantId(tenantId);
     }
 
     public void update(String roleName, Set<Long> permissions, String remark) {
         setRoleName(roleName);
         updatePermissions(permissions);
         setRemark(remark);
+        // scope 和 tenantId 创建后不允许修改
     }
 }

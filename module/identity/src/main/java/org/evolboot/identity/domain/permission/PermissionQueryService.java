@@ -2,6 +2,7 @@ package org.evolboot.identity.domain.permission;
 
 import org.evolboot.core.data.Page;
 import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 
@@ -31,6 +32,11 @@ public interface PermissionQueryService {
     List<Permission> findAllById(Collection<Long> permissionIds);
 
     List<Permission> findAllConvertTree();
+
+    /**
+     * 根据 scope 查询权限树
+     */
+    List<Permission> findAllConvertTree(PermissionScope scope);
 
 
     /**

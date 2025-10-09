@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 
 /**
  * 权限管理接口
@@ -37,21 +37,21 @@ public class AdminAuthorityResourceV1 {
 
     @Operation(summary = "获取所有可用权限列表")
     @GetMapping("/available")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<List<AuthorityOption>> getAvailable() {
         return ResponseModel.ok(authoritiesService.getAvailableAuthorities());
     }
 
     @Operation(summary = "获取权限树")
     @GetMapping("/tree")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<List<AuthorityTree>> getTree() {
         return ResponseModel.ok(authoritiesService.getAuthoritiesTree());
     }
 
     @Operation(summary = "搜索权限")
     @GetMapping("/search")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<List<AuthorityOption>> search(
             @RequestParam String keyword
     ) {
@@ -60,7 +60,7 @@ public class AdminAuthorityResourceV1 {
 
     @Operation(summary = "下载权限Excel")
     @GetMapping("/download")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<String> download() {
         return ResponseModel.ok(authoritiesService.download());
     }

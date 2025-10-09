@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 
 
 /**
@@ -47,7 +47,7 @@ public class AdminIdentityBffResourceV1 {
      */
     @GetMapping("/user-staff")
     @Operation(summary = "员工列表(带角色信息)")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<Page<BffStaffUser>> findStaffUser(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit
@@ -65,7 +65,7 @@ public class AdminIdentityBffResourceV1 {
      */
     @GetMapping("/download-auth-file")
     @Operation(summary = "下载权限表格")
-    @PreAuthorize(HAS_ROLE_ADMIN)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
     public ResponseModel<String> download() {
         String s = service.downloadAuthorities();
         return ResponseModel.ok(s);
@@ -78,7 +78,7 @@ public class AdminIdentityBffResourceV1 {
     @Operation(summary = "当前登录用户权限(树形)")
     @Authenticated
     public ResponseModel<List<Permission>> currentStaffPermission() {
-        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getPrincipalId()));
+        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getUserId()));
     }
 
 

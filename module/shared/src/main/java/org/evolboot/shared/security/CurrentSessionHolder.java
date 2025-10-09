@@ -24,7 +24,7 @@ public class CurrentSessionHolder {
      * @return
      */
     public static Long getPrincipalId() {
-        return getSession().getPrincipalId();
+        return getSession().getUserId();
     }
 
     /**

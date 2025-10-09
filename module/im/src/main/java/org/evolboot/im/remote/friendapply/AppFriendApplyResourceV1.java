@@ -61,7 +61,7 @@ public class AppFriendApplyResourceV1 {
                 .endAt(endAt)
                 .page(page)
                 .limit(limit)
-                .toUserId(SecurityAccessTokenHolder.getPrincipalId())
+                .toUserId(SecurityAccessTokenHolder.getUserId())
                 .build();
         Page<FriendApply> response = queryService.page(query);
         return ResponseModel.ok(response);
@@ -76,7 +76,7 @@ public class AppFriendApplyResourceV1 {
             @RequestBody @Valid
             FriendApplyCreateRequest request
     ) {
-        return ResponseModel.ok(appService.create(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+        return ResponseModel.ok(appService.create(request.to(SecurityAccessTokenHolder.getUserId())));
     }
 
     @Operation(summary = "好友申请审核")
@@ -88,7 +88,7 @@ public class AppFriendApplyResourceV1 {
             @RequestBody @Valid
             FriendApplyAuditRequest request
     ) {
-        return ResponseModel.ok(appService.audit(request.to(SecurityAccessTokenHolder.getPrincipalId())));
+        return ResponseModel.ok(appService.audit(request.to(SecurityAccessTokenHolder.getUserId())));
     }
 
 

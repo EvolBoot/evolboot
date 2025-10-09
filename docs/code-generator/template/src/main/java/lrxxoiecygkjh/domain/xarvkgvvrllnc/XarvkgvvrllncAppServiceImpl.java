@@ -12,6 +12,7 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.service.XarvkgvvrllncUp
 
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.entity.Xarvkgvvrllnc;
 import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryRequest;
+import projectPackage.shared.lang.CurrentPrincipal;
 
 
 import org.springframework.stereotype.Service;
@@ -52,21 +53,21 @@ public class XarvkgvvrllncAppServiceImpl  implements XarvkgvvrllncAppService {
 
     @Override
     @Transactional
-    public Xarvkgvvrllnc create(Long userId, XarvkgvvrllncCreateFactory.Request request) {
-        return factory.execute(userId, request);
+    public Xarvkgvvrllnc create(CurrentPrincipal currentPrincipal, XarvkgvvrllncCreateFactory.Request request) {
+        return factory.execute(currentPrincipal, request);
     }
 
 
     @Override
     @Transactional
-    public void update(Long userId, XarvkgvvrllncUpdateService.Request request) {
-        updateService.execute(userId, request);
+    public void update(CurrentPrincipal currentPrincipal, XarvkgvvrllncUpdateService.Request request) {
+        updateService.execute(currentPrincipal, request);
     }
 
 
     @Override
     @Transactional
-    public void delete(Long userId, Keya2Akk5iV3n id) {
+    public void delete(CurrentPrincipal currentPrincipal, Keya2Akk5iV3n id) {
         findById(id);
         repository.deleteById(id);
     }

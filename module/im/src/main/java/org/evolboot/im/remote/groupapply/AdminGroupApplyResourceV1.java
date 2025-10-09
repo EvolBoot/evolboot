@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.GroupApply.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -51,7 +51,7 @@ public class AdminGroupApplyResourceV1 {
     @Operation(summary = "创建群申请")
     @OperationLog("创建群申请")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
             GroupApplyCreateRequest request
@@ -64,7 +64,7 @@ public class AdminGroupApplyResourceV1 {
     @Operation(summary = "删除群申请")
     @OperationLog("删除群申请")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -76,7 +76,7 @@ public class AdminGroupApplyResourceV1 {
     @Operation(summary = "修改群申请")
     @OperationLog("修改群申请")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
             GroupApplyUpdateRequest request
@@ -87,7 +87,7 @@ public class AdminGroupApplyResourceV1 {
 
     @Operation(summary = "查询群申请")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<GroupApply>> page(
             @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -122,7 +122,7 @@ public class AdminGroupApplyResourceV1 {
 
     @Operation(summary = "查询单个群申请")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<GroupApply> get(
             @PathVariable("id") Long id
     ) {

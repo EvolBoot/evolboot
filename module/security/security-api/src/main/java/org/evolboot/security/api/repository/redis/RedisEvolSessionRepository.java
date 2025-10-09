@@ -27,10 +27,10 @@ public class RedisEvolSessionRepository implements EvolSessionRepository {
 
     @Override
     public String save(String token, EvolSession evolSession) {
-        String redisKey = getUserIdRedisKey(evolSession.getPrincipalId().toString());
+        String redisKey = getUserIdRedisKey(evolSession.getUserId().toString());
         redisTemplate.boundValueOps(redisKey).set(evolSession, timeout, TimeUnit.MILLISECONDS);
         String tokenRedisKey = getTokenRedisKey(token);
-        stringRedisTemplate.boundValueOps(tokenRedisKey).set(evolSession.getPrincipalId().toString(), timeout, TimeUnit.MILLISECONDS);
+        stringRedisTemplate.boundValueOps(tokenRedisKey).set(evolSession.getUserId().toString(), timeout, TimeUnit.MILLISECONDS);
         return token;
     }
 

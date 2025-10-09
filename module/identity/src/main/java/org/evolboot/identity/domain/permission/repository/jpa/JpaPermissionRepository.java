@@ -9,6 +9,7 @@ import org.evolboot.core.data.PageImpl;
 import org.evolboot.core.data.jpa.querydsl.ExtendedQuerydslPredicateExecutor;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.permission.entity.Permission;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.entity.QPermission;
 import org.evolboot.identity.domain.permission.repository.PermissionRepository;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
@@ -42,6 +43,10 @@ public interface JpaPermissionRepository extends PermissionRepository, ExtendedQ
         }
         if (!ExtendObjects.isEmpty(_query.getIds())) {
             jpqlQuery.where(q.id.in(_query.getIds()));
+        }
+        // 增加 scope 过滤
+        if (ExtendObjects.nonNull(_query.getScope())) {
+            jpqlQuery.where(q.scope.eq(_query.getScope()));
         }
         return jpqlQuery;
     }
@@ -93,5 +98,15 @@ public interface JpaPermissionRepository extends PermissionRepository, ExtendedQ
     @Override
     @Query(value = "select id_ from evoltb_identity_permission where JSON_CONTAINS(parent_ids_, CAST(?1 AS JSON))", nativeQuery = true)
     List<Long> findChildren(Long parentId);
+
+    @Override
+    default List<Permission> findByScope(PermissionScope scope) {
+        QPermission q = QPermission.permission;
+        return findAll(getJPQLQuery()
+                .select(q)
+                .from(q)
+                .where(q.scope.eq(scope))
+                .orderBy(q.sort.desc()));
+    }
 
 }

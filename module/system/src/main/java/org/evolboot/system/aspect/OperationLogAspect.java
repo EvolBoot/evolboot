@@ -21,7 +21,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -77,7 +76,7 @@ public class OperationLogAspect {
         //用ID
         Long userId = 0L;
         if (SecurityAccessTokenHolder.isLogin()) {
-            userId = SecurityAccessTokenHolder.getPrincipalId();
+            userId = SecurityAccessTokenHolder.getUserId();
         }
 
         try {

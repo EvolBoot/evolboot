@@ -51,7 +51,7 @@ public class FindPermissionByUserIdConvertTreeService {
      */
     public List<Permission> findPermissionByUserIdConvertTree(Long userId, Type type) {
         User user = userAppService.findById(userId);
-        if (user.hasUserIdentity(UserIdentity.ROLE_ADMIN)) {
+        if (user.hasUserIdentity(UserIdentity.ROLE_SUPER_ADMIN)) {
             return PermissionUtil.convertTree(repository.findAll(
                     PermissionQueryRequest.builder().type(type).build()
             ));

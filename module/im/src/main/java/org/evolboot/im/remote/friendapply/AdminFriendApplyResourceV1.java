@@ -18,7 +18,7 @@ import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.FriendApply.HAS_PAGE;
 import static org.evolboot.im.ImAccessAuthorities.FriendApply.HAS_SINGLE;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
@@ -74,7 +74,7 @@ public class AdminFriendApplyResourceV1 {
 
     @Operation(summary = "查询好友申请列表")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<FriendApply>> page(
             @Parameter(description = "页数")
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -109,7 +109,7 @@ public class AdminFriendApplyResourceV1 {
 
     @Operation(summary = "查询单个好友申请")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_ADMIN + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_SINGLE)
     public ResponseModel<FriendApply> get(
             @PathVariable("id") Long id
     ) {

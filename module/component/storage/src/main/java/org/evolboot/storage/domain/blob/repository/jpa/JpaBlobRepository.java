@@ -58,8 +58,8 @@ public interface JpaBlobRepository extends BlobRepository, ExtendedQuerydslPredi
         }
 
         // 所有者用户ID查询
-        if (query.getOwnerUserId() != null) {
-            builder.and(q.ownerUserId.eq(query.getOwnerUserId()));
+        if (query.getOwnerId() != null) {
+            builder.and(q.ownerId.eq(query.getOwnerId()));
         }
 
         // 创建时间范围查询

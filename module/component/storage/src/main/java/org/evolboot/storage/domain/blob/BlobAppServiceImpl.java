@@ -2,6 +2,8 @@ package org.evolboot.storage.domain.blob;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
+import org.evolboot.shared.lang.OwnerType;
+import org.evolboot.shared.resource.ResourceOwner;
 import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.intercept.FileLimitType;
 import org.evolboot.storage.domain.blob.repository.BlobRepository;
@@ -33,25 +35,27 @@ public class BlobAppServiceImpl implements BlobAppService {
 
     @Transactional
     @Override
-    public Blob create(InputStream is, String filename, long fileSize, FileLimitType type, Long ownerUserId) {
+    public Blob create(InputStream is, String filename, long fileSize, FileLimitType type, ResourceOwner resourceOwner, Long creatorUserId) {
         return factory.create(new BlobCreateFactory.Request(
-                is, filename, fileSize, type, ownerUserId
+                is, filename, fileSize, type, resourceOwner, creatorUserId
         ));
     }
 
+    @Deprecated
     @Transactional
     @Override
     public Blob createImage(InputStream is, String filename, long fileSize, Long ownerUserId) {
         return factory.create(new BlobCreateFactory.Request(
-                is, filename, fileSize, FileLimitType.IMAGE, ownerUserId
+                is, filename, fileSize, FileLimitType.IMAGE, ResourceOwner.user(ownerUserId), ownerUserId
         ));
     }
 
+    @Deprecated
     @Transactional
     @Override
     public Blob createFile(InputStream is, String filename, long fileSize, Long ownerUserId) {
         return factory.create(new BlobCreateFactory.Request(
-                is, filename, fileSize, FileLimitType.FILE, ownerUserId
+                is, filename, fileSize, FileLimitType.FILE, ResourceOwner.user(ownerUserId), ownerUserId
         ));
     }
 

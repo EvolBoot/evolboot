@@ -60,6 +60,9 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
 
     private Boolean isLink = false;
 
+    @Enumerated(EnumType.STRING)
+    private PermissionScope scope = PermissionScope.PLATFORM;
+
     @Embedded
     private Meta meta;
 
@@ -75,7 +78,8 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
             Type type,
             Integer sort,
             Boolean isLink,
-            Meta meta) {
+            Meta meta,
+            PermissionScope scope) {
         generateId();
         setParentIds(parentIds);
         setCode(code);
@@ -85,6 +89,7 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
         setSort(sort);
         setIsLink(isLink);
         setMeta(meta);
+        setScope(scope);
     }
 
     @Override
@@ -136,6 +141,13 @@ public class Permission extends JpaAbstractEntity<Long> implements AggregateRoot
     public void setMeta(Meta meta) {
         Assert.notNull(meta, "元数据不能为空");
         this.meta = meta;
+    }
+
+    public void setScope(PermissionScope scope) {
+        if (scope == null) {
+            scope = PermissionScope.PLATFORM;
+        }
+        this.scope = scope;
     }
 
     @Override

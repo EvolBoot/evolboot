@@ -54,7 +54,7 @@ public class IdentityBffDownloadAuthoritiesService {
                     Authorities authorities = new Authorities();
                     authorities.setTitle(operation.summary());
                     authorities.setPerm(preAuthorize.value()
-                            .replace(HAS_ROLE_ADMIN, "")
+                            .replace(HAS_ROLE_SUPER_ADMIN, "")
                             .replace(HAS_ROLE_STAFF, "")
                             .replace(OR, "")
                             .replace(AUTHORITY_PREFIX, "")

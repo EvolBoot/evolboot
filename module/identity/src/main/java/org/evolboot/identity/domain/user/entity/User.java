@@ -133,6 +133,9 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
     @Convert(converter = LongSetConverter.class)
     private Set<Long> roleId = Sets.newHashSet();
 
+    @Schema(title = "所属租户ID")
+    private Long tenantId;
+
     @Builder
     public User(
             Long id,
@@ -149,7 +152,8 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
             UserType userType,
             String registerIp,
             String remark,
-            List<Long> roleId
+            List<Long> roleId,
+            Long tenantId
     ) {
         this.id = id;
         setEmail(email);
@@ -166,6 +170,7 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
         setRegisterIp(registerIp);
         updateRoleId(roleId);
         setRemark(remark);
+        setTenantId(tenantId);
     }
 
     public void updateRoleId(Collection<Long> roleId) {
@@ -177,6 +182,24 @@ public class User extends JpaAbstractEntity<Long> implements AggregateRoot<User>
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    /**
+     * 判断是否为租户用户
+     */
+    public boolean isTenantUser() {
+        return tenantId != null;
+    }
+
+    /**
+     * 判断是否为平台用户
+     */
+    public boolean isPlatformUser() {
+        return tenantId == null;
     }
 
     public void addUserIdentity(UserIdentity userIdentity) {

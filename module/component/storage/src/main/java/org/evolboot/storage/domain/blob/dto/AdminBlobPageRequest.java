@@ -74,7 +74,7 @@ public class AdminBlobPageRequest {
     /**
      * 所有者用户ID
      */
-    private Long ownerUserId;
+    private Long ownerId;
 
     /**
      * 创建时间起始
@@ -116,7 +116,7 @@ public class AdminBlobPageRequest {
                 .extension(extension)
                 .type(type)
                 .storageType(storageType)
-                .ownerUserId(ownerUserId)
+                .ownerId(ownerId)
                 .createAtStart(createAtStart)
                 .createAtEnd(createAtEnd)
                 .minSize(minSize)

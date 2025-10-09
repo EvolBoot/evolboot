@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.role.repository;
 import org.evolboot.core.data.BaseRepository;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 
@@ -34,4 +35,9 @@ public interface RoleRepository extends BaseRepository<Role, Long> {
     <Q extends Query> long count(Q query);
 
     <Q extends Query> Page<Role> page(Q query);
+
+    /**
+     * 根据 scope 和 tenantId 查询角色
+     */
+    List<Role> findByScopeAndTenantId(PermissionScope scope, Long tenantId);
 }

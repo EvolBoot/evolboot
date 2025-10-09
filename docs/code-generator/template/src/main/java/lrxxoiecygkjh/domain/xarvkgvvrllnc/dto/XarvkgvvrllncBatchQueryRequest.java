@@ -3,6 +3,7 @@ package projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto;
 import projectPackage.core.data.Query;
 import projectPackage.core.data.Sort;
 import projectPackage.core.data.Direction;
+import projectPackage.shared.lang.CurrentPrincipal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +16,14 @@ import java.util.Date;
 
 
 /**
- * 模板
+ * 模板批量查询请求
  *
  * @author authorxRQXP
  * @date datePlaceholder
  */
 @Setter
 @Getter
-public class XarvkgvvrllncQueryRequestByMember {
+public class XarvkgvvrllncBatchQueryRequest {
 
 
     @Schema(title = "页数")
@@ -46,12 +47,16 @@ public class XarvkgvvrllncQueryRequestByMember {
     @Schema(title = "关键字")
     private String keyword;
 
-    public XarvkgvvrllncQueryRequest convert(Long userId) {
+    /**
+     * 转换为标准查询请求
+     */
+    public XarvkgvvrllncQueryRequest convert(Long userId, Long tenantId) {
         return XarvkgvvrllncQueryRequest
                 .builder()
                 .page(page)
                 .limit(limit)
                 .userId(userId)
+                .tenantId(tenantId)
                 .ids(ids)
                 .keyword(keyword)
                 .beginAt(beginAt)
@@ -59,7 +64,15 @@ public class XarvkgvvrllncQueryRequestByMember {
                 .build();
     }
 
-
+    /**
+     * 使用 CurrentPrincipal 转换为标准查询请求
+     */
+    public XarvkgvvrllncQueryRequest convert(CurrentPrincipal currentPrincipal) {
+        if (ExtendObjects.isNull(currentPrincipal)) {
+            return convert(null, null);
+        }
+        return convert(currentPrincipal.getUserId(), currentPrincipal.getTenantId());
+    }
 
 
 }

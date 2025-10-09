@@ -9,15 +9,11 @@ import org.evolboot.common.domain.bff.dto.BffDict;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.security.api.annotation.Authenticated;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_ADMIN;
 
 
 /**
