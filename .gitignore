@@ -280,3 +280,11 @@ local.properties
 # End of https://www.gitignore.io/api/eclipse
 
 /docs/code-generator/module/
+
+AGENTS.md
+archetype.properties
+archetype-deploy.md
+CLAUDE.md
+first-step.md
+g-deploy.sh
+readme-archetype.md
