@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.receiptorder.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +13,6 @@ import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReceiptOrderState;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 
@@ -103,6 +100,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
      * 第三方支付网关
      */
     @Schema(title = "第三方支付网关")
+    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
     /**
@@ -115,6 +113,7 @@ public class ReceiptOrder extends JpaAbstractEntity<String> implements Aggregate
      * 状态
      */
     @Schema(title = "状态")
+    @Enumerated(EnumType.STRING)
     private ReceiptOrderState state = ReceiptOrderState.PENDING;
 
 

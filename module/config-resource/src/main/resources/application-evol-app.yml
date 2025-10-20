@@ -20,4 +20,6 @@ logging:
 evolpn:
   pay:
     notify-domain: http://locahost:8081
+    now_payments_api_key: 213C3GW-DP54P9F-JDAWWXW-3Q51RQN
+    now-payments-ipn-secret:
   snowflake-host: 2

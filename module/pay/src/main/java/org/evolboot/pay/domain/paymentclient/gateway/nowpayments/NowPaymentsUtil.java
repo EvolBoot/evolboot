@@ -22,15 +22,37 @@ import java.util.Map;
 public class NowPaymentsUtil {
 
     /**
-     * 虚拟币映射
+     * 虚拟币映射 (系统币种 -> NOWPayments 币种代码)
+     * 完整列表: https://documenter.getpostman.com/view/7907941/S1a32n38#9998079f-dcc8-4e07-9ac7-3d52f0fd733a
      */
     private static final Map<Currency, String> CURRENCY_MAPPING = new HashMap<>();
 
     static {
-        CURRENCY_MAPPING.put(Currency.ETH, "eth");
-        CURRENCY_MAPPING.put(Currency.BTC, "btc");
-        CURRENCY_MAPPING.put(Currency.USDT, "usdterc20");
-        CURRENCY_MAPPING.put(Currency.USDC, "usdcerc20");
+        // 主流虚拟币
+        CURRENCY_MAPPING.put(Currency.BTC, "btc");           // Bitcoin
+        CURRENCY_MAPPING.put(Currency.ETH, "eth");           // Ethereum
+        CURRENCY_MAPPING.put(Currency.TRX, "trx");           // Tron
+        CURRENCY_MAPPING.put(Currency.BNB, "bnbbsc");        // BNB (BSC)
+        CURRENCY_MAPPING.put(Currency.SOL, "sol");           // Solana
+        CURRENCY_MAPPING.put(Currency.XRP, "xrp");           // Ripple
+        CURRENCY_MAPPING.put(Currency.DOGE, "doge");         // Dogecoin
+        CURRENCY_MAPPING.put(Currency.ADA, "ada");           // Cardano
+        CURRENCY_MAPPING.put(Currency.MATIC, "maticpoly");   // Polygon (Matic Network)
+        CURRENCY_MAPPING.put(Currency.LTC, "ltc");           // Litecoin
+
+        // 稳定币 - ERC20 (Ethereum Network)
+        CURRENCY_MAPPING.put(Currency.USDT_ERC20, "usdterc20");   // Tether ERC20
+        CURRENCY_MAPPING.put(Currency.USDC_ERC20, "usdcerc20");   // USD Coin ERC20
+        CURRENCY_MAPPING.put(Currency.DAI_ERC20, "dai");          // DAI ERC20
+
+        // 稳定币 - TRC20 (Tron Network) ⭐ 重点支持
+        CURRENCY_MAPPING.put(Currency.USDT_TRC20, "usdttrc20");   // Tether TRC20
+        CURRENCY_MAPPING.put(Currency.USDC_TRC20, "usdctrc20");   // USD Coin TRC20
+
+        // 稳定币 - BEP20 (BSC Network)
+        CURRENCY_MAPPING.put(Currency.USDT_BEP20, "usdtbsc");     // Tether BEP20
+        CURRENCY_MAPPING.put(Currency.USDC_BEP20, "usdcbsc");     // USD Coin BEP20
+        CURRENCY_MAPPING.put(Currency.BUSD, "busdbsc");           // Binance USD
     }
 
     /**

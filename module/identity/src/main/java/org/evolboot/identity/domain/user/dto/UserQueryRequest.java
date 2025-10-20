@@ -56,7 +56,7 @@ public class UserQueryRequest extends Query {
         this.userType = userType;
         this.userIdentity = userIdentity;
         this.userIdentitys = userIdentitys;
-//        if (ExtendObjects.nonNull(userIdentity)) {
+//        if (ExtendObjects.nonNull(userIdentity)) {g
 //            this.identitySymbol = userIdentity.getIdentitySymbol();
 //        }
         this.roleId = roleId;

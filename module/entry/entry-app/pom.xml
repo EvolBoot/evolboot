@@ -21,7 +21,6 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -70,6 +69,14 @@
         <dependency>
             <groupId>org.evolboot</groupId>
             <artifactId>apidoc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>pay</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.evolboot</groupId>
+            <artifactId>mq-redis-producer</artifactId>
         </dependency>
 
     </dependencies>

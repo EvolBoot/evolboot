@@ -15,7 +15,7 @@ CREATE TABLE evoltb_pay_gateway_account
     minimum_receipt_ decimal(20, 3) COMMENT '最小代收',
     maximum_receipt_ decimal(20, 3) COMMENT '最大代收',
     enable_          tinyint(1)           default 1 COMMENT '启用',
-    pay_gateway_     tinyint COMMENT '对应的网关符号',
+    pay_gateway_     varchar(50) COMMENT '对应的网关符号',
     wallet_id_       varchar(50) null comment '钱包ID',
     sort_            int                  default 0 COMMENT '排序',
     alias_           varchar(50) COMMENT '别名',

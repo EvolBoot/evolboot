@@ -91,15 +91,16 @@ public class UserCreateFactory {
 
         Long id = userIdAppService.getNextUserId();
 
-        String originalPassword;
-        //TODO 如果密码为空,则产生一个随机密码,需要改
-        if (ExtendObjects.isBlank(request.getEncodePassword())) {
-            originalPassword = UUID.randomUUID().toString();
-        } else {
+        String originalPassword = request.getOriginalPassword();
+        if (ExtendObjects.isNotBlank(request.getEncodePassword())) {
             ReversiblePassword reversiblePassword = userEncryptPasswordService.toReversiblePassword(request.getEncodePassword());
             originalPassword = reversiblePassword.toOriginalPassword();
         }
 
+        //TODO 如果密码为空,则产生一个随机密码,需要改
+        if (ExtendObjects.isBlank(originalPassword)) {
+            originalPassword = UUID.randomUUID().toString();
+        }
         // 处理 tenantId
         Long tenantId = request.getTenantId();
         if (ExtendObjects.nonNull(currentPrincipal) && ExtendObjects.nonNull(currentPrincipal.getTenantId())) {
@@ -198,6 +199,9 @@ public class UserCreateFactory {
         private String mobilePrefix;
         private String mobile;
         private String email;
+        // 不加密的密码
+        private String originalPassword;
+        // 加密的密码，优先级比较高
         private String encodePassword;
         private String encodeFundsPassword;
         private UserIdentity userIdentity;

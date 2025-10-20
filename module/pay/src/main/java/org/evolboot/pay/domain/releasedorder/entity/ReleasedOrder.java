@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.releasedorder.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +15,6 @@ import org.evolboot.shared.pay.PayGateway;
 import org.evolboot.shared.pay.ReleasedOrderOrgType;
 import org.evolboot.shared.pay.ReleasedOrderState;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 import static org.evolboot.shared.pay.ReleasedOrderState.PENDING;
@@ -117,6 +114,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      * 网关
      */
     @Schema(title = "网关")
+    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
 
@@ -157,6 +155,7 @@ public class ReleasedOrder extends JpaAbstractEntity<String> implements Aggregat
      * 状态
      */
     @Schema(title = "状态")
+    @Enumerated(EnumType.STRING)
     private ReleasedOrderState state = WAIT;
 
     public ReleasedOrder(

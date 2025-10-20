@@ -7,6 +7,7 @@ import org.evolboot.bff.domain.admin.BffDownloadAuthoritiesService;
 import org.evolboot.bff.domain.admin.dto.AuthorityOption;
 import org.evolboot.bff.domain.admin.dto.AuthorityTree;
 import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.remote.ResponseModel;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
 
 /**
  * 权限管理接口
+ *
  * @author evol
  */
 @Slf4j
@@ -27,26 +29,40 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
 @RequestMapping("/admin/v1/bff/authorities")
 @Tag(name = "权限管理", description = "权限管理")
 @AdminClient
-public class AdminAuthorityResourceV1 {
+public class BffAdminAuthorityResourceV1 {
 
     private final BffDownloadAuthoritiesService authoritiesService;
 
-    public AdminAuthorityResourceV1(BffDownloadAuthoritiesService authoritiesService) {
+    public BffAdminAuthorityResourceV1(BffDownloadAuthoritiesService authoritiesService) {
         this.authoritiesService = authoritiesService;
     }
 
-    @Operation(summary = "获取所有可用权限列表")
-    @GetMapping("/available")
+    @Operation(summary = "获取租户所有可用权限列表")
+    @GetMapping("/tenant/available")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
-    public ResponseModel<List<AuthorityOption>> getAvailable() {
-        return ResponseModel.ok(authoritiesService.getAvailableAuthorities());
+    public ResponseModel<List<AuthorityOption>> getTenantAvailable() {
+        return ResponseModel.ok(authoritiesService.getAvailableAuthorities(TenantClient.class));
     }
 
-    @Operation(summary = "获取权限树")
-    @GetMapping("/tree")
+    @Operation(summary = "获取管理员所有可用权限列表")
+    @GetMapping("/admin/available")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
-    public ResponseModel<List<AuthorityTree>> getTree() {
-        return ResponseModel.ok(authoritiesService.getAuthoritiesTree());
+    public ResponseModel<List<AuthorityOption>> getAdminAvailable() {
+        return ResponseModel.ok(authoritiesService.getAvailableAuthorities(AdminClient.class));
+    }
+
+    @Operation(summary = "获取管理员权限树")
+    @GetMapping("/admin/tree")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
+    public ResponseModel<List<AuthorityTree>> getAdminTree() {
+        return ResponseModel.ok(authoritiesService.getAuthoritiesTree(AdminClient.class));
+    }
+
+    @Operation(summary = "获取租户权限树")
+    @GetMapping("/tenant/tree")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN)
+    public ResponseModel<List<AuthorityTree>> getTenantTree() {
+        return ResponseModel.ok(authoritiesService.getAuthoritiesTree(TenantClient.class));
     }
 
     @Operation(summary = "搜索权限")

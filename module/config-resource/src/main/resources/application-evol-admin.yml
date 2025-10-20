@@ -20,7 +20,10 @@ rocketmq:
 
 evolpn:
   snowflake-host: 1
-
+  pay:
+    notify-domain: http://locahost:8081
+    now_payments_api_key: 213C3GW-DP54P9F-JDAWWXW-3Q51RQN
+    now-payments-ipn-secret:
 logging:
   # 日志名称
   filename: app

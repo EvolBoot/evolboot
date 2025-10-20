@@ -1,6 +1,7 @@
 package org.evolboot.pay.domain.paygatewayaccount.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +12,6 @@ import org.evolboot.core.entity.LocaleDomainPart;
 import org.evolboot.pay.domain.paygatewayaccount.repository.jpa.convert.PayGatewayAccountLocaleListConverter;
 import org.evolboot.shared.pay.PayGateway;
 
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -76,6 +73,8 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
 
     // 网关
     @Schema(title = "网关")
+
+    @Enumerated(EnumType.STRING)
     private PayGateway payGateway;
 
     @Schema(title = "别名")

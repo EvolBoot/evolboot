@@ -32,9 +32,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
 import static org.evolboot.storage.StorageAccessAuthorities.Bolb.*;
 
 /**
- * @deprecated 请使用 PlatformBlobResourceV1 或 TenantBlobResourceV1
  */
-@Deprecated
 @RestController
 @RequestMapping("/admin/v1/storage/blob")
 @Tag(name = "文件服务", description = "文件服务")

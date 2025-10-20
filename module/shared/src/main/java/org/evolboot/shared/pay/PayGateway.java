@@ -17,7 +17,8 @@ public enum PayGateway {
 
     HUANQIU_PAY(1),
     METAGO(2),
-    QART(2);
+    QART(2),
+    NOW_PAYMENTS(3);
 
     private final Integer value;
 

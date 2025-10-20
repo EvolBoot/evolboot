@@ -18,8 +18,17 @@ import static org.evolboot.pay.domain.shared.PayConfig.CONFIGURATION_PREFIX;
 @Configuration
 public class PayConfig {
 
-    public final static String CONFIGURATION_PREFIX = "evolboot.pay";
+    public final static String CONFIGURATION_PREFIX = "evolpn.pay";
 
-    private String domain;
+    private String notifyDomain;
+
+    /**
+     * NOWPayments 配置
+     */
+    private String nowPaymentsApiKey;
+
+    private String nowPaymentsIpnSecret;
+
+    private boolean nowPaymentsSandbox = false;
 
 }

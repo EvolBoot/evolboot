@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.IdRequest;
@@ -37,7 +38,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
 @RestController
 @RequestMapping("/tenant/v1/users")
 @Tag(name = "租户用户管理", description = "租户用户管理")
-@AdminClient
+@TenantClient
 public class TenantUserResourceV1 {
 
     private final UserAppService service;

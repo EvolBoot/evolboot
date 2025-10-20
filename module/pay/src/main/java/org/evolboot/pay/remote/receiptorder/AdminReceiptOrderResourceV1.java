@@ -1,12 +1,25 @@
 package org.evolboot.pay.remote.receiptorder;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.OperationLog;
+import org.evolboot.core.remote.DomainId;
+import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
 import org.evolboot.pay.domain.receiptorder.ReceiptOrderQueryService;
+import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrder;
+import org.evolboot.pay.domain.receiptorder.service.ReceiptOrderCreateFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.evolboot.pay.PayAccessAuthorities.ReceiptOrder.*;
+import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
+import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
  * 第三方代收订单
@@ -27,22 +40,22 @@ public class AdminReceiptOrderResourceV1 {
         this.service = service;
         this.queryService = queryService;
     }
-/*
+
 
 
     @Operation(summary = "创建第三方代收订单")
     @OperationLog("创建第三方代收订单")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel<?> create(
-            @RequestBody @Valid
-                    ReceiptOrderCreateRequest request
+            @RequestBody
+            ReceiptOrderCreateFactory.Request request
     ) {
         ReceiptOrder receiptOrder = service.create(request);
         return ResponseModel.ok(new DomainId(receiptOrder.id()));
     }
 
-
+/*
     @Operation(summary = "删除第三方代收订单")
     @OperationLog("删除第三方代收订单")
     @DeleteMapping("/{id}")

@@ -19,7 +19,7 @@ CREATE TABLE evoltb_pay_released_order
     ifsc_card_no_                    varchar(30) COMMENT 'ifsc卡号',
     org_type_                        smallint COMMENT '组织类型',
     pay_gateway_account_id_          bigint COMMENT '网关ID',
-    pay_gateway_                     tinyint COMMENT '网关',
+    pay_gateway_                     varchar(50) COMMENT '网关',
     poundage_                        varchar(100) COMMENT '手续费',
     foreign_order_id_                varchar(100) COMMENT '第三方ID',
     request_text_                    text COMMENT '请求出去',
@@ -33,7 +33,7 @@ CREATE TABLE evoltb_pay_released_order
     notify_result_text_              text COMMENT '通知返回',
     notify_result_amount_            decimal(20, 3) COMMENT '通知返回金额',
     notify_result_poundage_          varchar(100) COMMENT '通知返回手续费',
-    state_                           tinyint COMMENT '状态',
+    state_                           varchar(50) COMMENT '状态',
 
     query_request_text_              text COMMENT '查询请求',
     query_result_text_               text COMMENT '查询返回',

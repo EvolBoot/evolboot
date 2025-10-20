@@ -14,5 +14,7 @@ public interface StorageBlob extends Closeable {
 
     String getExtension();
 
+    Long getOwnerId();
+
 }
 

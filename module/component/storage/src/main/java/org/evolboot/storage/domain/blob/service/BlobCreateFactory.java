@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.shared.resource.ResourceOwner;
 import org.evolboot.storage.domain.blob.StorageBoldException;
 import org.evolboot.storage.domain.blob.entity.Blob;
 import org.evolboot.storage.domain.blob.adapter.StorageSystem;
@@ -69,7 +70,7 @@ public class BlobCreateFactory {
         private String originalName;
         private long fileSize;
         private FileLimitType type;
-        private org.evolboot.shared.resource.ResourceOwner resourceOwner;
+        private ResourceOwner resourceOwner;
         private Long creatorUserId;
     }
 }

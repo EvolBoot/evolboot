@@ -88,6 +88,21 @@ public class AdminUserResourceV1 {
         return ResponseModel.ok(user);
     }
 
+
+    @Operation(summary = "创建会员")
+    @OperationLog("创建会员")
+    @PostMapping("/member")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
+    public ResponseModel<User> createMember(
+            @RequestBody @Valid
+            UserCreateMemberRequest request,
+            HttpServletRequest httpServletRequest
+    ) {
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
+        return ResponseModel.ok(user);
+    }
+
+
     @Operation(summary = "当前用户修改密码")
     @OperationLog("当前用户修改密码")
     @PutMapping("/me/password/update")
@@ -167,7 +182,7 @@ public class AdminUserResourceV1 {
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_PAGE)
     public ResponseModel<Page<User>> getUsers(UserBatchQueryRequest request) {
         request.setUserIdentity(UserIdentity.ROLE_MEMBER);
-        UserQueryRequest query = request.convert(SecurityAccessTokenHolder.getTenantId());
+        UserQueryRequest query = request.convert(SecurityAccessTokenHolder.getCurrentPrincipal());
         Page<User> userPage = queryService.page(query);
         return ResponseModel.ok(userPage);
     }

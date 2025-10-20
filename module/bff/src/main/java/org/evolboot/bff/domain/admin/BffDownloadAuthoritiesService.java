@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -139,12 +140,12 @@ public class BffDownloadAuthoritiesService {
     /**
      * 获取所有可用权限列表
      */
-    public List<AuthorityOption> getAvailableAuthorities() {
+    public List<AuthorityOption> getAvailableAuthorities(final Class<? extends Annotation> annotationClass) {
         // 1. 从 *AccessAuthorities 扫描，获取元数据
         Map<String, AuthorityMeta> metaMap = scanFromAccessAuthorities();
 
         // 2. 从 Controller 扫描，获取 URL 和标题
-        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", AdminClient.class);
+        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", annotationClass);
         List<AuthorityOption> authorities = new ArrayList<>();
 
         classes.forEach(clazz -> {
@@ -182,8 +183,8 @@ public class BffDownloadAuthoritiesService {
     /**
      * 构建权限树形结构
      */
-    public List<AuthorityTree> getAuthoritiesTree() {
-        List<AuthorityOption> authorities = getAvailableAuthorities();
+    public List<AuthorityTree> getAuthoritiesTree(final Class<? extends Annotation> annotationClass) {
+        List<AuthorityOption> authorities = getAvailableAuthorities(annotationClass);
 
         // 按 module -> resource -> action 分组
         Map<String, Map<String, List<AuthorityOption>>> grouped = authorities.stream()
@@ -201,11 +202,11 @@ public class BffDownloadAuthoritiesService {
      */
     public List<AuthorityOption> searchAuthorities(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
-            return getAvailableAuthorities();
+            return getAvailableAuthorities(AdminClient.class);
         }
 
         String lowerKeyword = keyword.toLowerCase();
-        return getAvailableAuthorities().stream()
+        return getAvailableAuthorities(AdminClient.class).stream()
                 .filter(auth ->
                         (auth.getPerm() != null && auth.getPerm().toLowerCase().contains(lowerKeyword)) ||
                         (auth.getTitle() != null && auth.getTitle().toLowerCase().contains(lowerKeyword)) ||

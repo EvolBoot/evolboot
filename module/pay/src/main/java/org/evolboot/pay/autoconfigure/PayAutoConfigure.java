@@ -3,6 +3,7 @@ package org.evolboot.pay.autoconfigure;
 import com.google.common.collect.Maps;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayConfig;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.NowPaymentsConfig;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
 import org.evolboot.pay.domain.shared.PayConfig;
@@ -57,7 +58,20 @@ public class PayAutoConfigure {
 
     @Bean
     public HuanQiuPayConfig huanQiuPayConfig(PayConfig config) {
-        return new HuanQiuPayConfig(config.getDomain());
+        return new HuanQiuPayConfig(config.getNotifyDomain());
+    }
+
+    /**
+     * NOWPayments 配置
+     */
+    @Bean
+    public NowPaymentsConfig nowPaymentsConfig(PayConfig config) {
+        return new NowPaymentsConfig(
+            config.getNotifyDomain(),
+            config.getNowPaymentsApiKey(),
+            config.getNowPaymentsIpnSecret(),
+            config.isNowPaymentsSandbox()
+        );
     }
 
 
