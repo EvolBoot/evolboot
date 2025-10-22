@@ -8,7 +8,7 @@ import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
+import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
 import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +29,10 @@ public class AppHuanQiuPaymentClientResourceV1 {
 
     private final ReleasedOrderAppService releasedOrderAppService;
 
-    private final ReceiptOrderAppService receiptOrderAppService;
+    private final PayinOrderAppService receiptOrderAppService;
 
 
-    public AppHuanQiuPaymentClientResourceV1(ReleasedOrderAppService releasedOrderAppService, ReceiptOrderAppService receiptOrderAppService) {
+    public AppHuanQiuPaymentClientResourceV1(ReleasedOrderAppService releasedOrderAppService, PayinOrderAppService receiptOrderAppService) {
         this.releasedOrderAppService = releasedOrderAppService;
         this.receiptOrderAppService = receiptOrderAppService;
     }

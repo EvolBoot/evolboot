@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.NowPaymentsUtil;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.shared.pay.ReceiptOrderState;
+import org.evolboot.shared.pay.PayinOrderState;
 
 import java.math.BigDecimal;
 
@@ -112,7 +112,7 @@ public class NowPaymentsReceiptNotifyRequest implements ReceiptNotifyRequest {
     }
 
     @Override
-    public ReceiptOrderState getState() {
+    public PayinOrderState getState() {
         return convertPaymentStatus(paymentStatus);
     }
 
@@ -159,23 +159,23 @@ public class NowPaymentsReceiptNotifyRequest implements ReceiptNotifyRequest {
     /**
      * 转换 NOWPayments 支付状态到系统状态
      */
-    private ReceiptOrderState convertPaymentStatus(String status) {
+    private PayinOrderState convertPaymentStatus(String status) {
         if (status == null) {
-            return ReceiptOrderState.PENDING;
+            return PayinOrderState.PENDING;
         }
         switch (status.toLowerCase()) {
             case "finished":
             case "confirmed":
-                return ReceiptOrderState.SUCCESS;
+                return PayinOrderState.SUCCESS;
             case "failed":
             case "refunded":
             case "expired":
-                return ReceiptOrderState.FAIL;
+                return PayinOrderState.FAIL;
             case "waiting":
             case "confirming":
             case "sending":
             default:
-                return ReceiptOrderState.PENDING;
+                return PayinOrderState.PENDING;
         }
     }
 }

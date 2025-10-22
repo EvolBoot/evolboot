@@ -1,7 +1,7 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.shared.pay.ReceiptOrderState;
+import org.evolboot.shared.pay.PayinOrderState;
 
 import java.math.BigDecimal;
 
@@ -28,5 +28,5 @@ public interface ReceiptNotifyRequest {
 
     boolean checkSign(PayGatewayAccount payGatewayAccount);
 
-    ReceiptOrderState getState();
+    PayinOrderState getState();
 }

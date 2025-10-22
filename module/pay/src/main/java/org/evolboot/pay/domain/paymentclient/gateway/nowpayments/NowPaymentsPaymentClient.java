@@ -10,8 +10,8 @@ import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaym
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsPaymentStatusResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.receipt.*;
-import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderNotifyResult;
-import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderRequestResult;
+import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
+import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
 import org.evolboot.pay.exception.PayException;
 import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
@@ -106,7 +106,7 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
                 true,
                 receiptOrderId,
                 apiResponse.getPayAddress(),
-                new ReceiptOrderRequestResult(
+                new PayinOrderRequestResult(
                     apiResponse.getPaymentId(),
                     apiResponse.getPayAddress(),
                     apiResponse.getPaymentStatus(),
@@ -144,7 +144,7 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
         return new ReceiptNotifyResponse(
             nowRequest.getState(),
             "OK",
-            new ReceiptOrderNotifyResult(
+            new PayinOrderNotifyResult(
                 nowRequest.getForeignOrderId(),
                 nowRequest.getReceiptOrderId(),
                 nowRequest.getForeignState(),

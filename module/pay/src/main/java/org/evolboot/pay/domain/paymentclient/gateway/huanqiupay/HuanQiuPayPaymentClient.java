@@ -12,8 +12,8 @@ import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuP
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
 import org.evolboot.pay.domain.paymentclient.receipt.*;
 import org.evolboot.pay.domain.paymentclient.released.*;
-import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderNotifyResult;
-import org.evolboot.pay.domain.receiptorder.entity.ReceiptOrderRequestResult;
+import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
+import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderCreateResult;
 import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderNotifyResult;
 import org.evolboot.pay.exception.PayException;
@@ -91,7 +91,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
         if (response.isOk()) {
             String payUrl = response.getPayUrl();
-            return new ReceiptCreateResponse(response.isOk(), receiptOrderId, payUrl, new ReceiptOrderRequestResult(
+            return new ReceiptCreateResponse(response.isOk(), receiptOrderId, payUrl, new PayinOrderRequestResult(
                     response.getForeignOrderId(),
                     payUrl,
                     response.getState(),
@@ -117,7 +117,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
         log.info("HuanQiu:代收:回调通知:{}", requestParamsText);
         return new ReceiptNotifyResponse(request.getState(),
                 "success",
-                new ReceiptOrderNotifyResult(
+                new PayinOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReceiptOrderId(),
                         request.getForeignState(),

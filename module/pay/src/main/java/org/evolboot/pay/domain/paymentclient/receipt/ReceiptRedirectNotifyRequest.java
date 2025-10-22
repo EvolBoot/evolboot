@@ -1,6 +1,6 @@
 package org.evolboot.pay.domain.paymentclient.receipt;
 
-import org.evolboot.shared.pay.ReceiptOrderState;
+import org.evolboot.shared.pay.PayinOrderState;
 
 /**
  * 代收通知
@@ -18,5 +18,5 @@ public interface ReceiptRedirectNotifyRequest {
 
     boolean checkSign(String secretKey);
 
-    ReceiptOrderState getState();
+    PayinOrderState getState();
 }
