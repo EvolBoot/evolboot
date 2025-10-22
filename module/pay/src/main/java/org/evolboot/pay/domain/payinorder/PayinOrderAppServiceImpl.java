@@ -51,8 +51,8 @@ public class PayinOrderAppServiceImpl implements PayinOrderAppService {
 
     @Override
     @Transactional
-    public <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
-        return redirectUrlService.getReceiptRedirectUrl(request);
+    public <T extends PayinRedirectNotifyRequest> String getPayinRedirectUrl(T request) {
+        return redirectUrlService.getPayinRedirectUrl(request);
     }
 
 }

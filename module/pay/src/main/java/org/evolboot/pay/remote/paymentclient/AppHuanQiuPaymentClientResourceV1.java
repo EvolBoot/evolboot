@@ -40,7 +40,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
 
     @Operation(summary = "环球回调")
     @PostMapping(
-            value = {"/receipt/notify"},
+            value = {"/payin/notify"},
             consumes = {"multipart/form-data"}
     )
     public String huanQiuPayNotify(HttpServletRequest request) {

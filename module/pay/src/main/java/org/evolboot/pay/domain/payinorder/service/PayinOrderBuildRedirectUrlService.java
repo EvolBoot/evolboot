@@ -43,7 +43,7 @@ public class PayinOrderBuildRedirectUrlService {
     }
 
 
-    public <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+    public <T extends PayinRedirectNotifyRequest> String getPayinRedirectUrl(T request) {
         log.info("代收:前端回调:{}", JsonUtil.stringify(request));
         PayinOrder receiptOrder = supportService.findById(request.getReceiptOrderId());
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());

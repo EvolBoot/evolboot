@@ -43,7 +43,7 @@ public class AppNowPaymentsClientResourceV1 {
      */
     @Operation(summary = "NOWPayments IPN 回调通知")
     @PostMapping(
-        value = "/receipt/notify",
+        value = "/payin/notify",
         consumes = "application/json",
         produces = "text/plain"
     )
@@ -92,7 +92,7 @@ public class AppNowPaymentsClientResourceV1 {
      */
     @Operation(summary = "NOWPayments IPN 回调测试")
     @PostMapping(
-        value = "/receipt/notify-test",
+        value = "/payin/notify-test",
         consumes = "application/json",
         produces = "text/plain"
     )

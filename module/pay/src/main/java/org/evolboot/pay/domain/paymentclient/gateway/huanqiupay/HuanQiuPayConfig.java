@@ -14,7 +14,7 @@ public class HuanQiuPayConfig {
 
     private final String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
 
-    private final String receiptNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/receipt/notify";
+    private final String receiptNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/payin/notify";
 
     private final String successUrl = "/api/v1/pay/payment/huan-qiu-pay/success";
 
@@ -42,5 +42,4 @@ public class HuanQiuPayConfig {
         return domain + failUrl;
     }
 }
-
 

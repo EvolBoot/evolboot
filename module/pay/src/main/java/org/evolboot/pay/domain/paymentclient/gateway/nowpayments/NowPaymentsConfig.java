@@ -30,7 +30,7 @@ public class NowPaymentsConfig {
         String baseUrl = sandbox ? SANDBOX_BASE_URL : BASE_URL;
         this.createPaymentUrl = baseUrl + "/payment";
         this.getPaymentStatusUrl = baseUrl + "/payment";
-        this.ipnCallbackUrl = domain + "/api/v1/pay/payment/now-payments/receipt/notify";
+        this.ipnCallbackUrl = domain + "/api/v1/pay/payment/now-payments/payin/notify";
     }
 
     public String getPaymentStatusUrl(String paymentId) {

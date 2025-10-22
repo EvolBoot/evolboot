@@ -23,7 +23,7 @@ public interface PayinOrderAppService {
 
     <T extends PayinNotifyRequest> Object payinOrderNotify(T request);
 
-    <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
+    <T extends PayinRedirectNotifyRequest> String getPayinRedirectUrl(T request);
 
 
 }
