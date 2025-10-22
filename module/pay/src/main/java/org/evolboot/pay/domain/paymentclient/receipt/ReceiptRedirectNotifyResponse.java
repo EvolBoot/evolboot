@@ -2,7 +2,7 @@ package org.evolboot.pay.domain.paymentclient.receipt;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.evolboot.shared.pay.ReceiptOrderState;
+import org.evolboot.shared.pay.PayinOrderState;
 
 /**
  * 代收通知返回
@@ -14,7 +14,7 @@ import org.evolboot.shared.pay.ReceiptOrderState;
 @Getter
 public class ReceiptRedirectNotifyResponse {
 
-    private ReceiptOrderState state;
+    private PayinOrderState state;
 
 
 }

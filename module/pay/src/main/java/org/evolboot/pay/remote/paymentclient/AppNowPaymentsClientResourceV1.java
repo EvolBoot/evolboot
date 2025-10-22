@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsReceiptNotifyRequest;
-import org.evolboot.pay.domain.receiptorder.ReceiptOrderAppService;
+import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiClient
 public class AppNowPaymentsClientResourceV1 {
 
-    private final ReceiptOrderAppService receiptOrderAppService;
+    private final PayinOrderAppService receiptOrderAppService;
 
-    public AppNowPaymentsClientResourceV1(ReceiptOrderAppService receiptOrderAppService) {
+    public AppNowPaymentsClientResourceV1(PayinOrderAppService receiptOrderAppService) {
         this.receiptOrderAppService = receiptOrderAppService;
     }
 

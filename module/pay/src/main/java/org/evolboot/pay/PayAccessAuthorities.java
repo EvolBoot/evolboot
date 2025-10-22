@@ -19,13 +19,13 @@ public interface PayAccessAuthorities {
     /**
      * 第三方代收订单
      */
-    @AuthorityResource(value = "receiptorder", label = "代收订单")
-    interface ReceiptOrder {
-        String HAS_CREATE = AUTHORITY_PREFIX + "pay_receiptorder_create" + AUTHORITY_SUFFIX;
-        String HAS_DELETE = AUTHORITY_PREFIX + "pay_receiptorder_delete" + AUTHORITY_SUFFIX;
-        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_receiptorder_update" + AUTHORITY_SUFFIX;
-        String HAS_PAGE = AUTHORITY_PREFIX + "pay_receiptorder_page" + AUTHORITY_SUFFIX;
-        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_receiptorder_single" + AUTHORITY_SUFFIX;
+    @AuthorityResource(value = "payinorder", label = "代收订单")
+    interface PayinOrder {
+        String HAS_CREATE = AUTHORITY_PREFIX + "pay_payinorder_create" + AUTHORITY_SUFFIX;
+        String HAS_DELETE = AUTHORITY_PREFIX + "pay_payinorder_delete" + AUTHORITY_SUFFIX;
+        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_payinorder_update" + AUTHORITY_SUFFIX;
+        String HAS_PAGE = AUTHORITY_PREFIX + "pay_payinorder_page" + AUTHORITY_SUFFIX;
+        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_payinorder_single" + AUTHORITY_SUFFIX;
     }
 
     /**

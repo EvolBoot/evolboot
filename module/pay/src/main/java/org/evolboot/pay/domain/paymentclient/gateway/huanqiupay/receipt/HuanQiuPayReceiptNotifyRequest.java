@@ -7,7 +7,7 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
 import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.shared.pay.ReceiptOrderState;
+import org.evolboot.shared.pay.PayinOrderState;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -72,11 +72,11 @@ public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
     }
 
     @Override
-    public ReceiptOrderState getState() {
+    public PayinOrderState getState() {
         if ("成功".equals(requestParams.get("state"))) {
-            return ReceiptOrderState.SUCCESS;
+            return PayinOrderState.SUCCESS;
         }
-        return ReceiptOrderState.FAIL;
+        return PayinOrderState.FAIL;
     }
 
 
