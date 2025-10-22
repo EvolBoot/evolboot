@@ -45,7 +45,7 @@ public interface PermissionQueryService {
      * @param userId
      * @return
      */
-    List<Permission> findPermissionByUserIdConvertTree(Long userId, Type type);
+    List<Permission> findPermissionByUserIdConvertTree(Long userId);
 
     /**
      * 根据条件查询单个

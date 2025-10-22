@@ -16,5 +16,5 @@ public interface IdentityBffAppService {
 
     String downloadAuthorities();
 
-    List<Permission> findPermissionByUserIdConvertTree(Long userId);
+    List<Permission> findPermissionByUserIdAndTenantIdConvertTree(Long userId, Long tenantId);
 }

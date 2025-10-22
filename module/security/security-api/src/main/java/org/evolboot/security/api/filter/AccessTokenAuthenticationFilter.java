@@ -15,6 +15,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -52,7 +53,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             // 测试模式下
             if (securityDefaultConfigProperties.getTestMode() && tokenValue.startsWith(securityDefaultConfigProperties.getTestKey())) {
                 Long userId = Long.parseLong(tokenValue.replace(securityDefaultConfigProperties.getTestKey() + "_", ""));
-                evolSession = new EvolSession(userId, "Test");
+                evolSession = new EvolSession(userId, userId, "Test");
                 evolSession.setAuthorities(ALL_USER_IDENTITY);
                 setAuthentication(tokenValue, evolSession);
                 return;

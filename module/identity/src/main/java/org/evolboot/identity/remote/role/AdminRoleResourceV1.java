@@ -24,9 +24,8 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
 /**
- * @deprecated 请使用 PlatformRoleResourceV1 或 TenantRoleResourceV1
+ * 请使用 PlatformRoleResourceV1 或 TenantRoleResourceV1
  */
-@Deprecated
 @RestController
 @RequestMapping("/admin/v1/roles")
 @Tag(name = "角色", description = "角色")
@@ -49,7 +48,7 @@ public class AdminRoleResourceV1 {
     @Operation(summary = "创建角色")
     @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_CREATE)
     public ResponseModel create(@Valid @RequestBody CreateRoleRequest request) {
-        service.create(request.toRequest());
+        service.create(request.toRequest(PermissionScope.PLATFORM, null));
         return ResponseModel.ok();
     }
 
@@ -123,20 +122,13 @@ public class AdminRoleResourceV1 {
             @RequestParam(required = false) Direction direction,
             @RequestParam(required = false) String roleName
     ) {
-        // 根据用户身份自动设置 scope 和 tenantId
-        PermissionScope scope = SecurityAccessTokenHolder.isTenantUser()
-            ? PermissionScope.TENANT
-            : PermissionScope.PLATFORM;
-        Long tenantId = SecurityAccessTokenHolder.getTenantId();
-
         RoleQueryRequest query = RoleQueryRequest.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)
                 .direction(direction)
                 .sortField(sortField)
-                .scope(scope)
-                .tenantId(tenantId)
+                .scope(PermissionScope.PLATFORM)
                 .build();
         return ResponseModel.ok(service.page(query));
     }

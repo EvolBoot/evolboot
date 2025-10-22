@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.evolboot.core.exception.DomainRepetitionException;
 import org.evolboot.identity.IdentityI18nMessage;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,13 @@ public class RoleCreateFactory {
     }
 
     public Role create(Request request) {
-        requireRoleNameNotRepetition(request.roleName);
+//        requireRoleNameNotRepetition(request.roleName);
         roleSupportService.requireExistPermissions(request.permissions);
         Role role = Role.builder()
                 .roleName(request.roleName)
                 .permissions(request.permissions)
+                .scope(request.scope)
+                .tenantId(request.tenantId)
                 .build();
         repository.save(role);
         return role;
@@ -47,6 +50,8 @@ public class RoleCreateFactory {
     public static class Request {
         private String roleName;
         private Set<Long> permissions;
+        private PermissionScope scope;
+        private Long tenantId;
     }
 
 }

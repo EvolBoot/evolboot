@@ -1,8 +1,8 @@
 package org.evolboot.identity.domain.role.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.exception.DomainNotFoundException;
 import org.evolboot.core.util.Assert;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,8 @@ public class RoleQueryService {
         this.repository = repository;
     }
 
-    public List<Role> findAllById(Iterable<Long> ids) {
-        return repository.findAllById(ids);
+    public List<Role> findAllByIdAndTenantId(Collection<Long> ids, Long tenantId) {
+        return repository.findAllByIdAndTenantId(ids, tenantId);
     }
 
     public Optional<Role> findById(Long id) {
@@ -41,6 +41,6 @@ public class RoleQueryService {
         if (ids.isEmpty()) {
             return;
         }
-        ids.forEach(id -> Assert.isTrue(exist(id),id + "角色不存在"));
-     }
+        ids.forEach(id -> Assert.isTrue(exist(id), id + "角色不存在"));
+    }
 }

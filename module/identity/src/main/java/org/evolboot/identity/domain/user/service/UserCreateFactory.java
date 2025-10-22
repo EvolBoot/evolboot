@@ -137,6 +137,11 @@ public class UserCreateFactory {
             roleQueryService.mustExist(request.getRoleIds());
             user.updateRoleId(request.getRoleIds());
         }
+        if (UserIdentity.ROLE_TENANT_STAFF.equals(request.getUserIdentity()) && !ExtendObjects.isEmpty(request.getRoleIds())){
+            //TODO 验证这些角色ID是否属于租户
+            roleQueryService.mustExist(request.getRoleIds());
+            user.updateRoleId(request.getRoleIds());
+        }
 
         repository.save(user);
         relationCreateService.execute(request.getInviterUserId(), user.id());

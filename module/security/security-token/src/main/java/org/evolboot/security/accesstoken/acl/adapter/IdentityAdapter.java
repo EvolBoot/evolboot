@@ -58,7 +58,7 @@ public class IdentityAdapter implements IdentityClient {
         Assert.isTrue(DelState.ACTIVE.equals(user.getDelState()), IdentityI18nMessage.User.userNotFound());
         Assert.isTrue(UserState.ACTIVE.equals(user.getState()), IdentityI18nMessage.User.stateNotActive());
         Set<String> authorities = getAuthorities(user);
-        return new UserInfo(user.id(),  user.getNickname(),user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
+        return new UserInfo(user.id(), user.getTenantId(), user.getNickname(), user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
     }
 
     @Override
@@ -67,14 +67,14 @@ public class IdentityAdapter implements IdentityClient {
         Assert.isTrue(DelState.ACTIVE.equals(user.getDelState()), IdentityI18nMessage.User.userNotFound());
         Assert.isTrue(UserState.ACTIVE.equals(user.getState()), IdentityI18nMessage.User.stateNotActive());
         Set<String> authorities = getAuthorities(user);
-        return new UserInfo(user.id(),  user.getNickname(),user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
+        return new UserInfo(user.id(), user.getTenantId(), user.getNickname(), user.getEnableGoogleAuth(), user.getGoogleAuthSecret(), authorities);
     }
 
     @Override
     public UserInfo register(UserRegisterService.Request request) {
         User user = userAppService.register(request);
         Set<String> authorities = getAuthorities(user);
-        return new UserInfo(user.id(),  user.getNickname(),false, user.getGoogleAuthSecret(), authorities);
+        return new UserInfo(user.id(), user.getTenantId(), user.getNickname(), false, user.getGoogleAuthSecret(), authorities);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class IdentityAdapter implements IdentityClient {
         if (ExtendObjects.isEmpty(roleId)) {
             return authorities;
         }
-        List<Role> roles = roleAppService.findAllById(roleId);
+        List<Role> roles = roleAppService.findAllByIdAndTenantId(roleId, user.getTenantId());
         if (ExtendObjects.isEmpty(roles)) {
             return authorities;
         }

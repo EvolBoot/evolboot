@@ -5,8 +5,8 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.data.Query;
 import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.entity.Role;
-import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public interface RoleRepository extends BaseRepository<Role, Long> {
 
     boolean existsById(Long roleId);
 
-    List<Role> findAllById(Iterable<Long> roleIds);
+    List<Role> findAllByIdAndTenantId(Collection<Long> roleIds, Long tenantId);
 
     <Q extends Query> List<Role> findAll(Q query);
 

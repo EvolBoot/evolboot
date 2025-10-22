@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.Version;
 import org.evolboot.core.annotation.AdminClient;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.core.util.IdUtil;
@@ -42,7 +43,7 @@ public class IdentityBffDownloadAuthoritiesService {
 
     @SneakyThrows
     public String download() {
-        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", AdminClient.class);
+        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation(Version.class.getPackageName(), AdminClient.class);
         List<Authorities> rows = Lists.newArrayList();
         classes.forEach(clazz -> {
             Method[] methods = ReflectUtil.getMethods(clazz);

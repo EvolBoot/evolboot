@@ -13,8 +13,10 @@ import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
 import org.evolboot.identity.domain.permission.dto.PermissionBatchQueryRequest;
+import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.identity.remote.permission.dto.CreatePermissionRequest;
 import org.evolboot.identity.remote.permission.dto.UpdatePermissionRequest;
+import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -205,5 +207,17 @@ public class AdminPermissionResourceV1 {
         List<Permission> permissions = service.importJsonData(url);
         return ResponseModel.ok(permissions);
     }
+
+
+    /**
+     * @return
+     */
+    @GetMapping("/current-user/tree")
+    @Operation(summary = "权限列表(树形)")
+    @PreAuthorize(HAS_ROLE_SUPER_ADMIN + OR + HAS_ROLE_STAFF)
+    public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
+        return ResponseModel.ok(queryService.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getUserId()));
+    }
+
 
 }

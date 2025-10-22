@@ -86,8 +86,8 @@ public class PermissionQueryServiceImpl implements PermissionQueryService {
     }
 
     @Override
-    public List<Permission> findPermissionByUserIdConvertTree(Long userId, Type type) {
-        return findPermissionByUserIdConvertTreeService.findPermissionByUserIdConvertTree(userId, type);
+    public List<Permission> findPermissionByUserIdConvertTree(Long userId) {
+        return findPermissionByUserIdConvertTreeService.findPermissionByUserIdConvertTree(userId);
     }
 
 

@@ -265,7 +265,7 @@ public class AdminUserResourceV1 {
             @RequestBody @Valid UserCreateStaffRequest request,
             HttpServletRequest httpServletRequest
     ) {
-        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest), UserIdentity.ROLE_STAFF));
         return ResponseModel.ok(user);
     }
 

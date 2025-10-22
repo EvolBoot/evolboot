@@ -54,8 +54,8 @@ public class UserRoleAppServiceImpl implements UserRoleAppService {
 
     @Override
     @Transactional
-    public void updateRole(Long userId, Set<Long> roles) {
-        updateService.execute(userId, roles);
+    public void updateRole(Long userId,Long tenantId,  Set<Long> roles) {
+        updateService.execute(userId,tenantId, roles);
     }
 
 

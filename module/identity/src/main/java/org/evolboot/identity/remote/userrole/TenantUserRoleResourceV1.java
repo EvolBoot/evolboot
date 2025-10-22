@@ -8,6 +8,7 @@ import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
 import org.evolboot.identity.remote.user.dto.UserRoleUpdateRequest;
+import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +48,7 @@ public class TenantUserRoleResourceV1 {
             @RequestBody @Valid UserRoleUpdateRequest request
     ) {
         // 只能修改本租户员工的角色
-        service.updateRole(id, request.getRoles());
+        service.updateRole(id, SecurityAccessTokenHolder.getTenantId(), request.getRoles());
         return ResponseModel.ok();
     }
 

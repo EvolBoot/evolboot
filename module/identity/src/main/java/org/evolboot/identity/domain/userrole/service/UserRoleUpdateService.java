@@ -34,19 +34,19 @@ public class UserRoleUpdateService {
         this.roleQueryService = roleQueryService;
     }
 
-    public void execute(Long userId, Set<Long> roles) {
+    public void execute(Long userId, Long tenantId, Set<Long> roles) {
         if (ExtendObjects.isEmpty(roles)) {
             return;
         }
-        requireExistRoles(roles);
+        requireExistRoles(roles, tenantId);
         repository.deleteByUserId(userId);
         List<UserRole> userRoles = roles.stream().map(role -> new UserRole(userId, role)).collect(Collectors.toList());
         repository.saveAll(userRoles);
     }
 
-    private void requireExistRoles(Set<Long> roleIds) {
+    private void requireExistRoles(Set<Long> roleIds, Long tenantId) {
         if (!CollectionUtils.isEmpty(roleIds)) {
-            List<Role> roles = roleQueryService.findAllById(roleIds);
+            List<Role> roles = roleQueryService.findAllByIdAndTenantId(roleIds, tenantId);
             if (roles.size() != roleIds.size()) {
                 roleIds.removeAll(roles.stream().map(Role::getId).collect(Collectors.toList()));
                 String ids = StringUtils.join(roleIds.toArray(), ",");

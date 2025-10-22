@@ -43,8 +43,9 @@ public class EvolSession implements Serializable {
      */
     private Set<UserIdentity> userIdentities;
 
-    public EvolSession(Long userId, String principalName) {
+    public EvolSession(Long userId, Long tenantId, String principalName) {
         this.userId = userId;
+        this.tenantId = tenantId;
         this.principalName = principalName;
     }
 

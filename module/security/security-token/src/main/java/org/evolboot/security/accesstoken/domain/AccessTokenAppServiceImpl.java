@@ -81,7 +81,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
 
 //        kickOutUser(accessToken);// 踢除其他用户下线
 
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessToken.getPrincipalName(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getUserId(), accessToken.getTenantId(), accessToken.getPrincipalName(), accessTokenAuthenticateToken.getIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         loginEvent(accessToken);
         return accessToken;
@@ -90,7 +90,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
 
     private void loginEvent(AccessToken accessToken) {
         eventPublisher.publishEvent(new UserLoginEvent(
-                        accessToken.getPrincipalId(),
+                        accessToken.getUserId(),
                         accessToken.getToken(),
                         accessToken.getLoginIp()
                 )
@@ -102,7 +102,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
     @Deprecated
     public AccessToken registerAndGetAccessToken(UserRegisterService.Request request) {
         AccessToken accessToken = registerUserAndGetAccessToken.execute(request);
-        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getPrincipalId(), accessToken.getPrincipalName(), request.getRegisterIp(), accessToken.getAuthorities()));
+        LoginService.Response response = securityAccessTokenAppService.login(new LoginService.Request(accessToken.getUserId(), accessToken.getTenantId(), accessToken.getPrincipalName(), request.getRegisterIp(), accessToken.getAuthorities()));
         accessToken.setToken(response.getToken());
         return accessToken;
     }
@@ -115,7 +115,7 @@ public class AccessTokenAppServiceImpl implements AccessTokenAppService {
         if (accessToken.getAuthorities().contains(UserIdentity.ROLE_STAFF.name()) || accessToken.getAuthorities().contains(UserIdentity.ROLE_SUPER_ADMIN.name())) {
             return;
         }
-        securityAccessTokenAppService.kickOut(accessToken.getPrincipalId());
+        securityAccessTokenAppService.kickOut(accessToken.getUserId());
     }
 
     @Override

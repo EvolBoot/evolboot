@@ -3,6 +3,7 @@ package org.evolboot.identity.domain.role;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.exception.DomainNotFoundException;
+import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.evolboot.identity.domain.role.entity.Role;
 import org.evolboot.identity.domain.role.repository.RoleRepository;
@@ -10,6 +11,7 @@ import org.evolboot.identity.domain.role.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -66,8 +68,8 @@ public class RoleAppServiceImpl implements RoleAppService {
     }
 
     @Override
-    public List<Role> findAllById(Iterable<Long> roleIds) {
-        return repository.findAllById(roleIds);
+    public List<Role> findAllByIdAndTenantId(Collection<Long> roleIds, Long tenantId) {
+        return repository.findAllByIdAndTenantId(roleIds, tenantId);
     }
 
     @Override
@@ -75,5 +77,36 @@ public class RoleAppServiceImpl implements RoleAppService {
         return repository.findById(id).orElseThrow(() -> new DomainNotFoundException("找不到这个角色"));
     }
 
+    @Override
+    public Role findTenantRoleById(Long id, Long tenantId) {
+        Role role = findById(id);
+        requireTenantRole(role, tenantId);
+        return role;
+    }
+
+    @Transactional
+    @Override
+    public void updateTenantRole(RoleUpdateService.Request request, Long tenantId) {
+        Role role = findById(request.getId());
+        requireTenantRole(role, tenantId);
+        roleUpdateService.update(request);
+    }
+
+    @Transactional
+    @Override
+    public void deleteTenantRole(Long id, Long tenantId) {
+        Role role = findById(id);
+        requireTenantRole(role, tenantId);
+        roleDeleteService.execute(id);
+    }
+
+    /**
+     * 验证角色是否属于指定租户
+     */
+    private void requireTenantRole(Role role, Long tenantId) {
+        if (!tenantId.equals(role.getTenantId()) || role.getScope() != PermissionScope.TENANT) {
+            throw new DomainNotFoundException("角色不存在或无权限访问");
+        }
+    }
 
 }

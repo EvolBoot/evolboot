@@ -15,6 +15,7 @@ import org.evolboot.identity.domain.role.dto.RoleQueryRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +77,21 @@ public interface JpaRoleRepository extends RoleRepository, ExtendedQuerydslPredi
     @Override
     default <Q extends Query> List<Role> findAll(Q query) {
         return findAll(fillQueryParameter(query, QRole.role));
+    }
+
+    @Override
+    default List<Role> findAllByIdAndTenantId(Collection<Long> roleIds, Long tenantId) {
+        QRole q = QRole.role;
+        JPQLQuery<Role> jpqlQuery = getJPQLQuery()
+                .select(q)
+                .from(q)
+                .where(q.id.in(roleIds));
+        if (tenantId != null) {
+            jpqlQuery.where(q.tenantId.eq(tenantId));
+        } else {
+            jpqlQuery.where(q.tenantId.isNull());
+        }
+        return findAll(jpqlQuery);
     }
 
     @Override

@@ -22,7 +22,6 @@ import jakarta.validation.Valid;
 import static org.evolboot.identity.IdentityAccessAuthorities.Role.*;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_TENANT_OWNER;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_TENANT_STAFF;
 
 /**
  * Tenant Role Resource
@@ -48,8 +47,9 @@ public class TenantRoleResourceV1 {
     @PostMapping
     @Operation(summary = "创建角色")
     @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
-    public ResponseModel create(@Valid @RequestBody CreateRoleRequest request) {
-        service.create(request.toRequest());
+    public ResponseModel<?> create(@Valid @RequestBody CreateRoleRequest request) {
+        Long tenantId = SecurityAccessTokenHolder.getTenantId();
+        service.create(request.toRequest(PermissionScope.TENANT, tenantId));
         return ResponseModel.ok();
     }
 
@@ -61,7 +61,8 @@ public class TenantRoleResourceV1 {
     @OperationLog("修改角色")
     @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_UPDATE)
     public ResponseModel<?> update(@Valid @RequestBody UpdateRoleRequest request) {
-        service.update(request);
+        Long tenantId = SecurityAccessTokenHolder.getTenantId();
+        service.updateTenantRole(request, tenantId);
         return ResponseModel.ok();
     }
 
@@ -73,7 +74,8 @@ public class TenantRoleResourceV1 {
     @OperationLog("删除角色")
     @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
     public ResponseModel<?> delete(@PathVariable("id") Long id) {
-        service.delete(id);
+        Long tenantId = SecurityAccessTokenHolder.getTenantId();
+        service.deleteTenantRole(id, tenantId);
         return ResponseModel.ok();
     }
 
@@ -85,7 +87,9 @@ public class TenantRoleResourceV1 {
     @OperationLog("获取单个角色")
     @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
     public ResponseModel<?> get(@PathVariable("id") Long id) {
-        return ResponseModel.ok(service.findById(id));
+        Long tenantId = SecurityAccessTokenHolder.getTenantId();
+        Role role = service.findTenantRoleById(id, tenantId);
+        return ResponseModel.ok(role);
     }
 
     /**
@@ -102,17 +106,15 @@ public class TenantRoleResourceV1 {
             @RequestParam(required = false) Direction direction,
             @RequestParam(required = false) String roleName
     ) {
-        // 自动获取当前租户ID，强制数据隔离
         Long tenantId = SecurityAccessTokenHolder.getTenantId();
-
         RoleQueryRequest query = RoleQueryRequest.builder()
                 .roleName(roleName)
                 .page(page)
                 .limit(limit)
                 .direction(direction)
                 .sortField(sortField)
-                .scope(PermissionScope.TENANT)  // 强制只查询 TENANT 角色
-                .tenantId(tenantId)  // 强制只查询本租户的角色
+                .scope(PermissionScope.TENANT)
+                .tenantId(tenantId)
                 .build();
         return ResponseModel.ok(service.page(query));
     }

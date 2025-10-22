@@ -32,7 +32,7 @@ public class RoleSupportService {
         if (!CollectionUtils.isEmpty(permissionIds)) {
             List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
             if (permissions.size() != permissionIds.size()) {
-                permissionIds.removeAll(permissions.stream().map(Permission::getId).collect(Collectors.toList()));
+                permissions.stream().map(Permission::getId).toList().forEach(permissionIds::remove);
                 String ids = StringUtils.join(permissionIds.toArray(), ",");
                 throw new RolePermissionNotExistException(IdentityI18nMessage.Role.permissionsNotFound(ids));
             }

@@ -50,25 +50,27 @@ public class UserUpdateService {
             Assert.isTrue(currentPrincipal.getTenantId().equals(user.getTenantId()), "无权修改其他租户的用户");
         }
 
-        user.setAvatar(request.getAvatar());
-        user.setNickname(request.getNickname());
-        user.setRemark(request.getRemark());
-
+        if (ExtendObjects.isNotBlank(request.getAvatar())) {
+            user.setAvatar(request.getAvatar());
+        }
+        if (ExtendObjects.isNotBlank(request.getNickname())) {
+            user.setNickname(request.getNickname());
+        }
+        if (ExtendObjects.nonNull(request.getRemark())) {
+            user.setRemark(request.getRemark());
+        }
         if (ExtendObjects.nonNull(request.getGender())) {
             user.setGender(request.getGender());
         }
-
         if (ExtendObjects.isNotBlank(request.getPassword())) {
             user.resetPassword(rsaService.privateDecryptStr(request.getPassword()));
         }
-
         if (ExtendObjects.isNotBlank(request.getUsername())) {
             repository.findByUsername(request.getUsername().trim()).ifPresent(_user -> {
                 Assert.isTrue(_user.id().equals(user.id()), "用户名已存在");
             });
             user.setUsername(request.getUsername().trim());
         }
-
         if (ExtendObjects.isNotBlank(request.getMobile())) {
 //            Assert.notBlank(request.getMobilePrefix(), "手机号区号不能为空");
             repository.findByMobile(request.getMobile().trim()).ifPresent(mobileUser -> {

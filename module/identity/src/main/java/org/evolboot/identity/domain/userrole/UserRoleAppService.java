@@ -22,7 +22,7 @@ public interface UserRoleAppService {
 
     UserRole findById(Long id);
 
-    void updateRole(Long userId, Set<Long> roles);
+    void updateRole(Long userId, Long tenantId, Set<Long> roles);
 
     List<UserRole> findAll(Long userId);
 

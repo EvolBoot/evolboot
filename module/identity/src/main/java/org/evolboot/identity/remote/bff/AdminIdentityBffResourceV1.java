@@ -78,9 +78,8 @@ public class AdminIdentityBffResourceV1 {
     @Operation(summary = "当前登录用户权限(树形)")
     @Authenticated
     public ResponseModel<List<Permission>> currentStaffPermission() {
-        return ResponseModel.ok(service.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getUserId()));
+        return ResponseModel.ok(service.findPermissionByUserIdAndTenantIdConvertTree(SecurityAccessTokenHolder.getUserId(), null));
     }
-
 
 
 }

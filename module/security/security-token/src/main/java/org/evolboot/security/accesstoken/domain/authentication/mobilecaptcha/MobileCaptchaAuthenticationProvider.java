@@ -40,7 +40,7 @@ public class MobileCaptchaAuthenticationProvider implements AuthenticationProvid
                     null,
                     token.getDeviceType()
             ));
-            return new AccessToken(userInfo.getUserId(), userInfo.getNickname(), userInfo.getAuthorities());
+            return new AccessToken(userInfo.getUserId(), userInfo.getTenantId(), userInfo.getNickname(), userInfo.getAuthorities());
         } catch (Exception e) {
             throw new AccessTokenException(I18NMessageHolder.message(AccessTokenI18nMessage.AUTHENTICATION_ERROR));
         }

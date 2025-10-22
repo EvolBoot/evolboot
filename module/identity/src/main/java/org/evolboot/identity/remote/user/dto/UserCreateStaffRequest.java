@@ -9,6 +9,7 @@ import org.evolboot.identity.domain.user.service.UserCreateFactory;
 import org.evolboot.shared.lang.UserIdentity;
 
 import jakarta.validation.constraints.NotEmpty;
+
 import java.util.Set;
 
 /**
@@ -38,7 +39,7 @@ public class UserCreateStaffRequest {
     private Set<Long> roleId;
 
 
-    public UserCreateFactory.Request to(String ip) {
+    public UserCreateFactory.Request to(String ip, UserIdentity userIdentity) {
         return UserCreateFactory
                 .Request
                 .builder()
@@ -51,7 +52,7 @@ public class UserCreateStaffRequest {
                 .state(state)
                 .remark(remark)
                 .roleIds(roleId)
-                .userIdentity(UserIdentity.ROLE_STAFF)
+                .userIdentity(userIdentity)
                 .registerIp(ip)
                 .build();
     }

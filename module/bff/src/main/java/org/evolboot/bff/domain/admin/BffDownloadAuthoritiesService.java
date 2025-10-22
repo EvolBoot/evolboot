@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.Version;
 import org.evolboot.bff.domain.admin.dto.AuthorityOption;
 import org.evolboot.bff.domain.admin.dto.AuthorityTree;
 import org.evolboot.core.annotation.AdminClient;
@@ -51,7 +52,7 @@ public class BffDownloadAuthoritiesService {
 
     @SneakyThrows
     public String download() {
-        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", AdminClient.class);
+        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation(Version.class.getPackageName(), AdminClient.class);
         List<Authorities> rows = Lists.newArrayList();
         classes.forEach(clazz -> {
             Method[] methods = ReflectUtil.getMethods(clazz);
@@ -145,7 +146,7 @@ public class BffDownloadAuthoritiesService {
         Map<String, AuthorityMeta> metaMap = scanFromAccessAuthorities();
 
         // 2. 从 Controller 扫描，获取 URL 和标题
-        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("org.evolboot", annotationClass);
+        Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation(Version.class.getPackageName(), annotationClass);
         List<AuthorityOption> authorities = new ArrayList<>();
 
         classes.forEach(clazz -> {
@@ -200,6 +201,7 @@ public class BffDownloadAuthoritiesService {
     /**
      * 搜索权限
      */
+    @Deprecated
     public List<AuthorityOption> searchAuthorities(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             return getAvailableAuthorities(AdminClient.class);
@@ -209,8 +211,8 @@ public class BffDownloadAuthoritiesService {
         return getAvailableAuthorities(AdminClient.class).stream()
                 .filter(auth ->
                         (auth.getPerm() != null && auth.getPerm().toLowerCase().contains(lowerKeyword)) ||
-                        (auth.getTitle() != null && auth.getTitle().toLowerCase().contains(lowerKeyword)) ||
-                        (auth.getUrl() != null && auth.getUrl().toLowerCase().contains(lowerKeyword))
+                                (auth.getTitle() != null && auth.getTitle().toLowerCase().contains(lowerKeyword)) ||
+                                (auth.getUrl() != null && auth.getUrl().toLowerCase().contains(lowerKeyword))
                 )
                 .collect(Collectors.toList());
     }
@@ -226,6 +228,8 @@ public class BffDownloadAuthoritiesService {
         return preAuthorizeValue
                 .replace(HAS_ROLE_SUPER_ADMIN, "")
                 .replace(HAS_ROLE_STAFF, "")
+                .replace(HAS_ROLE_TENANT_OWNER, "")
+                .replace(HAS_ROLE_TENANT_STAFF, "")
                 .replace(OR, "")
                 .replace(AUTHORITY_PREFIX, "")
                 .replace(AUTHORITY_SUFFIX, "")
@@ -234,13 +238,14 @@ public class BffDownloadAuthoritiesService {
 
     /**
      * 从 *AccessAuthorities 接口扫描元数据
+     *
      * @return 权限码 -> 元数据的映射
      */
     private Map<String, AuthorityMeta> scanFromAccessAuthorities() {
         Map<String, AuthorityMeta> metaMap = new HashMap<>();
 
         // 扫描所有 *AccessAuthorities 接口
-        Set<Class<?>> allClasses = ClassUtil.scanPackage("org.evolboot", null);
+        Set<Class<?>> allClasses = ClassUtil.scanPackage(Version.class.getPackageName(), null);
         Set<Class<?>> authorityClasses = allClasses.stream()
                 .filter(Class::isInterface)
                 .filter(clazz -> clazz.getSimpleName().endsWith("AccessAuthorities"))

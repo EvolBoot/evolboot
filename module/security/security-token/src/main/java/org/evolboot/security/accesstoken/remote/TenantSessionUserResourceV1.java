@@ -53,7 +53,6 @@ public class TenantSessionUserResourceV1 {
         return ResponseModel.ok(accessToken.getToken());
     }
 
-    @OperationLog("退出(注销)")
     @Operation(summary = "退出(注销)")
     @GetMapping("/logout")
     @Authenticated

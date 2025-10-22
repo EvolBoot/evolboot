@@ -36,7 +36,7 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
         try {
             captchaClient.verifyImageCaptchaIsTrue(token.getImageCaptchaToken(), token.getImageCaptchaCode());
             IdentityClient.UserInfo userInfo = identityClient.findByUsernameOrMobileOrEmailAndEncodePassword(token.getUsername(), token.getEncodePassword());
-            return new AccessToken(userInfo.getUserId(), userInfo.getNickname(), userInfo.getAuthorities());
+            return new AccessToken(userInfo.getUserId(), userInfo.getTenantId(), userInfo.getNickname(), userInfo.getAuthorities());
         } catch (Exception e) {
             if (e instanceof ExtendRuntimeException) {
                 throw e;

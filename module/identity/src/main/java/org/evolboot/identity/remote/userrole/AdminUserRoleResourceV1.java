@@ -85,7 +85,7 @@ public class AdminUserRoleResourceV1 {
             @RequestBody @Valid
             UserRoleUpdateRequest request
     ) {
-        service.updateRole(id, request.getRoles());
+        service.updateRole(id, null, request.getRoles());
         return ResponseModel.ok();
     }
 

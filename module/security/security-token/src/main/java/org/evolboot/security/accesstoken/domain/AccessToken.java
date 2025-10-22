@@ -7,9 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.Assert;
 import org.evolboot.identity.IdentityI18nMessage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +22,9 @@ public class AccessToken {
 
     private String token;
 
-    private Long principalId;
+    private Long userId;
+
+    private Long tenantId;
 
     private String principalName;
 
@@ -33,9 +33,10 @@ public class AccessToken {
     private Set<String> authorities = new HashSet<>();
 
     @Builder
-    public AccessToken(Long principalId, String principalName, Set<String> authorities) {
-        Assert.notNull(principalId, IdentityI18nMessage.User.userIdNotNull());
-        this.principalId = principalId;
+    public AccessToken(Long userId, Long tenantId, String principalName, Set<String> authorities) {
+        Assert.notNull(userId, IdentityI18nMessage.User.userIdNotNull());
+        this.userId = userId;
+        this.tenantId = tenantId;
         this.principalName = principalName;
         this.authorities = authorities.stream().filter(authorization -> !authorization.isBlank()).collect(Collectors.toSet());
     }

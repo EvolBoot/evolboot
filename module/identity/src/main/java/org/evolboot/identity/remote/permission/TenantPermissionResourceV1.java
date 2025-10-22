@@ -10,6 +10,7 @@ import org.evolboot.identity.domain.permission.PermissionQueryService;
 import org.evolboot.identity.domain.permission.entity.Permission;
 import org.evolboot.identity.domain.permission.entity.PermissionScope;
 import org.evolboot.identity.domain.permission.dto.PermissionQueryRequest;
+import org.evolboot.identity.domain.permission.entity.Type;
 import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -69,6 +70,18 @@ public class TenantPermissionResourceV1 {
                 .scope(PermissionScope.TENANT)  // 强制只查询 TENANT 权限
                 .build();
         return ResponseModel.ok(queryService.page(query));
+    }
+
+
+
+    /**
+     * @return
+     */
+    @GetMapping("/current-user/tree")
+    @Operation(summary = "权限列表(树形)")
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_ROLE_TENANT_STAFF)
+    public ResponseModel<List<Permission>> findPermissionByUserIdConvertTree() {
+        return ResponseModel.ok(queryService.findPermissionByUserIdConvertTree(SecurityAccessTokenHolder.getUserId()));
     }
 
 }

@@ -27,8 +27,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.*;
-import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_TENANT_OWNER;
-import static org.evolboot.security.api.access.AccessAuthorities.OR;
+import static org.evolboot.security.api.access.AccessAuthorities.*;
 
 /**
  * Tenant User Resource
@@ -97,7 +96,7 @@ public class TenantUserResourceV1 {
             HttpServletRequest httpServletRequest
     ) {
         // 自动设置为租户员工并关联当前租户
-        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest)));
+        User user = service.create(SecurityAccessTokenHolder.getCurrentPrincipal(), request.to(IpUtil.getClientIP(httpServletRequest), UserIdentity.ROLE_TENANT_STAFF));
         return ResponseModel.ok(user);
     }
 

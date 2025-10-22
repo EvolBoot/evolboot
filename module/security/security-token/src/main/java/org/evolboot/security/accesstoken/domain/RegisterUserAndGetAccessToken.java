@@ -19,7 +19,7 @@ public class RegisterUserAndGetAccessToken {
 
     public AccessToken execute(UserRegisterService.Request request) {
         IdentityClient.UserInfo userInfo = identityClient.register(request);
-        return new AccessToken(userInfo.getUserId(),  userInfo.getNickname(), userInfo.getAuthorities());
+        return new AccessToken(userInfo.getUserId(), userInfo.getTenantId(), userInfo.getNickname(), userInfo.getAuthorities());
     }
 
 
