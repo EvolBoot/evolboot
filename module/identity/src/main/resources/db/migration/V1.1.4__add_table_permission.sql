@@ -9,7 +9,7 @@ CREATE TABLE evoltb_identity_permission
 
     parent_id_     bigint       null comment '父级ID',
     parent_ids_    json         null comment '父级ID链',
-    name_          varchar(128) null comment '权限名称',
+    code_          varchar(128) null comment '编码',
     component_     varchar(128) null comment '组件路径',
     path_          varchar(256) null comment 'path_',
     type_          tinyint      null comment '类型',
@@ -23,7 +23,10 @@ CREATE TABLE evoltb_identity_permission
     link_          varchar(256) null comment '对外链接',
     is_iframe_     tinyint(1)            default 0 comment '前端菜单图标',
     perm_          varchar(256) null comment '权限',
+    layout_        varchar(50)  null comment '布局',
+    scope_         varchar(20)  NOT NULL DEFAULT 'PLATFORM' COMMENT '权限域：PLATFORM-平台权限, TENANT-租户权限',
 
-    PRIMARY KEY (id_)
+    PRIMARY KEY (id_),
+    INDEX idx_permission_scope (scope_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='evoltb_identity_permission';

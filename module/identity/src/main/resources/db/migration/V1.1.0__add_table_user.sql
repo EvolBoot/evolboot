@@ -28,9 +28,11 @@ CREATE TABLE evoltb_identity_user
     security_password_  varchar(256) COMMENT '安全密码',
     role_id_            json COMMENT '用户角色',
     remark_             varchar(100) COMMENT '备注',
+    tenant_id_          BIGINT NULL COMMENT '所属租户ID（ROLE_TENANT_OWNER/ROLE_TENANT_STAFF用户必填）',
 
 
-    PRIMARY KEY (id_)
+    PRIMARY KEY (id_),
+    INDEX idx_user_tenant (tenant_id_)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='evoltb_identity_user';
 
