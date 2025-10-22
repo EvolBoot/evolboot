@@ -1,8 +1,8 @@
 package org.evolboot.pay.domain.payinorder;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinRedirectNotifyRequest;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrder;
 import org.evolboot.pay.domain.payinorder.repository.PayinOrderRepository;
 import org.evolboot.pay.domain.payinorder.service.*;
@@ -45,13 +45,13 @@ public class PayinOrderAppServiceImpl implements PayinOrderAppService {
 
     @Override
     @Transactional
-    public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
-        return notifyService.receiptOrderNotify(request);
+    public <T extends PayinNotifyRequest> Object payinOrderNotify(T request) {
+        return notifyService.payinOrderNotify(request);
     }
 
     @Override
     @Transactional
-    public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+    public <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
         return redirectUrlService.getReceiptRedirectUrl(request);
     }
 

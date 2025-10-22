@@ -3,7 +3,7 @@ package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinRedirectNotifyRequest;
 import org.evolboot.shared.pay.PayinOrderState;
 
 /**
@@ -13,7 +13,7 @@ import org.evolboot.shared.pay.PayinOrderState;
 @Setter
 @Getter
 @AllArgsConstructor
-public class HuanQiuPayReceiptRedirectNotifyRequest implements ReceiptRedirectNotifyRequest {
+public class HuanQiuPayReceiptRedirectNotifyRequest implements PayinRedirectNotifyRequest {
 
 
     @Override

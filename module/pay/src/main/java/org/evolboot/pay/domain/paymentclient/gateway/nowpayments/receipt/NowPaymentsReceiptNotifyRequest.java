@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.NowPaymentsUtil;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyRequest;
 import org.evolboot.shared.pay.PayinOrderState;
 
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
  */
 @Data
 @NoArgsConstructor
-public class NowPaymentsReceiptNotifyRequest implements ReceiptNotifyRequest {
+public class NowPaymentsReceiptNotifyRequest implements PayinNotifyRequest {
 
     /**
      * 支付ID

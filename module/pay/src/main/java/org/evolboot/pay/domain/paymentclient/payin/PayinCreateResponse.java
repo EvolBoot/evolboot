@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.receipt;
+package org.evolboot.pay.domain.paymentclient.payin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
  */
 @AllArgsConstructor
 @Getter
-public class ReceiptCreateResponse {
+public class PayinCreateResponse {
 
     private boolean ok;
 

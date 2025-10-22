@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.receipt;
+package org.evolboot.pay.domain.paymentclient.payin;
 
 import org.evolboot.shared.pay.PayinOrderState;
 
@@ -7,7 +7,7 @@ import org.evolboot.shared.pay.PayinOrderState;
  *
  * @author evol
  */
-public interface ReceiptRedirectNotifyRequest {
+public interface PayinRedirectNotifyRequest {
 
 
     String getReceiptOrderId();

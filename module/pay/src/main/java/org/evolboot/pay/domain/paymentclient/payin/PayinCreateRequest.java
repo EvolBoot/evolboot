@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.receipt;
+package org.evolboot.pay.domain.paymentclient.payin;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class ReceiptCreateRequest {
+public class PayinCreateRequest {
 
 
     // 内部订单ID

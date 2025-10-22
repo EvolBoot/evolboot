@@ -9,9 +9,9 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptCreateResponse;
+import org.evolboot.pay.domain.paymentclient.payin.PayinClient;
+import org.evolboot.pay.domain.paymentclient.payin.PayinCreateRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinCreateResponse;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrder;
 import org.evolboot.pay.domain.payinorder.repository.PayinOrderRepository;
 import org.evolboot.pay.exception.PayException;
@@ -38,10 +38,10 @@ public class PayinOrderCreateFactory {
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    private final Map<PayGateway, ReceiptClient> receiptClients;
+    private final Map<PayGateway, PayinClient> receiptClients;
 
 
-    protected PayinOrderCreateFactory(PayinOrderRepository repository, PayinOrderSupportService supportService, PayGatewayAccountQueryService payGatewayAccountQueryService, Map<PayGateway, ReceiptClient> receiptClients) {
+    protected PayinOrderCreateFactory(PayinOrderRepository repository, PayinOrderSupportService supportService, PayGatewayAccountQueryService payGatewayAccountQueryService, Map<PayGateway, PayinClient> receiptClients) {
         this.repository = repository;
         this.supportService = supportService;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
@@ -53,7 +53,7 @@ public class PayinOrderCreateFactory {
         log.info("代收:创建订单:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(request.getPayGatewayAccountId());
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
-        ReceiptClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
+        PayinClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
 
         if (!receiptClient.supportCurrency(request.getCurrency())) {
             log.info("代收:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
@@ -62,7 +62,7 @@ public class PayinOrderCreateFactory {
         Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
         String receiptOrderId = PayinOrder.generateId();
         log.info("代收:创建代收,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), receiptOrderId);
-        ReceiptCreateResponse response = receiptClient.createReceiptOrder(receiptOrderId, gatewayAccount, request.to());
+        PayinCreateResponse response = receiptClient.createPayinOrder(receiptOrderId, gatewayAccount, request.to());
         Assert.isTrueOrElseThrow(response.isOk(), () -> PayException.RECEIPT_ORDER_ERROR);
 
         PayinOrder receiptOrder = new PayinOrder(
@@ -116,8 +116,8 @@ public class PayinOrderCreateFactory {
 
         private String methodId;
 
-        public ReceiptCreateRequest to() {
-            return new ReceiptCreateRequest(internalOrderId, productName, payeeName, payeePhone, payeeEmail, payAmount, currency, payGatewayAccountId, redirectUrl, upi, methodId);
+        public PayinCreateRequest to() {
+            return new PayinCreateRequest(internalOrderId, productName, payeeName, payeePhone, payeeEmail, payAmount, currency, payGatewayAccountId, redirectUrl, upi, methodId);
         }
 
     }

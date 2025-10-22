@@ -1,7 +1,7 @@
 package org.evolboot.pay.domain.payinorder;
 
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinRedirectNotifyRequest;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrder;
 import org.evolboot.pay.domain.payinorder.service.PayinOrderCreateFactory;
 
@@ -21,9 +21,9 @@ public interface PayinOrderAppService {
     PayinOrder create(PayinOrderCreateFactory.Request request);
 
 
-    <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request);
+    <T extends PayinNotifyRequest> Object payinOrderNotify(T request);
 
-    <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
+    <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request);
 
 
 }

@@ -6,9 +6,9 @@ import org.evolboot.core.service.RedisClientAppService;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptRedirectNotifyResponse;
+import org.evolboot.pay.domain.paymentclient.payin.PayinClient;
+import org.evolboot.pay.domain.paymentclient.payin.PayinRedirectNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinRedirectNotifyResponse;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrder;
 import org.evolboot.pay.domain.payinorder.repository.PayinOrderRepository;
 import org.evolboot.shared.cache.RedisCacheName;
@@ -30,11 +30,11 @@ public class PayinOrderBuildRedirectUrlService {
 
     private final RedisClientAppService redisClientAppService;
 
-    private final Map<PayGateway, ReceiptClient> receiptClients;
+    private final Map<PayGateway, PayinClient> receiptClients;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    protected PayinOrderBuildRedirectUrlService(PayinOrderRepository repository, PayinOrderSupportService supportService, RedisClientAppService redisClientAppService, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
+    protected PayinOrderBuildRedirectUrlService(PayinOrderRepository repository, PayinOrderSupportService supportService, RedisClientAppService redisClientAppService, Map<PayGateway, PayinClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
         this.repository = repository;
         this.supportService = supportService;
         this.redisClientAppService = redisClientAppService;
@@ -43,13 +43,13 @@ public class PayinOrderBuildRedirectUrlService {
     }
 
 
-    public <T extends ReceiptRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
+    public <T extends PayinRedirectNotifyRequest> String getReceiptRedirectUrl(T request) {
         log.info("代收:前端回调:{}", JsonUtil.stringify(request));
         PayinOrder receiptOrder = supportService.findById(request.getReceiptOrderId());
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         log.info("代收:前端回调:{}", payGatewayAccount.getPayGateway());
-        ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
-        ReceiptRedirectNotifyResponse response = receiptClient.receiptOrderRedirectNotify(payGatewayAccount, request);
+        PayinClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
+        PayinRedirectNotifyResponse response = receiptClient.payinOrderRedirectNotify(payGatewayAccount, request);
 
         String redirectUrl = receiptOrder.getRedirectUrl();
         Map<String, String> params = Maps.newHashMap();

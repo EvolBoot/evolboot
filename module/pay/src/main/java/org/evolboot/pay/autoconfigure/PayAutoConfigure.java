@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayConfig;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.NowPaymentsConfig;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
+import org.evolboot.pay.domain.paymentclient.payin.PayinClient;
 import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
 import org.evolboot.pay.domain.shared.PayConfig;
 import org.evolboot.shared.pay.PayGateway;
@@ -28,14 +28,14 @@ public class PayAutoConfigure {
      * @return
      */
     @Bean
-    public Map<PayGateway, ReceiptClient> receiptClientMap(List<PaymentClient> paymentClients) {
-        Map<PayGateway, ReceiptClient> receiptClientMap = Maps.newHashMap();
+    public Map<PayGateway, PayinClient> payinClientMap(List<PaymentClient> paymentClients) {
+        Map<PayGateway, PayinClient> payinClientMap = Maps.newHashMap();
         paymentClients.forEach(paymentClient -> {
-            if (paymentClient instanceof ReceiptClient) {
-                receiptClientMap.put(paymentClient.getPayGateway(), (ReceiptClient) paymentClient);
+            if (paymentClient instanceof PayinClient) {
+                payinClientMap.put(paymentClient.getPayGateway(), (PayinClient) paymentClient);
             }
         });
-        return receiptClientMap;
+        return payinClientMap;
     }
 
     /**

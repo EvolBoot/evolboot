@@ -10,7 +10,7 @@ import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayForeignReceiptCreateResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
-import org.evolboot.pay.domain.paymentclient.receipt.*;
+import org.evolboot.pay.domain.paymentclient.payin.*;
 import org.evolboot.pay.domain.paymentclient.released.*;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
@@ -32,7 +32,7 @@ import static org.evolboot.pay.exception.PayException.RELEASED_ORDER_ERROR;
  */
 @Slf4j
 @Service("HuanQiuPayPaymentClient")
-public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
+public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
 
     private final HuanQiuPayConfig huanQiuPayConfig;
 
@@ -62,7 +62,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
      * @return
      */
     @Override
-    public ReceiptCreateResponse createReceiptOrder(String receiptOrderId, PayGatewayAccount account, ReceiptCreateRequest request) {
+    public PayinCreateResponse createPayinOrder(String receiptOrderId, PayGatewayAccount account, PayinCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
         Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumReceipt()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumReceipt()));
         String url = huanQiuPayConfig.getReceiptCreateUrl();
@@ -91,7 +91,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
 
         if (response.isOk()) {
             String payUrl = response.getPayUrl();
-            return new ReceiptCreateResponse(response.isOk(), receiptOrderId, payUrl, new PayinOrderRequestResult(
+            return new PayinCreateResponse(response.isOk(), receiptOrderId, payUrl, new PayinOrderRequestResult(
                     response.getForeignOrderId(),
                     payUrl,
                     response.getState(),
@@ -112,10 +112,10 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
      * @return
      */
     @Override
-    public <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(PayGatewayAccount gatewayAccount, T request) {
+    public <T extends PayinNotifyRequest> PayinNotifyResponse payinOrderNotify(PayGatewayAccount gatewayAccount, T request) {
         String requestParamsText = request.getNotifyParamsText();
         log.info("HuanQiu:代收:回调通知:{}", requestParamsText);
-        return new ReceiptNotifyResponse(request.getState(),
+        return new PayinNotifyResponse(request.getState(),
                 "success",
                 new PayinOrderNotifyResult(
                         request.getForeignOrderId(),
@@ -129,9 +129,9 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     }
 
     @Override
-    public <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request) {
+    public <T extends PayinRedirectNotifyRequest> PayinRedirectNotifyResponse payinOrderRedirectNotify(PayGatewayAccount gatewayAccount, T request) {
         //TODO 验证
-        return new ReceiptRedirectNotifyResponse(request.getState());
+        return new PayinRedirectNotifyResponse(request.getState());
     }
 
 

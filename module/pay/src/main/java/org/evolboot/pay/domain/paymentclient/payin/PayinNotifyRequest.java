@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.receipt;
+package org.evolboot.pay.domain.paymentclient.payin;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.shared.pay.PayinOrderState;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  *
  * @author evol
  */
-public interface ReceiptNotifyRequest {
+public interface PayinNotifyRequest {
 
     String getReceiptOrderId();
 

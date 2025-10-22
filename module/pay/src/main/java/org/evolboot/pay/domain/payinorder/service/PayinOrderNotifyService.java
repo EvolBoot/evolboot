@@ -8,9 +8,9 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptClient;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyResponse;
+import org.evolboot.pay.domain.paymentclient.payin.PayinClient;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyResponse;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrder;
 import org.evolboot.pay.domain.payinorder.repository.PayinOrderRepository;
 import org.evolboot.shared.event.pay.PayinOrderStateChangeMessage;
@@ -32,14 +32,14 @@ public class PayinOrderNotifyService {
 
     private final PayinOrderRepository repository;
 
-    private final Map<PayGateway, ReceiptClient> receiptClients;
+    private final Map<PayGateway, PayinClient> receiptClients;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
     private final MQMessagePublisher mqMessagePublisher;
 
 
-    protected PayinOrderNotifyService(PayinOrderSupportService supportService, PayinOrderRepository repository, Map<PayGateway, ReceiptClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
+    protected PayinOrderNotifyService(PayinOrderSupportService supportService, PayinOrderRepository repository, Map<PayGateway, PayinClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
         this.supportService = supportService;
         this.repository = repository;
         this.receiptClients = receiptClients;
@@ -48,19 +48,19 @@ public class PayinOrderNotifyService {
     }
 
 
-    public <T extends ReceiptNotifyRequest> Object receiptOrderNotify(T request) {
+    public <T extends PayinNotifyRequest> Object payinOrderNotify(T request) {
         log.info("代收:收到通知:数据:{}", JsonUtil.stringify(request));
         String receiptOrderId = request.getReceiptOrderId();
         PayinOrder receiptOrder = supportService.findById(receiptOrderId);
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
-        ReceiptClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
+        PayinClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
         Assert.notNull(receiptClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
         boolean checkSign = request.checkSign(payGatewayAccount);
         if (!checkSign) {
             log.info("代收:通知:签名错误");
             throw new ExtendIllegalArgumentException("Signature error");
         }
-        ReceiptNotifyResponse response = receiptClient.receiptOrderNotify(payGatewayAccount, request);
+        PayinNotifyResponse response = receiptClient.payinOrderNotify(payGatewayAccount, request);
         if (PayinOrderState.SUCCESS == response.getState()) {
             log.info("代收:支付成功:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
             boolean success = receiptOrder.success(response.getNotifyResult());

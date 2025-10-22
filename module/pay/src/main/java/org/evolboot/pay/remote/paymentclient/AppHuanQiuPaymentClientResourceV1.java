@@ -47,7 +47,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球代收回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) receiptOrderAppService.receiptOrderNotify(new HuanQiuPayReceiptNotifyRequest(requestParams));
+        return (String) receiptOrderAppService.payinOrderNotify(new HuanQiuPayReceiptNotifyRequest(requestParams));
     }
 
 

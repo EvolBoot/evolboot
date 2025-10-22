@@ -67,7 +67,7 @@ public class AppNowPaymentsClientResourceV1 {
             request.setIpnSignature(signature);
 
             // 调用应用服务处理通知
-            Object result = receiptOrderAppService.receiptOrderNotify(request);
+            Object result = receiptOrderAppService.payinOrderNotify(request);
 
             log.info("NOWPayments: IPN 通知处理完成, 订单: {}, 状态: {}",
                 request.getOrderId(),

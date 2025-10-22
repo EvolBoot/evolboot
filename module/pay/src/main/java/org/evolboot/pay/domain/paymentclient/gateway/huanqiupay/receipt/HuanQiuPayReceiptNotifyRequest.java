@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
-import org.evolboot.pay.domain.paymentclient.receipt.ReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payin.PayinNotifyRequest;
 import org.evolboot.shared.pay.PayinOrderState;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import java.util.Map;
 @Setter
 @Getter
 @AllArgsConstructor
-public class HuanQiuPayReceiptNotifyRequest implements ReceiptNotifyRequest {
+public class HuanQiuPayReceiptNotifyRequest implements PayinNotifyRequest {
 
 
     @Override

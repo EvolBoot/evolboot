@@ -9,7 +9,7 @@ import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaym
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsCreatePaymentResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsPaymentStatusResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsReceiptNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.receipt.*;
+import org.evolboot.pay.domain.paymentclient.payin.*;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
 import org.evolboot.pay.exception.PayException;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service("NowPaymentsPaymentClient")
-public class NowPaymentsPaymentClient implements ReceiptClient {
+public class NowPaymentsPaymentClient implements PayinClient {
 
     private final NowPaymentsConfig config;
 
@@ -50,10 +50,10 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
     }
 
     @Override
-    public ReceiptCreateResponse createReceiptOrder(
+    public PayinCreateResponse createPayinOrder(
         String receiptOrderId,
         PayGatewayAccount account,
-        ReceiptCreateRequest request
+        PayinCreateRequest request
     ) {
         log.info("NOWPayments: 创建虚拟币支付订单: {}", receiptOrderId);
 
@@ -102,7 +102,7 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
             }
 
             // 4. 构建返回结果
-            return new ReceiptCreateResponse(
+            return new PayinCreateResponse(
                 true,
                 receiptOrderId,
                 apiResponse.getPayAddress(),
@@ -121,7 +121,7 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
     }
 
     @Override
-    public <T extends ReceiptNotifyRequest> ReceiptNotifyResponse receiptOrderNotify(
+    public <T extends PayinNotifyRequest> PayinNotifyResponse payinOrderNotify(
         PayGatewayAccount gatewayAccount,
         T request
     ) {
@@ -141,7 +141,7 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
             nowRequest.getOrderId()
         );
 
-        return new ReceiptNotifyResponse(
+        return new PayinNotifyResponse(
             nowRequest.getState(),
             "OK",
             new PayinOrderNotifyResult(
@@ -157,13 +157,13 @@ public class NowPaymentsPaymentClient implements ReceiptClient {
     }
 
     @Override
-    public <T extends ReceiptRedirectNotifyRequest> ReceiptRedirectNotifyResponse receiptOrderRedirectNotify(
+    public <T extends PayinRedirectNotifyRequest> PayinRedirectNotifyResponse payinOrderRedirectNotify(
         PayGatewayAccount gatewayAccount,
         T request
     ) {
         // NOWPayments 不需要前端同步回调,虚拟币支付通过 IPN 异步通知即可
         log.info("NOWPayments: 不支持前端同步回调");
-        return new ReceiptRedirectNotifyResponse(request.getState());
+        return new PayinRedirectNotifyResponse(request.getState());
     }
 
     /**

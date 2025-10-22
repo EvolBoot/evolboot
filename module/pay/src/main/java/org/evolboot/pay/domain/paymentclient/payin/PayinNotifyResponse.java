@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.receipt;
+package org.evolboot.pay.domain.paymentclient.payin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import org.evolboot.shared.pay.PayinOrderState;
 
 @AllArgsConstructor
 @Getter
-public class ReceiptNotifyResponse {
+public class PayinNotifyResponse {
 
     private PayinOrderState state;
 

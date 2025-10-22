@@ -1,6 +1,4 @@
 -- 重命名 代付订单表 与相关字段
--- 注意：不同数据库版本对 RENAME/CHANGE 语法支持不同，请按实际环境校验
-
 -- 表重命名
 RENAME TABLE evoltb_pay_released_order TO evoltb_pay_payout_order;
 
