@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
  */
 @Data
 @NoArgsConstructor
-public class NowPaymentsReceiptNotifyRequest implements PayinNotifyRequest {
+public class NowPaymentsPayinNotifyRequest implements PayinNotifyRequest {
 
     /**
      * 支付ID
@@ -107,7 +107,7 @@ public class NowPaymentsReceiptNotifyRequest implements PayinNotifyRequest {
     }
 
     @Override
-    public String getReceiptOrderId() {
+    public String getPayinOrderId() {
         return orderId;
     }
 

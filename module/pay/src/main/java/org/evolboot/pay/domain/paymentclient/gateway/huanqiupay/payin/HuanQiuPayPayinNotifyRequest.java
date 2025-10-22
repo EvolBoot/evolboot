@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +19,11 @@ import java.util.Map;
 @Setter
 @Getter
 @AllArgsConstructor
-public class HuanQiuPayReceiptNotifyRequest implements PayinNotifyRequest {
+public class HuanQiuPayPayinNotifyRequest implements PayinNotifyRequest {
 
 
     @Override
-    public String getReceiptOrderId() {
+    public String getPayinOrderId() {
         return requestParams.get("businessnumber");
     }
 

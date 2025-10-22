@@ -74,7 +74,7 @@ public class AdminPayinOrderResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
-                    ReceiptOrderUpdateRequest request
+                    PayinOrderUpdateRequest request
     ) {
         service.update( request);
         return ResponseModel.ok();
@@ -84,16 +84,16 @@ public class AdminPayinOrderResourceV1 {
     @OperationLog("查询第三方代收订单")
     @GetMapping("")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_PAGE)
-    public ResponseModel<Page<ReceiptOrder>> page(
+    public ResponseModel<Page<PayinOrder>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-        ReceiptOrderQuery query = ReceiptOrderQuery
+        PayinOrderQuery query = PayinOrderQuery
                 .builder()
                 .page(page)
                 .limit(limit)
                 .build();
-        Page<ReceiptOrder> response = service.page(query);
+        Page<PayinOrder> response = service.page(query);
         return ResponseModel.ok(response);
     }
 
@@ -102,7 +102,7 @@ public class AdminPayinOrderResourceV1 {
     @OperationLog("查询单个第三方代收订单")
     @GetMapping("/{id}")
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_SINGLE)
-    public ResponseModel<ReceiptOrder> get(
+    public ResponseModel<PayinOrder> get(
             @PathVariable("id") String id
     ) {
         return ResponseModel.ok(service.findById(id));

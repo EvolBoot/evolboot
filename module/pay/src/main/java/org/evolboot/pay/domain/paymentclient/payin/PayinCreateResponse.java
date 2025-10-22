@@ -15,7 +15,7 @@ public class PayinCreateResponse {
 
     private boolean ok;
 
-    private String receiptOrderId;
+    private String payinOrderId;
 
     private String payUrl;
 

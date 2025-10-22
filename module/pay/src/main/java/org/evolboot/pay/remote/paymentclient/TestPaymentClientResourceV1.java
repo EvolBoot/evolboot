@@ -37,7 +37,7 @@ public class TestPaymentClientResourceV1 {
     @Operation(summary = "发送代收订单状态消息")
     @PostMapping("/send-payin-order-state-change-message")
     @Transactional
-    public String sendMessageInTransactionReceiptOrderStateChangeMessage(PayinOrderStateChangeMessage request) {
+    public String sendMessageInTransactionPayinOrderStateChangeMessage(PayinOrderStateChangeMessage request) {
         mqMessagePublisher.sendMessageInTransaction(request);
         return "success";
     }

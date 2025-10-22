@@ -11,7 +11,7 @@ import org.evolboot.shared.pay.PayoutOrderOrgType;
 public class PayException extends ExtendErrorCodeException {
 
     public final static PayException RELEASED_ORDER_ERROR = new PayException(ErrorCode.RELEASED_ORDER_ERROR, "Released fail,Please contact customer service.");
-    public final static PayException RECEIPT_ORDER_ERROR = new PayException(ErrorCode.RECEIPT_ORDER_ERROR, "Receipt fail, Please contact customer service.");
+    public final static PayException PAYIN_ORDER_ERROR = new PayException(ErrorCode.PAYIN_ORDER_ERROR, "Payin fail, Please contact customer service.");
     public final static PayException GATEWAY_NOT_FOUND = new PayException(ErrorCode.GATEWAY_NOT_FOUND, "Gateway cannot be found");
 
     public static PayException ofParameterIsNull(String paramKey) {

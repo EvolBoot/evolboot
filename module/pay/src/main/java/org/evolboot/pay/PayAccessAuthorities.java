@@ -33,11 +33,11 @@ public interface PayAccessAuthorities {
      */
     @AuthorityResource(value = "paygatewayaccount", label = "支付网关账户")
     interface PayGatewayAccount {
-        String HAS_CREATE = AUTHORITY_PREFIX + "pay_receiptorder_create" + AUTHORITY_SUFFIX;
-        String HAS_DELETE = AUTHORITY_PREFIX + "pay_receiptorder_delete" + AUTHORITY_SUFFIX;
-        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_receiptorder_update" + AUTHORITY_SUFFIX;
-        String HAS_PAGE = AUTHORITY_PREFIX + "pay_receiptorder_page" + AUTHORITY_SUFFIX;
-        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_receiptorder_single" + AUTHORITY_SUFFIX;
+        String HAS_CREATE = AUTHORITY_PREFIX + "pay_paygatewayaccount_create" + AUTHORITY_SUFFIX;
+        String HAS_DELETE = AUTHORITY_PREFIX + "pay_paygatewayaccount_delete" + AUTHORITY_SUFFIX;
+        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_paygatewayaccount_update" + AUTHORITY_SUFFIX;
+        String HAS_PAGE = AUTHORITY_PREFIX + "pay_paygatewayaccount_page" + AUTHORITY_SUFFIX;
+        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_paygatewayaccount_single" + AUTHORITY_SUFFIX;
     }
 
 

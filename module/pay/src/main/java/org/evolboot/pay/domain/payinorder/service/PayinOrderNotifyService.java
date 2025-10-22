@@ -50,8 +50,8 @@ public class PayinOrderNotifyService {
 
     public <T extends PayinNotifyRequest> Object payinOrderNotify(T request) {
         log.info("代收:收到通知:数据:{}", JsonUtil.stringify(request));
-        String receiptOrderId = request.getReceiptOrderId();
-        PayinOrder receiptOrder = supportService.findById(receiptOrderId);
+        String payinOrderId = request.getPayinOrderId();
+        PayinOrder receiptOrder = supportService.findById(payinOrderId);
         PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
         PayinClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
         Assert.notNull(receiptClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());

@@ -8,7 +8,7 @@ import org.evolboot.core.util.ExtendHttpUtil;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayForeignReceiptCreateResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin.HuanQiuPayForeignPayinCreateResponse;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
 import org.evolboot.pay.domain.paymentclient.payin.*;
 import org.evolboot.pay.domain.paymentclient.released.*;
@@ -56,13 +56,13 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
     /**
      * 发起代收
      *
-     * @param receiptOrderId
+     * @param payinOrderId
      * @param account
      * @param request
      * @return
      */
     @Override
-    public PayinCreateResponse createPayinOrder(String receiptOrderId, PayGatewayAccount account, PayinCreateRequest request) {
+    public PayinCreateResponse createPayinOrder(String payinOrderId, PayGatewayAccount account, PayinCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
         Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumReceipt()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumReceipt()));
         String url = huanQiuPayConfig.getReceiptCreateUrl();
@@ -75,7 +75,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
         params.put("backurl", huanQiuPayConfig.getSuccessUrl());
         params.put("failUrl", huanQiuPayConfig.getFailUrl());
         params.put("ServerUrl", huanQiuPayConfig.getReceiptCreateNotifyUrl());
-        params.put("businessnumber", receiptOrderId);
+        params.put("businessnumber", payinOrderId);
         params.put("goodsName", "GoodsName");
 
         // 签名
@@ -87,18 +87,18 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
 
         log.info("代收请求参数:{},返回结果:{}", JsonUtil.stringify(params), postData);
 
-        HuanQiuPayForeignReceiptCreateResponse response = JsonUtil.parse(postData, HuanQiuPayForeignReceiptCreateResponse.class);
+        HuanQiuPayForeignPayinCreateResponse response = JsonUtil.parse(postData, HuanQiuPayForeignPayinCreateResponse.class);
 
         if (response.isOk()) {
             String payUrl = response.getPayUrl();
-            return new PayinCreateResponse(response.isOk(), receiptOrderId, payUrl, new PayinOrderRequestResult(
-                    response.getForeignOrderId(),
-                    payUrl,
-                    response.getState(),
-                    postData));
+            return new PayinCreateResponse(response.isOk(), payinOrderId, payUrl, new PayinOrderRequestResult(
+                response.getForeignOrderId(),
+                payUrl,
+                response.getState(),
+                postData));
         }
         log.info("代收失败,返回信息:{},{}", response.getState(), postData);
-        throw PayException.RECEIPT_ORDER_ERROR;
+        throw PayException.PAYIN_ORDER_ERROR;
 
     }
 
@@ -119,7 +119,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
                 "success",
                 new PayinOrderNotifyResult(
                         request.getForeignOrderId(),
-                        request.getReceiptOrderId(),
+                        request.getPayinOrderId(),
                         request.getForeignState(),
                         requestParamsText,
                         request.getPayAmount(),
@@ -226,7 +226,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
         map.put("sign_type", "md5");
 
         String post = ExtendHttpUtil.post(url, map);
-        HuanQiuPayForeignReceiptCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReceiptCreateResponse.class);
+        HuanQiuPayForeignPayinCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignPayinCreateResponse.class);
         System.out.println(parse.getData().getTrade_qrcode());
         System.out.println(post);
     }

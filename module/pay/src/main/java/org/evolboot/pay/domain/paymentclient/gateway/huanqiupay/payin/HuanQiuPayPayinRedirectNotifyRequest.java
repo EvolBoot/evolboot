@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,11 +13,11 @@ import org.evolboot.shared.pay.PayinOrderState;
 @Setter
 @Getter
 @AllArgsConstructor
-public class HuanQiuPayReceiptRedirectNotifyRequest implements PayinRedirectNotifyRequest {
+public class HuanQiuPayPayinRedirectNotifyRequest implements PayinRedirectNotifyRequest {
 
 
     @Override
-    public String getReceiptOrderId() {
+    public String getPayinOrderId() {
         return null;
     }
 

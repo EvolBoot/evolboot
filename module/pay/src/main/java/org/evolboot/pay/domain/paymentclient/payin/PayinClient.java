@@ -7,7 +7,7 @@ import org.evolboot.pay.domain.paymentclient.PaymentClient;
 public interface PayinClient extends PaymentClient {
 
     /** 创建代收订单 */
-    PayinCreateResponse createPayinOrder(String receiptOrderId, PayGatewayAccount account, PayinCreateRequest request);
+    PayinCreateResponse createPayinOrder(String payinOrderId, PayGatewayAccount account, PayinCreateRequest request);
 
     /** 代收异步回调通知 */
     <T extends PayinNotifyRequest> PayinNotifyResponse payinOrderNotify(PayGatewayAccount gatewayAccount, T request);

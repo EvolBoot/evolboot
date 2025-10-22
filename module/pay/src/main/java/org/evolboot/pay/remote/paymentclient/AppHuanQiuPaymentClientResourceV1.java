@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin.HuanQiuPayPayinNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
 import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
 import org.evolboot.pay.domain.payoutorder.PayoutOrderAppService;
@@ -29,12 +29,12 @@ public class AppHuanQiuPaymentClientResourceV1 {
 
     private final PayoutOrderAppService payoutOrderAppService;
 
-    private final PayinOrderAppService receiptOrderAppService;
+    private final PayinOrderAppService payinOrderAppService;
 
 
-    public AppHuanQiuPaymentClientResourceV1(PayoutOrderAppService payoutOrderAppService, PayinOrderAppService receiptOrderAppService) {
+    public AppHuanQiuPaymentClientResourceV1(PayoutOrderAppService payoutOrderAppService, PayinOrderAppService payinOrderAppService) {
         this.payoutOrderAppService = payoutOrderAppService;
-        this.receiptOrderAppService = receiptOrderAppService;
+        this.payinOrderAppService = payinOrderAppService;
     }
 
 
@@ -47,7 +47,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球代收回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) receiptOrderAppService.payinOrderNotify(new HuanQiuPayReceiptNotifyRequest(requestParams));
+        return (String) payinOrderAppService.payinOrderNotify(new HuanQiuPayPayinNotifyRequest(requestParams));
     }
 
 

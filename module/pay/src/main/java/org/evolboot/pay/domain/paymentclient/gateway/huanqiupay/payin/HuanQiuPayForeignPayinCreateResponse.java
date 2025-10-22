@@ -1,11 +1,11 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin;
 
 import org.evolboot.core.util.ExtendObjects;
 
 /**
  * @author evol
  */
-public class HuanQiuPayForeignReceiptCreateResponse {
+public class HuanQiuPayForeignPayinCreateResponse {
 
     public boolean isOk() {
         if (ExtendObjects.isNull(this.getData())) {

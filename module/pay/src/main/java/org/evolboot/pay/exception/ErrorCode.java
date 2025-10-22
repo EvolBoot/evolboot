@@ -13,7 +13,7 @@ public interface ErrorCode {
     /**
      * 第三方代收订单错误
      */
-    Integer RECEIPT_ORDER_ERROR = 10002;
+    Integer PAYIN_ORDER_ERROR = 10002;
 
 
     /**
@@ -53,4 +53,3 @@ public interface ErrorCode {
     Integer DOT_SUPPORT_CURRENCY = 10009;
 
 }
-

@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
-import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin.NowPaymentsPayinNotifyRequest;
 import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiClient
 public class AppNowPaymentsClientResourceV1 {
 
-    private final PayinOrderAppService receiptOrderAppService;
+    private final PayinOrderAppService payinOrderAppService;
 
-    public AppNowPaymentsClientResourceV1(PayinOrderAppService receiptOrderAppService) {
-        this.receiptOrderAppService = receiptOrderAppService;
+    public AppNowPaymentsClientResourceV1(PayinOrderAppService payinOrderAppService) {
+        this.payinOrderAppService = payinOrderAppService;
     }
 
     /**
@@ -57,9 +57,9 @@ public class AppNowPaymentsClientResourceV1 {
 
         try {
             // 解析 JSON 请求体
-            NowPaymentsReceiptNotifyRequest request = JsonUtil.parse(
+            NowPaymentsPayinNotifyRequest request = JsonUtil.parse(
                 body,
-                NowPaymentsReceiptNotifyRequest.class
+                NowPaymentsPayinNotifyRequest.class
             );
 
             // 设置原始文本和签名(用于验证)
@@ -67,7 +67,7 @@ public class AppNowPaymentsClientResourceV1 {
             request.setIpnSignature(signature);
 
             // 调用应用服务处理通知
-            Object result = receiptOrderAppService.payinOrderNotify(request);
+            Object result = payinOrderAppService.payinOrderNotify(request);
 
             log.info("NOWPayments: IPN 通知处理完成, 订单: {}, 状态: {}",
                 request.getOrderId(),

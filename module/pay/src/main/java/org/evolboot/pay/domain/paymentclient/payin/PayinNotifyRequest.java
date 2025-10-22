@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 public interface PayinNotifyRequest {
 
-    String getReceiptOrderId();
+    String getPayinOrderId();
 
     String getForeignOrderId();
 

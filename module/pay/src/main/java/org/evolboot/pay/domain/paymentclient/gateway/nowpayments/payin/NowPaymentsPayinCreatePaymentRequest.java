@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NowPaymentsCreatePaymentRequest {
+public class NowPaymentsPayinCreatePaymentRequest {
 
     /**
      * 法币金额

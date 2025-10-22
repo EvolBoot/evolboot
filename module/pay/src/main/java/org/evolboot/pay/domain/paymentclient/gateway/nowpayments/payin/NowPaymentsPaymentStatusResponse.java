@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt;
+package org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

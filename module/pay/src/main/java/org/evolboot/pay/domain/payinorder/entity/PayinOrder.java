@@ -121,8 +121,8 @@ public class PayinOrder extends JpaAbstractEntity<String> implements AggregateRo
         this.redirectUrl = redirectUrl;
     }
 
-    private void setInternalOrderId(String merchantReceiptOrderId) {
-        this.internalOrderId = merchantReceiptOrderId;
+    private void setInternalOrderId(String merchantPayinOrderId) {
+        this.internalOrderId = merchantPayinOrderId;
     }
 
 

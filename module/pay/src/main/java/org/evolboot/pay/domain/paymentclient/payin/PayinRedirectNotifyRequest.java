@@ -10,7 +10,7 @@ import org.evolboot.shared.pay.PayinOrderState;
 public interface PayinRedirectNotifyRequest {
 
 
-    String getReceiptOrderId();
+    String getPayinOrderId();
 
     String getForeignState();
 

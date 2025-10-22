@@ -83,7 +83,7 @@ public interface RedisCacheName {
     /**
      * 代收跳转数据暂存
      */
-    String PAY_RECEIPT_REDIRECT_URL_CACHE_KEY = "evoltb_rruck_";
+    String PAY_PAYIN_REDIRECT_URL_CACHE_KEY = "evoltb_payin_redirect_url_";
     /**
      * 代收跳转数据暂存
      */

@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.util.ExtendHttpUtil;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsCreatePaymentRequest;
-import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsCreatePaymentResponse;
-import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsPaymentStatusResponse;
-import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.receipt.NowPaymentsReceiptNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin.NowPaymentsPayinCreatePaymentRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin.NowPaymentsPayinCreatePaymentResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin.NowPaymentsPaymentStatusResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.payin.NowPaymentsPayinNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.payin.*;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
@@ -51,21 +51,21 @@ public class NowPaymentsPaymentClient implements PayinClient {
 
     @Override
     public PayinCreateResponse createPayinOrder(
-        String receiptOrderId,
+        String payinOrderId,
         PayGatewayAccount account,
         PayinCreateRequest request
     ) {
-        log.info("NOWPayments: 创建虚拟币支付订单: {}", receiptOrderId);
+        log.info("NOWPayments: 创建虚拟币支付订单: {}", payinOrderId);
 
         try {
             // 1. 准备请求参数
             String payCurrency = NowPaymentsUtil.convertCurrency(request.getCurrency());
-            NowPaymentsCreatePaymentRequest apiRequest = new NowPaymentsCreatePaymentRequest(
+            NowPaymentsPayinCreatePaymentRequest apiRequest = new NowPaymentsPayinCreatePaymentRequest(
                 request.getPayAmount(),
                 NowPaymentsUtil.getPriceCurrency(),
                 payCurrency,
                 config.getIpnCallbackUrl(),
-                receiptOrderId,
+                payinOrderId,
                 request.getProductName() != null ? request.getProductName() : "Payment"
             );
 
@@ -91,20 +91,20 @@ public class NowPaymentsPaymentClient implements PayinClient {
             log.info("NOWPayments: 创建订单响应: {}", responseJson);
 
             // 3. 解析响应
-            NowPaymentsCreatePaymentResponse apiResponse = JsonUtil.parse(
+            NowPaymentsPayinCreatePaymentResponse apiResponse = JsonUtil.parse(
                 responseJson,
-                NowPaymentsCreatePaymentResponse.class
+                NowPaymentsPayinCreatePaymentResponse.class
             );
 
             if (!apiResponse.isSuccess()) {
                 log.error("NOWPayments: 创建订单失败: {}", responseJson);
-                throw PayException.RECEIPT_ORDER_ERROR;
+                throw PayException.PAYIN_ORDER_ERROR;
             }
 
             // 4. 构建返回结果
             return new PayinCreateResponse(
                 true,
-                receiptOrderId,
+                payinOrderId,
                 apiResponse.getPayAddress(),
                 new PayinOrderRequestResult(
                     apiResponse.getPaymentId(),
@@ -115,8 +115,8 @@ public class NowPaymentsPaymentClient implements PayinClient {
             );
 
         } catch (Exception e) {
-            log.error("NOWPayments: 创建订单异常: orderId={}", receiptOrderId, e);
-            throw PayException.RECEIPT_ORDER_ERROR;
+            log.error("NOWPayments: 创建订单异常: orderId={}", payinOrderId, e);
+            throw PayException.PAYIN_ORDER_ERROR;
         }
     }
 
@@ -127,12 +127,12 @@ public class NowPaymentsPaymentClient implements PayinClient {
     ) {
         log.info("NOWPayments: 处理 IPN 回调通知");
 
-        if (!(request instanceof NowPaymentsReceiptNotifyRequest)) {
+        if (!(request instanceof NowPaymentsPayinNotifyRequest)) {
             log.error("NOWPayments: 无效的通知请求类型");
             throw new IllegalArgumentException("Invalid notify request type");
         }
 
-        NowPaymentsReceiptNotifyRequest nowRequest = (NowPaymentsReceiptNotifyRequest) request;
+        NowPaymentsPayinNotifyRequest nowRequest = (NowPaymentsPayinNotifyRequest) request;
 
         // 注意: 签名验证应该在 Controller 层完成,这里直接处理业务逻辑
         log.info("NOWPayments: IPN 通知内容: paymentId={}, status={}, orderId={}",
@@ -146,7 +146,7 @@ public class NowPaymentsPaymentClient implements PayinClient {
             "OK",
             new PayinOrderNotifyResult(
                 nowRequest.getForeignOrderId(),
-                nowRequest.getReceiptOrderId(),
+                nowRequest.getPayinOrderId(),
                 nowRequest.getForeignState(),
                 nowRequest.getNotifyParamsText(),
                 nowRequest.getPayAmount(),
