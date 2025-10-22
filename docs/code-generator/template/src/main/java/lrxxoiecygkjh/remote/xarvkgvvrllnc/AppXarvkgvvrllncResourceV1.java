@@ -16,7 +16,6 @@ import projectPackage.lrxxoiecygkjh.domain.xarvkgvvrllnc.dto.XarvkgvvrllncQueryR
 import projectPackage.lrxxoiecygkjh.remote.xarvkgvvrllnc.dto.*;
 import projectPackage.shared.lang.CurrentPrincipal;
 import projectPackage.shared.security.SecurityAccessTokenHolder;
-import projectPackage.security.api.SecurityAccessTokenHolder;
 
 
 import java.util.List;
