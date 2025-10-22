@@ -1,6 +1,6 @@
 -- 第三方代收订单
-DROP TABLE IF EXISTS evoltb_pay_receipt_order;
-CREATE TABLE evoltb_pay_receipt_order
+DROP TABLE IF EXISTS evoltb_pay_payin_order;
+CREATE TABLE evoltb_pay_payin_order
 (
     id_                              varchar(50) NOT NULL COMMENT '主键',
     create_at_                       timestamp   NOT NULL COMMENT '创建时间',
