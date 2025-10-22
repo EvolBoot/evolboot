@@ -29,9 +29,9 @@ public abstract class PayGatewayAccountRequestBase {
     // 用来加密的
     private String secretKey;
 
-    private BigDecimal minimumReceipt;
+    private BigDecimal minimumPayinAmount;
 
-    private BigDecimal maximumReceipt;
+    private BigDecimal maximumPayinAmount;
 
     private Boolean enable = true;
 

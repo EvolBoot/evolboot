@@ -28,30 +28,30 @@ public class PayinOrderStateHandleService {
         this.mqMessagePublisher = mqMessagePublisher;
     }
 
-    public void success(String id, PayinOrderNotifyResult receiptOrderNotifyResult) {
-        PayinOrder receiptOrder = supportService.findById(id);
-        boolean success = receiptOrder.success(receiptOrderNotifyResult);
+    public void success(String id, PayinOrderNotifyResult payinOrderNotifyResult) {
+        PayinOrder payinOrder = supportService.findById(id);
+        boolean success = payinOrder.success(payinOrderNotifyResult);
         if (success) {
             mqMessagePublisher.sendMessageInTransaction(new PayinOrderStateChangeMessage(
-                    receiptOrder.id(),
-                    receiptOrder.getInternalOrderId(),
-                    receiptOrder.getPayAmount(),
-                    receiptOrder.getState()
+                    payinOrder.id(),
+                    payinOrder.getInternalOrderId(),
+                    payinOrder.getPayAmount(),
+                    payinOrder.getState()
             ));
         }
-        repository.save(receiptOrder);
+        repository.save(payinOrder);
     }
 
-    public void fail(String id, PayinOrderNotifyResult receiptOrderNotifyResult) {
-        PayinOrder receiptOrder = supportService.findById(id);
-        boolean fail = receiptOrder.fail(receiptOrderNotifyResult);
-        repository.save(receiptOrder);
+    public void fail(String id, PayinOrderNotifyResult payinOrderNotifyResult) {
+        PayinOrder payinOrderId = supportService.findById(id);
+        boolean fail = payinOrderId.fail(payinOrderNotifyResult);
+        repository.save(payinOrderId);
         if (fail) {
             mqMessagePublisher.sendMessageInTransaction(new PayinOrderStateChangeMessage(
-                    receiptOrder.id(),
-                    receiptOrder.getInternalOrderId(),
-                    receiptOrder.getPayAmount(),
-                    receiptOrder.getState()
+                    payinOrderId.id(),
+                    payinOrderId.getInternalOrderId(),
+                    payinOrderId.getPayAmount(),
+                    payinOrderId.getState()
             ));
         }
     }

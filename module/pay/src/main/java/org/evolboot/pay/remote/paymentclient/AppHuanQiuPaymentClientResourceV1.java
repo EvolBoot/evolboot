@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin.HuanQiuPayPayinNotifyRequest;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payout.HuanQiuPayPayoutNotifyRequest;
 import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
 import org.evolboot.pay.domain.payoutorder.PayoutOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,14 +66,14 @@ public class AppHuanQiuPaymentClientResourceV1 {
 
     @Operation(summary = "环球下发回调")
     @PostMapping(
-            value = {"/released/notify"},
+            value = {"/payout/notify"},
             consumes = {"multipart/form-data"}
     )
-    public String huanQiuPayReleasedNotify(HttpServletRequest request) {
+    public String huanQiuPayPayoutNotify(HttpServletRequest request) {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球下发回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) payoutOrderAppService.releasedOrderNotify(new HuanQiuPayReleasedNotifyRequest(requestParams));
+        return (String) payoutOrderAppService.payoutOrderNotify(new HuanQiuPayPayoutNotifyRequest(requestParams));
     }
 
 

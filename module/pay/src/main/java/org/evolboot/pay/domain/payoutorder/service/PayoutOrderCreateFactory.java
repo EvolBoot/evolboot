@@ -11,7 +11,7 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.PayGatewayAccountQueryService;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
+import org.evolboot.pay.domain.paymentclient.payout.PayoutClient;
 import org.evolboot.pay.domain.payoutorder.entity.PayoutOrder;
 import org.evolboot.pay.domain.payoutorder.repository.PayoutOrderRepository;
 import org.evolboot.pay.exception.PayException;
@@ -29,18 +29,18 @@ import java.util.Map;
 @Service
 public class PayoutOrderCreateFactory {
 
-    private final Map<PayGateway, ReleasedClient> releasedClients;
+    private final Map<PayGateway, PayoutClient> payoutClientMap;
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
     private final PayoutOrderSupportService supportService;
     private final PayoutOrderRepository repository;
     private final MQMessagePublisher mqMessagePublisher;
 
     protected PayoutOrderCreateFactory(PayoutOrderRepository repository,
-                                       Map<PayGateway, ReleasedClient> releasedClients,
+                                       Map<PayGateway, PayoutClient> payoutClientMap,
                                        PayGatewayAccountQueryService payGatewayAccountQueryService,
                                        PayoutOrderSupportService supportService,
                                        MQMessagePublisher mqMessagePublisher) {
-        this.releasedClients = releasedClients;
+        this.payoutClientMap = payoutClientMap;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.supportService = supportService;
         this.repository = repository;
@@ -50,17 +50,17 @@ public class PayoutOrderCreateFactory {
     public PayoutOrder execute(Request request) {
         log.info("代付:创建订单:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(request.getPayGatewayAccountId());
-        ReleasedClient releasedClient = releasedClients.get(gatewayAccount.getPayGateway());
+        PayoutClient payoutClient = payoutClientMap.get(gatewayAccount.getPayGateway());
         // 支持该代付组织
-        if (!releasedClient.supportOrgType(request.getOrgType())) {
+        if (!payoutClient.supportOrgType(request.getOrgType())) {
             log.info("代付:创建订单:不支持该组织:网关:{},组织:{}", gatewayAccount.getPayGateway(), request.getOrgType());
             throw PayException.dotSupportOrgType(gatewayAccount.getAlias(), request.getOrgType());
         }
-        if (!releasedClient.supportCurrency(request.getCurrency())) {
+        if (!payoutClient.supportCurrency(request.getCurrency())) {
             log.info("代付:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
             throw PayException.dotSupportCurrency(gatewayAccount.getAlias(), request.getCurrency());
         }
-        Assert.notNull(releasedClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
+        Assert.notNull(payoutClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
 
         PayoutOrder payoutOrder = new PayoutOrder(
                 request.internalOrderId,

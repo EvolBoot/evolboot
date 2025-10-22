@@ -8,7 +8,7 @@ public interface ErrorCode {
     /**
      * 第三方代付订单错误
      */
-    Integer RELEASED_ORDER_ERROR = 10001;
+    Integer PAYOUT_ORDER_ERROR = 10001;
 
     /**
      * 第三方代收订单错误

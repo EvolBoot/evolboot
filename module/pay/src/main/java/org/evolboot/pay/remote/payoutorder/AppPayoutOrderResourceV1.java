@@ -25,25 +25,25 @@ public class AppPayoutOrderResourceV1 {
 
     @Operation(summary = "查询代付订单")
     @GetMapping("")
-    public ResponseModel<List<ReleasedOrderLocaleResponse>> findAll(
+    public ResponseModel<List<PayoutOrderLocaleResponse>> findAll(
     ) {
         List<PayoutOrder> result = service.findAll();
-        return ResponseModel.ok(ReleasedOrderLocaleResponse.of(result));
+        return ResponseModel.ok(PayoutOrderLocaleResponse.of(result));
     }
 
     @Operation(summary = "查询代付订单")
     @GetMapping("")
-    public ResponseModel<Page<ReleasedOrderLocaleResponse>> page(
+    public ResponseModel<Page<PayoutOrderLocaleResponse>> page(
        @RequestParam(name = "page", defaultValue = "1") Integer page,
        @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-       ReleasedOrderQuery query = ReleasedOrderQuery
+       PayoutOrderQuery query = PayoutOrderQuery
                 .builder()
                 .page(page)
                 .limit(limit)
                 .build();
         Page<PayoutOrder> result = service.page(query);
-        return ResponseModel.ok(ReleasedOrderLocaleResponse.of(result));
+        return ResponseModel.ok(PayoutOrderLocaleResponse.of(result));
     }
 
     */

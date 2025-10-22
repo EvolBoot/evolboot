@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.released;
+package org.evolboot.pay.domain.paymentclient.payout;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.shared.pay.PayoutOrderState;
@@ -6,9 +6,9 @@ import org.evolboot.shared.pay.PayoutOrderState;
 import java.math.BigDecimal;
 
 /** 第三方代付通知请求 */
-public interface ReleasedNotifyRequest {
+public interface PayoutNotifyRequest {
 
-    String getReleasedOrderId();
+    String getPayoutOrderId();
 
     String getForeignOrderId();
 

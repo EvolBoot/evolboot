@@ -32,17 +32,17 @@ public class PayinOrderNotifyService {
 
     private final PayinOrderRepository repository;
 
-    private final Map<PayGateway, PayinClient> receiptClients;
+    private final Map<PayGateway, PayinClient> payinClientMap;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
     private final MQMessagePublisher mqMessagePublisher;
 
 
-    protected PayinOrderNotifyService(PayinOrderSupportService supportService, PayinOrderRepository repository, Map<PayGateway, PayinClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
+    protected PayinOrderNotifyService(PayinOrderSupportService supportService, PayinOrderRepository repository, Map<PayGateway, PayinClient> payinClientMap, PayGatewayAccountQueryService payGatewayAccountQueryService, MQMessagePublisher mqMessagePublisher) {
         this.supportService = supportService;
         this.repository = repository;
-        this.receiptClients = receiptClients;
+        this.payinClientMap = payinClientMap;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
         this.mqMessagePublisher = mqMessagePublisher;
     }
@@ -51,40 +51,40 @@ public class PayinOrderNotifyService {
     public <T extends PayinNotifyRequest> Object payinOrderNotify(T request) {
         log.info("代收:收到通知:数据:{}", JsonUtil.stringify(request));
         String payinOrderId = request.getPayinOrderId();
-        PayinOrder receiptOrder = supportService.findById(payinOrderId);
-        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
-        PayinClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
-        Assert.notNull(receiptClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
+        PayinOrder payinOrder = supportService.findById(payinOrderId);
+        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(payinOrder.getPayGatewayAccountId());
+        PayinClient payinClient = payinClientMap.get(payGatewayAccount.getPayGateway());
+        Assert.notNull(payinClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
         boolean checkSign = request.checkSign(payGatewayAccount);
         if (!checkSign) {
             log.info("代收:通知:签名错误");
             throw new ExtendIllegalArgumentException("Signature error");
         }
-        PayinNotifyResponse response = receiptClient.payinOrderNotify(payGatewayAccount, request);
+        PayinNotifyResponse response = payinClient.payinOrderNotify(payGatewayAccount, request);
         if (PayinOrderState.SUCCESS == response.getState()) {
-            log.info("代收:支付成功:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
-            boolean success = receiptOrder.success(response.getNotifyResult());
+            log.info("代收:支付成功:{},{}", payGatewayAccount.getPayGateway(), payinOrder.id());
+            boolean success = payinOrder.success(response.getNotifyResult());
             if (success) {
                 mqMessagePublisher.sendMessageInTransaction(new PayinOrderStateChangeMessage(
-                        receiptOrder.id(),
-                        receiptOrder.getInternalOrderId(),
-                        receiptOrder.getPayAmount(),
-                        receiptOrder.getState()
+                        payinOrder.id(),
+                        payinOrder.getInternalOrderId(),
+                        payinOrder.getPayAmount(),
+                        payinOrder.getState()
                 ));
             }
         } else if (PayinOrderState.FAIL == response.getState()) {
-            log.info("代收:支付失败:{},{}", payGatewayAccount.getPayGateway(), receiptOrder.id());
-            boolean fail = receiptOrder.fail(response.getNotifyResult());
+            log.info("代收:支付失败:{},{}", payGatewayAccount.getPayGateway(), payinOrder.id());
+            boolean fail = payinOrder.fail(response.getNotifyResult());
             if (fail) {
                 mqMessagePublisher.sendMessageInTransaction(new PayinOrderStateChangeMessage(
-                        receiptOrder.id(),
-                        receiptOrder.getInternalOrderId(),
-                        receiptOrder.getPayAmount(),
-                        receiptOrder.getState()
+                        payinOrder.id(),
+                        payinOrder.getInternalOrderId(),
+                        payinOrder.getPayAmount(),
+                        payinOrder.getState()
                 ));
             }
         }
-        repository.save(receiptOrder);
+        repository.save(payinOrder);
         return response.getReturnText();
     }
 

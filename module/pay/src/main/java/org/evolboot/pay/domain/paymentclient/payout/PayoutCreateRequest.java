@@ -1,4 +1,4 @@
-package org.evolboot.pay.domain.paymentclient.released;
+package org.evolboot.pay.domain.paymentclient.payout;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @ToString
 @Builder
-public class ReleasedCreateRequest {
+public class PayoutCreateRequest {
 
 
     private Currency currency;

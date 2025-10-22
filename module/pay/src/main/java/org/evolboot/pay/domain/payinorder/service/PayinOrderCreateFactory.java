@@ -38,14 +38,14 @@ public class PayinOrderCreateFactory {
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    private final Map<PayGateway, PayinClient> receiptClients;
+    private final Map<PayGateway, PayinClient> payinClientMap;
 
 
-    protected PayinOrderCreateFactory(PayinOrderRepository repository, PayinOrderSupportService supportService, PayGatewayAccountQueryService payGatewayAccountQueryService, Map<PayGateway, PayinClient> receiptClients) {
+    protected PayinOrderCreateFactory(PayinOrderRepository repository, PayinOrderSupportService supportService, PayGatewayAccountQueryService payGatewayAccountQueryService, Map<PayGateway, PayinClient> payinClientMap) {
         this.repository = repository;
         this.supportService = supportService;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
-        this.receiptClients = receiptClients;
+        this.payinClientMap = payinClientMap;
     }
 
     public PayinOrder execute(Request request) {
@@ -53,19 +53,19 @@ public class PayinOrderCreateFactory {
         log.info("代收:创建订单:{}", JsonUtil.stringify(request));
         PayGatewayAccount gatewayAccount = payGatewayAccountQueryService.findById(request.getPayGatewayAccountId());
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
-        PayinClient receiptClient = receiptClients.get(gatewayAccount.getPayGateway());
+        PayinClient payinClient = payinClientMap.get(gatewayAccount.getPayGateway());
 
-        if (!receiptClient.supportCurrency(request.getCurrency())) {
+        if (!payinClient.supportCurrency(request.getCurrency())) {
             log.info("代收:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
             throw PayException.dotSupportCurrency(gatewayAccount.getAlias(), request.getCurrency());
         }
-        Assert.notNull(receiptClient, thePaymentGatewayDoesNotExist());
+        Assert.notNull(payinClient, thePaymentGatewayDoesNotExist());
         String payinOrderId = PayinOrder.generateId();
         log.info("代收:创建代收,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), payinOrderId);
-        PayinCreateResponse response = receiptClient.createPayinOrder(payinOrderId, gatewayAccount, request.to());
+        PayinCreateResponse response = payinClient.createPayinOrder(payinOrderId, gatewayAccount, request.to());
         Assert.isTrueOrElseThrow(response.isOk(), () -> PayException.PAYIN_ORDER_ERROR);
 
-        PayinOrder receiptOrder = new PayinOrder(
+        PayinOrder payinOrder = new PayinOrder(
                 payinOrderId,
                 request.getInternalOrderId(),
                 request.getProductName(),
@@ -79,8 +79,8 @@ public class PayinOrderCreateFactory {
                 request.getCurrency(),
                 response.getRequestResult()
         );
-        repository.save(receiptOrder);
-        return receiptOrder;
+        repository.save(payinOrder);
+        return payinOrder;
     }
 
     @Getter

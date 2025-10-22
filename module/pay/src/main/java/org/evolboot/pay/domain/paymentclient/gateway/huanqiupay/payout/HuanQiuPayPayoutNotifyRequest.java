@@ -1,10 +1,10 @@
-package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released;
+package org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payout;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayUtil;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedNotifyRequest;
+import org.evolboot.pay.domain.paymentclient.payout.PayoutNotifyRequest;
 import org.evolboot.shared.pay.PayoutOrderState;
 
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Getter
 @Setter
-public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
+public class HuanQiuPayPayoutNotifyRequest implements PayoutNotifyRequest {
 
     private Map<String, String> notifyParams;
 
@@ -34,12 +34,12 @@ public class HuanQiuPayReleasedNotifyRequest implements ReleasedNotifyRequest {
         return null;
     }
 
-    public HuanQiuPayReleasedNotifyRequest(Map<String, String> notifyParams) {
+    public HuanQiuPayPayoutNotifyRequest(Map<String, String> notifyParams) {
         this.notifyParams = notifyParams;
     }
 
     @Override
-    public String getReleasedOrderId() {
+    public String getPayoutOrderId() {
         return notifyParams.get("businessnumber");
     }
 

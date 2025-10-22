@@ -30,33 +30,33 @@ public class PayinOrderBuildRedirectUrlService {
 
     private final RedisClientAppService redisClientAppService;
 
-    private final Map<PayGateway, PayinClient> receiptClients;
+    private final Map<PayGateway, PayinClient> payinClientMap;
 
     private final PayGatewayAccountQueryService payGatewayAccountQueryService;
 
-    protected PayinOrderBuildRedirectUrlService(PayinOrderRepository repository, PayinOrderSupportService supportService, RedisClientAppService redisClientAppService, Map<PayGateway, PayinClient> receiptClients, PayGatewayAccountQueryService payGatewayAccountQueryService) {
+    protected PayinOrderBuildRedirectUrlService(PayinOrderRepository repository, PayinOrderSupportService supportService, RedisClientAppService redisClientAppService, Map<PayGateway, PayinClient> payinClientMap, PayGatewayAccountQueryService payGatewayAccountQueryService) {
         this.repository = repository;
         this.supportService = supportService;
         this.redisClientAppService = redisClientAppService;
-        this.receiptClients = receiptClients;
+        this.payinClientMap = payinClientMap;
         this.payGatewayAccountQueryService = payGatewayAccountQueryService;
     }
 
 
     public <T extends PayinRedirectNotifyRequest> String getPayinRedirectUrl(T request) {
         log.info("代收:前端回调:{}", JsonUtil.stringify(request));
-        PayinOrder receiptOrder = supportService.findById(request.getPayinOrderId());
-        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(receiptOrder.getPayGatewayAccountId());
+        PayinOrder payinOrder = supportService.findById(request.getPayinOrderId());
+        PayGatewayAccount payGatewayAccount = payGatewayAccountQueryService.findById(payinOrder.getPayGatewayAccountId());
         log.info("代收:前端回调:{}", payGatewayAccount.getPayGateway());
-        PayinClient receiptClient = receiptClients.get(payGatewayAccount.getPayGateway());
-        PayinRedirectNotifyResponse response = receiptClient.payinOrderRedirectNotify(payGatewayAccount, request);
+        PayinClient payinClient = payinClientMap.get(payGatewayAccount.getPayGateway());
+        PayinRedirectNotifyResponse response = payinClient.payinOrderRedirectNotify(payGatewayAccount, request);
 
-        String redirectUrl = receiptOrder.getRedirectUrl();
+        String redirectUrl = payinOrder.getRedirectUrl();
         Map<String, String> params = Maps.newHashMap();
-        params.put("internalOrderId", receiptOrder.getInternalOrderId());
+        params.put("internalOrderId", payinOrder.getInternalOrderId());
         params.put("state", response.getState().name());
-        redisClientAppService.set(RedisCacheName.PAY_PAYIN_REDIRECT_URL_CACHE_KEY + receiptOrder.getInternalOrderId(), params, 60);
-        log.info("前端跳转链接:{},{},{}", receiptOrder.id(), receiptOrder.getPayGateway(), redirectUrl);
+        redisClientAppService.set(RedisCacheName.PAY_PAYIN_REDIRECT_URL_CACHE_KEY + payinOrder.getInternalOrderId(), params, 60);
+        log.info("前端跳转链接:{},{},{}", payinOrder.id(), payinOrder.getPayGateway(), redirectUrl);
 
         return redirectUrl;
     }

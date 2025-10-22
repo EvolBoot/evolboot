@@ -28,14 +28,14 @@ public class PayGatewayAccountLocaleResponse {
 
     private PayGatewayAccountLocale locale;
 
-    private BigDecimal minimumReceipt;
+    private BigDecimal minimumPayinAmount;
 
-    private BigDecimal maximumReceipt;
+    private BigDecimal maximumPayinAmount;
 
     public static PayGatewayAccountLocaleResponse of(PayGatewayAccount row) {
         PayGatewayAccountLocale locale = row.findLocaleByCurrentLanguage(PayGatewayAccountLocale.class);
         return new PayGatewayAccountLocaleResponse(
-                row.id(), row.getLogo(), locale, row.getMinimumReceipt(), row.getMaximumReceipt()
+                row.id(), row.getLogo(), locale, row.getMinimumPayinAmount(), row.getMaximumPayinAmount()
         );
     }
 

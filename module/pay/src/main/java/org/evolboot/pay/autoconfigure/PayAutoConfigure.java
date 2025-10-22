@@ -5,7 +5,7 @@ import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.HuanQiuPayConfig;
 import org.evolboot.pay.domain.paymentclient.gateway.nowpayments.NowPaymentsConfig;
 import org.evolboot.pay.domain.paymentclient.payin.PayinClient;
-import org.evolboot.pay.domain.paymentclient.released.ReleasedClient;
+import org.evolboot.pay.domain.paymentclient.payout.PayoutClient;
 import org.evolboot.pay.domain.shared.PayConfig;
 import org.evolboot.shared.pay.PayGateway;
 import org.springframework.context.annotation.Bean;
@@ -45,14 +45,14 @@ public class PayAutoConfigure {
      * @return
      */
     @Bean
-    public Map<PayGateway, ReleasedClient> releasedClientMap(List<PaymentClient> paymentClients) {
-        Map<PayGateway, ReleasedClient> releasedClientMap = Maps.newHashMap();
+    public Map<PayGateway, PayoutClient> payoutClientMap(List<PaymentClient> paymentClients) {
+        Map<PayGateway, PayoutClient> payoutClientMap = Maps.newHashMap();
         paymentClients.forEach(paymentClient -> {
-            if (paymentClient instanceof ReleasedClient) {
-                releasedClientMap.put(paymentClient.getPayGateway(), (ReleasedClient) paymentClient);
+            if (paymentClient instanceof PayoutClient) {
+                payoutClientMap.put(paymentClient.getPayGateway(), (PayoutClient) paymentClient);
             }
         });
-        return releasedClientMap;
+        return payoutClientMap;
     }
 
 

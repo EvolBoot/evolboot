@@ -28,10 +28,10 @@ public class AdminPayoutOrderResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid
-                    ReleasedOrderCreateRequest request
+                    PayoutOrderCreateRequest request
     ) {
-        PayoutOrder releasedOrder = service.create(request);
-        return ResponseModel.ok(new DomainId(releasedOrder.id()));
+        PayoutOrder payoutOrder = service.create(request);
+        return ResponseModel.ok(new DomainId(payoutOrder.id()));
     }
 
 
@@ -53,7 +53,7 @@ public class AdminPayoutOrderResourceV1 {
     @PreAuthorize(HAS_ROLE_ADMIN + or + HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid
-                    ReleasedOrderUpdateRequest request
+                    PayoutOrderUpdateRequest request
     ) {
         service.update(request);
         return ResponseModel.ok();
@@ -67,7 +67,7 @@ public class AdminPayoutOrderResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit
     ) {
-        ReleasedOrderQuery query = ReleasedOrderQuery
+        PayoutOrderQuery query = PayoutOrderQuery
                 .builder()
                 .page(page)
                 .limit(limit)

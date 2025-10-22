@@ -1,11 +1,11 @@
-package org.evolboot.pay.domain.paymentclient.released;
+package org.evolboot.pay.domain.paymentclient.payout;
 
 /**
  * 代付请求结果
  *
  * @author evol
  */
-public interface ReleasedRequestResult {
+public interface PayoutRequestResult {
 
     boolean isOk();
 

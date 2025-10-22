@@ -1,6 +1,6 @@
 -- 代付订单
-DROP TABLE IF EXISTS evoltb_pay_released_order;
-CREATE TABLE evoltb_pay_released_order
+DROP TABLE IF EXISTS evoltb_pay_payout_order;
+CREATE TABLE evoltb_pay_payout_order
 (
     id_                              varchar(50) NOT NULL COMMENT '订单号主键',
     create_at_                       timestamp   NOT NULL COMMENT '创建时间',
@@ -28,7 +28,7 @@ CREATE TABLE evoltb_pay_released_order
     request_result_foreign_state_    varchar(100) COMMENT '请求返回状态',
 
     notify_result_foreign_order_id_  varchar(100) COMMENT '通知返回第三方ID',
-    notify_result_released_order_id_ varchar(100) COMMENT '通知返回下发ID',
+    notify_result_payout_order_id_   varchar(100) COMMENT '通知返回下发ID',
     notify_result_foreign_state_     varchar(100) COMMENT '通知返回状态',
     notify_result_text_              text COMMENT '通知返回',
     notify_result_amount_            decimal(20, 3) COMMENT '通知返回金额',

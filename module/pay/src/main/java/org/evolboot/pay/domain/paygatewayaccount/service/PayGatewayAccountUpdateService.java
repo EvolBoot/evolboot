@@ -31,8 +31,8 @@ public class PayGatewayAccountUpdateService {
         payGatewayAccount.setMerchantId(request.getMerchantId());
         payGatewayAccount.setAppid(request.getAppid());
         payGatewayAccount.setSecretKey(request.getSecretKey());
-        payGatewayAccount.setMinimumReceipt(request.getMinimumReceipt());
-        payGatewayAccount.setMaximumReceipt(request.getMaximumReceipt());
+        payGatewayAccount.setMinimumPayinAmount(request.getMinimumPayinAmount());
+        payGatewayAccount.setMaximumPayinAmount(request.getMaximumPayinAmount());
         payGatewayAccount.setEnable(request.getEnable());
         payGatewayAccount.setPayGateway(request.getPayGateway());
         payGatewayAccount.setLocales(request.getLocales());

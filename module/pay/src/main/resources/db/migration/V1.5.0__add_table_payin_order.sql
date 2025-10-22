@@ -26,7 +26,7 @@ CREATE TABLE evoltb_pay_payin_order
 
 
     notify_result_foreign_order_id_  varchar(50) COMMENT '通知返回的第三方订单ID',
-    notify_result_receipt_order_id_  varchar(50) COMMENT '通知返回的我方订单ID',
+    notify_result_payin_order_id_    varchar(50) COMMENT '通知返回的我方订单ID',
     notify_result_foreign_state_     varchar(50) COMMENT '通知返回的状态',
     notify_result_notify_text_       text COMMENT '通知返回的全文信息',
     notify_result_pay_amount_        decimal(20, 3) COMMENT '通知返回的支付金额',

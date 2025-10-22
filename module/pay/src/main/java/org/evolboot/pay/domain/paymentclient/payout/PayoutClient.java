@@ -1,11 +1,11 @@
-package org.evolboot.pay.domain.paymentclient.released;
+package org.evolboot.pay.domain.paymentclient.payout;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
 import org.evolboot.shared.pay.PayoutOrderOrgType;
 
 /** 代付客户端 */
-public interface ReleasedClient extends PaymentClient {
+public interface PayoutClient extends PaymentClient {
 
     /**
      * 创建下发(代付)订单
@@ -13,7 +13,7 @@ public interface ReleasedClient extends PaymentClient {
      * @param request
      * @return
      */
-    ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request);
+    PayoutCreateResponse createPayoutOrder(String payoutOrderId, PayGatewayAccount account, PayoutCreateRequest request);
 
 
     /**
@@ -23,17 +23,17 @@ public interface ReleasedClient extends PaymentClient {
      * @param <T>
      * @return
      */
-    <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request);
+    <T extends PayoutNotifyRequest> PayoutNotifyResponse payoutOrderNotify(PayGatewayAccount gatewayAccount, T request);
 
 
     /**
      * 查询订单
      *
-     * @param releasedOrderId
+     * @param payoutOrderId
      * @param account
      * @return
      */
-    ReleasedQueryResponse queryReleasedOrder(String releasedOrderId, PayGatewayAccount account);
+    PayoutQueryResponse queryPayoutdOrder(String payoutOrderId, PayGatewayAccount account);
 
     /**
      * 支持下发的组织类型

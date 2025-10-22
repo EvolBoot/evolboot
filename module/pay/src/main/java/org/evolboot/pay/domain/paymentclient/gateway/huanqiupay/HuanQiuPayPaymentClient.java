@@ -9,9 +9,9 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.PayI18nMessage;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payin.HuanQiuPayForeignPayinCreateResponse;
-import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayForeignReleasedCreateResponse;
+import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.payout.HuanQiuPayForeignPayoutCreateResponse;
 import org.evolboot.pay.domain.paymentclient.payin.*;
-import org.evolboot.pay.domain.paymentclient.released.*;
+import org.evolboot.pay.domain.paymentclient.payout.*;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
 import org.evolboot.pay.domain.payoutorder.entity.PayoutOrderCreateResult;
@@ -25,14 +25,14 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.TreeMap;
 
-import static org.evolboot.pay.exception.PayException.RELEASED_ORDER_ERROR;
+import static org.evolboot.pay.exception.PayException.PAYOUT_ORDER_ERROR;
 
 /**
  * @author evol
  */
 @Slf4j
 @Service("HuanQiuPayPaymentClient")
-public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
+public class HuanQiuPayPaymentClient implements PayinClient, PayoutClient {
 
     private final HuanQiuPayConfig huanQiuPayConfig;
 
@@ -64,8 +64,8 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
     @Override
     public PayinCreateResponse createPayinOrder(String payinOrderId, PayGatewayAccount account, PayinCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
-        Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumReceipt()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumReceipt()));
-        String url = huanQiuPayConfig.getReceiptCreateUrl();
+        Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumPayinAmount()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumPayinAmount()));
+        String url = huanQiuPayConfig.getPayinCreateUrl();
         TreeMap<String, Object> params = Maps.newTreeMap();
         params.put("mer_id", account.getMerchantId());
         params.put("timestamp", HuanQiuPayUtil.getDate());
@@ -74,7 +74,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
         params.put("amount", request.getPayAmount().movePointRight(POINT));
         params.put("backurl", huanQiuPayConfig.getSuccessUrl());
         params.put("failUrl", huanQiuPayConfig.getFailUrl());
-        params.put("ServerUrl", huanQiuPayConfig.getReceiptCreateNotifyUrl());
+        params.put("ServerUrl", huanQiuPayConfig.getPayinCreateNotifyUrl());
         params.put("businessnumber", payinOrderId);
         params.put("goodsName", "GoodsName");
 
@@ -136,17 +136,17 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
 
 
     @Override
-    public ReleasedCreateResponse createReleasedOrder(String releasedOrderId, PayGatewayAccount account, ReleasedCreateRequest request) {
+    public PayoutCreateResponse createPayoutOrder(String payoutOrderId, PayGatewayAccount account, PayoutCreateRequest request) {
         log.info("代付:创建订单");
-        String url = huanQiuPayConfig.getReleasedCreateUrl();
-        String backUrl = huanQiuPayConfig.getReleasedCreateNotifyUrl();
+        String url = huanQiuPayConfig.getPayoutCreateUrl();
+        String backUrl = huanQiuPayConfig.getPayoutCreateNotifyUrl();
         TreeMap<String, Object> map = Maps.newTreeMap();
         map.put("mer_id", account.getMerchantId());
         map.put("timestamp", HuanQiuPayUtil.getDate());
         map.put("terminal", "H5");
         map.put("version", "01");
         map.put("amount", request.getAmount().movePointRight(2));
-        map.put("businessnumber", releasedOrderId);
+        map.put("businessnumber", payoutOrderId);
         map.put("bankcardnumber", request.getBankNo());
         map.put("bankcardname", request.getPayeeName());
         map.put("bankname", request.getBankCode());
@@ -159,31 +159,31 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
 
         String post = ExtendHttpUtil.post(url, map);
         String requestText = JsonUtil.stringify(map);
-        log.info("代付:发起请求:{},参数:{},返回:{}", releasedOrderId, JsonUtil.stringify(map), post);
-        HuanQiuPayForeignReleasedCreateResponse result = JsonUtil.parse(post, HuanQiuPayForeignReleasedCreateResponse.class);
+        log.info("代付:发起请求:{},参数:{},返回:{}", payoutOrderId, JsonUtil.stringify(map), post);
+        HuanQiuPayForeignPayoutCreateResponse result = JsonUtil.parse(post, HuanQiuPayForeignPayoutCreateResponse.class);
         if (result.isOk()) {
-            return new ReleasedCreateResponse(
+            return new PayoutCreateResponse(
                     result.isOk(),
                     request.getAmount(),
                     BigDecimal.ZERO,
                     result.getForeignOrderId(),
-                    releasedOrderId,
+                    payoutOrderId,
                     new PayoutOrderCreateResult(
                             requestText, post, result.getForeignOrderId(), result.getState()
                     )
             );
         }
-        throw RELEASED_ORDER_ERROR;
+        throw PAYOUT_ORDER_ERROR;
 
     }
 
     @Override
-    public <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request) {
-        return new ReleasedNotifyResponse(request.getState(),
+    public <T extends PayoutNotifyRequest> PayoutNotifyResponse payoutOrderNotify(PayGatewayAccount gatewayAccount, T request) {
+        return new PayoutNotifyResponse(request.getState(),
                 "success",
                 new PayoutOrderNotifyResult(
                         request.getForeignOrderId(),
-                        request.getReleasedOrderId(),
+                        request.getPayoutOrderId(),
                         request.getForeignState(),
                         request.getNotifyParamsText(),
                         request.getAmount(),
@@ -192,8 +192,8 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
     }
 
     @Override
-    public ReleasedQueryResponse queryReleasedOrder(String releasedOrderId, PayGatewayAccount account) {
-        return new ReleasedQueryResponse(false);
+    public PayoutQueryResponse queryPayoutdOrder(String payoutOrderId, PayGatewayAccount account) {
+        return new PayoutQueryResponse(false);
     }
 
     @Override
@@ -242,7 +242,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
         BigDecimal amount = new BigDecimal("20043.12");
         BigDecimal bigDecimal = amount.movePointRight(2);
         String url = "http://api.xiongwei2000.com/pay.bank.to";
-        String backUrl = "https://api-test.404root.com/v1/api/pay/payment/huan-qiu-pay/released/notify";
+        String backUrl = "https://api-test.404root.com/v1/api/pay/payment/huan-qiu-pay/payout/notify";
         TreeMap<String, Object> map = Maps.newTreeMap();
         map.put("mer_id", "xt171219211449");
         map.put("timestamp", HuanQiuPayUtil.getDate());
@@ -264,7 +264,7 @@ public class HuanQiuPayPaymentClient implements PayinClient, ReleasedClient {
         System.out.println(JsonUtil.stringify(map));
         String post = ExtendHttpUtil.post(url, map);
         System.out.println(post);
-        HuanQiuPayForeignReleasedCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignReleasedCreateResponse.class);
+        HuanQiuPayForeignPayoutCreateResponse parse = JsonUtil.parse(post, HuanQiuPayForeignPayoutCreateResponse.class);
         System.out.println(parse.isOk());
         System.out.println(new BigDecimal(parse.getData().getAmount()).movePointLeft(2));
 

@@ -25,8 +25,8 @@ public class PayinOrderUpdateService {
     }
 
     public void execute(String id, Request request) {
-        PayinOrder receiptOrder = supportService.findById(id);
-        repository.save(receiptOrder);
+        PayinOrder payinOrder = supportService.findById(id);
+        repository.save(payinOrder);
     }
 
     public static class Request extends PayinOrderRequestBase {

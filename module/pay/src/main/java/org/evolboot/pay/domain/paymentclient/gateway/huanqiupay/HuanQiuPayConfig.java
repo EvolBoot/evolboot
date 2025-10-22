@@ -10,28 +10,28 @@ public class HuanQiuPayConfig {
 
     private final String domain;
 
-    private final String releasedCreateUrl = "http://api.xiongwei2000.com/pay.bank.to";
+    private final String payoutCreateUrl = "http://api.xiongwei2000.com/pay.bank.to";
 
-    private final String receiptCreateUrl = "http://api.xiongwei2000.com/customer.pay";
+    private final String payinCreateUrl = "http://api.xiongwei2000.com/customer.pay";
 
-    private final String receiptNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/payin/notify";
+    private final String payinNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/payin/notify";
 
     private final String successUrl = "/api/v1/pay/payment/huan-qiu-pay/success";
 
     private final String failUrl = "/api/v1/pay/payment/huan-qiu-pay/fail";
 
-    private final String releasedNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/released/notify";
+    private final String payoutNotifyUrl = "/api/v1/pay/payment/huan-qiu-pay/payout/notify";
 
     public HuanQiuPayConfig(String domain) {
         this.domain = domain;
     }
 
-    public String getReleasedCreateNotifyUrl() {
-        return domain + releasedNotifyUrl;
+    public String getPayoutCreateNotifyUrl() {
+        return domain + payoutNotifyUrl;
     }
 
-    public String getReceiptCreateNotifyUrl() {
-        return domain + receiptNotifyUrl;
+    public String getPayinCreateNotifyUrl() {
+        return domain + payinNotifyUrl;
     }
 
     public String getSuccessUrl() {

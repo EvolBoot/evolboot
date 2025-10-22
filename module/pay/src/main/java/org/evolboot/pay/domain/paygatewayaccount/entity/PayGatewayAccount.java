@@ -55,11 +55,11 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
 
     // 最少支付
     @Schema(title = "最少支付")
-    private BigDecimal minimumReceipt;
+    private BigDecimal minimumPayinAmount;
 
     // 最多支付
     @Schema(title = "最多支付")
-    private BigDecimal maximumReceipt;
+    private BigDecimal maximumPayinAmount;
 
     //启用状态
     @Schema(title = "启用状态")
@@ -88,8 +88,8 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
                              String merchantId,
                              String appid,
                              String secretKey,
-                             BigDecimal minimumReceipt,
-                             BigDecimal maximumReceipt,
+                             BigDecimal minimumPayinAmount,
+                             BigDecimal maximumPayinAmount,
                              Boolean enable,
                              PayGateway payGateway,
                              Integer sort,
@@ -101,8 +101,8 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
         setMerchantId(merchantId);
         setAppid(appid);
         setSecretKey(secretKey);
-        setMinimumReceipt(minimumReceipt);
-        setMaximumReceipt(maximumReceipt);
+        setMinimumPayinAmount(minimumPayinAmount);
+        setMaximumPayinAmount(maximumPayinAmount);
         setEnable(enable);
         setPayGateway(payGateway);
         setLocales(locales);
@@ -140,12 +140,12 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
         this.secretKey = secretKey;
     }
 
-    public void setMinimumReceipt(BigDecimal minimumReceipt) {
-        this.minimumReceipt = minimumReceipt;
+    public void setMinimumPayinAmount(BigDecimal minimumPayinAmount) {
+        this.minimumPayinAmount = minimumPayinAmount;
     }
 
-    public void setMaximumReceipt(BigDecimal maximumReceipt) {
-        this.maximumReceipt = maximumReceipt;
+    public void setMaximumPayinAmount(BigDecimal maximumPayinAmount) {
+        this.maximumPayinAmount = maximumPayinAmount;
     }
 
     public void setEnable(Boolean enable) {
