@@ -1,34 +1,24 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 import lombok.Getter;
-import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderQueryResult;
-import org.evolboot.shared.pay.ReleasedOrderState;
+import org.evolboot.pay.domain.payoutorder.entity.PayoutOrderQueryResult;
+import org.evolboot.shared.pay.PayoutOrderState;
 
 import java.math.BigDecimal;
 
-/**
- * 代付订单返回
- *
- * @author evol
- */
+/** 代付订单查询结果（第三方） */
 @Getter
 public class ReleasedQueryResponse {
 
     private boolean exist;
-
     private BigDecimal amount;
-
     private BigDecimal poundageAmount;
-
     private String foreignOrderId;
-
     private String releasedOrderId;
+    private PayoutOrderQueryResult requestResult;
+    private PayoutOrderState state;
 
-    private ReleasedOrderQueryResult requestResult;
-
-    private ReleasedOrderState state;
-
-    public ReleasedQueryResponse(boolean exist, BigDecimal amount, BigDecimal poundageAmount, String foreignOrderId, String releasedOrderId, ReleasedOrderQueryResult requestResult, ReleasedOrderState state) {
+    public ReleasedQueryResponse(boolean exist, BigDecimal amount, BigDecimal poundageAmount, String foreignOrderId, String releasedOrderId, PayoutOrderQueryResult requestResult, PayoutOrderState state) {
         this.exist = exist;
         this.amount = amount;
         this.poundageAmount = poundageAmount;

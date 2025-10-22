@@ -1,15 +1,10 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
-
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paymentclient.PaymentClient;
-import org.evolboot.shared.pay.ReleasedOrderOrgType;
+import org.evolboot.shared.pay.PayoutOrderOrgType;
 
-/**
- * 代付客户端
- *
- * @author evol
- */
+/** 代付客户端 */
 public interface ReleasedClient extends PaymentClient {
 
     /**
@@ -46,6 +41,6 @@ public interface ReleasedClient extends PaymentClient {
      * @param orgType
      * @return
      */
-    boolean supportOrgType(ReleasedOrderOrgType orgType);
+    boolean supportOrgType(PayoutOrderOrgType orgType);
 
 }

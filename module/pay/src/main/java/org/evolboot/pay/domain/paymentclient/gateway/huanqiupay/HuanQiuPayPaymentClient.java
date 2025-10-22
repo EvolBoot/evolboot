@@ -14,12 +14,12 @@ import org.evolboot.pay.domain.paymentclient.receipt.*;
 import org.evolboot.pay.domain.paymentclient.released.*;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderNotifyResult;
 import org.evolboot.pay.domain.payinorder.entity.PayinOrderRequestResult;
-import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderCreateResult;
-import org.evolboot.pay.domain.releasedorder.entity.ReleasedOrderNotifyResult;
+import org.evolboot.pay.domain.payoutorder.entity.PayoutOrderCreateResult;
+import org.evolboot.pay.domain.payoutorder.entity.PayoutOrderNotifyResult;
 import org.evolboot.pay.exception.PayException;
 import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
-import org.evolboot.shared.pay.ReleasedOrderOrgType;
+import org.evolboot.shared.pay.PayoutOrderOrgType;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -168,7 +168,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
                     BigDecimal.ZERO,
                     result.getForeignOrderId(),
                     releasedOrderId,
-                    new ReleasedOrderCreateResult(
+                    new PayoutOrderCreateResult(
                             requestText, post, result.getForeignOrderId(), result.getState()
                     )
             );
@@ -181,7 +181,7 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     public <T extends ReleasedNotifyRequest> ReleasedNotifyResponse releasedOrderNotify(PayGatewayAccount gatewayAccount, T request) {
         return new ReleasedNotifyResponse(request.getState(),
                 "success",
-                new ReleasedOrderNotifyResult(
+                new PayoutOrderNotifyResult(
                         request.getForeignOrderId(),
                         request.getReleasedOrderId(),
                         request.getForeignState(),
@@ -197,8 +197,8 @@ public class HuanQiuPayPaymentClient implements ReceiptClient, ReleasedClient {
     }
 
     @Override
-    public boolean supportOrgType(ReleasedOrderOrgType orgType) {
-        return ReleasedOrderOrgType.IMPS.equals(orgType);
+    public boolean supportOrgType(PayoutOrderOrgType orgType) {
+        return PayoutOrderOrgType.IMPS.equals(orgType);
     }
 
 

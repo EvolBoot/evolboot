@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evolboot.core.annotation.ApiClient;
 import org.evolboot.core.mq.MQMessagePublisher;
 import org.evolboot.shared.event.pay.PayinOrderStateChangeMessage;
-import org.evolboot.shared.event.pay.ReleasedOrderStateChangeMessage;
+import org.evolboot.shared.event.pay.PayoutOrderStateChangeMessage;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +44,9 @@ public class TestPaymentClientResourceV1 {
 
 
     @Operation(summary = "发送代付订单状态消息")
-    @PostMapping("/send-released-order-state-change-message")
+    @PostMapping("/send-payout-order-state-change-message")
     @Transactional
-    public String sendMessageInTransactionReleasedOrderStateChangeMessage(ReleasedOrderStateChangeMessage request) {
+    public String sendMessageInTransactionPayoutOrderStateChangeMessage(PayoutOrderStateChangeMessage request) {
         mqMessagePublisher.sendMessageInTransaction(request);
         return "success";
     }

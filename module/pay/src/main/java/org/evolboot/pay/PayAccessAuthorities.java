@@ -44,13 +44,13 @@ public interface PayAccessAuthorities {
     /**
      * 代付订单
      */
-    @AuthorityResource(value = "releasedorder", label = "代付订单")
-    interface ReleasedOrder {
-        String HAS_CREATE = AUTHORITY_PREFIX + "pay_releasedorder_create" + AUTHORITY_SUFFIX;
-        String HAS_DELETE = AUTHORITY_PREFIX + "pay_releasedorder_delete" + AUTHORITY_SUFFIX;
-        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_releasedorder_update" + AUTHORITY_SUFFIX;
-        String HAS_PAGE = AUTHORITY_PREFIX + "pay_releasedorder_page" + AUTHORITY_SUFFIX;
-        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_releasedorder_single" + AUTHORITY_SUFFIX;
+    @AuthorityResource(value = "payoutorder", label = "代付订单")
+    interface PayoutOrder {
+        String HAS_CREATE = AUTHORITY_PREFIX + "pay_payoutorder_create" + AUTHORITY_SUFFIX;
+        String HAS_DELETE = AUTHORITY_PREFIX + "pay_payoutorder_delete" + AUTHORITY_SUFFIX;
+        String HAS_UPDATE = AUTHORITY_PREFIX + "pay_payoutorder_update" + AUTHORITY_SUFFIX;
+        String HAS_PAGE = AUTHORITY_PREFIX + "pay_payoutorder_page" + AUTHORITY_SUFFIX;
+        String HAS_SINGLE = AUTHORITY_PREFIX + "pay_payoutorder_single" + AUTHORITY_SUFFIX;
     }
     /**
      * 测试产品

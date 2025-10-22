@@ -70,8 +70,8 @@ public abstract class PayI18nMessage {
     /**
      * 代付订单
      */
-    public static class ReleasedOrder {
-        public static final String NAMESPACE = PayI18nMessage.NAMESPACE + ".releasedorder";
+    public static class PayoutOrder {
+        public static final String NAMESPACE = PayI18nMessage.NAMESPACE + ".payoutorder";
 
         public static final String NOT_FOUND = NAMESPACE + ".notFound";
 

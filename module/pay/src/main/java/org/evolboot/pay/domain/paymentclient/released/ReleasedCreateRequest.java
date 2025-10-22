@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.evolboot.shared.pay.Currency;
-import org.evolboot.shared.pay.ReleasedOrderOrgType;
+import org.evolboot.shared.pay.PayoutOrderOrgType;
 
 import java.math.BigDecimal;
 
@@ -45,7 +45,7 @@ public class ReleasedCreateRequest {
     // ifsc 卡号
     private String ifscCardNo;
 
-    private ReleasedOrderOrgType orgType;
+    private PayoutOrderOrgType orgType;
 
 
 }

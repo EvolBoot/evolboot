@@ -9,7 +9,7 @@ import org.evolboot.core.util.JsonUtil;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.receipt.HuanQiuPayReceiptNotifyRequest;
 import org.evolboot.pay.domain.paymentclient.gateway.huanqiupay.released.HuanQiuPayReleasedNotifyRequest;
 import org.evolboot.pay.domain.payinorder.PayinOrderAppService;
-import org.evolboot.pay.domain.releasedorder.ReleasedOrderAppService;
+import org.evolboot.pay.domain.payoutorder.PayoutOrderAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,13 +27,13 @@ import java.util.Map;
 @ApiClient
 public class AppHuanQiuPaymentClientResourceV1 {
 
-    private final ReleasedOrderAppService releasedOrderAppService;
+    private final PayoutOrderAppService payoutOrderAppService;
 
     private final PayinOrderAppService receiptOrderAppService;
 
 
-    public AppHuanQiuPaymentClientResourceV1(ReleasedOrderAppService releasedOrderAppService, PayinOrderAppService receiptOrderAppService) {
-        this.releasedOrderAppService = releasedOrderAppService;
+    public AppHuanQiuPaymentClientResourceV1(PayoutOrderAppService payoutOrderAppService, PayinOrderAppService receiptOrderAppService) {
+        this.payoutOrderAppService = payoutOrderAppService;
         this.receiptOrderAppService = receiptOrderAppService;
     }
 
@@ -73,7 +73,7 @@ public class AppHuanQiuPaymentClientResourceV1 {
         Map<String, String> requestParams = Maps.newHashMap();
         request.getParameterNames().asIterator().forEachRemaining(key -> requestParams.put(key, request.getParameter(key)));
         log.info("环球下发回调:收到:{}", JsonUtil.stringify(requestParams));
-        return (String) releasedOrderAppService.releasedOrderNotify(new HuanQiuPayReleasedNotifyRequest(requestParams));
+        return (String) payoutOrderAppService.releasedOrderNotify(new HuanQiuPayReleasedNotifyRequest(requestParams));
     }
 
 

@@ -1,15 +1,11 @@
 package org.evolboot.pay.domain.paymentclient.released;
 
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
-import org.evolboot.shared.pay.ReleasedOrderState;
+import org.evolboot.shared.pay.PayoutOrderState;
 
 import java.math.BigDecimal;
 
-/**
- * 代付通知
- *
- * @author evol
- */
+/** 第三方代付通知请求 */
 public interface ReleasedNotifyRequest {
 
     String getReleasedOrderId();
@@ -24,7 +20,7 @@ public interface ReleasedNotifyRequest {
 
     BigDecimal getPoundage();
 
-    ReleasedOrderState getState();
+    PayoutOrderState getState();
 
     boolean checkSign(PayGatewayAccount payGatewayAccount);
 }

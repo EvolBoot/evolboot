@@ -3,7 +3,7 @@ package org.evolboot.pay.exception;
 
 import org.evolboot.core.exception.ExtendErrorCodeException;
 import org.evolboot.shared.pay.Currency;
-import org.evolboot.shared.pay.ReleasedOrderOrgType;
+import org.evolboot.shared.pay.PayoutOrderOrgType;
 
 /**
  * @author evol
@@ -18,7 +18,7 @@ public class PayException extends ExtendErrorCodeException {
         return new PayException(ErrorCode.PARAMETER_IS_NULL, "[" + paramKey + "] Cannot be null");
     }
 
-    public static PayException dotSupportOrgType(String gatewayAlias, ReleasedOrderOrgType orderOrgType) {
+    public static PayException dotSupportOrgType(String gatewayAlias, PayoutOrderOrgType orderOrgType) {
         return new PayException(ErrorCode.DOT_SUPPORT_ORG, gatewayAlias + " Do not support the organization(" + orderOrgType + ")");
     }
 
