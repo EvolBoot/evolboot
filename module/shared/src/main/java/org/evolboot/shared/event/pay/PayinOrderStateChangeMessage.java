@@ -24,7 +24,7 @@ public class PayinOrderStateChangeMessage extends TransactionMQMessage<String> {
 
     private BigDecimal payAmount;
 
-    private PayinOrderState receiptOrderState;
+    private PayinOrderState payinOrderState;
 
     @Override
     public String getEventSourceId() {
