@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
@@ -35,7 +35,7 @@ import static org.evolboot.common.CommonAccessAuthorities.DictKey.*;
 @RestController
 @RequestMapping("/tenant/v1/common/dict-key")
 @Tag(name = "租户字典key", description = "租户字典key")
-@AdminClient
+@TenantClient
 public class TenantDictKeyResourceV1 {
 
     private final DictKeyAppService service;
@@ -50,7 +50,7 @@ public class TenantDictKeyResourceV1 {
     @Operation(summary = "创建字典key")
     @OperationLog("创建字典key")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid DictKeyCreateRequest request
     ) {
@@ -64,7 +64,7 @@ public class TenantDictKeyResourceV1 {
     @Operation(summary = "删除字典key")
     @OperationLog("删除字典key")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -78,7 +78,7 @@ public class TenantDictKeyResourceV1 {
     @Operation(summary = "批量删除字典key")
     @OperationLog("批量删除字典key")
     @DeleteMapping()
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_DELETE)
     public ResponseModel<?> delete(
             @RequestBody Set<Long> ids
     ) {
@@ -92,7 +92,7 @@ public class TenantDictKeyResourceV1 {
     @Operation(summary = "修改字典key")
     @OperationLog("修改字典key")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid DictKeyUpdateRequest request
     ) {
@@ -106,7 +106,7 @@ public class TenantDictKeyResourceV1 {
      */
     @Operation(summary = "查询字典key")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<Page<DictKey>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -140,7 +140,7 @@ public class TenantDictKeyResourceV1 {
      */
     @Operation(summary = "查询单个字典key")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_SINGLE)
     public ResponseModel<DictKey> get(
             @PathVariable("id") Long id
     ) {

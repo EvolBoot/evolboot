@@ -17,6 +17,9 @@ public interface CommonAccessAuthorities {
     interface Config {
         String HAS_UPDATE = AUTHORITY_PREFIX + "common_config_update" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "common_config_single" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_common_config_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_SINGLE = AUTHORITY_PREFIX + "tenant_common_config_single" + AUTHORITY_SUFFIX;
     }
 
     /**
@@ -29,6 +32,12 @@ public interface CommonAccessAuthorities {
         String HAS_UPDATE = AUTHORITY_PREFIX + "common_dictkey_update" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "common_dictkey_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "common_dictkey_single" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_common_dictkey_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_common_dictkey_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_common_dictkey_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_common_dictkey_page" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_SINGLE = AUTHORITY_PREFIX + "tenant_common_dictkey_single" + AUTHORITY_SUFFIX;
     }
 
     /**
@@ -41,6 +50,12 @@ public interface CommonAccessAuthorities {
         String HAS_UPDATE = AUTHORITY_PREFIX + "common_dictvalue_update" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "common_dictvalue_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "common_dictvalue_single" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_common_dictvalue_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_common_dictvalue_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_common_dictvalue_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_common_dictvalue_page" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_SINGLE = AUTHORITY_PREFIX + "tenant_common_dictvalue_single" + AUTHORITY_SUFFIX;
     }
 
 }

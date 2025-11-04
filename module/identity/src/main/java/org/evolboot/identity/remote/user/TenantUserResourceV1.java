@@ -90,7 +90,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "创建租户员工")
     @OperationLog(value = "创建租户员工", excludeUnserializable = false)
     @PostMapping("/staff")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<User> createStaff(
             @RequestBody @Valid UserCreateStaffRequest request,
             HttpServletRequest httpServletRequest
@@ -106,7 +106,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "修改租户员工资料")
     @OperationLog("修改租户员工资料")
     @PutMapping("/staff")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_UPDATE)
     public ResponseModel<?> updateStaff(
             @RequestBody @Valid AdminUserUpdateRequest request
     ) {
@@ -120,7 +120,7 @@ public class TenantUserResourceV1 {
      */
     @Operation(summary = "查询租户员工")
     @GetMapping("/staff")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<Page<User>> getStaff(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -161,7 +161,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "冻结(锁定)租户员工")
     @OperationLog("冻结(锁定)租户员工")
     @PutMapping("/state/lock")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_LOCK)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_LOCK)
     public ResponseModel<?> lock(
             @RequestBody IdRequest<Long> request
     ) {
@@ -175,7 +175,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "解锁租户员工")
     @OperationLog("解锁租户员工")
     @PutMapping("/state/active")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_ACTIVE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_ACTIVE)
     public ResponseModel<?> active(
             @RequestBody IdRequest<Long> request
     ) {
@@ -189,7 +189,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "删除租户员工")
     @OperationLog("删除租户员工")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -203,7 +203,7 @@ public class TenantUserResourceV1 {
     @Operation(summary = "重置租户员工密码")
     @OperationLog("重置租户员工密码")
     @PutMapping("/password/reset")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PASSWORD_RESET)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PASSWORD_RESET)
     public ResponseModel<?> resetPassword(
             @RequestBody @Valid UserPasswordSetRequest request
     ) {

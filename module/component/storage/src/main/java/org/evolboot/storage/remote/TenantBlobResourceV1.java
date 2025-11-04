@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
@@ -40,7 +40,7 @@ import static org.evolboot.storage.StorageAccessAuthorities.Bolb.*;
 @RequestMapping("/tenant/v1/storage/blob")
 @Tag(name = "租户文件管理", description = "租户文件管理")
 @Slf4j
-@AdminClient
+@TenantClient
 public class TenantBlobResourceV1 {
 
     private final BlobAppService service;
@@ -51,7 +51,7 @@ public class TenantBlobResourceV1 {
 
     @Operation(summary = "查询文件服务")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<Page<Blob>> page(
             @Parameter(description = "页码") @RequestParam(name = "page", defaultValue = "1") Integer page,
             @Parameter(description = "每页数量") @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -98,7 +98,7 @@ public class TenantBlobResourceV1 {
 
     @PostMapping(path = "/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传图片")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<BlobResponse> uploadImage(
             @RequestPart("file") MultipartFile uploadFile
     ) {
@@ -123,7 +123,7 @@ public class TenantBlobResourceV1 {
 
     @PostMapping(path = "/video", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传视频")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<BlobResponse> uploadVideo(
             @RequestPart("file") MultipartFile uploadFile
     ) {
@@ -148,7 +148,7 @@ public class TenantBlobResourceV1 {
 
     @PostMapping(path = "/document", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传文档")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<BlobResponse> uploadDocument(
             @RequestPart("file") MultipartFile uploadFile
     ) {
@@ -173,7 +173,7 @@ public class TenantBlobResourceV1 {
 
     @PostMapping(path = "/app", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "上传APP")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<BlobResponse> uploadApp(
             @RequestPart("file") MultipartFile uploadFile
     ) {
@@ -199,7 +199,7 @@ public class TenantBlobResourceV1 {
     @Operation(summary = "删除文件")
     @OperationLog("删除文件")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {

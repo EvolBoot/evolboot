@@ -19,6 +19,11 @@ public interface IdentityAccessAuthorities {
         String HAS_DELETE = AUTHORITY_PREFIX + "permission_delete" + AUTHORITY_SUFFIX;
         String HAS_UPDATE = AUTHORITY_PREFIX + "permission_update" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "permission_page" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_permission_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_permission_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_permission_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_permission_page" + AUTHORITY_SUFFIX;
     }
 
     @AuthorityResource(value = "role", label = "角色")
@@ -27,6 +32,11 @@ public interface IdentityAccessAuthorities {
         String HAS_DELETE = AUTHORITY_PREFIX + "role_delete" + AUTHORITY_SUFFIX;
         String HAS_UPDATE = AUTHORITY_PREFIX + "role_update" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "role_page" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_role_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_role_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_role_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_role_page" + AUTHORITY_SUFFIX;
     }
 
     @AuthorityResource(value = "user", label = "用户")
@@ -39,6 +49,16 @@ public interface IdentityAccessAuthorities {
         String HAS_LOCK = AUTHORITY_PREFIX + "user_state_lock" + AUTHORITY_SUFFIX;
         String HAS_ACTIVE = AUTHORITY_PREFIX + "user_state_active" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "user_page" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_user_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_user_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_user_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_ROLE_UPDATE = AUTHORITY_PREFIX + "tenant_user_role_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PASSWORD_RESET = AUTHORITY_PREFIX + "tenant_user_password_reset" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_LOCK = AUTHORITY_PREFIX + "tenant_user_state_lock" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_ACTIVE = AUTHORITY_PREFIX + "tenant_user_state_active" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_user_page" + AUTHORITY_SUFFIX;
+
     }
 
 

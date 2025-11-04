@@ -3,7 +3,7 @@ package org.evolboot.identity.remote.userrole;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.userrole.UserRoleAppService;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import static org.evolboot.identity.IdentityAccessAuthorities.User.HAS_ROLE_UPDATE;
+import static org.evolboot.identity.IdentityAccessAuthorities.User.TENANT_HAS_ROLE_UPDATE;
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_TENANT_OWNER;
 import static org.evolboot.security.api.access.AccessAuthorities.OR;
 
@@ -27,7 +28,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.OR;
 @RestController
 @RequestMapping("/tenant/v1")
 @Tag(name = "租户用户角色管理", description = "租户用户角色管理")
-@AdminClient
+@TenantClient
 public class TenantUserRoleResourceV1 {
 
     private final UserRoleAppService service;
@@ -42,7 +43,7 @@ public class TenantUserRoleResourceV1 {
     @Operation(summary = "修改租户员工角色")
     @OperationLog("修改租户员工角色")
     @PutMapping("/users/{id}/role/update")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_ROLE_UPDATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_ROLE_UPDATE)
     public ResponseModel<?> updateRole(
             @PathVariable("id") Long id,
             @RequestBody @Valid UserRoleUpdateRequest request

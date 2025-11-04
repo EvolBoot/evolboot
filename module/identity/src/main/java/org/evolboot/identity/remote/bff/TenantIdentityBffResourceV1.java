@@ -4,7 +4,7 @@ package org.evolboot.identity.remote.bff;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
 import org.evolboot.identity.domain.bff.IdentityBffAppService;
@@ -31,7 +31,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_
 @RestController
 @RequestMapping("/tenant/v1/identity/bff")
 @Tag(name = "IdentityBff", description = "IdentityBff")
-@AdminClient
+@TenantClient
 public class TenantIdentityBffResourceV1 {
 
     private final IdentityBffAppService service;

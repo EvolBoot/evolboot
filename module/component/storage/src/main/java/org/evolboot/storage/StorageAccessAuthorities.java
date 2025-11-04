@@ -26,6 +26,12 @@ public interface StorageAccessAuthorities {
         String HAS_UPDATE = AUTHORITY_PREFIX + "storage_bolb_update" + AUTHORITY_SUFFIX;
         String HAS_PAGE = AUTHORITY_PREFIX + "storage_bolb_page" + AUTHORITY_SUFFIX;
         String HAS_SINGLE = AUTHORITY_PREFIX + "storage_bolb_single" + AUTHORITY_SUFFIX;
+
+        String TENANT_HAS_CREATE = AUTHORITY_PREFIX + "tenant_storage_bolb_create" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_DELETE = AUTHORITY_PREFIX + "tenant_storage_bolb_delete" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_UPDATE = AUTHORITY_PREFIX + "tenant_storage_bolb_update" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_PAGE = AUTHORITY_PREFIX + "tenant_storage_bolb_page" + AUTHORITY_SUFFIX;
+        String TENANT_HAS_SINGLE = AUTHORITY_PREFIX + "tenant_storage_bolb_single" + AUTHORITY_SUFFIX;
     }
  
 

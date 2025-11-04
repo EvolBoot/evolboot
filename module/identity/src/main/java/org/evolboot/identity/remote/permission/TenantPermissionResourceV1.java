@@ -2,7 +2,7 @@ package org.evolboot.identity.remote.permission;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
 import org.evolboot.core.remote.ResponseModel;
@@ -28,7 +28,7 @@ import static org.evolboot.security.api.access.AccessAuthorities.*;
 @RestController
 @RequestMapping("/tenant/v1/permissions")
 @Tag(name = "租户权限管理", description = "租户权限管理(只读)")
-@AdminClient
+@TenantClient
 public class TenantPermissionResourceV1 {
 
     private final PermissionQueryService queryService;
@@ -43,7 +43,7 @@ public class TenantPermissionResourceV1 {
      */
     @GetMapping("/tree")
     @Operation(summary = "权限列表(树形)")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<List<Permission>> tree() {
         // 租户只能查看 TENANT scope 的权限
         return ResponseModel.ok(queryService.findAllConvertTree(PermissionScope.TENANT));
@@ -55,7 +55,7 @@ public class TenantPermissionResourceV1 {
      */
     @GetMapping
     @Operation(summary = "权限列表")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<Page<Permission>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit,

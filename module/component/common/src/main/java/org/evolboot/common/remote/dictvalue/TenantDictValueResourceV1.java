@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.evolboot.core.annotation.AdminClient;
+import org.evolboot.core.annotation.TenantClient;
 import org.evolboot.core.annotation.OperationLog;
 import org.evolboot.core.data.Direction;
 import org.evolboot.core.data.Page;
@@ -36,7 +36,7 @@ import static org.evolboot.common.CommonAccessAuthorities.DictValue.*;
 @RestController
 @RequestMapping("/tenant/v1/common/dict-value")
 @Tag(name = "租户字典Value", description = "租户字典Value")
-@AdminClient
+@TenantClient
 public class TenantDictValueResourceV1 {
 
     private final DictValueAppService service;
@@ -51,7 +51,7 @@ public class TenantDictValueResourceV1 {
     @Operation(summary = "创建字典Value")
     @OperationLog("创建字典Value")
     @PostMapping("")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_CREATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_CREATE)
     public ResponseModel<?> create(
             @RequestBody @Valid DictValueCreateRequest request
     ) {
@@ -65,7 +65,7 @@ public class TenantDictValueResourceV1 {
     @Operation(summary = "删除字典Value")
     @OperationLog("删除字典Value")
     @DeleteMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_DELETE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_DELETE)
     public ResponseModel<?> delete(
             @PathVariable("id") Long id
     ) {
@@ -79,7 +79,7 @@ public class TenantDictValueResourceV1 {
     @Operation(summary = "修改字典Value")
     @OperationLog("修改字典Value")
     @PutMapping
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_UPDATE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_UPDATE)
     public ResponseModel<?> update(
             @RequestBody @Valid DictValueUpdateRequest request
     ) {
@@ -93,7 +93,7 @@ public class TenantDictValueResourceV1 {
      */
     @Operation(summary = "查询字典Value")
     @GetMapping("")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<Page<DictValue>> page(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
@@ -129,7 +129,7 @@ public class TenantDictValueResourceV1 {
      */
     @Operation(summary = "查询单个字典Value")
     @GetMapping("/{id}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_SINGLE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_SINGLE)
     public ResponseModel<DictValue> get(
             @PathVariable("id") Long id
     ) {
@@ -141,7 +141,7 @@ public class TenantDictValueResourceV1 {
      */
     @Operation(summary = "根据Key查询字典Value")
     @GetMapping("/key/{dictKey}")
-    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + HAS_PAGE)
+    @PreAuthorize(HAS_ROLE_TENANT_OWNER + OR + TENANT_HAS_PAGE)
     public ResponseModel<List<DictValueAppResponse>> findByDictKey(
             @PathVariable("dictKey") String dictKey
     ) {
