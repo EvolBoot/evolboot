@@ -92,7 +92,7 @@ public class IdentityAdapter implements IdentityClient {
                 user.getUserIdentity().stream()
                         .map(UserIdentity::name)
                         .collect(Collectors.toSet());
-        if (!user.hasUserIdentity(UserIdentity.ROLE_STAFF)) {
+        if (!user.hasUserIdentity(UserIdentity.ROLE_STAFF) || !user.hasUserIdentity(UserIdentity.ROLE_TENANT_STAFF)) {
             return userIdentitys;
         }
         // 只有员工需要加载权限信息
