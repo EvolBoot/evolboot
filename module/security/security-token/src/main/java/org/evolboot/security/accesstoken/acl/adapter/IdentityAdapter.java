@@ -92,28 +92,29 @@ public class IdentityAdapter implements IdentityClient {
                 user.getUserIdentity().stream()
                         .map(UserIdentity::name)
                         .collect(Collectors.toSet());
-        if (!user.hasUserIdentity(UserIdentity.ROLE_STAFF) || !user.hasUserIdentity(UserIdentity.ROLE_TENANT_STAFF)) {
-            return userIdentitys;
-        }
-        // 只有员工需要加载权限信息
-        Set<String> authorities = Sets.newHashSet();
-        authorities.addAll(userIdentitys);
-        Set<Long> roleId = user.getRoleId();
-        if (ExtendObjects.isEmpty(roleId)) {
-            return authorities;
-        }
-        List<Role> roles = roleAppService.findAllByIdAndTenantId(roleId, user.getTenantId());
-        if (ExtendObjects.isEmpty(roles)) {
-            return authorities;
-        }
-        Set<Long> permissionIds = roles.stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toSet());
-        if (ExtendObjects.isEmpty(permissionIds)) {
-            return authorities;
-        }
+        if ((user.hasUserIdentity(UserIdentity.ROLE_STAFF) || user.hasUserIdentity(UserIdentity.ROLE_TENANT_STAFF))) {
+            // 只有员工需要加载权限信息
+            Set<String> authorities = Sets.newHashSet();
+            authorities.addAll(userIdentitys);
+            Set<Long> roleId = user.getRoleId();
+            if (ExtendObjects.isEmpty(roleId)) {
+                return authorities;
+            }
+            List<Role> roles = roleAppService.findAllByIdAndTenantId(roleId, user.getTenantId());
+            if (ExtendObjects.isEmpty(roles)) {
+                return authorities;
+            }
+            Set<Long> permissionIds = roles.stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toSet());
+            if (ExtendObjects.isEmpty(permissionIds)) {
+                return authorities;
+            }
 
-        List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
-        permissions.forEach(permission -> authorities.addAll(List.of(permission.permSplitToArray())));
-        return authorities;
+            List<Permission> permissions = permissionQueryService.findAllById(permissionIds);
+            permissions.forEach(permission -> authorities.addAll(List.of(permission.permSplitToArray())));
+            return authorities;
+        }
+        return userIdentitys;
+
     }
 
 }
