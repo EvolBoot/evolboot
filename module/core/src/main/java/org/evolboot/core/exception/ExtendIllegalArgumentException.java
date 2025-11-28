@@ -9,7 +9,7 @@ public class ExtendIllegalArgumentException extends ExtendRuntimeException {
         super(message);
     }
 
-    public ExtendIllegalArgumentException(String message, Exception ex) {
+    public ExtendIllegalArgumentException(String message, Throwable ex) {
         super(message, ex);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.evolboot.security.api.access.AccessAuthorities.HAS_ROLE_SUPER_ADMIN;
@@ -83,9 +84,9 @@ public class AdminOperationLogResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            @RequestParam(required = false) Date begin,
+            @RequestParam(required = false) LocalDateTime begin,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            @RequestParam(required = false) Date end,
+            @RequestParam(required = false) LocalDateTime end,
             @RequestParam(required = false) Long userId,
             @RequestParam(required = false) String operation
     ) {

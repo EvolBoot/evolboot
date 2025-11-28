@@ -55,10 +55,16 @@ public class PayinOrderCreateFactory {
         log.info("代收:网关:{}", gatewayAccount.getPayGateway());
         PayinClient payinClient = payinClientMap.get(gatewayAccount.getPayGateway());
 
-        if (!payinClient.supportCurrency(request.getCurrency())) {
+        if (!gatewayAccount.supportCurrency(request.getCurrency())) {
             log.info("代收:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
             throw PayException.dotSupportCurrency(gatewayAccount.getAlias(), request.getCurrency());
         }
+
+        if (!gatewayAccount.validatePayinAmount(request.getCurrency(), request.getPayAmount())) {
+            log.info("代收:创建订单:金额不在范围内:网关:{},货币:{},金额:{}", gatewayAccount.getPayGateway(), request.getCurrency(), request.getPayAmount());
+            throw PayException.PAYIN_AMOUNT_OUT_OF_RANGE;
+        }
+
         Assert.notNull(payinClient, thePaymentGatewayDoesNotExist());
         String payinOrderId = PayinOrder.generateId();
         log.info("代收:创建代收,网关:{},内部单号:{},代收订单:{}", gatewayAccount.getPayGateway(), request.getInternalOrderId(), payinOrderId);

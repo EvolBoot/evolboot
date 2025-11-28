@@ -20,7 +20,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class,
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {ApiClient.class})})
 @EnableJpaRepositories(repositoryFactoryBeanClass = QuerydslJpaRepositoryFactoryBean.class)
-@EnableAutoConfiguration(exclude = { UserDetailsServiceAutoConfiguration.class }) // 禁用 Spring Security 默认生成的用户密码
+@EnableAutoConfiguration(exclude = {
+        UserDetailsServiceAutoConfiguration.class, // 禁用 Spring Security 默认生成的用户密码
+        org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration.class // 使用自定义 Quartz 配置
+})
 public class EntryAdminApplication {
 
     public static void main(String[] args) {

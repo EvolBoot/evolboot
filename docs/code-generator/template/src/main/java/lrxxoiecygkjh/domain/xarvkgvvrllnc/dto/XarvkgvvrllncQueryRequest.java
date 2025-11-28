@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import projectPackage.core.util.ExtendDateUtil;
 import projectPackage.core.util.ExtendObjects;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +58,14 @@ public class XarvkgvvrllncQueryRequest extends Query {
             this.endAt = ExtendDateUtil.endOfDay(endAt);
         }
     }
+
+    public String getKeyword() {
+        if (keyword == null) {
+            return null;
+        }
+        return keyword.trim();
+    }
+
 
     /**
      * 从 CurrentPrincipal 创建 Builder，自动设置 userId 和 tenantId

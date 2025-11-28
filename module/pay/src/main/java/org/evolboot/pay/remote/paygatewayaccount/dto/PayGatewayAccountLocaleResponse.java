@@ -8,8 +8,8 @@ import org.evolboot.core.data.Page;
 import org.evolboot.core.data.PageImpl;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccount;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccountLocale;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayCurrencyLimit;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +28,12 @@ public class PayGatewayAccountLocaleResponse {
 
     private PayGatewayAccountLocale locale;
 
-    private BigDecimal minimumPayinAmount;
-
-    private BigDecimal maximumPayinAmount;
+    private List<PayGatewayCurrencyLimit> supportCurrencies;
 
     public static PayGatewayAccountLocaleResponse of(PayGatewayAccount row) {
         PayGatewayAccountLocale locale = row.findLocaleByCurrentLanguage(PayGatewayAccountLocale.class);
         return new PayGatewayAccountLocaleResponse(
-                row.id(), row.getLogo(), locale, row.getMinimumPayinAmount(), row.getMaximumPayinAmount()
+                row.id(), row.getLogo(), locale, row.getSupportCurrencies()
         );
     }
 

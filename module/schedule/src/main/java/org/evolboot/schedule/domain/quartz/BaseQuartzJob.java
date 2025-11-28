@@ -1,9 +1,11 @@
 package org.evolboot.schedule.domain.quartz;
 
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
+import org.evolboot.schedule.ScheduleConstant;
+import org.quartz.*;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Quartz Job 基类
@@ -39,6 +41,14 @@ public abstract class BaseQuartzJob implements Job {
     }
 
     /**
+     * 获取任务名称（唯一标识）
+     * 子类必须实现，用于标识任务类型
+     *
+     * @return 任务名称，不可重复
+     */
+    public abstract String getJobName();
+
+    /**
      * 子类实现具体的任务逻辑
      *
      * @param context 任务执行上下文
@@ -55,4 +65,9 @@ public abstract class BaseQuartzJob implements Job {
     protected boolean shouldRefireOnError() {
         return false;
     }
+
+    public String getJobParam(JobExecutionContext context) {
+        return context.getJobDetail().getJobDataMap().getString(ScheduleConstant.QUARTZ_JOB_PARAM_NAME);
+    }
+
 }

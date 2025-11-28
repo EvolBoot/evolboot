@@ -4,7 +4,20 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.time.LocalDateTime;
+
+import static java.lang.Integer.parseInt;
+
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+
+import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static java.lang.Integer.parseInt;
@@ -69,6 +82,19 @@ public class ExtendDateUtil {
     }
 
     /**
+     * 获取某天的结束时间
+     *
+     * @param date 日期
+     * @return {@link LocalDateTime}
+     */
+    public static LocalDateTime endOfDay(LocalDateTime date) {
+        if (date == null) {
+            return date;
+        }
+        return date.toLocalDate().atTime(23, 59, 59, 0);
+    }
+
+    /**
      * 偏移天
      *
      * @param date   日期
@@ -123,6 +149,21 @@ public class ExtendDateUtil {
         return DateUtil.beginOfDay(date);
     }
 
+
+    /**
+     * 获取某天的开始时间
+     *
+     * @param date 日期
+     * @return {@link LocalDateTime}
+     */
+    public static LocalDateTime beginOfDay(LocalDateTime date) {
+        if (date == null) {
+            return date;
+        }
+        return date.toLocalDate().atStartOfDay();
+    }
+
+
     /**
      * 判断两个日期相差的天数<br>
      *
@@ -134,7 +175,7 @@ public class ExtendDateUtil {
      * </pre>
      *
      * @param beginDate 起始日期
-     * @param endAt   结束日期
+     * @param endAt     结束日期
      * @param isReset   是否重置时间为起始时间
      * @return 日期差
      * @since 3.0.1
@@ -214,6 +255,31 @@ public class ExtendDateUtil {
      */
     public static String now() {
         return DateUtil.now();
+    }
+
+    public static boolean eqSeconds(Date left, Date right) {
+        if (left == right) {
+            return true;
+        }
+        if (left == null || right == null) {
+            return false;
+        }
+        return left.getTime()/ 1000 == right.getTime() / 1000;
+    }
+
+    /**
+     * 将 LocalDateTime 转换为 Date (使用系统默认时区)
+     */
+    public static Date toDate(LocalDateTime localDateTime) {
+        return toDate(localDateTime, ZoneId.systemDefault());
+    }
+
+    /**
+     * 将 LocalDateTime 转换为 Date (自定义时区)
+     */
+    public static Date toDate(LocalDateTime localDateTime, ZoneId zoneId) {
+        if (localDateTime == null) return null;
+        return Date.from(localDateTime.atZone(zoneId).toInstant());
     }
 
 

@@ -52,4 +52,14 @@ public interface ErrorCode {
      */
     Integer DOT_SUPPORT_CURRENCY = 10009;
 
+    /**
+     * 代收金额超出范围
+     */
+    Integer PAYIN_AMOUNT_OUT_OF_RANGE = 10010;
+
+    /**
+     * 代付金额超出范围
+     */
+    Integer PAYOUT_AMOUNT_OUT_OF_RANGE = 10011;
+
 }

@@ -10,10 +10,13 @@ import org.evolboot.core.entity.AggregateRoot;
 import org.evolboot.core.entity.IdGenerate;
 import org.evolboot.core.entity.LocaleDomainPart;
 import org.evolboot.pay.domain.paygatewayaccount.repository.jpa.convert.PayGatewayAccountLocaleListConverter;
+import org.evolboot.pay.domain.paygatewayaccount.repository.jpa.convert.PayGatewayCurrencyLimitConverter;
+import org.evolboot.shared.pay.Currency;
 import org.evolboot.shared.pay.PayGateway;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -53,13 +56,10 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
     @Schema(title = "秘钥")
     private String secretKey;
 
-    // 最少支付
-    @Schema(title = "最少支付")
-    private BigDecimal minimumPayinAmount;
-
-    // 最多支付
-    @Schema(title = "最多支付")
-    private BigDecimal maximumPayinAmount;
+    // 支持的货币及其限制
+    @Schema(title = "支持的货币及其限制")
+    @Convert(converter = PayGatewayCurrencyLimitConverter.class)
+    private List<PayGatewayCurrencyLimit> supportCurrencies;
 
     //启用状态
     @Schema(title = "启用状态")
@@ -88,8 +88,7 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
                              String merchantId,
                              String appid,
                              String secretKey,
-                             BigDecimal minimumPayinAmount,
-                             BigDecimal maximumPayinAmount,
+                             List<PayGatewayCurrencyLimit> supportCurrencies,
                              Boolean enable,
                              PayGateway payGateway,
                              Integer sort,
@@ -101,15 +100,13 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
         setMerchantId(merchantId);
         setAppid(appid);
         setSecretKey(secretKey);
-        setMinimumPayinAmount(minimumPayinAmount);
-        setMaximumPayinAmount(maximumPayinAmount);
+        setSupportCurrencies(supportCurrencies);
         setEnable(enable);
         setPayGateway(payGateway);
         setLocales(locales);
         setSort(sort);
         setWalletId(walletId);
         setAlias(alias);
-
     }
 
     public void setAlias(String alias) {
@@ -140,12 +137,8 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
         this.secretKey = secretKey;
     }
 
-    public void setMinimumPayinAmount(BigDecimal minimumPayinAmount) {
-        this.minimumPayinAmount = minimumPayinAmount;
-    }
-
-    public void setMaximumPayinAmount(BigDecimal maximumPayinAmount) {
-        this.maximumPayinAmount = maximumPayinAmount;
+    public void setSupportCurrencies(List<PayGatewayCurrencyLimit> supportCurrencies) {
+        this.supportCurrencies = supportCurrencies;
     }
 
     public void setEnable(Boolean enable) {
@@ -168,5 +161,58 @@ public class PayGatewayAccount extends JpaAbstractEntity<Long> implements Aggreg
     @Override
     public PayGatewayAccount root() {
         return this;
+    }
+
+    /**
+     * 校验代收金额是否在范围内
+     *
+     * @param currency 货币类型
+     * @param amount   金额
+     * @return true 在范围内，false 不在范围内
+     */
+    public boolean validatePayinAmount(Currency currency, BigDecimal amount) {
+        if (supportCurrencies == null || supportCurrencies.isEmpty()) {
+            return true;
+        }
+
+        Optional<PayGatewayCurrencyLimit> limitOptional = supportCurrencies.stream()
+                .filter(limit -> limit.getCurrency() == currency)
+                .findFirst();
+
+        return limitOptional.map(limit -> limit.isPayinAmountValid(amount)).orElse(false);
+    }
+
+    /**
+     * 校验代付金额是否在范围内
+     *
+     * @param currency 货币类型
+     * @param amount   金额
+     * @return true 在范围内，false 不在范围内
+     */
+    public boolean validatePayoutAmount(Currency currency, BigDecimal amount) {
+        if (supportCurrencies == null || supportCurrencies.isEmpty()) {
+            return true;
+        }
+
+        Optional<PayGatewayCurrencyLimit> limitOptional = supportCurrencies.stream()
+                .filter(limit -> limit.getCurrency() == currency)
+                .findFirst();
+
+        return limitOptional.map(limit -> limit.isPayoutAmountValid(amount)).orElse(false);
+    }
+
+    /**
+     * 检查是否支持某个货币
+     *
+     * @param currency 货币类型
+     * @return true 支持，false 不支持
+     */
+    public boolean supportCurrency(Currency currency) {
+        if (supportCurrencies == null || supportCurrencies.isEmpty()) {
+            return false;
+        }
+
+        return supportCurrencies.stream()
+                .anyMatch(limit -> limit.getCurrency() == currency);
     }
 }

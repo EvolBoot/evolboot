@@ -56,10 +56,17 @@ public class PayoutOrderCreateFactory {
             log.info("代付:创建订单:不支持该组织:网关:{},组织:{}", gatewayAccount.getPayGateway(), request.getOrgType());
             throw PayException.dotSupportOrgType(gatewayAccount.getAlias(), request.getOrgType());
         }
-        if (!payoutClient.supportCurrency(request.getCurrency())) {
+
+        if (!gatewayAccount.supportCurrency(request.getCurrency())) {
             log.info("代付:创建订单:不支持该货币:网关:{},货币:{}", gatewayAccount.getPayGateway(), request.getCurrency());
             throw PayException.dotSupportCurrency(gatewayAccount.getAlias(), request.getCurrency());
         }
+
+        if (!gatewayAccount.validatePayoutAmount(request.getCurrency(), request.getAmount())) {
+            log.info("代付:创建订单:金额不在范围内:网关:{},货币:{},金额:{}", gatewayAccount.getPayGateway(), request.getCurrency(), request.getAmount());
+            throw PayException.PAYOUT_AMOUNT_OUT_OF_RANGE;
+        }
+
         Assert.notNull(payoutClient, PayI18nMessage.PaymentClient.thePaymentGatewayDoesNotExist());
 
         PayoutOrder payoutOrder = new PayoutOrder(

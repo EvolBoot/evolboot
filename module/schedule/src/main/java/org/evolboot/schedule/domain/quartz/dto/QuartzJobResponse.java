@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Schema(description = "Quartz 任务响应")
-public class QuartzJobResponse {
+    public class QuartzJobResponse {
 
     @Schema(description = "任务名称", example = "demo-job")
     private String jobName;
@@ -57,4 +58,8 @@ public class QuartzJobResponse {
 
     @Schema(description = "下次执行时间")
     private Date nextFireTime;
+
+    @Schema(description = "任务数据", example = "default")
+    private String jobData;
 }
+

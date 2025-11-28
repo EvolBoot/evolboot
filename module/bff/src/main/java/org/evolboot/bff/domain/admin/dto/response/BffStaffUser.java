@@ -6,6 +6,7 @@ import org.evolboot.identity.domain.user.entity.Gender;
 import org.evolboot.identity.domain.user.entity.UserState;
 import org.evolboot.identity.domain.user.entity.UserType;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**

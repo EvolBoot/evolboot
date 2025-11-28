@@ -8,7 +8,8 @@ public class ExtendRuntimeException extends RuntimeException {
         super(message, (Throwable) null, false, false);
     }
 
-    public ExtendRuntimeException(String message, Exception ex) {
+    public ExtendRuntimeException(String message, Throwable ex) {
         super(message, ex, false, false);
     }
+
 }

@@ -3,9 +3,9 @@ package org.evolboot.pay.domain.paygatewayaccount.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayAccountLocale;
+import org.evolboot.pay.domain.paygatewayaccount.entity.PayGatewayCurrencyLimit;
 import org.evolboot.shared.pay.PayGateway;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -29,9 +29,8 @@ public abstract class PayGatewayAccountRequestBase {
     // 用来加密的
     private String secretKey;
 
-    private BigDecimal minimumPayinAmount;
-
-    private BigDecimal maximumPayinAmount;
+    // 支持的货币及其限制
+    private List<PayGatewayCurrencyLimit> supportCurrencies;
 
     private Boolean enable = true;
 

@@ -11,4 +11,7 @@ public abstract class ExtendErrorCodeException extends ExtendIllegalArgumentExce
         super(message);
     }
 
+    public ExtendErrorCodeException(String message, Throwable ex) {
+        super(message, ex);
+    }
 }

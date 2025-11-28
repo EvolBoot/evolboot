@@ -8,6 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -23,12 +24,12 @@ public class GroupQueryRequest extends Query {
 
     private Long id;
 
-    private Date beginAt;
+    private LocalDateTime beginAt;
 
-    private Date endAt;
+    private LocalDateTime endAt;
 
     @Builder
-    public GroupQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String sortField, Direction direction) {
+    public GroupQueryRequest(Long id, Integer page, Integer limit, LocalDateTime beginAt, LocalDateTime endAt, String sortField, Direction direction) {
         super(page, limit, sortField, direction);
         this.id = id;
         if (ExtendObjects.nonNull(beginAt)) {

@@ -12,6 +12,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -28,12 +30,12 @@ public abstract class JpaAbstractEntity<ID extends Serializable> extends Abstrac
     @Getter
     @Schema(title = "创建时间")
     @CreationTimestamp
-    protected Date createAt;
+    protected LocalDateTime createAt;
 
     @UpdateTimestamp
     @Column(nullable = false)
     @Schema(title = "更新时间")
-    private Date updateAt;
+    private LocalDateTime updateAt;
 
 
 

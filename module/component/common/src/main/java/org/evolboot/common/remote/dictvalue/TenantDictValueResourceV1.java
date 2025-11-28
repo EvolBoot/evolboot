@@ -20,6 +20,7 @@ import org.evolboot.security.api.SecurityAccessTokenHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -100,8 +101,8 @@ public class TenantDictValueResourceV1 {
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) Long dictKeyId,
             @RequestParam(required = false) String key,
-            @RequestParam(required = false) Date beginAt,
-            @RequestParam(required = false) Date endAt,
+            @RequestParam(required = false) LocalDateTime beginAt,
+            @RequestParam(required = false) LocalDateTime endAt,
             @RequestParam(required = false) String sortField,
             @RequestParam(required = false) Direction direction
     ) {

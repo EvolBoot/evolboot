@@ -1,7 +1,9 @@
 package org.evolboot.schedule.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evolboot.schedule.ScheduleConstant;
 import org.evolboot.schedule.domain.quartz.BaseQuartzJob;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 
 /**
@@ -11,7 +13,13 @@ import org.quartz.JobExecutionContext;
  * @author evol
  */
 @Slf4j
+@DisallowConcurrentExecution
 public class QuartzJobDemoJob extends BaseQuartzJob {
+
+    @Override
+    public String getJobName() {
+        return "DemoJob";
+    }
 
     @Override
     protected void executeInternal(JobExecutionContext context) throws Exception {
@@ -21,13 +29,13 @@ public class QuartzJobDemoJob extends BaseQuartzJob {
         log.info("DemoJob 正在执行：{}.{}", jobGroup, jobName);
 
         // 从 JobDataMap 获取参数
-        String message = context.getJobDetail().getJobDataMap().getString("message");
+        String message = getJobParam(context);
         if (message != null) {
             log.info("DemoJob 接收到参数：{}", message);
         }
 
         // 模拟业务处理
-        Thread.sleep(100);
+        Thread.sleep(1000 * 60);
 
         log.info("DemoJob 执行完成：{}.{}", jobGroup, jobName);
     }

@@ -8,6 +8,7 @@ import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.identity.domain.permission.entity.PermissionScope;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -18,9 +19,9 @@ public class RoleQueryRequest extends Query {
 
     private Long id;
 
-    private Date beginAt;
+    private LocalDateTime beginAt;
 
-    private Date endAt;
+    private LocalDateTime endAt;
 
     private final String roleName;
 
@@ -29,7 +30,7 @@ public class RoleQueryRequest extends Query {
     private final Long tenantId;
 
     @Builder
-    public RoleQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, String roleName, PermissionScope scope, Long tenantId, String sortField, Direction direction) {
+    public RoleQueryRequest(Long id, Integer page, Integer limit, LocalDateTime beginAt, LocalDateTime endAt, String roleName, PermissionScope scope, Long tenantId, String sortField, Direction direction) {
         super(page, limit, sortField, direction);
         this.id = id;
         this.roleName = roleName;

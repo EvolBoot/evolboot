@@ -13,6 +13,7 @@ import org.evolboot.core.i18n.I18NMessageHolder;
 import org.evolboot.core.util.Assert;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.evolboot.captcha.CaptchaI18nMessage.ImageCaptcha.CODE_ERROR;

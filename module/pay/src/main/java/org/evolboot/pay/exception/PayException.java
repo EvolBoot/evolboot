@@ -13,6 +13,8 @@ public class PayException extends ExtendErrorCodeException {
     public final static PayException PAYOUT_ORDER_ERROR = new PayException(ErrorCode.PAYOUT_ORDER_ERROR, "Payout fail,Please contact customer service.");
     public final static PayException PAYIN_ORDER_ERROR = new PayException(ErrorCode.PAYIN_ORDER_ERROR, "Payin fail, Please contact customer service.");
     public final static PayException GATEWAY_NOT_FOUND = new PayException(ErrorCode.GATEWAY_NOT_FOUND, "Gateway cannot be found");
+    public final static PayException PAYIN_AMOUNT_OUT_OF_RANGE = new PayException(ErrorCode.PAYIN_AMOUNT_OUT_OF_RANGE, "Payin amount out of range");
+    public final static PayException PAYOUT_AMOUNT_OUT_OF_RANGE = new PayException(ErrorCode.PAYOUT_AMOUNT_OUT_OF_RANGE, "Payout amount out of range");
 
     public static PayException ofParameterIsNull(String paramKey) {
         return new PayException(ErrorCode.PARAMETER_IS_NULL, "[" + paramKey + "] Cannot be null");

@@ -15,10 +15,10 @@ import org.evolboot.core.data.Pageable;
 @Schema(description = "Quartz 任务查询请求")
 public class QuartzJobQueryRequest {
 
-    @Schema(description = "任务组（可选，为空则查询所有）", example = "default")
-    private String jobGroup;
+    @Schema(description = "任务类型Key（模糊匹配）", example = "Demo")
+    private String jobClassKey;
 
-    @Schema(description = "任务名称（模糊匹配）", example = "demo")
+    @Schema(description = "任务名称（模糊匹配）", example = "demo-job")
     private String jobName;
 
     @Schema(description = "触发器状态（NORMAL, PAUSED, BLOCKED, ERROR, NONE）", example = "NORMAL")

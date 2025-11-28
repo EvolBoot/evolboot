@@ -6,6 +6,7 @@ import org.evolboot.core.util.Assert;
 import org.evolboot.core.util.MD5Util;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;

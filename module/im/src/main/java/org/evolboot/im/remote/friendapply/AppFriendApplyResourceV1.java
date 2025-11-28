@@ -19,6 +19,7 @@ import org.evolboot.security.api.annotation.Authenticated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -51,8 +52,8 @@ public class AppFriendApplyResourceV1 {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", defaultValue = "20") Integer limit,
             @RequestParam(required = false) Long id,
-            @RequestParam(required = false) Date beginAt,
-            @RequestParam(required = false) Date endAt
+            @RequestParam(required = false) LocalDateTime beginAt,
+            @RequestParam(required = false) LocalDateTime endAt
     ) {
         FriendApplyQueryRequest query = FriendApplyQueryRequest
                 .builder()

@@ -25,6 +25,8 @@ evolpn:
   # 是否启用定时任务
   schedule:
     enable: true
+    quartz:
+      enable: false  # Quartz 定时任务（开发环境默认关闭，可手动开启测试）
 
   # 默认头像
   identity:
@@ -124,6 +126,33 @@ spring:
         thread-number: 1
   jpa:
     show-sql: true
+
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never  # 使用 Flyway 管理表结构
+    overwrite-existing-jobs: true  # 覆盖已存在的任务
+    startup-delay: 10s  # 启动延迟
+    auto-startup: true  # 自动启动
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: evolpn-scheduler
+            instanceId: AUTO
+            skipUpdateCheck: true
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: false
+            misfireThreshold: 60000
+            useProperties: false
 
 mybatis-plus:
   configuration:

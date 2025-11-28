@@ -23,6 +23,7 @@ import static org.evolboot.im.ImAccessAuthorities.ChatRecord.*;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -98,10 +99,10 @@ public class AdminChatRecordResourceV1 {
             @RequestParam(required = false) Long id,
 
             @Parameter(description = "起始时间")
-            @RequestParam(required = false) Date beginAt,
+            @RequestParam(required = false) LocalDateTime beginAt,
 
             @Parameter(description = "结束时间")
-            @RequestParam(required = false) Date endAt,
+            @RequestParam(required = false) LocalDateTime endAt,
 
             @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword

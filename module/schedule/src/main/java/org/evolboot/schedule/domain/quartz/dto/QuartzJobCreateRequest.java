@@ -1,6 +1,7 @@
 package org.evolboot.schedule.domain.quartz.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,14 +17,13 @@ import java.util.Map;
 @Schema(description = "创建 Quartz 任务请求")
 public class QuartzJobCreateRequest {
 
-    @Schema(description = "任务名称", example = "demo-job", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "任务类型Key不能为空")
+    @Schema(description = "任务类型Key（从可用任务列表中选择）", example = "DemoJob", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String jobClassKey;
+
+    @NotBlank(message = "任务名称不能为空")
+    @Schema(description = "任务名称（唯一标识）", example = "demo-job-1", requiredMode = Schema.RequiredMode.REQUIRED)
     private String jobName;
-
-    @Schema(description = "任务组", example = "default", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String jobGroup;
-
-    @Schema(description = "任务类全限定名", example = "org.evolboot.schedule.service.DemoJob", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String jobClassName;
 
     @Schema(description = "Cron 表达式（创建 Cron 任务时必填）", example = "0 0/5 * * * ?")
     private String cronExpression;
@@ -37,6 +37,6 @@ public class QuartzJobCreateRequest {
     @Schema(description = "任务描述", example = "演示任务")
     private String description;
 
-    @Schema(description = "任务参数（JSON 格式）")
-    private Map<String, Object> jobData;
+    @Schema(description = "任务参数")
+    private String jobData;
 }

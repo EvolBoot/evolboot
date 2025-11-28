@@ -12,6 +12,7 @@ import org.evolboot.im.domain.groupmember.repository.GroupMemberRepository;
 import org.evolboot.shared.event.im.GroupMemberCreateEvent;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**

@@ -9,6 +9,7 @@ import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 import org.evolboot.im.domain.shared.ConversationType;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -24,14 +25,14 @@ public class ConversationQueryRequest extends Query {
 
     private Long id;
 
-    private Date beginAt;
+    private LocalDateTime beginAt;
 
-    private Date endAt;
+    private LocalDateTime endAt;
 
     private ConversationType type;
 
     @Builder
-    public ConversationQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, ConversationType type, String sortField, Direction direction) {
+    public ConversationQueryRequest(Long id, Integer page, Integer limit, LocalDateTime beginAt, LocalDateTime endAt, ConversationType type, String sortField, Direction direction) {
         super(page, limit, sortField, direction);
         this.id = id;
         this.type = type;

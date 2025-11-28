@@ -64,7 +64,6 @@ public class HuanQiuPayPaymentClient implements PayinClient, PayoutClient {
     @Override
     public PayinCreateResponse createPayinOrder(String payinOrderId, PayGatewayAccount account, PayinCreateRequest request) {
         log.info("代收:支付:创建订单:开始:HuanQiuPay");
-        Assert.isTrue(BigDecimalUtil.goe(request.getPayAmount(), account.getMinimumPayinAmount()), PayI18nMessage.PaymentClient.theMinimumRechargeAmountIs(account.getMinimumPayinAmount()));
         String url = huanQiuPayConfig.getPayinCreateUrl();
         TreeMap<String, Object> params = Maps.newTreeMap();
         params.put("mer_id", account.getMerchantId());

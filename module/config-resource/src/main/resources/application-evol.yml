@@ -14,6 +14,8 @@ evolpn:
   # 是否启用定时任务
   schedule:
     enable: true
+    quartz:
+      enable: true  # Quartz 定时任务（演示环境启用）
 
   # 默认头像
   identity:
@@ -135,6 +137,33 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       topic: xxx
       ack-s: all
+
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never  # 使用 Flyway 管理表结构
+    overwrite-existing-jobs: true  # 覆盖已存在的任务
+    startup-delay: 10s  # 启动延迟
+    auto-startup: true  # 自动启动
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: evolpn-scheduler
+            instanceId: AUTO
+            skipUpdateCheck: true
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: false
+            misfireThreshold: 60000
+            useProperties: false
 
 mybatis-plus:
   configuration:

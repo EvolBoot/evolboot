@@ -22,7 +22,7 @@ public class CustomSpecCaptcha extends Captcha {
 
     static {
         try {
-            FONT = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(Captcha.class.getResourceAsStream("/" + FONT_NAMES[0]))).deriveFont(Font.BOLD, 32);
+            FONT = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(Captcha.class.getResourceAsStream("/" + FONT_NAMES[0]))).deriveFont(Font.BOLD, 60);
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -85,10 +85,10 @@ public class CustomSpecCaptcha extends Captcha {
             // 抗锯齿
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             // 画干扰圆
-            drawOval(2, g2d);
+            drawOval(12, g2d);
             // 画干扰线
             g2d.setStroke(new BasicStroke(2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
-            drawBesselLine(1, g2d);
+            drawBesselLine(6, g2d);
             // 画字符串
             g2d.setFont(getFont());
             FontMetrics fontMetrics = g2d.getFontMetrics();

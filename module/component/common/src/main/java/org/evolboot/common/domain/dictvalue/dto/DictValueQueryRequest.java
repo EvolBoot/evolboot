@@ -8,6 +8,7 @@ import org.evolboot.core.data.Query;
 import org.evolboot.core.util.ExtendDateUtil;
 import org.evolboot.core.util.ExtendObjects;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -23,16 +24,16 @@ public class DictValueQueryRequest extends Query {
 
     private Long id;
 
-    private Date beginAt;
+    private LocalDateTime beginAt;
 
-    private Date endAt;
+    private LocalDateTime endAt;
 
     private Long dictKeyId;
 
     private final String key;
 
     @Builder
-    public DictValueQueryRequest(Long id, Integer page, Integer limit, Date beginAt, Date endAt, Long dictKeyId, String key, String sortField, Direction direction) {
+    public DictValueQueryRequest(Long id, Integer page, Integer limit, LocalDateTime beginAt, LocalDateTime endAt, Long dictKeyId, String key, String sortField, Direction direction) {
         super(page, limit, sortField, direction);
         this.id = id;
         this.dictKeyId = dictKeyId;

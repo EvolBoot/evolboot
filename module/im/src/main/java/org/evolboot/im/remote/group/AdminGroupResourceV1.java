@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.evolboot.im.ImAccessAuthorities.Group.*;
@@ -104,10 +105,10 @@ public class AdminGroupResourceV1 {
             @RequestParam(required = false) Long id,
 
             @Parameter(description = "起始时间")
-            @RequestParam(required = false) Date beginAt,
+            @RequestParam(required = false) LocalDateTime beginAt,
 
             @Parameter(description = "结束时间")
-            @RequestParam(required = false) Date endAt,
+            @RequestParam(required = false) LocalDateTime endAt,
 
             @Parameter(description = "搜索关键字")
             @RequestParam(required = false) String keyword
